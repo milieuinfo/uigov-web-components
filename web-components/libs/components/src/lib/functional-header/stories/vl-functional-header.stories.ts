@@ -97,14 +97,16 @@ functionalHeaderInzage.storyName = 'vl-functional-header - inzage';
 functionalHeaderInzage.args = {
     title: 'Project overzicht',
     topLeft: html`<h2 class="vl-title vl-title--h2">
-        2458963498
-        <span class="vl-annotation vl-annotation--small">(MILIEUBEDRIJF - RINGVAART - OCGT)</span>
+        <span>2458963498</span>
+        <span class="vl-annotation vl-annotation--small">(MILIEUBEDRIJF)</span>
     </h2>`,
     topRight: html`<p><span>Toestand: In beroepsperiode tot 01.02.2023</span></p>`,
-    subHeader: html`<a id="back-link" is="vl-link" href="${document.referrer}" tabindex="0">
-        <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span>
-        <span id="back-link-text">Eén stap terug</span>
-    </a>`,
+    subHeader: html` <div class="sub-header">
+        <a id="back-link" is="vl-link" href="${document.referrer}" tabindex="0">
+            <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span>
+            <span id="back-link-text">Eén stap terug</span>
+        </a>
+    </div>`,
 };
 functionalHeaderInzage.argTypes = {
     title: {

@@ -14,3 +14,18 @@ $vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-fon
     display: flex;
     flex-flow: column;
 }
+
+.uig-functional-header__row {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 767px) {
+    .uig-functional-header__row {
+        flex-direction: column;
+    }
+
+    .uig-functional-header__top-right {
+        padding: 0.5rem 1rem 0 1rem;
+    }
+}

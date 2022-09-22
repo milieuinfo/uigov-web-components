@@ -5,6 +5,10 @@ on:
     paths:
       - .github/workflows/ci-web-components.yml
       - web-components/**
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
 
 env:
   CYPRESS_CACHE_FOLDER: cypress/cache
@@ -40,12 +44,6 @@ jobs:
             ./web-components
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
-      - name: archive documentation
-        uses: actions/upload-artifact@v3
-        with:
-          name: archived-documentation
-          path: ./documentation
-          retention-days: 30
 
   perform-all-unit-tests:
     runs-on: ubuntu-latest
@@ -66,12 +64,42 @@ jobs:
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: web-components - test
-        run: npx nx test
+        run: npx nx run-many --all --target=test --parallel --maxParallel=4 --skip-nx-cache
         continue-on-error: false
       - name: archive unit-test results
         uses: actions/upload-artifact@v3
         with:
           name: dist-perform-all-unit-tests
+          path: ./web-components/dist
+          retention-days: 30
+
+  perform-all-web-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./web-components
+    needs: checkout-install-and-cache
+    steps:
+      - name: restore workspace cache
+        id: cache-workspace
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-workspace
+        with:
+          path: |
+            ./web-components
+            cypress/cache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
+      - name: web-components - web-test-runner
+        run: |
+          npm run build:all
+          npx nx wct map
+        continue-on-error: false
+      - name: archive unit-test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-perform-all-web-tests
           path: ./web-components/dist
           retention-days: 30
 
@@ -190,56 +218,142 @@ jobs:
           name: dist-e2e-test-storybook
           path: ./web-components/dist
           retention-days: 30
+      - uses: geekyeggo/delete-artifact@v2
+        with:
+          name: |
+            dist-e2e-test-storybook-p1
+            dist-e2e-test-storybook-p2
+            dist-e2e-test-storybook-p3
+            dist-e2e-test-storybook-p4
+            dist-e2e-test-storybook-p5
 
-  publish-apps-and-documentation:
+  release-and-publish:
+    if:
+      # only publish main and beta-team branches
+      contains('refs/heads/main, refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
-        working-directory: ./web-components
-    needs: [perform-all-unit-tests, build-apps-libs-and-storybook, e2e-report-storybook]
+    needs: [perform-all-unit-tests, perform-all-web-tests, build-apps-libs-and-storybook, e2e-report-storybook]
     steps:
       # github-pages-deploy-action gives an error when 'not in a git directory'
       # -> so a checkout instead of a 'restore workspace cache'
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT_UIG }}
+      - name: restore workspace cache
+        id: cache-workspace
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-workspace
+        with:
+          path: |
+            ./web-components
+            cypress/cache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
+      - name: release the beta branch
+        if: contains('refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
+        run: |
+          cd ./web-components
+          mv .releaserc-beta .releaserc
+          npx semantic-release
+      - name: release the main branch
+        if: contains('refs/heads/main', github.ref)
+        run: |
+          cd ./web-components
+          mv .releaserc-main .releaserc
+          npx semantic-release
       - name: get package version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@main
         with:
           path: ./web-components
+      - name: get root semver
+        run: |
+          rootsemver=$(echo ${{ env.nextRelease_version }} | cut -d '.' -f1-3)
+          echo using $rootsemver as rootsemver
+          echo "root_semver=$rootsemver" >> $GITHUB_ENV
+      - name: build the pages_sub_path for beta branches
+        if: contains('refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
+        run: |
+          pagesSubPath=${{ github.ref_name }}
+          echo using $pagesSubPath as pages_sub_path
+          echo "pages_sub_path=$pagesSubPath" >> $GITHUB_ENV
+      - name: build the pages_sub_path for the main branch
+        if: contains('refs/heads/main', github.ref)
+        run: |
+          pagesSubPath=${{ github.ref_name }}/${{ env.nextRelease_version }}
+          echo using $pagesSubPath as pages_sub_path
+          echo "pages_sub_path=$pagesSubPath" >> $GITHUB_ENV
       - name: download artifacts
         uses: actions/download-artifact@v3
+      - name: authenticate to local-npm repository
+        run: |
+          echo "registry=https://repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/"  > ~/.npmrc
+          echo "//repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/:_authToken=${{ secrets.NPM_TOKEN_DOMG }}" > ~/.npmrc
+      - name: publish to npm
+        run: |
+          cd dist-build-apps-libs-and-storybook/libs
+          echo path: $(pwd)
+          cd ./common/utilities && npm version ${{ env.nextRelease_version }} && npm publish
+          cd ../../elements && npm version ${{ env.nextRelease_version }} && npm publish
+          cd ../components && npm version ${{ env.nextRelease_version }} && npm publish
+          cd ../sections && npm version ${{ env.nextRelease_version }} && npm publish
+          cd ../map && npm version ${{ env.nextRelease_version }} && npm publish
+          cd ../support/test-support && npm version ${{ env.nextRelease_version }} && npm publish
       - name: output the build result path
-        run: echo "the build results (dist folders) are available at /build-apps/${{ github.ref_name }}/${{ steps.package-version.outputs.current-version}}"
-#      - name: publish dist folder on github-pages
-#        uses: JamesIves/github-pages-deploy-action@v4
-#        with:
-#          folder: web-components/dist
-#          repository-name: milieuinfo/uig-pages
-#          branch: main
-#          target-folder: build-github/${{ github.ref_name }}/web-components/${{ github.run_number }}
-#          token: ${{ secrets.PAT_UIG_PAGES }}
-      - name: publish Exhibit on github-pages
+        run: echo "the build results (dist folders) are available at /build-apps/${{ github.ref_name }}/${{ env.root_semver }}"
+      - name: replace the base-href with the correct path for playground
+        run: |
+          toReplace=$(echo href=\"/\")
+          baseHref=$(echo href=\"/uig-pages/build-apps/${{ env.pages_sub_path }}/playground/\")
+          echo using $baseHref as baseHref
+          sed -i'.bak' "s,$toReplace,$baseHref," dist-build-apps-libs-and-storybook/apps/playground/index.html
+      - name: replace the __UIG-VERSION__ with the new version for playground
+        run: |
+          toReplace=__UIG-VERSION__
+          newVersion=${{ env.nextRelease_version }}
+          sed -i'.bak' "s,$toReplace,$newVersion," dist-build-apps-libs-and-storybook/apps/playground/index.html
+      - name: prepare to publish
+        run: |
+          mkdir to-publish
+          mv dist-build-apps-libs-and-storybook/apps/playground to-publish/playground
+          mv dist-build-apps-libs-and-storybook/apps/storybook to-publish/storybook
+      - name: authenticate to acd-npm repository
+        run: |
+          echo "registry=https://repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/"  > ~/.npmrc
+          echo "//repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/:_authToken=${{ secrets.NPM_TOKEN_DOMG_ACD_NPM }}" >> ~/.npmrc
+      - name: upgrade the alliance version and dependencies
+        run: |
+          cd applications
+          npm version ${{ env.nextRelease_version }}
+          npm install \
+            @domg-lib/common-utilities@${{ env.nextRelease_version }} \
+            @domg-lib/components@${{ env.nextRelease_version }} \
+            @domg-lib/elements@${{ env.nextRelease_version }} \
+            @domg-lib/map@${{ env.nextRelease_version }} \
+            @domg-lib/sections@${{ env.nextRelease_version }}
+      - name: commit the applications package.json
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+          CI_COMMIT_MESSAGE: 'chore(post-release): upgrading Alliance dependencies'
+          CI_COMMIT_AUTHOR: 'ci-web-components'
+          CI_COMMIT_EMAIL: 'noreply@vlaanderen.be'
+        run: |
+          cd applications
+          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+          git config --global user.email "${{ env.CI_COMMIT_EMAIL }}"
+          git commit package.json package-lock.json -m "${{ env.CI_COMMIT_MESSAGE }}"
+          git push -f --set-upstream origin ${{ env.BRANCH_NAME }}
+      - name: info of documentation on github-pages
+        run: echo "the build results (dist folders) are available at /build-apps/${{ env.pages_sub_path }}"
+      - name: publish on github-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist-build-apps-libs-and-storybook/apps/exhibit
+          folder: to-publish
           repository-name: milieuinfo/uig-pages
           branch: main
-          target-folder: /build-apps/${{ github.ref_name }}/${{ steps.package-version.outputs.current-version}}/exhibit
+          target-folder: build-apps/${{ env.pages_sub_path }}
           token: ${{ secrets.PAT_UIG_PAGES }}
-      - name: publish Storybook on github-pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: dist-build-apps-libs-and-storybook/apps/storybook
-          repository-name: milieuinfo/uig-pages
-          branch: main
-          target-folder: /build-apps/${{ github.ref_name }}/${{ steps.package-version.outputs.current-version}}/storybook
-          token: ${{ secrets.PAT_UIG_PAGES }}
-      - name: publish documentation on github-pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: archived-documentation
-          repository-name: milieuinfo/uig-pages
-          branch: main
-          target-folder: /build-apps/${{ github.ref_name }}/${{ steps.package-version.outputs.current-version}}/documentation
-          token: ${{ secrets.PAT_UIG_PAGES }}
+          clean: false

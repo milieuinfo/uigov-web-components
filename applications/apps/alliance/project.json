@@ -27,7 +27,7 @@
                 "production": {
                     "optimization": true,
                     "outputHashing": "all",
-                    "sourceMap": false,
+                    "sourceMap": true,
                     "namedChunks": false,
                     "extractLicenses": true,
                     "vendorChunk": false,
@@ -43,7 +43,8 @@
         "serve": {
             "executor": "@nrwl/webpack:dev-server",
             "options": {
-                "buildTarget": "alliance:build"
+                "buildTarget": "alliance:build",
+                "port": 4201
             },
             "configurations": {
                 "production": {

@@ -38,7 +38,7 @@
         ],
         "sharedGlobals": ["{workspaceRoot}/babel.config.json"]
     },
-    "defaultProject": "exhibit",
+    "defaultProject": "playground",
     "generators": {
         "@nrwl/web:application": {
             "style": "scss",

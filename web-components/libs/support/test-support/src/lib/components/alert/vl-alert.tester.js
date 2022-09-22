@@ -2,7 +2,7 @@ import { VlElementTester } from '../../base/vl-element.tester';
 import { By } from '../../util/tester.setup';
 import { VlIconTester } from '../../elements/icon/vl-icon.tester';
 
-export default class VlAlertTester extends VlElementTester {
+export class VlAlertTester extends VlElementTester {
     async getCloseButton() {
         return await this.shadowRoot.findElement(By.css('#close'));
     }

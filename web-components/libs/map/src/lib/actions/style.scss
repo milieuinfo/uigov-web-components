@@ -1,0 +1,184 @@
+@import '@govflanders-v14/vl-ui-core/src/scss/setting/colorsRaw';
+@import '@govflanders-v14/vl-ui-core/src/scss/setting/colors';
+//@import 'bootstrap-sass/assets/stylesheets/bootstrap/variables';
+//@import 'bootstrap-sass/assets/stylesheets/bootstrap/glyphicons';
+
+@mixin ol-control {
+    padding: 0;
+    margin: 0;
+    border: 1px $vl-border-color solid;
+    border-radius: 0;
+    background: white;
+    top: initial;
+    left: initial;
+    bottom: 10px;
+    right: 10px;
+}
+
+@mixin ol-control-item {
+    color: $vl-text-color;
+    background: white;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0;
+    border-radius: 0;
+
+    &:hover {
+        background-color: white;
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: 0;
+        border: 0.1rem solid #ffc515;
+        box-shadow: inset 0 0 0 0.1rem #ffc515;
+        background-color: white;
+    }
+}
+
+.ol-zoom {
+    @include ol-control;
+
+    .ol-zoom-in,
+    .ol-zoom-out {
+        @include ol-control-item;
+    }
+}
+
+.ol-full-screen {
+    @include ol-control;
+    bottom: 92px;
+
+    .ol-full-screen-false,
+    .ol-full-screen-true {
+        @include ol-control-item;
+    }
+}
+
+.ol-scale-line {
+    border: 1px solid $vl-border-color;
+    border-radius: 0;
+    background-color: white;
+
+    .ol-scale-line-inner {
+        border-color: $vl-text-color;
+        color: $vl-text-color;
+    }
+}
+
+.ol-overviewmap {
+    background: white;
+    border: 1px solid $vl-border-color;
+    border-radius: 0;
+    width: 7.2rem;
+    height: 7.2rem;
+    top: initial;
+    left: initial;
+    bottom: 10px;
+    right: 55px;
+
+    &:not(.ol-collapsed) {
+        background: white;
+    }
+
+    .ol-overviewmap-map {
+        border: none;
+        cursor: pointer;
+        box-sizing: border-box;
+        margin: 0;
+        width: 6.6rem;
+        height: 6.6rem;
+
+        .ol-overviewmap-box {
+            border: 1px dotted $vl-text-color;
+        }
+    }
+
+    button {
+        display: none;
+    }
+}
+
+.info-tooltip {
+    position: relative;
+    color: white;
+    background-color: black;
+    padding: 5px 10;
+    opacity: 0.8;
+    border-radius: 5px;
+    font-size: 0.8em;
+
+    //.icon {
+    //    @extend .glyphicon;
+    //    @extend .glyphicon-refresh;
+    //
+    //    -animation: spin 0.7s infinite linear;
+    //    -webkit-animation: spin2 0.7s infinite linear;
+    //}
+    //
+    //.close {
+    //    @extend .glyphicon;
+    //    @extend .glyphicon-remove;
+    //
+    //    position: absolute;
+    //    top: 5px;
+    //    right: 5px;
+    //    color: white;
+    //    opacity: 0.6;
+    //    font-size: 10;
+    //
+    //    &:hover {
+    //        opacity: 1;
+    //    }
+    //}
+
+    @-webkit-keyframes spin2 {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        from {
+            transform: scale(1) rotate(0deg);
+        }
+        to {
+            transform: scale(1) rotate(360deg);
+        }
+    }
+
+    .arrow {
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        left: 50%;
+        margin-left: -6px;
+        border-bottom-width: 0;
+        border-top-color: black;
+        bottom: -11px;
+        border-width: 6px;
+    }
+}
+
+.measure-tooltip {
+    position: absolute;
+    color: white;
+    background-color: black;
+    padding: 5px 10;
+    opacity: 0.8;
+    border-radius: 5px;
+    font-size: 0.8em;
+    bottom: 20;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.ol-dragbox {
+    border-color: rgba(2, 85, 204, 1);
+}

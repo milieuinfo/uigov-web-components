@@ -1,0 +1,18 @@
+.vl-data-table--uig-zebra {
+    tbody {
+        tr:not(.vl-data-table__element--warning):not(.vl-data-table__element--error):not(.vl-data-table__element--success) {
+            &.odd {
+                background-color: $vl-porcelain;
+                &:hover {
+                    background-color: darken($vl-porcelain, 2%);
+                }
+            }
+        }
+    }
+}
+
+.vl-data-table tbody tr.vl-data-table__element--disabled,
+.vl-data-table tbody td.vl-data-table__element--disabled {
+    background: $vl-disabled-bg-color;
+    color: $vl-disabled-text-color;
+}

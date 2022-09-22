@@ -7,6 +7,39 @@ export class VlAutocompleteTester extends VlElementTester {
         return input.getAttribute('placeholder');
     }
 
+    async _getInput() {
+        const inputElement = await this.getElementInShadow(this, 'input');
+        return new VlElementTester(this.driver, inputElement);
+    }
+
+    async getValue() {
+        const inputVlElement = await this._getInput();
+        return inputVlElement.getAttribute('value');
+    }
+
+    async getLabel() {
+        const input = await this.getElementInShadow(this, 'label');
+        return input.getText();
+    }
+
+    async assertHasClearIcon() {
+        await this.waitUntilShadowDomElementsCount(this, '.uig-autocomplete__clear', 1);
+    }
+
+    async assertHasNoClearIcon() {
+        await this.waitUntilShadowDomElementsCount(this, '.uig-autocomplete__clear', 0);
+    }
+
+    async clickOnClearIcon() {
+        const element = await this._getClearIcon();
+        await element.click();
+    }
+
+    async _getClearIcon() {
+        const element = await this.getElementInShadow(this, '.uig-autocomplete__clear');
+        return new VlElementTester(this.driver, element);
+    }
+
     async isDisabled() {
         return this.hasAttribute('disabled');
     }
