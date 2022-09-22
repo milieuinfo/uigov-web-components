@@ -15,18 +15,30 @@ export default {
 
 const autocompleteTemplate = ({
     placeholder,
+    initialValue,
+    label,
+    labelSmall,
     minChars,
     maxSuggestions,
     captionFormat,
     groupBy,
     items,
-}: typeof autocompleteArgs) => html`
+    showClear,
+    clearTooltip,
+    noMatchesText,
+}) => html`
     <vl-autocomplete
         placeholder=${placeholder}
+        data-vl-initial-value=${initialValue}
+        data-vl-label=${label}
+        ?data-vl-label-small=${labelSmall}
         data-vl-min-chars=${minChars}
         data-vl-max-suggestions=${maxSuggestions}
         data-vl-caption-format=${captionFormat}
         data-vl-group-by=${groupBy}
+        ?data-vl-show-clear=${showClear}
+        data-vl-clear-tooltip=${clearTooltip}
+        data-vl-no-matches-text=${noMatchesText}
         .items=${items}
     ></vl-autocomplete>
 `;
@@ -55,17 +67,16 @@ export const autocompleteCustomCaptionFormatter = () => html` <vl-autocomplete
     .items=${complexItems}
     data-vl-caption-format="${CAPTION_FORMAT.SUBTITLE_TITLE_HORIZONTAL}"
     placeholder="Hint: typ Gent"
+    @clear=${() => console.log('autocomplete cleared!!!')}
 ></vl-autocomplete>`;
 autocompleteCustomCaptionFormatter.storyName = 'vl-autocomplete - custom caption formatter';
 
-export const autocompleteInputAndMockedApiCall = () => html`
-    <vl-autocomplete
-        @search=${(e: any) => fetchDataFromMockedApiCall(e.target, e.detail.searchTerm)}
-        placeholder="Gemeente, Straat of Project"
-        data-vl-min-chars="2"
-        data-vl-max-suggestions="5"
-    ></vl-autocomplete>
-`;
+export const autocompleteInputAndMockedApiCall = () => html` <vl-autocomplete
+    @search=${(e) => fetchDataFromMockedApiCall(e.target, e.detail.searchTerm)}
+    placeholder="Gemeente, Straat of Project"
+    data-vl-min-chars="2"
+    data-vl-max-suggestions="5"
+></vl-autocomplete>`;
 autocompleteInputAndMockedApiCall.storyName = 'vl-autocomplete - input and mocked api call';
 
 export const autocompleteInputAndApiCall = () => html`

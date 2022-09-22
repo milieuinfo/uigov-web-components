@@ -1,46 +1,34 @@
-# Publish
+![omgeving](web-components/resources/images/omgeving.png)
 
-- main / beta
-- builds
+# UIG
 
-```
-uig-pages/
-├─ build/
-│  ├─ beta/
-│  │  ├─ ci-applications/
-│  │  │  ...
-│  │  ├─ ci-web-components/
-│  │  │  ...
-│  ├─ feature/
-│  │  ├─ UIG-xxx-abc/
-│  │  │  ├─ ci-applications/
-│  │  │  │  ├─ 4/
-│  │  │  │  │   -> de 'dist' folder hieronder kopiëren 
-│  │  │  ├─ ci-web-components/
-│  │  │  │  ├─ 4/
-│  │  │  │  │   -> de 'dist' folder hieronder kopiëren 
-│  ├─ main/
-│  │  ├─ ci-applications/
-│  │  │  ├─ 1/
-│  │  │  │   -> de 'dist' folder hieronder kopiëren 
-│  │  ├─ ci-web-components/
-│  │  │  ├─ 1/
-│  │  │  │   -> de 'dist' folder hieronder kopiëren 
-```
+## Inhoudstafel
 
-## GitHub Actions
+- 🚀 [Project](#project)
+- 📒 [Meer Info](#meer-info)
+- 👥 [Ontwikkel Team](#ontwikkel-team)
 
-### ci-web-components
+## Project
 
-- test
-- publish the test results per build on uig-pages
-- build
-- [if main] release
-- [if branch] publish branch storybook
-- [if main] publish release version storybook + update reference to main storybook
+Deze __monorepo__ bevat de ontwikkeling die gebeurd door het __UIG-team__ (User Interface Governance Team)
+van [Departement Omgeving](https://omgeving.vlaanderen.be/), onderdeel van
+de [Vlaamse Overheid](https://www.vlaanderen.be/).
 
+## Meer info
 
-# Monorepo
+Het startpunt van de documentatie is te vinden op [uig-pages](https://milieuinfo.github.io/uig-pages/). Van hieruit kan
+je ge-versioneerd / ge-branched naar Storybook of één van de demo toepassingen.
 
+In Storybook vind je de verschillende componenten terug alsook de documentatie. Daarnaast zijn er 2 demo 
+toepassingen: Playground en Alliance. Playground is een ad-hoc toepassing om use-cases of bugs te simuleren.
+Alliance is een basis toepassing die integreert met de aangeleverde artifacts, net zoals een eindtoepassing zou doen.
 
+<hr></hr>
+
+## Ontwikkel Team
+
+| Kris Speltincx                                                             |
+|----------------------------------------------------------------------------|
+| ![Kris Speltincx](https://avatars.githubusercontent.com/u/110020569?s=160) |
+| [kspeltix](https://github.com/kspeltix)                                    |
 

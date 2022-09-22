@@ -18,6 +18,7 @@
             "@domg-lib/common-utilities": ["libs/common/utilities/src/index.ts"],
             "@domg-lib/components": ["libs/components/src/index.ts"],
             "@domg-lib/elements": ["libs/elements/src/index.ts"],
+            "@domg-lib/map": ["libs/map/src/index.ts"],
             "@domg-lib/sections": ["libs/sections/src/index.ts"],
             "@domg-lib/test-support": ["libs/support/test-support/src/index.ts"]
         }

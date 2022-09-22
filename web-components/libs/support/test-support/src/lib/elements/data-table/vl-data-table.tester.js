@@ -31,6 +31,10 @@ export class VlDataTableTester extends VlElementTester {
         return this.hasAttribute('zebra');
     }
 
+    async isUigZebra() {
+        return this.hasAttribute('uig-zebra');
+    }
+
     async isCollapsedMedium() {
         return this.hasAttribute('collapsed-m');
     }
@@ -99,4 +103,16 @@ export class VlDataTableCell extends VlElementTester {
     async assertValue(value) {
         await assert.eventually.equal(this.getText(), value);
     }
+
+    async getButtons() {
+        const buttons = await this.findElements(By.css('button'));
+        return Promise.all(buttons.map((button) => new VlDataTableCellButtonTester(this.driver, button)));
+    }
+
+    async getElement(by) {
+        const elements = await this.findElements(by);
+        return Promise.all(elements.map((element) => new VlElementTester(this.driver, element)));
+    }
 }
+
+export class VlDataTableCellButtonTester extends VlElementTester {}

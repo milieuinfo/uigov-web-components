@@ -131,6 +131,10 @@ class AnalyticsUtil {
                     id: 24,
                     url: this._matomoOefenUrl,
                 },
+                'controleviewer-oefen.omgeving.vlaanderen.be': {
+                    id: 21,
+                    url: this._matomoOefenUrl,
+                },
             }[window.location.host];
         }
 
@@ -186,6 +190,10 @@ class AnalyticsUtil {
                 },
                 'bed.omgeving.vlaanderen.be': {
                     id: 55,
+                    url: this._matomoProdUrl,
+                },
+                'controleviewer.omgeving.vlaanderen.be': {
+                    id: 58,
                     url: this._matomoProdUrl,
                 },
             }[window.location.host];

@@ -1,7 +1,7 @@
 import { VlElementTester } from '../../base/vl-element.tester';
 import { By } from '../../util/tester.setup';
 
-export default class VlLoaderTester extends VlElementTester {
+export class VlLoaderTester extends VlElementTester {
     async isLight() {
         return this.hasAttribute('data-vl-light');
     }

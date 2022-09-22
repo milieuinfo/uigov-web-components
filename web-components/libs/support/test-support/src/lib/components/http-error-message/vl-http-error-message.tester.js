@@ -3,7 +3,7 @@ import { VlElementTester } from '../../base/vl-element.tester';
 import { VlTypographyTester } from '../typography/vl-typography.tester';
 import { VlButtonTester } from '../../elements/button/vl-button.tester';
 
-export default class VlHttpErrorMessageTester extends VlElementTester {
+export class VlHttpErrorMessageTester extends VlElementTester {
     async getTitle() {
         return (await this._getTitle()).getText();
     }

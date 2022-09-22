@@ -3,6 +3,8 @@ import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import { testerConfig } from './tester.config.js';
 
+// TODO: hoe wordt dit gebruikt ? hoe te exporteren ?
+
 chai.use(chaiAsPromised);
 let driver;
 

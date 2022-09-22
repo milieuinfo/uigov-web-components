@@ -13,10 +13,16 @@ export const complexItems = [
 
 export const autocompleteArgs = {
     placeholder: 'Hint: typ Gent',
+    initialValue: '',
+    label: '',
+    labelSmall: false,
     minChars: 1,
     maxSuggestions: 5,
     captionFormat: CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL,
     groupBy: '',
+    showClear: false,
+    clearTooltip: 'Wissen',
+    noMatchesText: 'Geen resultaat',
     items: complexItems,
 };
 
@@ -25,6 +31,33 @@ export const autocompleteArgTypes = {
         name: 'placeholder',
         type: { summary: TYPES.STRING, required: false },
         description: 'Attribuut wordt gebruikt om de placeholder te bepalen.',
+        table: {
+            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    initialValue: {
+        name: 'data-vl-initial-value',
+        type: { summary: TYPES.STRING, required: false },
+        description: 'Attribuut wordt gebruikt om de initiële waarde te bepalen.',
+        table: {
+            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    label: {
+        name: 'data-vl-label',
+        type: { summary: TYPES.STRING, required: false },
+        description: 'Attribuut wordt gebruikt om de label te bepalen.',
+        table: {
+            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    labelSmall: {
+        name: 'data-vl-label-small',
+        type: { summary: TYPES.BOOLEAN, required: false },
+        description: 'Attribuut wordt gebruikt om de label kleiner te maken.',
         table: {
             defaultValue: { summary: '' },
             category: CATEGORIES.ATTRIBUTES,
@@ -87,6 +120,34 @@ export const autocompleteArgTypes = {
             type: 'select',
             options: [GROUP_BY.TITLE, GROUP_BY.SUBTITLE],
         },
+        table: {
+            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    showClear: {
+        name: 'data-vl-show-clear',
+        type: { summary: TYPES.BOOLEAN, required: false },
+        description: 'Attribuut wordt gebruikt te bepalen of het clear icoon moet tevoorschijn komen.',
+        table: {
+            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    clearTooltip: {
+        name: 'data-vl-clear-tooltip',
+        type: { summary: TYPES.STRING, required: false },
+        description: 'Attribuut wordt gebruikt de tekst te bepalen die getoond moet worden bij hover van clear icon.',
+        table: {
+            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    noMatchesText: {
+        name: 'data-vl-no-matches-text',
+        type: { summary: TYPES.STRING, required: false },
+        description:
+            'Attribuut wordt gebruikt de tekst te bepalen die getoond moet worden als er geen suggesties zijn.',
         table: {
             defaultValue: { summary: '' },
             category: CATEGORIES.ATTRIBUTES,

@@ -10,10 +10,4 @@ describe('AppElement', () => {
     it('should create successfully', () => {
         expect(app).toBeTruthy();
     });
-
-    it('should have a greeting', () => {
-        app.connectedCallback();
-
-        expect(app.querySelector('h1').innerHTML).toContain('Welcome alliance');
-    });
 });

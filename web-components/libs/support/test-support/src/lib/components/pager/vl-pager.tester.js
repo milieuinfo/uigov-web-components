@@ -1,7 +1,7 @@
 import { VlElementTester } from '../../base/vl-element.tester';
 import { By } from '../../util/tester.setup';
 
-export default class VlPagerTester extends VlElementTester {
+export class VlPagerTester extends VlElementTester {
     async isAlignedCenter() {
         return this.hasAttribute('align-center');
     }

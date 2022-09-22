@@ -3,6 +3,7 @@ export const dataTableArgs = {
     matrix: false,
     grid: false,
     zebra: false,
+    uigZebra: false,
     collapsedM: false,
     collapsedS: false,
     collapsedXS: false,
@@ -41,7 +42,18 @@ export const dataTableArgTypes = {
     zebra: {
         name: 'data-vl-zebra',
         description:
-            'Variant waarin de rijen afwisslend een andere achtergrondkleur krijgen. Dit maakt de tabel makkelijker leesbaar.',
+            'Variant waarin de rijen afwisslend een andere achtergrondkleur krijgen. Dit maakt de tabel makkelijker leesbaar. ' +
+            'Deze zebra werkt niet voor tabellen met detail rijen, gebruik hiervoor data-vl-uig-zebra.',
+        table: {
+            category: 'Attributes',
+            type: { summary: 'boolean' },
+            defaultValue: { summary: 'false' },
+        },
+    },
+    uigZebra: {
+        name: 'data-vl-uig-zebra',
+        description:
+            'Variant waarin de rijen afwisslend een andere achtergrondkleur krijgen. Dit maakt de tabel makkelijker leesbaar. Deze zebra werkt voor tabellen met en zonder detail rijen.',
         table: {
             category: 'Attributes',
             type: { summary: 'boolean' },

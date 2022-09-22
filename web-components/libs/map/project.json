@@ -1,0 +1,45 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/map/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/libs/map",
+                "main": "libs/map/src/index.ts",
+                "tsConfig": "libs/map/tsconfig.lib.json",
+                "assets": ["libs/map/*.md"]
+            }
+        },
+        "process-scss": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "sass libs/map/src/lib:dist/libs/map/src/lib --load-path ./node_modules --load-path ./libs"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["libs/map/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/libs/map"],
+            "options": {
+                "jestConfig": "libs/map/jest.config.ts",
+                "passWithNoTests": true
+            }
+        },
+        "wct": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "web-test-runner \"dist/libs/map/**/*.wctest.js\""
+            }
+        }
+    },
+    "tags": []
+}

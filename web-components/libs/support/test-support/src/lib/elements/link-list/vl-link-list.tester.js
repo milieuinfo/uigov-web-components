@@ -2,7 +2,7 @@ import { VlElementTester } from '../../base/vl-element.tester';
 import { By } from '../../util/tester.setup';
 import { VlLinkListItemTester } from './vl-link-list-item.tester';
 
-export default class VlLinkListTester extends VlElementTester {
+export class VlLinkListTester extends VlElementTester {
     async getListItems() {
         return this.findElements(By.css('[is="vl-link-list-item"]'));
     }
