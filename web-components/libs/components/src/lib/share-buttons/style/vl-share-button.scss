@@ -1,0 +1,96 @@
+// temporary until styled gets provided
+@charset "utf-8";
+
+$vl-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/flanders/';
+$vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/iconfont/';
+
+// @govflanders global styles
+@import '@govflanders-v14/vl-ui-core/src/scss/core';
+@import '@govflanders-v14/vl-ui-util/src/scss/util';
+
+// ==========================================================================
+// Components
+// ==========================================================================
+.vl-share-button {
+    margin: 1rem 0.6rem;
+    position: relative;
+    display: inline-block;
+    background-color: #05c;
+    color: #e6eefa !important;
+    font-size: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+    transition: background-color 0.1s;
+    line-height: calc(3.2rem - (2 * 0.3rem));
+    vertical-align: middle;
+    text-decoration: none;
+    overflow: hidden;
+    padding: 0.3rem;
+    appearance: none;
+    border: 0;
+
+    .vl-vi {
+        position: absolute;
+        font-size: 1.8rem;
+        text-align: center;
+        right: 0;
+        left: 0;
+    }
+
+    &:active {
+        background-color: #004099;
+
+        &::after {
+            position: absolute;
+            display: block;
+            background-color: #000;
+            height: 0.3rem;
+            opacity: 0.3;
+            content: '';
+            top: 0;
+            right: 0;
+            left: 0;
+        }
+    }
+
+    &:hover,
+    &:focus {
+        background-color: #003bb0;
+    }
+}
+
+.vl-share-button--facebook {
+    background-color: #36609f;
+
+    &:hover,
+    &:focus {
+        background-color: #4a70a9;
+    }
+}
+
+.vl-share-button--twitter {
+    background-color: #2caae1;
+
+    &:hover,
+    &:focus {
+        background-color: #41b3e4;
+    }
+}
+
+.vl-share-button--linkedin {
+    background-color: #0a6c9b;
+
+    &:hover,
+    &:focus {
+        background-color: #237ba5;
+    }
+}
+
+.vl-share-button--googleplus {
+    background-color: #dc5442;
+
+    &:hover,
+    &:focus {
+        background-color: #e06555;
+    }
+}

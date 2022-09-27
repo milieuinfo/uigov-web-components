@@ -1,0 +1,215 @@
+@charset "utf-8";
+
+$vl-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/flanders/';
+$vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/iconfont/';
+
+@import '@govflanders-v14/vl-ui-core/src/scss/core';
+@import '@govflanders-v14/vl-ui-util/src/scss/util';
+
+@import '@govflanders-v14/vl-ui-contact-card/src/scss/contact-card';
+
+// todo: refactor when layer-map-is included in build
+// @import "vl-ui-layer-map/src/scss/layer-map";
+
+.vl-contact-card__title,
+.vl-link.vl-contact-card__title {
+    @include title(4);
+    @include reset-button;
+    margin-bottom: 1rem;
+
+    display: block;
+    line-height: 3rem;
+    overflow: hidden;
+}
+
+.vl-contact-card__content {
+    padding: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.6rem;
+    line-height: 2rem;
+
+    .vl-region--alt & {
+        @include respond-to(medium-up) {
+            padding: 0;
+        }
+    }
+
+    @include respond-to(small) {
+        display: block;
+        font-size: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .no-flexbox & {
+        @include clearfix;
+    }
+
+    .vl-map__container {
+        height: 100%;
+        margin-bottom: 0;
+    }
+}
+
+.vl-contact-card__data,
+.vl-contact-card__map {
+    width: 50%;
+
+    .no-flexbox & {
+        float: left;
+    }
+
+    @include respond-to(small) {
+        width: auto;
+    }
+}
+
+.vl-contact-card__data {
+    padding-right: 1.5rem;
+    line-height: 2.4rem;
+
+    @include respond-to(small) {
+        padding-right: 0;
+    }
+}
+
+.vl-contact-card__data__title {
+    @include vl-u-text--ellipse;
+    float: left;
+    clear: left;
+    width: 30%;
+    padding-right: 0.5rem;
+    margin-bottom: 1rem;
+    white-space: normal;
+    color: $vl-annotation-color;
+
+    @include respond-to(small) {
+        display: none;
+    }
+}
+
+.vl-contact-card__data__content {
+    @include vl-u-text--ellipse;
+    float: left;
+    width: 70%;
+    margin-bottom: 2.5rem;
+    white-space: normal;
+
+    @include respond-to(small) {
+        float: none;
+        width: auto;
+        margin-bottom: 1.25rem;
+    }
+}
+
+.vl-contact-card__data__title *,
+.vl-contact-card__data__content * {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.vl-contact-card__data__name {
+    font-weight: 700;
+}
+
+.vl-contact-card__map {
+    height: 25rem;
+    padding-left: 1.5rem;
+    position: relative;
+    min-height: 25rem;
+    overflow: hidden;
+
+    @include respond-to(small) {
+        padding-left: 0;
+        margin-top: 2rem;
+        min-height: 0;
+    }
+
+    .vl-map {
+        width: 100%;
+        height: 100%;
+        border: 1px solid $vl-border-color;
+
+        @include respond-to(small) {
+            position: relative;
+            min-height: 15rem;
+            height: auto;
+        }
+    }
+
+    .no-js & {
+        height: auto;
+        min-height: 0;
+
+        .vl-map {
+            height: auto;
+        }
+    }
+}
+
+.vl-contact-card__footer {
+    width: 100%;
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid $vl-border-color;
+    font-size: 1.6rem;
+    overflow: hidden;
+
+    @include respond-to(small) {
+        margin-top: 1.5rem;
+        font-size: $vl-base-mobile-font-size;
+    }
+}
+
+// Collapsible behaviour for contact card
+
+.vl-contact-card {
+    &.js-vl-accordion {
+        .vl-contact-card__title {
+            padding-left: 2rem;
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 0;
+            transition: margin-bottom 0.3s;
+
+            .vl-vi {
+                position: absolute;
+                left: 0;
+                top: 0;
+                transition: transform 0.2s;
+                color: $vl-text-color;
+                font-size: 1.3rem;
+                line-height: 3.2rem;
+            }
+        }
+
+        .vl-contact-card__content-wrapper {
+            overflow: hidden;
+            visibility: hidden;
+            max-height: 0;
+            transition: max-height 0.3s cubic-bezier(0, 1.05, 0, 1);
+
+            // Maps implementation in contact card shouldn't be visible for lazyload purposes
+            .vl-map {
+                display: none;
+            }
+        }
+    }
+
+    &.js-vl-accordion--open {
+        .vl-contact-card__title {
+            margin-bottom: 1rem;
+        }
+
+        .vl-contact-card__content-wrapper {
+            max-height: 9999px;
+            visibility: visible;
+            transition: max-height 0.3s ease-in;
+
+            .vl-map {
+                display: block;
+            }
+        }
+    }
+}

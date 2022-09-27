@@ -1,0 +1,26 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2018",
+        "module": "esnext",
+        "lib": ["es2018", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@domg-lib/common-utilities": ["libs/common/utilities/src/index.ts"],
+            "@domg-lib/components": ["libs/components/src/index.ts"],
+            "@domg-lib/elements": ["libs/elements/src/index.ts"],
+            "@domg-lib/sections": ["libs/sections/src/index.ts"],
+            "@domg-lib/test-support": ["libs/support/test-support/src/index.ts"]
+        }
+    },
+    "exclude": ["node_modules", "tmp"]
+}

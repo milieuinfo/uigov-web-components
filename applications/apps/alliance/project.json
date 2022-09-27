@@ -1,0 +1,70 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/alliance/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nrwl/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "outputPath": "dist/apps/alliance",
+                "compiler": "babel",
+                "main": "apps/alliance/src/main.ts",
+                "tsConfig": "apps/alliance/tsconfig.app.json",
+                "assets": [
+                    "apps/alliance/src/favicon.ico",
+                    "apps/alliance/src/assets"
+                ],
+                "index": "apps/alliance/src/index.html",
+                "baseHref": "/",
+                "polyfills": "apps/alliance/src/polyfills.ts",
+                "styles": ["apps/alliance/src/styles.scss"],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "extractLicenses": true,
+                    "vendorChunk": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/alliance/src/environments/environment.ts",
+                            "with": "apps/alliance/src/environments/environment.prod.ts"
+                        }
+                    ]
+                }
+            }
+        },
+        "serve": {
+            "executor": "@nrwl/webpack:dev-server",
+            "options": {
+                "buildTarget": "alliance:build"
+            },
+            "configurations": {
+                "production": {
+                    "buildTarget": "alliance:build:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/alliance/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/apps/alliance"],
+            "options": {
+                "jestConfig": "apps/alliance/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+// @govflanders styles
+@import '../../../common/utilities/src/lib/style/govflanders';
+
+// @uig element styles
+@import './action-group/style/vl-action-group';
+@import './body/style/vl-body';
+@import './button/style/vl-button';
+@import './icon/style/vl-icon';
+@import './link/style/vl-link';
+@import './multiselect/style/vl-multiselect';
+@import './select/style/vl-select';

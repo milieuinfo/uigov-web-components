@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+$vl-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/flanders/';
+$vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/iconfont/';
+
+// @govflanders global styles
+@import '@govflanders-v14/vl-ui-core/src/scss/core';
+@import '@govflanders-v14/vl-ui-util/src/scss/util';
+
+// @govflanders component styles
+@import '@govflanders-v14/vl-ui-modal/src/scss/modal';
+
+// Child styling needs to be available in the shadow root of the modal.
+@import '@govflanders-v14/vl-ui-action-group/src/scss/action-group';
+@import '@govflanders-v14/vl-ui-link/src/scss/link';
+@import '@govflanders-v14/vl-ui-icon/src/scss/icon';
+
+:host([data-vl-allow-overflow]) dialog {
+    overflow: visible;
+}

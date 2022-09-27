@@ -1,0 +1,40 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/sections/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "clean": true,
+                "outputPath": "dist/libs/sections",
+                "main": "libs/sections/src/index.ts",
+                "tsConfig": "libs/sections/tsconfig.lib.json",
+                "assets": ["libs/sections/*.md"]
+            }
+        },
+        "process-scss": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "sass libs/sections/src/lib:dist/libs/sections/src/lib --load-path ./node_modules"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["libs/sections/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/libs/sections"],
+            "options": {
+                "jestConfig": "libs/sections/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

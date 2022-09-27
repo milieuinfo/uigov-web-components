@@ -1,0 +1,7 @@
+{
+    "name": "@domg-lib/common-utilities",
+    "version": "",
+    "publishConfig": {
+        "registry": "https://repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/"
+    }
+}

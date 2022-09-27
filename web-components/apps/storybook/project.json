@@ -1,0 +1,27 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/storybook/src",
+    "tags": [],
+    "targets": {
+        "storybook": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "start-storybook -p 8080 -c apps/storybook/.storybook --quiet"
+            }
+        },
+        "build-storybook": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "build-storybook -c apps/storybook/.storybook --output-dir dist/apps/storybook --quiet"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/storybook/**/*.ts"]
+            }
+        }
+    }
+}

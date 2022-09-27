@@ -1,0 +1,26 @@
+name: ci-applications
+on:
+  push:
+    paths:
+      - .github/workflows/ci-applications.yml
+      - applications/**
+jobs:
+  ci-applications:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./applications
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: applications - npm ci
+        run: npm ci
+        continue-on-error: false
+      - name: applications - test
+        run: npx nx test
+        continue-on-error: false
+      - name: applications - build
+        run: npx nx build

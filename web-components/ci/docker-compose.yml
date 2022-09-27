@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+    build:
+        image: cypress/browsers:node16.17.0-chrome106
+        container_name: web-components-build
+        command: sh web-components/ci/build.sh
+        volumes:
+            - ${HOME:-.}/.npmrc:/root/.npmrc:ro
+            - ./..:/web-components
+            - /web-components/node_modules
+
+#    cypress-test:
+#        image: cypress/base:16.17.1
+#        container_name: web-components-cypress-test
+#        command: sh web-components/ci/test.sh
+#        volumes:
+#            - ./..:/web-components
+#            - /web-components/node_modules

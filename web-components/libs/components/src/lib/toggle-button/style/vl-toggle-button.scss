@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+$vl-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/flanders/';
+$vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/iconfont/';
+
+// @govflanders global styles
+@import '@govflanders-v14/vl-ui-core/src/scss/core';
+@import '@govflanders-v14/vl-ui-util/src/scss/util';
+
+// @govflanders component styles
+@import '@govflanders-v14/vl-ui-button/src/scss/button';
+
+// the background of a tertiary button is transparent by default, when a toggle button is floating over the map, it needs a background
+.vl-button--map.vl-button--tertiary {
+    background-color: $vl-white;
+
+    &:hover,
+    &:active {
+        background-color: $vl-white;
+    }
+}
