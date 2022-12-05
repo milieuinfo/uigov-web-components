@@ -7,7 +7,7 @@ import '../../../layer/vector-layer/vl-map-wfs-layer';
 import '../vl-map-draw-point-action';
 
 export default {
-    title: 'map/draw-actions',
+    title: 'map/action/draw-action',
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
@@ -24,23 +24,6 @@ export const drawPointActionDefault = ({ active }) => html`
     </vl-map>
 `;
 drawPointActionDefault.storyName = 'vl-map-draw-point-action - default';
-
-export const drawPointActionWithDefaultActive = () => html`
-    <vl-map>
-        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-        <vl-map-features-layer>
-            <vl-map-draw-point-action data-vl-default-active></vl-map-draw-point-action>
-        </vl-map-features-layer>
-    </vl-map>
-`;
-drawPointActionWithDefaultActive.storyName = 'vl-map-draw-point-action - with default active';
-drawPointActionWithDefaultActive.argTypes = {
-    active: {
-        control: {
-            disable: true,
-        },
-    },
-};
 
 export const drawPointActionWithSnapping = ({ active }) => html`
     <vl-map>

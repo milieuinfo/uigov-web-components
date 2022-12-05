@@ -7,7 +7,7 @@ import '../../../layer/vector-layer/vl-map-wfs-layer';
 import '../vl-map-draw-line-action';
 
 export default {
-    title: 'map/draw-actions',
+    title: 'map/action/draw-action',
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
@@ -24,21 +24,6 @@ export const drawLineActionDefault = ({ active }) => html`
     </vl-map>
 `;
 drawLineActionDefault.storyName = 'vl-map-draw-line-action - default';
-
-export const drawLineActionWithDefaultActive = () => html` <vl-map>
-    <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-    <vl-map-features-layer>
-        <vl-map-draw-line-action data-vl-default-active></vl-map-draw-line-action>
-    </vl-map-features-layer>
-</vl-map>`;
-drawLineActionWithDefaultActive.storyName = 'vl-map-draw-line-action - with default active';
-drawLineActionWithDefaultActive.argTypes = {
-    active: {
-        control: {
-            disable: true,
-        },
-    },
-};
 
 export const drawLineActionWithSnapping = ({ active }) => html` <vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>

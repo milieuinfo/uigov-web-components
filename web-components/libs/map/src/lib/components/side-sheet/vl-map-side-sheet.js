@@ -1,5 +1,5 @@
 import { define } from '@domg-lib/common-utilities';
-import { VlSideSheet } from '../../../../../components/src/lib/side-sheet/vl-side-sheet.component';
+import { VlSideSheet } from '@domg-lib/components';
 
 /**
  * VlMapSideSheet
