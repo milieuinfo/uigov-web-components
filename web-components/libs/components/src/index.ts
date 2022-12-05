@@ -51,6 +51,7 @@ export * from './lib/rich-data-table/vl-rich-data-table.component';
 export * from './lib/share-buttons/vl-share-button.component';
 export * from './lib/share-buttons/vl-share-buttons.component';
 export * from './lib/search/vl-search.component';
+export * from './lib/side-sheet/vl-side-sheet.component';
 export * from './lib/spotlight/vl-spotlight.component';
 export * from './lib/steps/vl-steps.component';
 export * from './lib/tabs/vl-tabs.component';

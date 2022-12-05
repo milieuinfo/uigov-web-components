@@ -1,6 +1,6 @@
 import { assert, fixture, html } from '@open-wc/testing';
 import '../../vl-map';
-import '../side-sheet/vl-map-side-sheet';
+import './vl-map-side-sheet';
 import './vl-map-side-sheet-menu-item';
 
 const mapSideSheetMenuItemFixture = async () =>

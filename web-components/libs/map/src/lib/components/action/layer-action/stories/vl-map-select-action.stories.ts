@@ -6,7 +6,7 @@ import '../../../layer/vector-layer/vl-map-features-layer';
 import '../vl-map-select-action';
 
 export default {
-    title: 'map/layer-actions',
+    title: 'map/action/layer-action',
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
@@ -46,46 +46,6 @@ export const selectActionDefault = ({ active }) => {
     `;
 };
 selectActionDefault.storyName = 'vl-map-select-action - default';
-
-export const selectActionWithDefaultActive = () => {
-    const features = {
-        type: 'FeatureCollection',
-        features: [
-            {
-                type: 'Feature',
-                id: 1,
-                geometry: { type: 'Point', coordinates: [147055.0, 197908.0] },
-            },
-            {
-                type: 'Feature',
-                id: 2,
-                geometry: { type: 'Point', coordinates: [149055.0, 199908.0] },
-            },
-            {
-                type: 'Feature',
-                id: 3,
-                geometry: { type: 'Point', coordinates: [151055.0, 201908.0] },
-            },
-        ],
-    };
-
-    return html`
-        <vl-map>
-            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-            <vl-map-features-layer .features=${features}>
-                <vl-map-select-action data-vl-default-active></vl-map-select-action>
-            </vl-map-features-layer>
-        </vl-map>
-    `;
-};
-selectActionWithDefaultActive.storyName = 'vl-map-select-action - with default active';
-selectActionWithDefaultActive.argTypes = {
-    active: {
-        control: {
-            disable: true,
-        },
-    },
-};
 
 export const selectActionWithClustering = ({ active }) => {
     const features = {

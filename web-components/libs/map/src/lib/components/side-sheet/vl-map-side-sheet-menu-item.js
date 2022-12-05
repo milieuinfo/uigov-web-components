@@ -1,5 +1,5 @@
 import { BaseElementOfType, define } from '@domg-lib/common-utilities';
-import styles from './style/vl-map-side-sheet-menu-item.scss';
+import styles from './style/vl-map-side-sheet.scss';
 
 /**
  * VlMapSideSheetMenuItem

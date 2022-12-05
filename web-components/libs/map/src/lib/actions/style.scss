@@ -1,7 +1,7 @@
 @import '@govflanders-v14/vl-ui-core/src/scss/setting/colorsRaw';
 @import '@govflanders-v14/vl-ui-core/src/scss/setting/colors';
-//@import 'bootstrap-sass/assets/stylesheets/bootstrap/variables';
-//@import 'bootstrap-sass/assets/stylesheets/bootstrap/glyphicons';
+@import 'bootstrap-sass/assets/stylesheets/bootstrap/variables';
+@import 'bootstrap-sass/assets/stylesheets/bootstrap/glyphicons';
 
 @mixin ol-control {
     padding: 0;
@@ -108,29 +108,29 @@
     border-radius: 5px;
     font-size: 0.8em;
 
-    //.icon {
-    //    @extend .glyphicon;
-    //    @extend .glyphicon-refresh;
-    //
-    //    -animation: spin 0.7s infinite linear;
-    //    -webkit-animation: spin2 0.7s infinite linear;
-    //}
-    //
-    //.close {
-    //    @extend .glyphicon;
-    //    @extend .glyphicon-remove;
-    //
-    //    position: absolute;
-    //    top: 5px;
-    //    right: 5px;
-    //    color: white;
-    //    opacity: 0.6;
-    //    font-size: 10;
-    //
-    //    &:hover {
-    //        opacity: 1;
-    //    }
-    //}
+    .icon {
+        @extend .glyphicon;
+        @extend .glyphicon-refresh;
+
+        -animation: spin 0.7s infinite linear;
+        -webkit-animation: spin2 0.7s infinite linear;
+    }
+
+    .close {
+        @extend .glyphicon;
+        @extend .glyphicon-remove;
+
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: white;
+        opacity: 0.6;
+        font-size: 10;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
 
     @-webkit-keyframes spin2 {
         from {
