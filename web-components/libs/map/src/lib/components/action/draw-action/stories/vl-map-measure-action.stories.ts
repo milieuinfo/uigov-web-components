@@ -9,7 +9,7 @@ import '../../../layer/vector-layer/vl-map-wfs-layer';
 import '../vl-map-measure-action';
 
 export default {
-    title: 'map/draw-actions',
+    title: 'map/action/draw-action',
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
@@ -26,29 +26,6 @@ export const measureActionDefault = ({ active }) => html`
     </vl-map>
 `;
 measureActionDefault.storyName = 'vl-map-measure-action - default';
-
-export const measureActionWithDefaultActive = () => html` <vl-map>
-    <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-    <vl-map-features-layer>
-        <vl-map-measure-action data-vl-default-active>
-            <vl-map-wfs-layer
-                data-vl-name="Stromend waterlichamen"
-                data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
-                data-vl-layers="owl_l"
-                data-vl-max-resolution="4"
-            >
-            </vl-map-wfs-layer>
-        </vl-map-measure-action>
-    </vl-map-features-layer>
-</vl-map>`;
-measureActionWithDefaultActive.storyName = 'vl-map-measure-action - with default active';
-measureActionWithDefaultActive.argTypes = {
-    active: {
-        control: {
-            disable: true,
-        },
-    },
-};
 
 export const measureActionWithSnapping = ({ active }) => html` <vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>

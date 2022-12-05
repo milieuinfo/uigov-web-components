@@ -1,6 +1,6 @@
 import { BaseElementOfType, awaitUntil, define } from '@domg-lib/common-utilities';
-import '../../../../../components/src/lib/checkbox/vl-checkbox.component';
-import '../../../../../elements/src/lib/form-message/vl-form-label.element';
+import '@domg-lib/components';
+import '@domg-lib/elements';
 import formMessageStyles from './style/vl-map-layer-switcher.scss';
 
 /**
