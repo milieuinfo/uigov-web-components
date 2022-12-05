@@ -1,6 +1,6 @@
 {
     "name": "applications",
-    "version": "0.0.0",
+    "version": "1.0.0-beta.1",
     "license": "MIT",
     "scripts": {
         "start": "nx serve",
@@ -36,11 +36,11 @@
         "typescript": "~4.8.2"
     },
     "dependencies": {
-        "@domg-lib/common-utilities": "0.0.0",
-        "@domg-lib/elements": "0.0.0",
-        "@domg-lib/components": "0.0.0",
-        "@domg-lib/sections": "0.0.0",
-        "@domg-lib/map": "0.0.0",
+        "@domg-lib/common-utilities": "^1.0.0-beta.1",
+        "@domg-lib/components": "^1.0.0-beta.1",
+        "@domg-lib/elements": "^1.0.0-beta.1",
+        "@domg-lib/map": "^1.0.0-beta.1",
+        "@domg-lib/sections": "^1.0.0-beta.1",
         "core-js": "^3.6.5",
         "regenerator-runtime": "0.13.7",
         "tslib": "^2.3.0"
