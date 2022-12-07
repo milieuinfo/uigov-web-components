@@ -10,11 +10,25 @@ $vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-fon
 // @govflanders component styles
 @import '@govflanders-v14/vl-ui-pill/src/scss/pill';
 
-.vl-pill--map {
-    background-color: rgba($vl-page-bg, 0.8);
-}
+.vl-pill {
+    &--map {
+        background-color: rgba($vl-page-bg, 0.8);
+    }
 
-.vl-pill__close::before {
-    font-family: 'vlaanderen-icon' !important;
-    content: '\f157';
+    &__close::before {
+        font-family: 'vlaanderen-icon' !important;
+        content: '\f157';
+    }
+
+    // Pill checkable modifier
+    &--checkable {
+        // this will ensure we do show checkmark when it is disabled but checked
+        &__checkbox {
+            &:disabled:checked + span {
+                &::before {
+                    transform: translateZ(0) translate(-50%, -50%) scale(1);
+                }
+            }
+        }
+    }
 }

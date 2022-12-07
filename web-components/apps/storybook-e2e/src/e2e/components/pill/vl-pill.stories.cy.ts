@@ -36,7 +36,7 @@ describe('story vl-pill', () => {
             .should('have.class', 'vl-pill__close');
     });
 
-    it('should contain a checkable pill', () => {
+    it('should contain a checkable pill that by default is unchecked but when clicked, becomes checked', () => {
         cy.visit(`${pillUrl}&args=checkable:true`);
         cy.getDataCy('pill')
             .shadow()
@@ -48,5 +48,35 @@ describe('story vl-pill', () => {
         cy.getDataCy('pill').shadow().find('.vl-pill').click({ force: true });
 
         cy.getDataCy('pill').shadow().find('input.vl-pill--checkable__checkbox').should('have.attr', 'checked');
+    });
+
+    it('should contain a checkable pill that is disabled and when clicking, does not enable the checkbox', () => {
+        cy.visit(`${pillUrl}&args=checkable:true;disabled:true`);
+        cy.getDataCy('pill')
+            .shadow()
+            .find('.vl-pill')
+            .should('have.class', 'vl-pill--checkable')
+            .find('input.vl-pill--checkable__checkbox')
+            .should(($input) => {
+                expect($input).to.have.attr('disabled')
+                expect($input).to.not.have.attr('checked')
+            })
+
+        cy.getDataCy('pill').shadow().find('.vl-pill').click({ force: true });
+
+        cy.getDataCy('pill').shadow().find('input.vl-pill--checkable__checkbox').should('not.have.attr', 'checked');
+    });
+
+    it('should contain a checkable pill that is disabled and checked, as it is checked, should show a checkmark', () => {
+        cy.visit(`${pillUrl}&args=checkable:true;disabled:true;checked:true`);
+        cy.getDataCy('pill')
+            .shadow()
+            .find('.vl-pill')
+            .should('have.class', 'vl-pill--checkable')
+            .find('input.vl-pill--checkable__checkbox')
+            .should(($input) => {
+                expect($input).to.have.attr('disabled')
+                expect($input).to.have.attr('checked')
+            });
     });
 });
