@@ -50,6 +50,8 @@ export class VlPillComponent extends LitElement {
             },
             checked: {
                 type: Boolean || undefined,
+                attribute: 'data-vl-checked',
+                reflect: true,
             },
         };
     }
@@ -122,6 +124,7 @@ export class VlPillComponent extends LitElement {
                         type="checkbox"
                         id="checkbox"
                         name="checkbox"
+                        ?disabled=${this.disabled}
                         ?checked=${this.checked}
                         ${ref(this.checkboxRef)}
                         value="checked"
