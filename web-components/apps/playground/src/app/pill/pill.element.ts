@@ -23,6 +23,14 @@ export class PillElement extends HTMLElement {
                         <h3 is="vl-h3" data-vl-has-border>Pill disabled</h3>
                         <vl-pill data-vl-disabled>Option 1</vl-pill>
                     </div>
+                    <div class="container">
+                        <h3 is="vl-h3" data-vl-has-border>Pill checkable and disabled</h3>
+                        <vl-pill data-vl-checkable data-vl-disabled>Option 2</vl-pill>
+                    </div>
+                    <div class="container">
+                        <h3 is="vl-h3" data-vl-has-border>Pill checkable, checked and disabled</h3>
+                        <vl-pill data-vl-checkable data-vl-disabled data-vl-checked>Option 2</vl-pill>
+                    </div>
                 </div>
             </div>
       `;
