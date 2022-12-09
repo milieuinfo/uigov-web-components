@@ -2,12 +2,7 @@ import { html, css, LitElement, unsafeCSS } from 'lit';
 import { createRef, ref } from 'lit/directives/ref.js';
 import { classMap } from 'lit/directives/class-map.js';
 import styles from './style/vl-pill.scss';
-
-const TYPE = {
-    SUCCESS: 'success',
-    WARNING: 'warning',
-    ERROR: 'error',
-};
+import { TYPE } from "./vl-pill.model";
 
 export class VlPillComponent extends LitElement {
     private disabled = false;

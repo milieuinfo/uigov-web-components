@@ -12,6 +12,18 @@ export class PillElement extends HTMLElement {
                         <vl-pill>Option 1</vl-pill>
                     </div>
                     <div class="container">
+                        <h3 is="vl-h3" data-vl-has-border>Pill success</h3>
+                        <vl-pill data-vl-type="success">Option 1</vl-pill>
+                    </div>
+                    <div class="container">
+                        <h3 is="vl-h3" data-vl-has-border>Pill warning</h3>
+                        <vl-pill data-vl-type="warning">Option 1</vl-pill>
+                    </div>
+                    <div class="container">
+                        <h3 is="vl-h3" data-vl-has-border>Pill error</h3>
+                        <vl-pill data-vl-type="error">Option 1</vl-pill>
+                    </div>
+                    <div class="container">
                         <h3 is="vl-h3" data-vl-has-border>Pill checkable</h3>
                         <vl-pill data-vl-checkable>Option 1</vl-pill>
                     </div>
