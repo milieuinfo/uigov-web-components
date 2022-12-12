@@ -1,12 +1,12 @@
 import { html } from 'lit';
-import { EvaluationStatus } from '../model/status.model';
+import { EVALUATION_STATUS } from '../vl-accessibility.model';
 
 export const setupStatement = ({
     evaluationStatus,
     date,
     dateModified,
 }: {
-    evaluationStatus: EvaluationStatus;
+    evaluationStatus: EVALUATION_STATUS;
     date: string;
     dateModified: string;
 }) => {

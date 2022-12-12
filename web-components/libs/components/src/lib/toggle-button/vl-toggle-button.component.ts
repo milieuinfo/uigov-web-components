@@ -1,11 +1,7 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
+import { css, html, LitElement, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import styles from './style/vl-toggle-button.scss';
-
-export const ICON_PLACEMENT = {
-    BEFORE: 'before',
-    AFTER: 'after',
-};
+import { ICON_PLACEMENT } from './vl-toggle-button.model';
 
 export class VlToggleButtonComponent extends LitElement {
     private icon = '';
@@ -173,16 +169,16 @@ export class VlToggleButtonComponent extends LitElement {
         }
         if (this.iconPlacement === ICON_PLACEMENT.BEFORE) {
             return html`${this._buttonWrap(
-                html`<span is="vl-icon" data-vl-icon=${this.icon} data-vl-before></span><slot></slot>`
+                html`<span is="vl-icon" data-vl-icon=${this.icon} data-vl-before></span> <slot></slot>`
             )}`;
         }
         return html`${this._buttonWrap(
-            html`<slot></slot><span is="vl-icon" data-vl-icon=${this.icon} data-vl-after></span>`
+            html` <slot></slot><span is="vl-icon" data-vl-icon=${this.icon} data-vl-after></span>`
         )}`;
     }
 
     render() {
-        return this.icon ? this._iconTemplate() : html`${this._buttonWrap(html`<slot></slot>`)}`;
+        return this.icon ? this._iconTemplate() : html`${this._buttonWrap(html` <slot></slot>`)}`;
     }
 }
 

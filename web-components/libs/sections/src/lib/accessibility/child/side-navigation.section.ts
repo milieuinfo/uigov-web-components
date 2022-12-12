@@ -1,7 +1,7 @@
 import { html } from 'lit';
-import { ComplianceStatus } from '../model/status.model';
+import { COMPLIANCE_STATUS } from '../vl-accessibility.model';
 
-export const sideNavigation = ({ complianceStatus }: { complianceStatus: ComplianceStatus }) => {
+export const sideNavigation = ({ complianceStatus }: { complianceStatus: COMPLIANCE_STATUS }) => {
     return html` <div
         is="vl-column"
         data-vl-size="4"

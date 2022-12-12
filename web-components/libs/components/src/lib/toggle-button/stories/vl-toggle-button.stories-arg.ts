@@ -2,7 +2,7 @@
 // import { sharedButtonArgs, sharedButtonArgTypes } from '@domg-lib/elements';
 
 import { action } from '@storybook/addon-actions';
-import { ICON_PLACEMENT } from '../vl-toggle-button.component';
+import { ICON_PLACEMENT } from '../vl-toggle-button.model';
 
 const sharedButtonArgs = {
     loading: false,

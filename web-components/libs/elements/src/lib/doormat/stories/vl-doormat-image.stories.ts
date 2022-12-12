@@ -1,6 +1,5 @@
 import { html } from 'lit-html';
 import '../vl-doormat.element';
-import { doormatDefault } from './vl-doormat.stories';
 
 export default {
     title: 'Elements/doormat',

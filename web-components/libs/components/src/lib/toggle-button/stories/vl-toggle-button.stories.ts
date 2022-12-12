@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../vl-toggle-button.component';
 import { toggleButtonArgs, toggleButtonArgTypes } from './vl-toggle-button.stories-arg';
-import { ICON_PLACEMENT } from '../vl-toggle-button.component';
+import { ICON_PLACEMENT } from '../vl-toggle-button.model';
 
 const getLastElement = (element: any) => {
     const [lastItem] = [...Array(document.querySelectorAll(element))].slice(-1);

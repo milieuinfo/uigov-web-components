@@ -1,4 +1,4 @@
-import { MEDIA } from '../vl-share-button.component';
+import { MEDIA } from '../vl-share-button.model';
 
 export const shareButtonArgs = {
     href: '#',
