@@ -215,7 +215,7 @@ export const dataTableExpandableCustomToggleDetailsColumn = ({
     collapsedS,
     collapsedXS,
 }: typeof dataTableArgs) => {
-    let table;
+    let table: any;
     customElements.whenDefined('vl-data-table').then(() => {
         table = document.querySelector('#vl-data-table-with-expandable-details');
     });

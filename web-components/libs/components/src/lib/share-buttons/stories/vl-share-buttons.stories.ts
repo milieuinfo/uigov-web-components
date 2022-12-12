@@ -2,7 +2,6 @@ import { html } from 'lit-html';
 import '../vl-share-buttons.component';
 import '../vl-share-button.component';
 import { shareButtonsArgs, shareButtonsArgTypes } from './vl-share-buttons.stories-arg';
-import { shareButtonDefault } from './vl-share-button.stories';
 
 export default {
     title: 'Components/share-buttons',

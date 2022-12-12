@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import { wcagLink } from './wcag-link.section';
-import { AccessibilityStatus } from '../model/status.model';
+import { AccessibilityStatus } from '../vl-accessibility.model';
 
 export const complianceStatus = ({ complianceStatus, evaluationStatus }: AccessibilityStatus) => {
     const complianceTemplate = () => {

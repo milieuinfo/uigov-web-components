@@ -26,7 +26,7 @@ const autocompleteTemplate = ({
     showClear,
     clearTooltip,
     noMatchesText,
-}) => html`
+}: typeof autocompleteArgs) => html`
     <vl-autocomplete
         placeholder=${placeholder}
         data-vl-initial-value=${initialValue}
@@ -72,7 +72,7 @@ export const autocompleteCustomCaptionFormatter = () => html` <vl-autocomplete
 autocompleteCustomCaptionFormatter.storyName = 'vl-autocomplete - custom caption formatter';
 
 export const autocompleteInputAndMockedApiCall = () => html` <vl-autocomplete
-    @search=${(e) => fetchDataFromMockedApiCall(e.target, e.detail.searchTerm)}
+    @search=${(e: any) => fetchDataFromMockedApiCall(e.target, e.detail.searchTerm)}
     placeholder="Gemeente, Straat of Project"
     data-vl-min-chars="2"
     data-vl-max-suggestions="5"

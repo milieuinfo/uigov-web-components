@@ -10,7 +10,6 @@
     ],
     "exclude": [
         "jest.config.ts",
-        "**/*.spec.ts",
-        "**/stories/*"
+        "**/*.spec.ts"
     ]
 }

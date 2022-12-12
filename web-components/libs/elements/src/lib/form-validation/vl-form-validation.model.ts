@@ -7,4 +7,6 @@ export const VALIDATION_TYPE = {
     IBAN: 'iban',
     SELECT: 'select',
     NUMERICAL: 'numerical',
-};
+} as const;
+
+export type VALIDATION_TYPE = typeof VALIDATION_TYPE[keyof typeof VALIDATION_TYPE];
