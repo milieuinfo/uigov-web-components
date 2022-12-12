@@ -1,9 +1,12 @@
 import { html } from 'lit-html';
 import '../vl-alert.component';
-import { ALERT_ICON, ALERT_TYPE, alertArgs, alertArgTypes } from './vl-alert.stories-arg';
+import { ALERT_TYPE, ALERT_ICON } from '../vl-alert.model';
+import { alertArgs, alertArgTypes } from './vl-alert.stories-arg';
 
 export default {
     title: 'Components/alert',
+    description:
+        'Use the description data component to give more information about the content on the page, for example about a contact person, an entity or a publication.',
     args: alertArgs,
     argTypes: alertArgTypes,
 };

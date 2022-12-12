@@ -1,4 +1,4 @@
-import { ComplianceStatus, EvaluationStatus } from '../model/status.model';
+import { COMPLIANCE_STATUS, EVALUATION_STATUS } from '../vl-accessibility.model';
 import { CATEGORIES } from '@domg-lib/common-utilities';
 
 export const accessibilityArgs = {
@@ -6,7 +6,7 @@ export const accessibilityArgs = {
     version: '1.0.0',
     date: '20 juli 2021',
     dateModified: '20 juli 2021',
-    compliance: ComplianceStatus.PARTIALLY_COMPLIANT,
+    compliance: COMPLIANCE_STATUS.PARTIALLY_COMPLIANT,
     limitations: {
         withTiming: [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -21,7 +21,7 @@ export const accessibilityArgs = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         ],
     },
-    evaluation: EvaluationStatus.EXPERT_EVALUATED,
+    evaluation: EVALUATION_STATUS.EXPERT_EVALUATED,
 };
 
 export const accessibilityArgTypes = {
@@ -64,22 +64,22 @@ export const accessibilityArgTypes = {
     compliance: {
         name: 'data-vl-compliance',
         type: {
-            summary: `${ComplianceStatus.FULLY_COMPLIANT} |
-      ${ComplianceStatus.PARTIALLY_COMPLIANT} |
-      ${ComplianceStatus.NOT_COMPLIANT}`,
+            summary: `${COMPLIANCE_STATUS.FULLY_COMPLIANT} |
+      ${COMPLIANCE_STATUS.PARTIALLY_COMPLIANT} |
+      ${COMPLIANCE_STATUS.NOT_COMPLIANT}`,
         },
         description: 'Attribuut om de nalevingsstatus aan te geven.',
         control: {
             type: 'select',
             options: [
-                ComplianceStatus.FULLY_COMPLIANT,
-                ComplianceStatus.PARTIALLY_COMPLIANT,
-                ComplianceStatus.NOT_COMPLIANT,
+                COMPLIANCE_STATUS.FULLY_COMPLIANT,
+                COMPLIANCE_STATUS.PARTIALLY_COMPLIANT,
+                COMPLIANCE_STATUS.NOT_COMPLIANT,
             ],
         },
         table: {
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: `"${ComplianceStatus.PARTIALLY_COMPLIANT}"` },
+            defaultValue: { summary: `"${COMPLIANCE_STATUS.PARTIALLY_COMPLIANT}"` },
         },
     },
     limitations: {
@@ -92,22 +92,22 @@ export const accessibilityArgTypes = {
     evaluation: {
         name: 'data-vl-evaluation',
         type: {
-            summary: `${EvaluationStatus.EXPERT_EVALUATED} |
-      ${EvaluationStatus.SELF_EVALUATED} |
-      ${EvaluationStatus.NOT_EVALUATED}`,
+            summary: `${EVALUATION_STATUS.EXPERT_EVALUATED} |
+      ${EVALUATION_STATUS.SELF_EVALUATED} |
+      ${EVALUATION_STATUS.NOT_EVALUATED}`,
         },
         description: 'Attribuut om de evaluatiestatus van de verklaring aan te geven.',
         control: {
             type: 'select',
             options: [
-                EvaluationStatus.EXPERT_EVALUATED,
-                EvaluationStatus.SELF_EVALUATED,
-                EvaluationStatus.NOT_EVALUATED,
+                EVALUATION_STATUS.EXPERT_EVALUATED,
+                EVALUATION_STATUS.SELF_EVALUATED,
+                EVALUATION_STATUS.NOT_EVALUATED,
             ],
         },
         table: {
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: `"${EvaluationStatus.NOT_EVALUATED}"` },
+            defaultValue: { summary: `"${EVALUATION_STATUS.NOT_EVALUATED}"` },
         },
     },
 };

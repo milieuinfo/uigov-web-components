@@ -1,7 +1,7 @@
 import '@domg-lib/elements';
 import '@domg-lib/components';
 import { html, LitElement, css, unsafeCSS } from 'lit';
-import { ComplianceStatus, EvaluationStatus } from './model/status.model';
+import { COMPLIANCE_STATUS, EVALUATION_STATUS } from './vl-accessibility.model';
 import { header } from './child/header.section';
 import { title } from './child/title.section';
 import { content } from './child/content.section';
@@ -50,8 +50,8 @@ export class VlAccessibility extends LitElement {
     private application: string;
     private date: string;
     private dateModified: string;
-    private compliance: ComplianceStatus;
-    private evaluation: EvaluationStatus;
+    private compliance: COMPLIANCE_STATUS;
+    private evaluation: EVALUATION_STATUS;
     private limitations: any;
 
     constructor() {

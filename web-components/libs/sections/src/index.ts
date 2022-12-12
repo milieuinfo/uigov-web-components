@@ -1,4 +1,5 @@
 export * from './lib/accessibility/vl-accessibility.section';
+export * from './lib/accessibility/vl-accessibility.model';
 export * from './lib/cookie-consent/vl-cookie-consent.section';
 export * from './lib/cookie-consent/vl-cookie-consent-opt-in.section';
 export * from './lib/cookie-statement/vl-cookie-statement.section';

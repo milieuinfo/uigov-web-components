@@ -1,13 +1,13 @@
 import { html } from 'lit';
-import { ComplianceStatus, EvaluationStatus } from '../model/status.model';
+import { COMPLIANCE_STATUS, EVALUATION_STATUS } from '../vl-accessibility.model';
 
 export const inaccessibleContent = ({
     complianceStatus,
     evaluationStatus,
     limitations,
 }: {
-    complianceStatus: ComplianceStatus;
-    evaluationStatus: EvaluationStatus;
+    complianceStatus: COMPLIANCE_STATUS;
+    evaluationStatus: EVALUATION_STATUS;
     limitations: any;
 }) => {
     const inaccessibleContentTemplate = () => {

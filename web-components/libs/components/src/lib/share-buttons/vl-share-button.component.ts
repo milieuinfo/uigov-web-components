@@ -1,22 +1,7 @@
 import { html, LitElement, css, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import styles from './style/vl-share-button.scss';
-
-export const MEDIA = {
-    FACEBOOK: 'facebook',
-    TWITTER: 'twitter',
-    LINKED_IN: 'linkedin',
-    GOOGLE_PLUS: 'googleplus',
-    MAIL: 'mail',
-};
-
-export const MEDIA_NAMES = {
-    [MEDIA.FACEBOOK]: 'Facebook',
-    [MEDIA.TWITTER]: 'Twitter',
-    [MEDIA.LINKED_IN]: 'LinkedIn',
-    [MEDIA.GOOGLE_PLUS]: 'Google Plus',
-    [MEDIA.MAIL]: 'mail',
-};
+import { MEDIA_NAMES } from './vl-share-button.model';
 
 @customElement('vl-share-button')
 export class VlShareButton extends LitElement {
