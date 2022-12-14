@@ -1,4 +1,5 @@
 import '../../../libs/elements/src/lib/vl-elements.scss';
+import './docs-styling.scss';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },

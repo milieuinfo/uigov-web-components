@@ -1,0 +1,25 @@
+.sbdocs {
+    &.sbdocs-h1 {
+    }
+
+    &.sbdocs-h2 {
+        margin-top: 1.2em !important;
+        font-weight: bold;
+    }
+
+    &.sbdocs-h3 {
+        margin-top: 1em !important;
+    }
+
+    &.sbdocs-preview {
+        margin-top: 1em;
+    }
+}
+
+.docblock-argstable {
+    margin-top: 1em !important;
+
+    tr > *:nth-child(4) {
+        display: none;
+    }
+}

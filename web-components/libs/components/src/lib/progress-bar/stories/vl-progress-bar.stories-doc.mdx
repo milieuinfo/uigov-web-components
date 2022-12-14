@@ -1,0 +1,56 @@
+import {ArgsTable, DocsStory, PRIMARY_STORY} from "@storybook/addon-docs";
+
+# Progress Bar
+
+Gebruik een progress-bar om de vooruitgang te tonen van een proces dat uit verschillende stappen bestaat.
+
+
+## Voorbeeld
+
+```js
+import { VlProgressBarComponent } from '@domg-lib/components'
+```
+
+```html
+    <vl-progress-bar data-vl-active-step="1"></vl-progress-bar>
+```
+
+<div>
+    <DocsStory id="components-progress-bar--progress-bar-default" />
+</div>
+
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+
+## Varianten
+
+### Numerieke indicators
+
+<div>
+    <DocsStory id="components-progress-bar--progress-bar-numeric" />
+</div>
+
+
+### Focus op de actieve stap
+
+<div>
+    <DocsStory id="components-progress-bar--progress-bar-focused" />
+</div>
+
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-progress-bar/
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/custom-elements-vl-progress-bar--default
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlProgressBar.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-progress-bar.html

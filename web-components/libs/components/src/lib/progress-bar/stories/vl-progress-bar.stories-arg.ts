@@ -1,6 +1,7 @@
 import { action } from '@storybook/addon-actions';
+import { Args, ArgTypes } from '@storybook/web-components';
 
-export const progressBarArgs = {
+export const progressBarArgs: Args = {
     numeric: false,
     activeStep: 1,
     focusOnChange: false,
@@ -8,10 +9,10 @@ export const progressBarArgs = {
     onClickStep: action('vl-click-step'),
 };
 
-export const progressBarArgTypes = {
+export const progressBarArgTypes: ArgTypes = {
     numeric: {
         name: 'data-vl-numeric',
-        description: 'Replaces the bullets by numbers.',
+        description: 'voorziet numerieke indicatoren bij de stappen',
         table: {
             type: {
                 summary: 'boolean',
@@ -22,7 +23,7 @@ export const progressBarArgTypes = {
     },
     activeStep: {
         name: 'data-vl-active-step',
-        description: 'Sets the active step of the progress bar.',
+        description: 'markeert een stap als de actieve',
         control: { type: 'range', min: 1, max: 3, step: 1 },
         table: {
             type: {
@@ -34,7 +35,7 @@ export const progressBarArgTypes = {
     },
     focusOnChange: {
         name: 'data-vl-focus-on-change',
-        description: 'Sets whether the step must be focused on on change or not.',
+        description: 'bepaalt of een stap de focus krijgt na een wijziging',
         table: {
             type: {
                 summary: 'boolean',
@@ -44,9 +45,9 @@ export const progressBarArgTypes = {
         },
     },
     steps: {
-        description: 'Sets the steps with an array of strings.',
-        type: { summary: 'array' },
+        description: 'een lijst met omschrijvingen per stap',
         table: {
+            type: { summary: 'string[]' },
             category: 'Properties',
             defaultValue: { summary: '[]' },
         },
@@ -54,7 +55,7 @@ export const progressBarArgTypes = {
     onClickStep: {
         name: 'vl-click-step',
         description:
-            'The custom event fired on click of a step. In the detail of the event, you can find the number and name of the clicked step.',
+            'event na klikken op een stap - het event bevat het nummer en de naam van de stap waarop geklikt is',
         table: { category: 'Events' },
     },
 };
