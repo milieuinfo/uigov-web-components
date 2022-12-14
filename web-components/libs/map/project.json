@@ -43,7 +43,7 @@
         "wctdetail": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "web-test-runner \"dist/libs/map/**/vl-map-layer.wctest.js\""
+                "command": "web-test-runner \"dist/libs/map/**/*.wctest.js\""
             }
         }
     },

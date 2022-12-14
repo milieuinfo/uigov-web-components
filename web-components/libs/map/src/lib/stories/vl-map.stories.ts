@@ -1,5 +1,5 @@
-import { mapArgs, mapArgTypes } from './vl-map.stories-arg';
-import { html } from 'lit';
+import {mapArgs, mapArgTypes} from './vl-map.stories-arg';
+import {html} from 'lit';
 import '@domg-wc/elements';
 import '@domg-wc/components';
 import '../vl-map';
@@ -25,23 +25,25 @@ import '../components/action/layer-action/vl-map-select-action';
 export default {
     title: 'map/map',
     parameters: {
-        controls: { hideNoControlsWarning: true },
+        controls: {hideNoControlsWarning: true},
     },
     args: mapArgs,
     argTypes: mapArgTypes,
 };
 
 const mapTemplate = ({
-    allowFullscreen,
-    disableEscape,
-    disableRotation,
-    disableMousewheelZoom,
-}: typeof mapArgs) => html`
+                         allowFullscreen,
+                         disableEscape,
+                         disableRotation,
+                         disableMousewheelZoom,
+                         disableKeyboard,
+                     }: typeof mapArgs) => html`
     <vl-map
         ?data-vl-allow-fullscreen=${allowFullscreen}
         ?data-vl-disable-escape-key=${disableEscape}
         ?data-vl-disable-rotation=${disableRotation}
         ?data-vl-disable-mouse-wheel-zoom=${disableMousewheelZoom}
+        ?data-vl-disable-keyboard=${disableKeyboard}
         data-vl-zoomInTooltip="Zoom in"
         data-vl-zoomOutTooltip="Zoom uit"
     >
@@ -53,11 +55,11 @@ export const mapDefault = mapTemplate.bind({});
 mapDefault.storyName = 'vl-map - default';
 
 export const mapAllowFullscreen = mapTemplate.bind({});
-mapAllowFullscreen.args = { allowFullscreen: true };
+mapAllowFullscreen.args = {allowFullscreen: true};
 mapAllowFullscreen.storyName = 'vl-map - allow fullscreen';
 
 export const mapDisableMousewheelZoom = mapTemplate.bind({});
-mapDisableMousewheelZoom.args = { disableMousewheelZoom: true };
+mapDisableMousewheelZoom.args = {disableMousewheelZoom: true};
 mapDisableMousewheelZoom.storyName = 'vl-map - disable mousewheel zoom';
 
 const purple = 'rgba(102, 51, 153, 0.6)';
@@ -79,7 +81,7 @@ const features = {
         {
             type: 'Feature',
             id: 1,
-            geometry: { type: 'Point', coordinates: [210000, 190000] },
+            geometry: {type: 'Point', coordinates: [210000, 190000]},
         },
         {
             type: 'Feature',
@@ -114,7 +116,7 @@ const features = {
 export const mapPlayground = (props) => {
     const actionIdentifiers = ['draw-point', 'draw-line', 'draw-polygon', 'modify', 'delete'];
 
-    const handleActiveActionChange = ({ detail: { previous, current } }) => {
+    const handleActiveActionChange = ({detail: {previous, current}}) => {
         // Activate/deactivate external controls when an action changes its state
         actionIdentifiers.forEach((actionIdentifier) => {
             if (previous === getActionElement(actionIdentifier)) {
@@ -125,7 +127,7 @@ export const mapPlayground = (props) => {
         });
     };
 
-    const handleLayerVisibleChange = ({ detail: { layer, visible } }) => {
+    const handleLayerVisibleChange = ({detail: {layer, visible}}) => {
         // Enable/disable external controls when an action changes its state
         const layerActions = layer.getElementsByClassName('action');
 
@@ -145,8 +147,8 @@ export const mapPlayground = (props) => {
             ?data-vl-disable-rotation=${props.disableRotation}
             ?data-vl-disable-mouse-wheel-zoom=${props.disableMousewheelZoom}
             @vl-active-action-changed=${(event) => {
-                props.activeActionChange({ previous: event.detail.previous });
-                props.activeActionChange({ current: event.detail.current });
+                props.activeActionChange({previous: event.detail.previous});
+                props.activeActionChange({current: event.detail.current});
                 handleActiveActionChange(event);
             }}
             @vl-layer-visible-changed=${(event) => {
@@ -161,9 +163,9 @@ export const mapPlayground = (props) => {
             <vl-map-side-sheet>
                 <h6 is="vl-h6">Layers</h6>
 
-                <vl-map-layer-switcher> </vl-map-layer-switcher>
+                <vl-map-layer-switcher></vl-map-layer-switcher>
 
-                <hr />
+                <hr/>
 
                 <h6 is="vl-h6">Measure</h6>
 
@@ -186,7 +188,7 @@ export const mapPlayground = (props) => {
                     </button>
                 </div>
 
-                <hr />
+                <hr/>
 
                 <div style=${toggleGroupStyling}>
                     <h6 is="vl-h6">Shapes</h6>
