@@ -9,7 +9,7 @@
         "test-parallel": "npm run test:unit:parallel && npm run test:wct",
         "test:unit": "npx nx run-many --all --target=test --skip-nx-cache",
         "test:unit:parallel": "npx nx run-many --all --target=test --parallel --maxParallel=4 --skip-nx-cache",
-        "test:wct": "npm run build:all  && npx nx wct map",
+        "test:wct": "npm run build:all && npx nx wct map",
         "test:wctonly": "npx nx wct map",
         "test:wctdetail": "npm run build:all  && npx nx wctdetail map",
         "test:wctdetailonly": "npx nx wctdetail map",

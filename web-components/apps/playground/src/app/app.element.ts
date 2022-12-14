@@ -8,6 +8,7 @@ export class AppElement extends HTMLElement {
             <div class="wrapper">
                 <div class="container">
                     <h1 is="vl-h1" data-vl-alt data-vl-no-space-bottom>Elementen Overzicht UIG</h1>
+                    <playground-map></playground-map>
                     <playground-action-group></playground-action-group>
                     <playground-breadcrumb></playground-breadcrumb>
                     <playground-buttons></playground-buttons>

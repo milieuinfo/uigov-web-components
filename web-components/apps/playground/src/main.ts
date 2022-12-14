@@ -1,6 +1,7 @@
 // @uig imports
 import '@domg-wc/elements';
 import '@domg-wc/components';
+import '@domg-wc/map';
 
 // app components
 import './app/app.element.ts';
@@ -65,3 +66,4 @@ import './app/typography/typography.element';
 import './app/upload/upload.element';
 import './app/video-player/video-player.element';
 import './app/radio/radio.element';
+import './app/map/map';
