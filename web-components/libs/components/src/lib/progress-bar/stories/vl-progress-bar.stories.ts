@@ -1,14 +1,21 @@
 import { html } from 'lit-html';
 import '../vl-progress-bar.component';
 import { progressBarArgs, progressBarArgTypes } from './vl-progress-bar.stories-arg';
+import { Meta, StoryFn } from '@storybook/web-components';
+
+import progressBarDoc from './vl-progress-bar.stories-doc.mdx';
 
 export default {
     title: 'Components/progress-bar',
     args: progressBarArgs,
     argTypes: progressBarArgTypes,
-};
+    parameters: {
+        controls: { expanded: true },
+        docs: { page: progressBarDoc },
+    },
+} as Meta<typeof progressBarArgs>;
 
-export const progressBarDefault = ({
+const Template: StoryFn<typeof progressBarArgs> = ({
     numeric,
     activeStep,
     steps,
@@ -21,8 +28,17 @@ export const progressBarDefault = ({
         data-vl-active-step=${activeStep}
         .steps=${steps}
         @vl-click-step=${(event: any) => onClickStep(event.detail)}
-        data-cy="progress-bar"
     >
     </vl-progress-bar>`;
 };
-progressBarDefault.storyName = 'vl-progress-bar - default';
+
+export const ProgressBarDefault = Template.bind({});
+ProgressBarDefault.storyName = 'vl-progress-bar - default';
+
+export const ProgressBarNumeric = Template.bind({});
+ProgressBarNumeric.storyName = 'vl-progress-bar - numeric';
+ProgressBarNumeric.args = { numeric: true };
+
+export const ProgressBarFocused = Template.bind({});
+ProgressBarFocused.storyName = 'vl-progress-bar - focused';
+ProgressBarFocused.args = { numeric: true, activeStep: 2, focusOnChange: true };
