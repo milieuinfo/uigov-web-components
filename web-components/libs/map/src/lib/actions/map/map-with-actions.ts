@@ -1,8 +1,15 @@
 import { defaults } from 'ol/interaction';
-import Interaction from 'ol/interaction/Interaction';
 import Map from 'ol/Map';
-import { MapOptions } from 'ol/PluggableMap';
 import { CONTROL_TYPE } from '../../vl-map.model';
+
+export interface VlMapActionOptions {
+    disableEscapeKey?: Boolean;
+    actions?: any;
+    interactions?: any;
+    disableKeyboard?: Boolean;
+    disableRotation?: Boolean;
+    disableMouseWheelZoom?: Boolean;
+}
 
 /**
  * Deze map bevat enkel de functionaliteit om de acties te behandelen. Aan het eerste argument van de constructor kan het gebruikelijke object map opties worden weergegeven die ook op de ol.Map worden gezet, samen met een extra parameter 'acties' in dat object. Deze array bevat MapActions.
@@ -17,19 +24,15 @@ export class VlMapWithActions extends Map {
         return 300;
     }
 
-    constructor(options:{
-        disableEscapeKey?: Boolean;
-        actions?: any;
-        interactions?: any;
-        disableRotation?: Boolean;
-        disableMouseWheelZoom?: Boolean;
-    } = <any>{}) {
-        const enableRotation = !options.disableRotation;
-        const enableMouseWheelZoom = !options.disableMouseWheelZoom;
+    constructor(options: VlMapActionOptions = <VlMapActionOptions>{}) {
+        const { disableRotation, disableMouseWheelZoom, disableKeyboard } = options;
+        const enableRotation = !disableRotation;
+        const enableMouseWheelZoom = !disableMouseWheelZoom;
         const interactions = defaults({
             altShiftDragRotate: enableRotation,
             pinchRotate: enableRotation,
             mouseWheelZoom: enableMouseWheelZoom,
+            keyboard: !disableKeyboard,
         });
         if (options && options.interactions) {
             options.interactions.forEach((interaction) => interactions.push(interaction));

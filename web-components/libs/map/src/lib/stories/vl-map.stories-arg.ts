@@ -7,6 +7,7 @@ export const mapArgs = {
     disableEscape: false,
     disableRotation: false,
     disableMousewheelZoom: false,
+    disableKeyboard: false,
     activeActionChange: action(EVENT.ACTIVE_ACTION_CHANGED),
     layerVisibleChange: action(EVENT.LAYER_VISIBLE_CHANGED),
 };
@@ -21,7 +22,6 @@ export const mapArgTypes = {
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
-        control: { disable: true },
     },
     disableEscape: {
         name: 'data-vl-disable-escape-key',
@@ -31,7 +31,6 @@ export const mapArgTypes = {
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
-        control: { disable: true },
     },
     disableRotation: {
         name: 'data-vl-disable-rotation',
@@ -41,7 +40,6 @@ export const mapArgTypes = {
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
-        control: { disable: true },
     },
     disableMousewheelZoom: {
         name: 'data-vl-disable-mouse-wheel-zoom',
@@ -51,7 +49,15 @@ export const mapArgTypes = {
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
-        control: { disable: true },
+    },
+    disableKeyboard: {
+        name: 'data-vl-disable-keyboard',
+        type: { summary: TYPES.BOOLEAN },
+        description: 'Attribute is used to ensure that the keyboard input is disabled for the map',
+        table: {
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: 'false' },
+        },
     },
     activeActionChange: {
         name: EVENT.ACTIVE_ACTION_CHANGED,

@@ -76,6 +76,10 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         return this.getAttribute('disable-mouse-wheel-zoom') != undefined;
     }
 
+    get disableKeyboard() {
+        return this.getAttribute('disable-keyboard') != undefined;
+    }
+
     get actions() {
         return this.map && this.map.actions;
     }
@@ -123,6 +127,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
             disableEscapeKey: this.disableEscapeKey,
             disableRotation: this.disableRotation,
             disableMouseWheelZoom: this.disableMouseWheelZoom,
+            disableKeyboard: this.disableKeyboard,
             customLayers: {
                 baseLayerGroup: this.__createLayerGroup('Basis lagen', []),
                 overviewMapLayers: [],
