@@ -3,5 +3,8 @@
     "version": "",
     "publishConfig": {
         "registry": "https://repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/"
+    },
+    "dependencies": {
+        "lit": "^2.2.8"
     }
 }
