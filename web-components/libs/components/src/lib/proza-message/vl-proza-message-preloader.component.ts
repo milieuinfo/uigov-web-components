@@ -1,5 +1,5 @@
 import { ProzaRestClient } from './vl-proza-rest-client.util';
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 /**
  * VlProzaMessagePreloader

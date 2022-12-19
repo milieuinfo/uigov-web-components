@@ -3,7 +3,7 @@ import OlLayerGroup from 'ol/layer/Group';
 import OlProjection from 'ol/proj/Projection';
 import proj4 from 'proj4';
 import { VlCustomMap } from './actions';
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import { EVENT } from './vl-map.model';
 import styles from './vl-map.scss';
 import { Zoom } from 'ol/control.js';

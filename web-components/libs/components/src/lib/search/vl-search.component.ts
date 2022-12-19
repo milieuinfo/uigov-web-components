@@ -1,5 +1,5 @@
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
-import { VlSelect } from '@domg-lib/elements';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { VlSelect } from '@domg-wc/elements';
 import styles from './style/vl-search.scss';
 
 /**

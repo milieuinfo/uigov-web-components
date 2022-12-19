@@ -1,4 +1,4 @@
-import '@domg-lib/elements';
+import '@domg-wc/elements';
 import { html } from 'lit-html';
 import '../vl-rich-data-table.component';
 

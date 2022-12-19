@@ -1,5 +1,5 @@
 import GeometryType from 'ol/geom/GeometryType';
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 import { VlMapDrawAction } from './vl-map-draw-action';
 import { VlDrawAction } from '../../../actions';
 

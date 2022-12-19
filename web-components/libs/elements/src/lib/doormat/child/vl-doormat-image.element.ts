@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 export class VlDoormatImageElement extends BaseElementOfType(HTMLImageElement) {
     static get _observedClassAttributes() {

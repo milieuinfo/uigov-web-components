@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { EVENT } from '../vl-map.model';
-import { CATEGORIES, TYPES } from '@domg-lib/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 
 export const mapArgs = {
     allowFullscreen: false,

@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import '../accordion/vl-accordion.component';
 import styles from './style/vl-info-tile.scss';
 

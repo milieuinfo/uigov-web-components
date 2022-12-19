@@ -1,10 +1,10 @@
-import '@domg-lib/elements';
+import '@domg-wc/elements';
 import { VlRichDataField } from './vl-rich-data-field.component';
 import { VlRichDataSorter } from './vl-rich-data-sorter.component';
 import { VlRichData } from '../rich-data/vl-rich-data.component';
 
 import styles from './style/vl-rich-data-table.scss';
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 
 export class VlRichDataTable extends VlRichData {
     static get _observedAttributes() {

@@ -3,7 +3,7 @@ import OlGeoJSON from 'ol/format/GeoJSON';
 import OlClusterSource from 'ol/source/Cluster';
 import OlPoint from 'ol/geom/Point';
 import { VlMapVectorLayer } from './vl-map-vector-layer';
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 
 /**
  * VlMapFeaturesLayer

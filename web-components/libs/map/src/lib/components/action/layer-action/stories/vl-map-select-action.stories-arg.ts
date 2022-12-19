@@ -1,5 +1,5 @@
 import { mapActionArgs, mapActionArgTypes } from '../../stories/vl-map-action.stories-arg';
-import { CATEGORIES, TYPES } from '@domg-lib/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 
 export const mapSelectActionArgs = {
     ...mapActionArgs,

@@ -1,4 +1,4 @@
-import { Class, BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { Class, BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 /**
  * Gebruik de form-annotation mixin in combinatie met HTML elementen.

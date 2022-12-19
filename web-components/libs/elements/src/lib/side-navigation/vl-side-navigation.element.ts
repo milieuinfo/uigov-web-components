@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import './vl-side-navigation.lib.js';
 import './vl-side-navigation-reference.element';
 import './vl-side-navigation-title.element';

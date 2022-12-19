@@ -1,6 +1,6 @@
-import '@domg-lib/elements';
-import '@domg-lib/components';
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import '@domg-wc/elements';
+import '@domg-wc/components';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import './cookie/vl-authentication-cookie.section';
 import './cookie/vl-cookie.section';
 import './cookie/vl-header-authentication-cookie.section';

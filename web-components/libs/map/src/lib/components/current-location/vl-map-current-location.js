@@ -1,6 +1,6 @@
 import { css, html, LitElement, unsafeCSS } from 'lit';
 import proj4 from 'proj4';
-import '@domg-lib/elements';
+import '@domg-wc/elements';
 import styles from './vl-map-current-location.scss';
 
 export const DEFAULT_ZOOM = 10;

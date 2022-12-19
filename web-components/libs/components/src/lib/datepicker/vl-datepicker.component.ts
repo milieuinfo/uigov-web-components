@@ -1,5 +1,5 @@
-import { awaitUntil, BaseElementOfType, define } from '@domg-lib/common-utilities';
-import { vlFormValidation, vlFormValidationElement, vlPattern } from '@domg-lib/elements';
+import { awaitUntil, BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { vlFormValidation, vlFormValidationElement, vlPattern } from '@domg-wc/elements';
 import './vl-datepicker.lib.js';
 import styles from './style/vl-datepicker.scss';
 

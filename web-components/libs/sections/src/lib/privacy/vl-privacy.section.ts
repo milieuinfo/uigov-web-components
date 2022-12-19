@@ -1,5 +1,5 @@
-import '@domg-lib/elements';
-import '@domg-lib/components';
+import '@domg-wc/elements';
+import '@domg-wc/components';
 import { html, LitElement } from 'lit';
 import styles from './style/vl-privacy.scss';
 

@@ -3,7 +3,7 @@ import OlStyleStroke from 'ol/style/Stroke';
 import OlStyleFill from 'ol/style/Fill';
 import OlStyleCircle from 'ol/style/Circle';
 import { VlMapLayerStyle } from './vl-map-layer-style';
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 
 /**
  * VlMapLayerCircleStyle

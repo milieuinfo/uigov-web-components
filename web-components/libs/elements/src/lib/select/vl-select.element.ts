@@ -1,4 +1,4 @@
-import { BaseElementOfType, awaitUntil, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, awaitUntil, define } from '@domg-wc/common-utilities';
 import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
 import './vl-select.lib.js';

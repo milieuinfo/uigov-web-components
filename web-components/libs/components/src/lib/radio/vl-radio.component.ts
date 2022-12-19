@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import { vlRadioGroupComponent as vlRadioGroup } from './vl-radio-group.component';
 
 import styles from './style/vl-radio.scss';

@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import OlWMTSSource from 'ol/source/WMTS';
 import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
 import OlVectorSource from 'ol/source/Vector';

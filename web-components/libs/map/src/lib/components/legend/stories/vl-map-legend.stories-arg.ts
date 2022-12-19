@@ -1,5 +1,5 @@
 import { LEGEND_PLACEMENT } from '../vl-map-legend';
-import { CATEGORIES, TYPES } from '@domg-lib/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 
 export const legendArgTypes = {
     placement: {

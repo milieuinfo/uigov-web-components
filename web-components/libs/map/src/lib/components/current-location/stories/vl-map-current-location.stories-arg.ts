@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from '@domg-lib/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 import { DEFAULT_ZOOM, DEFAULT_TOOLTIP } from '../vl-map-current-location';
 
 export const currentLocationArgs = {

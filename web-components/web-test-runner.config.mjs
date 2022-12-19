@@ -11,9 +11,9 @@ export default {
     plugins: [
         alias({
             entries: [
-                { find: '@domg-lib/common-utilities', replacement: `${__dirname}dist/libs/common/utilities/src` },
-                { find: '@domg-lib/components', replacement: `${__dirname}dist/libs/components/src` },
-                { find: '@domg-lib/elements', replacement: `${__dirname}dist/libs/elements/src` },
+                { find: '@domg-wc/common-utilities', replacement: `${__dirname}dist/libs/common/utilities/src` },
+                { find: '@domg-wc/components', replacement: `${__dirname}dist/libs/components/src` },
+                { find: '@domg-wc/elements', replacement: `${__dirname}dist/libs/elements/src` },
             ]
         }),
         esbuildPlugin({

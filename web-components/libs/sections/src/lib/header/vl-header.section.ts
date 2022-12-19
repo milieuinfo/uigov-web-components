@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-import { awaitScript } from '@domg-lib/common-utilities';
+import { awaitScript } from '@domg-wc/common-utilities';
 
 awaitScript(
     'vl-header-client',
