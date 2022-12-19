@@ -44,6 +44,9 @@ const copySources = (directoryToSearch, directoryCopyTo, pattern) => {
     });
 };
 
+// post process common-utilities
+copySources('libs/common/utilities/style', 'dist/libs/common/utilities/style', '.scss');
+
 // post process elements
 wrapCssInJs('dist/libs/elements/src', '.css.js', false);
 copySources('libs/elements/src', 'dist/libs/elements/src', '.lib.js');
