@@ -1,6 +1,6 @@
 import OlImageLayer from 'ol/layer/Image';
 import OlImageWMSSource from 'ol/source/ImageWMS';
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 import { VlMapWmsLayer } from './vl-map-wms-layer';
 
 /**

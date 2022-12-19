@@ -1,4 +1,4 @@
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 import { VlDeleteAction } from '../../../actions';
 import { VlMapLayerAction } from './vl-map-layer-action';
 import { VlMapLayerStyle } from '../../layer-style/vl-map-layer-style';

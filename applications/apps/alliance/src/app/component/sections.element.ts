@@ -2,7 +2,7 @@ export class SectionsElement extends HTMLElement {
     public static observedAttributes = [];
 
     connectedCallback() {
-        const title = 'Integratie van @domg-lib/sections';
+        const title = 'Integratie van @domg-wc/sections';
         this.innerHTML = `
             <style>
                 .accessibility-wrapper {

@@ -1,4 +1,4 @@
-import { awaitUntil } from '@domg-lib/common-utilities';
+import { awaitUntil } from '@domg-wc/common-utilities';
 import { VlCompositeVectorLayer, VlCompositeVectorSource } from '../../../actions';
 import { assert, expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';

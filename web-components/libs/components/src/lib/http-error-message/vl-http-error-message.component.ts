@@ -16,7 +16,7 @@ import './vl-http-503-message.component';
 import './vl-http-504-message.component';
 import './vl-http-505-message.component';
 import './vl-http-506-message.component';
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import styles from './style/vl-http-error-message.scss';
 
 export class VlHttpErrorMessage extends BaseElementOfType(HTMLElement) {

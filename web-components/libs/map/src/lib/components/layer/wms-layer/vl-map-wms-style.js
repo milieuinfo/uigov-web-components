@@ -1,4 +1,4 @@
-import { define, BaseElementOfType } from '@domg-lib/common-utilities';
+import { define, BaseElementOfType } from '@domg-wc/common-utilities';
 
 /**
  * VlMapWmsStyle
@@ -15,8 +15,8 @@ import { define, BaseElementOfType } from '@domg-lib/common-utilities';
  */
 export class VlMapWmsStyle extends BaseElementOfType(HTMLElement) {
     get sld() {
-        return this.getAttribute("data-vl-sld");
+        return this.getAttribute('data-vl-sld');
     }
 }
 
-define("vl-map-wms-style", VlMapWmsStyle);
+define('vl-map-wms-style', VlMapWmsStyle);

@@ -1,6 +1,6 @@
 import OlTileWMSSource from 'ol/source/TileWMS';
 import OlTileLayer from 'ol/layer/Tile';
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 import { VlMapWmsLayer } from './vl-map-wms-layer';
 
 /**

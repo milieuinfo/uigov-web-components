@@ -1,4 +1,4 @@
-import { CATEGORIES } from '@domg-lib/common-utilities';
+import { CATEGORIES } from '@domg-wc/common-utilities';
 
 export const functionalHeaderArgs = {
     title: 'School- en studietoelagen',

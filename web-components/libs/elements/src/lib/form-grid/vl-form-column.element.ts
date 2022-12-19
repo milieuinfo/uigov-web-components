@@ -1,4 +1,4 @@
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 import { VlColumnElement } from '../grid/vl-column.element';
 
 /**

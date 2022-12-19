@@ -1,5 +1,5 @@
-import '@domg-lib/elements';
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import '@domg-wc/elements';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import styles from './style/vl-rich-data-table.scss';
 
 export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {

@@ -1,4 +1,4 @@
-import { awaitUntil } from '@domg-lib/common-utilities';
+import { awaitUntil } from '@domg-wc/common-utilities';
 import { assert, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import OlFeature from 'ol/Feature';

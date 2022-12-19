@@ -1,6 +1,6 @@
-import { awaitUntil, BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { awaitUntil, BaseElementOfType, define } from '@domg-wc/common-utilities';
 import { VlLinkToolbarFactory } from './vl-link-toolbar-factory';
-import { vlFormValidation, vlFormValidationElement } from '@domg-lib/elements';
+import { vlFormValidation, vlFormValidationElement } from '@domg-wc/elements';
 import 'tinymce/tinymce';
 
 declare const tinyMCE: any;

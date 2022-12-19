@@ -1,7 +1,7 @@
 import { mapArgs, mapArgTypes } from './vl-map.stories-arg';
 import { html } from 'lit';
-import '@domg-lib/elements';
-import '@domg-lib/components';
+import '@domg-wc/elements';
+import '@domg-wc/components';
 import '../vl-map';
 import '../components/controls/vl-map-action-controls';
 import '../components/controls/vl-map-measure-control';

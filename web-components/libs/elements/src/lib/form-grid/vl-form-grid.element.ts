@@ -1,5 +1,5 @@
 import { VlGridElement } from '../grid/vl-grid.element';
-import { define } from "@domg-lib/common-utilities";
+import { define } from '@domg-wc/common-utilities';
 import './vl-form-column.element';
 
 /**
@@ -10,13 +10,13 @@ import './vl-form-column.element';
  * @extends VlGridElement
  */
 export class VlFormGridElement extends VlGridElement {
-  connectedCallback() {
-    this.classList.add('vl-form-grid');
-  }
+    connectedCallback() {
+        this.classList.add('vl-form-grid');
+    }
 
-  get _classPrefix() {
-    return 'vl-form-grid--';
-  }
+    get _classPrefix() {
+        return 'vl-form-grid--';
+    }
 }
 
 define('vl-form-grid', VlFormGridElement, { extends: 'div' });

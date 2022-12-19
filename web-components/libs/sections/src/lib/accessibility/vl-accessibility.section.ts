@@ -1,5 +1,5 @@
-import '@domg-lib/elements';
-import '@domg-lib/components';
+import '@domg-wc/elements';
+import '@domg-wc/components';
 import { html, LitElement, css, unsafeCSS } from 'lit';
 import { COMPLIANCE_STATUS, EVALUATION_STATUS } from './vl-accessibility.model';
 import { header } from './child/header.section';

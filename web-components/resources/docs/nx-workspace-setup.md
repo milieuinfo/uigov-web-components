@@ -19,12 +19,12 @@ Dit document beschrijft (in grote lijnen) de stappen utgevoerd om de UIG repo op
     * [applications | web-components] / apps [an empty workspace with no plugins with a layout that works best for building apps]
     * no distributed caching
 - npm install -D @nrwl/web
-- npx nx g @nrwl/web:lib common/utilities --buildable --importPath=@domg-lib/common-utilities
-- npx nx g @nrwl/web:lib elements --buildable --publishable --importPath=@domg-lib/elements
-- npx nx g @nrwl/web:lib components --buildable --publishable --importPath=@domg-lib/components
-- npx nx g @nrwl/web:lib sections --buildable --publishable --importPath=@domg-lib/sections
-- npx nx g @nrwl/web:lib support/test-support --buildable --publishable --importPath=@domg-lib/test-support
-- npx nx g @nrwl/web:lib map --buildable --publishable --importPath=@domg-lib/map
+- npx nx g @nrwl/web:lib common/utilities --buildable --importPath=@domg-wc/common-utilities
+- npx nx g @nrwl/web:lib elements --buildable --publishable --importPath=@domg-wc/elements
+- npx nx g @nrwl/web:lib components --buildable --publishable --importPath=@domg-wc/components
+- npx nx g @nrwl/web:lib sections --buildable --publishable --importPath=@domg-wc/sections
+- npx nx g @nrwl/web:lib support/test-support --buildable --publishable --importPath=@domg-wc/test-support
+- npx nx g @nrwl/web:lib map --buildable --publishable --importPath=@domg-wc/map
 - npx nx g @nrwl/web:application playground
 - npx nx g @nrwl/web:application storybook
 

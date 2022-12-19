@@ -1,4 +1,4 @@
-import { define, BaseElementOfType } from '@domg-lib/common-utilities';
+import { define, BaseElementOfType } from '@domg-wc/common-utilities';
 import '@govflanders-v14/vl-ui-util/dist/js/util.js';
 import '@govflanders-v14/vl-ui-infotext/dist/js/infotext.js';
 

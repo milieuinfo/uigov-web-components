@@ -1,9 +1,9 @@
-import '@domg-lib/elements';
-import '@domg-lib/components';
+import '@domg-wc/elements';
+import '@domg-wc/components';
 import './vl-cookie-consent-opt-in.section';
 import { analytics } from './util/analytics.util';
 import styles from './style/vl-cookie-consent.scss';
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {

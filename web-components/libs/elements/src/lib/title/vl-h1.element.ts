@@ -1,4 +1,4 @@
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 import { BaseTitleOfType } from './base/base-title.element';
 
 export class VlH1Element extends BaseTitleOfType {}

@@ -1,4 +1,4 @@
-import { Class, BaseElementOfType } from '@domg-lib/common-utilities';
+import { Class, BaseElementOfType } from '@domg-wc/common-utilities';
 
 /**
  * Gebruik de link mixin in combinatie met link elementen.

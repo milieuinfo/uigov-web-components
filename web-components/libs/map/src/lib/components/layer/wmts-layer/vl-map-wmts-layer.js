@@ -3,7 +3,7 @@ import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
 import OlTileLayer from 'ol/layer/Tile';
 import * as OlExtent from 'ol/extent';
 import { VlMapLayer } from '../vl-map-layer';
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 
 /**
  * VlMapWmtsLayer

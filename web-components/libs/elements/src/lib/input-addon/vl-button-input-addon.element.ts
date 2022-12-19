@@ -1,4 +1,4 @@
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 import { InputAddonBaseElementOfType } from './base/input-addon-base.element';
 
 /**

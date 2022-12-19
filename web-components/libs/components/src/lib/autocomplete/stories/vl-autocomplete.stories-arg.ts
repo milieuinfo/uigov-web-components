@@ -1,5 +1,5 @@
 import { CAPTION_FORMAT, GROUP_BY } from '../vl-autocomplete.model';
-import { CATEGORIES, TYPES } from '@domg-lib/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 import { DEFAULT_CAPTION_FORMAT, DEFAULT_MAX_MATCHES, DEFAULT_MIN_CHARS } from '../vl-autocomplete.component';
 
 export const complexItems = [

@@ -1,4 +1,4 @@
-import { awaitUntil } from '@domg-lib/common-utilities';
+import { awaitUntil } from '@domg-wc/common-utilities';
 import { assert, fixture, html } from '@open-wc/testing';
 import '../../../vl-map';
 import './vl-map-image-wms-layer';

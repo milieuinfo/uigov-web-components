@@ -1,4 +1,4 @@
-import { awaitUntil } from '@domg-lib/common-utilities';
+import { awaitUntil } from '@domg-wc/common-utilities';
 import { assert, fixture, html } from '@open-wc/testing';
 import OlPoint from 'ol/geom/Point';
 import OlFeature from 'ol/Feature';
@@ -129,13 +129,13 @@ describe('vl-map-features-layer', () => {
         assert.lengthOf(layer.getSource().getFeatures(), 1);
         assert.equal(
             geoJSON.writeFeatures(layer.getSource().getFeatures()),
-            layerElement.getAttribute('data-vl-features'),
+            layerElement.getAttribute('data-vl-features')
         );
         assert.deepEqual(map.map.getView().getCenter(), [140860.69299028325, 190532.7165957574]);
 
         layerElement.setAttribute(
             'data-vl-features',
-            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[147055,197908]},"properties":null},{"type":"Feature","geometry":{"type":"Point","coordinates":[157055,207908]},"properties":null}]}',
+            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[147055,197908]},"properties":null},{"type":"Feature","geometry":{"type":"Point","coordinates":[157055,207908]},"properties":null}]}'
         );
         layerElement.setAttribute('data-vl-auto-extent', '');
         await awaitUntil(() => {
@@ -156,7 +156,7 @@ describe('vl-map-features-layer', () => {
         assert.isUndefined(layer.boundingBox);
         layer.setAttribute(
             'features',
-            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[147055,197908]},"properties":null},{"type":"Feature","geometry":{"type":"Point","coordinates":[157055,207908]},"properties":null}]}',
+            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[147055,197908]},"properties":null},{"type":"Feature","geometry":{"type":"Point","coordinates":[157055,207908]},"properties":null}]}'
         );
         assert.deepEqual(layer.boundingBox, [147055, 197908, 157055, 207908]);
     });
@@ -227,7 +227,7 @@ describe('vl-map-features-layer', () => {
         await map.ready;
         assert.lengthOf(layer.layer.getSource().getFeatures(), 1);
         layer.addFeature(
-            '{"type":"Feature","geometry":{"type":"Point","coordinates":[148055,197908]},"properties":null,"id":2}',
+            '{"type":"Feature","geometry":{"type":"Point","coordinates":[148055,197908]},"properties":null,"id":2}'
         );
         assert.lengthOf(layer.layer.getSource().getFeatures(), 2);
     });
@@ -239,7 +239,7 @@ describe('vl-map-features-layer', () => {
 
         assert.lengthOf(layer.source.getSource().getFeatures(), 1);
         layer.addFeature(
-            '{"type":"Feature","geometry":{"type":"Point","coordinates":[148055,197908]},"properties":null,"id":2}',
+            '{"type":"Feature","geometry":{"type":"Point","coordinates":[148055,197908]},"properties":null,"id":2}'
         );
         assert.lengthOf(layer.source.getSource().getFeatures(), 2);
         assert.isDefined(layer.getFeature(1));
@@ -281,7 +281,7 @@ describe('vl-map-features-layer', () => {
         await map.ready;
         assert.lengthOf(layer.layer.getSource().getFeatures(), 1);
         layer.addFeatureCollection(
-            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[148055,197908]},"properties":null,"id":2}]}',
+            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[148055,197908]},"properties":null,"id":2}]}'
         );
         assert.lengthOf(layer.layer.getSource().getFeatures(), 2);
     });
@@ -305,12 +305,12 @@ describe('vl-map-features-layer', () => {
             assert.deepEqual(map.map.getView().getCenter(), [147555, 197908]);
         });
         layer.addFeature(
-            '{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}',
+            '{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}'
         );
         assert.deepEqual(map.map.getView().getCenter(), [147055, 197908]);
         layer.clearFeatures();
         layer.addFeature(
-            '{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}',
+            '{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}'
         );
         assert.deepEqual(map.map.getView().getCenter(), [146055, 197908]);
     });
@@ -323,12 +323,12 @@ describe('vl-map-features-layer', () => {
             assert.deepEqual(map.map.getView().getCenter(), [147555, 197908]);
         });
         layer.addFeatureCollection(
-            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}]}',
+            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}]}'
         );
         assert.deepEqual(map.map.getView().getCenter(), [147055, 197908]);
         layer.clearFeatures();
         layer.addFeature(
-            '{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}',
+            '{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}'
         );
         assert.deepEqual(map.map.getView().getCenter(), [146055, 197908]);
     });

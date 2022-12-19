@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import '../modal/vl-modal.component';
 
 class VlTextareaModal extends BaseElementOfType(HTMLElement) {

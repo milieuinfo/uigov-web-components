@@ -1,4 +1,4 @@
-import { CATEGORIES } from '@domg-lib/common-utilities';
+import { CATEGORIES } from '@domg-wc/common-utilities';
 
 export const headerArgs = {
     identifier: '59188ff6-662b-45b9-b23a-964ad48c2bfb',

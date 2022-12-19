@@ -1,6 +1,6 @@
-import { BaseElementOfType, awaitUntil, define } from '@domg-lib/common-utilities';
-import '@domg-lib/components';
-import '@domg-lib/elements';
+import { BaseElementOfType, awaitUntil, define } from '@domg-wc/common-utilities';
+import '@domg-wc/components';
+import '@domg-wc/elements';
 import formMessageStyles from './style/vl-map-layer-switcher.scss';
 
 /**

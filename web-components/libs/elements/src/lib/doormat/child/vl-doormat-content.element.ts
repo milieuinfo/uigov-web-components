@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 export class VlDoormatContentElement extends BaseElementOfType(HTMLDivElement) {
     connectedCallback() {

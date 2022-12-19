@@ -1,7 +1,7 @@
-import '@domg-lib/elements';
+import '@domg-wc/elements';
 import swipeDetect from 'swipe-detect/dist/';
 import styles from './style/vl-side-sheet.scss';
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 /**
  * VlSideSheet
