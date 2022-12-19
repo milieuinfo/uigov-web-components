@@ -1,0 +1,10 @@
+// spacing variabelen - voor consistentie in eindtoepassing
+
+@use '@govflanders-v14/vl-ui-core/src/scss/setting/spacing' as spacing;
+
+$vl-spacing-xxsmall: spacing.$vl-spacing-xxsmall;
+$vl-spacing-xsmall: spacing.$vl-spacing-xsmall;
+$vl-spacing-small: spacing.$vl-spacing-small;
+$vl-spacing-normal: spacing.$vl-spacing-normal;
+$vl-spacing-medium: spacing.$vl-spacing-medium;
+$vl-spacing-large: spacing.$vl-spacing-large;
