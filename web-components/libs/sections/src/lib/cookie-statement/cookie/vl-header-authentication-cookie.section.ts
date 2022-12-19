@@ -1,5 +1,5 @@
 import { VlCookie } from './vl-cookie.section';
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 
 export class VlHeaderAuthenticationCookie extends VlCookie {
     constructor() {

@@ -1,4 +1,4 @@
-import { awaitUntil } from '@domg-lib/common-utilities';
+import { awaitUntil } from '@domg-wc/common-utilities';
 import { assert, fixture, html } from '@open-wc/testing';
 import '../../vl-map';
 import '../layer/vector-layer/vl-map-features-layer';
@@ -67,11 +67,13 @@ describe('vl-map-layer-style', () => {
     const styles = [
         {
             tag: 'vl-map-layer-style',
-            fixture: mapLayerStyleFixture
-        }, {
+            fixture: mapLayerStyleFixture,
+        },
+        {
             tag: 'vl-map-layer-circle-style',
-            fixture: mapLayerCircleStyleFixture
-        }];
+            fixture: mapLayerCircleStyleFixture,
+        },
+    ];
 
     it('de style wordt goed geconfigureerd met default properties', async () => {
         const element = await mapLayerStyleFixture();

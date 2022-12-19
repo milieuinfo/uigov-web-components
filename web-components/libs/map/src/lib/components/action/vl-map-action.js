@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 export class VlMapAction extends BaseElementOfType(HTMLElement) {
     constructor() {
@@ -58,7 +58,8 @@ export class VlMapAction extends BaseElementOfType(HTMLElement) {
         // Only deactivate if this action is currently active
         if (this.action && this.action === this._mapElement.activeAction) {
             const actionIsNotDefault = this.action !== this._mapElement.defaultAction;
-            const layerIsVisible = this._mapElement.defaultAction && this._mapElement.defaultAction.layer.get('visible');
+            const layerIsVisible =
+                this._mapElement.defaultAction && this._mapElement.defaultAction.layer.get('visible');
             this._mapElement.changeActiveAction(actionIsNotDefault && layerIsVisible && this._mapElement.defaultAction);
         }
     }

@@ -1,14 +1,11 @@
-import { awaitUntil } from '@domg-lib/common-utilities';
+import { awaitUntil } from '@domg-wc/common-utilities';
 import { assert, fixture, html } from '@open-wc/testing';
 import '../../../vl-map';
 import './vl-map-wms-style';
 import './vl-map-image-wms-layer';
 import './vl-map-tiled-wms-layer';
 
-const mapFixture = async () =>
-    fixture(html`
-        <vl-map></vl-map>
-    `);
+const mapFixture = async () => fixture(html` <vl-map></vl-map> `);
 
 const wmsLayersFixture = async () =>
     fixture(html`
@@ -96,27 +93,29 @@ describe('vl-map-wms-layer', () => {
         const types = ['image', 'tiled'];
         const map = await mapFixture();
 
-        await Promise.all(types.map(async (type, index) => {
-            const layer = document.createElement(`vl-map-${type}-wms-layer`);
-            layer.setAttribute('data-vl-url', 'http://dummy/wms-adjusted');
-            layer.setAttribute('data-vl-layers', 'layer1');
-            layer.setAttribute('data-vl-styles', 'style1,style2');
-            layer.setAttribute('data-vl-version', '1.1.1');
-            layer.setAttribute('data-vl-opacity', '0.75');
-            layer.setAttribute('data-vl-min-resolution', '10');
-            layer.setAttribute('data-vl-max-resolution', '1000');
-            layer.setAttribute('data-vl-name', 'adjusted');
-            assert.isUndefined(layer.source);
-            assert.isUndefined(layer.layer);
-            map.appendChild(layer);
-            await new Promise((resolve) => {
-                setTimeout(() => {
-                    assert.isDefined(layer.source);
-                    assert.isDefined(layer.layer);
-                    resolve();
+        await Promise.all(
+            types.map(async (type, index) => {
+                const layer = document.createElement(`vl-map-${type}-wms-layer`);
+                layer.setAttribute('data-vl-url', 'http://dummy/wms-adjusted');
+                layer.setAttribute('data-vl-layers', 'layer1');
+                layer.setAttribute('data-vl-styles', 'style1,style2');
+                layer.setAttribute('data-vl-version', '1.1.1');
+                layer.setAttribute('data-vl-opacity', '0.75');
+                layer.setAttribute('data-vl-min-resolution', '10');
+                layer.setAttribute('data-vl-max-resolution', '1000');
+                layer.setAttribute('data-vl-name', 'adjusted');
+                assert.isUndefined(layer.source);
+                assert.isUndefined(layer.layer);
+                map.appendChild(layer);
+                await new Promise((resolve) => {
+                    setTimeout(() => {
+                        assert.isDefined(layer.source);
+                        assert.isDefined(layer.layer);
+                        resolve();
+                    });
                 });
-            });
-        }));
+            })
+        );
 
         assert.equal(map.map.getLayers().getLength(), types.length);
     });
@@ -133,14 +132,16 @@ describe('vl-map-wms-layer', () => {
     it('de kaartlaag kan een sld body bevatten die overeenkomt met het data-vl-sld attribuut van de onderliggende vl-map-wms-style', async () => {
         const mapSld = await wmsLayersSldFixture();
         await mapSld.ready;
-        await Promise.all(getLayers(mapSld).map(async (element) => {
-            await awaitUntil(() => element.ready).then(() => {
-                assert.include(element.source.getParams().SLD_BODY, 'StyledLayerDescriptor');
-                assert.equal(
-                    element.source.getParams().SLD_BODY,
-                    element.querySelector(':scope > vl-map-wms-style').getAttribute('data-vl-sld'),
-                );
-            });
-        }));
+        await Promise.all(
+            getLayers(mapSld).map(async (element) => {
+                await awaitUntil(() => element.ready).then(() => {
+                    assert.include(element.source.getParams().SLD_BODY, 'StyledLayerDescriptor');
+                    assert.equal(
+                        element.source.getParams().SLD_BODY,
+                        element.querySelector(':scope > vl-map-wms-style').getAttribute('data-vl-sld')
+                    );
+                });
+            })
+        );
     });
 });

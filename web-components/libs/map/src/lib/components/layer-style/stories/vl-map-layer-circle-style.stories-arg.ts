@@ -1,5 +1,5 @@
 import { layerStyleArgTypes } from './vl-map-layer-style.stories-arg';
-import { CATEGORIES, TYPES } from '@domg-lib/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 
 export const layerCircleStyleArgTypes = {
     ...layerStyleArgTypes,

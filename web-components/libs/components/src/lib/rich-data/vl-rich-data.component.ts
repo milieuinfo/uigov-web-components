@@ -1,4 +1,4 @@
-import '@domg-lib/elements';
+import '@domg-wc/elements';
 // import '../../components/grid';
 // import '../../components/form-message';
 // import '../../components/icon';
@@ -9,7 +9,7 @@ import '@domg-lib/elements';
 // import iconStyles from '../../components/icon/styles.scss';
 // import buttonStyles from '../../components/button/styles.scss';
 // import tableStyles from '../../components/data-table/styles.scss';
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import styles from './style/vl-rich-data.scss';
 
 /**

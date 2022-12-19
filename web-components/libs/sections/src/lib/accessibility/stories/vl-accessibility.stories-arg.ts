@@ -1,5 +1,5 @@
 import { COMPLIANCE_STATUS, EVALUATION_STATUS } from '../vl-accessibility.model';
-import { CATEGORIES } from '@domg-lib/common-utilities';
+import { CATEGORIES } from '@domg-wc/common-utilities';
 
 export const accessibilityArgs = {
     application: 'deze applicatie',

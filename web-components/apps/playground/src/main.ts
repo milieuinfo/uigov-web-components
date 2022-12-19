@@ -1,6 +1,6 @@
 // @uig imports
-import '@domg-lib/elements';
-import '@domg-lib/components';
+import '@domg-wc/elements';
+import '@domg-wc/components';
 
 // app components
 import './app/app.element.ts';

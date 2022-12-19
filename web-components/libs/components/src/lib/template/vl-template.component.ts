@@ -1,5 +1,5 @@
 import styles from './style/vl-template.scss';
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 /**
  * VlTemplate

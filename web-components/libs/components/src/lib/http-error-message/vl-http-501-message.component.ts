@@ -1,4 +1,4 @@
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 import { html, LitElement, css, unsafeCSS } from 'lit';
 import styles from './style/vl-http-error-message.scss';
 

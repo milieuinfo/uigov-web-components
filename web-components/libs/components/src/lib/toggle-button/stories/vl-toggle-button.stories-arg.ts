@@ -1,5 +1,5 @@
 // TODO: te bekijken of dit nuttig is: remove from here and reuse from "vl-button.stories-helper.ts" instead.
-// import { sharedButtonArgs, sharedButtonArgTypes } from '@domg-lib/elements';
+// import { sharedButtonArgs, sharedButtonArgTypes } from '@domg-wc/elements';
 
 import { action } from '@storybook/addon-actions';
 import { ICON_PLACEMENT } from '../vl-toggle-button.model';

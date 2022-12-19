@@ -1,9 +1,9 @@
-import { awaitUntil } from '@domg-lib/common-utilities';
+import { awaitUntil } from '@domg-wc/common-utilities';
 import { assert, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import '../../vl-map';
 import './vector-layer/vl-map-features-layer';
-import './vector-layer/vl-map-wfs-layer'
+import './vector-layer/vl-map-wfs-layer';
 import './wms-layer/vl-map-image-wms-layer';
 import './wms-layer/vl-map-tiled-wms-layer';
 import './wmts-layer/vl-map-wmts-layer';
@@ -146,24 +146,24 @@ describe('vl-map-layer', () => {
     const fixtures = [
         {
             single: featuresLayerFixture,
-            multiple: featuresLayersFixture
+            multiple: featuresLayersFixture,
         },
         {
             single: imageWmsLayerFixture,
-            multiple: imageWmsLayersFixture
+            multiple: imageWmsLayersFixture,
         },
         {
             single: tiledWmsLayerFixture,
-            multiple: tiledWmsLayersFixture
+            multiple: tiledWmsLayersFixture,
         },
         {
             single: wfsLayerFixture,
-            multiple: wfsLayersFixture
+            multiple: wfsLayersFixture,
         },
         {
             single: wmtsLayerFixture,
-            multiple: wmtsLayersFixture
-        }
+            multiple: wmtsLayersFixture,
+        },
     ];
     const tags = [
         'vl-map-features-layer',
@@ -194,7 +194,7 @@ describe('vl-map-layer', () => {
                 await awaitUntil(() => layer.ready);
                 assert.equal(layer.get('title'), layer.getAttribute('data-vl-name'));
                 assert.equal(layer.get('title'), layer._layer.get('title'));
-            }),
+            })
         );
     });
 
@@ -212,7 +212,7 @@ describe('vl-map-layer', () => {
                 layer.visible = false;
                 assert.isFalse(layer.visible);
                 assert.isFalse(layer._layer.getVisible());
-            }),
+            })
         );
     });
 
@@ -229,16 +229,16 @@ describe('vl-map-layer', () => {
                 invisibleResolutions.forEach((resolution) =>
                     assert.isFalse(
                         layer.isVisibleAtResolution(resolution),
-                        `zou niet zichtbaar mogen zijn op resolutie ${resolution}`,
-                    ),
+                        `zou niet zichtbaar mogen zijn op resolutie ${resolution}`
+                    )
                 );
                 visibleResolutions.forEach((resolution) =>
                     assert.isTrue(
                         layer.isVisibleAtResolution(resolution),
-                        `zou zichtbaar moeten zijn op resolutie ${resolution}`,
-                    ),
+                        `zou zichtbaar moeten zijn op resolutie ${resolution}`
+                    )
                 );
-            }),
+            })
         );
     });
 
@@ -251,7 +251,7 @@ describe('vl-map-layer', () => {
                 await Promise.all(layers.map((layer) => awaitUntil(() => layer.ready)));
                 assert.lengthOf(layers, map.children.length);
                 layers.forEach((layer, index) => assert(layer.layer.get('id'), index + 1));
-            }),
+            })
         );
     });
 
@@ -270,7 +270,7 @@ describe('vl-map-layer', () => {
                 assert.equal(layer.get('title'), layerElement.getAttribute('name'));
                 assert.equal(layer.getMinResolution(), layerElement.getAttribute('min-resolution'));
                 assert.equal(layer.getMaxResolution(), layerElement.getAttribute('max-resolution'));
-            }),
+            })
         );
     });
 
@@ -289,7 +289,7 @@ describe('vl-map-layer', () => {
                 assert.isTrue(layerElement.layer.getVisible());
                 assert.isTrue(map.rerender.called);
                 sandbox.restore();
-            }),
+            })
         );
     });
 });

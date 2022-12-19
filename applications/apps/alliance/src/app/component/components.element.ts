@@ -2,7 +2,7 @@ export class ComponentsElement extends HTMLElement {
     public static observedAttributes = [];
 
     connectedCallback() {
-        const title = 'Integratie van @domg-lib/components';
+        const title = 'Integratie van @domg-wc/components';
         this.innerHTML = `
             <div class="wrapper">
                 <div class="container">

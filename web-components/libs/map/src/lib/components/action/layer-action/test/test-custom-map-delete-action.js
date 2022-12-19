@@ -1,5 +1,5 @@
 import { VlMapDeleteAction } from '../vl-map-delete-action';
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 
 export class VlTestCustomMapDeleteAction extends VlMapDeleteAction {
     appliesTo(feature, layer) {

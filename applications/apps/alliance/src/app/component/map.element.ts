@@ -2,7 +2,7 @@ export class MapElement extends HTMLElement {
     public static observedAttributes = [];
 
     connectedCallback() {
-        const title = 'Integratie van @domg-lib/map';
+        const title = 'Integratie van @domg-wc/map';
         this.innerHTML = `
             <style>
                 .map-wrapper {

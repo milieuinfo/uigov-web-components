@@ -1,4 +1,4 @@
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 import { VlMapDrawAction } from './vl-map-draw-action';
 import { VlMeasureAction } from '../../../actions';
 import { IDENTIFIER } from '../../../vl-map.model';

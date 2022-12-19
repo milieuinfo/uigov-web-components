@@ -1,5 +1,5 @@
-import { define } from '@domg-lib/common-utilities';
-import { VlSelect } from '@domg-lib/elements';
+import { define } from '@domg-wc/common-utilities';
+import { VlSelect } from '@domg-wc/elements';
 import LambertCoordinaat from '../../utils/lambert-coordinaat';
 
 /**

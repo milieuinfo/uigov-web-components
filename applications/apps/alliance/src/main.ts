@@ -1,10 +1,10 @@
 // @uig imports
-import '@domg-lib/elements';
-import '@domg-lib/components';
-import '@domg-lib/sections';
-import '@domg-lib/map';
-// import '@domg-lib/map/src/lib/vl-map';
-// import '@domg-lib/map/src/lib/components/baselayer/vl-map-base-layer-grb-gray';
+import '@domg-wc/elements';
+import '@domg-wc/components';
+import '@domg-wc/sections';
+import '@domg-wc/map';
+// import '@domg-wc/map/src/lib/vl-map';
+// import '@domg-wc/map/src/lib/components/baselayer/vl-map-base-layer-grb-gray';
 
 // app components
 import './app/app.element';

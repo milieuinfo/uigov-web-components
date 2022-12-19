@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import '@govflanders-v14/vl-ui-util/dist/js/util.js';
 import '@govflanders-v14/vl-ui-accordion/dist/js/accordion.js';
 import styles from './style/vl-accordion.scss';

@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from '@domg-lib/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 
 export const layerArgTypes = {
     name: {

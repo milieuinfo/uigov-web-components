@@ -329,11 +329,11 @@ jobs:
           cd applications
           npm version ${{ env.nextRelease_version }}
           npm install \
-            @domg-lib/common-utilities@${{ env.nextRelease_version }} \
-            @domg-lib/components@${{ env.nextRelease_version }} \
-            @domg-lib/elements@${{ env.nextRelease_version }} \
-            @domg-lib/map@${{ env.nextRelease_version }} \
-            @domg-lib/sections@${{ env.nextRelease_version }}
+            @domg-wc/common-utilities@${{ env.nextRelease_version }} \
+            @domg-wc/components@${{ env.nextRelease_version }} \
+            @domg-wc/elements@${{ env.nextRelease_version }} \
+            @domg-wc/map@${{ env.nextRelease_version }} \
+            @domg-wc/sections@${{ env.nextRelease_version }}
       - name: commit the applications package.json
         env:
           BRANCH_NAME: ${{ github.head_ref || github.ref_name }}

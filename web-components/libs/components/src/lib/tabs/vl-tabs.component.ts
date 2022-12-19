@@ -1,4 +1,4 @@
-import { awaitUntil, BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { awaitUntil, BaseElementOfType, define } from '@domg-wc/common-utilities';
 import { VlTabsPaneComponent } from './vl-tabs-pane.component';
 import './vl-tab.component';
 import './vl-tab-section.component';

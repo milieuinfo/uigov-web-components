@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
 import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlPattern } from '../pattern/vl-pattern.element';

@@ -1,4 +1,4 @@
-import { define } from '@domg-lib/common-utilities';
+import { define } from '@domg-wc/common-utilities';
 import { VlModifyAction, VlCompositeVectorLayer } from '../../../actions';
 import { VlMapLayerAction } from './vl-map-layer-action';
 import { VlMapVectorLayer } from '../../layer/vector-layer/vl-map-vector-layer';

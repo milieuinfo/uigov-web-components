@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import './vl-toaster.lib.js';
 import '@govflanders-v14/vl-ui-util/dist/js/util.js';
 import '@govflanders-v14/vl-ui-core/dist/js/core.js';

@@ -1,4 +1,4 @@
-import { define, BaseElementOfType } from '@domg-lib/common-utilities';
+import { define, BaseElementOfType } from '@domg-wc/common-utilities';
 import styles from './style/vl-alert.scss';
 
 export class VlAlert extends BaseElementOfType(HTMLElement) {

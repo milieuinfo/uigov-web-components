@@ -1,5 +1,5 @@
-import '@domg-lib/elements';
-import { BaseElementOfType, define } from '@domg-lib/common-utilities';
+import '@domg-wc/elements';
+import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import { VlTypography } from '../typography/vl-typography.component';
 import { VlProzaMessagePreloader } from './vl-proza-message-preloader.component';
 import { ProzaRestClient } from './vl-proza-rest-client.util';

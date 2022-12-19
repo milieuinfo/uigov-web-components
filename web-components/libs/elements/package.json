@@ -1,5 +1,5 @@
 {
-    "name": "@domg-lib/elements",
+    "name": "@domg-wc/elements",
     "version": "",
     "publishConfig": {
         "registry": "https://repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/"
