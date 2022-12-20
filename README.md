@@ -27,8 +27,8 @@ Alliance is een basis toepassing die integreert met de aangeleverde artifacts, n
 
 ## Ontwikkel Team
 
-| Kris Speltincx                                                             |
-|----------------------------------------------------------------------------|
-| ![Kris Speltincx](https://avatars.githubusercontent.com/u/110020569?s=160) |
-| [kspeltix](https://github.com/kspeltix)                                    |
+| Kris Speltincx                                                             | Karim Dehbi                                                            |
+|----------------------------------------------------------------------------|------------------------------------------------------------------------|
+| ![Kris Speltincx](https://avatars.githubusercontent.com/u/110020569?s=160) | ![Karim Dehbi](https://avatars.githubusercontent.com/u/15731348?s=160) |
+| [kspeltix](https://github.com/kspeltix)                                    | [Goldflow](https://github.com/Goldflow)                                |
 
