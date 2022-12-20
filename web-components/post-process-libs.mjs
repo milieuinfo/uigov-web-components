@@ -44,13 +44,12 @@ const copySources = (directoryToSearch, directoryCopyTo, pattern) => {
     });
 };
 
-const removeMapFiles = (directoryToSearch) => {
-    const pattern = '.js.map';
+const removeFiles = (directoryToSearch, pattern) => {
     fs.readdirSync(directoryToSearch).forEach((file) => {
         const filePath = path.resolve(directoryToSearch, file);
         const stat = fs.statSync(filePath);
         if (stat.isDirectory()) {
-            removeMapFiles(filePath);
+            removeFiles(filePath, pattern);
         }
         if (stat.isFile() && filePath.endsWith(pattern)) {
             fs.unlink(filePath);
@@ -64,22 +63,26 @@ copySources('libs/common/utilities/style', 'dist/libs/common/utilities/style', '
 // post process elements
 wrapCssInJs('dist/libs/elements/src', '.css.js', false);
 copySources('libs/elements/src', 'dist/libs/elements/src', '.lib.js');
-removeMapFiles('dist/libs/elements/src');
+removeFiles('dist/libs/elements/src', '.js.map');
+removeFiles('dist/libs/elements/src', '.css.map');
 
 // post process components
 wrapCssInJs('dist/libs/components/src', '.scss.js', true);
 copySources('libs/components/src', 'dist/libs/components/src', '.lib.js');
-removeMapFiles('dist/libs/components/src');
+removeFiles('dist/libs/components/src', '.js.map');
+removeFiles('dist/libs/components/src', '.css.map');
 
 // post process sections
 wrapCssInJs('dist/libs/sections/src', '.scss.js', true);
 copySources('libs/sections/src', 'dist/libs/sections/src', '.lib.js');
-removeMapFiles('dist/libs/sections/src');
+removeFiles('dist/libs/sections/src', '.js.map');
+removeFiles('dist/libs/sections/src', '.css.map');
 
 // post process map
 wrapCssInJs('dist/libs/map/src', '.scss.js', true);
 copySources('libs/map/src', 'dist/libs/map/src', '.js');
-removeMapFiles('dist/libs/map/src');
+removeFiles('dist/libs/map/src', '.js.map');
+removeFiles('dist/libs/map/src', '.css.map');
 
 // post process test-support
 copySources('libs/support/test-support/src', 'dist/libs/support/test-support/src', '.js');
