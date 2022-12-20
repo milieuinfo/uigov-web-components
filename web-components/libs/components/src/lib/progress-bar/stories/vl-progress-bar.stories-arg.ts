@@ -54,7 +54,8 @@ export const progressBarArgTypes: ArgTypes = {
     },
     onClickStep: {
         name: 'vl-click-step',
-        description: 'event na klikken op een stap - bevat het nummer en de naam van de stap waarop geklikt is',
+        description:
+            'event na klikken op een stap - het event bevat het nummer en de naam van de stap waarop geklikt is',
         table: { category: 'Events' },
     },
 };
