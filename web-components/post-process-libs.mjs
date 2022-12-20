@@ -44,24 +44,42 @@ const copySources = (directoryToSearch, directoryCopyTo, pattern) => {
     });
 };
 
+const removeMapFiles = (directoryToSearch) => {
+    const pattern = '.js.map';
+    fs.readdirSync(directoryToSearch).forEach((file) => {
+        const filePath = path.resolve(directoryToSearch, file);
+        const stat = fs.statSync(filePath);
+        if (stat.isDirectory()) {
+            removeMapFiles(filePath);
+        }
+        if (stat.isFile() && filePath.endsWith(pattern)) {
+            fs.unlink(filePath);
+        }
+    });
+};
+
 // post process common-utilities
 copySources('libs/common/utilities/style', 'dist/libs/common/utilities/style', '.scss');
 
 // post process elements
 wrapCssInJs('dist/libs/elements/src', '.css.js', false);
 copySources('libs/elements/src', 'dist/libs/elements/src', '.lib.js');
+removeMapFiles('dist/libs/elements/src');
 
 // post process components
 wrapCssInJs('dist/libs/components/src', '.scss.js', true);
 copySources('libs/components/src', 'dist/libs/components/src', '.lib.js');
+removeMapFiles('dist/libs/components/src');
 
 // post process sections
 wrapCssInJs('dist/libs/sections/src', '.scss.js', true);
 copySources('libs/sections/src', 'dist/libs/sections/src', '.lib.js');
-
-// post process test-support
-copySources('libs/support/test-support/src', 'dist/libs/support/test-support/src', '.js');
+removeMapFiles('dist/libs/sections/src');
 
 // post process map
 wrapCssInJs('dist/libs/map/src', '.scss.js', true);
 copySources('libs/map/src', 'dist/libs/map/src', '.js');
+removeMapFiles('dist/libs/map/src');
+
+// post process test-support
+copySources('libs/support/test-support/src', 'dist/libs/support/test-support/src', '.js');
