@@ -43,6 +43,7 @@ export * from './lib/pill/vl-pill.component';
 export * from './lib/pill/vl-pill.model';
 export * from './lib/pill/vl-button-pill.component';
 export * from './lib/proza-message/vl-proza-message.component';
+export * from './lib/proza-message/vl-proza-message-preloader.component';
 export * from './lib/progress-bar/vl-progress-bar.component';
 export * from './lib/radio/vl-radio.component';
 export * from './lib/radio/vl-radio-group.component';
