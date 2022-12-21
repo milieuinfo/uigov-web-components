@@ -63,26 +63,26 @@ copySources('libs/common/utilities/style', 'dist/libs/common/utilities/style', '
 // post process elements
 wrapCssInJs('dist/libs/elements/src', '.css.js', false);
 copySources('libs/elements/src', 'dist/libs/elements/src', '.lib.js');
-removeFiles('dist/libs/elements/src', '.js.map');
-removeFiles('dist/libs/elements/src', '.css.map');
+// removeFiles('dist/libs/elements/src', '.js.map');
+// removeFiles('dist/libs/elements/src', '.css.map');
 
 // post process components
 wrapCssInJs('dist/libs/components/src', '.scss.js', true);
 copySources('libs/components/src', 'dist/libs/components/src', '.lib.js');
-removeFiles('dist/libs/components/src', '.js.map');
-removeFiles('dist/libs/components/src', '.css.map');
+// removeFiles('dist/libs/components/src', '.js.map');
+// removeFiles('dist/libs/components/src', '.css.map');
 
 // post process sections
 wrapCssInJs('dist/libs/sections/src', '.scss.js', true);
 copySources('libs/sections/src', 'dist/libs/sections/src', '.lib.js');
-removeFiles('dist/libs/sections/src', '.js.map');
-removeFiles('dist/libs/sections/src', '.css.map');
+// removeFiles('dist/libs/sections/src', '.js.map');
+// removeFiles('dist/libs/sections/src', '.css.map');
 
 // post process map
 wrapCssInJs('dist/libs/map/src', '.scss.js', true);
 copySources('libs/map/src', 'dist/libs/map/src', '.js');
-removeFiles('dist/libs/map/src', '.js.map');
-removeFiles('dist/libs/map/src', '.css.map');
+// removeFiles('dist/libs/map/src', '.js.map');
+// removeFiles('dist/libs/map/src', '.css.map');
 
 // post process test-support
 copySources('libs/support/test-support/src', 'dist/libs/support/test-support/src', '.js');

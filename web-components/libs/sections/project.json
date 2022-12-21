@@ -17,7 +17,7 @@
         "process-scss": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "sass libs/sections/src/lib:dist/libs/sections/src/lib --load-path ./node_modules"
+                "command": "sass libs/sections/src/lib:dist/libs/sections/src/lib --no-source-map --load-path ./node_modules"
             }
         },
         "lint": {
