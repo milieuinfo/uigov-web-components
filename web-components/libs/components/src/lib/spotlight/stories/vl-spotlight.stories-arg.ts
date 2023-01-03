@@ -55,7 +55,7 @@ export const spotlightArgTypes = {
         type: { summary: TYPES.STRING, required: false },
         description: 'Het path van de image dat getoond moet worden in de spotlight.',
         table: {
-            defaultValue: { summary: false },
+            defaultValue: { summary: '' },
             category: CATEGORIES.ATTRIBUTES,
         },
     },
@@ -64,7 +64,7 @@ export const spotlightArgTypes = {
         type: { summary: TYPES.STRING, required: false },
         description: 'De alternatieve tekst van de image dat getoond moet worden in de spotlight.',
         table: {
-            defaultValue: { summary: false },
+            defaultValue: { summary: '' },
             category: CATEGORIES.ATTRIBUTES,
         },
     },

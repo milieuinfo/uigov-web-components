@@ -44,7 +44,7 @@ export const inaccessibleContent = ({
         `;
     };
     return html` <div
-        style=${complianceStatus === 'FULLY_COMPLIANT' && 'display: none'}
+        style=${complianceStatus === COMPLIANCE_STATUS.FULLY_COMPLIANT && 'display: none'}
         id="inaccessible-content"
         is="vl-column"
         data-vl-size="12"

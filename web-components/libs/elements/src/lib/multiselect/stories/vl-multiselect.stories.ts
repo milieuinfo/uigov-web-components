@@ -1,18 +1,25 @@
 import { html } from 'lit-html';
 import '../../link/vl-link.element';
 import '../vl-multiselect.element';
-
-// TODO: gertjame: Verder uitwerken van stories met controls.
+import { multiselectArgs, multiselectArgTypes } from './vl-multiselect.stories-arg';
 
 export default {
     title: 'Elements/multiselect',
+    args: multiselectArgs,
+    argTypes: multiselectArgTypes,
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
 };
 
-export const multiselectDefault = () => html`
-    <select is="vl-multiselect">
+export const multiselectDefault = ({ block, error, success, disabled }: typeof multiselectArgs) => html`
+    <select
+        is="vl-multiselect"
+        ?data-vl-block=${block}
+        ?data-vl-error=${error}
+        ?data-vl-success=${success}
+        ?data-vl-disabled=${disabled}
+    >
         <option value="Belgium">België</option>
         <option value="Germany">Duitsland</option>
         <option value="France">Frankrijk</option>
@@ -20,8 +27,14 @@ export const multiselectDefault = () => html`
 `;
 multiselectDefault.storyName = 'vl-multiselect - default';
 
-export const multiselectPredefinedOption = () => html`
-    <select is="vl-multiselect">
+export const multiselectPredefinedOption = ({ block, error, success, disabled }: typeof multiselectArgs) => html`
+    <select
+        is="vl-multiselect"
+        ?data-vl-block=${block}
+        ?data-vl-error=${error}
+        ?data-vl-success=${success}
+        ?data-vl-disabled=${disabled}
+    >
         <option selected="" value="Bruges">Brugge</option>
         <option value="Brussels">Brussel</option>
         <option value="Ghent">Gent</option>
@@ -29,8 +42,14 @@ export const multiselectPredefinedOption = () => html`
 `;
 multiselectPredefinedOption.storyName = 'vl-multiselect - predefined option';
 
-export const multiselectGroupedItems = () => html`
-    <select is="vl-multiselect">
+export const multiselectGroupedItems = ({ block, error, success, disabled }: typeof multiselectArgs) => html`
+    <select
+        is="vl-multiselect"
+        ?data-vl-block=${block}
+        ?data-vl-error=${error}
+        ?data-vl-success=${success}
+        ?data-vl-disabled=${disabled}
+    >
         <optgroup label="Landen">
             <option selected="" value="Belgium">België</option>
             <option value="Germany">Duitsland</option>

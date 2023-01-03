@@ -20,6 +20,7 @@ export const actionGroupArgTypes = {
         },
         table: {
             category: 'Attributes',
+            defaultValue: { summary: 'left' },
         },
         description: 'Sets the alignment of the action group',
     },

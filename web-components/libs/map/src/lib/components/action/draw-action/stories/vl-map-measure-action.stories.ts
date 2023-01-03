@@ -1,4 +1,5 @@
-import { mapActionArgs, mapActionArgTypes } from '../../stories/vl-map-action.stories-arg';
+import { ifDefinedNumber } from '@domg-wc/common-utilities';
+import { mapActionArgs } from '../../stories/vl-map-action.stories-arg';
 import { html } from 'lit';
 import '../../../../vl-map';
 import '../../../baselayer/vl-map-base-layer-grb-gray';
@@ -7,6 +8,7 @@ import '../../../controls/vl-map-measure-control';
 import '../../../layer/vector-layer/vl-map-features-layer';
 import '../../../layer/vector-layer/vl-map-wfs-layer';
 import '../vl-map-measure-action';
+import { mapDrawActionActionArgs, mapDrawActionActionArgTypes } from './vl-map-draw-action.stories-arg';
 
 export default {
     title: 'map/action/draw-action',
@@ -14,7 +16,7 @@ export default {
         controls: { hideNoControlsWarning: true },
     },
     args: mapActionArgs,
-    argTypes: mapActionArgTypes,
+    argTypes: mapDrawActionActionArgTypes,
 };
 
 export const measureActionDefault = ({ active }) => html`
@@ -27,22 +29,34 @@ export const measureActionDefault = ({ active }) => html`
 `;
 measureActionDefault.storyName = 'vl-map-measure-action - default';
 
-export const measureActionWithSnapping = ({ active }) => html` <vl-map>
-    <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-    <vl-map-features-layer>
-        <vl-map-measure-action .active=${active} data-vl-snapping>
-            <vl-map-wfs-layer
-                data-vl-name="Stromend waterlichamen"
-                data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
-                data-vl-layers="owl_l"
-                data-vl-max-resolution="4"
+export const measureActionWithSnapping = ({
+    active,
+    defaultActive,
+    snapping,
+    snappingPixelTolerance,
+}: typeof mapDrawActionActionArgs) => html`
+    <vl-map>
+        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+        <vl-map-features-layer>
+            <vl-map-measure-action
+                .active=${active}
+                ?data-vl-default-active=${defaultActive}
+                ?data-vl-snapping=${snapping}
+                data-vl-snapping-pixel-tolerance=${ifDefinedNumber(snappingPixelTolerance)}
             >
-            </vl-map-wfs-layer>
-        </vl-map-measure-action>
-    </vl-map-features-layer>
-</vl-map>`;
+                <vl-map-wfs-layer
+                    data-vl-name="Stromend waterlichamen"
+                    data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
+                    data-vl-layers="owl_l"
+                    data-vl-max-resolution="4"
+                >
+                </vl-map-wfs-layer>
+            </vl-map-measure-action>
+        </vl-map-features-layer>
+    </vl-map>
+`;
 measureActionWithSnapping.storyName = 'vl-map-measure-action - with snapping';
-
+measureActionWithSnapping.args = mapDrawActionActionArgs;
 export const measureActionWithControl = ({ active }) =>
     html`
         <vl-map>

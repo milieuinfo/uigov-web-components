@@ -1,15 +1,18 @@
 import { html } from 'lit-html';
 import '../vl-steps.component';
+import { stepsArgs, stepsArgTypes } from './vl-steps.stories-arg';
 
 export default {
     title: 'Components/steps',
+    args: stepsArgs,
+    argTypes: stepsArgTypes,
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
 };
 
-export const stepsDefault = () => html`
-    <vl-steps id="vl-steps-1" data-cy="steps">
+export const stepsDefault = ({ timeline }: typeof stepsArgs) => html`
+    <vl-steps id="vl-steps-1" ?data-vl-timeline=${timeline} data-cy="steps">
         <vl-step data-cy="step-1">
             <span slot="identifier">1</span>
             <span slot="title">Step 1: action</span>
@@ -39,8 +42,8 @@ export const stepsDefault = () => html`
 `;
 stepsDefault.storyName = 'vl-steps - default';
 
-export const stepsWithAccordions = () => html`
-    <vl-steps id="vl-steps-2" data-cy="steps-with-accordions">
+export const stepsWithAccordions = ({ timeline }: typeof stepsArgs) => html`
+    <vl-steps id="vl-steps-2" ?data-vl-timeline=${timeline} data-cy="steps-with-accordions">
         <vl-step data-vl-disabled="">
             <span slot="identifier">0</span>
             <span slot="title">Six centuries ago</span>
@@ -76,8 +79,8 @@ export const stepsWithAccordions = () => html`
 `;
 stepsWithAccordions.storyName = 'vl-steps - with accordions';
 
-export const stepsWithTimeline = () => html`
-    <vl-steps id="vl-steps-3" data-vl-timeline="" data-cy="steps-with-timeline">
+export const stepsWithTimeline = ({ timeline }: typeof stepsArgs) => html`
+    <vl-steps id="vl-steps-3" ?data-vl-timeline=${timeline} data-cy="steps-with-timeline">
         <vl-step data-cy="timeline-step-1">
             <span slot="identifier">2</span>
             <span slot="identifier-annotation">maa</span>
