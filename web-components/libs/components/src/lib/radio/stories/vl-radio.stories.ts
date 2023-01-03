@@ -20,7 +20,7 @@ export const radioDefault = ({ block, checked, disabled, error, label, name, sin
         data-vl-name=${name}
         data-vl-value=${value}
         ?data-vl-single=${single}
-        ?data-vl-checked${checked}
+        ?data-vl-checked=${checked}
         data-cy="radio"
     ></vl-radio>
 `;

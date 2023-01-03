@@ -5,7 +5,7 @@ import { fetchDataFromApiCall, fetchDataFromMockedApiCall } from './vl-autocompl
 import '../vl-autocomplete.component';
 
 export default {
-    title: 'components/autocomplete',
+    title: 'Components/autocomplete',
     parameters: {
         controls: { hideNoControlsWarning: true },
     },

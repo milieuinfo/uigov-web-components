@@ -1,4 +1,5 @@
 import { Class } from '../type/types';
+import { ifDefined } from 'lit-html/directives/if-defined.js';
 
 /**
  * Definieert een class als custom element enkel wanneer deze nog niet gedefinieerd werd.
@@ -74,3 +75,8 @@ export const awaitUntil = (condition: any): Promise<void> =>
         }
         resolve();
     });
+
+export const returnNotEmptyString = (s: string) => (s && s !== '' ? s : undefined);
+export const returnNumber = (n: number) => (!isNaN(n) ? n : undefined);
+export const ifDefinedString = (s: string) => ifDefined(returnNotEmptyString(s));
+export const ifDefinedNumber = (n: number) => ifDefined(returnNumber(n));

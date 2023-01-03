@@ -20,7 +20,7 @@ export const modalArgTypes = {
     open: {
         name: 'data-vl-open',
         type: { summary: 'Boolean' },
-        description: 'Attribute to immediatly open up the modal after rendering.',
+        description: 'Attribute to immediately open up the modal after rendering.',
         table: {
             defaultValue: { summary: 'false' },
             category: 'Attributes',
@@ -36,7 +36,7 @@ export const modalArgTypes = {
         },
     },
     notCancellable: {
-        name: 'data-vl-not-concellable',
+        name: 'data-vl-not-cancellable',
         type: { summary: 'Boolean' },
         description: 'Attribute used to make the modal non cancellable',
         table: {

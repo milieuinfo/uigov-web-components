@@ -1,3 +1,5 @@
+import { TYPES } from '@domg-wc/common-utilities';
+
 export const descriptionDataItemArgs = {
     label: 'Uitgever',
     value: 'Kind en Gezin',
@@ -10,7 +12,7 @@ export const descriptionDataItemArgTypes = {
         name: 'data-vl-label',
         description: 'Changes the label of the data item.',
         table: {
-            type: { summary: 'String' },
+            type: { summary: TYPES.STRING },
             category: 'Attributes',
             defaultValue: { summary: '' },
         },
@@ -19,7 +21,7 @@ export const descriptionDataItemArgTypes = {
         name: 'data-vl-value',
         description: 'Changes the value of the data item.',
         table: {
-            type: { summary: 'String' },
+            type: { summary: TYPES.STRING },
             category: 'Attributes',
             defaultValue: { summary: '' },
         },
@@ -28,7 +30,7 @@ export const descriptionDataItemArgTypes = {
         name: 'label',
         description: 'Changes the label of the data item.',
         table: {
-            type: { summary: 'String' },
+            type: { summary: TYPES.STRING },
             category: 'Slots',
             defaultValue: { summary: '' },
         },
@@ -40,7 +42,7 @@ export const descriptionDataItemArgTypes = {
         name: 'value',
         description: 'Changes the value of the data item.',
         table: {
-            type: { summary: 'String' },
+            type: { summary: TYPES.STRING },
             category: 'Slots',
             defaultValue: { summary: '' },
         },

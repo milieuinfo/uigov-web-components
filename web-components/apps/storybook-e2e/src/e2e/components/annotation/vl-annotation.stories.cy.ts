@@ -1,4 +1,4 @@
-const annotationUrl = 'http://localhost:8080/iframe.html?id=elements-annotation--annotation-default&viewMode=story';
+const annotationUrl = 'http://localhost:8080/iframe.html?id=components-annotation--annotation-default&viewMode=story';
 
 describe('story vl-annotation', () => {
     it('as a user, I can see the default annotation', () => {

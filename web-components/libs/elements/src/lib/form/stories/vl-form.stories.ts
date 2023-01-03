@@ -49,3 +49,4 @@ export const formDefault = ({ validate }: typeof formArgs) => html`
     </div>
 `;
 formDefault.storyName = 'vl-form - default';
+formDefault.args = { validate: false };
