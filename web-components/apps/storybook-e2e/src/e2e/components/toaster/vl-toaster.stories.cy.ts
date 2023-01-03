@@ -55,7 +55,7 @@ describe('story vl-toaster', () => {
     });
 
     it('should contain a toaster that fades out after a few seconds', () => {
-        cy.visit(`${toasterFadeOutUrl}`);
+        cy.visit(`${toasterUrl}`);
 
         cy.getDataCy('button-top-left').click();
 

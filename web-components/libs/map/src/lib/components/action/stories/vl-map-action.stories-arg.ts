@@ -1,9 +1,9 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 
 export const mapActionArgs = {
+    active: true,
     defaultActive: true,
     layer: false,
-    active: true,
 };
 
 export const mapActionArgTypes = {
@@ -14,18 +14,18 @@ export const mapActionArgTypes = {
             type: {
                 summary: TYPES.BOOLEAN,
             },
+            defaultValue: { summary: 'false' },
             category: CATEGORIES.PROPERTIES,
         },
     },
     defaultActive: {
         name: 'data-vl-default-active',
-        type: { summary: TYPES.BOOLEAN },
         description: 'Used to trigger the action by default.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
         },
-        control: { disable: true },
     },
     layer: {
         name: 'data-vl-layer',

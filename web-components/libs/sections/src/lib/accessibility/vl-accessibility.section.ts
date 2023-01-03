@@ -1,7 +1,7 @@
 import '@domg-wc/elements';
 import '@domg-wc/components';
 import { html, LitElement, css, unsafeCSS } from 'lit';
-import { COMPLIANCE_STATUS, EVALUATION_STATUS } from './vl-accessibility.model';
+import { AccessibilityProperties, COMPLIANCE_STATUS, EVALUATION_STATUS } from './vl-accessibility.model';
 import { header } from './child/header.section';
 import { title } from './child/title.section';
 import { content } from './child/content.section';
@@ -65,12 +65,12 @@ export class VlAccessibility extends LitElement {
     }
 
     render() {
-        const props = {
+        const props: AccessibilityProperties = {
             version: this.version,
             date: this.date,
             application: this.application,
-            evaluation: this.evaluation,
-            compliance: this.compliance,
+            evaluationStatus: this.evaluation,
+            complianceStatus: this.compliance,
             dateModified: this.dateModified,
             limitations: this.limitations,
         };

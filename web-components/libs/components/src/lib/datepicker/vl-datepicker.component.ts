@@ -50,6 +50,83 @@ export class VlDatepickerComponent extends vlFormValidationElement(BaseElementOf
                 'pattern',
             ]);
     }
+    /*
+    static get properties() {
+        return {
+            type: {
+                attribute: 'data-vl-type',
+                type: String,
+                reflect: true,
+            },
+            numeric: {
+                attribute: 'data-vl-format',
+                type: String,
+                reflect: true,
+            },
+            visualFormat: {
+                attribute: 'data-vl-visual-format',
+                type: String,
+                reflect: true,
+            },
+            selectedDate: {
+                attribute: 'data-vl-selected-date',
+                type: String,
+                reflect: true,
+            },
+            minDate: {
+                attribute: 'data-vl-min-date',
+                type: String,
+                reflect: true,
+            },
+            maxDate: {
+                attribute: 'data-vl-max-date',
+                type: String,
+                reflect: true,
+            },
+            minTime: {
+                attribute: 'data-vl-min-time',
+                type: String,
+                reflect: true,
+            },
+            maxTime: {
+                attribute: 'data-vl-max-time',
+                type: String,
+                reflect: true,
+            },
+            amPm: {
+                attribute: 'data-vl-am-pm',
+                type: String,
+                reflect: true,
+            },
+            error: {
+                attribute: 'data-vl-error',
+                type: Boolean,
+                reflect: true,
+            },
+            success: {
+                attribute: 'data-vl-success',
+                type: Boolean,
+                reflect: true,
+            },
+            value: {
+                attribute: 'data-vl-value',
+                type: Boolean,
+                reflect: true,
+            },
+            pattern: {
+                attribute: 'data-vl-pattern',
+                type: String,
+                reflect: true,
+            },
+            name: {
+                attribute: 'data-vl-name',
+                type: String,
+                reflect: true,
+            },
+        };
+    }
+
+    // */
 
     constructor() {
         super(`

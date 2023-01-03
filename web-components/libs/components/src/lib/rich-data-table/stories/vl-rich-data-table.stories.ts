@@ -1,12 +1,21 @@
 import '@domg-wc/elements';
+import { StoryFn } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-rich-data-table.component';
+import { richDataTableArgs, richDataTableArgTypes } from './vl-rich-data-table.stories-arg';
 
 export default {
     title: 'components/rich-data-table',
+    argTypes: richDataTableArgTypes,
 };
 
-export const richDataTableDefault = () => {
+const Template: StoryFn<typeof richDataTableArgs> = ({
+    collapsedM,
+    collapsedS,
+    collapsedXS,
+    filterCloseable,
+    filterClosed,
+}) => {
     const data =
         '{"data": [{ "id" : 0, "name" : "Project #1" , "owner" : "Jan Jansens" }, { "id" : 1, "name" : "Project #2" , "owner" : "Jan Jansens" }]}';
 
@@ -44,7 +53,24 @@ export const richDataTableDefault = () => {
     });
 
     return html`
-        <vl-rich-data-table id="rich-data-table-sorting" data-vl-data="${data}">
+        <vl-rich-data-table
+            id="rich-data-table-sorting"
+            data-vl-data="${data}"
+            ?data-vl-collapsed-m=${collapsedM}
+            ?data-vl-collapsed-s=${collapsedS}
+            ?data-vl-collapsed-xs=${collapsedXS}
+            ?data-vl-filter-closable=${filterCloseable}
+            ?data-vl-filter-closed=${filterClosed}
+        >
+            <div is="vl-search-filter" slot="filter">
+                <form is="vl-form" id="form">
+                    <label>Hier kunnen filtervelden komen</label>
+                    <input is="vl-input-field" type="text" name="filter1" />
+                </form>
+                <div>
+                    <button is="vl-button-link" type="reset" form="form">Zoekopdracht verwijderen</button>
+                </div>
+            </div>
             <vl-rich-data-field
                 data-vl-name="id"
                 data-vl-label="ID"
@@ -66,4 +92,6 @@ export const richDataTableDefault = () => {
         </vl-rich-data-table>
     `;
 };
-richDataTableDefault.storyName = 'vl-rich-data-table - default';
+export const RichDataTableDefault = Template.bind({});
+RichDataTableDefault.storyName = 'vl-rich-data-table - default';
+RichDataTableDefault.args = richDataTableArgs;

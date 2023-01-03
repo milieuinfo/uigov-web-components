@@ -1,11 +1,12 @@
+import { AccessibilityProperties } from '../vl-accessibility.model';
 import { html } from 'lit';
 import { setupStatement } from './setup-statement.section';
 import { inaccessibleContent } from './inaccessible-content.section';
 import { sideNavigation } from './side-navigation.section';
 import { complianceStatus } from './compliance-status.section';
 
-export const content = (props: any) => {
-    const { application, compliance } = props;
+export const content = (props: AccessibilityProperties) => {
+    const { application } = props;
 
     return html` <section id="content" is="vl-region">
         <div is="vl-layout">
@@ -184,7 +185,7 @@ export const content = (props: any) => {
                         </div>
                     </div>
                 </div>
-                ${sideNavigation({ complianceStatus: compliance })}
+                ${sideNavigation(props)}
             </div>
         </div>
     </section>`;

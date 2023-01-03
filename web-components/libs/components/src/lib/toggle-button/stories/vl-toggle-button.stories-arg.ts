@@ -1,6 +1,7 @@
 // TODO: te bekijken of dit nuttig is: remove from here and reuse from "vl-button.stories-helper.ts" instead.
 // import { sharedButtonArgs, sharedButtonArgTypes } from '@domg-wc/elements';
 
+import { TYPES } from '@domg-wc/common-utilities';
 import { action } from '@storybook/addon-actions';
 import { ICON_PLACEMENT } from '../vl-toggle-button.model';
 
@@ -110,10 +111,10 @@ export const toggleButtonArgTypes = {
     },
     icon: {
         name: 'data-vl-icon',
-        type: { name: 'String', required: false },
+        type: { name: TYPES.STRING, required: false },
         description: 'Sets the icon of the toggle button.',
         table: {
-            type: { summary: 'String' },
+            type: { summary: TYPES.STRING },
             category: 'Attributes',
         },
     },

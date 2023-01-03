@@ -1,15 +1,18 @@
 import { html } from 'lit-html';
 import '../vl-tabs.component';
+import { tabsArgs, tabsArgTypes } from './vl-tabs.stories-arg';
 
 export default {
     title: 'Components/tabs',
+    args: tabsArgs,
+    argTypes: tabsArgTypes,
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
 };
 
-export const tabsDefault = () => html`
-    <vl-tabs data-cy="tabs">
+export const tabsDefault = ({ alt, responsiveLabel }: typeof tabsArgs) => html`
+    <vl-tabs data-cy="tabs" ?data-vl-alt=${alt} ?data-vl-responsive-label=${responsiveLabel}>
         <vl-tabs-pane data-vl-id="trein" data-vl-title="Trein" data-cy="tab-pane-1">
             Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat
             porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Integer posuere erat a ante venenatis
@@ -29,7 +32,7 @@ export const tabsDefault = () => html`
 `;
 tabsDefault.storyName = 'vl-tabs - default';
 
-export const tabsReactive = () =>
+export const tabsReactive = ({ alt, responsiveLabel }: typeof tabsArgs) =>
     html`
         <script>
             let index = 0;
@@ -48,7 +51,7 @@ export const tabsReactive = () =>
             };
         </script>
         <button is="vl-button" onclick="addPane()">Pane toevoegen</button>
-        <vl-tabs id="tabs">
+        <vl-tabs id="tabs" ?data-vl-alt=${alt} ?data-vl-responsive-label=${responsiveLabel}>
             <script>
                 console.log('HIER KOM IK 1 KEER');
             </script>

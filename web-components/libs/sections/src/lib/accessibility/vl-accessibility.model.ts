@@ -18,3 +18,11 @@ export interface AccessibilityStatus {
     complianceStatus: COMPLIANCE_STATUS;
     evaluationStatus: EVALUATION_STATUS;
 }
+
+export interface AccessibilityProperties extends AccessibilityStatus {
+    version: string;
+    application: string;
+    limitations: any;
+    date: string;
+    dateModified: string;
+}

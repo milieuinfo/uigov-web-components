@@ -10,7 +10,9 @@ export const formArgTypes = {
         type: { summary: TYPES.BOOLEAN },
         description: 'Attribute is used to indicate that the input fields validation should be enabled.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: 'false' },
         },
     },
 };

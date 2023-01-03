@@ -1,21 +1,30 @@
 import { html } from 'lit-html';
 import '../vl-textarea.element';
+import { textareaArgs, textareaArgTypes } from './vl-textarea.stories-arg';
 
 export default {
     title: 'Components/textarea',
+    args: textareaArgs,
+    argTypes: textareaArgTypes,
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
 };
 
-export const textareaDefault = () => html`
+export const textareaDefault = ({rich, block, error, success, disabled, focus, toolbar}:typeof textareaArgs) => html`
     <textarea
         id="textarea-rich"
         is="vl-textarea"
         cols="40"
         rows="50"
-        data-vl-rich=""
-        data-vl-toolbar="undo redo | bold italic underline strikethrough | h1 h2 h3 h4 h5 h6 | vlLink blockquote hr | numlist bullist"
+        ?data-vl-rich=${rich}
+        ?data-vl-block=${block}
+        ?data-vl-error=${error}
+        ?data-vl-success=${success}
+        ?data-vl-disabled=${disabled}
+        ?data-vl-focus=${focus}
+        ?data-vl-toolbar=${toolbar}
+        data-cy="textarea"
     >
       <p>
           <h1>h1 title</h1>
@@ -58,4 +67,7 @@ export const textareaDefault = () => html`
   </textarea
     >
 `;
+textareaDefault.args = {
+    toolbar: 'undo redo | bold italic underline strikethrough | h1 h2 h3 h4 h5 h6 | vlLink blockquote hr | numlist bullist'
+}
 textareaDefault.storyName = 'vl-textarea - default';
