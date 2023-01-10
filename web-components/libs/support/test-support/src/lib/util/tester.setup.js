@@ -6,6 +6,8 @@ import { testerConfig } from './tester.config.js';
 // TODO: hoe wordt dit gebruikt ? hoe te exporteren ?
 
 chai.use(chaiAsPromised);
+chai.config.includeStack = true; // turn on stack trace
+
 let driver;
 
 before((done) => {

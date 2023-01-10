@@ -4,7 +4,9 @@
         "outDir": "../../dist/out-tsc",
         "sourceMap": false,
         "declaration": true,
-        "types": []
+        "types": [
+            "mocha",
+        ]
     },
     "include": ["**/*.ts"],
     "exclude": ["jest.config.ts", "**/*.spec.ts"]
