@@ -1,3 +1,5 @@
+import '@ungap/custom-elements';
+
 declare const vl: any;
 
 export const BaseElementOfType = (SuperClass: typeof HTMLElement): any => {
