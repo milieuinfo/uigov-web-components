@@ -161,6 +161,7 @@
         "@govflanders-v14/vl-ui-video-player": "npm:@govflanders/vl-ui-video-player@14.0.2",
         "@govflanders-v14/vl-ui-wizard": "npm:@govflanders/vl-ui-wizard@14.0.2",
         "@govflanders/vl-ui-search": "^3.12.17",
+        "@ungap/custom-elements": "^0.1.15",
         "bootstrap-sass": "^3.3.4",
         "core-js": "^3.6.5",
         "jsts": "2.9.0",
