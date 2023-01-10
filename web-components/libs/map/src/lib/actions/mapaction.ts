@@ -1,6 +1,27 @@
 import Interaction from 'ol/interaction/Interaction';
+import VectorLayer from 'ol/layer/Vector';
+import Map from 'ol/Map';
 
 export class VlMapAction {
+
+    style: any; // Style;
+    hoverStyle: any; // Style;
+    options: any;
+    /**
+     * property that keeps reference to instance of Map class (OpenLayers)
+     * @public
+     * @type {import('ol/Map').Map}
+     */
+    map: Map;
+
+    /**
+     * property that keeps reference to instance of VectorLayer class (OpenLayers)
+     * @public
+     * @type {import('ol/layer/Vector').VectorLayer}
+     */
+    layer: VectorLayer<any>;
+    element: { reset: () => void };
+    addAction: any;
     get interactions(): Interaction[] {
         return this._interactions;
     }

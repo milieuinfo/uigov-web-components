@@ -16,7 +16,7 @@
         "process-scss": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "sass libs/map/src/lib:dist/libs/map/src/lib --no-source-map --load-path ./node_modules --load-path ./libs"
+                "command": "sass libs/map/src/lib:dist/libs/map/src/lib --load-path ./node_modules --load-path ./libs"
             }
         },
         "lint": {
@@ -38,6 +38,12 @@
             "executor": "nx:run-commands",
             "options": {
                 "command": "web-test-runner \"dist/libs/map/**/*.wctest.js\""
+            }
+        },
+        "wctdetail": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "web-test-runner \"dist/libs/map/**/vl-map-layer.wctest.js\""
             }
         }
     },

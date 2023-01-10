@@ -1,5 +1,5 @@
-import Interaction from 'ol/interaction/Interaction';
 import { VlMapAction } from './mapaction';
+import Interaction from 'ol/interaction/Interaction';
 
 describe('map action', () => {
     it('kan een interactie toevoegen die niet actief staat', () => {
