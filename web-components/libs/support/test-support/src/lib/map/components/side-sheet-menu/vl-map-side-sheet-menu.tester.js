@@ -1,6 +1,6 @@
-import { By } from '../../../../../../utils/test';
+import { By } from '../../../util/tester.setup';
 import { VlElementTester } from '../../../base/vl-element.tester';
-import { VlMapSideSheetMenuItemTester } from '../side-sheet-menu-item/side-sheet-menu-item.tester';
+import { VlMapSideSheetMenuItemTester } from '../side-sheet-menu-item/vl-map-side-sheet-menu-item.tester';
 
 export class VlMapSideSheetMenuTester extends VlElementTester {
     async getMenuItem(number) {
