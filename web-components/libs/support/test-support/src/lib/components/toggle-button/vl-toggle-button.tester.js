@@ -1,11 +1,11 @@
 import { VlElementTester } from '../../base/vl-element.tester';
-import { VlButton } from '../../elements/button/vl-button.tester';
+import { VlButtonTester } from '../../elements/button/vl-button.tester';
 
 export class VlToggleButtonTester extends VlElementTester {
     async getButton() {
         const button = await this.getElementInShadow(this, '[is="vl-button"]');
         if (button) {
-            return new VlButton(this.driver, button);
+            return new VlButtonTester(this.driver, button);
         }
         return undefined;
     }
