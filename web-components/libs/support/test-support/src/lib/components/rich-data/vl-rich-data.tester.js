@@ -1,7 +1,7 @@
 import { VlElementTester } from '../../base/vl-element.tester';
-import VlSearchFilterTester from '../search-filter/vl-search-filter.tester';
+import { VlSearchFilterTester } from '../search-filter/vl-search-filter.tester';
 import { VlSelectTester } from '../../elements/select/vl-select.tester';
-import VlPagerTester from '../pager/vl-pager.tester';
+import { VlPagerTester } from '../pager/vl-pager.tester';
 import { By } from '../../util/tester.setup';
 
 export class VlRichDataTester extends VlElementTester {

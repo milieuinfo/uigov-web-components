@@ -1,6 +1,6 @@
 import { By } from '../../util/tester.setup';
 import { VlElementTester } from '../../base/vl-element.tester';
-import VlHttpErrorMessageTester from './vl-http-error-message.tester';
+import { VlHttpErrorMessageTester } from './vl-http-error-message.tester';
 import { VlButtonTester } from '../../elements/button/vl-button.tester';
 
 export class VlHttpErrorMessageComponentTester extends VlElementTester {

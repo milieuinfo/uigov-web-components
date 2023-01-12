@@ -1,6 +1,7 @@
 import { VlElementTester } from '../../base/vl-element.tester';
 import { By } from '../../util/tester.setup';
 import { VlSelectOptionGroupTester } from './vl-select-option-group.tester';
+import { VlSelectOptionTester } from './vl-select-option.tester';
 
 export class VlSelectTester extends VlElementTester {
     async open() {
@@ -63,10 +64,10 @@ export class VlSelectTester extends VlElementTester {
         if (await this.isDressed()) {
             const selectList = await this._getSelectList();
             const selectItems = await selectList.findElements(By.css('.vl-select__item'));
-            return selectItems.map((item) => new Option(item, true));
+            return selectItems.map((item) => new VlSelectOptionTester(item, true));
         } else {
             const selectItems = await this.findElements(By.css('option'));
-            return selectItems.map((item) => new Option(item, false));
+            return selectItems.map((item) => new VlSelectOptionTester(item, false));
         }
     }
 
