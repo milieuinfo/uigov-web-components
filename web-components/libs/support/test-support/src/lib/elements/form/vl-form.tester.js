@@ -1,5 +1,6 @@
-import { VlElementTester, By } from '../../base/vl-element.tester';
-import { VlButton } from '../button/vl-button.tester';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { VlButtonTester } from '../button/vl-button.tester';
+import { By } from '../../util/tester.setup.js';
 
 export class VlFormTester extends VlElementTester {
     async submit() {
@@ -9,6 +10,6 @@ export class VlFormTester extends VlElementTester {
 
     async _getSubmitButton() {
         const element = await this.findElement(By.css('button[type="submit"]'));
-        return new VlButton(this.driver, element);
+        return new VlButtonTester(this.driver, element);
     }
 }

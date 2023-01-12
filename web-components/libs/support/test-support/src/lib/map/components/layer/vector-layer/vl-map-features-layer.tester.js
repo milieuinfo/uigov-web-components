@@ -1,4 +1,4 @@
-import { VlMapLayerTester } from './vl-map-layer.tester';
+import { VlMapLayerTester } from '../vl-map-layer.tester';
 
 export class VlMapFeaturesLayerTester extends VlMapLayerTester {
     async getFeatures() {

@@ -115,6 +115,11 @@ export { VlVideoPlayerTester } from './lib/elements/video-player/vl-video-player
 // map
 export { VlMapTester } from './lib/map/vl-map.tester';
 export { VlMapActionTester } from './lib/map/components/action/vl-map-action.tester';
+export { VlMapDrawActionTester } from './lib/map/components/action/draw-action/vl-map-draw-action.tester';
+export { VlMapDrawPointActionTester } from './lib/map/components/action/draw-action/vl-map-draw-point-action.tester';
+export { VlMapDrawLineActionTester } from './lib/map/components/action/draw-action/vl-map-draw-line-action.tester';
+export { VlMapDrawPolygonActionTester } from './lib/map/components/action/draw-action/vl-map-draw-polygon-action.tester';
+export { VlMapLayerActionTester } from './lib/map/components/action/layer-action/vl-map-layer-action.tester';
 export { VlMapBaseLayerTester } from './lib/map/components/baselayer/vl-map-base-layer.tester';
 export { VlMeasureControlTester } from './lib/map/components/controls/vl-measure-control.tester';
 export { VlMapCurrentLocationTester } from './lib/map/components/current-location/vl-map-current-location.tester';
@@ -137,10 +142,14 @@ export { VlMapSideSheetMenuTester } from './lib/map/components/side-sheet-menu/v
 export { VlMapSideSheetMenuItemTester } from './lib/map/components/side-sheet-menu-item/vl-map-side-sheet-menu-item.tester';
 
 // sections
+export { VlAccessibilityTester } from './lib/sections/accessibility/vl-accessibility.tester';
+export { VlCookieConsentTester } from './lib/sections/cookie-consent/vl-cookie-consent.tester';
+export { VlCookieConsentOptInTester } from './lib/sections/cookie-consent/vl-cookie-consent-opt-in.tester';
 export { VlCookieStatement } from './lib/sections/cookie-statement/vl-cookie-statement.tester';
 export { VlPrivacy } from './lib/sections/privacy/vl-privacy.tester';
 
 // util
 export { testerConfig } from './lib/util/tester.config';
 export { getOS } from './lib/util/tester.helper';
+export { Page } from './lib/util/tester.page';
 export { By, Key, assert, getDriver } from './lib/util/tester.setup';
