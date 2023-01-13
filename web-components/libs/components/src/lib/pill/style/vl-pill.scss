@@ -15,9 +15,9 @@ $vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-fon
         background-color: rgba($vl-page-bg, 0.8);
     }
 
-    &__close::before {
+    &__close {
+        @include vi-cross;
         font-family: 'vlaanderen-icon' !important;
-        content: '\f157';
     }
 
     // Pill checkable modifier
