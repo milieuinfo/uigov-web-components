@@ -1,0 +1,8 @@
+[is="vl-side-navigation-reference"] {
+    @media print {
+        // Fix voor UIG-2288: er worden in Chrome veel extra blanco pagina's toegevoegd tijdens het printen
+        .resize-sensor {
+            display: none !important;
+        }
+    }
+}
