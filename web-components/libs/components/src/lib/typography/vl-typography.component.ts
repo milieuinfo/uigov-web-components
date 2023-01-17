@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-typography.scss';
 
 /**
@@ -12,6 +12,7 @@ import styles from './style/vl-typography.scss';
  *
  * @property {string} data-vl-parameters - De key/value parameters die verwerkt en getoond zullen worden in het content element.
  */
+@webComponent('vl-typography')
 export class VlTypography extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['parameters'];
@@ -79,4 +80,8 @@ export class VlTypography extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-typography', VlTypography);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-typography': VlTypography;
+    }
+}

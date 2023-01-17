@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-contact-card.scss';
 
 /**
@@ -9,6 +9,7 @@ import styles from './style/vl-contact-card.scss';
  * @extends HTMLElement
  * @mixes vlElement
  */
+@webComponent('vl-contact-card')
 export class VlContactCardComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
@@ -29,4 +30,8 @@ export class VlContactCardComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-contact-card', VlContactCardComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-contact-card': VlContactCardComponent
+    }
+}

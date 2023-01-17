@@ -1,5 +1,5 @@
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { ProzaRestClient } from './vl-proza-rest-client.util';
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 /**
  * VlProzaMessagePreloader
@@ -16,6 +16,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-proza-message.html|Demo}
  *
  */
+@webComponent('vl-proza-message-preloader')
 export class VlProzaMessagePreloader extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['domain'];
@@ -121,4 +122,8 @@ export class VlProzaMessagePreloader extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-proza-message-preloader', VlProzaMessagePreloader, {});
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-proza-message-preloader': VlProzaMessagePreloader;
+    }
+}

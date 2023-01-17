@@ -1,12 +1,7 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
-import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
+import { BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
 import { vlFormValidation } from '../form-validation/vl-form-validation';
+import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
 import { vlPattern } from '../pattern/vl-pattern.element';
-
-// TODO: waarom is dit nodig ?
-Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() =>
-    define('vl-input-field', VlInputFieldElement, { extends: 'input' })
-);
 
 /**
  * VlInputField
@@ -24,6 +19,7 @@ Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() =>
  */
 
 // TODO gertjame: Fix validation.
+@webComponentPromised([vlFormValidation.ready(), vlPattern.ready()], 'vl-input-field', { extends: 'input' })
 export class VlInputFieldElement extends vlFormValidationElement(BaseElementOfType(HTMLInputElement)) {
     static get _observedAttributes() {
         return vlFormValidation._observedAttributes();
@@ -50,5 +46,11 @@ export class VlInputFieldElement extends vlFormValidationElement(BaseElementOfTy
     _dressPattern() {
         Object.assign(this, vlPattern);
         this.dress(this);
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-input-field': VlInputFieldElement;
     }
 }

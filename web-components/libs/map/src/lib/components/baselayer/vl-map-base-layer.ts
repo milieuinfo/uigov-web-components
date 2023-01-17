@@ -1,15 +1,15 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
-import OlWMTSSource from 'ol/source/WMTS';
-import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
-import OlVectorSource from 'ol/source/Vector';
-import OlVectorLayer from 'ol/layer/Vector';
-import OlTileLayer from 'ol/layer/Tile';
-import OlGeoJSON from 'ol/format/GeoJSON';
-import OlStyle from 'ol/style/Style';
-import OlStyleStroke from 'ol/style/Stroke';
-import OlStyleFill from 'ol/style/Fill';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import * as OlExtent from 'ol/extent';
+import OlGeoJSON from 'ol/format/GeoJSON';
+import OlTileLayer from 'ol/layer/Tile';
+import OlVectorLayer from 'ol/layer/Vector';
 import * as OlLoadingstrategy from 'ol/loadingstrategy';
+import OlVectorSource from 'ol/source/Vector';
+import OlWMTSSource from 'ol/source/WMTS';
+import OlStyleFill from 'ol/style/Fill';
+import OlStyleStroke from 'ol/style/Stroke';
+import OlStyle from 'ol/style/Style';
+import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
 
 /**
  * VlMapBaseLayer
@@ -28,6 +28,7 @@ import * as OlLoadingstrategy from 'ol/loadingstrategy';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map.html|Demo}
  */
+@webComponent('vl-map-baselayer')
 export class VlMapBaseLayer extends BaseElementOfType(HTMLElement) {
     connectedCallback() {
         this._configureMap();
@@ -174,4 +175,8 @@ export class VlMapBaseLayer extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-map-baselayer', VlMapBaseLayer);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-baselayer': VlMapBaseLayer;
+    }
+}

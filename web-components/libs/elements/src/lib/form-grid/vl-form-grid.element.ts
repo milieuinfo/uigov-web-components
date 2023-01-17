@@ -1,5 +1,5 @@
+import { webComponent } from '@domg-wc/common-utilities';
 import { VlGridElement } from '../grid/vl-grid.element';
-import { define } from '@domg-wc/common-utilities';
 import './vl-form-column.element';
 
 /**
@@ -9,6 +9,7 @@ import './vl-form-column.element';
  *
  * @extends VlGridElement
  */
+@webComponent('vl-form-grid', { extends: 'div' })
 export class VlFormGridElement extends VlGridElement {
     connectedCallback() {
         this.classList.add('vl-form-grid');
@@ -19,4 +20,8 @@ export class VlFormGridElement extends VlGridElement {
     }
 }
 
-define('vl-form-grid', VlFormGridElement, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-form-grid': VlFormGridElement;
+    }
+}

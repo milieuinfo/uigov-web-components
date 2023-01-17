@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlPillElement
@@ -11,6 +11,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @property {(success | warning | error)} data-vl-type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
  */
 
+@webComponent('vl-button-pill', { extends: 'button' })
 export class VlButtonPillComponent extends BaseElementOfType(HTMLButtonElement) {
     static get _observedAttributes() {
         return ['type'];
@@ -39,4 +40,8 @@ export class VlButtonPillComponent extends BaseElementOfType(HTMLButtonElement) 
     }
 }
 
-define('vl-button-pill', VlButtonPillComponent, { extends: 'button' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-button-pill': VlButtonPillComponent;
+    }
+}

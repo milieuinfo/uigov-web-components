@@ -1,5 +1,6 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
+@webComponent('vl-rich-data-field')
 export class VlRichDataField extends BaseElementOfType(HTMLElement) {
     static get headerAttributes() {
         return ['name', 'label', 'sortable', 'sorting-direction', 'sorting-priority'];
@@ -189,4 +190,8 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-rich-data-field', VlRichDataField);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-rich-data-field': VlRichDataField;
+    }
+}

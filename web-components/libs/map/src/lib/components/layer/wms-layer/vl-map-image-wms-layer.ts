@@ -1,6 +1,6 @@
+import { webComponent } from '@domg-wc/common-utilities';
 import OlImageLayer from 'ol/layer/Image';
 import OlImageWMSSource from 'ol/source/ImageWMS';
-import { define } from '@domg-wc/common-utilities';
 import { VlMapWmsLayer } from './vl-map-wms-layer';
 
 /**
@@ -14,10 +14,15 @@ import { VlMapWmsLayer } from './vl-map-wms-layer';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wms-layer.html|Demo}
  */
+@webComponent('vl-map-image-wms-layer')
 export class VlMapImageWmsLayer extends VlMapWmsLayer {
     constructor() {
         super(OlImageLayer, OlImageWMSSource);
     }
 }
 
-define('vl-map-image-wms-layer', VlMapImageWmsLayer);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-image-wms-layer': VlMapImageWmsLayer;
+    }
+}

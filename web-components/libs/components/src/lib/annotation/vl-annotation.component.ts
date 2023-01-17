@@ -1,6 +1,8 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
+import { css, html, LitElement, unsafeCSS } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import styles from './style/vl-annotation.scss';
 
+@customElement('vl-annotation')
 export class VlAnnotation extends LitElement {
     static get styles() {
         return [
@@ -27,4 +29,8 @@ export class VlAnnotation extends LitElement {
     }
 }
 
-window.customElements.define('vl-annotation', VlAnnotation);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-annotation': VlAnnotation;
+    }
+}

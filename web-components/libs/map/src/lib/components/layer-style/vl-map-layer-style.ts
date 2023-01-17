@@ -1,8 +1,8 @@
-import OlStyle from 'ol/style/Style';
-import OlStyleStroke from 'ol/style/Stroke';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import OlStyleFill from 'ol/style/Fill';
+import OlStyleStroke from 'ol/style/Stroke';
+import OlStyle from 'ol/style/Style';
 import OlStyleText from 'ol/style/Text';
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 /**
  * VlMapLayerStyle
@@ -28,6 +28,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-layer-style.html|Demo}
  */
+@webComponent('vl-map-layer-style')
 export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
     connectedCallback() {
         this._setStyleOnParent();
@@ -240,4 +241,9 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
         }
     }
 }
-define('vl-map-layer-style', VlMapLayerStyle);
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-layer-style': VlMapLayerStyle;
+    }
+}

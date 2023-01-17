@@ -1,9 +1,11 @@
+import { webComponent } from '@domg-wc/common-utilities';
+import '@domg-wc/components';
 import { LitElement } from 'lit';
 import { unByKey } from 'ol/Observable';
-import { VlMapControl } from './vl-map-control.mixin';
-import '@domg-wc/components';
 import { CONTROL_TYPE, IDENTIFIER } from '../../vl-map.model';
+import { VlMapControl } from './vl-map-control.mixin';
 
+@webComponent('vl-map-measure-control')
 export class VlMapMeasureControl extends VlMapControl(LitElement) {
     constructor() {
         super();
@@ -51,4 +53,8 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
     }
 }
 
-customElements.define('vl-map-measure-control', <any>VlMapMeasureControl);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-measure-control': VlMapMeasureControl;
+    }
+}

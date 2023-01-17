@@ -1,7 +1,8 @@
-import { define } from '@domg-wc/common-utilities';
-import { html, LitElement, css, unsafeCSS } from 'lit';
+import { css, html, LitElement, unsafeCSS } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import styles from './style/vl-http-error-message.scss';
 
+@customElement('vl-http-501-message')
 export class VlHttp501Message extends LitElement {
     static get styles() {
         return [
@@ -31,4 +32,8 @@ export class VlHttp501Message extends LitElement {
     }
 }
 
-define('vl-http-501-message', VlHttp501Message);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-http-501-message': VlHttp501Message;
+    }
+}

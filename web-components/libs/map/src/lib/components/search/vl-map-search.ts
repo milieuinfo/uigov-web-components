@@ -1,7 +1,6 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
-import OlOverlay from 'ol/Overlay';
-import LambertCoordinaat from '../../utils/lambert-coordinaat';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/components';
+import OlOverlay from 'ol/Overlay';
 import '../select-location/vl-select-location';
 import styles from './style/vl-map-search.scss';
 
@@ -22,7 +21,8 @@ import styles from './style/vl-map-search.scss';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-search.html|Demo}
  */
-class VlMapSearch extends BaseElementOfType(HTMLElement) {
+@webComponent('vl-map-search')
+export class VlMapSearch extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['placeholder', 'search-placeholder', 'search-empty-text', 'search-no-results-text'];
     }
@@ -117,6 +117,8 @@ class VlMapSearch extends BaseElementOfType(HTMLElement) {
     }
 }
 
-export { LambertCoordinaat, VlMapSearch };
-
-define('vl-map-search', VlMapSearch);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-search': VlMapSearch;
+    }
+}

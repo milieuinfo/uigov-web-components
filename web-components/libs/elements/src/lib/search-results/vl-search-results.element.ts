@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import './vl-search-result.element';
 
 /**
@@ -9,6 +9,7 @@ import './vl-search-result.element';
  * @extends HTMLElement
  * @mixes BaseElementOfType
  */
+@webComponent('vl-search-results', { extends: 'ul' })
 export class VlSearchResults extends BaseElementOfType(HTMLUListElement) {
     connectedCallback() {
         this._addClass();
@@ -19,4 +20,8 @@ export class VlSearchResults extends BaseElementOfType(HTMLUListElement) {
     }
 }
 
-define('vl-search-results', VlSearchResults, { extends: 'ul' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-search-results': VlSearchResults;
+    }
+}

@@ -11,7 +11,7 @@ import Collection from 'ol/Collection';
 import Interaction from 'ol/interaction/Interaction';
 import VectorSource from 'ol/source/Vector';
 import { VlMapWithActions } from './map-with-actions';
-import { VlMapAction } from '../mapaction';
+import { VlBaseMapAction } from '../mapaction';
 import { VlDrawLineAction } from '../draw/draw-line-action';
 
 // TODO: Review timeout
@@ -40,8 +40,8 @@ describe('map with actions', () => {
     }
 
     beforeEach(() => {
-        action1 = new VlMapAction([new Interaction(), new Interaction()]);
-        action2 = new VlMapAction([new Interaction(), new Interaction(), new Interaction()]);
+        action1 = new VlBaseMapAction([new Interaction(), new Interaction()]);
+        action2 = new VlBaseMapAction([new Interaction(), new Interaction(), new Interaction()]);
     });
 
     it('adds the interactions of all actions to the map', () => {
@@ -60,7 +60,7 @@ describe('map with actions', () => {
         expect(map.actions.length).toBe(2);
         expect(map.getInteractions().getLength()).toBe(14);
 
-        const newAction = new VlMapAction([new Interaction(), new Interaction()]);
+        const newAction = new VlBaseMapAction([new Interaction(), new Interaction()]);
 
         map.addAction(newAction);
         await sleep();
@@ -75,7 +75,7 @@ describe('map with actions', () => {
             actions: [action1, action2],
         });
 
-        const newAction = new VlMapAction([new Interaction(), new Interaction()]);
+        const newAction = new VlBaseMapAction([new Interaction(), new Interaction()]);
         newAction.element = {
             reset: () => {},
         };
@@ -96,7 +96,7 @@ describe('map with actions', () => {
         });
 
         const activateDefaultActionSpy = jest.spyOn(map, 'activateDefaultAction').mockClear();
-        const newAction = new VlMapAction([new Interaction(), new Interaction()]);
+        const newAction = new VlBaseMapAction([new Interaction(), new Interaction()]);
         newAction.element = {
             reset: () => {},
         };

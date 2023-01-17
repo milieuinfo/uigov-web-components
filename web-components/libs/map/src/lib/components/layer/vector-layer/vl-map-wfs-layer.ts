@@ -1,7 +1,7 @@
-import OlVectorSource from 'ol/source/Vector';
-import * as OlLoadingstrategy from 'ol/loadingstrategy';
+import { webComponent } from '@domg-wc/common-utilities';
 import OlGML2 from 'ol/format/GML2';
-import { define } from '@domg-wc/common-utilities';
+import * as OlLoadingstrategy from 'ol/loadingstrategy';
+import OlVectorSource from 'ol/source/Vector';
 import { VlMapVectorLayer } from './vl-map-vector-layer';
 
 /**
@@ -18,6 +18,7 @@ import { VlMapVectorLayer } from './vl-map-vector-layer';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wfs-layer.html|Demo}
  */
+@webComponent('vl-map-wfs-layer')
 export class VlMapWfsLayer extends VlMapVectorLayer {
     connectedCallback() {
         this._source = this.__createSource();
@@ -79,4 +80,8 @@ export class VlMapWfsLayer extends VlMapVectorLayer {
     }
 }
 
-define('vl-map-wfs-layer', VlMapWfsLayer);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-wfs-layer': VlMapWfsLayer;
+    }
+}

@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 //TODO: Can we make this a (abstract) class?
 
@@ -95,6 +95,7 @@ export const vlRadioGroupComponent = {
     },
 };
 
+@webComponent('vl-radio-group')
 export class VlRadioGroup extends BaseElementOfType(HTMLElement) {
     private vlRadioGroupComponent = undefined;
 
@@ -162,4 +163,8 @@ export class VlRadioGroup extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-radio-group', VlRadioGroup);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-radio-group': VlRadioGroup;
+    }
+}

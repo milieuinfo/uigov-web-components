@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import './vl-form-group.element';
 
 /**
@@ -10,6 +10,7 @@ import './vl-form-group.element';
  *
  * @property {boolean} data-vl-validate - Attribuut wordt gebruikt om aan te geven dat de input velden validatie geactiveerd moet worden.
  */
+@webComponent('vl-form', { extends: 'form' })
 export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
     static get _observedAttributes() {
         return ['target', 'action', 'validate'];
@@ -83,4 +84,8 @@ export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
     }
 }
 
-define('vl-form', VlFormElement, { extends: 'form' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-form': VlFormElement;
+    }
+}

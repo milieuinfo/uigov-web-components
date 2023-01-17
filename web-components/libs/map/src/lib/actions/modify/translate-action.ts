@@ -1,8 +1,8 @@
 import Select from 'ol/interaction/Select';
 import Translate from 'ol/interaction/Translate';
-import { VlMapAction } from '../mapaction';
+import { VlBaseMapAction } from '../mapaction';
 
-export class VlTranslateAction extends VlMapAction {
+export class VlTranslateAction extends VlBaseMapAction {
     selectInteraction: Select;
     translateInteraction: Translate;
     translateOptions: { features: any; layers: any[] };

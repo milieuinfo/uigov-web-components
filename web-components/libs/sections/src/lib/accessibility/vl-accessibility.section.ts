@@ -1,12 +1,14 @@
-import '@domg-wc/elements';
 import '@domg-wc/components';
-import { html, LitElement, css, unsafeCSS } from 'lit';
-import { COMPLIANCE_STATUS, EVALUATION_STATUS } from './vl-accessibility.model';
+import '@domg-wc/elements';
+import { css, html, LitElement, unsafeCSS } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { content } from './child/content.section';
 import { header } from './child/header.section';
 import { title } from './child/title.section';
-import { content } from './child/content.section';
 import styles from './style/vl-accessibility.scss';
+import { COMPLIANCE_STATUS, EVALUATION_STATUS } from './vl-accessibility.model';
 
+@customElement('vl-accessibility')
 export class VlAccessibility extends LitElement {
     static get styles() {
         return [
@@ -60,8 +62,8 @@ export class VlAccessibility extends LitElement {
         this.application = 'deze applicatie';
         this.date = '20 juli 2021';
         this.dateModified = '20 juli 2021';
-        this.compliance = 'PARTIALLY_COMPLIANT';
-        this.evaluation = 'NOT_EVALUATED';
+        this.compliance = COMPLIANCE_STATUS.PARTIALLY_COMPLIANT;
+        this.evaluation = EVALUATION_STATUS.NOT_EVALUATED;
     }
 
     render() {
@@ -69,8 +71,8 @@ export class VlAccessibility extends LitElement {
             version: this.version,
             date: this.date,
             application: this.application,
-            evaluation: this.evaluation,
-            compliance: this.compliance,
+            evaluationStatus: this.evaluation,
+            complianceStatus: this.compliance,
             dateModified: this.dateModified,
             limitations: this.limitations,
         };
@@ -78,4 +80,8 @@ export class VlAccessibility extends LitElement {
     }
 }
 
-customElements.define('vl-accessibility', VlAccessibility);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-accessibility': VlAccessibility;
+    }
+}

@@ -1,7 +1,8 @@
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/elements';
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import styles from './style/vl-rich-data-table.scss';
 
+@webComponent('vl-rich-data-sorter')
 export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
     static get DIRECTIONS() {
         return {
@@ -157,4 +158,8 @@ export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define(VlRichDataSorter.is, VlRichDataSorter);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-rich-data-sorter': VlRichDataSorter;
+    }
+}

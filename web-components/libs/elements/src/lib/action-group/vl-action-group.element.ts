@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VLActionGroup
@@ -16,6 +16,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @property {boolean} data-vl-collapse-s - Attribuut wordt gebruikt om de button bij small schermen als block element te tonen.
  * @property {boolean} data-vl-collapse-xs - Attribuut wordt gebruikt om de button bij extra small schermen als block element te tonen.
  */
+@webComponent('vl-action-group', { extends: 'div' })
 export class VlActionGroup extends BaseElementOfType(HTMLDivElement) {
     static get _observedClassAttributes() {
         return ['align', 'space-between', 'bordered', 'collapse-l', 'collapse-m', 'collapse-s', 'collapse-xs'];
@@ -54,4 +55,8 @@ export class VlActionGroup extends BaseElementOfType(HTMLDivElement) {
     }
 }
 
-define('vl-action-group', VlActionGroup, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-action-group': VlActionGroup;
+    }
+}

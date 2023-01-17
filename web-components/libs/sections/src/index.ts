@@ -1,8 +1,8 @@
-export * from './lib/accessibility/vl-accessibility.section';
-export * from './lib/accessibility/vl-accessibility.model';
-export * from './lib/cookie-consent/vl-cookie-consent.section';
-export * from './lib/cookie-consent/vl-cookie-consent-opt-in.section';
-export * from './lib/cookie-statement/vl-cookie-statement.section';
-export * from './lib/footer/vl-footer.section';
-export * from './lib/header/vl-header.section';
-export * from './lib/privacy/vl-privacy.section';
+export { VlAccessibility } from './lib/accessibility/vl-accessibility.section';
+export { AccessibilityStatus, COMPLIANCE_STATUS, EVALUATION_STATUS } from './lib/accessibility/vl-accessibility.model';
+export { VlCookieConsent } from './lib/cookie-consent/vl-cookie-consent.section';
+export { VlCookieConsentOptIn } from './lib/cookie-consent/vl-cookie-consent-opt-in.section';
+export { VlCookieStatement } from './lib/cookie-statement/vl-cookie-statement.section';
+export { VlFooter } from './lib/footer/vl-footer.section';
+export { VlHeader } from './lib/header/vl-header.section';
+export { VlPrivacy } from './lib/privacy/vl-privacy.section';

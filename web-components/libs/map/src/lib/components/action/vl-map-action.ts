@@ -1,5 +1,6 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
+@webComponent('vl-map-action')
 export class VlMapAction extends BaseElementOfType(HTMLElement) {
     constructor() {
         super();
@@ -93,4 +94,8 @@ export class VlMapAction extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-map-action', VlMapAction);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-action': VlMapAction;
+    }
+}

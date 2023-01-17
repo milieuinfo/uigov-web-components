@@ -1,9 +1,9 @@
-import OlVectorSource from 'ol/source/Vector';
+import { webComponent } from '@domg-wc/common-utilities';
 import OlGeoJSON from 'ol/format/GeoJSON';
-import OlClusterSource from 'ol/source/Cluster';
 import OlPoint from 'ol/geom/Point';
+import OlClusterSource from 'ol/source/Cluster';
+import OlVectorSource from 'ol/source/Vector';
 import { VlMapVectorLayer } from './vl-map-vector-layer';
-import { define } from '@domg-wc/common-utilities';
 
 /**
  * VlMapFeaturesLayer
@@ -22,6 +22,7 @@ import { define } from '@domg-wc/common-utilities';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-features-layer.html|Demo}
  */
+@webComponent('vl-map-features-layer')
 export class VlMapFeaturesLayer extends VlMapVectorLayer {
     static get _observedAttributes() {
         return VlMapVectorLayer._observedAttributes.concat(['auto-extent', 'features']);
@@ -235,4 +236,8 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
     }
 }
 
-define('vl-map-features-layer', VlMapFeaturesLayer);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-features-layer': VlMapFeaturesLayer;
+    }
+}

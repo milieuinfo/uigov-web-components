@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlIntroduction
@@ -8,10 +8,15 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @extends HTMLParagraphElement
  * @mixes BaseElementOfType
  */
+@webComponent('vl-introduction', { extends: 'p' })
 export class VlIntroductionElement extends BaseElementOfType(HTMLParagraphElement) {
     connectedCallback() {
         this.classList.add('vl-introduction');
     }
 }
 
-define('vl-introduction', VlIntroductionElement, { extends: 'p' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-introduction': VlIntroductionElement;
+    }
+}

@@ -2,7 +2,7 @@ import Interaction from 'ol/interaction/Interaction';
 import VectorLayer from 'ol/layer/Vector';
 import Map from 'ol/Map';
 
-export class VlMapAction {
+export class VlBaseMapAction {
 
     style: any; // Style;
     hoverStyle: any; // Style;

@@ -1,7 +1,8 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponentConditional } from '@domg-wc/common-utilities';
 import '../modal/vl-modal.component';
 
-class VlTextareaModal extends BaseElementOfType(HTMLElement) {
+@webComponentConditional('vl-modal', 'vl-textarea-modal')
+export class VlTextareaModal extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <vl-modal id="modal-cl" data-vl-title="Link toevoegen">
@@ -100,4 +101,8 @@ class VlTextareaModal extends BaseElementOfType(HTMLElement) {
     }
 }
 
-customElements.whenDefined('vl-modal').then(() => define('vl-textarea-modal', VlTextareaModal));
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-textarea-modal': VlTextareaModal;
+    }
+}

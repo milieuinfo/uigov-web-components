@@ -1,3 +1,5 @@
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import styles from './style/vl-http-error-message.scss';
 import './vl-http-400-message.component';
 import './vl-http-401-message.component';
 import './vl-http-403-message.component';
@@ -9,6 +11,7 @@ import './vl-http-411-message.component';
 import './vl-http-412-message.component';
 import './vl-http-413-message.component';
 import './vl-http-414-message.component';
+import './vl-http-415-message.component';
 import './vl-http-500-message.component';
 import './vl-http-501-message.component';
 import './vl-http-502-message.component';
@@ -16,9 +19,8 @@ import './vl-http-503-message.component';
 import './vl-http-504-message.component';
 import './vl-http-505-message.component';
 import './vl-http-506-message.component';
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
-import styles from './style/vl-http-error-message.scss';
 
+@webComponent('vl-http-error-message')
 export class VlHttpErrorMessage extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['title', 'image', 'image-alt'];
@@ -129,4 +131,8 @@ export class VlHttpErrorMessage extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-http-error-message', VlHttpErrorMessage);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-http-error-message': VlHttpErrorMessage;
+    }
+}

@@ -1,4 +1,4 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
+import { css, html, LitElement, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import styles from './style/vl-spotlight.scss';
 import { SIZE } from './vl-spotlight.model';

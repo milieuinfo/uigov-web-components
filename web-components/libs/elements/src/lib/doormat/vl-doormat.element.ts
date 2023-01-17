@@ -1,10 +1,11 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import './child/vl-doormat-content.element';
-import './child/vl-doormat-title.element';
-import './child/vl-doormat-text.element';
-import './child/vl-doormat-image.element';
 import './child/vl-doormat-graphic-wrapper.element';
+import './child/vl-doormat-image.element';
+import './child/vl-doormat-text.element';
+import './child/vl-doormat-title.element';
 
+@webComponent('vl-doormat', { extends: 'a' })
 export class VlDoormatElement extends BaseElementOfType(HTMLAnchorElement) {
     static get _observedClassAttributes() {
         return ['alt', 'graphic'];
@@ -81,4 +82,8 @@ export class VlDoormatElement extends BaseElementOfType(HTMLAnchorElement) {
     }
 }
 
-define('vl-doormat', VlDoormatElement, { extends: 'a' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-doormat': VlDoormatElement;
+    }
+}

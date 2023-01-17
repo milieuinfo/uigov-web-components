@@ -1,9 +1,10 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '../accordion/vl-accordion.component';
 import styles from './style/vl-info-tile.scss';
 
 declare const vl: any;
 
+@webComponent('vl-info-tile')
 export class VlInfoTile extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['auto-open', 'toggleable'];
@@ -161,4 +162,8 @@ export class VlInfoTile extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-info-tile', VlInfoTile);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-info-tile': VlInfoTile;
+    }
+}

@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-loader.scss';
 
 /**
@@ -13,6 +13,7 @@ import styles from './style/vl-loader.scss';
  * @property {boolean} data-vl-text - Attribuut wordt gebruikt om een informatieve tekst te tonen tijdens het laden.
  * @property {boolean} data-vl-single - Attribuut wordt gebruikt om aan te geven dat er geen tekst getoond mag worden.
  */
+@webComponent('vl-loader')
 export class VlLoaderComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['light', 'text', 'single'];
@@ -59,4 +60,8 @@ export class VlLoaderComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-loader', VlLoaderComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-loader': VlLoaderComponent;
+    }
+}

@@ -1,6 +1,6 @@
 import OlVectorLayer from 'ol/layer/Vector';
-import { VlMapLayer } from '../vl-map-layer';
 import { VlMapLayerStyle } from '../../layer-style/vl-map-layer-style';
+import { VlMapLayer } from '../vl-map-layer';
 
 /**
  * VlMapVectorLayer style changed event
@@ -21,7 +21,6 @@ import { VlMapLayerStyle } from '../../layer-style/vl-map-layer-style';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wfs-layer.html|Demo}
  */
 export class VlMapVectorLayer extends VlMapLayer {
-
     static get EVENTS() {
         return {
             styleChanged: 'style-changed',
@@ -59,7 +58,7 @@ export class VlMapVectorLayer extends VlMapLayer {
         if (style instanceof VlMapLayerStyle) {
             this._styles.push(style);
             this._layer.setStyle((feature) =>
-                this._styles.map((style) => style.style(feature)).filter((style) => style != null),
+                this._styles.map((style) => style.style(feature)).filter((style) => style != null)
             );
         } else {
             this._styles = [];
@@ -70,7 +69,7 @@ export class VlMapVectorLayer extends VlMapLayer {
                 bubbles: true,
                 composed: true,
                 detail: { style },
-            }),
+            })
         );
     }
 

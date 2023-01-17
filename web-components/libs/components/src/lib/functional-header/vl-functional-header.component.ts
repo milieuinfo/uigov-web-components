@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-functional-header.scss';
 
 /**
@@ -15,6 +15,7 @@ import styles from './style/vl-functional-header.scss';
  * @extends HTMLElement
  * @mixes vlElement
  */
+@webComponent('vl-functional-header')
 export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['back', 'back-link', 'title', 'sub-title', 'link'];
@@ -209,4 +210,8 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
     }
 }
 
-define('vl-functional-header', VlFunctionalHeaderComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-functional-header': VlFunctionalHeaderComponent;
+    }
+}

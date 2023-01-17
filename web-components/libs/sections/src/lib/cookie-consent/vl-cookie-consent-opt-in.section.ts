@@ -1,6 +1,7 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-cookie-consent.scss';
 
+@webComponent('vl-cookie-consent-opt-in')
 export class VlCookieConsentOptIn extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['label', 'description', 'checked', 'mandatory'];
@@ -65,4 +66,8 @@ export class VlCookieConsentOptIn extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-cookie-consent-opt-in', VlCookieConsentOptIn);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-cookie-consent-opt-in': VlCookieConsentOptIn;
+    }
+}

@@ -1,4 +1,4 @@
-import { define } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common-utilities';
 import { VlColumnElement } from '../grid/vl-column.element';
 
 /**
@@ -8,6 +8,7 @@ import { VlColumnElement } from '../grid/vl-column.element';
  *
  * @extends VlColumn
  */
+@webComponent('vl-form-column', { extends: 'div' })
 export class VlFormColumn extends VlColumnElement {
     connectedCallback() {
         super.classList.add('vl-form-column');
@@ -22,4 +23,8 @@ export class VlFormColumn extends VlColumnElement {
     }
 }
 
-define('vl-form-column', VlFormColumn, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-form-column': VlFormColumn;
+    }
+}

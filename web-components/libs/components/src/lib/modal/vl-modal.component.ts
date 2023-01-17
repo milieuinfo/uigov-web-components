@@ -1,8 +1,8 @@
-import { awaitUntil, BaseElementOfType, define } from '@domg-wc/common-utilities';
-import '@govflanders-v14/vl-ui-util/dist/js/util.js';
+import { awaitUntil, BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders-v14/vl-ui-core/dist/js/core.js';
-import './vl-modal.lib.js';
+import '@govflanders-v14/vl-ui-util/dist/js/util.js';
 import styles from './style/vl-modal.scss';
+import './vl-modal.lib.js';
 
 declare const vl: any;
 
@@ -21,6 +21,7 @@ declare const vl: any;
  * @property {boolean} data-vl-not-auto-closable - Attribuut wordt gebruikt om aan te duiden dat de modal niet sluit bij het uitvoeren van een actie in de button slot.
  * @property {boolean} data-vl-allow-overflow - Attribuut wordt gebruikt om aan te duiden de inhoud van de modal uit de modal mag treden.
  */
+@webComponent('vl-modal')
 export class VlModalComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['id', 'title', 'closable', 'not-cancellable', 'open', 'not-auto-closable', 'allow-overflow'];
@@ -195,4 +196,8 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-modal', VlModalComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-modal': VlModalComponent;
+    }
+}

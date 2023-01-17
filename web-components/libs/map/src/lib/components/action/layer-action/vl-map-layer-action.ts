@@ -1,4 +1,4 @@
-import { define } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common-utilities';
 import { VlMapAction } from '../vl-map-action';
 
 /**
@@ -17,6 +17,7 @@ import { VlMapAction } from '../vl-map-action';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html|Demo}
  */
+@webComponent('vl-map-layer-action')
 export class VlMapLayerAction extends VlMapAction {
     static get _observedAttributes() {
         return ['layer'];
@@ -79,4 +80,8 @@ export class VlMapLayerAction extends VlMapAction {
     }
 }
 
-define('vl-map-layer-action', VlMapLayerAction);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-layer-action': VlMapLayerAction;
+    }
+}

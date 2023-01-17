@@ -1,8 +1,8 @@
 import { css, html, LitElement, PropertyValues, unsafeCSS } from 'lit';
-import { CAPTION_FORMAT } from './vl-autocomplete.model';
 import { customElement } from 'lit/decorators.js';
-import styles from './style/vl-autocomplete.scss';
 import 'reflect-metadata';
+import styles from './style/vl-autocomplete.scss';
+import { CAPTION_FORMAT } from './vl-autocomplete.model';
 
 export const DEFAULT_MAX_MATCHES = 15;
 export const DEFAULT_MIN_CHARS = 3;
@@ -518,5 +518,11 @@ export class VlAutocomplete extends LitElement {
         this.initialised = true;
 
         return rendered;
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-autocomplete': VlAutocomplete;
     }
 }

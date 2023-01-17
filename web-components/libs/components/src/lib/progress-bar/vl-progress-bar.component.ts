@@ -1,11 +1,11 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
+import ProgressBar from '@govflanders-v14/vl-ui-progress-bar/src/js/progress-bar.js';
+import '@govflanders-v14/vl-ui-util/dist/js/util.js';
+import { css, html, LitElement, unsafeCSS } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import 'reflect-metadata';
-import styles from './style/vl-progress-bar.scss';
-import '@govflanders-v14/vl-ui-util/dist/js/util.js';
-import ProgressBar from '@govflanders-v14/vl-ui-progress-bar/src/js/progress-bar.js';
 import '../tooltip/vl-tooltip.component';
-import { customElement } from 'lit/decorators.js';
+import styles from './style/vl-progress-bar.scss';
 
 @customElement('vl-progress-bar')
 export class VlProgressBarComponent extends LitElement {
@@ -80,5 +80,12 @@ export class VlProgressBarComponent extends LitElement {
                 </div>`
             )}
         </div>`;
+    }
+}
+
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-progress-bar': VlProgressBarComponent;
     }
 }

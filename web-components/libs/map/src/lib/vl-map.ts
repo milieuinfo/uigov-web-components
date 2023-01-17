@@ -1,13 +1,14 @@
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { Zoom } from 'ol/control.js';
 import OlFullScreenControl from 'ol/control/FullScreen';
 import OlLayerGroup from 'ol/layer/Group';
 import OlProjection from 'ol/proj/Projection';
 import proj4 from 'proj4';
 import { VlCustomMap } from './actions';
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import { EVENT } from './vl-map.model';
 import styles from './vl-map.scss';
-import { Zoom } from 'ol/control.js';
 
+@webComponent('vl-map')
 export class VlMap extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
@@ -357,4 +358,8 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-map', VlMap);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map': VlMap;
+    }
+}

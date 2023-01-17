@@ -1,11 +1,9 @@
-import { awaitUntil, BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
 import { vlFormValidation, vlFormValidationElement, vlPattern } from '@domg-wc/elements';
 import './vl-datepicker.lib.js';
 import styles from './style/vl-datepicker.scss';
 
 declare const vl: any;
-
-Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() => define('vl-datepicker', VlDatepickerComponent));
 
 /**
  * VlDatepicker
@@ -30,6 +28,7 @@ Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() => define('vl
  * @property {string} data-vl-pattern - Attribuut om aan te geven aan welk patroon de input moet voldoen.
  * @property {string} data-vl-name - Attribuut om aan de naam te definiëren.
  */
+@webComponentPromised([vlFormValidation.ready(), vlPattern.ready()], 'vl-datepicker')
 export class VlDatepickerComponent extends vlFormValidationElement(BaseElementOfType(HTMLElement)) {
     static get _observedAttributes() {
         return vlFormValidation
@@ -221,5 +220,11 @@ export class VlDatepickerComponent extends vlFormValidationElement(BaseElementOf
             this._inputElement.removeAttribute(`data-vl-${type}`);
             this._visibleInputElement.classList.remove(`vl-input-field--${type}`);
         }
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-datepicker': VlDatepickerComponent;
     }
 }

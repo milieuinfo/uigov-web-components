@@ -1,6 +1,7 @@
+import { webComponent } from '@domg-wc/common-utilities';
 import { VlCookie } from './vl-cookie.section';
-import { define } from '@domg-wc/common-utilities';
 
+@webComponent('vl-jsessionid-cookie')
 export class VlJSessionIdCookie extends VlCookie {
     constructor() {
         super({
@@ -15,4 +16,8 @@ export class VlJSessionIdCookie extends VlCookie {
     }
 }
 
-define('vl-jsessionid-cookie', VlJSessionIdCookie);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-jsessionid-cookie': VlJSessionIdCookie;
+    }
+}

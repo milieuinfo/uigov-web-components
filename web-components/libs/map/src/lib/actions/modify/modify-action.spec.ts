@@ -1,14 +1,12 @@
-import { VlMapAction } from '@domg-wc/map';
-import BaseLayer from 'ol/layer/Base';
-import Map from 'ol/Map';
-import VectorLayer from 'ol/layer/Vector';
-import VectorSource from 'ol/source/Vector';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
-import Select from 'ol/interaction/Select';
 import Modify from 'ol/interaction/Modify';
-import { VlModifyAction } from './modify-action';
+import Select from 'ol/interaction/Select';
+import VectorLayer from 'ol/layer/Vector';
+import Map from 'ol/Map';
+import VectorSource from 'ol/source/Vector';
 import { VlSnapInteraction } from '../snap/snap-interaction';
+import { VlModifyAction } from './modify-action';
 
 describe('modify action', () => {
     const source = new VectorSource();

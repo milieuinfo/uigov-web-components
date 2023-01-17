@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlSideNavigationToggle
@@ -10,6 +10,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  *
  * @property {String} data-vl-child - Attribuut wordt gebruikt om aan te geven dat het een menu item is. De koppeling gebeurt via het `data-vl-parent` attribuut van de submenu items.
  */
+@webComponent('vl-side-navigation-toggle', { extends: 'a' })
 export class VlSideNavigationToggleElement extends BaseElementOfType(HTMLAnchorElement) {
     constructor() {
         super();
@@ -31,4 +32,8 @@ export class VlSideNavigationToggleElement extends BaseElementOfType(HTMLAnchorE
     }
 }
 
-define('vl-side-navigation-toggle', VlSideNavigationToggleElement, { extends: 'a' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-side-navigation-toggle': VlSideNavigationToggleElement;
+    }
+}

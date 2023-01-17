@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-pager.scss';
 
 /**
@@ -25,6 +25,7 @@ import styles from './style/vl-pager.scss';
  * @property {boolean} data-vl-align-center - Attribuut wordt gebruikt om de paginatie te centreren.
  * @property {boolean} data-vl-align-right - Attribuut wordt gebruikt om de paginatie rechts uit te lijnen.
  */
+@webComponent('vl-pager')
 export class VlPagerComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['total-items', 'items-per-page', 'current-page', 'pagination-disabled'];
@@ -340,4 +341,8 @@ export class VlPagerComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-pager', VlPagerComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-pager': VlPagerComponent;
+    }
+}

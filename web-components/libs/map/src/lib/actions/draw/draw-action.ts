@@ -4,10 +4,10 @@ import Draw from 'ol/interaction/Draw';
 import { unByKey } from 'ol/Observable';
 import Overlay from 'ol/Overlay';
 import { Circle, Fill, Stroke, Style } from 'ol/style';
-import { VlMapAction } from '../mapaction';
+import { VlBaseMapAction } from '../mapaction';
 import { VlSnapInteraction } from '../snap/snap-interaction';
 
-export class VlDrawAction extends VlMapAction {
+export class VlDrawAction extends VlBaseMapAction {
     tooltip: Overlay;
     protected measurePointermoveHandler: EventsKey;
     drawInteraction: Draw;

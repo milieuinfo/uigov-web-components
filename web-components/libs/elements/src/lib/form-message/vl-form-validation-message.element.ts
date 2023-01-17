@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlFormValidationMessage
@@ -12,6 +12,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @property {boolean} data-vl-success - Attribuut wordt gebruikt om boodschap te tonen bij een succesvolle validatie.
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om het label in block vorm te tonen zodat het de breedte van het parent element aanneemt.
  */
+@webComponent('vl-form-validation-message', { extends: 'p' })
 export class VlFormValidationMessage extends BaseElementOfType(HTMLParagraphElement) {
     constructor() {
         super();
@@ -65,4 +66,8 @@ export class VlFormValidationMessage extends BaseElementOfType(HTMLParagraphElem
     }
 }
 
-define('vl-form-validation-message', VlFormValidationMessage, { extends: 'p' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-form-validation-message': VlFormValidationMessage;
+    }
+}

@@ -1,7 +1,8 @@
-import { define } from '@domg-wc/common-utilities';
-import { html, LitElement, css, unsafeCSS } from 'lit';
+import { css, html, LitElement, unsafeCSS } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import styles from './style/vl-http-error-message.scss';
 
+@customElement('vl-http-413-message')
 export class VlHttp413Message extends LitElement {
     static get styles() {
         return [
@@ -31,4 +32,8 @@ export class VlHttp413Message extends LitElement {
     }
 }
 
-define('vl-http-413-message', VlHttp413Message);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-http-413-message': VlHttp413Message;
+    }
+}

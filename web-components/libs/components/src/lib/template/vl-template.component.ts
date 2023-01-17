@@ -1,5 +1,5 @@
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-template.scss';
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 /**
  * VlTemplate
@@ -16,6 +16,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-template/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-template.html|Demo}
  */
+@webComponent('vl-template')
 export class VlTemplate extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
@@ -35,4 +36,8 @@ export class VlTemplate extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-template', VlTemplate);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-template': VlTemplate;
+    }
+}

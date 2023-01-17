@@ -1,9 +1,9 @@
+import { webComponent } from '@domg-wc/common-utilities';
+import * as OlExtent from 'ol/extent';
+import OlTileLayer from 'ol/layer/Tile';
 import OlWMTSSource from 'ol/source/WMTS';
 import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
-import OlTileLayer from 'ol/layer/Tile';
-import * as OlExtent from 'ol/extent';
 import { VlMapLayer } from '../vl-map-layer';
-import { define } from '@domg-wc/common-utilities';
 
 /**
  * VlMapWmtsLayer
@@ -17,6 +17,7 @@ import { define } from '@domg-wc/common-utilities';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wmts-layer.html|Demo}
  */
+@webComponent('vl-map-wmts-layer')
 export class VlMapWmtsLayer extends VlMapLayer {
     connectedCallback() {
         this._source = this.__createSource();
@@ -96,4 +97,8 @@ export class VlMapWmtsLayer extends VlMapLayer {
     }
 }
 
-define('vl-map-wmts-layer', VlMapWmtsLayer);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-wmts-layer': VlMapWmtsLayer;
+    }
+}

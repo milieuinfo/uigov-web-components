@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '../accordion/vl-accordion.component';
 
 declare const vl: any;
@@ -20,6 +20,7 @@ declare const vl: any;
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-steps.html|Demo}
  *
  */
+@webComponent('vl-step')
 export class VlStepComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['type', 'toggleable'];
@@ -196,4 +197,8 @@ export class VlStepComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-step', VlStepComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-step': VlStepComponent;
+    }
+}

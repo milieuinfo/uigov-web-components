@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlMapOverviewMap
@@ -12,6 +12,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-overview-map.html|Demo}
  */
+@webComponent('vl-map-overview-map')
 export class VlMapOverviewMap extends BaseElementOfType(HTMLElement) {
     connectedCallback() {
         this._configureMap();
@@ -33,4 +34,8 @@ export class VlMapOverviewMap extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-map-overview-map', VlMapOverviewMap);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-overview-map': VlMapOverviewMap;
+    }
+}

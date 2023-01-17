@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlRegion
@@ -16,7 +16,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @property {boolean} data-vl-medium - Gebruik middelgrote marges.
  * @property {boolean} data-vl-bordered - Teken een rand.
  */
-
+@webComponent('vl-region', { extends: 'section' })
 export class VlRegionElement extends BaseElementOfType(HTMLElement) {
     static get _observedClassAttributes() {
         return ['no-space', 'no-space-bottom', 'no-space-top', 'alt', 'small', 'medium', 'bordered', 'overlap'];
@@ -31,4 +31,8 @@ export class VlRegionElement extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-region', VlRegionElement, { extends: 'section' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-region': VlRegionElement;
+    }
+}

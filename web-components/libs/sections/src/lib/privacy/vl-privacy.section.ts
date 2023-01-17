@@ -1,6 +1,7 @@
-import '@domg-wc/elements';
 import '@domg-wc/components';
+import '@domg-wc/elements';
 import { html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import styles from './style/vl-privacy.scss';
 
 const props = {
@@ -10,6 +11,7 @@ const props = {
 
 const { version, date } = props;
 
+@customElement('vl-privacy')
 export class VlPrivacy extends LitElement {
     static get properties() {
         return {
@@ -1011,4 +1013,8 @@ export class VlPrivacy extends LitElement {
     }
 }
 
-customElements.define('vl-privacy', VlPrivacy);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-privacy': VlPrivacy;
+    }
+}

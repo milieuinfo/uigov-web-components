@@ -1,5 +1,6 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
+@webComponent('vl-text', { extends: 'span' })
 export class VlText extends BaseElementOfType(HTMLSpanElement) {
     static get _observedClassAttributes() {
         return ['visually-hidden'];
@@ -10,4 +11,8 @@ export class VlText extends BaseElementOfType(HTMLSpanElement) {
     }
 }
 
-define('vl-text', VlText, { extends: 'span' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-text': VlText;
+    }
+}

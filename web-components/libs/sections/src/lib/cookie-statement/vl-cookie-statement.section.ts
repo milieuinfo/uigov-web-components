@@ -1,6 +1,6 @@
-import '@domg-wc/elements';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/components';
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import '@domg-wc/elements';
 import './cookie/vl-authentication-cookie.section';
 import './cookie/vl-cookie.section';
 import './cookie/vl-header-authentication-cookie.section';
@@ -9,6 +9,7 @@ import './cookie/vl-jsessionid-cookie.section';
 import './cookie/vl-sticky-session-cookie.section';
 import styles from './style/vl-cookie-statement.scss';
 
+@webComponent('vl-cookie-statement')
 export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
@@ -162,4 +163,8 @@ export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-cookie-statement', VlCookieStatement);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-cookie-statement': VlCookieStatement;
+    }
+}

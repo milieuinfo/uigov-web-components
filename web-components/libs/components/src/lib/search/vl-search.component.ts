@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { VlSelect } from '@domg-wc/elements';
 import styles from './style/vl-search.scss';
 
@@ -28,6 +28,7 @@ import styles from './style/vl-search.scss';
     }
  </style>
  */
+@webComponent('vl-search')
 export class VlSearchComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['label', 'submit-label'];
@@ -221,4 +222,8 @@ export class VlSearchComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-search', VlSearchComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-search': VlSearchComponent;
+    }
+}

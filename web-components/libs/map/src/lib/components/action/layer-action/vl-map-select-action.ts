@@ -1,7 +1,7 @@
-import { define } from '@domg-wc/common-utilities';
-import { VlMapLayerAction } from './vl-map-layer-action';
-import { VlMapLayerStyle } from '../../layer-style/vl-map-layer-style';
+import { webComponent } from '@domg-wc/common-utilities';
 import { VlSelectAction } from '../../../actions';
+import { VlMapLayerStyle } from '../../layer-style/vl-map-layer-style';
+import { VlMapLayerAction } from './vl-map-layer-action';
 
 /**
  * VlMapSelectAction
@@ -16,6 +16,7 @@ import { VlSelectAction } from '../../../actions';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html|Demo}
  */
+@webComponent('vl-map-select-action')
 export class VlMapSelectAction extends VlMapLayerAction {
     _action;
     /**
@@ -95,4 +96,8 @@ export class VlMapSelectAction extends VlMapLayerAction {
     }
 }
 
-define('vl-map-select-action', VlMapSelectAction);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-select-action': VlMapSelectAction;
+    }
+}

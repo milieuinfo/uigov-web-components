@@ -1,14 +1,14 @@
 import { Feature } from 'ol';
 import { FilterFunction } from 'ol/interaction/Select';
 import VectorLayer from 'ol/layer/Vector';
-import { VlMapAction } from '../mapaction';
+import { VlBaseMapAction } from '../mapaction';
 
 import { click, never, pointerMove } from 'ol/events/condition';
 import { Select } from 'ol/interaction';
 import { Layer } from 'ol/layer';
 import { Cluster } from 'ol/source';
 
-export class VlSelectAction extends VlMapAction {
+export class VlSelectAction extends VlBaseMapAction {
     selectInteraction: any;
     private readonly cluster: Cluster;
     filter: FilterFunction;

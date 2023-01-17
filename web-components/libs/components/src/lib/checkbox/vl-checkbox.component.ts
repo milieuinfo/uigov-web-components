@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-checkbox.scss';
 
 /**
@@ -18,6 +18,7 @@ import styles from './style/vl-checkbox.scss';
  * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
  * @property {boolean} data-vl-value - Attribuut wordt gebruikt om de checkbox waarde te bepalen.
  */
+@webComponent('vl-checkbox')
 export class VlCheckboxComponent extends BaseElementOfType(HTMLElement) {
     static get formAssociated() {
         return true;
@@ -247,4 +248,8 @@ export class VlCheckboxComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-checkbox', VlCheckboxComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-checkbox': VlCheckboxComponent;
+    }
+}
