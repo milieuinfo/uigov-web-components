@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlInputGroup
@@ -8,10 +8,15 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @extends HTMLDivElement
  * @mixes nativeVlElement
  */
+@webComponent('vl-input-group', { extends: 'div' })
 export class VlInputGroupElement extends BaseElementOfType(HTMLDivElement) {
     connectedCallback() {
         this.classList.add('vl-input-group');
     }
 }
 
-define('vl-input-group', VlInputGroupElement, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-input-group': VlInputGroupElement;
+    }
+}

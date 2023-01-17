@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlDataTable
@@ -17,6 +17,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @property {boolean} data-vl-collaped-s - Vanaf een small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
  * @property {boolean} data-vl-collaped-xs - Vanaf een extra small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
  */
+@webComponent('vl-data-table', { extends: 'table' })
 export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
     static get _observedClassAttributes() {
         return ['hover', 'matrix', 'grid', 'zebra', 'uig-zebra', 'collapsed-m', 'collapsed-s', 'collapsed-xs'];
@@ -156,4 +157,8 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
     }
 }
 
-define('vl-data-table', VlDataTable, { extends: 'table' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-data-table': VlDataTable;
+    }
+}

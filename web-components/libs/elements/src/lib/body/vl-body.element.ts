@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlBody
@@ -8,10 +8,15 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @extends HTMLBodyElement
  * @mixes nativeVlElement
  */
+@webComponent('vl-body', { extends: 'body' })
 export class VlBodyElement extends BaseElementOfType(HTMLBodyElement) {
     connectedCallback() {
         this.classList.add('vl-u-sticky-gf');
     }
 }
 
-define('vl-body', VlBodyElement, { extends: 'body' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-body': VlBodyElement;
+    }
+}

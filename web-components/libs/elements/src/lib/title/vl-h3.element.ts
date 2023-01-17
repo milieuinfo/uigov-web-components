@@ -1,6 +1,11 @@
-import { define } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common-utilities';
 import { BaseTitleOfType } from './base/base-title.element';
 
+@webComponent('vl-h3', { extends: 'h3' })
 export class VlH3Element extends BaseTitleOfType {}
 
-define('vl-h3', VlH3Element, { extends: 'h3' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-h3': VlH3Element;
+    }
+}

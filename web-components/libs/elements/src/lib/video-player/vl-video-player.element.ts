@@ -1,8 +1,9 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import './vl-video-player.lib.js';
 
 declare const window: any;
 
+@webComponent('vl-video-player', { extends: 'video' })
 export class VlVideoPlayerElement extends BaseElementOfType(HTMLVideoElement) {
     connectedCallback() {
         this._processStyle();
@@ -41,4 +42,8 @@ export class VlVideoPlayerElement extends BaseElementOfType(HTMLVideoElement) {
     }
 }
 
-define('vl-video-player', VlVideoPlayerElement, { extends: 'video' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-video-player': VlVideoPlayerElement;
+    }
+}

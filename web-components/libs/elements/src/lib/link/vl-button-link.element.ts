@@ -1,4 +1,4 @@
-import { define } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common-utilities';
 import { LinkBaseElementOfType } from './base/link-base.element';
 
 /**
@@ -12,7 +12,11 @@ import { LinkBaseElementOfType } from './base/link-base.element';
  * @property {string} data-vl-block - Attribuut zorgt ervoor dat het element als block getoond wordt.
  * @property {string} data-vl-error - Attribuut zorgt ervoor dat het element als error getoond wordt.
  */
-
+@webComponent('vl-button-link', { extends: 'button' })
 export class VlButtonLinkElement extends LinkBaseElementOfType(HTMLButtonElement) {}
 
-define('vl-button-link', VlButtonLinkElement, { extends: 'button' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-button-link': VlButtonLinkElement;
+    }
+}

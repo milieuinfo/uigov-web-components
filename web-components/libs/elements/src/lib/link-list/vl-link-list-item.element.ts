@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlLinkListItem
@@ -8,6 +8,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @extends HTMLLIElement
  * @mixes nativeVlElement
  */
+@webComponent('vl-link-list-item', { extends: 'li' })
 export class VlLinkListItemElement extends BaseElementOfType(HTMLLIElement) {
     connectedCallback() {
         this.classList.add('vl-link-list__item');
@@ -24,4 +25,8 @@ export class VlLinkListItemElement extends BaseElementOfType(HTMLLIElement) {
     }
 }
 
-define('vl-link-list-item', VlLinkListItemElement, { extends: 'li' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-link-list-item': VlLinkListItemElement;
+    }
+}

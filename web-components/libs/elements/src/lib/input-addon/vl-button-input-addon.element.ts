@@ -1,4 +1,4 @@
-import { define } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common-utilities';
 import { InputAddonBaseElementOfType } from './base/input-addon-base.element';
 
 /**
@@ -10,7 +10,12 @@ import { InputAddonBaseElementOfType } from './base/input-addon-base.element';
  * @extends HTMLButtonElement
  * @mixes vlInputAddonElement
  */
+@webComponent('vl-button-input-addon', { extends: 'button' })
 export class VlButtonInputAddon extends InputAddonBaseElementOfType(HTMLButtonElement) {}
 
 // TODO: misschien vl-input-addon-button noemen of onder button steken ?
-define('vl-button-input-addon', VlButtonInputAddon, { extends: 'button' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-button-input-addon': VlButtonInputAddon;
+    }
+}

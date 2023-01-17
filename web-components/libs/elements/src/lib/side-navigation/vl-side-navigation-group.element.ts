@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlSideNavigationGroup
@@ -8,6 +8,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @extends HTMLUListElement
  * @mixes nativeVlElement
  */
+@webComponent('vl-side-navigation-group', { extends: 'ul' })
 export class VlSideNavigationGroupElement extends BaseElementOfType(HTMLUListElement) {
     constructor() {
         super();
@@ -19,4 +20,8 @@ export class VlSideNavigationGroupElement extends BaseElementOfType(HTMLUListEle
     }
 }
 
-define('vl-side-navigation-group', VlSideNavigationGroupElement, { extends: 'ul' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-side-navigation-group': VlSideNavigationGroupElement;
+    }
+}

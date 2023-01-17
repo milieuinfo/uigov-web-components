@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlPropertyValue
@@ -8,10 +8,15 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @extends HTMLElement
  * @mixes nativeVlElement
  */
+@webComponent('vl-property-value', { extends: 'dd' })
 export class VlPropertyValueElement extends BaseElementOfType(HTMLElement) {
     connectedCallback() {
         this.classList.add('vl-properties__data');
     }
 }
 
-define('vl-property-value', VlPropertyValueElement, { extends: 'dd' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-property-value': VlPropertyValueElement;
+    }
+}

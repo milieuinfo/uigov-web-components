@@ -1,11 +1,9 @@
-import { BaseElementOfType, awaitUntil, define } from '@domg-wc/common-utilities';
+import { awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
 import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
 import './vl-select.lib.js';
 
 declare const vl: any;
-
-Promise.all([vlFormValidation.ready()]).then(() => define('vl-select', VlSelect, { extends: 'select' }));
 
 /**
  * VlSelect
@@ -28,6 +26,7 @@ Promise.all([vlFormValidation.ready()]).then(() => define('vl-select', VlSelect,
  * @property {string} data-vl-search-no-results-text - Attribuut bepaalt de tekst wanneer er geen zoekresultaten meer zijn.
  * @property {string} data-vl-no-more-options - Attribuut bepaalt de tekst wanneer er geen keuzes meer mogelijk zijn.
  */
+@webComponentPromised([vlFormValidation.ready()], 'vl-select', { extends: 'select' })
 export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSelectElement)) {
     /**
      * Geeft de ready event naam.
@@ -376,5 +375,11 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
 
     _setValidationParentAttribute(element?: any) {
         (element || this).setAttribute('data-vl-validate-error-parent', '');
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-select': VlSelect;
     }
 }

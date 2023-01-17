@@ -1,11 +1,12 @@
-import { define, BaseElementOfType } from '@domg-wc/common-utilities';
-import '@govflanders-v14/vl-ui-util/dist/js/util.js';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders-v14/vl-ui-infotext/dist/js/infotext.js';
+import '@govflanders-v14/vl-ui-util/dist/js/util.js';
 
 declare const vl: any;
 
 // TODO gertjame: Change any types to the correct type.
 
+@webComponent('vl-infotext', { extends: 'div' })
 export class VlInfotextElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedAttributes() {
         return ['data-vl-badge'];
@@ -120,4 +121,8 @@ export class VlInfotextElement extends BaseElementOfType(HTMLDivElement) {
     }
 }
 
-define('vl-infotext', VlInfotextElement, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-infotext': VlInfotextElement;
+    }
+}

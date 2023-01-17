@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlColumn
@@ -19,6 +19,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @property {number} data-vl-push - aantal partities te verschuiven.
  */
 
+@webComponent('vl-column', { extends: 'div' })
 export class VlColumnElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedAttributes() {
         return [
@@ -200,4 +201,8 @@ export class VlColumnElement extends BaseElementOfType(HTMLDivElement) {
     }
 }
 
-define('vl-column', VlColumnElement, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-column': VlColumnElement;
+    }
+}

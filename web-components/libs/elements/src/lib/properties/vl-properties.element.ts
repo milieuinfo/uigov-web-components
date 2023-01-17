@@ -1,8 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
-import './vl-properties-column.element';
-import './vl-properties-list.element';
-import './vl-property-term.element';
-import './vl-property-value.element';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlProperties
@@ -14,6 +10,7 @@ import './vl-property-value.element';
  *
  * @property {boolean} data-vl-full-width - Attribuut wordt gebruikt om de maximale breedte van het label te benutten.
  */
+@webComponent('vl-properties', { extends: 'div' })
 export class VlPropertiesComponent extends BaseElementOfType(HTMLDivElement) {
     static get _observedClassAttributes() {
         return ['full-width'];
@@ -39,4 +36,8 @@ export class VlPropertiesComponent extends BaseElementOfType(HTMLDivElement) {
     }
 }
 
-define('vl-properties', VlPropertiesComponent, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-properties': VlPropertiesComponent;
+    }
+}
