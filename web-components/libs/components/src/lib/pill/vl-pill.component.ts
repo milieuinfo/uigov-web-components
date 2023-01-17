@@ -1,9 +1,11 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
-import { createRef, ref } from 'lit/directives/ref.js';
+import { css, html, LitElement, unsafeCSS } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { createRef, ref } from 'lit/directives/ref.js';
 import styles from './style/vl-pill.scss';
-import { TYPE } from "./vl-pill.model";
+import { TYPE } from './vl-pill.model';
 
+@customElement('vl-pill')
 export class VlPillComponent extends LitElement {
     private disabled = false;
     private type = '';
@@ -147,4 +149,9 @@ export class VlPillComponent extends LitElement {
     }
 }
 
-customElements.define('vl-pill', VlPillComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-pill': VlPillComponent;
+    }
+}
+

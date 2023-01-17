@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlFormGroup
@@ -7,6 +7,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  *
  * @extends HTMLElement
  */
+@webComponent('vl-form-group', { extends: 'div' })
 export class VlFormGroup extends BaseElementOfType(HTMLDivElement) {
     connectedCallback() {
         this._addClasses();
@@ -17,4 +18,8 @@ export class VlFormGroup extends BaseElementOfType(HTMLDivElement) {
     }
 }
 
-define('vl-form-group', VlFormGroup, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-form-group': VlFormGroup;
+    }
+}

@@ -1,6 +1,6 @@
-import OlTileWMSSource from 'ol/source/TileWMS';
+import { webComponent } from '@domg-wc/common-utilities';
 import OlTileLayer from 'ol/layer/Tile';
-import { define } from '@domg-wc/common-utilities';
+import OlTileWMSSource from 'ol/source/TileWMS';
 import { VlMapWmsLayer } from './vl-map-wms-layer';
 
 /**
@@ -14,10 +14,15 @@ import { VlMapWmsLayer } from './vl-map-wms-layer';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wms-layer.html|Demo}
  */
+@webComponent('vl-map-tiled-wms-layer')
 export class VlMapTiledWmsLayer extends VlMapWmsLayer {
     constructor() {
         super(OlTileLayer, OlTileWMSSource);
     }
 }
 
-define('vl-map-tiled-wms-layer', VlMapTiledWmsLayer);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-tiled-wms-layer': VlMapTiledWmsLayer;
+    }
+}

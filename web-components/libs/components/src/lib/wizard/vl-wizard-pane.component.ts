@@ -21,3 +21,9 @@ export class VlWizardPane extends LitElement {
         return html`${this.isActive ? html`<slot></slot>` : nothing}`;
     }
 }
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-wizard-pane': VlWizardPane;
+    }
+}

@@ -1,7 +1,7 @@
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/elements';
 import swipeDetect from 'swipe-detect/dist/';
 import styles from './style/vl-side-sheet.scss';
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 
 /**
  * VlSideSheet
@@ -32,6 +32,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-side-sheet.html|Demo}
  *
  */
+@webComponent('vl-side-sheet')
 export class VlSideSheet extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['enable-swipe', 'toggle-text'];
@@ -192,4 +193,8 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-side-sheet', VlSideSheet);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-side-sheet': VlSideSheet;
+    }
+}

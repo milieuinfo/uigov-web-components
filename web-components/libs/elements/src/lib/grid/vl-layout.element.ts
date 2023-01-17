@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlLayout
@@ -8,6 +8,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @extends HTMLDivElement
  * @mixes nativeVlElement
  */
+@webComponent('vl-layout', { extends: 'div' })
 export class VlLayoutElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedClassAttributes() {
         return [];
@@ -22,4 +23,8 @@ export class VlLayoutElement extends BaseElementOfType(HTMLDivElement) {
     }
 }
 
-define('vl-layout', VlLayoutElement, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-layout': VlLayoutElement;
+    }
+}

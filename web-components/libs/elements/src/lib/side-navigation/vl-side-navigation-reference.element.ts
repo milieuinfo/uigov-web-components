@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlSideNavigationReference
@@ -8,6 +8,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @extends HTMLDivElement
  * @mixes nativeVlElement
  */
+@webComponent('vl-side-navigation-reference', { extends: 'div' })
 export class VlSideNavigationReferenceElement extends BaseElementOfType(HTMLDivElement) {
     constructor() {
         super();
@@ -24,6 +25,8 @@ export class VlSideNavigationReferenceElement extends BaseElementOfType(HTMLDivE
     }
 }
 
-define('vl-side-navigation-reference', VlSideNavigationReferenceElement, {
-    extends: 'div',
-});
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-side-navigation-reference': VlSideNavigationReferenceElement;
+    }
+}

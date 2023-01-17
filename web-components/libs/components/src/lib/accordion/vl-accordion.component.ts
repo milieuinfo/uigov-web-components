@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders-v14/vl-ui-util/dist/js/util.js';
 import '@govflanders-v14/vl-ui-accordion/dist/js/accordion.js';
 import styles from './style/vl-accordion.scss';
+import 'reflect-metadata';
 
 declare const vl: any;
 
@@ -18,6 +19,8 @@ declare const vl: any;
  * @property {string} data-vl-open-toggle-text - Attribuut wordt gebruikt als tekst wanneer de gebruiker de accordion geopend heeft.
  * @property {string} data-vl-close-toggle-text - Attribuut wordt gebruikt als tekst wanneer de gebruiker de accordion gesloten heeft.
  */
+
+@webComponent('vl-accordion')
 export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['toggle-text', 'open-toggle-text', 'close-toggle-text'];
@@ -149,4 +152,8 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-accordion', VlAccordionComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-accordion': VlAccordionComponent;
+    }
+}

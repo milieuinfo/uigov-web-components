@@ -1,4 +1,4 @@
-import { html, LitElement, css, unsafeCSS } from 'lit';
+import { css, html, LitElement, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import styles from './style/vl-share-button.scss';
 import { MEDIA_NAMES } from './vl-share-button.model';
@@ -33,5 +33,11 @@ export class VlShareButton extends LitElement {
             <i class="vl-vi vl-vi-${this.medium}" aria-hidden="true"></i>
             ${name}
         </a>`;
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-share-button': VlShareButton;
     }
 }

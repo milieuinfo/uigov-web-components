@@ -1,25 +1,27 @@
+import { awaitScript, webComponent, webComponentCustom } from '@domg-wc/common-utilities';
 import { LitElement } from 'lit';
-import { awaitScript } from '@domg-wc/common-utilities';
 
-awaitScript(
-    'vl-header-client',
-    'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-polyfill/dist/index.js'
-)
-    .then(() => {
-        (
-            awaitScript(
-                'vl-header-polyfill',
-                'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-client/dist/index.js'
-            ) as any
-        ) // TODO kspeltin: ergens staat de ecma versie niet hoog genoeg, want .finally kent hij niet zonder die 'as any'
-            .finally(() => {
-                customElements.define('vl-header', VlHeader);
-            });
-    })
-    .catch(() => {
-        customElements.define('vl-header', VlHeader);
-    });
+const customRegistration = () =>
+    awaitScript(
+        'vl-header-client',
+        'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-polyfill/dist/index.js'
+    )
+        .then(() => {
+            (
+                awaitScript(
+                    'vl-header-polyfill',
+                    'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-client/dist/index.js'
+                ) as any
+            ) // TODO kspeltin: ergens staat de ecma versie niet hoog genoeg, want .finally kent hij niet zonder die 'as any'
+                .finally(() => {
+                    customElements.define('vl-header', VlHeader);
+                });
+        })
+        .catch(() => {
+            customElements.define('vl-header', VlHeader);
+        });
 
+@webComponentCustom(customRegistration)
 export class VlHeader extends LitElement {
     private identifier = '';
     private development = false;
@@ -112,5 +114,11 @@ export class VlHeader extends LitElement {
 
     createRenderRoot() {
         return this;
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-header': VlHeader;
     }
 }

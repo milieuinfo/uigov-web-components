@@ -1,4 +1,4 @@
-import { define, BaseElementOfType } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlSideNavigationItem
@@ -10,6 +10,7 @@ import { define, BaseElementOfType } from '@domg-wc/common-utilities';
  *
  * @property {boolean} data-vl-parent - Attribuut wordt gebruikt op de navigatie menu list elementen.
  */
+@webComponent('vl-side-navigation-item', { extends: 'li' })
 export class VlSideNavigationItemElement extends BaseElementOfType(HTMLLIElement) {
     static get _observedAttributes() {
         return ['parent'];
@@ -34,4 +35,8 @@ export class VlSideNavigationItemElement extends BaseElementOfType(HTMLLIElement
     }
 }
 
-define('vl-side-navigation-item', VlSideNavigationItemElement, { extends: 'li' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-side-navigation-item': VlSideNavigationItemElement;
+    }
+}

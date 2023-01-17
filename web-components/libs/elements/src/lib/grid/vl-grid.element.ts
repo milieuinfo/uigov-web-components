@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import './vl-column.element';
 import './vl-layout.element';
 import './vl-region.element';
@@ -25,6 +25,7 @@ import './vl-region.element';
  * @property {boolean} data-vl-v-stretch - Rek de kolommen tot aan hun maximum hoogte.
  */
 
+@webComponent('vl-grid', { extends: 'div' })
 export class VlGridElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedClassAttributes() {
         return [
@@ -52,4 +53,8 @@ export class VlGridElement extends BaseElementOfType(HTMLDivElement) {
     }
 }
 
-define('vl-grid', VlGridElement, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-grid': VlGridElement;
+    }
+}

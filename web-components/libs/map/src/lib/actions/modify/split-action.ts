@@ -3,10 +3,10 @@ import * as jsts from 'jsts/dist/jsts';
 import { Polygonizer } from 'jsts/org/locationtech/jts/operation/polygonize';
 import { Point, LineString, LinearRing, Polygon, MultiPoint, MultiLineString, MultiPolygon } from 'ol/geom';
 import { VlSelectAction } from '../select/select-action';
-import { VlMapAction } from '../mapaction';
+import { VlBaseMapAction } from '../mapaction';
 import { VlDrawAction } from '../draw/draw-action';
 
-export class VlSplitAction extends VlMapAction {
+export class VlSplitAction extends VlBaseMapAction {
     private selectAction: any;
     private drawAction: any;
     override map: any;

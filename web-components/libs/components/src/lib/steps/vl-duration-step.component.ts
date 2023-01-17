@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlDurationStep
@@ -8,6 +8,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @extends HTMLElement
  * @mixes vlElement
  */
+@webComponent('vl-duration-step')
 export class VlDurationStepComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
@@ -28,4 +29,8 @@ export class VlDurationStepComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-duration-step', VlDurationStepComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-duration-step': VlDurationStepComponent;
+    }
+}

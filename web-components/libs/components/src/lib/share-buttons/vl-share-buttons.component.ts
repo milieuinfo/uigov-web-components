@@ -1,8 +1,8 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
-import './vl-share-button.component';
+import { css, html, LitElement, unsafeCSS } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import styles from './style/vl-share-buttons.scss';
-import { customElement } from 'lit/decorators.js';
+import './vl-share-button.component';
 
 @customElement('vl-share-buttons')
 export class VlShareButtonsComponent extends LitElement {
@@ -25,5 +25,11 @@ export class VlShareButtonsComponent extends LitElement {
             <div class="vl-share-buttons__label">Deel:</div>
             <slot></slot>
         </div>`;
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-share-buttons': VlShareButtonsComponent;
     }
 }

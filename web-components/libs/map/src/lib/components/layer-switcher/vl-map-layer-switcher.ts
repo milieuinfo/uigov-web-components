@@ -1,4 +1,4 @@
-import { BaseElementOfType, awaitUntil, define } from '@domg-wc/common-utilities';
+import { awaitUntil, BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/components';
 import '@domg-wc/elements';
 import formMessageStyles from './style/vl-map-layer-switcher.scss';
@@ -17,6 +17,7 @@ import formMessageStyles from './style/vl-map-layer-switcher.scss';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-layer-switcher.html|Demo}
  */
+@webComponent('vl-map-layer-switcher')
 export class VlMapLayerSwitcher extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
@@ -130,4 +131,8 @@ export class VlMapLayerSwitcher extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-map-layer-switcher', VlMapLayerSwitcher);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-layer-switcher': VlMapLayerSwitcher;
+    }
+}

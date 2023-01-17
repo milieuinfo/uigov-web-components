@@ -1,6 +1,7 @@
 import { css, html, LitElement, unsafeCSS } from 'lit';
-import { VlMapVectorLayer } from '../layer/vector-layer/vl-map-vector-layer';
+import { customElement } from 'lit/decorators.js';
 import { VlMapLayerCircleStyle } from '../layer-style/vl-map-layer-circle-style';
+import { VlMapVectorLayer } from '../layer/vector-layer/vl-map-vector-layer';
 import styles from './style/vl-map-legend.scss';
 
 export const LEGEND_PLACEMENT = {
@@ -17,6 +18,7 @@ export interface Position {
     bottom: string;
 }
 
+@customElement('vl-map-legend')
 export class VlMapLegend extends LitElement {
     top: string;
     left: string;
@@ -177,4 +179,8 @@ export class VlMapLegend extends LitElement {
     }
 }
 
-customElements.define('vl-map-legend', VlMapLegend);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-legend': VlMapLegend;
+    }
+}

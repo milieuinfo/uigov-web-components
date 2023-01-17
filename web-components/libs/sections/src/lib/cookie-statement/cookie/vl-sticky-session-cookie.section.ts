@@ -1,6 +1,7 @@
+import { webComponent } from '@domg-wc/common-utilities';
 import { VlCookie } from './vl-cookie.section';
-import { define } from '@domg-wc/common-utilities';
 
+@webComponent('vl-sticky-session-cookie')
 export class VlStickySessionCookie extends VlCookie {
     constructor() {
         super({
@@ -18,4 +19,8 @@ export class VlStickySessionCookie extends VlCookie {
     }
 }
 
-define('vl-sticky-session-cookie', VlStickySessionCookie);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-sticky-session-cookie': VlStickySessionCookie;
+    }
+}

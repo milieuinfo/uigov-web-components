@@ -1,4 +1,4 @@
-import { define } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common-utilities';
 import { BaseButtonOfType } from './base/base-button.element';
 
 /**
@@ -8,6 +8,11 @@ import { BaseButtonOfType } from './base/base-button.element';
  *
  * @extends HTMLAnchorElement
  */
+@webComponent('vl-link-button', { extends: 'a' })
 export class VlLinkButtonElement extends BaseButtonOfType(HTMLAnchorElement) {}
 
-define('vl-link-button', VlLinkButtonElement, { extends: 'a' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-link-button': VlLinkButtonElement;
+    }
+}

@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlImage
@@ -8,6 +8,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @extends HTMLImageElement
  * @mixes nativeVlElement
  */
+@webComponent('vl-image', { extends: 'img' })
 export class VlImageElement extends BaseElementOfType(HTMLImageElement) {
     connectedCallback() {
         this.classList.add('vl-image');
@@ -17,4 +18,8 @@ export class VlImageElement extends BaseElementOfType(HTMLImageElement) {
     }
 }
 
-define('vl-image', VlImageElement, { extends: 'img' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-image': VlImageElement;
+    }
+}

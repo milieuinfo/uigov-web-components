@@ -1,8 +1,9 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
-import { vlRadioGroupComponent as vlRadioGroup } from './vl-radio-group.component';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 import styles from './style/vl-radio.scss';
+import { vlRadioGroupComponent as vlRadioGroup } from './vl-radio-group.component';
 
+@webComponent('vl-radio')
 export class VlRadio extends BaseElementOfType(HTMLElement) {
     static get formAssociated() {
         return true;
@@ -219,4 +220,8 @@ export class VlRadio extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-radio', VlRadio);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-radio': VlRadio;
+    }
+}

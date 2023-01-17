@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-infoblock.scss';
 
 /**
@@ -13,6 +13,7 @@ import styles from './style/vl-infoblock.scss';
  * @property {string} data-vl-icon - Attribuut dat wordt gebruikt om een icoon vooraan aan de titel toe te voegen. Het icoon kan gekozen worden uit de lijst op https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon.
  * @property {string} data-vl-type - Er kan een vast icoon gekozen worden (contact, publications, faq, news, timeline, question)
  */
+@webComponent('vl-infoblock')
 export class VlInfoblockComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['title', 'icon', 'type'];
@@ -70,4 +71,8 @@ export class VlInfoblockComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-infoblock', VlInfoblockComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-infoblock': VlInfoblockComponent;
+    }
+}

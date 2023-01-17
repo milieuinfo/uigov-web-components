@@ -1,9 +1,9 @@
-import OlStyle from 'ol/style/Style';
-import OlStyleStroke from 'ol/style/Stroke';
-import OlStyleFill from 'ol/style/Fill';
+import { webComponent } from '@domg-wc/common-utilities';
 import OlStyleCircle from 'ol/style/Circle';
+import OlStyleFill from 'ol/style/Fill';
+import OlStyleStroke from 'ol/style/Stroke';
+import OlStyle from 'ol/style/Style';
 import { VlMapLayerStyle } from './vl-map-layer-style';
-import { define } from '@domg-wc/common-utilities';
 
 /**
  * VlMapLayerCircleStyle
@@ -22,6 +22,7 @@ import { define } from '@domg-wc/common-utilities';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-circle-style.html|Demo}
  */
+@webComponent('vl-map-layer-circle-style')
 export class VlMapLayerCircleStyle extends VlMapLayerStyle {
     /**
      * Geeft de grootte van de cirkels terug.
@@ -142,4 +143,8 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
     }
 }
 
-define('vl-map-layer-circle-style', VlMapLayerCircleStyle);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-layer-circle-style': VlMapLayerCircleStyle;
+    }
+}

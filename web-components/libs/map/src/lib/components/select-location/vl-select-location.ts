@@ -1,4 +1,4 @@
-import { define } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common-utilities';
 import { VlSelect } from '@domg-wc/elements';
 import LambertCoordinaat from '../../utils/lambert-coordinaat';
 
@@ -15,7 +15,8 @@ import LambertCoordinaat from '../../utils/lambert-coordinaat';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-search.html|Demo}
  */
-class VlSelectLocation extends VlSelect {
+@webComponent('vl-select-location', { extends: 'select' })
+export class VlSelectLocation extends VlSelect {
     static get _observedAttributes() {
         return ['placeholder'];
     }
@@ -173,6 +174,8 @@ class VlSelectLocation extends VlSelect {
     }
 }
 
-export { LambertCoordinaat, VlSelectLocation };
-
-define('vl-select-location', VlSelectLocation, { extends: 'select' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-select-location': VlSelectLocation;
+    }
+}

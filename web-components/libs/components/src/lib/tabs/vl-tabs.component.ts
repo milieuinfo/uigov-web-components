@@ -1,13 +1,14 @@
-import { awaitUntil, BaseElementOfType, define } from '@domg-wc/common-utilities';
-import { VlTabsPaneComponent } from './vl-tabs-pane.component';
-import './vl-tab.component';
-import './vl-tab-section.component';
+import { awaitUntil, BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders-v14/vl-ui-tabs/dist/js/tabs.js';
 import styles from './style/vl-tabs.scss';
+import './vl-tab-section.component';
+import './vl-tab.component';
+import { VlTabsPaneComponent } from './vl-tabs-pane.component';
 
 declare const vl: any;
 declare const window: any;
 
+@webComponent('vl-tabs')
 export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     static get is() {
         return 'vl-tabs';
@@ -213,4 +214,8 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-awaitUntil(() => window.vl && window.vl.tabs).then(() => define(VlTabsComponent.is, VlTabsComponent));
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-tabs': VlTabsComponent;
+    }
+}

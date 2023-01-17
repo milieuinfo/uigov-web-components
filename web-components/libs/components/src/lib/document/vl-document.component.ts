@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-document.scss';
 
 /**
@@ -11,6 +11,7 @@ import styles from './style/vl-document.scss';
  *
  * @property {string} data-vl-href - Attribuut wordt gebruikt om de download link te bepalen.
  */
+@webComponent('vl-document')
 export class VlDocumentComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['href'];
@@ -45,4 +46,8 @@ export class VlDocumentComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-document', VlDocumentComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-document': VlDocumentComponent;
+    }
+}

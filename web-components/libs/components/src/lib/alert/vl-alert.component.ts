@@ -1,6 +1,7 @@
-import { define, BaseElementOfType } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-alert.scss';
 
+@webComponent('vl-alert')
 export class VlAlert extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['icon', 'title', 'closable', 'type', 'size'];
@@ -156,4 +157,8 @@ export class VlAlert extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-alert', VlAlert);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-alert': VlAlert;
+    }
+}

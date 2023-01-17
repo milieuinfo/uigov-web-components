@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders-v14/vl-ui-util/dist/js/util.js';
 import '@govflanders-v14/vl-ui-core/dist/js/core.js';
 import '@govflanders-v14/vl-ui-code-preview/dist/js/code-preview.js';
@@ -14,6 +14,7 @@ declare const vl: any;
  * @extends HTMLElement
  * @mixes vlElement
  */
+@webComponent('vl-code-preview')
 export class VlCodePreviewComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
@@ -40,4 +41,8 @@ export class VlCodePreviewComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-code-preview', VlCodePreviewComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-code-preview': VlCodePreviewComponent;
+    }
+}

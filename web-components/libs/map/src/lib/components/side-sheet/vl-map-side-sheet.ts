@@ -1,4 +1,4 @@
-import { define } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common-utilities';
 import { VlSideSheet } from '@domg-wc/components';
 
 /**
@@ -12,6 +12,7 @@ import { VlSideSheet } from '@domg-wc/components';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-side-sheet.html|Demo}
  */
+@webComponent('vl-map-side-sheet')
 export class VlMapSideSheet extends VlSideSheet {
     constructor() {
         super(`
@@ -49,4 +50,8 @@ export class VlMapSideSheet extends VlSideSheet {
     }
 }
 
-define('vl-map-side-sheet', VlMapSideSheet);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-side-sheet': VlMapSideSheet;
+    }
+}

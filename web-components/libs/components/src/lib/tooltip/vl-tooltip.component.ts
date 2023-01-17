@@ -1,7 +1,7 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders-v14/vl-ui-util/dist/js/util.js';
-import './vl-tooltip.lib.js';
 import styles from './style/vl-tooltip.scss';
+import './vl-tooltip.lib.js';
 
 declare const vl: any;
 
@@ -16,6 +16,7 @@ declare const vl: any;
  * @property {(left | right | bottom | top)} data-vl-placement - Attribuut bepaalt de positie (t.o.v. het element) waar de tooltip moet verschijnen.
  * @property {boolean} data-vl-static - Attribuut zorgt voor een variant waarbij een statische, altijd zichtbare, tooltip wordt getoond voor het betreffende element.
  */
+@webComponent('vl-tooltip')
 export class VlTooltipComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
@@ -116,4 +117,8 @@ export class VlTooltipComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-tooltip', VlTooltipComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-tooltip': VlTooltipComponent;
+    }
+}

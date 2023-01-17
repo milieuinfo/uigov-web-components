@@ -1,8 +1,10 @@
 import { css, html, LitElement, unsafeCSS } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import styles from './style/vl-toggle-button.scss';
 import { ICON_PLACEMENT } from './vl-toggle-button.model';
 
+@customElement('vl-toggle-button')
 export class VlToggleButtonComponent extends LitElement {
     private icon = '';
     private iconPlacement = '';
@@ -182,4 +184,10 @@ export class VlToggleButtonComponent extends LitElement {
     }
 }
 
-customElements.define('vl-toggle-button', VlToggleButtonComponent);
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-toggle-button': VlToggleButtonComponent;
+    }
+}
+

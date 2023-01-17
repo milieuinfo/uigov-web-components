@@ -1,11 +1,12 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
-import './vl-toaster.lib.js';
-import '@govflanders-v14/vl-ui-util/dist/js/util.js';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders-v14/vl-ui-core/dist/js/core.js';
+import '@govflanders-v14/vl-ui-util/dist/js/util.js';
 import './style/vl-toaster.scss';
+import './vl-toaster.lib.js';
 
 declare const vl: any;
 
+@webComponent('vl-toaster', { extends: 'div'})
 export class VlToasterElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedAttributes() {
         return ['fadeout'];
@@ -77,4 +78,8 @@ export class VlToasterElement extends BaseElementOfType(HTMLDivElement) {
     }
 }
 
-define('vl-toaster', VlToasterElement, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-toaster': VlToasterElement;
+    }
+}

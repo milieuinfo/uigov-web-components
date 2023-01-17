@@ -1,4 +1,4 @@
-import { define, BaseElementOfType } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlMapWmsStyle
@@ -13,10 +13,15 @@ import { define, BaseElementOfType } from '@domg-wc/common-utilities';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wms-layer.html|Demo}
  */
+@webComponent('vl-map-wms-style')
 export class VlMapWmsStyle extends BaseElementOfType(HTMLElement) {
     get sld() {
         return this.getAttribute('data-vl-sld');
     }
 }
 
-define('vl-map-wms-style', VlMapWmsStyle);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-wms-style': VlMapWmsStyle;
+    }
+}

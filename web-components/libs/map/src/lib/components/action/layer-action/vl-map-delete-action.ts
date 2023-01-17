@@ -1,7 +1,7 @@
-import { define } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common-utilities';
 import { VlDeleteAction } from '../../../actions';
-import { VlMapLayerAction } from './vl-map-layer-action';
 import { VlMapLayerStyle } from '../../layer-style/vl-map-layer-style';
+import { VlMapLayerAction } from './vl-map-layer-action';
 
 /**
  * VlMapDeleteAction
@@ -14,6 +14,7 @@ import { VlMapLayerStyle } from '../../layer-style/vl-map-layer-style';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-delete-action.html|Demo}
  */
+@webComponent('vl-map-delete-action')
 export class VlMapDeleteAction extends VlMapLayerAction {
     /**
      * Returns the style that a selected feature will be given.
@@ -82,4 +83,8 @@ export class VlMapDeleteAction extends VlMapLayerAction {
     }
 }
 
-define('vl-map-delete-action', VlMapDeleteAction);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-delete-action': VlMapDeleteAction;
+    }
+}

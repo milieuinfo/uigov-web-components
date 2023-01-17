@@ -1,9 +1,9 @@
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/elements';
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
 import { VlTypography } from '../typography/vl-typography.component';
+import elementStyles from './style/vl-proza-message.scss';
 import { VlProzaMessagePreloader } from './vl-proza-message-preloader.component';
 import { ProzaRestClient } from './vl-proza-rest-client.util';
-import elementStyles from './style/vl-proza-message.scss';
 
 /**
  * VlProzaMessage
@@ -23,6 +23,7 @@ import elementStyles from './style/vl-proza-message.scss';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-proza-message.html|Demo}
  *
  */
+@webComponent('vl-proza-message')
 export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['domain', 'code', 'block', 'parameters'];
@@ -269,4 +270,8 @@ export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-proza-message', VlProzaMessage, {});
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-proza-message': VlProzaMessage;
+    }
+}

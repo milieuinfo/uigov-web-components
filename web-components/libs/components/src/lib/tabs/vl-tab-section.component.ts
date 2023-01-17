@@ -1,5 +1,6 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
+@webComponent('vl-tab-section', { extends: 'section' })
 export class VlTabSectionComponent extends BaseElementOfType(HTMLElement) {
     static get is() {
         return 'vl-tab-section';
@@ -25,4 +26,8 @@ export class VlTabSectionComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define(VlTabSectionComponent.is, VlTabSectionComponent, { extends: 'section' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-tab-section': VlTabSectionComponent;
+    }
+}

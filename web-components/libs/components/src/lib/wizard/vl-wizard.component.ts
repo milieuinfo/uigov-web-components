@@ -1,8 +1,8 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
-import styles from './style/vl-wizard.scss';
-import '../progress-bar/vl-progress-bar.component';
-import './vl-wizard-pane.component';
+import { css, html, LitElement, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import '../progress-bar/vl-progress-bar.component';
+import styles from './style/vl-wizard.scss';
+import './vl-wizard-pane.component';
 
 @customElement('vl-wizard')
 export class VlWizard extends LitElement {
@@ -62,5 +62,11 @@ export class VlWizard extends LitElement {
                 </div>
             </section>
         `;
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-wizard': VlWizard;
     }
 }

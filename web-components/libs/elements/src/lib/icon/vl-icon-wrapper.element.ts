@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlIconWrapper
@@ -8,6 +8,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  * @extends HTMLParagraphElement
  * @mixes nativeVlElement
  */
+@webComponent('vl-icon-wrapper', { extends: 'p' })
 export class VlIconWrapperElement extends BaseElementOfType(HTMLParagraphElement) {
     connectedCallback() {
         this._addClass();
@@ -19,4 +20,8 @@ export class VlIconWrapperElement extends BaseElementOfType(HTMLParagraphElement
 }
 
 // TODO: een span / HTMLSpanElement is logischer
-define('vl-icon-wrapper', VlIconWrapperElement, { extends: 'p' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-icon-wrapper': VlIconWrapperElement;
+    }
+}

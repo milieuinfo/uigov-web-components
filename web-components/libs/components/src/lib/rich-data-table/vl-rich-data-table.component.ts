@@ -1,11 +1,14 @@
+import { webComponentPromised } from '@domg-wc/common-utilities';
 import '@domg-wc/elements';
+import { VlRichData } from '../rich-data/vl-rich-data.component';
+import styles from './style/vl-rich-data-table.scss';
 import { VlRichDataField } from './vl-rich-data-field.component';
 import { VlRichDataSorter } from './vl-rich-data-sorter.component';
-import { VlRichData } from '../rich-data/vl-rich-data.component';
 
-import styles from './style/vl-rich-data-table.scss';
-import { define } from '@domg-wc/common-utilities';
-
+@webComponentPromised(
+    [customElements.whenDefined(VlRichDataField.is), customElements.whenDefined(VlRichDataSorter.is)],
+    'vl-rich-data-table'
+)
 export class VlRichDataTable extends VlRichData {
     static get _observedAttributes() {
         return super._observedAttributes.concat(['data', 'collapsed-m', 'collapsed-s', 'collapsed-xs']);
@@ -311,6 +314,8 @@ export class VlRichDataTable extends VlRichData {
     }
 }
 
-Promise.all([customElements.whenDefined(VlRichDataField.is), customElements.whenDefined(VlRichDataSorter.is)]).then(
-    () => define(VlRichDataTable.is, VlRichDataTable)
-);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-rich-data-table': VlRichDataTable;
+    }
+}

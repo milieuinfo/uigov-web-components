@@ -1,11 +1,11 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
-import './vl-side-navigation.lib.js';
-import './vl-side-navigation-reference.element';
-import './vl-side-navigation-title.element';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import './vl-side-navigation-content.element';
 import './vl-side-navigation-group.element';
 import './vl-side-navigation-item.element';
+import './vl-side-navigation-reference.element';
+import './vl-side-navigation-title.element';
 import './vl-side-navigation-toggle.element';
+import './vl-side-navigation.lib.js';
 
 declare const vl: any;
 
@@ -17,6 +17,7 @@ declare const vl: any;
  * @extends HTMLElement
  * @mixes nativeVlElement
  */
+@webComponent('vl-side-navigation', { extends: 'nav' })
 export class VlSideNavigation extends BaseElementOfType(HTMLElement) {
     constructor() {
         super();
@@ -49,4 +50,8 @@ export class VlSideNavigation extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-side-navigation', VlSideNavigation, { extends: 'nav' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-side-navigation': VlSideNavigation;
+    }
+}

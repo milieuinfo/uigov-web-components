@@ -1,10 +1,11 @@
-import '@domg-wc/elements';
+import { BaseElementOfType, webComponentConditional } from '@domg-wc/common-utilities';
 import '@domg-wc/components';
-import './vl-cookie-consent-opt-in.section';
-import { analytics } from './util/analytics.util';
+import '@domg-wc/elements';
 import styles from './style/vl-cookie-consent.scss';
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { analytics } from './util/analytics.util';
+import './vl-cookie-consent-opt-in.section';
 
+@webComponentConditional('vl-modal', 'vl-cookie-consent')
 export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['analytics', 'owner', 'link'];
@@ -362,6 +363,8 @@ export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-customElements.whenDefined('vl-modal').then(() => {
-    define('vl-cookie-consent', VlCookieConsent);
-});
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-cookie-consent': VlCookieConsent;
+    }
+}

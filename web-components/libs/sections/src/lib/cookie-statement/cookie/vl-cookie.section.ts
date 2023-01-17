@@ -1,6 +1,7 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from '../style/vl-cookie-statement.scss';
 
+@webComponent('vl-cookie')
 export class VlCookie extends BaseElementOfType(HTMLElement) {
     constructor({ title, name, purpose, domain, processor, validity }: any = {}) {
         super(`
@@ -49,4 +50,8 @@ export class VlCookie extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-cookie', VlCookie);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-cookie': VlCookie;
+    }
+}

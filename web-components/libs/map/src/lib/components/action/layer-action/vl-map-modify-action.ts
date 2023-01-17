@@ -1,7 +1,7 @@
-import { define } from '@domg-wc/common-utilities';
-import { VlModifyAction, VlCompositeVectorLayer } from '../../../actions';
-import { VlMapLayerAction } from './vl-map-layer-action';
+import { webComponent } from '@domg-wc/common-utilities';
+import { VlCompositeVectorLayer, VlModifyAction } from '../../../actions';
 import { VlMapVectorLayer } from '../../layer/vector-layer/vl-map-vector-layer';
+import { VlMapLayerAction } from './vl-map-layer-action';
 
 /**
  * VlMapModifyAction
@@ -17,6 +17,7 @@ import { VlMapVectorLayer } from '../../layer/vector-layer/vl-map-vector-layer';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
  */
+@webComponent('vl-map-modify-action')
 export class VlMapModifyAction extends VlMapLayerAction {
     static get _observedAttributes() {
         return ['snapping', 'snapping-pixel-tolerance'];
@@ -110,4 +111,8 @@ export class VlMapModifyAction extends VlMapLayerAction {
     }
 }
 
-define('vl-map-modify-action', VlMapModifyAction);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-modify-action': VlMapModifyAction;
+    }
+}

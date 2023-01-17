@@ -9,7 +9,7 @@ export { VlDrawLineAction } from './draw/draw-line-action';
 export { VlDrawPolygonAction } from './draw/draw-polygon-action';
 export { VlDrawRectangleAction } from './draw/draw-rectangle-action';
 export { VlHighlightAction } from './select/highlight-action';
-export { VlMapAction as VlMapActionAction } from './mapaction';
+export { VlBaseMapAction } from './mapaction';
 export { VlMeasureAction } from './measure/measure-action';
 export { VlModifyAction } from './modify/modify-action';
 export { VlModifyAndTranslateAction } from './modify/modify-and-translate-action';

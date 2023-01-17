@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-map-side-sheet.scss';
 
 /**
@@ -16,6 +16,7 @@ import styles from './style/vl-map-side-sheet.scss';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-side-sheet.html|Demo}
  */
+@webComponent('vl-map-side-sheet-menu-item')
 export class VlMapSideSheetMenuItem extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['title', 'href'];
@@ -68,4 +69,8 @@ export class VlMapSideSheetMenuItem extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-map-side-sheet-menu-item', VlMapSideSheetMenuItem);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-side-sheet-menu-item': VlMapSideSheetMenuItem;
+    }
+}

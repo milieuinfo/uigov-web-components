@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlPropertiesColumn
@@ -10,6 +10,7 @@ import { BaseElementOfType, define } from '@domg-wc/common-utilities';
  *
  * @property {boolean} data-vl-full - Attribuut wordt gebruikt om de kolom de volledige breedte te laten innemen.
  */
+@webComponent('vl-properties-column', { extends: 'div' })
 export class VlPropertiesColumnElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedClassAttributes() {
         return ['full'];
@@ -24,4 +25,8 @@ export class VlPropertiesColumnElement extends BaseElementOfType(HTMLDivElement)
     }
 }
 
-define('vl-properties-column', VlPropertiesColumnElement, { extends: 'div' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-properties-column': VlPropertiesColumnElement;
+    }
+}

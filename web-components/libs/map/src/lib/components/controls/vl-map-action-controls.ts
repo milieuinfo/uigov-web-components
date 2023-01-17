@@ -1,6 +1,8 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
+import { css, html, LitElement, unsafeCSS } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import styles from './vl-map-controls.scss';
 
+@customElement('vl-map-action-controls')
 export class VlMapActionControls extends LitElement {
     static get styles() {
         return [
@@ -17,4 +19,8 @@ export class VlMapActionControls extends LitElement {
     }
 }
 
-customElements.define('vl-map-action-controls', VlMapActionControls);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-map-action-controls': VlMapActionControls;
+    }
+}

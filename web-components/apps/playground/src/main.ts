@@ -1,4 +1,5 @@
 // @uig imports
+import 'reflect-metadata';
 import '@domg-wc/elements';
 import '@domg-wc/components';
 import '@domg-wc/map';

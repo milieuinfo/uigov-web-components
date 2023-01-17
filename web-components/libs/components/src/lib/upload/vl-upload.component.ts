@@ -1,10 +1,11 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
 import { vlFormValidation, vlFormValidationElement } from '@domg-wc/elements';
-import './vl-upload.lib.js';
 import styles from './style/vl-upload.scss';
+import './vl-upload.lib.js';
 
 declare const vl: any;
 
+@webComponentPromised([vlFormValidation.ready()], 'vl-upload')
 export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType(HTMLElement)) {
     static get _observedAttributes() {
         return vlFormValidation
@@ -419,4 +420,8 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
     }
 }
 
-Promise.all([vlFormValidation.ready()]).then(() => define('vl-upload', VlUploadComponent));
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-upload': VlUploadComponent;
+    }
+}

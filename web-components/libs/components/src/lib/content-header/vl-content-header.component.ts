@@ -1,4 +1,4 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-content-header.scss';
 
 /**
@@ -9,6 +9,7 @@ import styles from './style/vl-content-header.scss';
  * @extends HTMLElement
  * @mixes vlElement
  */
+@webComponent('vl-content-header')
 export class VlContentHeaderComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
@@ -98,4 +99,8 @@ export class VlContentHeaderComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-content-header', VlContentHeaderComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-content-header': VlContentHeaderComponent;
+    }
+}

@@ -1,6 +1,7 @@
-import { define } from '@domg-wc/common-utilities';
+import { webComponentConditional } from '@domg-wc/common-utilities';
 import { VlSelect } from '../select/vl-select.element';
 
+@webComponentConditional('vl-select', 'vl-multiselect', { extends: 'select' })
 export class VlMultiSelect extends VlSelect {
     static get readyEvent() {
         return 'VlMultiSelectReady';
@@ -73,6 +74,8 @@ export class VlMultiSelect extends VlSelect {
     }
 }
 
-window.customElements
-    .whenDefined('vl-select')
-    .then(() => define('vl-multiselect', VlMultiSelect, { extends: 'select' }));
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-multiselect': VlMultiSelect;
+    }
+}

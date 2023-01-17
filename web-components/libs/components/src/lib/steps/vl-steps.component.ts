@@ -1,7 +1,7 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
-import './vl-step.component';
-import './vl-duration-step.component';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-steps.scss';
+import './vl-duration-step.component';
+import './vl-step.component';
 
 /**
  * VlSteps
@@ -13,6 +13,7 @@ import styles from './style/vl-steps.scss';
  *
  * @property {boolean} data-vl-timeline - Attribuut wordt gebruikt om aan te geven dat de stappen een tijdlijn voorstellen.
  */
+@webComponent('vl-steps')
 export class VlStepsComponent extends BaseElementOfType(HTMLElement) {
     static get _observedChildClassAttributes() {
         return ['timeline'];
@@ -63,4 +64,8 @@ export class VlStepsComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-steps', VlStepsComponent);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-steps': VlStepsComponent;
+    }
+}

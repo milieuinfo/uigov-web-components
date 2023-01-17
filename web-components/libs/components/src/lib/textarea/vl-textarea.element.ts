@@ -1,10 +1,11 @@
-import { awaitUntil, BaseElementOfType, define } from '@domg-wc/common-utilities';
-import { VlLinkToolbarFactory } from './vl-link-toolbar-factory';
+import { awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
 import { vlFormValidation, vlFormValidationElement } from '@domg-wc/elements';
 import 'tinymce/tinymce';
+import { VlLinkToolbarFactory } from './vl-link-toolbar-factory';
 
 declare const tinyMCE: any;
 
+@webComponentPromised([vlFormValidation.ready()], 'vl-textarea', { extends:  'textarea'})
 export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTextAreaElement)) {
     static get _observedAttributes() {
         return vlFormValidation._observedAttributes().concat(['error', 'success']);
@@ -153,4 +154,8 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
     }
 }
 
-Promise.all([vlFormValidation.ready()]).then(() => define('vl-textarea', VlTextarea, { extends: 'textarea' }));
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-textarea': VlTextarea;
+    }
+}

@@ -1,4 +1,3 @@
-import '@domg-wc/elements';
 // import '../../components/grid';
 // import '../../components/form-message';
 // import '../../components/icon';
@@ -9,7 +8,8 @@ import '@domg-wc/elements';
 // import iconStyles from '../../components/icon/styles.scss';
 // import buttonStyles from '../../components/button/styles.scss';
 // import tableStyles from '../../components/data-table/styles.scss';
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import '@domg-wc/elements';
 import styles from './style/vl-rich-data.scss';
 
 /**
@@ -35,6 +35,7 @@ import styles from './style/vl-rich-data.scss';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-rich-data/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-rich-data.html|Demo}
  */
+@webComponent('vl-rich-data')
 export class VlRichData extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['data', 'collapsed-m', 'collapsed-s', 'collapsed-xs', 'filter-closable', 'filter-closed'];
@@ -488,4 +489,8 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
     }
 }
 
-define('vl-rich-data', VlRichData);
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-rich-data': VlRichData;
+    }
+}

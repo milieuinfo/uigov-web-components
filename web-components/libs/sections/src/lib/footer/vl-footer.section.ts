@@ -1,24 +1,25 @@
+import { awaitScript, webComponentCustom } from '@domg-wc/common-utilities';
 import { LitElement } from 'lit';
-import { awaitScript } from '@domg-wc/common-utilities';
 
-awaitScript(
-    'vl-footer-client',
-    'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-polyfill/dist/index.js'
-)
-    .then(() => {
-        (
-            awaitScript(
-                'vl-footer-polyfill',
-                'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-client/dist/index.js'
-            ) as any
-        ) // TODO kspeltin: ergens staat de ecma versie niet hoog genoeg, want .finally kent hij niet zonder die 'as any'
-            .finally(() => {
-                customElements.define('vl-footer', VlFooter);
-            });
-    })
-    .catch(() => {
-        customElements.define('vl-footer', VlFooter);
-    });
+const customRegistration = () =>
+    awaitScript(
+        'vl-footer-client',
+        'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-polyfill/dist/index.js'
+    )
+        .then(() => {
+            (
+                awaitScript(
+                    'vl-footer-polyfill',
+                    'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-client/dist/index.js'
+                ) as any
+            ) // TODO kspeltin: ergens staat de ecma versie niet hoog genoeg, want .finally kent hij niet zonder die 'as any'
+                .finally(() => {
+                    customElements.define('vl-footer', VlFooter);
+                });
+        })
+        .catch(() => {
+            customElements.define('vl-footer', VlFooter);
+        });
 
 const props = {
     development: 'data-vl-development',
@@ -26,6 +27,7 @@ const props = {
 };
 const { development, identifier } = props;
 
+@webComponentCustom(customRegistration)
 export class VlFooter extends LitElement {
     static get properties() {
         return {
@@ -79,5 +81,11 @@ export class VlFooter extends LitElement {
 
     createRenderRoot() {
         return this;
+    }
+}
+
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-footer': VlFooter;
     }
 }

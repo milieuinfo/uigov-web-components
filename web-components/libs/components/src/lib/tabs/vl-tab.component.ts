@@ -1,5 +1,6 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
+@webComponent('vl-tab', { extends: 'li' })
 export class VlTabComponent extends BaseElementOfType(HTMLLIElement) {
     static get is() {
         return 'vl-tab';
@@ -66,4 +67,8 @@ export class VlTabComponent extends BaseElementOfType(HTMLLIElement) {
     }
 }
 
-define(VlTabComponent.is, VlTabComponent, { extends: 'li' });
+declare global {
+    interface HTMLElementTagNameMap {
+        'vl-tab': VlTabComponent;
+    }
+}
