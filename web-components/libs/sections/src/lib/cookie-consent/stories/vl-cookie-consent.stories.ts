@@ -9,7 +9,8 @@ export default {
 };
 
 export const cookieConsentDefault = () => {
-    return html` <vl-cookie-consent
+    return html` <div>
+        <vl-cookie-consent
             data-cy="cookie-consent"
             id="cookie-consent"
             data-vl-auto-open-disabled=""
@@ -21,6 +22,7 @@ export const cookieConsentDefault = () => {
             onClick="document.querySelector('#cookie-consent').open();"
         >
             Open cookie-consent
-        </button>`;
+        </button>
+    </div>`;
 };
 cookieConsentDefault.storyName = 'vl-cookie-consent - default';

@@ -1,0 +1,51 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Accordion
+
+De accordion component kan gebruikt worden om informatie te tonen of te verbergen aan de hand van een toggle.
+
+## Voorbeeld
+
+```js
+import { VlAccordionComponent } from '@domg-wc/components';
+```
+
+```html
+<vl-accordion data-vl-toggle-text="Lees meer over de onderwijsdoelstelling">
+    <span>
+        Onderwijs helpt jonge mensen en volwassenen om zichzelf te ontwikkelen en hun weg te vinden in onze samenleving.
+        Het hoger onderwijs speelt daarnaast een belangrijke rol in innovatie dankzij het belang van wetenschappelijk
+        onderzoek.
+    </span>
+</vl-accordion>
+```
+
+<DocsStory id="components-accordion--accordion-default" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Varianten
+
+### Titel slot
+
+<DocsStory id="components-accordion--accordion-title-slot" />
+
+### Dynamische toggle
+
+<DocsStory id="components-accordion--accordion-dynamic-toggle" />
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/js-components/vl-ui-accordion/
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/custom-elements-vl-accordion--default
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlAccordion.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-accordion.html
