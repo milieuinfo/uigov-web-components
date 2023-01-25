@@ -36,11 +36,11 @@
         "typescript": "~4.8.2"
     },
     "dependencies": {
-        "@domg-lib/common-utilities": "0.0.0",
-        "@domg-lib/elements": "0.0.0",
-        "@domg-lib/components": "0.0.0",
-        "@domg-lib/sections": "0.0.0",
-        "@domg-lib/map": "0.0.0",
+        "@domg-wc/common-utilities": "0.0.0",
+        "@domg-wc/elements": "0.0.0",
+        "@domg-wc/components": "0.0.0",
+        "@domg-wc/sections": "0.0.0",
+        "@domg-wc/map": "0.0.0",
         "core-js": "^3.6.5",
         "regenerator-runtime": "0.13.7",
         "tslib": "^2.3.0"

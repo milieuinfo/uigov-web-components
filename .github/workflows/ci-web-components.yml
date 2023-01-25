@@ -229,8 +229,8 @@ jobs:
 
   release-and-publish:
     if:
-      # only publish main and beta-team branches
-      contains('refs/heads/main, refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
+      # only publish release and beta-team branches
+      contains('refs/heads/release, refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -258,11 +258,13 @@ jobs:
           cd ./web-components
           mv .releaserc-beta .releaserc
           npx semantic-release
-      - name: release the main branch
-        if: contains('refs/heads/main', github.ref)
+      - name: release the release branch
+        if: contains('refs/heads/release', github.ref)
+        env:
+          GH_TOKEN: ${{ secrets.PAT_UIG }}
         run: |
           cd ./web-components
-          mv .releaserc-main .releaserc
+          mv .releaserc-release .releaserc
           npx semantic-release
       - name: get package version
         id: package-version
@@ -280,8 +282,8 @@ jobs:
           pagesSubPath=${{ github.ref_name }}
           echo using $pagesSubPath as pages_sub_path
           echo "pages_sub_path=$pagesSubPath" >> $GITHUB_ENV
-      - name: build the pages_sub_path for the main branch
-        if: contains('refs/heads/main', github.ref)
+      - name: build the pages_sub_path for the release branch
+        if: contains('refs/heads/release', github.ref)
         run: |
           pagesSubPath=${{ github.ref_name }}/${{ env.nextRelease_version }}
           echo using $pagesSubPath as pages_sub_path

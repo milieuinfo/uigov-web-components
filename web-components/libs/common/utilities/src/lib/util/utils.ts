@@ -2,6 +2,18 @@ import { Class } from '../type/types';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
 
 /**
+ * Als web-componenten geïmporteerd worden met named imports (aanbevolen, oa voor tree shaking), dan wordt de component
+ * niet gerefereert en daardoor niet geregistreert. Door ze te refereren met deze methode (conventie) vermijd je dat je
+ * IDE en Webpack de import als dode code behandelen. Daarnaast zorgt het ervoor dat je steeds een minimale referentie
+ * hebt die (door de @webComponent en @customElement decorators) de component als web-component registreert.
+ *
+ * @param webComponents
+ */
+export const registerWebComponents = (webComponents: any[]) => {
+    console.log('registeren van de web-componenten');
+};
+
+/**
  * Definieert een class als custom element enkel wanneer deze nog niet gedefinieerd werd.
  *
  * @param {String} name - custom HTML element naam

@@ -4,6 +4,9 @@ import '@domg-wc/elements';
 import '@domg-wc/components';
 import '@domg-wc/map';
 
+// TODO: registerWebComponents zouden we ergens moeten gebruiken
+// registerWebComponents([VlBreadcrumbComponent]);
+
 // app components
 import './app/app.element.ts';
 import './app/alert/alert.element';
