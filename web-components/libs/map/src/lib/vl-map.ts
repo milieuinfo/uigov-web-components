@@ -7,9 +7,12 @@ import proj4 from 'proj4';
 import { VlCustomMap } from './actions';
 import { EVENT } from './vl-map.model';
 import styles from './vl-map.scss';
+import Control from "ol/control/Control";
+import Collection from "ol/Collection";
 
 @webComponent('vl-map')
 export class VlMap extends BaseElementOfType(HTMLElement) {
+
     constructor() {
         super(`
       <style>
@@ -43,16 +46,16 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
      *
      * @return {VlCustomMap}
      */
-    get map() {
+    get map(): VlCustomMap {
         return this._map;
     }
 
     /**
      * Returns the OpenLayers map resolution.
      *
-     * @return {Object}
+     * @return {number}
      */
-    get resolution() {
+    get resolution(): number {
         return this.map.getView().getResolution();
     }
 
@@ -65,19 +68,19 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         return [...this.querySelectorAll(':scope > [data-vl-is-layer]')];
     }
 
-    get disableEscapeKey() {
+    get disableEscapeKey():boolean {
         return this.getAttribute('disable-escape-key') != undefined;
     }
 
-    get disableRotation() {
+    get disableRotation():boolean {
         return this.getAttribute('disable-rotation') != undefined;
     }
 
-    get disableMouseWheelZoom() {
+    get disableMouseWheelZoom():boolean {
         return this.getAttribute('disable-mouse-wheel-zoom') != undefined;
     }
 
-    get disableKeyboard() {
+    get disableKeyboard():boolean {
         return this.getAttribute('disable-keyboard') != undefined;
     }
 
@@ -101,14 +104,15 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         return this._shadow.querySelector('#map');
     }
 
-    get _controls() {
+    get _controls(): Collection<Control> {
+        const collection = new Collection<Control>();
         if (this.dataset.vlAllowFullscreen != undefined) {
-            return [new OlFullScreenControl()];
+            collection.push(new OlFullScreenControl());
         }
-        return [];
+        return collection;
     }
 
-    get _projection() {
+    get _projection(): OlProjection {
         return new OlProjection({
             code: 'EPSG:31370',
             extent: this._extent,
@@ -124,7 +128,6 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         this.__initializeCoordinateSystem();
 
         this._map = new VlCustomMap({
-            actions: [],
             disableEscapeKey: this.disableEscapeKey,
             disableRotation: this.disableRotation,
             disableMouseWheelZoom: this.disableMouseWheelZoom,
@@ -140,14 +143,13 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
             defaultZoom: false,
         });
 
-        this._map.initializeView();
         this.__updateMapSizeOnLoad();
         this.__updateOverviewMapSizeOnLoad();
 
-        this._map.addControl(this.__createZoomControl());
+        this.map.addControl(this.__createZoomControl());
     }
 
-    __createZoomControl() {
+    __createZoomControl(): Zoom {
         const zoomOptions: { zoomInTipLabel?; zoomOutTipLabel? } = {};
         if (this.zoomInTipLabel) {
             zoomOptions.zoomInTipLabel = this.zoomInTipLabel;
@@ -166,6 +168,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         return this.getAttribute('data-vl-zoomOutTooltip');
     }
 
+    // wordt in code aangesproken via bv: this.mapElement.addLayer(this._layer);
     addLayer(layer) {
         this.map.getOverlayLayers().push(layer);
     }
@@ -325,7 +328,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         VlMap.__callOnceOnLoad(this.__updateMapSize.bind(this));
     }
 
-    __createLayerGroup(title, layers) {
+    __createLayerGroup(title, layers): OlLayerGroup {
         // title is not a valid option property, also can not find it in html DOM when setting it
         // ref.: https://openlayers.org/en/v6.15.1/apidoc/module-ol_layer_Group-LayerGroup.html
         return new OlLayerGroup(<any>{
