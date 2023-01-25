@@ -50,16 +50,16 @@ jobs:
           pagesSubPath=${{ github.ref_name }}
           echo using $pagesSubPath as pages_sub_path
           echo "pages_sub_path=$pagesSubPath" >> $GITHUB_ENV
-      - name: build the pages_sub_path for the main branch
-        if: contains('refs/heads/main', github.ref)
+      - name: build the pages_sub_path for the release branch
+        if: contains('refs/heads/release', github.ref)
         run: |
           pagesSubPath=${{ github.ref_name }}/${{ steps.package-version.outputs.current-version }}
           echo using $pagesSubPath as pages_sub_path
           echo "pages_sub_path=$pagesSubPath" >> $GITHUB_ENV
       - name: replace the base-href with the correct path
         if:
-          # only publish on github-pages main and beta-team branches
-          contains('refs/heads/main, refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
+          # only publish on github-pages release and beta-team branches
+          contains('refs/heads/release, refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
         run: |
           toReplace=$(echo href=\"/\")
           baseHref=$(echo href=\"/uig-pages/build-apps/${{ env.pages_sub_path }}/alliance/\")
@@ -67,16 +67,16 @@ jobs:
           sed -i'.bak' "s,$toReplace,$baseHref," ./dist/apps/alliance/index.html
       - name: replace the __UIG-VERSION__ with the new version
         if:
-          # only publish on github-pages main and beta-team branches
-          contains('refs/heads/main, refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
+          # only publish on github-pages release and beta-team branches
+          contains('refs/heads/release, refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
         run: |
           toReplace=__UIG-VERSION__
           newVersion=${{ steps.package-version.outputs.current-version }}
           sed -i'.bak' "s,$toReplace,$newVersion," ./dist/apps/alliance/index.html
       - name: publish on github-pages
         if:
-          # only publish on github-pages main and beta-team branches
-          contains('refs/heads/main, refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
+          # only publish on github-pages release and beta-team branches
+          contains('refs/heads/release, refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ./applications/dist/apps
