@@ -1,0 +1,38 @@
+{
+    "branches": [
+        "release",
+        { name: "develop", prerelease: "beta" },
+        { name: "develop-apo", prerelease: "beta-apo" },
+        { name: "develop-dec", prerelease: "beta-dec" },
+        { name: "develop-olo", prerelease: "beta-olo" },
+        { name: "develop-phe", prerelease: "beta-phe" },
+        { name: "develop-uig", prerelease: "beta-uig" }
+    ],
+    "plugins": [
+        [
+            "@semantic-release/commit-analyzer",
+            {
+                "preset": "conventionalcommits"
+            }
+        ],
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/changelog",
+            {
+                "changelogFile": "resources/changelog/CHANGELOG.md"
+            }
+        ],
+        [
+            "@semantic-release/npm",
+            {
+                "npmPublish": false
+            }
+        ],
+        [
+            "@semantic-release/exec",
+            {
+                "prepareCmd": "echo 'nextRelease_version=${nextRelease.version}' >> $GITHUB_ENV",
+            }
+        ]
+    ]
+}

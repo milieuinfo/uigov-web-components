@@ -229,8 +229,8 @@ jobs:
 
   release-and-publish:
     if:
-      # only publish release and beta-team branches
-      contains('refs/heads/release, refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
+      # only publish release and develop-team branches
+      contains('refs/heads/release, refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -252,11 +252,11 @@ jobs:
             ./web-components
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
-      - name: release the beta branch
-        if: contains('refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
+      - name: release the develop branch
+        if: contains('refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
         run: |
           cd ./web-components
-          mv .releaserc-beta .releaserc
+          mv .releaserc-develop .releaserc
           npx semantic-release
       - name: release the release branch
         if: contains('refs/heads/release', github.ref)
@@ -276,8 +276,8 @@ jobs:
           rootsemver=$(echo ${{ env.nextRelease_version }} | cut -d '.' -f1-3)
           echo using $rootsemver as rootsemver
           echo "root_semver=$rootsemver" >> $GITHUB_ENV
-      - name: build the pages_sub_path for beta branches
-        if: contains('refs/heads/beta, refs/heads/beta-apo, refs/heads/beta-dec, refs/heads/beta-olo, refs/heads/beta-phe, refs/heads/beta-uig', github.ref)
+      - name: build the pages_sub_path for develop branches
+        if: contains('refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
         run: |
           pagesSubPath=${{ github.ref_name }}
           echo using $pagesSubPath as pages_sub_path
