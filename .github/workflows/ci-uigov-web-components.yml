@@ -16,14 +16,14 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./web-components
+        working-directory: ./
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'npm'
-          cache-dependency-path: web-components/package-lock.json
+          cache-dependency-path: ./package-lock.json
       - name: authenticate to acd-npm repository
         run: |
           echo "registry=https://repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/"  > ~/.npmrc
@@ -38,7 +38,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./web-components
+            ./
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
 
@@ -47,7 +47,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./web-components
+        working-directory: ./
     needs: checkout-install-and-cache
     steps:
       - name: restore workspace cache
@@ -57,7 +57,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./web-components
+            ./
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: uigov-web-components - test
@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-perform-all-unit-tests
-          path: ./web-components/dist
+          path: ./dist
           retention-days: 30
 
   perform-all-web-tests:
@@ -75,7 +75,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./web-components
+        working-directory: ./
     needs: checkout-install-and-cache
     steps:
       - name: restore workspace cache
@@ -85,7 +85,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./web-components
+            ./
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: uigov-web-components - web-test-runner
@@ -97,7 +97,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-perform-all-web-tests
-          path: ./web-components/dist
+          path: ./dist
           retention-days: 30
 
   build-apps-libs-and-storybook:
@@ -105,7 +105,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./web-components
+        working-directory: ./
     needs: checkout-install-and-cache
     steps:
       - name: restore workspace cache
@@ -115,7 +115,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./web-components
+            ./
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: build apps
@@ -128,7 +128,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-build-apps-libs-and-storybook
-          path: ./web-components/dist
+          path: ./dist
           retention-days: 30
 
   e2e-test-storybook:
@@ -139,7 +139,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./web-components
+        working-directory: ./
     needs: checkout-install-and-cache
     steps:
       - name: restore workspace cache
@@ -149,7 +149,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./web-components
+            ./
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: storybook - e2e-test
@@ -158,7 +158,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-e2e-test-storybook-p${{ matrix.job }}
-          path: ./web-components/dist
+          path: ./dist
           retention-days: 1
 
   e2e-report-storybook:
@@ -166,7 +166,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./web-components
+        working-directory: ./
     needs: e2e-test-storybook
     steps:
       - name: restore workspace cache
@@ -176,34 +176,34 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./web-components
+            ./
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: download artifact dist-e2e-test-storybook-p1
         uses: actions/download-artifact@v3
         with:
           name: dist-e2e-test-storybook-p1
-          path: ./web-components/dist
+          path: ./dist
       - name: download artifact dist-e2e-test-storybook-p2
         uses: actions/download-artifact@v3
         with:
           name: dist-e2e-test-storybook-p2
-          path: ./web-components/dist
+          path: ./dist
       - name: download artifact dist-e2e-test-storybook-p3
         uses: actions/download-artifact@v3
         with:
           name: dist-e2e-test-storybook-p3
-          path: ./web-components/dist
+          path: ./dist
       - name: download artifact dist-e2e-test-storybook-p4
         uses: actions/download-artifact@v3
         with:
           name: dist-e2e-test-storybook-p4
-          path: ./web-components/dist
+          path: ./dist
       - name: download artifact dist-e2e-test-storybook-p5
         uses: actions/download-artifact@v3
         with:
           name: dist-e2e-test-storybook-p5
-          path: ./web-components/dist
+          path: ./dist
       - name: create mochawesome report
         run: |
           mkdir dist/cypress/apps/storybook-e2e/mochawesome
@@ -213,7 +213,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-e2e-test-storybook
-          path: ./web-components/dist
+          path: ./dist
           retention-days: 30
       - uses: geekyeggo/delete-artifact@v2
         with:
@@ -246,13 +246,13 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./web-components
+            ./
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: release the develop branch
         if: contains('refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
         run: |
-          cd ./web-components
+          cd ./
           mv .releaserc-develop .releaserc
           npx semantic-release
       - name: release the release branch
@@ -260,14 +260,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT_UIG }}
         run: |
-          cd ./web-components
+          cd ./
           mv .releaserc-release .releaserc
           npx semantic-release
       - name: get package version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@main
         with:
-          path: ./web-components
+          path: ./
       - name: get root semver
         run: |
           rootsemver=$(echo ${{ env.nextRelease_version }} | cut -d '.' -f1-3)
