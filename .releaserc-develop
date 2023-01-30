@@ -27,12 +27,6 @@
             {
                 "npmPublish": false
             }
-        ],
-        [
-            "@semantic-release/exec",
-            {
-                "prepareCmd": "echo 'nextRelease_version=${nextRelease.version}' >> $GITHUB_ENV"
-            }
         ]
     ]
 }
