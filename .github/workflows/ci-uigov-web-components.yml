@@ -1,10 +1,7 @@
-name: ci-web-components
+name: ci-uigov-web-components
 
 on:
   push:
-    paths:
-      - .github/workflows/ci-web-components.yml
-      - web-components/**
     branches:
       - '**'
     tags-ignore:
@@ -63,7 +60,7 @@ jobs:
             ./web-components
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
-      - name: web-components - test
+      - name: uigov-web-components - test
         run: npx nx run-many --all --target=test --parallel --maxParallel=4 --skip-nx-cache
         continue-on-error: false
       - name: archive unit-test results
@@ -91,7 +88,7 @@ jobs:
             ./web-components
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
-      - name: web-components - web-test-runner
+      - name: uigov-web-components - web-test-runner
         run: |
           npm run build:all
           npx nx wct map
@@ -211,7 +208,7 @@ jobs:
         run: |
           mkdir dist/cypress/apps/storybook-e2e/mochawesome
           npx mochawesome-merge dist/cypress/apps/storybook-e2e/mochawesome-reports/*.json > dist/cypress/apps/storybook-e2e/mochawesome/output.json
-          npx marge dist/cypress/apps/storybook-e2e/mochawesome/output.json --reportDir dist/cypress/apps/storybook-e2e/mochawesome --inline --reportFilename index.html --reportPageTitle "Storybook e2e tests" --reportTitle "UIG Webcomponents - Storybook e2e tests"
+          npx marge dist/cypress/apps/storybook-e2e/mochawesome/output.json --reportDir dist/cypress/apps/storybook-e2e/mochawesome --inline --reportFilename index.html --reportPageTitle "Storybook e2e tests" --reportTitle "UIGOV Webcomponents - Storybook e2e tests"
       - name: archive Storybook e2e test results
         uses: actions/upload-artifact@v3
         with:
@@ -309,7 +306,7 @@ jobs:
       - name: replace the base-href with the correct path for playground
         run: |
           toReplace=$(echo href=\"/\")
-          baseHref=$(echo href=\"/uig-pages/build-apps/${{ env.pages_sub_path }}/playground/\")
+          baseHref=$(echo href=\"/uigov-pages/build-apps/${{ env.pages_sub_path }}/playground/\")
           echo using $baseHref as baseHref
           sed -i'.bak' "s,$toReplace,$baseHref," dist-build-apps-libs-and-storybook/apps/playground/index.html
       - name: replace the __UIG-VERSION__ with the new version for playground
@@ -326,35 +323,35 @@ jobs:
         run: |
           echo "registry=https://repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/"  > ~/.npmrc
           echo "//repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/:_authToken=${{ secrets.NPM_TOKEN_DOMG_ACD_NPM }}" >> ~/.npmrc
-      - name: upgrade the alliance version and dependencies
-        run: |
-          cd applications
-          npm version ${{ env.nextRelease_version }}
-          npm install \
-            @domg-wc/common-utilities@${{ env.nextRelease_version }} \
-            @domg-wc/components@${{ env.nextRelease_version }} \
-            @domg-wc/elements@${{ env.nextRelease_version }} \
-            @domg-wc/map@${{ env.nextRelease_version }} \
-            @domg-wc/sections@${{ env.nextRelease_version }}
-      - name: commit the applications package.json
-        env:
-          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
-          CI_COMMIT_MESSAGE: 'chore(post-release): upgrading Alliance dependencies'
-          CI_COMMIT_AUTHOR: 'ci-web-components'
-          CI_COMMIT_EMAIL: 'noreply@vlaanderen.be'
-        run: |
-          cd applications
-          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-          git config --global user.email "${{ env.CI_COMMIT_EMAIL }}"
-          git commit package.json package-lock.json -m "${{ env.CI_COMMIT_MESSAGE }}"
-          git push -f --set-upstream origin ${{ env.BRANCH_NAME }}
+#      - name: upgrade the alliance version and dependencies
+#        run: |
+#          cd applications
+#          npm version ${{ env.nextRelease_version }}
+#          npm install \
+#            @domg-wc/common-utilities@${{ env.nextRelease_version }} \
+#            @domg-wc/components@${{ env.nextRelease_version }} \
+#            @domg-wc/elements@${{ env.nextRelease_version }} \
+#            @domg-wc/map@${{ env.nextRelease_version }} \
+#            @domg-wc/sections@${{ env.nextRelease_version }}
+#      - name: commit the applications package.json
+#        env:
+#          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+#          CI_COMMIT_MESSAGE: 'chore(post-release): upgrading Alliance dependencies'
+#          CI_COMMIT_AUTHOR: 'ci-web-components'
+#          CI_COMMIT_EMAIL: 'noreply@vlaanderen.be'
+#        run: |
+#          cd applications
+#          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+#          git config --global user.email "${{ env.CI_COMMIT_EMAIL }}"
+#          git commit package.json package-lock.json -m "${{ env.CI_COMMIT_MESSAGE }}"
+#          git push -f --set-upstream origin ${{ env.BRANCH_NAME }}
       - name: info of documentation on github-pages
         run: echo "the build results (dist folders) are available at /build-apps/${{ env.pages_sub_path }}"
       - name: publish on github-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: to-publish
-          repository-name: milieuinfo/uig-pages
+          repository-name: milieuinfo/uigov-pages
           branch: main
           target-folder: build-apps/${{ env.pages_sub_path }}
           token: ${{ secrets.PAT_UIG_PAGES }}
