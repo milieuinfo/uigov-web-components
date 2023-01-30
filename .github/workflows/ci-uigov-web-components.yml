@@ -256,6 +256,8 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: release the develop branch
         if: contains('refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
+        env:
+            GH_TOKEN: ${{ secrets.PAT_UIG }}
         run: |
           cd ./
           mv .releaserc-develop .releaserc
