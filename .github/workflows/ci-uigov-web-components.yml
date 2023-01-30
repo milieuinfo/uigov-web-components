@@ -39,6 +39,7 @@ jobs:
         with:
           path: |
             ./
+            !.git
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
 
