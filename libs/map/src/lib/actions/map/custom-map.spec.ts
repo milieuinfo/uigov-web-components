@@ -1,4 +1,4 @@
-import { VlCustomMap } from './custom-map';
+import {VlCustomMap, VLCustomMapOptions} from './custom-map';
 import {Vector, Tile, Group} from 'ol/layer';
 import {Vector as VectorSource} from 'ol/source';
 import Projection from 'ol/proj/Projection';
@@ -29,8 +29,12 @@ describe('custom map', () => {
     };
 
     const createMap = (options = {}) => {
-        const defaultOptions = {
-            actions: [],
+        const defaultOptions:VLCustomMapOptions = {
+            defaultZoom: false,
+            disableEscapeKey: false,
+            disableKeyboard: false,
+            disableMouseWheelZoom: false,
+            disableRotation: false,
             customLayers: {
                 baseLayerGroup: new Group({
                     layers: layers,
@@ -43,7 +47,7 @@ describe('custom map', () => {
             projection: new Projection({
                 code: 'EPSG:31370',
                 extent: [9928.000000, 66928.000000, 272072.000000, 329072.000000],
-            }),
+            })
         };
 
         if (options) {
@@ -59,8 +63,12 @@ describe('custom map', () => {
     };
 
     const createMapZonderLayers = () => {
-        const defaultOptions = {
-            actions: [],
+        const defaultOptions: VLCustomMapOptions = {
+            defaultZoom: false,
+            disableEscapeKey: false,
+            disableKeyboard: false,
+            disableMouseWheelZoom: false,
+            disableRotation: false,
             customLayers: {
                 baseLayerGroup: new Group({
                     layers: [],
@@ -73,7 +81,7 @@ describe('custom map', () => {
             projection: new Projection({
                 code: 'EPSG:31370',
                 extent: [9928.000000, 66928.000000, 272072.000000, 329072.000000],
-            }),
+            })
         };
 
         const map = new VlCustomMap(defaultOptions);
