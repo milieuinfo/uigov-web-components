@@ -31,9 +31,6 @@ jobs:
       - name: npm ci
         run: npm ci
         continue-on-error: false
-      - name: remove .git folder - gives issues when restored with cache
-        run: rm -rf .git
-        continue-on-error: false
       - name: cache workspace
         id: cache-workspace
         uses: actions/cache@v3
@@ -41,7 +38,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./
+            ./node_modules
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
 
@@ -53,6 +50,7 @@ jobs:
         working-directory: ./
     needs: checkout-install-and-cache
     steps:
+      - uses: actions/checkout@v3
       - name: restore workspace cache
         id: cache-workspace
         uses: actions/cache@v3
@@ -60,7 +58,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./
+            ./node_modules
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: uigov-web-components - test
@@ -81,6 +79,7 @@ jobs:
         working-directory: ./
     needs: checkout-install-and-cache
     steps:
+      - uses: actions/checkout@v3
       - name: restore workspace cache
         id: cache-workspace
         uses: actions/cache@v3
@@ -88,7 +87,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./
+            ./node_modules
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: uigov-web-components - web-test-runner
@@ -111,6 +110,7 @@ jobs:
         working-directory: ./
     needs: checkout-install-and-cache
     steps:
+      - uses: actions/checkout@v3
       - name: restore workspace cache
         id: cache-workspace
         uses: actions/cache@v3
@@ -118,7 +118,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./
+            ./node_modules
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: build apps
@@ -145,6 +145,7 @@ jobs:
         working-directory: ./
     needs: checkout-install-and-cache
     steps:
+      - uses: actions/checkout@v3
       - name: restore workspace cache
         id: cache-workspace
         uses: actions/cache@v3
@@ -152,7 +153,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./
+            ./node_modules
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: storybook - e2e-test
@@ -172,6 +173,7 @@ jobs:
         working-directory: ./
     needs: e2e-test-storybook
     steps:
+      - uses: actions/checkout@v3
       - name: restore workspace cache
         id: cache-workspace
         uses: actions/cache@v3
@@ -179,7 +181,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./
+            ./node_modules
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: download artifact dist-e2e-test-storybook-p1
@@ -249,7 +251,7 @@ jobs:
           cache-name: cache-workspace
         with:
           path: |
-            ./
+            ./node_modules
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: release the develop branch
