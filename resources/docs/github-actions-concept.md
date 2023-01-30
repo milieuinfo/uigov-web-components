@@ -5,7 +5,7 @@ TODO: concept van de GitHub-actions stappen - corrigeren / uit te breiden / aan 
 ## web-components
 
 - test
-- publish the test results per build on uig-pages
+- publish the test results per build on uigov-pages
 - build
 - [if main] release
 - [if branch] publish branch storybook

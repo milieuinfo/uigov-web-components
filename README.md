@@ -16,7 +16,7 @@ de [Vlaamse Overheid](https://www.vlaanderen.be/).
 
 ## Meer info
 
-Het startpunt van de documentatie is te vinden op [uig-pages](https://milieuinfo.github.io/uig-pages/). Van hieruit kan
+Het startpunt van de documentatie is te vinden op [uigov-pages](https://milieuinfo.github.io/uigov-pages/). Van hieruit kan
 je ge-versioneerd / ge-branched naar Storybook of één van de demo toepassingen.
 
 In Storybook vind je de verschillende componenten terug alsook de documentatie. Daarnaast zijn er 2 demo 
