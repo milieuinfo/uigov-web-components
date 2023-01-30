@@ -1,5 +1,5 @@
 {
-    "name": "web-components",
+    "name": "uigov-web-components",
     "version": "1.0.0",
     "license": "MIT",
     "scripts": {
@@ -180,4 +180,3 @@
         "node": "16.18.1"
     }
 }
-
