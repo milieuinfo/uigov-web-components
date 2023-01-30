@@ -31,6 +31,9 @@ jobs:
       - name: npm ci
         run: npm ci
         continue-on-error: false
+      - name: remove .git folder - gives issues when restored with cache
+        run: rm -rf .git
+        continue-on-error: false
       - name: cache workspace
         id: cache-workspace
         uses: actions/cache@v3
@@ -39,7 +42,6 @@ jobs:
         with:
           path: |
             ./
-            !./.git
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
 
