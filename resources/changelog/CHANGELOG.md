@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.0.0...v1.0.1) (2023-01-31)
+
+
+### Bug Fixes
+
+* aanmaak van map files vermijden bij scss omzetting ([0b3084c](https://github.com/milieuinfo/uigov-web-components/commit/0b3084c99c171e910604cfa78736d7e2747c6beb))
+
 # 1.0.0 (2023-01-31)
 
 
