@@ -12,4 +12,5 @@ export const TYPES = {
     ARRAY: 'array',
     STRING: 'string',
     NUMBER: 'number',
+    FUNCTION: 'function'
 };

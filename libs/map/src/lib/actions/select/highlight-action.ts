@@ -2,6 +2,7 @@ import { VlBaseMapAction } from '../mapaction';
 import { pointerMove } from 'ol/events/condition';
 import { Select } from 'ol/interaction';
 
+//TODO: wordt dit nog gebruikt?
 export class VlHighlightAction extends VlBaseMapAction {
     highlightInteraction: Select;
 

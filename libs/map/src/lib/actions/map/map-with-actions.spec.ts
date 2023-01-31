@@ -22,8 +22,6 @@ function sleep() {
 
 describe('map with actions', () => {
     let map;
-    let action1;
-    let action2;
 
     class VlTestMapWithActions extends VlMapWithActions {
         getDefaultActiveAction() {
@@ -39,40 +37,32 @@ describe('map with actions', () => {
         }
     }
 
-    beforeEach(() => {
-        action1 = new VlBaseMapAction([new Interaction(), new Interaction()]);
-        action2 = new VlBaseMapAction([new Interaction(), new Interaction(), new Interaction()]);
-    });
-
-    it('adds the interactions of all actions to the map', () => {
-        map = new VlTestMapWithActions({
-            actions: [action1, action2],
-        });
-
-        expect(map.getInteractions().getLength()).toBe(14); // 9 standaard + 5
-    });
 
     it('can add a new action to the map', async () => {
         map = new VlTestMapWithActions({
-            actions: [action1, action2],
+            disableEscapeKey: false,
+            disableKeyboard: false,
+            disableMouseWheelZoom: false,
+            disableRotation: false
         });
 
-        expect(map.actions.length).toBe(2);
-        expect(map.getInteractions().getLength()).toBe(14);
+        expect(map.actions.length).toBe(0);
 
         const newAction = new VlBaseMapAction([new Interaction(), new Interaction()]);
 
         map.addAction(newAction);
         await sleep();
 
-        expect(map.actions.length).toBe(3);
-        expect(map.actions[2]).toBe(newAction);
-        expect(map.getInteractions().getLength()).toBe(16);
+        expect(map.actions.length).toBe(1);
+        expect(map.getInteractions().getLength()).toBe(11); // 9 by default from OL + 2 in the action
     });
 
     it('can remove an action from the map', async () => {
         map = new VlTestMapWithActions({
-            actions: [action1, action2],
+            disableEscapeKey: false,
+            disableKeyboard: false,
+            disableMouseWheelZoom: false,
+            disableRotation: false
         });
 
         const newAction = new VlBaseMapAction([new Interaction(), new Interaction()]);
@@ -85,14 +75,16 @@ describe('map with actions', () => {
 
         map.removeAction(newAction);
 
-        expect(map.actions.length).toBe(2);
+        expect(map.actions.length).toBe(0);
         expect(map.actions.indexOf(newAction)).toBe(-1);
-        expect(map.getInteractions().getLength()).toBe(14);
     });
 
     it('if the action to be removed is the current action, the default is activated', async () => {
         map = new VlTestMapWithActions({
-            actions: [action1, action2],
+            disableEscapeKey: false,
+            disableKeyboard: false,
+            disableMouseWheelZoom: false,
+            disableRotation: false
         });
 
         const activateDefaultActionSpy = jest.spyOn(map, 'activateDefaultAction').mockClear();
@@ -112,71 +104,13 @@ describe('map with actions', () => {
         expect(activateDefaultActionSpy).toHaveBeenCalled();
     });
 
-    it('there are 9 predefined interactions', () => {
-        const map = new VlTestMapWithActions({
-            actions: [],
-        });
-
-        expect(map.getInteractions().getLength()).toBe(9); // There are 9 standard interactions
-        expect(
-            map
-                .getInteractions()
-                .getArray()
-                .filter((interaction) => interaction instanceof DragRotate).length,
-        ).toBe(1);
-        expect(
-            map
-                .getInteractions()
-                .getArray()
-                .filter((interaction) => interaction instanceof DoubleClickZoom).length,
-        ).toBe(1);
-        expect(
-            map
-                .getInteractions()
-                .getArray()
-                .filter((interaction) => interaction instanceof KeyboardPan).length,
-        ).toBe(1);
-        expect(
-            map
-                .getInteractions()
-                .getArray()
-                .filter((interaction) => interaction instanceof KeyboardZoom).length,
-        ).toBe(1);
-        expect(
-            map
-                .getInteractions()
-                .getArray()
-                .filter((interaction) => interaction instanceof MouseWheelZoom).length,
-        ).toBe(1);
-        expect(
-            map
-                .getInteractions()
-                .getArray()
-                .filter((interaction) => interaction instanceof PinchZoom).length,
-        ).toBe(1);
-        expect(
-            map
-                .getInteractions()
-                .getArray()
-                .filter((interaction) => interaction instanceof PinchRotate).length,
-        ).toBe(1);
-        expect(
-            map
-                .getInteractions()
-                .getArray()
-                .filter((interaction) => interaction instanceof DragPan).length,
-        ).toBe(1);
-        expect(
-            map
-                .getInteractions()
-                .getArray()
-                .filter((interaction) => interaction instanceof DragZoom).length,
-        ).toBe(1);
-    });
 
     it('when creating a map with actions, standard functionality is added to the map that on escape the first map action gets activated when no action is active', () => {
         map = new VlTestMapWithActions({
-            actions: [],
+            disableEscapeKey: false,
+            disableKeyboard: false,
+            disableMouseWheelZoom: false,
+            disableRotation: false
         });
 
         jest.spyOn(map, 'activateDefaultAction');
@@ -187,18 +121,21 @@ describe('map with actions', () => {
         expect(map.activateDefaultAction).toHaveBeenCalled();
     });
 
-    it('when creating a map with actions, standard functionality is added to the map that on escape the current active action gets stopped when an action is active', async () => {
+    it('when creating a map, and adding an action, standard functionality is added to the map that on escape the current active action gets stopped when an action is active', async () => {
         const source = new VectorSource({});
 
         const layer = {
             getSource: () => source,
         };
+        map = new VlTestMapWithActions({
+            disableEscapeKey: false,
+            disableKeyboard: false,
+            disableMouseWheelZoom: false,
+            disableRotation: false
+        });
 
         const drawLineAction = new VlDrawLineAction(layer, () => {}, {});
-
-        map = new VlTestMapWithActions({
-            actions: [drawLineAction],
-        });
+        map.addAction(drawLineAction);
 
         jest.spyOn(drawLineAction, 'stop');
 
@@ -215,10 +152,10 @@ describe('map with actions', () => {
         currentActiveActionStub.mockReset();
     });
 
-    it('if desired, the standard escape functionality can be disabled when creating a map with actions', () => {
+    it('if desired, the standard escape functionality can be disabled', () => {
         const map = new VlTestMapWithActions({
-            actions: [],
-            disableEscapeKey: true,
+            disableKeyboard: false, disableMouseWheelZoom: false, disableRotation: false,
+            disableEscapeKey: true
         });
 
         const activateDefaultActionStub = jest.spyOn(map, 'activateDefaultAction').mockImplementation();
@@ -232,10 +169,10 @@ describe('map with actions', () => {
         activateDefaultActionStub.mockReset();
     });
 
-    it('if desired, the standard rotation functionality can be disabled when creating a map with actions', () => {
+    it('if desired, the standard rotation functionality can be disabled', () => {
         const map = new VlTestMapWithActions({
-            actions: [],
-            disableRotation: true,
+            disableEscapeKey: false, disableKeyboard: false, disableMouseWheelZoom: false,
+            disableRotation: true
         });
 
         expect(map.getInteractions().getLength()).toBe(7); // 9-2=7
@@ -297,9 +234,9 @@ describe('map with actions', () => {
 
     it('if desired, extra interactions can be added when creating a map with actions', () => {
         const map = new VlTestMapWithActions({
-            actions: [],
+            disableEscapeKey: false, disableKeyboard: false, disableMouseWheelZoom: false,
             interactions: new Collection([new PinchZoom(), new PinchRotate()]),
-            disableRotation: true,
+            disableRotation: true
         });
 
         expect(map.getInteractions().getLength()).toBe(9); // 9-2+2=9
@@ -307,8 +244,8 @@ describe('map with actions', () => {
 
     it('if desired, zooming with the mouse wheel can be turned off', () => {
         const map = new VlTestMapWithActions({
-            actions: [],
-            disableMouseWheelZoom: true,
+            disableEscapeKey: false, disableKeyboard: false, disableRotation: false,
+            disableMouseWheelZoom: true
         });
 
         expect(map.getInteractions().getLength()).toBe(8);

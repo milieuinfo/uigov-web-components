@@ -2,6 +2,7 @@ import Select from 'ol/interaction/Select';
 import Translate from 'ol/interaction/Translate';
 import { VlBaseMapAction } from '../mapaction';
 
+//TODO: wordt dit nog gebruikt?
 export class VlTranslateAction extends VlBaseMapAction {
     selectInteraction: Select;
     translateInteraction: Translate;
