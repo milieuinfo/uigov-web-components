@@ -232,7 +232,7 @@ jobs:
   release-and-publish:
     if:
       # only publish release and develop-team branches
-      contains('refs/heads/release, refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
+      contains('refs/heads/release, refs/heads/bugfix, refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -255,7 +255,7 @@ jobs:
             cypress/cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
       - name: release the develop branch
-        if: contains('refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
+        if: contains('refs/heads/bugfix, refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
         run: |
           cd ./
           mv .releaserc-develop .releaserc
@@ -278,8 +278,8 @@ jobs:
           rootsemver=$(echo ${{ env.nextRelease_version }} | cut -d '.' -f1-3)
           echo using $rootsemver as rootsemver
           echo "root_semver=$rootsemver" >> $GITHUB_ENV
-      - name: build the pages_sub_path for develop branches
-        if: contains('refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
+      - name: build the pages_sub_path for bugfix and develop branches
+        if: contains('refs/heads/bugfix, refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
         run: |
           pagesSubPath=${{ github.ref_name }}
           echo using $pagesSubPath as pages_sub_path
