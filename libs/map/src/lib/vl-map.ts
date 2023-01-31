@@ -9,6 +9,7 @@ import { EVENT } from './vl-map.model';
 import styles from './vl-map.scss';
 import Control from "ol/control/Control";
 import Collection from "ol/Collection";
+import {Extent} from "ol/extent";
 
 @webComponent('vl-map')
 export class VlMap extends BaseElementOfType(HTMLElement) {
@@ -124,6 +125,9 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         return [9928, 66928, 272072, 329072];
     }
 
+    _getCurrentBoundingBox(): Extent {
+        return this.map.getView().calculateExtent(this.map.getSize());
+    }
     connectedCallback() {
         this.__initializeCoordinateSystem();
 

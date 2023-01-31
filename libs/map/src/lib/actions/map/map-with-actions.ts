@@ -122,7 +122,7 @@ export class VlMapWithActions extends Map {
 
         action.interactions.forEach((interaction) => {
             this.addInteraction(interaction);
-            interaction.map = action.map;
+            interaction.map = action.map; //TODO: nodig ?
         });
     }
 
