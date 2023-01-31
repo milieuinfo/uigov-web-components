@@ -3,33 +3,44 @@ import GeoJSON from 'ol/format/GeoJSON';
 import BaseLayer from 'ol/layer/Base';
 import View from 'ol/View';
 import Overlay from 'ol/Overlay';
-import { Zoom, Rotate, ScaleLine, OverviewMap } from 'ol/control';
-import { VlMapWithActions } from './map-with-actions';
+import { Zoom, Rotate, ScaleLine, OverviewMap, Control } from 'ol/control';
+import {VlMapWithActionsOptions, VlMapWithActions} from './map-with-actions';
+import OlProjection from "ol/proj/Projection";
+import OlLayerGroup from "ol/layer/Group";
 
 /**
  * Dit is een versie van de VlMapWithActions die nog enkele extra functies bevat zoals het zoomen naar een bepaalde extent (of bounding box), het togglen van de layers, en alle functionaliteit omtrent een overzichtskaartje (ol.control.OverviewMap).
  * De view kan in het map opties object bij constructie worden meegegeven of een default view wordt aangemaakt op basis van de projectie.
  */
+
+export interface VLCustomMapOptions extends VlMapWithActionsOptions {
+    custom?: any;
+    maxZoomViewToExtent?: number;
+    defaultZoom: boolean;
+    projection: OlProjection;
+    customLayers: CustomLayersType;
+
+}
+
+type CustomLayersType = {
+    baseLayerGroup: OlLayerGroup,
+    overviewMapLayers: any[],
+    overlayGroup: OlLayerGroup,
+}
+
 export class VlCustomMap extends VlMapWithActions {
     overviewMapControl: any;
 
-    private projection: any;
-    private view: any;
+    private projection: OlProjection;
+    private view: View;
     private custom: any;
     private geoJSONFormat: GeoJSON;
     private baseLayers: any;
-    private maxZoomViewToExtent: any;
+    private maxZoomViewToExtent: number;
     private overviewMapLayers: any;
-    constructor(options) {
+
+    constructor(options: VLCustomMapOptions) {
         options.layers = [options.customLayers.baseLayerGroup, options.customLayers.overlayGroup];
-
-        options.controls = [
-            new Rotate(),
-            new ScaleLine({
-                minWidth: 128,
-            }),
-        ].concat(options.controls || []);
-
         options.view = new View({
             // default
             extent: options.projection.getExtent(),
@@ -43,6 +54,12 @@ export class VlCustomMap extends VlMapWithActions {
         });
 
         super(options);
+
+        if(options.controls == undefined) {
+            options.controls = new Collection<Control>();
+        }
+        options.controls.push(new Rotate());
+        options.controls.push(new ScaleLine({minWidth: 128}));
 
         if (options.defaultZoom === undefined || options.defaultZoom === true) {
             this.addControl(new Zoom());
@@ -141,7 +158,7 @@ export class VlCustomMap extends VlMapWithActions {
         this.zoomViewToExtent(this.getView(), boundingBox, maxZoom);
     }
 
-    zoomViewToExtent(view, boundingBox, maxZoom) {
+    zoomViewToExtent(view: View, boundingBox, maxZoom) {
         if (boundingBox) {
             view.fit(boundingBox, { size: this.getSize() });
         }

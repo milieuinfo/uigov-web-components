@@ -1,15 +1,15 @@
-import { defaults } from 'ol/interaction';
+import {defaults} from 'ol/interaction';
 import Map from 'ol/Map';
-import { CONTROL_TYPE } from '../../vl-map.model';
+import {CONTROL_TYPE} from '../../vl-map.model';
+import {MapOptions} from "ol/PluggableMap";
 
-export interface VlMapActionOptions {
-    disableEscapeKey?: Boolean;
-    actions?: any;
-    interactions?: any;
-    disableKeyboard?: Boolean;
-    disableRotation?: Boolean;
-    disableMouseWheelZoom?: Boolean;
+export interface VlMapWithActionsOptions extends MapOptions {
+    disableEscapeKey: boolean;
+    disableKeyboard: boolean;
+    disableRotation: boolean;
+    disableMouseWheelZoom: boolean;
 }
+
 
 /**
  * Deze map bevat enkel de functionaliteit om de acties te behandelen. Aan het eerste argument van de constructor kan het gebruikelijke object map opties worden weergegeven die ook op de ol.Map worden gezet, samen met een extra parameter 'acties' in dat object. Deze array bevat MapActions.
@@ -17,33 +17,30 @@ export interface VlMapActionOptions {
  *
  * Deze kaart regelt dat er maar één actie actief kan staan. Bij het activeren van een andere actie wordt namelijk de huidige actie gedeactiveerd.
  */
+
 export class VlMapWithActions extends Map {
-    private actions: any[];
+    private _actions: any[] = [];
     private timeout: any;
     static get CLICK_COUNT_TIMEOUT() {
         return 300;
     }
+    get actions(): any[] {
+        return this._actions;
+    }
 
-    constructor(options: VlMapActionOptions = <VlMapActionOptions>{}) {
-        const { disableRotation, disableMouseWheelZoom, disableKeyboard } = options;
-        const enableRotation = !disableRotation;
-        const enableMouseWheelZoom = !disableMouseWheelZoom;
+    constructor(options: VlMapWithActionsOptions) {
+
         const interactions = defaults({
-            altShiftDragRotate: enableRotation,
-            pinchRotate: enableRotation,
-            mouseWheelZoom: enableMouseWheelZoom,
-            keyboard: !disableKeyboard,
+            altShiftDragRotate: !options.disableRotation,
+            pinchRotate: !options.disableRotation,
+            mouseWheelZoom: !options.disableMouseWheelZoom,
+            keyboard: !options.disableKeyboard,
         });
         if (options && options.interactions) {
             options.interactions.forEach((interaction) => interactions.push(interaction));
         }
         options.interactions = interactions;
         super(options);
-        this.actions = [];
-
-        options.actions.forEach((action) => {
-            this.addAction(action);
-        });
 
         // TODO: check if timeout and activating default is still needed here (old bugfix)
         setTimeout(() => {
@@ -70,15 +67,15 @@ export class VlMapWithActions extends Map {
     }
 
     getDefaultActiveAction() {
-        return this.actions && this.actions.find((action) => action.element._defaultActive);
+        return this._actions && this._actions.find((action) => action.element._defaultActive);
     }
 
     getCurrentActiveAction() {
-        return this.actions && this.actions.find((action) => action.element._active);
+        return this._actions && this._actions.find((action) => action.element._active);
     }
 
     getActionWithIdentifier(identifier) {
-        return this.actions && this.actions.find((action) => action.element.identifier === identifier);
+        return this._actions && this._actions.find((action) => action.element.identifier === identifier);
     }
 
     getControlsOfType(type) {
@@ -99,7 +96,7 @@ export class VlMapWithActions extends Map {
     }
 
     getLayerActions(layer) {
-        return this.actions && this.actions.filter((action) => action.layer === layer);
+        return this._actions && this._actions.filter((action) => action.layer === layer);
     }
 
     activateAction(action) {
@@ -125,7 +122,7 @@ export class VlMapWithActions extends Map {
 
         action.interactions.forEach((interaction) => {
             this.addInteraction(interaction);
-            interaction.map = action.map;
+            interaction.map = action.map; //TODO: nodig ?
         });
     }
 
@@ -144,7 +141,7 @@ export class VlMapWithActions extends Map {
 
         action.element.reset();
 
-        this.actions.splice(this.actions.indexOf(action), 1);
+        this._actions.splice(this._actions.indexOf(action), 1);
     }
 
     activateDefaultAction() {

@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import {VlMap} from "../../vl-map";
 
 @webComponent('vl-map-action')
 export class VlMapAction extends BaseElementOfType(HTMLElement) {
@@ -23,7 +24,7 @@ export class VlMapAction extends BaseElementOfType(HTMLElement) {
         return this._action;
     }
 
-    get _mapElement() {
+    get _mapElement(): VlMap {
         return this.closest('vl-map');
     }
 
@@ -71,7 +72,7 @@ export class VlMapAction extends BaseElementOfType(HTMLElement) {
 
     _processAction() {
         if (this.action) {
-            this.action.element = this;
+            this.action.element = this; //TODO: nodig ???
             this._mapElement.addAction(this.action);
 
             // Activate the action when

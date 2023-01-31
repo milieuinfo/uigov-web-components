@@ -1,5 +1,6 @@
 import { webComponent } from '@domg-wc/common-utilities';
 import { VlMapAction } from '../vl-map-action';
+import {VlMapLayer} from "../../layer/vl-map-layer";
 
 /**
  * VlMapLayerAction
@@ -33,8 +34,7 @@ export class VlMapLayerAction extends VlMapAction {
      *
      * @return {Object}
      */
-    // @ts-ignore
-    get layer() {
+    get layer(): VlMapLayer {
         return this._layer;
     }
 
