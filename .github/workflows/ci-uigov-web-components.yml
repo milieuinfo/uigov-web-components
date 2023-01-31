@@ -16,7 +16,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -40,14 +39,13 @@ jobs:
           path: |
             ./node_modules
             cypress/cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
+          key: ${{ runner.os }}-${{ hashFiles('./package-lock.json') }}
 
   perform-all-unit-tests:
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
-        working-directory: ./
     needs: checkout-install-and-cache
     steps:
       - uses: actions/checkout@v3
@@ -60,7 +58,7 @@ jobs:
           path: |
             ./node_modules
             cypress/cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
+          key: ${{ runner.os }}-${{ hashFiles('./package-lock.json') }}
       - name: uigov-web-components - test
         run: npx nx run-many --all --target=test --parallel --maxParallel=4 --skip-nx-cache
         continue-on-error: false
@@ -76,7 +74,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./
     needs: checkout-install-and-cache
     steps:
       - uses: actions/checkout@v3
@@ -89,7 +86,7 @@ jobs:
           path: |
             ./node_modules
             cypress/cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
+          key: ${{ runner.os }}-${{ hashFiles('./package-lock.json') }}
       - name: uigov-web-components - web-test-runner
         run: |
           npm run build:all
@@ -107,7 +104,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./
     needs: checkout-install-and-cache
     steps:
       - uses: actions/checkout@v3
@@ -120,7 +116,7 @@ jobs:
           path: |
             ./node_modules
             cypress/cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
+          key: ${{ runner.os }}-${{ hashFiles('./package-lock.json') }}
       - name: build apps
         run: npx nx build
       - name: build libraries
@@ -142,7 +138,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./
     needs: checkout-install-and-cache
     steps:
       - uses: actions/checkout@v3
@@ -155,7 +150,7 @@ jobs:
           path: |
             ./node_modules
             cypress/cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
+          key: ${{ runner.os }}-${{ hashFiles('./package-lock.json') }}
       - name: storybook - e2e-test
         run: npm run storybook:ci-test-parallel-${{ matrix.job }}
       - name: archive Storybook e2e test results
@@ -170,7 +165,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./
     needs: e2e-test-storybook
     steps:
       - uses: actions/checkout@v3
@@ -183,7 +177,7 @@ jobs:
           path: |
             ./node_modules
             cypress/cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
+          key: ${{ runner.os }}-${{ hashFiles('./package-lock.json') }}
       - name: download artifact dist-e2e-test-storybook-p1
         uses: actions/download-artifact@v3
         with:
@@ -253,11 +247,10 @@ jobs:
           path: |
             ./node_modules
             cypress/cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_number }}
+          key: ${{ runner.os }}-${{ hashFiles('./package-lock.json') }}
       - name: release the develop branch
         if: contains('refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
         run: |
-          cd ./
           mv .releaserc-develop .releaserc
           npx semantic-release
       - name: release the release branch
@@ -265,14 +258,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT_UIG }}
         run: |
-          cd ./
           mv .releaserc-release .releaserc
           npx semantic-release
       - name: get package version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@main
-        with:
-          path: ./
       - name: get root semver
         run: |
           rootsemver=$(echo ${{ env.nextRelease_version }} | cut -d '.' -f1-3)
