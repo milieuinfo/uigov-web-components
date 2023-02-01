@@ -26,7 +26,7 @@ export const checkboxDefault = ({
         data-vl-name=${name}
         data-vl-value=${value}
         ?data-vl-single=${single}
-        ?data-vl-switch${switchAttr}
+        ?data-vl-switch=${switchAttr}
         data-cy="checkbox"
     ></vl-checkbox>
 `;
