@@ -6,11 +6,12 @@ import styles from './style/vl-functional-header.scss';
  * @class
  * @classdesc Toont bovenaan de pagina generieke informatie zonder af te leiden zoals bijvoorgeeld titel, acties, tab navigatie of zoek input.
  *
- * @property {String} data-vl-back - Attribuut wordt gebruikt om de terug link tekst te bepalen.
- * @property {String} data-vl-back-link - Attribuut wordt gebruikt om de terug link te bepalen.
- * @property {String} data-vl-link - Attribuut wordt gebruikt om de link van de titel te bepalen.
- * @property {String} data-vl-title - Attribuut wordt gebruikt om de tekst van de titel te bepalen.
- * @property {String} data-vl-sub-title - Attribuut wordt gebruikt om de tekst van de sub titel te bepalen.
+ * @property {String} data-vl-back - Tekst van de terug-link.
+ * @property {String} data-vl-back-link - URL van de terug-link..
+ * @property {String} data-vl-disable-back-link - Zet de terug link uit.
+ * @property {String} data-vl-link - URL van de titel-link.
+ * @property {String} data-vl-sub-title - Tekst van de subtitel.
+ * @property {String} data-vl-title - Tekst van de titel.
  *
  * @extends HTMLElement
  * @mixes vlElement
@@ -18,7 +19,7 @@ import styles from './style/vl-functional-header.scss';
 @webComponent('vl-functional-header')
 export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
-        return ['back', 'back-link', 'title', 'sub-title', 'link'];
+        return ['back', 'back-link', 'disable-back-link', 'link', 'sub-title', 'title'];
     }
 
     constructor() {
@@ -73,6 +74,7 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
     connectedCallback() {
         this._observer = this.__observeSlotElements(() => this.__processSlotElements());
         this.__processSlotElements();
+        this._backLinkElement.onclick = (event: Event) => this._handleClickBackLink(event);
     }
 
     disconnectedCallback() {
@@ -155,8 +157,21 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
         this._backLinkElement.href = newValue || document.referrer;
     }
 
+    _handleClickBackLink(event: Event) {
+        if (this.hasAttribute('disable-back-link')) {
+            event.preventDefault();
+        }
+
+        this.dispatchEvent(
+            new CustomEvent('vl-click-back', {
+                bubbles: true,
+                composed: true,
+            })
+        );
+    }
+
     /**
-     * Zet de click event listener voor de 'Terug' knop. Default: ```() => window.history.back()```
+     * Zet de click event listener voor de 'Terug' knop. Default: ```document.referrer```
      *
      * @param {Function} eventListener - Functie met de uit te voeren handeling als op de terug knop wordt geklikt.
      */

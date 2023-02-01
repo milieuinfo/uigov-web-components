@@ -2,14 +2,14 @@ import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 
-export const privacyArgs = {
+export const cookieStatementArgs = {
     date: '',
     disableBackLink: false,
     version: '',
     onClickBack: action('vl-click-back'),
 };
 
-export const privacyArgTypes: ArgTypes<typeof privacyArgs> = {
+export const cookieStatementArgTypes: ArgTypes<typeof cookieStatementArgs> = {
     date: {
         name: 'data-vl-date',
         description: 'De datum waarop de pagina werd uitgegeven.',

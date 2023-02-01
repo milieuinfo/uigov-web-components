@@ -1,20 +1,12 @@
 import { html } from 'lit';
-import { COMPLIANCE_STATUS, EVALUATION_STATUS } from '../vl-accessibility.model';
+import { AccessibilityProperties } from '../vl-accessibility.model';
 
-export const inaccessibleContent = ({
-    complianceStatus,
-    evaluationStatus,
-    limitations,
-}: {
-    complianceStatus: COMPLIANCE_STATUS;
-    evaluationStatus: EVALUATION_STATUS;
-    limitations: any;
-}) => {
+export const inaccessibleContent = ({ compliance, evaluation, limitations }: AccessibilityProperties) => {
     const inaccessibleContentTemplate = () => {
-        if (evaluationStatus === 'NOT_EVALUATED') {
+        if (evaluation === 'NOT_EVALUATED') {
             return html`De niet-toegankelijke inhoud is onbekend omdat de website niet is getest.`;
         }
-        if (complianceStatus === 'FULLY_COMPLIANT') {
+        if (compliance === 'FULLY_COMPLIANT') {
             return html`Er is geen niet-toegankelijke inhoud omdat de website volledig toegankelijk is.`;
         }
         return html`
@@ -44,7 +36,7 @@ export const inaccessibleContent = ({
         `;
     };
     return html` <div
-        style=${complianceStatus === COMPLIANCE_STATUS.FULLY_COMPLIANT && 'display: none'}
+        style=${compliance === 'FULLY_COMPLIANT' && 'display: none'}
         id="inaccessible-content"
         is="vl-column"
         data-vl-size="12"

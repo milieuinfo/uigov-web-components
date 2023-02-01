@@ -14,15 +14,18 @@ export const EVALUATION_STATUS = {
 
 export type EVALUATION_STATUS = typeof EVALUATION_STATUS[keyof typeof EVALUATION_STATUS];
 
-export interface AccessibilityStatus {
-    complianceStatus: COMPLIANCE_STATUS;
-    evaluationStatus: EVALUATION_STATUS;
+export interface Limitations {
+    withTiming?: string[];
+    withoutTiming?: string[];
+    outsideApplicableLaw?: string[];
 }
-
-export interface AccessibilityProperties extends AccessibilityStatus {
-    version: string;
+export interface AccessibilityProperties {
     application: string;
-    limitations: any;
+    compliance: COMPLIANCE_STATUS;
     date: string;
     dateModified: string;
+    disableBackLink: boolean;
+    evaluation: EVALUATION_STATUS;
+    limitations?: Limitations;
+    version: string;
 }
