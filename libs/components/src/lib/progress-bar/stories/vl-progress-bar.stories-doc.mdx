@@ -1,45 +1,34 @@
-import {ArgsTable, DocsStory, PRIMARY_STORY} from "@storybook/addon-docs";
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
 
 # Progress Bar
 
 Gebruik een progress-bar om de vooruitgang te tonen van een proces dat uit verschillende stappen bestaat.
 
-
 ## Voorbeeld
 
 ```js
-import { VlProgressBarComponent } from '@domg-lib/components'
+import { VlProgressBarComponent } from '@domg-wc/components';
 ```
 
 ```html
-    <vl-progress-bar data-vl-active-step="1"></vl-progress-bar>
+<vl-progress-bar></vl-progress-bar>
 ```
 
-<div>
-    <DocsStory id="components-progress-bar--progress-bar-default" />
-</div>
-
+<DocsStory id="components-progress-bar--progress-bar-default" />
 
 ## Configuratie
 
 <ArgsTable story={PRIMARY_STORY} />
 
-
 ## Varianten
 
 ### Numerieke indicators
 
-<div>
-    <DocsStory id="components-progress-bar--progress-bar-numeric" />
-</div>
-
+<DocsStory id="components-progress-bar--progress-bar-numeric" />
 
 ### Focus op de actieve stap
 
-<div>
-    <DocsStory id="components-progress-bar--progress-bar-focused" />
-</div>
-
+<DocsStory id="components-progress-bar--progress-bar-focused" />
 
 ## Referenties
 

@@ -86,6 +86,7 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
     }
 
     get _dressedAttribute() {
+        // TODO: Fix. Dit werkt niet omdat het "accordion-dressed" attribuut op de button wordt gezet en niet op het parent element.
         return this.getAttribute('accordion-dressed');
     }
 

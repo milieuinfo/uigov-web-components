@@ -13,27 +13,31 @@ export default {
 };
 
 export const cookieConsentDefault = ({
-                                         analytics,
-                                         autoOptInFunctionalDisabled,
-                                         owner,
-                                         link,
-                                     }: typeof cookieConsentArgs) => {
-    return html` <vl-cookie-consent
-            data-cy="cookie-consent"
-            id="cookie-consent"
-            ?data-vl-analytics=${analytics}
-            data-vl-auto-open-disabled=""
-            ?data-vl-auto-opt-in-functional-disabled=${autoOptInFunctionalDisabled}
-            data-vl-owner=${ifDefinedString(owner)}
-            data-vl-link=${ifDefinedString(link)}
-        ></vl-cookie-consent>
-        <button
-            data-cy="button-open-cookie-consent"
-            id="button-open-cookie-consent"
-            is="vl-button"
-            onClick="document.querySelector('#cookie-consent').open();"
-        >
-            Open cookie-consent
-        </button>`;
+    analytics,
+    autoOptInFunctionalDisabled,
+    owner,
+    link,
+}: typeof cookieConsentArgs) => {
+    return html`
+        <div>
+            <vl-cookie-consent
+                data-cy="cookie-consent"
+                id="cookie-consent"
+                ?data-vl-analytics=${analytics}
+                data-vl-auto-open-disabled=""
+                ?data-vl-auto-opt-in-functional-disabled=${autoOptInFunctionalDisabled}
+                data-vl-owner=${ifDefinedString(owner)}
+                data-vl-link=${ifDefinedString(link)}
+            ></vl-cookie-consent>
+            <button
+                data-cy="button-open-cookie-consent"
+                id="button-open-cookie-consent"
+                is="vl-button"
+                onClick="document.querySelector('#cookie-consent').open();"
+            >
+                Open cookie-consent
+            </button>
+        </div>
+    `;
 };
 cookieConsentDefault.storyName = 'vl-cookie-consent - default';
