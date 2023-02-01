@@ -13,7 +13,7 @@ export class VlMapClickedEvent extends Event {
 
 
     constructor(coordinate: Coordinate, pixel: Pixel, currentBoundingBox: Extent) {
-        super(eventType);
+        super(eventType, { bubbles: true });
         this._coordinate = coordinate;
         this._pixel = pixel;
         this._currentBoundingBox = currentBoundingBox;
