@@ -11,6 +11,10 @@ import styles from './style/vl-cookie-statement.scss';
 
 @webComponent('vl-cookie-statement')
 export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
+    static get _observedAttributes() {
+        return ['date', 'disable-back-link', 'version'];
+    }
+
     constructor() {
         super(`
             <style>
@@ -18,9 +22,6 @@ export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
             </style>
             <vl-functional-header data-vl-title="Departement Omgeving" data-vl-sub-title="Cookieverklaring" data-vl-link="https://omgeving.vlaanderen.be"></vl-functional-header>
         `);
-
-        const version = this.dataset.vlVersion || '1.0.0';
-        const date = this.dataset.vlDate || '3 maart 2021';
 
         this._element.insertAdjacentHTML(
             'afterend',
@@ -33,7 +34,7 @@ export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
                     </div>
                     <div is="vl-column" data-vl-size="10">
                         <p is="vl-introduction">
-                            <span>Versie</span> <span id="introduction-version">${version}</span> - <span id="introduction-date">${date}</span>
+                            <span>Versie</span> <span id="introduction-version">1.0.0</span> - <span id="introduction-date">3 maart 2021</span>
                         </p>
                     </div>
 
@@ -160,6 +161,28 @@ export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
         </section>
     `
         );
+    }
+
+    _versionChangedCallback(oldValue: string, newValue: string) {
+        const versionElement = this._shadow.getElementById('introduction-version');
+
+        versionElement.innerText = newValue;
+    }
+
+    _dateChangedCallback(oldValue: string, newValue: string) {
+        const dateElement = this._shadow.getElementById('introduction-date');
+
+        dateElement.innerText = newValue;
+    }
+
+    _disableBackLinkChangedCallback() {
+        const functionalHeader = this._shadow.querySelector('vl-functional-header');
+
+        if (this.hasAttribute('disable-back-link')) {
+            functionalHeader.setAttribute('data-vl-disable-back-link', '');
+        } else {
+            functionalHeader.removeAttribute('data-vl-disable-back-link');
+        }
     }
 }
 

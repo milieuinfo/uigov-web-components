@@ -1,5 +1,7 @@
-import { html } from 'lit-html';
+import { html, nothing } from 'lit-html';
 import '../vl-accessibility.section';
+import { Meta, StoryFn } from '@storybook/web-components';
+import accessibilityDoc from './vl-accessibility.stories-doc.mdx';
 import { accessibilityArgs, accessibilityArgTypes } from './vl-accessibility.stories-arg';
 
 // TODO kspeltin: deze commentaar was dode code, moet die ergens opgenomen worden ?
@@ -18,32 +20,37 @@ import { accessibilityArgs, accessibilityArgTypes } from './vl-accessibility.sto
 
 export default {
     title: 'sections/accessibility',
-    parameters: {
-        layout: 'fullscreen',
-    },
-
     args: accessibilityArgs,
     argTypes: accessibilityArgTypes,
-};
+    parameters: {
+        layout: 'fullscreen',
+        docs: { page: accessibilityDoc },
+    },
+} as Meta<typeof accessibilityArgs>;
 
-export const accessibilityDefault = ({
+const Template: StoryFn<typeof accessibilityArgs> = ({
     application,
-    version,
+    compliance,
     date,
     dateModified,
-    compliance,
-    limitations,
+    disableBackLink,
     evaluation,
-}: typeof accessibilityArgs) => {
-    return html` <vl-accessibility
-        data-vl-application=${application}
-        data-vl-version=${version}
-        data-vl-date=${date}
-        data-vl-date-modified=${dateModified}
-        data-vl-compliance=${compliance}
-        data-vl-evaluation=${evaluation}
+    version,
+    limitations,
+    onClickBack,
+}) => html`
+    <vl-accessibility
+        data-vl-application=${application || nothing}
+        data-vl-compliance=${compliance || nothing}
+        data-vl-date=${date || nothing}
+        data-vl-date-modified=${dateModified || nothing}
+        ?data-vl-disable-back-link=${disableBackLink}
+        data-vl-evaluation=${evaluation || nothing}
+        data-vl-version=${version || nothing}
         .limitations=${limitations}
-        data-cy="accessibility"
-    ></vl-accessibility>`;
-};
-accessibilityDefault.storyName = 'vl-accessibility - default';
+        @vl-click-back=${onClickBack}
+    ></vl-accessibility>
+`;
+
+export const AccessibilityDefault = Template.bind({});
+AccessibilityDefault.storyName = 'vl-accessibility - default';

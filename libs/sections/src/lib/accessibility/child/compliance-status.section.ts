@@ -1,10 +1,10 @@
 import { html } from 'lit';
 import { wcagLink } from './wcag-link.section';
-import { AccessibilityStatus } from '../vl-accessibility.model';
+import { AccessibilityProperties } from '../vl-accessibility.model';
 
-export const complianceStatus = ({ complianceStatus, evaluationStatus }: AccessibilityStatus) => {
+export const complianceStatus = ({ compliance, evaluation }: AccessibilityProperties) => {
     const complianceTemplate = () => {
-        switch (complianceStatus) {
+        switch (compliance) {
             case 'FULLY_COMPLIANT':
                 return html`Deze website voldoet volledig aan de ${wcagLink()}.`;
             case 'PARTIALLY_COMPLIANT':
@@ -19,8 +19,6 @@ export const complianceStatus = ({ complianceStatus, evaluationStatus }: Accessi
     };
     return html` <div id="compliance-status" is="vl-column" data-vl-size="12" data-vl-medium-size="12">
         <h2 is="vl-h2">Nalevingsstatus</h2>
-        ${evaluationStatus === 'NOT_EVALUATED'
-            ? html`Deze website voldoet niet aan de ${wcagLink()}.`
-            : complianceTemplate()}
+        ${evaluation === 'NOT_EVALUATED' ? html`Deze website voldoet niet aan de ${wcagLink()}.` : complianceTemplate()}
     </div>`;
 };

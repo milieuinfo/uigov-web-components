@@ -1,7 +1,7 @@
 import { html } from 'lit';
-import { COMPLIANCE_STATUS } from '../vl-accessibility.model';
+import { AccessibilityProperties } from '../vl-accessibility.model';
 
-export const sideNavigation = ({ complianceStatus }: { complianceStatus: COMPLIANCE_STATUS }) => {
+export const sideNavigation = ({ compliance }: AccessibilityProperties) => {
     return html` <div
         is="vl-column"
         data-vl-size="4"
@@ -20,7 +20,7 @@ export const sideNavigation = ({ complianceStatus }: { complianceStatus: COMPLIA
                         </a>
                     </li>
                     <li
-                        style=${complianceStatus === 'FULLY_COMPLIANT' && 'display: none'}
+                        style=${compliance === 'FULLY_COMPLIANT' && 'display: none'}
                         is="vl-side-navigation-item"
                         data-vl-parent
                     >

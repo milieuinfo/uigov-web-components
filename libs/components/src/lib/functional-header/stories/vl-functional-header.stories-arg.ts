@@ -1,119 +1,157 @@
-import { CATEGORIES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { ArgTypes } from '@storybook/web-components';
+import { action } from '@storybook/addon-actions';
 
 export const functionalHeaderArgs = {
-    title: 'School- en studietoelagen',
-    subTitle: 'Voor lager, middelbaar en hoger onderwijs',
+    back: '',
+    backLink: '',
+    disableBackLink: false,
     link: '#',
-    backLink: '#',
-    back: 'Terug',
+    subTitle: 'Voor lager, middelbaar en hoger onderwijs',
+    title: 'School- en studietoelagen',
+    actionsSlot: `<div slot="actions">
+    <a href="#">Actie 1</a>
+    <a href="#">Actie 2</a>
+</div>`,
+    backSlot: '<span slot="back">Terug</span>',
+    backLinkSlot: '<a slot="back-link" href="#">Terug</a>',
+    subHeaderSlot: '<span slot="sub-header">Sub header content</span>',
+    subTitleSlot: '<span slot="sub-title">Voor lager, middelbaar en hoger onderwijs</span>',
+    titleSlot: '<span slot="title">School- en studietoelagen</span>',
+    topLeftSlot: '<span slot="top-left">Linkerbovenhoek content</span>',
+    topRightSlot: '<span slot="top-right">Rechterbovenhoek content</span>',
+    onClickBack: action('vl-click-back'),
 };
 
-export const functionalHeaderArgTypes = {
-    title: {
-        name: 'data-vl-title',
-        type: { summary: 'string' },
-        description: 'Attribuut wordt gebruikt om de tekst van de titel te bepalen.',
+export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
+    back: {
+        name: 'data-vl-back',
+        description: 'Tekst van de terug-link.',
         table: {
-            defaultValue: { summary: '' },
-        },
-    },
-    subTitle: {
-        name: 'data-vl-sub-title',
-        type: { summary: 'string' },
-        description: 'Attribuut wordt gebruikt om de tekst van de sub titel te bepalen.',
-        table: {
-            defaultValue: { summary: '' },
-        },
-    },
-    link: {
-        name: 'data-vl-link',
-        type: { summary: 'string' },
-        description: 'Attribuut wordt gebruikt om de link van de titel te bepalen.',
-        table: {
-            defaultValue: { summary: '' },
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: '"Terug"' },
         },
     },
     backLink: {
         name: 'data-vl-back-link',
-        type: { summary: 'string' },
-        description: 'Attribuut wordt gebruikt om de terug link te bepalen.',
+        description: 'URL van de terug-link.',
         table: {
-            defaultValue: { summary: '' },
+            type: { summary: TYPES.URL },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: 'document.referrer' },
         },
     },
-    back: {
-        name: 'data-vl-back',
-        type: { summary: 'string' },
-        description: 'Attribuut wordt gebruikt om de terug link tekst te bepalen.',
+    disableBackLink: {
+        name: 'data-vl-disable-back-link',
+        description: 'Zet de terug-link uit.',
         table: {
-            defaultValue: { summary: '' },
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
         },
     },
-    titleSlot: {
-        name: 'title',
-        description: 'Slot wordt gebruikt om de tekst van de titel te bepalen.',
+    link: {
+        name: 'data-vl-link',
+        description: 'URL van de titel-link.',
         table: {
+            type: { summary: TYPES.URL },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    subTitle: {
+        name: 'data-vl-sub-title',
+        description: 'Tekst van de subtitel.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    title: {
+        name: 'data-vl-title',
+        description: 'Tekst van de titel.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    actionsSlot: {
+        name: 'actions',
+        description: 'Acties die worden afgebeeld in de rechterbovenhoek.',
+        table: {
+            type: { summary: TYPES.HTML },
             category: CATEGORIES.SLOTS,
-            defaultValue: { summary: undefined },
         },
     },
-    subTitleSlot: {
-        name: 'sub-title',
-        description: 'Slot wordt gebruikt om de tekst van de sub titel te bepalen.',
+    backSlot: {
+        name: 'back',
+        description:
+            'Wordt afgebeeld ipv de tekst van de terug-link.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-back attribuut<br>• back-link slot<br>• sub-header slot',
         table: {
+            type: { summary: TYPES.HTML },
             category: CATEGORIES.SLOTS,
-            defaultValue: { summary: undefined },
         },
     },
     backLinkSlot: {
         name: 'back-link',
         description:
-            'Defines the complete back link section that is displayed in the default sub header (section below the horizontal line)',
+            'Wordt afgebeeld ipv de terug-link.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-back attribuut<br>• data-vl-back-link attribuut<br>• data-vl-disable-back-link attribuutt<br>• back slot<br>• sub-header slot',
         table: {
+            type: { summary: TYPES.HTML },
             category: CATEGORIES.SLOTS,
-            defaultValue: { summary: undefined },
-        },
-    },
-    backSlot: {
-        name: 'back',
-        description: 'Slot wordt gebruikt om de terug link tekst te bepalen.',
-        table: {
-            category: CATEGORIES.SLOTS,
-            defaultValue: { summary: undefined },
-        },
-    },
-    actionsSlot: {
-        name: 'actions',
-        description:
-            'Defines what is displayed in the actions section in the top-left corner (right below the top-right slot) of the functional-header',
-        table: {
-            category: CATEGORIES.SLOTS,
-            defaultValue: { summary: undefined },
-        },
-    },
-    topLeftSlot: {
-        name: 'top-left',
-        description: 'Defines what is displayed in the top-left corner of the functional-header',
-        table: {
-            category: CATEGORIES.SLOTS,
-            defaultValue: { summary: undefined },
-        },
-    },
-    topRightSlot: {
-        name: 'top-right',
-        description: 'Defines what is displayed in the top-right corner of the functional-header',
-        table: {
-            category: CATEGORIES.SLOTS,
-            defaultValue: { summary: undefined },
         },
     },
     subHeaderSlot: {
         name: 'sub-header',
         description:
-            'Defines what is displayed in the sub-header (section below the horizontal line). If this slot is defines, the sub-title slot and the data-vl-sub-title, data-vl-link, data-vl-back-link attributes are ignored.',
+            'Wordt afgebeeld onder de horizontale lijn.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-back attribuut<br>• data-vl-back-link attribuut<br>• data-vl-disable-back-link attribuut<br>• data-vl-sub-title attribuut<br>• data-vl-link attribuut<br>• back slot<br>• back-link slot<br>• sub-title slot',
         table: {
+            type: { summary: TYPES.HTML },
             category: CATEGORIES.SLOTS,
-            defaultValue: { summary: undefined },
+        },
+    },
+    subTitleSlot: {
+        name: 'sub-title',
+        description:
+            'Wordt afgebeeld ipv de tekst van de subtitel.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-sub-title<br>• sub-header slot',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+        },
+    },
+    titleSlot: {
+        name: 'title',
+        description:
+            'Wordt afgebeeld ipv de tekst van de titel.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-title',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+        },
+    },
+    topLeftSlot: {
+        name: 'top-left',
+        description:
+            'Wordt afgebeeld in de linkerbovenhoek.<br>Kan niet in combinatie gebruikt worden met:<br>• actions slot',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+        },
+    },
+    topRightSlot: {
+        name: 'top-right',
+        description:
+            'Wordt afgebeeld in de rechterbovenhoek.<br>Kan niet in combinatie gebruikt worden met:<br>• actions slot',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+        },
+    },
+    onClickBack: {
+        name: 'vl-click-back',
+        description: 'Afgevuurd na het klikken op de terug-link.',
+        table: {
+            type: { summary: '-' },
+            category: CATEGORIES.EVENTS,
         },
     },
 };
