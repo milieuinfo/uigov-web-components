@@ -1,0 +1,123 @@
+import { Meta } from '@storybook/addon-docs';
+import uigBranching from '../../resources/Git Branching Strategie - UIG.png';
+import teamBranching from '../../resources/Git Branching Strategie - Teams.png';
+
+<Meta title="Ontwikkeling/Git Branching Strategie" />
+
+# Git Branching Strategie
+
+De ontwikkeling gebeurd in [git](https://git-scm.com/) op [GitHub](https://github.com/milieuinfo/uigov-web-components).
+Er is een [algemene branching strategie](#algemene-branching-stategie) om m.b.v. feature-branches tot pre-releases en
+uiteindelijk finale releases te komen. Ontwikkelteams (ApoCow, Decibel, Phoenix, ...) kunnen bijdrages leveren, de
+[team branching strategie](#team-branching-stategie) daarvoor is apart uitgetekend (het is eigenlijk een versimpelde
+variant van de algemene strategie)
+
+## Algemene Branching Stategie
+
+### Feature Branches
+
+Jira tickets worden opgenomen en uitgevoerd in een aparte feature-branch. De conventie voor de branch naam is
+__feature/JIRA-123-sleutel-woorden__. Als het UIG team bvb. ticket UIG-2322 opneemt met als titel
+'uigov-cdn-assets voorzien met tinyMCE theming en publiceren op artifactory' dan gebeurd dat in een branch met bvb. de
+naam __feature/UIG-2322-tinymce-cdn__. De feature branch is tijdelijk en bij voorkeur / meestal enkel voor eigen
+gebruik. Het ticket nummer moet in de naam staan, de sleutelwoorden geven een indicatie van wat het inhoud. Vermijdt
+er een ge-hyphende zin van te maken!
+
+### Commit Boodschappen
+
+Voor [releases](/story/ontwikkeling-build-release--page) wordt
+[semantic-release](https://github.com/semantic-release/semantic-release) gebruikt, dat steunt op commit
+boodschappen die de [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) specificatie volgen.
+
+De commits dienen bij ons volgende structuur te hebben, waarbij __type__ typisch 'fix' of 'feat' is.
+
+```
+<type>: <ticket-nummer> - <omschrijving>
+
+[optionele details]
+```
+
+In het voorbeeld van hierboven zet je dus als commit boodschap:
+
+```
+feat: UIG-2322 - op de CDN de TinyMCE theming publiceren
+
+de theming van TinyMCE wordt gepubliceerd in een artefact @domg-cdn/tinymce-theming
+het infra-team breidt hun scripts uit zodat de code uit de artefact op de CDN gezet wordt
+```
+
+### Squashen
+
+Het doel is: __1 ticket = 1 feature branch = 1 uiteindelijke commit__
+
+Om dit te bereiken dien je alvorens de feature-branch naar develop te brengen (via PR) de commits te squashen.
+Tijdens ontwikkeling kan je committen en pushen naar believe, het is enkel op het moment dat je werk afrond is dat je
+zorgt dat je eindigt met 1 commit die de conventional commit conventie volgt.
+
+Opgelet: indien je squashed moet je nadien een force-push doen daar je je historiek herschreven hebt.
+
+### Rebasen
+
+Om het werk op een feature-branch naar de develop branch te brengen zorgen we ervoor om een lineaire historiek (d.m.v.
+fast-forwards) te behouden. Om dit te bereiken dien je eventueel te rebasen. Mergen of rebasen is een keuze, omdat
+het in dit geval om een componenten bibliotheek gaat (en geen eindtoepassing) opteren wij om te rebasen, dit is de
+minst makkelijke optie van de 2, je dient bewust om te gaan met de integratie van commits in andere branches!
+
+Op de git website (scroll helemaal naar beneden) staat er dit over
+[mergen vs rebasen](https://git-scm.com/book/en/v2/Git-Branching-Rebasing):
+
+> Merging: One point of view on this is that your repository’s commit history is a record of what actually happened.
+It’s a historical document, valuable in its own right, and shouldn’t be tampered with. From this angle, changing the
+commit history is almost blasphemous; you’re lying about what actually transpired. So what if there was a messy series
+of merge commits? That’s how it happened, and the repository should preserve that for posterity.
+
+> Rebasing: The opposing point of view is that the commit history is the story of how your project was made. You
+wouldn’t publish the first draft of a book, so why show your messy work? When you’re working on a project, you may need
+a record of all your missteps and dead-end paths, but when it’s time to show your work to the world, you may want to
+tell a more coherent story of how to get from A to B. People in this camp use tools like rebase and filter-branch to
+rewrite their commits before they’re merged into the mainline branch. They use tools like rebase and filter-branch, to
+tell the story in the way that’s best for future readers.
+
+Opgelet: door te rebasen (en/of te squashen) herschrijf je historiek, nadien dien je steeds een force-push te doen.
+Hou de ['Golden Rule of Rebasing'](https://www.gitkraken.com/blog/golden-rule-of-rebasing-in-git) in gedachte:
+herschrijf geen historiek voor branches met meer dan 2 ogen op.
+
+### Pull Requests (PR's)
+
+Alvorens een PR te lanceren via GitHub dien je te verifieren dat
+
+- je code correct geformatteerd is met Prettier
+- je ge-squash'ed hebt tot 1 commit
+- de commit boodschap conform conventional commit is
+
+Telkens je pushed naar je feature-branch zal er een build lopen. Alvorens de PR te lanceren dient de build van je
+feature branch geslaagd te zijn.
+
+Indien dit in orde is kan je de PR lanceren t.o.v. de develop branch. GitHub meld of hij de branch kan inmergen via
+een fast-forward, indien dit niet kan dien je eerst te rebasen tov develop en te force-pushen.
+
+Nadat de PR is ingediend wordt de code ge-reviewed door iemand van het UIG-team en wordt het normale GitHub PR process
+doorlopen. Nadat een PR geïntegreerd is wordt de feature branch in kwestie verwijderd!
+
+### Diagram
+
+Onderstaand diagram geeft een overzicht van hoe commit's - door ze naar verschillende branches te brengen - tot
+(pre-)releases leiden. De blauwe boxen geven tags aan die gelegd worden in GitHub. Voor elke tag zal er een
+artefact geproduceerd worden met de tag als suffix. De artefacts zijn beschikbaar onder
+[artifactory](https://repo.omgeving.vlaanderen.be/ui/packages).<br/>
+Via de pre-release branches worden er beta-releases gebouwd, via de release-branches finale releases.<br/>
+Na een commit op eender welke branch loopt de build en alle testen.
+
+<img src={uigBranching} alt="UIG Branching Strategie" />
+
+## Team Branching Stategie
+
+Artefacts worden enkel gebouwd voor pre-release en release branches. Teams die ontwikkeling doen aan de component
+bibliotheek doen dat meestal in de context van aanpassingen voor een concrete eindtoepassing. Vaak is dat werk
+experimenteler van aard, om dat in goede banen te leiden is er per team een branch voorzien waaruit ook
+artefacts gegenereerd worden. Op die manier kunnen ze integreren met eigen beta-artefacts, pas als hun werk
+definitief is moeten ze squashen, rebasen en een PR indienen om hun code te integreren.
+
+De aanpak van deze specifieke branching strategy wordt verduidelijkt in onderstaand diagram.
+
+<img src={teamBranching} alt="Teams Branching Strategie" />

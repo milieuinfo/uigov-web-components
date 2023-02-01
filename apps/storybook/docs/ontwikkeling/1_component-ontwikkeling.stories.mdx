@@ -1,0 +1,82 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Ontwikkeling/Component Ontwikkeling"/>
+
+# Component Ontwikkeling
+
+## Opzet
+
+De code van de web-componenten bibliotheek zit in [GitHub](https://github.com/milieuinfo/uigov-web-components).
+Het is een monorepo, opgezet met [Nx](https://nx.dev/). Nx (wat staat voor Nrwl Extensions) is een 'Smart, Fast and
+Extensible Build System' dat open-source ontwikkeld wordt door [Nrwl](https://github.com/nrwl), een start-up die
+groeide uit Google.
+
+Naast de web-componenten bibliotheek zijn er nog [andere repositories](/story/basis-repositories--page).
+
+Ontwikkeling gebeurd [branch-based](/story/ontwikkeling-git-branching-strategie--page) waarbij het
+[release proces](/story/ontwikkeling-build-release--page) volledig geautomatiseerd is.
+
+## Code Formattering
+
+Code formattering gebeurd m.b.v. Prettier, de configuratie bevindt zich op root niveau in het `.prettierrc` bestand.
+
+In <ins>IntelliJ</ins> kan je Prettier configureren door te gaan naar `Preferences > Languages & Frameworks > Prettier` <br/>
+ -> zorg dat `Prettier package` verwijst naar de juiste `node_modules/prettier` folder <br/>
+ -> vink beide vinkjes aan zodat Prettier wordt toegepast zowel bij expliciet formatteren als bij bewaren
+
+
+## Code Richtlijnen - WIP
+
+### Backwards Compatibiliteit
+
+> Belangrijk: het gaat hier om een componenten bibliotheek, er zijn verschillende versies van in omloop! Het is niet
+zoals een toepassing waar een nieuwe release de vorige versie vervangt!
+
+- afnemers moeten (relatief) makkelijk kunnen upgraden
+    * het streefdoel is backwards compatibel te blijven, je kan dus niet zomaar bestaande naamgeving
+      (component, methode, attribuut) wijzigen
+    * code in afnemende toepassingen kan extenden van onze code, er is geen volledig overzicht van alle afhankelijkheden
+    * 'dode' code kan best gebruikt worden in een eindtoepassing, het wil gewoon zeggen dat er geen testen of andere
+      referenties zijn in 'onze' codebase
+    * 'levende' code in onze codebase kan mogelijks nergens gebruikt worden in een eindtoepassing (en feitelijk dood
+      zijn)
+- op termijn zullen er backwards incompatibele wijzigingen gebeuren, dat zal via major releases gebeuren die duidelijk
+gecommuniceerd en gedocumenteerd worden
+- major releases worden gestuurd door ontwikkeling van het UIG-team, andere teams die bijdragen moeten steeds backwards
+compatibele code schrijven - refactorings in bestaande code zijn niet toegestaan voor hen
+- toevoegingen zijn minder strikt, maar behoud de geest van de bestaande code (typisch het bestand in kwestie)
+- een hoofddoel is consistentie te verkrijgen, een nieuwe aanpak introduceren kan enkel na overleg
+
+### Storybook en Cypress
+
+Er zijn al conventies m.b.t. Storybook en Cypress (testen t.o.v. Storybook), maar deze zijn nog niet gedocumenteerd. De
+conventies zijn doorgevoerd in de __accordion__ en __progress-bar__ componenten, deze kunnen dus als voorbeeld dienen.
+We zullen stelselmatig de web-componenten stroomlijnen zodat ze uniform gedocumenteerd en getest worden. Op korte
+termijn (streefdoel hier is eind maart 2023) wordt documentatie voorzien m.b.t. die richtlijnen.
+
+### Web-Componenten
+
+Voor de feitelijke code van de web-componenten zijn er nog geen eenduidige richtlijnen of conventies. Momenteel zijn er
+2 basis klasses: BaseElement of LitElement. Op termijn willen we van alles LitElementen maken, wat als gevolg zal
+hebben dat alles via een custom-tag gebruikt moet worden - dit introduceert echter incompatibiliteit, wat momenteel
+vermeden moet worden!
+
+De best practices zien er daarom momenteel als volgt:
+1. kijk onder [Basis/Overzicht](/story/basis-overzicht--page) naar de verschillen tussen elementen en componenten
+en schrijf je web-component conform
+2. voor nieuwe componenten is het doel ze ineens als LitElement te implementeren
+3. nieuwe elementen (best te vermijden, een component heeft de voorkeur) kunnen technisch enkel als een BaseElement
+
+### Typescript
+
+We streven ernaar de component bibliotheek zo goed als mogelijk te typen om bugs te vermijden en met meer vertrouwen
+refactorings te kunnen doorvoeren.<br/>
+De huidige typing is beperkt, het is vaak typescript met minimale toevoegingen. We streven ernaar dit stelselmatig
+te verbeteren - extra typing toevoegen mag dus!
+
+> Opgelet 1: typing toevoeging is letterlijk de javascript code laten zoals ze is en enkel typing toevoegen, dus
+ geen code wijzigingen doorvoeren om te kunnen typen
+
+> Opgelet 2: aanpassingen of verbeteringen dienen steeds te gebeuren met backwards-compatibiliteit in het achterhoofd
+bvb. iets dat niet geïnitialiseerd was nu ineens initialiseren is een risico (falsy-rules in combinatie met
+onduidelijkheid over hoe afnemers onze code gebruiken)

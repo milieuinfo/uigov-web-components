@@ -1,0 +1,50 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Basis/Repositories"/>
+
+# Repositories
+
+Er zijn 5 repositories van UIG:
+- [uigov-applications](https://github.com/milieuinfo/uigov-applications) (eindtoepassingen UIG / AllianceApp)
+- [uigov-cdn-assets](https://github.com/milieuinfo/uigov-cdn-assets) (fonts / TinyMCE theming)
+- [uigov-pages](https://github.com/milieuinfo/uigov-pages) (documentatie)
+- [uigov-styling](https://github.com/milieuinfo/uigov-styling) (pre-processing scss van DV)
+- [uigov-web-components](https://github.com/milieuinfo/uigov-web-components) (de componenten bibliotheek)
+
+## uigov-applications
+
+Dit zijn de toepassingen ontwikkeld door het UIG-team. Momenteel bevat deze repo enkel de 'Alliance' toepassing, deze
+toepassing verduidelijkt hoe externe toepassingen de gepubliceerde packages kunnen gebruiken.
+
+Deze repo gebruikt de nrwl/nx opzet.
+
+## uigov-cdn-assets
+
+De UIG web-componenten hebben externe afhankelijkheden. Voorbeelden hiervan zijn de fonts van Digitaal Vlaanderen en
+TinyMCE. Die externe assets worden onder dit project opgenomen en gepubliceerd op de CDN van dOMG. Code in packages zal
+dus gebruik maken van versies gepubliceerd op de CDN.
+
+Deze repo bevat sub-folders die telkens een package.json bevat met publicatie gegevens.
+
+## uigov-pages
+
+De repo die geversioneerde documentatie bevat die gepubliceert wordt op de
+[UIGOV-Pages](https://milieuinfo.github.io/uigov-pages/). De publicatie van aangepaste documentatie gebeurd
+hoofdzakelijk automatisch vanuit build jobs.
+
+## uigov-styling
+
+De hoofdbrok van styling komt uit het Webuniversum van Digitaal Vlaanderen. Hun styling zit in verschillende
+packages in .scss bestanden. De UIG web-componenten gebruiken deels het Lit framework als basis en in combinatie
+met een shadow-dom heeft dit technische gevolgen die tot css duplicatie leiden.
+
+In deze repo worden de packages van DV gerefereert, de sccs verwerkt en gewrapped in .js bestanden. Het resultaat wordt
+als geversioneerd artefact aangeboden waarop de uigov-web-components dan dependen. Op deze manier kan css duplicatie
+vermeden worden zodat de bundel groottes minimaal blijven.
+
+## uigov-web-components
+
+Bevat de broncode van de web-componenten, de Storybook documentatie en de Playground toepassing.
+
+Deze repo gebruikt de nrwl/nx opzet.
+
