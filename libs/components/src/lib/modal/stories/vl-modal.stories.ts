@@ -16,39 +16,48 @@ export const modalDefault = ({
     notAutoClosable,
     allowOverflow,
 }: typeof modalArgs) => html`
-    <button id="button-open-modal-vt" is="vl-button" data-vl-modal-open="modal-vt" data-cy="button-modal-toggle">
-        Open
-    </button>
-    <vl-modal
-        id="modal-vt"
-        data-vl-title=${title}
-        ?data-vl-open=${open}
-        ?data-vl-closable=${closable}
-        ?data-vl-not-cancellable=${notCancellable}
-        ?data-vl-not-auto-closable=${notAutoClosable}
-        ?data-vl-allow-overflow=${allowOverflow}
-        data-cy="modal"
-    >
-        <span slot="content">
-            <vl-datepicker></vl-datepicker>
-            Lorem ipsum dolor sit amet.
-        </span>
-        <button is="vl-button" slot="button">Start aanvraag</button>
-    </vl-modal>
+    <div>
+        <button id="button-open-modal-vt" is="vl-button" data-vl-modal-open="modal-vt" data-cy="button-modal-toggle">
+            Open
+        </button>
+        <vl-modal
+            id="modal-vt"
+            data-vl-title=${title}
+            ?data-vl-open=${open}
+            ?data-vl-closable=${closable}
+            ?data-vl-not-cancellable=${notCancellable}
+            ?data-vl-not-auto-closable=${notAutoClosable}
+            ?data-vl-allow-overflow=${allowOverflow}
+            data-cy="modal"
+        >
+            <span slot="content">
+                <vl-datepicker></vl-datepicker>
+                Lorem ipsum dolor sit amet.
+            </span>
+            <button is="vl-button" slot="button">Start aanvraag</button>
+        </vl-modal>
+    </div>
 `;
 modalDefault.storyName = 'vl-modal - default';
 
 export const modalWithOtherAction = () => html`
-    <button id="button-open-modal-vt" is="vl-button" data-vl-modal-open="modal-cl-nc-li" data-cy="button-modal-toggle">
-        Open
-    </button>
-    <vl-modal id="modal-cl-nc-li" data-vl-title="Modal" data-vl-closable data-vl-not-cancellable data-cy="modal">
-        <span slot="content">Lorem ipsum dolor sit amet.</span>
-        <button is="vl-button-link" class="custom-action-button" slot="button">
-            <span is="vl-icon" data-vl-icon="cross" before="" data-vl-modal-close=""></span>
-            Andere actie
+    <div>
+        <button
+            id="button-open-modal-vt"
+            is="vl-button"
+            data-vl-modal-open="modal-cl-nc-li"
+            data-cy="button-modal-toggle"
+        >
+            Open
         </button>
-    </vl-modal>
+        <vl-modal id="modal-cl-nc-li" data-vl-title="Modal" data-vl-closable data-vl-not-cancellable data-cy="modal">
+            <span slot="content">Lorem ipsum dolor sit amet.</span>
+            <button is="vl-button-link" class="custom-action-button" slot="button">
+                <span is="vl-icon" data-vl-icon="cross" before="" data-vl-modal-close=""></span>
+                Andere actie
+            </button>
+        </vl-modal>
+    </div>
 `;
 modalWithOtherAction.storyName = 'vl-modal - with other action';
 modalWithOtherAction.parameters = {
