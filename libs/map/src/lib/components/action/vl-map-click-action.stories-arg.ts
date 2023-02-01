@@ -1,16 +1,21 @@
-import {TYPES } from '@domg-wc/common-utilities';
+import {CATEGORIES} from '@domg-wc/common-utilities';
 import {Args} from "@storybook/web-components";
 import {action} from "@storybook/addon-actions";
 
 
 export const mapClickActionArgs: Args = {
-    onClick: action('vl-click-map'),
+    onClickActionStoryBook: action('vl-map-clicked'),
 };
 export const mapClickActionArgTypes = {
-    onClick: {
-        name: 'onClick',
-        type: { summary: TYPES.FUNCTION },
-        description: `Callback function to be executed when the user clicks on the map. See action tab.`,
-        control: false
-    }
+    onClickActionStoryBook: {
+        table: {
+            disable: true,
+        },
+    },
+    vlMapClicked: {
+        name: 'vl-map-clicked',
+        description:
+            'Event dat wordt afgevuurd wanneer op de map werd geklikt. Zie action tab & docs.',
+        table: { category: CATEGORIES.EVENTS },
+    },
 };

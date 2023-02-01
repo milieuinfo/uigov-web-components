@@ -6,6 +6,7 @@ import '../layer/vector-layer/vl-map-features-layer';
 import './vl-map-click-action';
 import {StoryFn} from "@storybook/web-components";
 import mapClickActionDoc from './vl-map-click-action.stories-doc.mdx';
+import {VlMapClickedEvent} from "./VlMapClickedEvent";
 
 export default {
     title: 'map/action',
@@ -18,14 +19,24 @@ export default {
  } ;
 
 
-const Template: StoryFn<typeof mapClickActionArgs> = ({onClick}: typeof mapClickActionArgs) => {
+const Template: StoryFn<typeof mapClickActionArgs> = ({onClickActionStoryBook}: typeof mapClickActionArgs) => {
     return html`
         <vl-map>
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-            <vl-map-click-action .onClick="${(click) => {onClick(click)}}"></vl-map-click-action>
+            <vl-map-click-action @vl-map-clicked="${storybookTest}"></vl-map-click-action>
         </vl-map>
     `
         ;
+
+    function storybookTest(evt: VlMapClickedEvent) {
+        console.log(evt);
+        onClickActionStoryBook({
+            evt,
+            coordinate: evt.coordinate,
+            pixel: evt.pixel,
+            currentBoundingBox: evt.currentBoundingBox
+        })
+    }
 };
 
 export const clickActionDefault = Template.bind({});

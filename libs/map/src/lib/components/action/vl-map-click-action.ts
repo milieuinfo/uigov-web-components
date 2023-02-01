@@ -3,41 +3,22 @@ import {VlMap} from '@domg-wc/map';
 import {LitElement} from "lit";
 import {MapBrowserEvent} from "ol";
 import Overlay from "ol/Overlay";
-import {property} from 'lit/decorators.js';
+import {customElement, property} from 'lit/decorators.js';
 import {Coordinate} from "ol/coordinate";
 import {Extent} from "ol/extent";
 import {VlMapClickActionPindrop} from "./vl-map-click-action-pindrop";
 import {Pixel} from "ol/pixel";
+import {VlMapClickedEvent} from "./VlMapClickedEvent";
 
 /**
  * VlMapClickAction
  * @classdesc The map click action component. Adds a marker on the map.
- * @property {function} onClick - callback die afgevuurd wordt na click op map
  */
 
-// TODO: crs doorsturen? vb: crs=EPSG:31370 => komt uit map??
-export interface ClickCallback {
-    coordinate: Coordinate,
-    pixel: Pixel,
-    currentBoundingBox: Extent
-}
-
-
 //TODO: interactie met controls? (zoals current location)
-//TODO: wat als geklikt wordt op zelfde locatie van een feature?
-@webComponent('vl-map-click-action')
+@customElement('vl-map-click-action')
 export class VlMapClickAction extends LitElement {
 
-
-    /**
-     * TODO: open tot discussie
-     *  werken via callback (cfr select-action):
-     * <vl-map-click-action onClick=(callback) => { // Doe iets met callback }
-     * of via event dat wordt afgevuurd en kan opgevangen adhv bv lit decorator:
-     * <vl-map-click-action @map-aangeklikt=... doe iets met event ...
-     * Of we nu event of callback gaan gebruiken, payload zal een ClickCallback bevatten.
-     */
-    @property() onClick: (callback: ClickCallback) => {};
 
     connectedCallback() {
 
@@ -53,13 +34,7 @@ export class VlMapClickAction extends LitElement {
         this.map.map.addOverlay(overlay);
         this.map.on('singleclick', (evt: MapBrowserEvent<PointerEvent>) => {
             overlay.setPosition(evt.coordinate);
-
-            //TODO: event dispatching gebruiken ipv dit?
-            this.onClick({
-                coordinate: evt.coordinate,
-                pixel: evt.pixel,
-                currentBoundingBox: this.map._getCurrentBoundingBox()
-            });
+            this.dispatchEvent(new VlMapClickedEvent(evt.coordinate, evt.pixel, this.map._getCurrentBoundingBox()));
         });
 
 
