@@ -1,4 +1,4 @@
-import { awaitScript, webComponent, webComponentCustom } from '@domg-wc/common-utilities';
+import { awaitScript, webComponentCustom } from '@domg-wc/common-utilities';
 import { LitElement } from 'lit';
 
 const customRegistration = () =>
@@ -30,6 +30,7 @@ export class VlHeader extends LitElement {
     private logoutUrl = '';
     private switchCapacityUrl = '';
     private authenticatedUserUrl = '';
+    private simple = false;
 
     static get properties() {
         return {
@@ -40,6 +41,7 @@ export class VlHeader extends LitElement {
             logoutUrl: { type: String, attribute: 'data-vl-logout-url', reflect: true },
             switchCapacityUrl: { type: String, attribute: 'data-vl-switch-capacity-url', reflect: true },
             authenticatedUserUrl: { type: String, attribute: 'data-vl-authenticated-user-url', reflect: true },
+            simple: { type: Boolean, attribute: 'data-vl-simple', reflect: true },
         };
     }
 
@@ -75,15 +77,14 @@ export class VlHeader extends LitElement {
             ? `https://tni.widgets.burgerprofiel.dev-vlaanderen.be/api/v1/widget/${this.identifier}`
             : `https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/widget/${this.identifier}`;
 
-        (window as any).vl.widget.client
-            .bootstrap(widgetUrl)
-            .then((widget: any) => {
-                this.injectHeader();
-                widget.setMountElement(document.getElementById('header'));
-                widget.mount().catch((e: any) => console.error(e));
-                return widget;
-            })
-            .then((widget: any) => {
+        let bootstrap = (window as any).vl.widget.client.bootstrap(widgetUrl).then((widget: any) => {
+            this.injectHeader();
+            widget.setMountElement(document.getElementById('header'));
+            widget.mount().catch((e: any) => console.error(e));
+            return widget;
+        });
+        if (!this.simple) {
+            bootstrap = bootstrap.then((widget: any) => {
                 widget.getExtension('citizen_profile.session').then(async (session: any) => {
                     session.configure({
                         active: await this.__isUserAuthenticated(),
@@ -95,10 +96,11 @@ export class VlHeader extends LitElement {
                         },
                     });
                 });
-            })
-            .catch((e: any) => {
-                console.error(e);
             });
+        }
+        bootstrap = bootstrap.catch((e: any) => {
+            console.error(e);
+        });
     }
 
     render() {
