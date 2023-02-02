@@ -14,8 +14,6 @@ import {VlMapClickedEvent} from "./VlMapClickedEvent";
  * VlMapClickAction
  * @classdesc The map click action component. Adds a marker on the map.
  */
-
-//TODO: interactie met controls? (zoals current location)
 @customElement('vl-map-click-action')
 export class VlMapClickAction extends LitElement {
 
