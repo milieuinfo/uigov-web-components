@@ -1,8 +1,7 @@
 import { VlDrawAction } from '../draw/draw-action';
 import { VlTooltips } from '../tooltips';
 
-
-//TODO: wordt dit nog gebruikt?
+// Wordt (nog) niet gebruikt in de library maar wel aangeboden aan clients - bij schrijven zijn er nog geen clients die deze code aanspreken
 export class VlShowInfoAction extends VlDrawAction {
     private Vltooltips: VlTooltips;
 

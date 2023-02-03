@@ -4,9 +4,9 @@ import BaseLayer from 'ol/layer/Base';
 import View from 'ol/View';
 import Overlay from 'ol/Overlay';
 import { Zoom, Rotate, ScaleLine, OverviewMap, Control } from 'ol/control';
-import {VlMapWithActionsOptions, VlMapWithActions} from './map-with-actions';
-import OlProjection from "ol/proj/Projection";
-import OlLayerGroup from "ol/layer/Group";
+import { VlMapWithActionsOptions, VlMapWithActions } from './map-with-actions';
+import OlProjection from 'ol/proj/Projection';
+import OlLayerGroup from 'ol/layer/Group';
 
 /**
  * Dit is een versie van de VlMapWithActions die nog enkele extra functies bevat zoals het zoomen naar een bepaalde extent (of bounding box), het togglen van de layers, en alle functionaliteit omtrent een overzichtskaartje (ol.control.OverviewMap).
@@ -19,13 +19,12 @@ export interface VLCustomMapOptions extends VlMapWithActionsOptions {
     defaultZoom: boolean;
     projection: OlProjection;
     customLayers: CustomLayersType;
-
 }
 
-type CustomLayersType = {
-    baseLayerGroup: OlLayerGroup,
-    overviewMapLayers: any[],
-    overlayGroup: OlLayerGroup,
+interface CustomLayersType {
+    baseLayerGroup: OlLayerGroup;
+    overviewMapLayers: any[];
+    overlayGroup: OlLayerGroup;
 }
 
 export class VlCustomMap extends VlMapWithActions {
@@ -55,11 +54,11 @@ export class VlCustomMap extends VlMapWithActions {
 
         super(options);
 
-        if(options.controls == undefined) {
+        if (options.controls == undefined) {
             options.controls = new Collection<Control>();
         }
         options.controls.push(new Rotate());
-        options.controls.push(new ScaleLine({minWidth: 128}));
+        options.controls.push(new ScaleLine({ minWidth: 128 }));
 
         if (options.defaultZoom === undefined || options.defaultZoom === true) {
             this.addControl(new Zoom());
