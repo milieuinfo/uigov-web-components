@@ -2,6 +2,7 @@ import { VlBaseMapAction } from '../mapaction';
 import { pointerMove } from 'ol/events/condition';
 import { Select } from 'ol/interaction';
 
+// Wordt (nog) niet gebruikt in de library maar wel aangeboden aan clients - bij schrijven zijn er nog geen clients die deze code aanspreken
 export class VlHighlightAction extends VlBaseMapAction {
     highlightInteraction: Select;
 

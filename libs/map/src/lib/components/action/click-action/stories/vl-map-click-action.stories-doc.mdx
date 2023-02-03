@@ -1,0 +1,20 @@
+
+# Click Action
+
+Capteert een klikactie op de `VlMap`. Plaatst een `VlMapClickActionPindrop` op de kaart en vuurt een event `VlMapClickedEvent` af die kan worden opgevangen.
+Het event bevat de aangeklikte pixel, coördinaten & de bounding box op moment van klikken.
+
+## Voorbeeld
+
+```js
+import { VlMapClickAction } from '@domg-lib/components'
+```
+
+```html
+        <vl-map>
+            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+            <vl-map-click-action @vl-map-clicked="${(evt: VlMapClickedEvent) => {console.log(evt)})}}"></vl-map-click-action>
+        </vl-map>
+```
+
+
