@@ -174,7 +174,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
 
     // wordt in code aangesproken via bv: this.mapElement.addLayer(this._layer);
     addLayer(layer) {
-        this.map.getOverlayLayers().push(layer);
+        this.map.addOverlayLayer(layer);
     }
 
     addAction(action) {
