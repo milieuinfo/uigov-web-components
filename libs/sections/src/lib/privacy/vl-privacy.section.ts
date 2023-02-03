@@ -494,10 +494,10 @@ export class VlPrivacy extends LitElement {
                                                                 geactualiseerd indien zich wijzigingen aandienen. Een
                                                                 dergelijk register (inventaris) voor de verwerking van
                                                                 persoonsgegevens is verplicht en kan worden opgevraagd
-                                                                door de Gegevensbeschermingsautoriteit (GBA). Elke
+                                                                door de Vlaamse Toezichtscommissie (VTC). Elke
                                                                 organisatie die persoonsgegevens verwerkt en gevat is
                                                                 door de Algemene Verordening Gegevensbescherming is
-                                                                verplicht aan de Gegevensbeschermingsautoriteit inzage
+                                                                verplicht aan de Vlaamse Toezichtscommissie inzage
                                                                 in het register te geven.
                                                             </p>
                                                             <p>
@@ -761,7 +761,7 @@ export class VlPrivacy extends LitElement {
                                                             </p>
                                                             <p>
                                                                 Daarnaast hebt u het recht om klacht in te dienen bij de
-                                                                Belgische Gegevensbeschermingsautoriteit (GBA), indien u
+                                                                Vlaamse Toezichtscommissie (VTC), indien u
                                                                 meent dat uw rechten geschaad zijn en u zich ook na
                                                                 vraagstelling bij de bevoegde diensten van het
                                                                 Departement Omgeving of de door het Departement Omgeving
