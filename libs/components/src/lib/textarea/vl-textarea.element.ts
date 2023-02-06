@@ -5,7 +5,7 @@ import { VlLinkToolbarFactory } from './vl-link-toolbar-factory';
 
 declare const tinyMCE: any;
 
-@webComponentPromised([vlFormValidation.ready()], 'vl-textarea', { extends:  'textarea'})
+@webComponentPromised([vlFormValidation.ready()], 'vl-textarea', { extends: 'textarea' })
 export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTextAreaElement)) {
     static get _observedAttributes() {
         return vlFormValidation._observedAttributes().concat(['error', 'success']);
@@ -55,7 +55,6 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
             branding: false,
             powerpaste_word_import: 'clean',
             powerpaste_html_import: 'clean',
-            content_css: '/libs/elements/src/lib/vl-elements.scss',
             verify_html: false,
             forced_root_block: 'p',
             body_class: 'vl-typography',
