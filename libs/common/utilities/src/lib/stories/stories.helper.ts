@@ -11,5 +11,6 @@ export const TYPES = {
     STRING: 'string',
     NUMBER: 'number',
     HTML: 'html',
-    FUNCTION: 'function'
+    FUNCTION: 'function',
+    URL: 'url',
 };

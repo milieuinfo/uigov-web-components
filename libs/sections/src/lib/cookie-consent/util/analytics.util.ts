@@ -79,6 +79,14 @@ class AnalyticsUtil {
                 id: 31,
                 url: this._matomoOntwikkelUrl,
             },
+            'omgevingsloketinzage-ontwikkel.omgeving.vlaanderen.be': {
+                'id': 37,
+                'url': this._matomoOntwikkelUrl,
+            },
+            'omgevingsloketinzage2-ontwikkel.omgeving.vlaanderen.be': {
+                'id': 38,
+                'url': this._matomoOntwikkelUrl,
+            },
         }[window.location.host];
 
         if (!match) {
@@ -123,6 +131,10 @@ class AnalyticsUtil {
                     id: 16,
                     url: this._matomoOefenUrl,
                 },
+                'controleviewer-oefen.omgeving.vlaanderen.be': {
+                    id: 21,
+                    url: this._matomoOefenUrl,
+                },
                 'loket-erkenningen-leefmilieu-oefen.omgeving.vlaanderen.be': {
                     id: 23,
                     url: this._matomoOefenUrl,
@@ -131,9 +143,13 @@ class AnalyticsUtil {
                     id: 24,
                     url: this._matomoOefenUrl,
                 },
-                'controleviewer-oefen.omgeving.vlaanderen.be': {
-                    id: 21,
-                    url: this._matomoOefenUrl,
+                'omgevingsloketinzage-oefen.omgeving.vlaanderen.be': {
+                    'id': 27,
+                    'url': this._matomoOefenUrl,
+                },
+                'omgevingsloketinzage2-oefen.omgeving.vlaanderen.be': {
+                    'id': 28,
+                    'url': this._matomoOefenUrl,
                 },
             }[window.location.host];
         }
@@ -195,6 +211,10 @@ class AnalyticsUtil {
                 'controleviewer.omgeving.vlaanderen.be': {
                     id: 58,
                     url: this._matomoProdUrl,
+                },
+                'omgevingsloketinzage.omgeving.vlaanderen.be': {
+                    'id': 62,
+                    'url': this._matomoProdUrl,
                 },
             }[window.location.host];
         }

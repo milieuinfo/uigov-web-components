@@ -5,25 +5,28 @@ import { customElement } from 'lit/decorators.js';
 import styles from './style/vl-privacy.scss';
 
 const props = {
-    version: 'data-vl-version',
     date: 'data-vl-date',
+    disableBackLink: 'data-vl-disable-back-link',
+    version: 'data-vl-version',
 };
 
-const { version, date } = props;
+const { date, disableBackLink, version } = props;
 
 @customElement('vl-privacy')
 export class VlPrivacy extends LitElement {
     static get properties() {
         return {
-            [version]: { type: String },
             [date]: { type: String },
+            [disableBackLink]: { type: Boolean },
+            [version]: { type: String },
         };
     }
 
     constructor() {
         super();
-        (this as any)[version] = '1.0.0';
         (this as any)[date] = '3 maart 2021';
+        (this as any)[disableBackLink] = false;
+        (this as any)[version] = '1.0.0';
     }
 
     render() {
@@ -35,6 +38,7 @@ export class VlPrivacy extends LitElement {
                 data-vl-title="Departement Omgeving"
                 data-vl-sub-title="Privacy"
                 data-vl-link="https://omgeving.vlaanderen.be"
+                ?data-vl-disable-back-link=${(this as any)[disableBackLink]}
             ></vl-functional-header>
             <section is="vl-region">
                 <div is="vl-layout">
@@ -494,10 +498,10 @@ export class VlPrivacy extends LitElement {
                                                                 geactualiseerd indien zich wijzigingen aandienen. Een
                                                                 dergelijk register (inventaris) voor de verwerking van
                                                                 persoonsgegevens is verplicht en kan worden opgevraagd
-                                                                door de Gegevensbeschermingsautoriteit (GBA). Elke
+                                                                door de Vlaamse Toezichtscommissie (VTC). Elke
                                                                 organisatie die persoonsgegevens verwerkt en gevat is
                                                                 door de Algemene Verordening Gegevensbescherming is
-                                                                verplicht aan de Gegevensbeschermingsautoriteit inzage
+                                                                verplicht aan de Vlaamse Toezichtscommissie inzage
                                                                 in het register te geven.
                                                             </p>
                                                             <p>
@@ -761,7 +765,7 @@ export class VlPrivacy extends LitElement {
                                                             </p>
                                                             <p>
                                                                 Daarnaast hebt u het recht om klacht in te dienen bij de
-                                                                Belgische Gegevensbeschermingsautoriteit (GBA), indien u
+                                                                Vlaamse Toezichtscommissie (VTC), indien u
                                                                 meent dat uw rechten geschaad zijn en u zich ook na
                                                                 vraagstelling bij de bevoegde diensten van het
                                                                 Departement Omgeving of de door het Departement Omgeving

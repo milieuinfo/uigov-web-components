@@ -20,6 +20,8 @@
         "storybook:ci-test-parallel-3": "start-server-and-test 'npx nx storybook storybook' http://localhost:8080 'npx nx e2e storybook-e2e -- --spec **/src/e2e/elements/[a-i]*/**/*'",
         "storybook:ci-test-parallel-4": "start-server-and-test 'npx nx storybook storybook' http://localhost:8080 'npx nx e2e storybook-e2e -- --spec **/src/e2e/elements/[j-z]*/**/*'",
         "storybook:ci-test-parallel-5": "start-server-and-test 'npx nx storybook storybook' http://localhost:8080 'npx nx e2e storybook-e2e -- --spec **/src/e2e/sections/**/*'",
+        "killstart:storybook": "npx kill-port 8080 && npx nx storybook storybook",
+        "killstart:playground": "npx kill-port 4200 && npx nx serve playground",
         "build:common-utilities": "npx nx build common-utilities",
         "build:elements": "npx nx build elements",
         "build:components": "npx nx build components",

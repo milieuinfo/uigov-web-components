@@ -10,8 +10,8 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  *
  * @property {boolean} data-vl-full-width - Attribuut wordt gebruikt om de maximale breedte van het label te benutten.
  */
-@webComponent('vl-properties', { extends: 'div' })
-export class VlPropertiesComponent extends BaseElementOfType(HTMLDivElement) {
+@webComponent('vl-properties')
+export class VlPropertiesComponent extends BaseElementOfType(HTMLElement) {
     static get _observedClassAttributes() {
         return ['full-width'];
     }

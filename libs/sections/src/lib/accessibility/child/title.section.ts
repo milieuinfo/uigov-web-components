@@ -1,6 +1,7 @@
 import { html } from 'lit';
+import { AccessibilityProperties } from '../vl-accessibility.model';
 
-export const title = ({ version, date }: { version: string; date: string }) => html` <section is="vl-region">
+export const title = ({ version, date }: AccessibilityProperties) => html` <section is="vl-region">
     <div is="vl-layout">
         <div is="vl-grid" data-vl-is-stacked>
             <div is="vl-column" data-vl-size="10">
