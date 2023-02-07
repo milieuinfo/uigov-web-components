@@ -25,7 +25,13 @@ export class VlMapClickAction extends LitElement {
         this.map.map.addOverlay(overlay);
         this.map.on('singleclick', (evt: MapBrowserEvent<PointerEvent>) => {
             overlay.setPosition(evt.coordinate);
-            this.dispatchEvent(new VlMapClickedEvent(evt.coordinate, evt.pixel, this.map._getCurrentBoundingBox()));
+            this.dispatchEvent(
+                new VlMapClickedEvent(
+                    evt.coordinate,
+                    this.map.map.getView().getResolution(),
+                    this.map.map.getView().getProjection()
+                )
+            );
         });
     }
 

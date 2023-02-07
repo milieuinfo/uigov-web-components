@@ -31,8 +31,8 @@ const Template: StoryFn<typeof mapClickActionArgs> = ({ onClickActionStoryBook }
         onClickActionStoryBook({
             evt,
             coordinate: evt.coordinate,
-            pixel: evt.pixel,
-            currentBoundingBox: evt.currentBoundingBox,
+            resolution: evt.resolution,
+            projection: evt.projection,
         });
     }
 };

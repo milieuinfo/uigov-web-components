@@ -7,13 +7,11 @@ import proj4 from 'proj4';
 import { VlCustomMap } from './actions';
 import { EVENT } from './vl-map.model';
 import styles from './vl-map.scss';
-import Control from "ol/control/Control";
-import Collection from "ol/Collection";
-import {Extent} from "ol/extent";
+import Control from 'ol/control/Control';
+import Collection from 'ol/Collection';
 
 @webComponent('vl-map')
 export class VlMap extends BaseElementOfType(HTMLElement) {
-
     constructor() {
         super(`
       <style>
@@ -69,19 +67,19 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         return [...this.querySelectorAll(':scope > [data-vl-is-layer]')];
     }
 
-    get disableEscapeKey():boolean {
+    get disableEscapeKey(): boolean {
         return this.getAttribute('disable-escape-key') != undefined;
     }
 
-    get disableRotation():boolean {
+    get disableRotation(): boolean {
         return this.getAttribute('disable-rotation') != undefined;
     }
 
-    get disableMouseWheelZoom():boolean {
+    get disableMouseWheelZoom(): boolean {
         return this.getAttribute('disable-mouse-wheel-zoom') != undefined;
     }
 
-    get disableKeyboard():boolean {
+    get disableKeyboard(): boolean {
         return this.getAttribute('disable-keyboard') != undefined;
     }
 
@@ -125,9 +123,6 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         return [9928, 66928, 272072, 329072];
     }
 
-    _getCurrentBoundingBox(): Extent {
-        return this.map.getView().calculateExtent(this.map.getSize());
-    }
     connectedCallback() {
         this.__initializeCoordinateSystem();
 

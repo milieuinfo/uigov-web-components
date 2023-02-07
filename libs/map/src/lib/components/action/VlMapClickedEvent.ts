@@ -1,19 +1,18 @@
 import { Coordinate } from 'ol/coordinate';
-import { Pixel } from 'ol/pixel';
-import { Extent } from 'ol/extent';
+import { ProjectionLike } from 'ol/proj';
 
 const eventType = 'vl-map-clicked';
 
 export class VlMapClickedEvent extends Event {
     static eventType = eventType;
     readonly coordinate: Coordinate;
-    readonly pixel: Pixel;
-    readonly currentBoundingBox: Extent;
+    readonly resolution: number;
+    readonly projection: ProjectionLike;
 
-    constructor(coordinate: Coordinate, pixel: Pixel, currentBoundingBox: Extent) {
+    constructor(coordinate: Coordinate, resolution: number, projection: ProjectionLike) {
         super(eventType, { bubbles: true });
         this.coordinate = coordinate;
-        this.pixel = pixel;
-        this.currentBoundingBox = currentBoundingBox;
+        this.resolution = resolution;
+        this.projection = projection;
     }
 }
