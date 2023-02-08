@@ -1,8 +1,21 @@
-const headerUrl = 'http://localhost:8080/iframe.html?args=&id=sections-header--header-in-body&viewMode=story';
+const headerUrl = 'http://localhost:8080/iframe.html?id=sections-header--header-default&viewMode=story';
 
 describe('story vl-header', () => {
-    it.skip('should render', () => {
-        cy.visit(`${headerUrl}`);
-        cy.getDataCy('header').get('.vlw__primary-bar__brand__host').contains('Departement Omgeving (test)');
+    it('should render', () => {
+        cy.visit(headerUrl);
+
+        cy.get('vl-header');
+        cy.get('#header__container')
+            .find('header')
+            .find('.vlw__primary-bar__brand__host')
+            .contains('Departement Omgeving (test)');
+    });
+
+    it('should emit ready event', () => {
+        cy.visit(headerUrl);
+
+        // Mogelijke flaky test aangezien het event afgevuurd kan worden vooraleer de eventListener is toegevoegd.
+        cy.createStubForEvent('vl-header', 'ready');
+        cy.get('@ready').should('have.been.calledOnce');
     });
 });
