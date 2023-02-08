@@ -1,7 +1,8 @@
 import { assert, aTimeout, fixture, html, oneEvent } from '@open-wc/testing';
 import '../../../vl-map';
 import './vl-map-click-action';
-import { VlMap, VlMapClickAction } from '@domg-wc/map';
+import { VlMap } from '../../../vl-map';
+import { VlMapClickAction } from '../../../components/action/click-action/vl-map-click-action';
 import { MapBrowserEvent } from 'ol';
 import Overlay from 'ol/Overlay';
 import { VlMapClickedEvent } from '../VlMapClickedEvent';

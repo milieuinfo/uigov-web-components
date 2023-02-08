@@ -1,7 +1,5 @@
-import {webComponent} from '@domg-wc/common-utilities';
-import {css, LitElement} from "lit";
-import {customElement} from "lit/decorators.js";
-
+import { css, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
 /**
  * VlMapClickActionPindrop
@@ -9,8 +7,6 @@ import {customElement} from "lit/decorators.js";
  */
 @customElement('vl-map-click-action-pindrop')
 export class VlMapClickActionPindrop extends LitElement {
-
-
     // Overgenomen van: https://hungyi.net/posts/pure-css-map-marker/
     static styles = css`
         :host {
@@ -19,7 +15,7 @@ export class VlMapClickActionPindrop extends LitElement {
             height: 2rem;
             border-radius: 2rem;
             /* Set the marker color here */
-            background: #0039AAFF;
+            background: #0039aaff;
 
             display: inline-block;
             border-bottom-right-radius: 0;
@@ -27,11 +23,11 @@ export class VlMapClickActionPindrop extends LitElement {
             transform: rotate(45deg);
 
             /* optional fanciness */
-            border: 1px solid #0039AAFF;
+            border: 1px solid #0039aaff;
         }
 
         :host::before {
-            content: "";
+            content: '';
             background: white;
             width: 50%;
             height: 50%;
@@ -48,7 +44,7 @@ export class VlMapClickActionPindrop extends LitElement {
         /* shadow (optional if you don't need a shadow) */
 
         :host::after {
-            content: "";
+            content: '';
             background: rgba(128, 128, 128, 0.2);
             width: 75%;
             height: 75%;
@@ -59,8 +55,6 @@ export class VlMapClickActionPindrop extends LitElement {
             transform: translate(-50%, -50%) rotate(45deg) scaleX(0.5);
         }
     `;
-
-
 }
 declare global {
     interface HTMLElementTagNameMap {
