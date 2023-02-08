@@ -1,6 +1,6 @@
-import { VlMapLayerAction } from '../layer-action/vl-map-layer-action';
+import { VlCompositeVectorLayer } from '../../../actions';
 import { VlMapVectorLayer } from '../../layer/vector-layer/vl-map-vector-layer';
-import { VlCompositeVectorLayer, VlDrawAction, VlDrawLineAction } from '../../../actions';
+import { VlMapLayerAction } from '../layer-action/vl-map-layer-action';
 
 /**
  * VlMapDrawAction
@@ -48,7 +48,7 @@ export class VlMapDrawAction extends VlMapLayerAction {
     __createSnappingLayer() {
         const snappingLayer = new VlCompositeVectorLayer(
             this.__snappingLayers.map((layer) => layer._layer),
-            {},
+            {}
         );
         const firstVectorLayer = this.__snappingLayers[0];
         snappingLayer.setStyle(firstVectorLayer.style);
