@@ -1,6 +1,7 @@
 import Collection from 'ol/Collection';
 import GeoJSON from 'ol/format/GeoJSON';
 import BaseLayer from 'ol/layer/Base';
+import LayerGroup from 'ol/layer/Group';
 import View from 'ol/View';
 import Overlay from 'ol/Overlay';
 import { Zoom, Rotate, ScaleLine, OverviewMap } from 'ol/control';
@@ -20,6 +21,7 @@ export class VlCustomMap extends VlMapWithActions {
     private baseLayers: any;
     private maxZoomViewToExtent: any;
     private overviewMapLayers: any;
+
     constructor(options) {
         options.layers = [options.customLayers.baseLayerGroup, options.customLayers.overlayGroup];
 
@@ -128,9 +130,17 @@ export class VlCustomMap extends VlMapWithActions {
     }
 
     getOverlayLayers() {
+        return this._getOverlayLayersCollection().getArray();
+    }
+
+    _getOverlayLayersCollection(): Collection<BaseLayer> {
         const layerCollection: Collection<BaseLayer> = this.getLayerGroup().getLayers();
-        const firstLayer: BaseLayer = layerCollection.getArray()[1];
-        return (<any>firstLayer).getLayers().getArray();
+        const firstLayer: LayerGroup = <LayerGroup>layerCollection.getArray()[1];
+        return firstLayer.getLayers();
+    }
+
+    addOverlayLayer(layer): void {
+        this._getOverlayLayersCollection().push(layer);
     }
 
     initializeView(boundingBox, maxZoom) {
