@@ -27,24 +27,26 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
     }
 
     constructor() {
-        super(`
-      <style>
-       ${styles}
-      </style>
-      <div class="js">
-        <div class="vl-accordion" data-vl-accordion>
-          <button class="vl-toggle vl-link vl-link--bold" data-vl-accordion-toggle>
-            <i class="vl-accordion__icon vl-link__icon vl-link__icon--before vl-toggle__icon vl-vi vl-vi-arrow-right-fat" aria-hidden="true"></i>
-            <slot name="title" class="vl-accordion__title"></slot>
-          </button>
-          <div class="vl-accordion__content js-vl-accordion__content">
-            <div class="vl-accordion__panel">
-              <slot id="accordion-slot"></slot>
+        super();
+
+        this.shadow(`
+            <style>
+            ${styles}
+            </style>
+            <div class="js">
+                <div class="vl-accordion" data-vl-accordion>
+                <button class="vl-toggle vl-link vl-link--bold" data-vl-accordion-toggle>
+                    <i class="vl-accordion__icon vl-link__icon vl-link__icon--before vl-toggle__icon vl-vi vl-vi-arrow-right-fat" aria-hidden="true"></i>
+                    <slot name="title" class="vl-accordion__title"></slot>
+                </button>
+                <div class="vl-accordion__content js-vl-accordion__content">
+                    <div class="vl-accordion__panel">
+                    <slot id="accordion-slot"></slot>
+                    </div>
+                </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    `);
+        `);
     }
 
     connectedCallback() {

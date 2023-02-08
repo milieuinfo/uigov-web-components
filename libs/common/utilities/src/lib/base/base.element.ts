@@ -2,7 +2,18 @@ import '@ungap/custom-elements';
 
 declare const vl: any;
 
-export const BaseElementOfType = (SuperClass: typeof HTMLElement): any => {
+/* Aantal opmerkingen ivm het typen van de BaseElementOfType:
+
+    - Gebruik gemaakt van een Typescript mixin.
+    - Door een mixin te gebruiken kan de voormalige constructor niet langer gebruikt worden, zie Accordion component voor de nieuwe implementatie.
+    - Door een mixin te gebruiken kan de property _shadow niet langer private zijn, mixins laten geen private of protected properties toe.
+    - De getters in de componenten die een querySelector uitvoeren zorgen voor een hele hoop mogelijke null values die nu naar boven komen.
+    - Het overriden van de getter get _classPrefix() in de componenten is niet meer mogelijk, dit moet veranderen naar een normale methode bv. getClassPrefix().
+*/
+
+type Constructor<T> = new (...args: any[]) => T;
+
+export const BaseElementOfType = <T extends Constructor<HTMLElement>>(SuperClass: T) => {
     /**
      * VlElement
      * @class
@@ -15,20 +26,7 @@ export const BaseElementOfType = (SuperClass: typeof HTMLElement): any => {
      * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-core/issues|Issues}
      */
     return class BaseElement extends SuperClass {
-        private _shadow: any;
-
-        /**
-         * VlElement constructor die een shadow DOM voorziet op basis van de HTML {Literal} parameter.
-         *
-         * @param {Literal} html - HTML literal die de DOM representeert
-         * @return {void}
-         */
-        constructor(html: any = null) {
-            super();
-            if (html) {
-                this.shadow(html);
-            }
-        }
+        _shadow: any;
 
         /**
          * Geeft de prefix die gebruikt kan worden voor attributen.
