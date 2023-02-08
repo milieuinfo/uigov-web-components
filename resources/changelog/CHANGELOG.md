@@ -1,3 +1,24 @@
+# [1.1.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.0.1...v1.1.0) (2023-02-08)
+
+
+### Bug Fixes
+
+* in de TinyMCE configuratie van vl-textarea de referentie naar vl-elements.scss verwijderd ([48c8783](https://github.com/milieuinfo/uigov-web-components/commit/48c8783aa541a3c4ebd9ab176cf4b31883f240d2))
+* UIG-2297 - fix webComponent decorator voor VlPropertiesComponent ([11acbff](https://github.com/milieuinfo/uigov-web-components/commit/11acbffdd3d54c7d34c998087ba136d379f0cffa))
+* UIG-2302 - vl-map met meerdere WMS layers wordt niet goed gerendered ([6b6cbad](https://github.com/milieuinfo/uigov-web-components/commit/6b6cbadee0f5c9423f92f705bedf218254668e1e))
+
+
+### Features
+
+* KBOMG-27 - vl-map-click-action component ([0a1f9e4](https://github.com/milieuinfo/uigov-web-components/commit/0a1f9e4e09f8b6cfd758424a11c2327c92c91725))
+* optimalisatie mbt github-actions caching ([064a73a](https://github.com/milieuinfo/uigov-web-components/commit/064a73a047e4a9d77e8eed9276e5c041374e60c7))
+* UIG-1497 - functional header verbeteringen ([8610928](https://github.com/milieuinfo/uigov-web-components/commit/861092844105cff96cd918f14a51c62560f9e928))
+* UIG-2178 / UIG-2260 - header en footer ([6dc84f0](https://github.com/milieuinfo/uigov-web-components/commit/6dc84f0778fa78459d0fff55006f9bdff4709695))
+* UIG-2263 - vervangen van Gegevensbeschermingsautoriteit door Vlaamse Toezichtscommissie ([c7ccdfe](https://github.com/milieuinfo/uigov-web-components/commit/c7ccdfe8a0ce7f5397c4a5de8dcb3eadf2c90190))
+* UIG-2280 - toevoegen van inzage cookie consent configuratie aan analytics.utils.ts (37, 38, 27, 28, 62) ([0c97421](https://github.com/milieuinfo/uigov-web-components/commit/0c9742180bbbfc5ce02f192be224b6aeb57ebefb))
+* UIG-2287 - richtlijn Storybook en Cypress  ([31fba0c](https://github.com/milieuinfo/uigov-web-components/commit/31fba0c7ac638748c2a97c429640d78dbe21de5c))
+* UIG-2301 - vl-header uitgebreid met simple mode ([fbdbf02](https://github.com/milieuinfo/uigov-web-components/commit/fbdbf02905e3392581c5840a95add2b65cd7f48c))
+
 ## [1.0.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.0.0...v1.0.1) (2023-01-31)
 
 
