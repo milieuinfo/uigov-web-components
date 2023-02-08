@@ -1,15 +1,15 @@
-import {defaults} from 'ol/interaction';
+import { defaults } from 'ol/interaction';
 import Map from 'ol/Map';
-import {CONTROL_TYPE} from '../../vl-map.model';
-import {MapOptions} from "ol/PluggableMap";
+import { CONTROL_TYPE } from '../../vl-map.model';
+import { MapOptions } from 'ol/PluggableMap';
 
 export interface VlMapWithActionsOptions extends MapOptions {
+    actions?: [];
     disableEscapeKey: boolean;
     disableKeyboard: boolean;
     disableRotation: boolean;
     disableMouseWheelZoom: boolean;
 }
-
 
 /**
  * Deze map bevat enkel de functionaliteit om de acties te behandelen. Aan het eerste argument van de constructor kan het gebruikelijke object map opties worden weergegeven die ook op de ol.Map worden gezet, samen met een extra parameter 'acties' in dat object. Deze array bevat MapActions.
@@ -29,7 +29,6 @@ export class VlMapWithActions extends Map {
     }
 
     constructor(options: VlMapWithActionsOptions) {
-
         const interactions = defaults({
             altShiftDragRotate: !options.disableRotation,
             pinchRotate: !options.disableRotation,
@@ -41,6 +40,9 @@ export class VlMapWithActions extends Map {
         }
         options.interactions = interactions;
         super(options);
+        if (options.actions !== undefined) {
+            this._actions = options.actions;
+        }
 
         // TODO: check if timeout and activating default is still needed here (old bugfix)
         setTimeout(() => {
