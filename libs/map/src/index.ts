@@ -60,3 +60,4 @@ export { VlMapMeasureControl } from './lib/components/controls/vl-map-measure-co
 export { VlMapLegend } from './lib/components/legend/vl-map-legend';
 export { VlSelectLocation } from './lib/components/select-location/vl-select-location';
 export { VlMapCurrentLocation } from './lib/components/current-location/vl-map-current-location';
+export { VlMapClickAction } from './lib/components/action/click-action/vl-map-click-action';

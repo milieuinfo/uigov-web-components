@@ -12,4 +12,5 @@ export const TYPES = {
     NUMBER: 'number',
     HTML: 'html',
     URL: 'url',
+    FUNCTION: 'function'
 };
