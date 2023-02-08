@@ -22,9 +22,7 @@ const shouldSetBackLink = () => {
 };
 
 const shouldDisableBackLinkAndEmitEvent = () => {
-    // De event listener wordt toegevoegd op het document omdat vl-functional-header geen property 'addEventListener' heeft volgens Cypress.
-    // Aangezien bubbles op true staat voor het event werkt dit.
-    cy.document().invoke('addEventListener', 'vl-click-back', cy.stub().as('vl-click-back'));
+    cy.createStubForEvent('vl-functional-header', 'vl-click-back');
     cy.get('vl-functional-header').shadow().find('a#back-link').click();
     cy.get('@vl-click-back').should('have.been.calledOnce');
 };
