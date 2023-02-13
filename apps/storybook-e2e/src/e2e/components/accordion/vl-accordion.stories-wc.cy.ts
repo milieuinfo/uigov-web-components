@@ -21,11 +21,58 @@ const shouldBeToggleable = async () => {
     });
 };
 
+const shouldEmitEventOnToggle = () => {
+    cy.createStubForEvent('vl-accordion', 'vl-on-toggle');
+
+    runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
+        component.toggle();
+        cy.get('@vl-on-toggle').should('have.been.calledOnce');
+    });
+};
+
+const shouldEmitEventOnOpen = () => {
+    cy.createStubForEvent('vl-accordion', 'vl-on-toggle');
+
+    runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
+        component.open();
+        cy.get('@vl-on-toggle').should('have.been.calledOnce');
+    });
+};
+
+const shouldEmitEventOnClose = () => {
+    // Open de accordion vooraleer de eventListener toe te voegen
+    cy.get('vl-accordion').shadow().find('button.vl-toggle').click();
+    cy.createStubForEvent('vl-accordion', 'vl-on-toggle');
+
+    runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
+        component.close();
+        cy.get('@vl-on-toggle').should('have.been.calledOnce');
+    });
+};
+
 describe('story vl-accordion default', () => {
     it('should be toggleable', () => {
         cy.visit(`${accordionUrl}`);
 
         shouldBeToggleable();
+    });
+
+    it('should emit event on toggle', () => {
+        cy.visit(accordionUrl);
+
+        shouldEmitEventOnToggle();
+    });
+
+    it('should emit event on open', () => {
+        cy.visit(accordionUrl);
+
+        shouldEmitEventOnOpen();
+    });
+
+    it('should emit event on close', () => {
+        cy.visit(accordionUrl);
+
+        shouldEmitEventOnClose();
     });
 });
 
@@ -35,6 +82,24 @@ describe('story vl-accordion dynamic toggle', () => {
 
         shouldBeToggleable();
     });
+
+    it('should emit event on toggle', () => {
+        cy.visit(accordionDynamicToggleUrl);
+
+        shouldEmitEventOnToggle();
+    });
+
+    it('should emit event on open', () => {
+        cy.visit(accordionDynamicToggleUrl);
+
+        shouldEmitEventOnOpen();
+    });
+
+    it('should emit event on close', () => {
+        cy.visit(accordionDynamicToggleUrl);
+
+        shouldEmitEventOnClose();
+    });
 });
 
 describe('story vl-accordion title slot', () => {
@@ -42,5 +107,23 @@ describe('story vl-accordion title slot', () => {
         cy.visit(`${accordionTitleSlotUrl}`);
 
         shouldBeToggleable();
+    });
+
+    it('should emit event on toggle', () => {
+        cy.visit(accordionTitleSlotUrl);
+
+        shouldEmitEventOnToggle();
+    });
+
+    it('should emit event on open', () => {
+        cy.visit(accordionTitleSlotUrl);
+
+        shouldEmitEventOnOpen();
+    });
+
+    it('should emit event on close', () => {
+        cy.visit(accordionTitleSlotUrl);
+
+        shouldEmitEventOnClose();
     });
 });
