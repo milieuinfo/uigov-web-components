@@ -15,9 +15,10 @@ declare const vl: any;
  * @extends HTMLElement
  * @mixes vlElement
  *
- * @property {string} data-vl-toggle-text - Attribuut wordt gebruikt als tekst waarop de gebruiker kan klikken om de accordion te openen en te sluiten.
- * @property {string} data-vl-open-toggle-text - Attribuut wordt gebruikt als tekst wanneer de gebruiker de accordion geopend heeft.
- * @property {string} data-vl-close-toggle-text - Attribuut wordt gebruikt als tekst wanneer de gebruiker de accordion gesloten heeft.
+ * @property {string} data-vl-toggle-text - Tekst waarop de gebruiker kan klikken om de accordion te openen of te sluiten.
+ * @property {string} data-vl-open-toggle-text - Tekst waarop de gebruiker kan klikken om de accordion te openen.
+ * @property {string} data-vl-close-toggle-text - Tekst waarop de gebruiker kan klikken om de accordion te sluiten.
+ * @event vl-on-toggle - Afgevuurd bij het openen en sluiten van de accordion. Het event bevat of de accordion geopend of gesloten is.
  */
 
 @webComponent('vl-accordion')
@@ -49,9 +50,25 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
 
     connectedCallback() {
         this.dress();
+
         if (this._hasTitleSlot()) {
             this._propagateTitleSlotClickToAccordion();
         }
+
+        /* 
+            Voeg de eventListener toe nadat this.dress() is aangeroepen om de correcte volgorde van de event listeners te garanderen.
+            Digitaal Vlaanderen accordion.js vuurt zelf een onChange event af bij het openen of sluiten van de accordion, 
+            maar om te vermijden dat we te veel steunen op de JS van Digitaal Vlaanderen vangen we het click event zelf op.
+        */
+        this._buttonElement?.addEventListener('click', () => {
+            this.dispatchEvent(
+                new CustomEvent('vl-on-toggle', {
+                    detail: {
+                        open: this._isOpen,
+                    },
+                })
+            );
+        });
     }
 
     _propagateTitleSlotClickToAccordion() {

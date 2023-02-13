@@ -19,11 +19,13 @@ const Template: StoryFn<typeof accordionArgs> = ({
     toggleText,
     defaultSlot,
     titleSlot,
+    onToggle,
 }) => html`
     <vl-accordion
         data-vl-close-toggle-text=${closeToggleText ?? nothing}
         data-vl-open-toggle-text=${openToggleText ?? nothing}
         data-vl-toggle-text=${toggleText ?? nothing}
+        @vl-on-toggle=${(event: CustomEvent) => onToggle(event.detail)}
     >
         ${unsafeHTML(defaultSlot)}${unsafeHTML(titleSlot)}
     </vl-accordion>
