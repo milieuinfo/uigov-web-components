@@ -9,11 +9,12 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @mixes vlElement
  *
  * @property {boolean} data-vl-full-width - Attribuut wordt gebruikt om de maximale breedte van het label te benutten.
+ * @property {boolean} data-vl-collapsed - Zorgt ervoor dat labels en waarden op aparte lijnen afgebeeld worden.
  */
 @webComponent('vl-properties')
 export class VlPropertiesComponent extends BaseElementOfType(HTMLElement) {
     static get _observedClassAttributes() {
-        return ['full-width'];
+        return ['full-width', 'collapsed'];
     }
 
     connectedCallback() {
