@@ -3,7 +3,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 /**
  * VlProperties
  * @class
- * @classdesc De properties webcomponent vormt de container van een lijst van kenmerken van een onderwerp. Deze component wordt meestal gebruikt om informatie te tonen dat ingevuld werd in een formulier.
+ * @classdesc Vormt de container van een lijst van kenmerken van een onderwerp. Deze component wordt meestal gebruikt om informatie te tonen dat ingevuld werd in een formulier.
  *
  * @extends HTMLElement
  * @mixes vlElement
