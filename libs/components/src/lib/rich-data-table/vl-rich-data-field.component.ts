@@ -2,23 +2,23 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 @webComponent('vl-rich-data-field')
 export class VlRichDataField extends BaseElementOfType(HTMLElement) {
-    static get headerAttributes() {
+    static get headerAttributes(): string[] {
         return ['name', 'label', 'sortable', 'sorting-direction', 'sorting-priority'];
     }
 
-    static get bodyAttributes() {
+    static get bodyAttributes(): string[] {
         return ['selector', 'renderer'];
     }
 
-    static get _observedAttributes() {
+    static get _observedAttributes(): string[] {
         return this.headerAttributes.concat(this.bodyAttributes);
     }
 
-    static get is() {
+    static get is(): string {
         return 'vl-rich-data-field';
     }
 
-    headerTemplate() {
+    headerTemplate(): HTMLTableCellElement {
         const th = document.createElement('th');
         const headerContent = this.__getHeaderContentElement();
         if (headerContent) {
@@ -30,7 +30,7 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
         return th;
     }
 
-    valueTemplate(rowData: any) {
+    valueTemplate(rowData: unknown): HTMLTableCellElement {
         const td = document.createElement('td');
         if (this.label) {
             td.setAttribute('data-title', this.label);
@@ -48,7 +48,7 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
      * Geeft de naam terug die gebruikt wordt om het veld te identificeren.
      * @return {string}
      */
-    get name() {
+    get name(): string {
         return this.dataset.vlName;
     }
 
@@ -56,7 +56,7 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
      * Geeft de selector terug die gebruikt wordt om de juiste waarde uit de data te halen.
      * @return {string}
      */
-    get selector() {
+    get selector(): string {
         return this.dataset.vlSelector;
     }
 
@@ -64,7 +64,7 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
      * Geeft de naam terug die getoond kan worden aan de gebruiker.
      * @return {string}
      */
-    get label() {
+    get label(): string {
         return this.dataset.vlLabel;
     }
 
@@ -72,7 +72,7 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
      * Geeft terug of er op het veld gesorteerd kan worden.
      * @return {boolean}
      */
-    get sortable() {
+    get sortable(): boolean {
         return this.dataset.vlSortable !== undefined;
     }
 
@@ -80,7 +80,7 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
      * Geeft de sorteerrichting terug.
      * @return {asc | desc}
      */
-    get sortingDirection() {
+    get sortingDirection(): number {
         return this.dataset.vlSortingDirection;
     }
 
@@ -88,15 +88,15 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
      * Geeft de prioriteit van het sorteren terug.
      * @return {number}
      */
-    get sortingPriority() {
+    get sortingPriority(): number {
         return this.dataset.vlSortingPriority;
     }
 
-    get _labelSlotElement() {
+    get _labelSlotElement(): HTMLSlotElement {
         return this.querySelector('template[slot="label"]');
     }
 
-    get _contentSlotElement() {
+    get _contentSlotElement(): HTMLSlotElement {
         return this.querySelector('template[slot="content"]');
     }
 
@@ -105,37 +105,37 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
         this._changed(['renderer']);
     }
 
-    _nameChangedCallback(oldValue: any, newValue: any) {
+    _nameChangedCallback(oldValue: string, newValue: string) {
         if (oldValue !== newValue) {
             this._changed(['name']);
         }
     }
 
-    _selectorChangedCallback(oldValue: any, newValue: any) {
+    _selectorChangedCallback(oldValue: string, newValue: string) {
         if (oldValue !== newValue) {
             this._changed(['selector']);
         }
     }
 
-    _labelChangedCallback(oldValue: any, newValue: any) {
+    _labelChangedCallback(oldValue: string, newValue: string) {
         if (oldValue !== newValue) {
             this._changed(['label']);
         }
     }
 
-    _sortableChangedCallback(oldValue: any, newValue: any) {
+    _sortableChangedCallback(oldValue: string, newValue: string) {
         if (oldValue !== newValue) {
             this._changed(['sortable']);
         }
     }
 
-    _sortingDirectionChangedCallback(oldValue: any, newValue: any) {
+    _sortingDirectionChangedCallback(oldValue: string, newValue: string) {
         if (oldValue !== newValue) {
             this._changed(['sorting-direction']);
         }
     }
 
-    _sortingPriorityChangedCallback(oldValue: any, newValue: any) {
+    _sortingPriorityChangedCallback(oldValue: string, newValue: string) {
         if (oldValue !== newValue) {
             this._changed(['sorting-priority']);
         }
@@ -151,11 +151,11 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
         );
     }
 
-    get __headerContent() {
+    get __headerContent(): string | undefined {
         return this.label || (this._labelSlotElement ? this._labelSlotElement.innerHTML : undefined);
     }
 
-    __getHeaderContentElement() {
+    __getHeaderContentElement(): HTMLElement | undefined {
         const content = this.__headerContent;
         if (content) {
             if (this.sortable) {
@@ -171,7 +171,7 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    __getValueContentElement(data: any) {
+    __getValueContentElement(data: unknown): HTMLElement | null {
         if (this.selector) {
             return this._template(
                 `${this.selector.split('.').reduce((prev: any, curr: any) => (prev ? prev[curr] : null), data)}`

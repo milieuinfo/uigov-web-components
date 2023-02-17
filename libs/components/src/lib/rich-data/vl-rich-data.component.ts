@@ -1,3 +1,4 @@
+import '@domg-wc/elements';
 // import '../../components/grid';
 // import '../../components/form-message';
 // import '../../components/icon';
@@ -11,6 +12,15 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/elements';
 import styles from './style/vl-rich-data.scss';
+import { Pagination, VlPagerComponent } from '../pager/vl-pager.component';
+
+export interface RichDataMeta {
+    sorting?: any;
+    filter?: any;
+    paging?: Pagination;
+}
+
+export type RichData = { data: unknown[] } & RichDataMeta;
 
 /**
  * VlRichData
@@ -37,13 +47,15 @@ import styles from './style/vl-rich-data.scss';
  */
 @webComponent('vl-rich-data')
 export class VlRichData extends BaseElementOfType(HTMLElement) {
-    static get _observedAttributes() {
+    static get _observedAttributes(): string[] {
         return ['data', 'collapsed-m', 'collapsed-s', 'collapsed-xs', 'filter-closable', 'filter-closed'];
     }
 
-    static get _defaultSearchColumnSize() {
+    static get _defaultSearchColumnSize(): number {
         return 4;
     }
+
+    protected _data: (RichData) | undefined;
 
     constructor(style = '', content = '') {
         super(`
@@ -92,7 +104,7 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
     `);
     }
 
-    connectedCallback() {
+    connectedCallback(): void {
         this.__processSearchFilter();
         this.__processSorter();
         this.__processContent();
@@ -104,7 +116,7 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
         this.__updateNumberOfSearchResults(null);
     }
 
-    disconnectedCallback() {
+    disconnectedCallback(): void {
         this._observer.disconnect();
     }
 
@@ -112,7 +124,7 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
      * Stelt in welke data de tabel moet tonen.
      * @param {Object[]} object - Een Array van objecten die de data voorstellen.
      */
-    set data(object) {
+    set data(object: RichData) {
         if (this._data !== object) {
             const { paging, sorting, filter } = object;
             this._paging = paging;
@@ -128,101 +140,99 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
      * @return {Object[]}
      */
     get data() {
-        return this._data || { data: [] };
+        return this._data || <any>{ data: [] };
     }
 
-    get __contentColumn() {
+    get __contentColumn(): HTMLElement {
         return this.shadowRoot.querySelector('#content');
     }
 
-    get __searchFilter() {
+    get __searchFilter(): HTMLFormElement {
         return this.querySelector('[slot="filter"]');
     }
 
-    get __filterSlotContainer() {
+    get __filterSlotContainer(): HTMLElement {
         return this.shadowRoot.querySelector('#filter-slot-container');
     }
 
-    get __filterSlot() {
+    get __filterSlot(): HTMLElement {
         return this.shadowRoot.querySelector('#filter-slot');
     }
 
-    get __filterOpenContainer() {
+    get __filterOpenContainer(): HTMLElement {
         return this.shadowRoot.querySelector('#open-filter');
     }
 
-    get __filterOpenButton() {
+    get __filterOpenButton(): HTMLElement {
         return this.shadowRoot.querySelector('#open-filter-button');
     }
 
-    get __filterToggleContainer() {
+    get __filterToggleContainer(): HTMLElement {
         return this.shadowRoot.querySelector('#toggle-filter');
     }
 
-    get __filterToggleButton() {
+    get __filterToggleButton(): HTMLElement {
         return this.shadowRoot.querySelector('#toggle-filter-button');
     }
 
-    get __filterToggleButtonTextSlot() {
+    get __filterToggleButtonTextSlot(): HTMLElement {
         return this.shadowRoot.querySelector('slot[name="toggle-filter-button-text"]');
     }
 
-    get __filterCloseButtonTextSlot() {
+    get __filterCloseButtonTextSlot(): HTMLElement {
         return this.shadowRoot.querySelector('slot[name="close-filter-button-text"]');
     }
 
-    get __searchResults() {
+    get __searchResults(): HTMLElement {
         return this.shadowRoot.querySelector('#search-results');
     }
 
-    get __numberOfSearchResults() {
-        return this.__searchResults.querySelector('#search-results-number');
+    get __numberOfSearchResults(): HTMLElement | null {
+        return this.__searchResults ? this.__searchResults.querySelector('#search-results-number') : null;
     }
 
-    get __sorterContainer() {
+    get __sorterContainer(): HTMLElement {
         return this.shadowRoot.querySelector('#sorter');
     }
 
-    get __sorter() {
+    get __sorter(): HTMLSlotElement {
         return this.querySelector('[slot="sorter"]');
     }
 
-    get __pager() {
+    get __pager(): VlPagerComponent {
         return this.querySelector('[slot="pager"]');
     }
 
-    get __searchColumn() {
+    get __searchColumn(): HTMLElement {
         return this.shadowRoot.querySelector('#search');
     }
 
-    get __searchFilterForm() {
-        if (this.__searchFilter) {
-            return this.__searchFilter.querySelector('form');
-        }
+    get __searchFilterForm(): HTMLFormElement | null {
+        return this.__searchFilter ? this.__searchFilter.querySelector('form') : this.__searchFilter;
     }
 
-    get __contentSlot() {
+    get __contentSlot(): HTMLSlotElement {
         return this.shadowRoot.querySelector('slot[name="content"]');
     }
 
-    get __noContentSlot() {
+    get __noContentSlot(): HTMLSlotElement {
         return this.shadowRoot.querySelector('slot[name="no-content"]');
     }
 
-    get __formDataState() {
+    get __formDataState(): FormData | undefined {
         if (this.__searchFilter && this.__searchFilter.formData) {
             const hasFilterValue = [...this.__searchFilter.formData.values()].find(Boolean);
-            if (hasFilterValue) {
-                return this.__searchFilter.formData;
-            }
+            return hasFilterValue ? this.__searchFilter.formData : undefined;
+        } else {
+            return undefined;
         }
     }
 
-    get _hasResults() {
-        return this._paging && this._paging.totalItems > 0;
+    get _hasResults(): boolean {
+        return Boolean(this._paging && this._paging.totalItems > 0);
     }
 
-    get _paging() {
+    get _paging(): Pagination | void {
         if (this.__pager) {
             return {
                 currentPage: this.__pager.currentPage,
@@ -230,12 +240,10 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
                 itemsPerPage: this.__pager.itemsPerPage,
                 totalItems: this.__pager.totalItems,
             };
-        } else {
-            return null;
         }
     }
 
-    set _paging(paging: any) {
+    set _paging(paging: Pagination | void) {
         if (paging) {
             if (paging.currentPage != null) {
                 this.__pager.setAttribute('data-vl-current-page', paging.currentPage);
@@ -253,18 +261,20 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
     set _filter(filter: any) {
         if (filter && this.__searchFilter) {
             const form = this.__searchFilter.querySelector('form');
-            if (form) {
-                filter.forEach((entry: any) => {
-                    const formElement = form.elements[entry.name];
+            if (Boolean(form) && form !== null) {
+                filter.forEach((entry: { value: string; name: number }) => {
+                    const formElements = form.elements;
+                    // should be > formElements.namedItem(entry.name)
+                    const formElement = formElements[entry.name];
                     if (formElement) {
-                        formElement.value = entry.value;
+                        (formElement as HTMLFormElement).value = entry.value;
                     }
                 });
             }
         }
     }
 
-    __onStateChange(event: any, { paging = false } = {}) {
+    __onStateChange(event: Event, { paging = false } = {}) {
         event.stopPropagation();
         event.preventDefault();
         this.dispatchEvent(
@@ -275,12 +285,19 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
         );
     }
 
-    __getState({ paging }: any) {
-        const state = {};
-        (state as any).formData = this.__formDataState;
-        (state as any).paging = this._paging;
-        if (!paging && (state as any).paging) {
-            (state as any).paging.currentPage = 1;
+    __getState({ paging }: { paging: boolean }): {
+        formData: FormData | undefined;
+        paging: Pagination | void;
+    } {
+        const state: {
+            formData: FormData | undefined;
+            paging: Pagination | void;
+        } = {
+            formData: this.__formDataState,
+            paging: this._paging,
+        };
+        if (!paging && state.paging) {
+            state.paging.currentPage = 1;
         }
         return state;
     }
@@ -334,21 +351,24 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
             .forEach((element: any) => (element.hidden = hidden));
     }
 
-    __observePager() {
+    __observePager(): void {
         if (this.__pager) {
-            this.__pager.setAttribute('data-vl-align-right', true);
+            this.__pager.setAttribute('data-vl-align-right', String(true));
             this.__pager.addEventListener('change', (e: any) => {
                 this.__onStateChange(e, { paging: true });
                 if (this.__contentSlot.assignedNodes()[0] !== undefined) {
-                    if (this.__contentSlot.assignedNodes()[0].children[0].querySelector('a') !== undefined) {
-                        this.__contentSlot.assignedNodes()[0].children[0].querySelector('a').focus();
+                    const firstAssignedNode: any = this.__contentSlot.assignedNodes()[0];
+                    // const firstAssignedNode = this.__contentSlot.assignedNodes()[0];
+                    // should be childNodes (on Node) but children here? TODO debug
+                    if (firstAssignedNode.children[0].querySelector('a') !== undefined) {
+                        firstAssignedNode.children[0].querySelector('a').focus();
                     }
                 }
             });
         }
     }
 
-    __observeSearchFilter(callback: any) {
+    __observeSearchFilter(callback: () => void): MutationObserver {
         const observer = new MutationObserver((mutations) => {
             mutations = mutations.filter((mutation) => mutation.target && (mutation.target as any).slot != 'content');
             if (mutations && mutations.length > 0) {
@@ -359,7 +379,7 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
         return observer;
     }
 
-    __processSearchFilter() {
+    __processSearchFilter(): void {
         if (this.__searchFilter) {
             this.__searchFilter.setAttribute('data-vl-alt', '');
             if (!this.hasAttribute('data-vl-filter-closed')) {
@@ -374,7 +394,7 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    __processSorter() {
+    __processSorter(): void {
         if (this.__sorter) {
             this.__showSorter();
         } else {
@@ -382,7 +402,7 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    __processContent() {
+    __processContent(): void {
         if (this._hasResults) {
             this.__contentSlot.hidden = false;
             this.__noContentSlot.hidden = true;
@@ -392,7 +412,7 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    __hideSearchColumn() {
+    __hideSearchColumn(): void {
         this.__searchColumn.hidden = true;
         this.__setGridColumnWidth(0);
         this.__filterToggleButton.setAttribute('aria-label', 'Filter tonen');
@@ -400,15 +420,15 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
         this.__filterCloseButtonTextSlot.hidden = true;
     }
 
-    __hideSearchResults() {
+    __hideSearchResults(): void {
         this.__searchResults.hidden = true;
     }
 
-    __hideSorter() {
+    __hideSorter(): void {
         this.__sorterContainer.hidden = true;
     }
 
-    __showSearchColumn() {
+    __showSearchColumn(): void {
         this.__searchColumn.hidden = false;
         this.__setGridColumnWidth(VlRichData._defaultSearchColumnSize);
         this.__filterToggleButton.setAttribute('aria-label', 'Filter verbergen');
@@ -426,18 +446,19 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
 
     __setGridColumnWidth(width: number) {
         ['size', 'medium-size'].forEach((size) => {
-            this.__searchColumn.setAttribute(`data-vl-${size}`, width);
-            this.__contentColumn.setAttribute(`data-vl-${size}`, 12 - width);
+            this.__searchColumn.setAttribute(`data-vl-${size}`, String(width));
+            this.__contentColumn.setAttribute(`data-vl-${size}`, String(12 - width));
         });
     }
 
-    __updateNumberOfSearchResults(number: any) {
+    __updateNumberOfSearchResults(number: number | null) {
         if (number) {
-            this.__numberOfSearchResults.textContent = number;
+            if (this.__numberOfSearchResults) this.__numberOfSearchResults.textContent = String(number);
         } else {
             if (this.__pager) {
                 customElements.whenDefined('vl-pager').then(() => {
-                    this.__numberOfSearchResults.textContent = this.__pager.totalItems || 0;
+                    if (this.__numberOfSearchResults)
+                        this.__numberOfSearchResults.textContent = String(this.__pager.totalItems || 0);
                 });
             }
         }

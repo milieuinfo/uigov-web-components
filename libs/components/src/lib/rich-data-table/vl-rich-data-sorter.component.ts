@@ -1,5 +1,5 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/elements';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-rich-data-table.scss';
 
 @webComponent('vl-rich-data-sorter')
@@ -11,11 +11,11 @@ export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
         };
     }
 
-    static get _observedAttributes() {
+    static get _observedAttributes(): string[] {
         return ['direction', 'priority'];
     }
 
-    static get is() {
+    static get is(): string {
         return 'vl-rich-data-sorter';
     }
 
@@ -44,11 +44,11 @@ export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
     `);
     }
 
-    get for() {
+    get for(): string {
         return this.dataset.vlFor;
     }
 
-    get direction() {
+    get direction(): string | undefined {
         return this.__direction;
     }
 
@@ -58,7 +58,7 @@ export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
 
             const directionIcon = this._directionIcon;
             if (directionIcon) {
-                this.__directionElement.setAttribute('data-vl-icon', this._directionIcon);
+                this.__directionElement.setAttribute('data-vl-icon', directionIcon);
                 this.__containerElement.classList.remove('vl-u-visually-hidden');
             } else {
                 this.__containerElement.classList.add('vl-u-visually-hidden');
@@ -70,7 +70,7 @@ export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    get _directionIcon() {
+    get _directionIcon(): string | null {
         switch (this.direction) {
             case VlRichDataSorter.DIRECTIONS.ascending:
                 return 'arrow-down';
@@ -81,33 +81,33 @@ export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    _setDirectionAndPublishEvent(direction: any) {
+    _setDirectionAndPublishEvent(direction: string | undefined): void {
         if (this.direction !== direction) {
             this.direction = direction;
             this._changed();
         }
     }
 
-    get priority() {
+    get priority(): number | undefined {
         return this.__priority;
     }
 
     set priority(priority) {
         if (this.__priority !== priority) {
             this.__priority = Number(priority) || undefined;
-            this.__priorityElement.textContent = this.priority;
+            this.__priorityElement.textContent = String(this.priority);
         }
     }
 
-    get __directionElement() {
+    get __directionElement(): HTMLElement {
         return this.shadowRoot.querySelector('#direction');
     }
 
-    get __containerElement() {
+    get __containerElement(): HTMLElement {
         return this.shadowRoot.querySelector('#container');
     }
 
-    get __priorityElement() {
+    get __priorityElement(): HTMLElement {
         return this.shadowRoot.querySelector('#priority');
     }
 
@@ -124,11 +124,11 @@ export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    _directionChangedCallback(oldValue: any, newValue: any) {
+    _directionChangedCallback(oldValue: string, newValue: string) {
         this.direction = newValue;
     }
 
-    _priorityChangedCallback(oldValue: any, newValue: any) {
+    _priorityChangedCallback(oldValue: number, newValue: number) {
         this.priority = newValue;
     }
 
@@ -143,11 +143,9 @@ export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
         );
     }
 
-    static get PRIORITY_COMPARATOR() {
-        return (firstSorter: any, secondSorter: any) => {
-            const firstPriority = firstSorter.priority;
-            const secondPriority = secondSorter.priority;
-            if (secondPriority === undefined || firstPriority < secondPriority) {
+    static get PRIORITY_COMPARATOR(): (firstSorter: VlRichDataSorter, secondSorter: VlRichDataSorter) => (number) {
+        return ({ priority: firstPriority }: VlRichDataSorter, { priority: secondPriority }: VlRichDataSorter) => {
+            if (secondPriority === undefined || (firstPriority ? firstPriority : 0) < secondPriority) {
                 return -1;
             } else if (firstPriority === undefined || firstPriority > secondPriority) {
                 return 1;
