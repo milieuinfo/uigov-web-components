@@ -9,6 +9,12 @@ import styles from './style/vl-pager.scss';
  * @property {number} itemsPerPage - Items per pagina.
  * @property {number} totalItems - Totaal aantal items.
  */
+export interface Pagination {
+    currentPage: number;
+    totalPages: number;
+    itemsPerPage: number;
+    totalItems: number;
+}
 
 /**
  * VlPager
@@ -26,7 +32,7 @@ import styles from './style/vl-pager.scss';
  * @property {boolean} data-vl-align-right - Attribuut wordt gebruikt om de paginatie rechts uit te lijnen.
  */
 @webComponent('vl-pager')
-export class VlPagerComponent extends BaseElementOfType(HTMLElement) {
+export class VlPagerComponent extends BaseElementOfType(HTMLElement) implements Pagination {
     static get _observedAttributes() {
         return ['total-items', 'items-per-page', 'current-page', 'pagination-disabled'];
     }

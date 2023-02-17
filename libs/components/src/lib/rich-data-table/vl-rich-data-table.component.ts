@@ -1,9 +1,13 @@
-import { webComponentPromised } from '@domg-wc/common-utilities';
 import '@domg-wc/elements';
-import { VlRichData } from '../rich-data/vl-rich-data.component';
-import styles from './style/vl-rich-data-table.scss';
 import { VlRichDataField } from './vl-rich-data-field.component';
 import { VlRichDataSorter } from './vl-rich-data-sorter.component';
+import { RichData, VlRichData } from '../rich-data/vl-rich-data.component';
+
+import styles from './style/vl-rich-data-table.scss';
+import { webComponentPromised } from '@domg-wc/common-utilities';
+
+type ForEachNodeFn = (value: Node, key: number, parent: NodeList) => void;
+type Sorter = Pick<VlRichDataSorter, 'name' | 'direction' | 'priority'>;
 
 @webComponentPromised(
     [customElements.whenDefined(VlRichDataField.is), customElements.whenDefined(VlRichDataSorter.is)],
@@ -14,11 +18,11 @@ export class VlRichDataTable extends VlRichData {
         return super._observedAttributes.concat(['data', 'collapsed-m', 'collapsed-s', 'collapsed-xs']);
     }
 
-    static get _tableAttributes() {
+    static get _tableAttributes(): string[] {
         return ['data-vl-collapsed-m', 'data-vl-collapsed-s', 'data-vl-collapsed-xs'];
     }
 
-    static get is() {
+    static get is(): string {
         return 'vl-rich-data-table';
     }
 
@@ -47,7 +51,7 @@ export class VlRichDataTable extends VlRichData {
         this.__observeFields();
     }
 
-    attributeChangedCallback(attr: any, oldValue: any, newValue: any) {
+    attributeChangedCallback(attr: string, oldValue: any, newValue: any) {
         super.attributeChangedCallback(attr, oldValue, newValue);
         if (VlRichDataTable._tableAttributes.includes(attr)) {
             const withoutDataVlPrefix = attr.substring('data-vl-'.length);
@@ -57,9 +61,9 @@ export class VlRichDataTable extends VlRichData {
 
     /**
      * Stelt in welke data de tabel moet tonen.
-     * @param {Object[]} object - Een Array van objecten die de data voorstellen.
+     * @param {data: Object[]} object - Een Array van objecten die de data voorstellen.
      */
-    set data(object) {
+    set data(object: RichData) {
         const previousData = this.data ? this.data.data : undefined;
         super.data = object;
         const hasNewData = previousData !== this.data.data;
@@ -68,7 +72,7 @@ export class VlRichDataTable extends VlRichData {
                 this._validate(this.data.data);
                 this._renderBody();
             } catch (error) {
-                this._data.data = [];
+                if (this._data) this._data.data = [];
                 throw error;
             }
         }
@@ -78,14 +82,19 @@ export class VlRichDataTable extends VlRichData {
      * Geeft de data terug die in de tabel wordt getoond.
      * @return {Object[]}
      */
-    get data() {
+    get data(): RichData {
         return super.data;
     }
 
-    get __activeSorters() {
-        return Array.from(this.__sorters)
-            .filter((sorter) => (sorter as any).direction !== undefined)
-            .sort(VlRichDataSorter.PRIORITY_COMPARATOR);
+    get __activeSorters(): VlRichDataSorter[] | undefined {
+        if (Boolean(this.__sorters) && this.__sorters !== undefined) {
+            const sorters: unknown[] = Array.from(this.__sorters);
+            return (<VlRichDataSorter[]>sorters)
+                .filter((sorter: VlRichDataSorter) => sorter.direction !== undefined)
+                .sort(VlRichDataSorter.PRIORITY_COMPARATOR);
+        } else {
+            return undefined;
+        }
     }
 
     get __contentColumn() {
@@ -100,13 +109,13 @@ export class VlRichDataTable extends VlRichData {
         return [...this.__fields].filter((field) => field.constructor === VlRichDataField);
     }
 
-    get __sorters() {
-        return this.__tableHeaderRow.querySelectorAll(VlRichDataSorter.is);
+    get __sorters(): NodeListOf<Element & VlRichDataSorter> | undefined {
+        return this.__tableHeaderRow ? this.__tableHeaderRow.querySelectorAll(VlRichDataSorter.is) : undefined;
     }
 
-    get __sortingState() {
+    get __sortingState(): Sorter[] | null {
         if (this.__activeSorters && this.__activeSorters.length > 0) {
-            return this.__activeSorters.map((criteria: any) => {
+            return this.__activeSorters.map((criteria) => {
                 return {
                     name: criteria.for,
                     priority: criteria.priority,
@@ -118,15 +127,15 @@ export class VlRichDataTable extends VlRichData {
         }
     }
 
-    get __table() {
+    get __table(): HTMLTableElement {
         return this.shadowRoot.querySelector('table');
     }
 
-    get __tableHeader() {
+    get __tableHeader(): HTMLElementTagNameMap['thead'] | null {
         return this.__table.querySelector('thead');
     }
 
-    get __tableHeaderRow() {
+    get __tableHeaderRow(): HTMLTableRowElement | null | undefined {
         const header = this.__tableHeader;
         if (header) {
             return header.querySelector('tr');
@@ -135,7 +144,7 @@ export class VlRichDataTable extends VlRichData {
         }
     }
 
-    get __tableBody() {
+    get __tableBody(): HTMLElementTagNameMap['tbody'] | null {
         return this.__table.querySelector('tbody');
     }
 
@@ -145,11 +154,11 @@ export class VlRichDataTable extends VlRichData {
         return state;
     }
 
-    get _isMultisortingEnabled() {
+    get _isMultisortingEnabled(): boolean {
         return this.dataset.vlMultisort !== undefined;
     }
 
-    _validate(data: any) {
+    _validate(data: unknown[]): void {
         if (data) {
             if (!Array.isArray(data)) {
                 throw new Error('vl-rich-data-table verwacht een Array als data');
@@ -157,31 +166,33 @@ export class VlRichDataTable extends VlRichData {
         }
     }
 
-    set _sorting(sorting: any) {
+    set _sorting(sorting: (unknown & { name: string; for: string; direction: string; priority: string })[]) {
         if (sorting) {
-            this.__sorters.forEach((sorter: any) => {
-                const matchedSorter = sorting.find((sort: any) => sort.name === sorter.for);
-                sorter.direction = matchedSorter ? matchedSorter.direction : undefined;
-                sorter.priority = matchedSorter ? matchedSorter.priority : undefined;
-            });
+            if (this.__sorters)
+                this.__sorters.forEach((sorter: any) => {
+                    const matchedSorter = sorting.find((sort) => sort.name === sorter.for);
+                    sorter.direction = matchedSorter ? matchedSorter.direction : undefined;
+                    sorter.priority = matchedSorter ? matchedSorter.priority : undefined;
+                });
         }
     }
 
-    get _hasResults() {
-        return this._data;
+    get _hasResults(): boolean {
+        return Boolean(this._data);
     }
 
-    _render() {
+    _render(): void {
         this._renderHeaders();
         this._renderBody();
     }
 
-    _renderHeaders() {
-        this.__tableHeaderRow.innerHTML = '';
-        const headerColumns = this.__richDataFields.map((field) => field.headerTemplate());
+    _renderHeaders(): void {
+        const { __tableHeaderRow, __richDataFields, __addHeaderColumn } = this;
+        if (__tableHeaderRow) __tableHeaderRow.innerHTML = '';
+        const headerColumns = __richDataFields.map((field) => field.headerTemplate());
         const atLeastOneHeaderColumnHasContent = headerColumns.some((header) => !!header.textContent);
         if (atLeastOneHeaderColumnHasContent) {
-            headerColumns.forEach(this.__addHeaderColumn.bind(this));
+            headerColumns.forEach(__addHeaderColumn.bind(this));
             this.__showHeader();
         } else {
             this.__hideHeader();
@@ -190,15 +201,15 @@ export class VlRichDataTable extends VlRichData {
 
     __addHeaderColumn(header: any) {
         this.__initializeSortingOnHeaderColumn(header);
-        this.__tableHeaderRow.appendChild(header);
+        if (this.__tableHeaderRow) this.__tableHeaderRow.appendChild(header);
     }
 
     __hideHeader() {
-        this.__tableHeader.setAttribute('hidden', '');
+        if (this.__tableHeader) this.__tableHeader.setAttribute('hidden', '');
     }
 
     __showHeader() {
-        this.__tableHeader.removeAttribute('hidden');
+        if (this.__tableHeader) this.__tableHeader.removeAttribute('hidden');
     }
 
     __initializeSortingOnHeaderColumn(header: any) {
@@ -210,20 +221,21 @@ export class VlRichDataTable extends VlRichData {
         }
     }
 
-    _renderBody() {
-        if (this.data && this.data.data) {
-            this.__tableBody.innerHTML = '';
-            this.data.data.forEach((rowData: any) => {
+    _renderBody(): void {
+        const { __tableBody, data } = this;
+        if (data && data.data && __tableBody) {
+            __tableBody.innerHTML = '';
+            this.data.data.forEach((rowData) => {
                 const rowTemplate = this._template(`<tr></tr>`).firstElementChild;
                 this.__richDataFields.map((field) => {
                     rowTemplate.appendChild(field.valueTemplate(rowData));
                 });
-                this.__tableBody.appendChild(rowTemplate);
+                __tableBody.appendChild(rowTemplate);
             });
         }
     }
 
-    _dataChangedCallback(oldValue: any, newValue: any) {
+    _dataChangedCallback(oldValue: string, newValue: string): void {
         this.data = JSON.parse(newValue);
     }
 
@@ -243,31 +255,37 @@ export class VlRichDataTable extends VlRichData {
         sorter.removeEventListener('change', this.__sortingChanged.bind(this));
     }
 
-    __fieldChanged(event: any) {
+    __fieldChanged(event: any): void {
         const propertiesChanged = event.detail.properties;
         if (propertiesChanged) {
-            if (propertiesChanged.some((property: any) => VlRichDataField.headerAttributes.includes(property))) {
+            if (propertiesChanged.some((property: string) => VlRichDataField.headerAttributes.includes(property))) {
                 this._renderHeaders();
             }
 
-            if (propertiesChanged.some((property: any) => VlRichDataField.bodyAttributes.includes(property))) {
+            if (propertiesChanged.some((property: string) => VlRichDataField.bodyAttributes.includes(property))) {
                 this._renderBody();
             }
         }
     }
 
-    __sortingChanged(event: any) {
+    __sortingChanged(event: any): void {
         if (this._isMultisortingEnabled) {
-            this.__activeSorters.forEach((sorter: any, index: number) => (sorter.priority = index + 1));
+            this.__activeSorters &&
+                this.__activeSorters.forEach((sorter: any, index: number) => (sorter.priority = index + 1));
         } else {
-            this.__activeSorters
-                .filter((sorter) => sorter !== event.target)
-                .forEach((sorter: any) => (sorter.direction = undefined));
+            this.__activeSorters &&
+                this.__activeSorters
+                    .filter((sorter) => sorter !== event.target)
+                    .forEach((sorter: any) => (sorter.direction = undefined));
         }
         this.__onStateChange(event);
     }
 
-    __createObserver(doWhenNodeIsAdded: any, doWhenNodeIsRemoved: any, render: any) {
+    __createObserver(
+        doWhenNodeIsAdded: ForEachNodeFn,
+        doWhenNodeIsRemoved: ForEachNodeFn,
+        render: boolean
+    ): MutationObserver {
         return new MutationObserver((mutationsList) => {
             let shouldRender = false;
             mutationsList.forEach((mutation) => {
@@ -287,7 +305,7 @@ export class VlRichDataTable extends VlRichData {
         });
     }
 
-    __observeFields() {
+    __observeFields(): void {
         this.__fields.forEach(this.__listenToFieldChanges.bind(this));
         const observer = this.__createObserver(
             this.__listenToFieldChanges.bind(this),
@@ -297,7 +315,7 @@ export class VlRichDataTable extends VlRichData {
         observer.observe(this as any, { childList: true });
     }
 
-    __observeSorters() {
+    __observeSorters(): void {
         const nodeToSorter = (doWithSorter: any) => {
             return (node: any) => {
                 const sorter = node.querySelector(VlRichDataSorter.is);
@@ -306,13 +324,18 @@ export class VlRichDataTable extends VlRichData {
                 }
             };
         };
-        this.__createObserver(
-            nodeToSorter((sorter: any) => this.__listenToSortChanges(sorter)),
-            nodeToSorter((sorter: any) => this.__stopListeningToSortChanges(sorter)),
-            null
-        ).observe(this.__tableHeaderRow, { childList: true });
+        if (this.__tableHeaderRow) {
+            this.__createObserver(
+                nodeToSorter((sorter: any) => this.__listenToSortChanges(sorter)),
+                nodeToSorter((sorter: any) => this.__stopListeningToSortChanges(sorter)),
+                false
+            ).observe(this.__tableHeaderRow, { childList: true });
+        }
     }
 }
+// Promise.all([customElements.whenDefined(VlRichDataField.is), customElements.whenDefined(VlRichDataSorter.is)]).then(
+//     () => define(VlRichDataTable.is, VlRichDataTable)
+// );
 
 declare global {
     interface HTMLElementTagNameMap {
