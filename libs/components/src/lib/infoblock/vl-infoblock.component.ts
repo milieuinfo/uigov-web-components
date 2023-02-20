@@ -46,7 +46,6 @@ export class VlInfoblockComponent extends BaseElementOfType(HTMLElement) {
     _titleChangedCallback(oldValue: string, newValue: string) {
         const currentSlot = this.querySelector('[slot="title"]');
         if (currentSlot) {
-            console.log('remove slot');
             currentSlot.remove();
         }
         this.appendChild(this._template(`<h2 is="vl-h2" slot='title'>${newValue}</h2>`));

@@ -111,7 +111,6 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
 
     _processRowElements() {
         const rows = this._bodyRowElements;
-        console.log({ rows });
         let dataRowIndex = 0;
         for (let i = 0; i < rows.length; i += 1) {
             const row = rows[i];
