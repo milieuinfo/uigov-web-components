@@ -35,7 +35,7 @@ export const vlPattern = {
         if (patternInstanceForThisElement) {
             return patternInstanceForThisElement.instance.getRawValue();
         } else {
-            console.log('Pattern instance for ' + this + ' not found');
+            console.warn('Pattern instance for ' + this + ' not found');
             return undefined;
         }
     },

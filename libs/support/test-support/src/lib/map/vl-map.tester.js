@@ -168,7 +168,7 @@ export class VlMapTester extends VlElementTester {
                 await this.driver.wait(this.driver.executeScript('return arguments[0].ready', this), 1000);
                 return true;
             } catch (error) {
-                console.log(error);
+                console.error(error);
                 return false;
             }
         });

@@ -27,7 +27,6 @@ const Template: StoryFn<typeof mapClickActionArgs> = ({ onClickActionStoryBook }
     `;
 
     function storybookTest(evt: VlMapClickedEvent) {
-        console.log(evt);
         onClickActionStoryBook({
             evt,
             coordinate: evt.coordinate,

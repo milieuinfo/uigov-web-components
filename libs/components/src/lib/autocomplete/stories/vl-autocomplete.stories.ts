@@ -67,7 +67,6 @@ export const autocompleteCustomCaptionFormatter = () => html` <vl-autocomplete
     .items=${complexItems}
     data-vl-caption-format="${CAPTION_FORMAT.SUBTITLE_TITLE_HORIZONTAL}"
     placeholder="Hint: typ Gent"
-    @clear=${() => console.log('autocomplete cleared!!!')}
 ></vl-autocomplete>`;
 autocompleteCustomCaptionFormatter.storyName = 'vl-autocomplete - custom caption formatter';
 
