@@ -1,14 +1,21 @@
 import { html } from 'lit-html';
 import '../vl-data-table.element';
 import { dataTableArgs, dataTableArgTypes } from './vl-data-table.stories-arg';
+import { Meta, StoryFn } from '@storybook/web-components';
+import { VlDataTable } from '@domg-wc/elements';
+import dataTableDoc from './vl-data-table.stories-doc.mdx';
 
 export default {
     title: 'Elements/data-table',
-    args: dataTableArgs,
     argTypes: dataTableArgTypes,
-};
+    parameters: {
+        docs: { page: dataTableDoc },
+        layout: 'fullscreen',
+        controls: { hideNoControlsWarning: true }
+    },
+} as Meta<typeof dataTableArgs>;
 
-export const dataTableDefault = ({
+export const DataTableDefault: StoryFn<typeof dataTableArgs> = ({
     hover,
     matrix,
     grid,
@@ -28,32 +35,31 @@ export const dataTableDefault = ({
         ?data-vl-collapsed-m=${collapsedM}
         ?data-vl-collapsed-s=${collapsedS}
         ?data-vl-collapsed-xs=${collapsedXS}
-        data-cy="data-table"
     >
         <caption>
             Data table
         </caption>
         <thead>
             <tr>
-                <th data-cy="data-table-header-1">Entry Header 1</th>
-                <th data-cy="data-table-header-2">Entry Header 2</th>
-                <th data-cy="data-table-header-3">Entry Header 3</th>
-                <th data-cy="data-table-header-4">Entry Header 4</th>
+                <th>Entry Header 1</th>
+                <th>Entry Header 2</th>
+                <th>Entry Header 3</th>
+                <th>Entry Header 4</th>
             </tr>
         </thead>
         <tbody>
-            <tr data-cy="data-table-body-row-1">
+            <tr>
                 <td data-title="Entry Header 1">Entry line 1</td>
                 <td data-title="Entry Header 2">Entry line 2</td>
                 <td data-title="Entry Header 3">Entry line 3</td>
                 <td data-title="Entry Header 4">Entry line 4</td>
             </tr>
-            <tr data-cy="data-table-body-row-2">
+            <tr>
                 <td data-title="Entry Header 1">Entry line 1</td>
                 <td data-title="Entry Header 2" colspan="2">Entry line 2</td>
                 <td data-title="Entry Header 3">Entry line 3</td>
             </tr>
-            <tr data-cy="data-table-body-row-3">
+            <tr>
                 <td data-title="Entry Header 1">Entry line 1</td>
                 <td data-title="Entry Header 2">Entry line 2</td>
                 <td data-title="Entry Header 3">Entry line 3</td>
@@ -62,9 +68,10 @@ export const dataTableDefault = ({
         </tbody>
     </table>
 `;
-dataTableDefault.storyName = 'vl-data-table - default';
+DataTableDefault.storyName = 'vl-data-table - default';
+DataTableDefault.args = dataTableArgs;
 
-export const dataTableJoinedRowTitles = ({
+export const DataTableJoinedRowTitles: StoryFn<typeof dataTableArgs> = ({
     hover,
     matrix,
     grid,
@@ -84,7 +91,6 @@ export const dataTableJoinedRowTitles = ({
         ?data-vl-collapsed-m=${collapsedM}
         ?data-vl-collapsed-s=${collapsedS}
         ?data-vl-collapsed-xs=${collapsedXS}
-        data-cy="data-table-joined-row-titles"
     >
         <caption>
             Data table Matrix - Joined row titles
@@ -99,41 +105,48 @@ export const dataTableJoinedRowTitles = ({
         </thead>
         <tbody>
             <tr>
-                <th rowspan="3" scope="rowgroup">Entry line 1</th>
-                <td>Entry line 2</td>
-                <td>Entry line 3</td>
-                <td>Entry line 4</td>
+                <th rowspan="3" scope="rowgroup">Horizontal title 1</th>
+                <td>Thomas H. &amp; Marie L. Farr</td>
+                <td>110</td>
+                <td>Didymiaceae</td>
+            </tr>
+
+            <tr>
+                <td>Critchfield R.L.</td>
+                <td>715</td>
+                <td>Didymiaceae</td>
+            </tr>
+
+            <tr>
+                <td>Rammeloo J.</td>
+                <td>4572</td>
+                <td>Didymiaceae</td>
             </tr>
             <tr>
-                <td>Entry line 1</td>
-                <td colspan="2">Entry line 2</td>
+                <th rowspan="3" scope="rowgroup">Horizontal title 2</th>
+                <td>Franz Heylemans</td>
+                <td>160</td>
+                <td>Onagraceae</td>
             </tr>
+
             <tr>
-                <td>Entry line 2</td>
-                <td>Entry line 3</td>
-                <td>Entry line 4</td>
+                <td>Stam A.B.</td>
+                <td>477</td>
+                <td>Onagraceae</td>
             </tr>
+
             <tr>
-                <th rowspan="3" scope="rowgroup">Entry line 2</th>
-                <td>Entry line 2</td>
-                <td>Entry line 3</td>
-                <td>Entry line 4</td>
-            </tr>
-            <tr>
-                <td>Entry line 1</td>
-                <td colspan="2">Entry line 2</td>
-            </tr>
-            <tr>
-                <td>Entry line 2</td>
-                <td>Entry line 3</td>
-                <td>Entry line 4</td>
+                <td>Van Hoeck Eddy</td>
+                <td>42</td>
+                <td>Onagraceae</td>
             </tr>
         </tbody>
     </table>
 `;
-dataTableJoinedRowTitles.storyName = 'vl-data-table - joined row titles';
+DataTableJoinedRowTitles.storyName = 'vl-data-table - joined row titles';
+DataTableJoinedRowTitles.args = dataTableArgs;
 
-export const dataTableExpandable = ({
+export const DataTableExpandable: StoryFn<typeof dataTableArgs> = ({
     hover,
     matrix,
     grid,
@@ -143,11 +156,10 @@ export const dataTableExpandable = ({
     collapsedS,
     collapsedXS,
 }: typeof dataTableArgs) => {
-    let table;
+    let table: VlDataTable & HTMLElement;
     customElements.whenDefined('vl-data-table').then(() => {
-        table = document.querySelector('#vl-data-table-with-expandable-details');
+        table = <VlDataTable & HTMLElement>document.querySelector('#vl-data-table-with-expandable-details');
     });
-
     return html`
         <table
             is="vl-data-table"
@@ -203,47 +215,28 @@ export const dataTableExpandable = ({
         </table>
     `;
 };
-dataTableExpandable.storyName = 'vl-data-table - expandable';
+DataTableExpandable.storyName = 'vl-data-table - expandable';
+DataTableExpandable.args = dataTableArgs;
 
-export const dataTableExpandableCustomToggleDetailsColumn = ({
-    hover,
-    matrix,
-    grid,
-    zebra,
-    uigZebra,
-    collapsedM,
-    collapsedS,
-    collapsedXS,
-}: typeof dataTableArgs) => {
+export const DataTableExpandableCustomToggleDetailsColumn: StoryFn<typeof dataTableArgs> = () => {
     let table: any;
     customElements.whenDefined('vl-data-table').then(() => {
-        table = document.querySelector('#vl-data-table-with-expandable-details');
+        table = document.querySelector('#vl-data-table-with-custom-expandable-details');
     });
-
     return html`
-        <table
-            is="vl-data-table"
-            id="vl-data-table-with-expandable-details"
-            ?data-vl-hover=${hover}
-            ?data-vl-matrix=${matrix}
-            ?data-vl-grid=${grid}
-            ?data-vl-zebra=${zebra}
-            ?data-vl-uig-zebra=${uigZebra}
-            ?data-vl-collapsed-m=${collapsedM}
-            ?data-vl-collapsed-s=${collapsedS}
-            ?data-vl-collapsed-xs=${collapsedXS}
-        >
+        <table is="vl-data-table" id="vl-data-table-with-custom-expandable-details">
             <caption>
                 Data table
             </caption>
             <thead>
                 <tr>
                     <th>Entry Header 1</th>
-                    <th>Entry Header 2</th>
+                    <th data-title="Entry Header 2" colspan="2">Entry line 2</th>
                     <th>Entry Header 3</th>
                     <th>Entry Header 4</th>
                 </tr>
             </thead>
+            <tbody></tbody>
             <tbody>
                 <tr>
                     <td data-title="Entry Header 1">Entry line 1</td>
@@ -251,52 +244,30 @@ export const dataTableExpandableCustomToggleDetailsColumn = ({
                     <td data-title="Entry Header 3">Entry line 3</td>
                     <td data-title="Entry Header 4">Entry line 4</td>
                     <td with-expand-details>
-                        <span
+                        <button
+                            is="vl-button"
                             @click=${() => {
                                 table.toggleDetails('details-row1');
                             }}
-                            >click to toggle details</span
                         >
+                            click to toggle details
+                        </button>
                     </td>
                 </tr>
                 <tr data-details-id="details-row1">
                     <td>Details 1</td>
                 </tr>
-                <tr>
-                    <td data-title="Entry Header 1">Entry line 1</td>
-                    <td data-title="Entry Header 2" colspan="2">Entry line 2</td>
-                    <td data-title="Entry Header 3">Entry line 3</td>
-                    <td with-expand-details>
-                        <span
-                            @click=${() => {
-                                table.toggleDetails('details-row2');
-                            }}
-                            >click to toggle details</span
-                        >
-                    </td>
-                </tr>
-                <tr data-details-id="details-row2">
-                    <td>Details 2</td>
-                </tr>
-                <tr>
-                    <td data-title="Entry Header 1">Entry line 1</td>
-                    <td data-title="Entry Header 2">Entry line 2</td>
-                    <td data-title="Entry Header 3">Entry line 3</td>
-                    <td data-title="Entry Header 4">Entry line 4</td>
-                    <td with-expand-details>
-                        <span
-                            @click=${() => {
-                                table.toggleDetails('details-row3');
-                            }}
-                            >click to toggle details</span
-                        >
-                    </td>
-                </tr>
-                <tr data-details-id="details-row3">
-                    <td>Details 3</td>
-                </tr>
             </tbody>
         </table>
     `;
 };
-dataTableExpandableCustomToggleDetailsColumn.storyName = 'vl-data-table - expandable custom toggle details column';
+DataTableExpandableCustomToggleDetailsColumn.storyName = 'vl-data-table - expandable custom toggle details column';
+DataTableExpandableCustomToggleDetailsColumn.parameters = {
+    docs: {
+        language: 'html',
+        source: {
+            format: true,
+            type: 'code'
+        },
+    },
+};
