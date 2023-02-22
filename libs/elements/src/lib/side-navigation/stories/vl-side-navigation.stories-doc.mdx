@@ -1,0 +1,67 @@
+import { Story, Source, Canvas } from '@storybook/addon-docs';
+import { contentHTML, navigationHTML } from './vl-side-navigation.stories-html';
+
+# Side Navigation
+
+Een compact navigatie-element dat je aan een pagina kan toevoegen. Het vat de inhoud van lange pagina's samen, leidt de gebruiker door de pagina inhoud en kan ook naar externe pagina's verwijzen.
+
+Het zij-menu wordt opgebouwd uit volgende elementen:
+
+-   VlSideNavigation
+-   VlSideNavigationTitle
+-   VlSideNavigationContent
+-   VlSideNavigationGroup
+-   VlSideNavigationItem
+-   VlSideNavigationToggle
+-   VlSideNavigationReference
+
+Zie de [code voorbeelden](#code-voorbeelden) onderaan.
+
+```js
+import { VlSideNavigation } from '@domg-wc/elements';
+```
+
+```html
+<nav is="vl-side-navigation"></nav>
+```
+
+<Canvas withSource="none">
+    <Story id="elements-side-navigation--side-navigation-default" />
+</Canvas>
+
+## Parent en child links
+
+Het is mogelijk om parent en child links te gebruiken (zie content 1 en content 2).  
+Dit gebeurt op de volgende manier (we gebruiken content 1 als voorbeeld):
+
+1. Plaats op het parent VlSideNavigationItem element het attribuut `data-vl-parent="content-1"`
+1. Plaats op het VlSideNavigationToggle element het attribuut `data-vl-child="content-1"`
+1. Plaats op de child links het attribuut `data-vl-parent="content-1"`
+
+Zie de [code voorbeelden](#code-voorbeelden) onderaan.
+
+## Code Voorbeelden
+
+<details>
+    <summary>Zij-menu voorbeeld</summary>
+    <Source code={navigationHTML} language="html" dark={true} />
+</details>
+
+<details>
+    <summary>Pagina inhoud voorbeeld</summary>
+    <Source code={contentHTML} language="html" dark={true} />
+</details>
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-side-navigation/
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/native-elements-vl-side-navigation--default
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlSideNavigation.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-side-navigation.html
