@@ -12,5 +12,9 @@ export const TYPES = {
     NUMBER: 'number',
     HTML: 'html',
     URL: 'url',
-    FUNCTION: 'function'
+    FUNCTION: 'function',
+};
+
+export const filterOutClasses = (input: string) => {
+    return input?.replace(/ class=".*"/, '');
 };
