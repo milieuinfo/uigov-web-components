@@ -4,7 +4,7 @@ import { VlSideSheet } from '@domg-wc/components';
 /**
  * VlMapSideSheet
  * @class
- * @classdesc Het map zijpaneel.
+ * @classdesc Het map zijpaneel. Let op: de default positie van de VlMapSideSheet is links, terwijl de default positie van de VlSideSheet rechts is.
  *
  * @extends VlSideSheet
  *
@@ -15,6 +15,7 @@ import { VlSideSheet } from '@domg-wc/components';
 @webComponent('vl-map-side-sheet')
 export class VlMapSideSheet extends VlSideSheet {
     constructor() {
+        // TODO: Kijk of dit iets moet doen, momenteel doet dit niets omdat de parameter in de constructor van VlSideSheet genegeerd wordt.
         super(`
       :host {
         width: 3.5rem;
@@ -41,12 +42,19 @@ export class VlMapSideSheet extends VlSideSheet {
 
     connectedCallback() {
         super.connectedCallback();
-        this._render();
+        this.setAttribute('data-vl-absolute', '');
+
+        if (!this.hasAttribute('data-vl-right')) {
+            this.setAttribute('data-vl-left', '');
+        }
     }
 
-    _render() {
-        this.setAttribute('data-vl-left', '');
-        this.setAttribute('data-vl-absolute', '');
+    _rightChangedCallback(_oldValue: string, newValue: string) {
+        if (newValue != undefined) {
+            this.removeAttribute('data-vl-left');
+        } else {
+            this.setAttribute('data-vl-left', '');
+        }
     }
 }
 

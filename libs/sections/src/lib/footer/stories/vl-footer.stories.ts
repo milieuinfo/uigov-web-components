@@ -9,12 +9,12 @@ export default {
     args: footerArgs,
     argTypes: footerArgTypes,
     parameters: {
-        docs: { page: footerDoc },
+        docs: { page: footerDoc, inlineStories: false },
         layout: 'fullscreen',
     },
 } as Meta<typeof footerArgs>;
 
-const Template: StoryFn<typeof footerArgs> = ({ identifier, development, onReady }) => html`
+export const FooterDefault: StoryFn<typeof footerArgs> = ({ identifier, development, onReady }) => html`
     <div is="vl-body">
         <vl-footer
             ?data-vl-development=${development}
@@ -23,6 +23,4 @@ const Template: StoryFn<typeof footerArgs> = ({ identifier, development, onReady
         ></vl-footer>
     </div>
 `;
-
-export const FooterDefault = Template.bind({});
 FooterDefault.storyName = 'vl-footer - default';

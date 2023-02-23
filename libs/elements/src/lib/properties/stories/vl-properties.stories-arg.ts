@@ -11,7 +11,7 @@ export const propertiesArgTypes: ArgTypes<typeof propertiesArgs> = {
     collapsed: {
         name: 'data-vl-collapsed',
         description:
-            'Zorgt ervoor dat labels en waarden op aparte lijnen afgebeeld worden.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-full<br>• data-vl-full-width',
+            'Labels en waarden worden op aparte lijnen afgebeeld.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-full<br>• data-vl-full-width',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
@@ -21,7 +21,7 @@ export const propertiesArgTypes: ArgTypes<typeof propertiesArgs> = {
     full: {
         name: 'data-vl-full',
         description:
-            'Zorgt ervoor dat de kolom de volledige breedte inneemt. Kan enkel gebruikt worden bij vl-properties-column.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-collapsed',
+            'De kolom neemt de volledige breedte in. Kan enkel gebruikt worden bij vl-properties-column.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-collapsed',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
@@ -31,7 +31,7 @@ export const propertiesArgTypes: ArgTypes<typeof propertiesArgs> = {
     fullWidth: {
         name: 'data-vl-full-width',
         description:
-            'Zorgt ervoor dat de maximale breedte van het label benut wordt.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-collapsed',
+            'De maximale breedte van het label wordt benut.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-collapsed',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
