@@ -1,3 +1,18 @@
+# [1.2.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.1.0...v1.2.0) (2023-02-27)
+
+
+### Features
+
+* UIG-2255 - rich-data-table verbeteringen ([6d9b090](https://github.com/milieuinfo/uigov-web-components/commit/6d9b090ce9fa6962d71404ee09955d55032ee40f))
+* UIG-2264 - onnodige console.log's verwijderen ([f97d5bc](https://github.com/milieuinfo/uigov-web-components/commit/f97d5bcc4e8efebd2d062b2dcc93435a480f5dc9))
+* UIG-2292 - properties collapsed ([b6e28c3](https://github.com/milieuinfo/uigov-web-components/commit/b6e28c3125ee3f7b6efe1a54712a384ece938a58))
+* UIG-2303 - accordion on toggle event ([5678ae6](https://github.com/milieuinfo/uigov-web-components/commit/5678ae6c95ee0a5240aab442dfc59726e31bbeef))
+* UIG-2308 - basis + ontwikkeling documentatie in Storybook ([4e22ffe](https://github.com/milieuinfo/uigov-web-components/commit/4e22ffeb1f6de6cb4f5027ee22a01752772bb9b2))
+* UIG-2313 - data-table verbeteringen ([788e350](https://github.com/milieuinfo/uigov-web-components/commit/788e35078387f5910086c1e348dfe8298df89577))
+* UIG-2315 - side navigation verbeteringen ([94cb10c](https://github.com/milieuinfo/uigov-web-components/commit/94cb10c4bdf710028b78d7e972177e939ac33d35))
+* UIG-2329 - properties verbeteringen ([52709dc](https://github.com/milieuinfo/uigov-web-components/commit/52709dc870586b25b105ab2a85103ceb141847fb))
+* UIG-2338 - vl-map-side-sheet right ([12801fe](https://github.com/milieuinfo/uigov-web-components/commit/12801feef5a87ff716a282b47e7cf8fc5f550fae))
+
 # [1.1.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.0.1...v1.1.0) (2023-02-08)
 
 
