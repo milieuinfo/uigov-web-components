@@ -8,14 +8,14 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @extends HTMLTableElement
  * @mixes nativeVlElement
  *
- * @vollapsedproperty {boolean} data-vl-hover - Attribuut wordt gebruikt om een rij te highlighten waneer de gebruiker erover hovert met muiscursor.
+ * @property {boolean} data-vl-hover - Attribuut wordt gebruikt om een rij te highlighten wanneer de gebruiker erover hovert met muiscursor.
  * @property {boolean} data-vl-matrix - Attribuut wordt gebruikt om data in 2 dimensies te tonen. Zowel de rijen als de kolommen krijgen een titel. Deze titels worden gescheiden door een dikke lijn.
  * @property {boolean} data-vl-grid - Variant met een lijn tussen elke rij en kolom.
  * @property {boolean} data-vl-zebra - Variant waarin de rijen afwisselend een andere achtergrondkleur krijgen. Dit maakt de tabel makkelijker leesbaar.
  * @property {boolean} data-vl-uig-zebra - Zebra variant voor tabellen met en zonder detail rijen.
- * @property {boolean} data-vl-collaped-m - Vanaf een medium schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
- * @property {boolean} data-vl-collaped-s - Vanaf een small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
- * @property {boolean} data-vl-collaped-xs - Vanaf een extra small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
+ * @property {boolean} data-vl-collapsed-m - Vanaf een medium schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
+ * @property {boolean} data-vl-collapsed-s - Vanaf een small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
+ * @property {boolean} data-vl-collapsed-xs - Vanaf een extra small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
  */
 @webComponent('vl-data-table', { extends: 'table' })
 export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
@@ -36,23 +36,23 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
         }
     }
 
-    get _headHeaderElements() {
+    get _headHeaderElements(): HTMLTableCellElement[] {
         return [...this.querySelectorAll('thead tr th')];
     }
 
-    get _bodyHeaderElements() {
+    get _bodyHeaderElements(): HTMLTableCellElement[] {
         return [...this.querySelectorAll('tbody tr th')];
     }
 
-    get _bodyRowElements() {
+    get _bodyRowElements(): HTMLTableRowElement[] {
         return [...this.querySelectorAll('tbody tr')];
     }
 
-    _detailsToggleButtonElement(id: string) {
+    _detailsToggleButtonElement(id: string): HTMLButtonElement {
         return this.querySelector(`tbody tr td button[id="details-toggle-${id}"]`);
     }
 
-    _detailsTableRowElement(id: string) {
+    _detailsTableRowElement(id: string): HTMLTableRowElement {
         return this.querySelector(`tbody tr[data-details-id="${id}"]`);
     }
 
@@ -73,7 +73,7 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
             .forEach((header) => header.setAttribute('scope', 'row'));
     }
 
-    _expandCollapseTemplate(id: string) {
+    _expandCollapseTemplate(id: string): DocumentFragment {
         const template = this._template(
             `<button id="details-toggle-${id}" type="button" is="vl-button" class="vl-button vl-button--icon-after" data-vl-narrow data-vl-secondary><span is="vl-icon" data-vl-icon="arrow-down-fat" ></span></button>`
         );
@@ -111,7 +111,6 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
 
     _processRowElements() {
         const rows = this._bodyRowElements;
-        console.log({ rows });
         let dataRowIndex = 0;
         for (let i = 0; i < rows.length; i += 1) {
             const row = rows[i];
@@ -120,7 +119,7 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
             if (isDataRow) {
                 dataRowIndex += 1;
             } else {
-                const id = row.getAttribute('data-details-id');
+                const id: any = row.getAttribute('data-details-id');
 
                 row.style.display = 'none';
 
@@ -129,13 +128,12 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
                     const cell = document.createElement('td');
                     const button = this._expandCollapseTemplate(id);
                     cell.append(button);
-
                     dataRow.appendChild(cell);
                 }
 
                 const dataCellCount = dataRow.querySelectorAll('td').length;
                 const detailsCell = row.querySelector('td');
-                detailsCell.colSpan = dataCellCount;
+                if (detailsCell) detailsCell.colSpan = dataCellCount;
             }
 
             const even = dataRowIndex % 2 === 0;

@@ -1,7 +1,8 @@
 import { assert, aTimeout, fixture, html, oneEvent } from '@open-wc/testing';
 import '../../../vl-map';
 import './vl-map-click-action';
-import { VlMap, VlMapClickAction } from '@domg-wc/map';
+import { VlMap } from '../../../vl-map';
+import { VlMapClickAction } from '../../../components/action/click-action/vl-map-click-action';
 import { MapBrowserEvent } from 'ol';
 import Overlay from 'ol/Overlay';
 import { VlMapClickedEvent } from '../VlMapClickedEvent';
@@ -19,7 +20,6 @@ describe('vl-map-click-action', () => {
         const fixture = await clickActionFixture();
         const clickAction: VlMapClickAction = fixture.querySelector('vl-map-click-action');
         const map: VlMap = fixture as unknown as VlMap;
-
         const pointerEvent = new PointerEvent('pointerdown', {
             clientX: 1,
             clientY: 1,
@@ -43,9 +43,7 @@ describe('vl-map-click-action', () => {
         const evt = new MapBrowserEvent<PointerEvent>('singleclick', map.map, pointerEvent);
         map.map.dispatchEvent(evt);
         await aTimeout(100);
-
         const overlays = map.map.getOverlays();
-
         assert.equal(overlays.getLength(), 1);
         const pindropOverlay: Overlay = overlays.item(0);
         const element: HTMLElement = pindropOverlay.getElement();

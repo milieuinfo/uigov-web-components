@@ -46,7 +46,6 @@ export class ProzaRestClient {
     }
 
     static __fetchJson(url: string, options: any) {
-        console.log('__fetchJson', url, options);
         return fetch(url, options ?? {}).then(ProzaRestClient.__handleError);
     }
 

@@ -13,18 +13,16 @@ export default {
     },
 } as Meta<typeof progressBarArgs>;
 
-const Template: StoryFn<typeof progressBarArgs> = ({ activeStep, focusOnChange, numeric, steps, onClickStep }) => {
-    return html`
-        <vl-progress-bar
-            data-vl-active-step=${activeStep}
-            ?data-vl-focus-on-change=${focusOnChange}
-            ?data-vl-numeric=${numeric}
-            .steps=${steps}
-            @vl-click-step=${(event: CustomEvent) => onClickStep(event.detail)}
-        >
-        </vl-progress-bar>
-    `;
-};
+const Template: StoryFn<typeof progressBarArgs> = ({ activeStep, focusOnChange, numeric, steps, onClickStep }) => html`
+    <vl-progress-bar
+        data-vl-active-step=${activeStep}
+        ?data-vl-focus-on-change=${focusOnChange}
+        ?data-vl-numeric=${numeric}
+        .steps=${steps}
+        @vl-click-step=${(event: CustomEvent) => onClickStep(event.detail)}
+    >
+    </vl-progress-bar>
+`;
 
 export const ProgressBarDefault = Template.bind({});
 ProgressBarDefault.storyName = 'vl-progress-bar - default';

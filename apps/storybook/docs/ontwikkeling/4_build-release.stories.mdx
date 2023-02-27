@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/addon-docs';
+import buildGitHubActions from '../../resources/Build - GitHub Actions.png';
+
+<Meta title="Ontwikkeling/Build & Release" />
+
+# Build
+
+## GitHub Actions - non-release branches
+
+### Beschrijving
+
+Voor feature en pre-release branches loopt de build via
+[GitHub actions](https://github.com/milieuinfo/uigov-web-components/actions).
+
+### Configuratie
+
+De GitHub actions configuratie zit in .yml bestanden onder de folder .github/workflows. Voor de webcomponenten noemt
+het bestand __ci-uigov-web-components.yml__. De opzet is als volgt (zie ook het schema):
+
+1. __checkout-install-and-cache__: checkout van de repo, npm installatie, caching van de node_modules en Cypress
+2. nadien lopen in parallel: de build (__build-apps-libs-and-storybook__), de e2e-testen (__e2e-test-storybook__),
+de unit-testen (__perform-all-unit-tests__) en de web-testen (__perform-all-web-tests__)
+3. van het resultaat van de e2e-testen wordt een rapport gemaakt (e2e-report-storybook)
+4. als laatste is er de optionele stap __release-and-publish__: deze loopt niet voor feature branches, er is een
+licht verschillende flow voor release en pre-release branches
+<br/><br/>
+
+<img src={buildGitHubActions} alt="Build GitHub Actions" />
+
+## Bamboo - release branches
+
+Voorlopig loopt voor release branches de build nog via GitHub actions. Het doel is dat op korte termijn de releases
+(builds op een release branch) via Bamboo verlopen.
+
+# Release
+
+Een release vindt plaats in de laatste stap van de build: __release-and-publish__ en wordt gestuurd door
+[semantic-release](https://github.com/semantic-release/semantic-release). De configuratie is te vinden in de root
+folder en zit in 2 bestanden: .releaserc-develop en .releaserc-release. De develop variant loopt voor de pre-release
+branches ('develop' en 'develop-xyz'), de release variant voor de 'release' en 'release-x.y' branches.
+
+De semantic release doet volgende zaken:
+
+- bepaalt het nieuwe versie nummer a.d.h.v. de commits (fix / feat / breaking-change) - met een -beta suffix voor
+develop branches
+- bouwt nieuwe artifacts met het versie nummer
+- legt een tag met het versie nummer
+- pushed de artifacts naar [Artifactory](https://repo.omgeving.vlaanderen.be/ui/packages)
+- publiceert een nieuwe versie van de documentatie naar de [uigov-pages](https://milieuinfo.github.io/uigov-pages/)
+- in het geval van een release wordt er een changelog aangemaakt en een
+[GitHub release](https://github.com/milieuinfo/uigov-web-components/releases)

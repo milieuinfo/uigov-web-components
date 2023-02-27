@@ -32,6 +32,12 @@ const shouldSetTitle = (title: string) => {
     cy.get('vl-accordion').shadow().find('.vl-accordion__title').contains(title);
 };
 
+const shouldEmitEventOnToggle = () => {
+    cy.createStubForEvent('vl-accordion', 'vl-on-toggle');
+    toggleAccordion();
+    cy.get('@vl-on-toggle').should('have.been.calledOnce');
+};
+
 describe('story vl-accordion default', () => {
     it('should be toggleable', () => {
         cy.visit(accordionUrl);
@@ -50,6 +56,12 @@ describe('story vl-accordion default', () => {
 
         shouldSetTitle('Lees meer over de onderwijsdoelstelling');
     });
+
+    it('should emit event on toggle', () => {
+        cy.visit(accordionUrl);
+
+        shouldEmitEventOnToggle();
+    });
 });
 
 describe('story vl-accordion dynamic toggle', () => {
@@ -67,7 +79,7 @@ describe('story vl-accordion dynamic toggle', () => {
 
     it('should set dynamic toggle', () => {
         cy.visit(
-            `${accordionUrl}&args=openToggleText:Open+de+onderwijsdoelstelling;closeToggleText:Sluit+de+onderwijsdoelstelling`
+            `${accordionDynamicToggleUrl}&args=openToggleText:Open+de+onderwijsdoelstelling;closeToggleText:Sluit+de+onderwijsdoelstelling`
         );
 
         shouldSetTitle('Open de onderwijsdoelstelling');
@@ -75,6 +87,12 @@ describe('story vl-accordion dynamic toggle', () => {
         shouldSetTitle('Sluit de onderwijsdoelstelling');
         toggleAccordion();
         shouldSetTitle('Open de onderwijsdoelstelling');
+    });
+
+    it('should emit event on toggle', () => {
+        cy.visit(accordionDynamicToggleUrl);
+
+        shouldEmitEventOnToggle();
     });
 });
 
@@ -95,5 +113,11 @@ describe('story vl-accordion title slot', () => {
         cy.visit(accordionTitleSlotUrl);
 
         cy.get('vl-accordion').find('[slot="title"]').contains('Lees meer over de onderwijsdoelstelling');
+    });
+
+    it('should emit event on toggle', () => {
+        cy.visit(accordionTitleSlotUrl);
+
+        shouldEmitEventOnToggle();
     });
 });

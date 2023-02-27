@@ -3,19 +3,16 @@ import { LitElement } from 'lit';
 
 const customRegistration = () =>
     awaitScript(
-        'vl-header-client',
+        'vl-header-polyfill',
         'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-polyfill/dist/index.js'
     )
         .then(() => {
-            (
-                awaitScript(
-                    'vl-header-polyfill',
-                    'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-client/dist/index.js'
-                ) as any
-            ) // TODO kspeltin: ergens staat de ecma versie niet hoog genoeg, want .finally kent hij niet zonder die 'as any'
-                .finally(() => {
-                    customElements.define('vl-header', VlHeader);
-                });
+            awaitScript(
+                'vl-header-client',
+                'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-client/dist/index.js'
+            ).finally(() => {
+                customElements.define('vl-header', VlHeader);
+            });
         })
         .catch(() => {
             customElements.define('vl-header', VlHeader);
@@ -23,71 +20,118 @@ const customRegistration = () =>
 
 @webComponentCustom(customRegistration)
 export class VlHeader extends LitElement {
-    private identifier = '';
+    private authenticatedUserUrl = '/sso/ingelogde_gebruiker';
     private development = false;
-    private loginUrl = '';
-    private loginRedirectUrl = '';
-    private logoutUrl = '';
-    private switchCapacityUrl = '';
-    private authenticatedUserUrl = '';
+    private identifier = '';
+    private loginRedirectUrl = '/';
+    private loginUrl = '/sso/aanmelden';
+    private logoutUrl = '/sso/afgemeld';
+    private switchCapacityUrl = '/sso/wissel_organisatie';
     private simple = false;
+    private observer: MutationObserver | null = null;
 
     static get properties() {
         return {
-            identifier: { type: String, attribute: 'data-vl-identifier', reflect: true },
-            development: { type: Boolean, attribute: 'data-vl-development', reflect: true },
-            loginUrl: { type: String, attribute: 'data-vl-login-url', reflect: true },
-            loginRedirectUrl: { type: String, attribute: 'data-vl-login-redirect-url', reflect: true },
-            logoutUrl: { type: String, attribute: 'data-vl-logout-url', reflect: true },
-            switchCapacityUrl: { type: String, attribute: 'data-vl-switch-capacity-url', reflect: true },
-            authenticatedUserUrl: { type: String, attribute: 'data-vl-authenticated-user-url', reflect: true },
-            simple: { type: Boolean, attribute: 'data-vl-simple', reflect: true },
+            authenticatedUserUrl: {
+                type: String,
+                attribute: 'data-vl-authenticated-user-url',
+                reflect: true,
+            },
+            development: {
+                type: Boolean,
+                attribute: 'data-vl-development',
+                reflect: true,
+            },
+            identifier: {
+                type: String,
+                attribute: 'data-vl-identifier',
+                reflect: true,
+            },
+            loginRedirectUrl: {
+                type: String,
+                attribute: 'data-vl-login-redirect-url',
+                reflect: true,
+            },
+            loginUrl: {
+                type: String,
+                attribute: 'data-vl-login-url',
+                reflect: true,
+            },
+            logoutUrl: {
+                type: String,
+                attribute: 'data-vl-logout-url',
+                reflect: true,
+            },
+            simple: {
+                type: Boolean,
+                attribute: 'data-vl-simple',
+                reflect: true,
+            },
+            switchCapacityUrl: {
+                type: String,
+                attribute: 'data-vl-switch-capacity-url',
+                reflect: true,
+            },
         };
     }
 
-    constructor() {
-        super();
-        this.loginUrl = '/sso/aanmelden';
-        this.loginRedirectUrl = '/';
-        this.logoutUrl = '/sso/afgemeld';
-        this.switchCapacityUrl = '/sso/wissel_organisatie';
-        this.authenticatedUserUrl = '/sso/ingelogde_gebruiker';
+    private get headerContainer() {
+        return document.querySelector('#header__container');
     }
 
-    injectHeader() {
+    private injectHeaderContainer() {
         const vlBody = document.querySelector('[is="vl-body"]');
-        (vlBody || document.body).insertAdjacentHTML('afterbegin', '<div id="header"></div>');
+        (vlBody || document.body).insertAdjacentHTML(
+            'afterbegin',
+            '<div id="header__container"><div id="header"></div></div>'
+        );
     }
 
-    vlwHeader() {
-        return document.querySelector('div[class=vlw__header]');
+    private observeWidgetIsAdded() {
+        const isHeader = (node: Node) => {
+            return (
+                (node as HTMLElement).tagName === 'HEADER' || (node.childNodes && [...node.childNodes].some(isHeader))
+            );
+        };
+
+        this.observer = new MutationObserver((mutations, observer) => {
+            const nodes = mutations.flatMap((mutation) => [...mutation.addedNodes]);
+
+            if (nodes.some(isHeader)) {
+                observer.disconnect();
+                this.dispatchEvent(new CustomEvent('ready'));
+            }
+        });
+
+        this.headerContainer && this.observer.observe(this.headerContainer, { childList: true });
     }
 
-    header() {
-        return document.querySelector('#header');
-    }
-
-    async __isUserAuthenticated() {
+    private async isUserAuthenticated() {
         const response = await fetch(this.authenticatedUserUrl);
         return response.status === 200;
     }
 
-    loadWidget() {
+    private loadWidget() {
         const widgetUrl = this.development
             ? `https://tni.widgets.burgerprofiel.dev-vlaanderen.be/api/v1/widget/${this.identifier}`
             : `https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/widget/${this.identifier}`;
 
-        let bootstrap = (window as any).vl.widget.client.bootstrap(widgetUrl).then((widget: any) => {
-            this.injectHeader();
-            widget.setMountElement(document.getElementById('header'));
-            widget.mount().catch((e: any) => console.error(e));
-            return widget;
-        });
-        if (!this.simple) {
-            bootstrap = bootstrap.then((widget: any) => {
+        (window as any).vl.widget.client
+            .bootstrap(widgetUrl)
+            .then((widget: any) => {
+                widget.setMountElement(document.getElementById('header'));
+                widget.mount().catch((e: any) => console.error(e));
+
+                return widget;
+            })
+            .then((widget: any) => {
+                if (this.simple) {
+                    return;
+                }
+
                 widget.getExtension('citizen_profile.session').then(async (session: any) => {
                     session.configure({
-                        active: await this.__isUserAuthenticated(),
+                        active: await this.isUserAuthenticated(),
                         endpoints: {
                             loginUrl: this.loginUrl,
                             loginRedirectUrl: this.loginRedirectUrl,
@@ -96,26 +140,50 @@ export class VlHeader extends LitElement {
                         },
                     });
                 });
+            })
+            .catch((e: any) => {
+                console.error(e);
             });
-        }
-        bootstrap = bootstrap.catch((e: any) => {
-            console.error(e);
-        });
     }
 
     render() {
-        if (this.vlwHeader()) {
-            (this.vlwHeader() as any).parentElement.remove();
-        }
-        if (this.header()) {
-            (this as any).header().remove();
-        }
+        this.headerContainer?.remove();
+        this.injectHeaderContainer();
+        this.observer?.disconnect();
+        this.observeWidgetIsAdded();
         this.loadWidget();
-        this.injectHeader();
     }
 
     createRenderRoot() {
         return this;
+    }
+
+    disconnectedCallback() {
+        this.observer?.disconnect();
+    }
+
+    /**
+     * @deprecated Deze methode mag niet gebruikt worden.
+     */
+    injectHeader() {
+        console.warn('VlHeader - injectHeader() - deze methode is deprecated en mag niet gebruikt worden.');
+        this.injectHeaderContainer();
+    }
+
+    /**
+     * @deprecated Deze methode mag niet gebruikt worden.
+     */
+    vlwHeader() {
+        console.warn('VlHeader - vlwHeader() - deze methode is deprecated en mag niet gebruikt worden.');
+        return document.querySelector('div[class=vlw__header]');
+    }
+
+    /**
+     * @deprecated Deze methode nag niet gebruikt worden.
+     */
+    header() {
+        console.warn('VlHeader - header() - deze methode is deprecated en mag niet gebruikt worden.');
+        return this.headerContainer;
     }
 }
 

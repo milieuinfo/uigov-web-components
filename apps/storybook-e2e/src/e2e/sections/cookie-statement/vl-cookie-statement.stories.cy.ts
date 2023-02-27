@@ -23,9 +23,7 @@ describe('story vl-cookie-statement', () => {
     it('should disable back link and emit event', () => {
         cy.visit(`${cookieStatementUrl}&args=disableBackLink:true`);
 
-        // De event listener wordt toegevoegd op het document omdat vl-cookie-statement geen property 'addEventListener' heeft volgens Cypress.
-        // Aangezien bubbles op true staat voor het event werkt dit.
-        cy.document().invoke('addEventListener', 'vl-click-back', cy.stub().as('vl-click-back'));
+        cy.createStubForEvent('vl-cookie-statement', 'vl-click-back');
         cy.get('vl-cookie-statement').shadow().find('vl-functional-header').shadow().find('a#back-link').click();
         cy.get('@vl-click-back').should('have.been.calledOnce');
     });

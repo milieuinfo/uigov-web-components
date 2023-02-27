@@ -89,7 +89,6 @@ export const measureActionWithControlOutsideMap = ({ active }) => html`
                 @click=${() => {
                     const measureAction: any = getMeasureAction();
                     measureAction.active = !measureAction.active;
-                    console.log('measureAction:', measureAction.active);
                 }}
             >
                 Meten

@@ -17,9 +17,7 @@ describe('story vl-side-sheet', () => {
             .shadow()
             .find('slot')
             .within((slot) => {
-                console.log('side-sheet - slot', slot);
                 const slotContent = (slot[0] as any).assignedNodes();
-                console.log('side-sheet - slotContent', slotContent);
                 expect(slotContent[1].innerHTML).to.contain('Lorem ipsum dolor sit amet,');
             });
     });

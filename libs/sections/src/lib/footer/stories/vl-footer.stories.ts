@@ -1,16 +1,28 @@
-import { html } from 'lit-html';
+import { html, nothing } from 'lit-html';
 import '../vl-footer.section';
 import { footerArgs, footerArgTypes } from './vl-footer.stories-arg';
+import { Meta, StoryFn } from '@storybook/web-components';
+import footerDoc from './vl-footer.stories-doc.mdx';
 
 export default {
     title: 'sections/footer',
     args: footerArgs,
     argTypes: footerArgTypes,
-};
+    parameters: {
+        docs: { page: footerDoc },
+        layout: 'fullscreen',
+    },
+} as Meta<typeof footerArgs>;
 
-export const footerInBody = ({ identifier, development }: typeof footerArgs) => {
-    return html` <div is="vl-body">
-        <vl-footer data-cy="footer" data-vl-identifier=${identifier} ?data-vl-development=${development}></vl-footer>
-    </div>`;
-};
-footerInBody.storyName = 'vl-footer - in body';
+const Template: StoryFn<typeof footerArgs> = ({ identifier, development, onReady }) => html`
+    <div is="vl-body">
+        <vl-footer
+            ?data-vl-development=${development}
+            data-vl-identifier=${identifier || nothing}
+            @ready=${(event: CustomEvent) => onReady(event)}
+        ></vl-footer>
+    </div>
+`;
+
+export const FooterDefault = Template.bind({});
+FooterDefault.storyName = 'vl-footer - default';

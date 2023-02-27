@@ -42,7 +42,7 @@ export const define = (
  */
 export const awaitScript = (id: string, src: string): Promise<void> => {
     if (document.head.querySelector(`script#${id}`)) {
-        console.log(`script with id '${id}' is already loaded`);
+        console.warn(`script with id '${id}' is already loaded`);
         return Promise.resolve();
     }
 

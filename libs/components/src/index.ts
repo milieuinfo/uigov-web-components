@@ -38,7 +38,7 @@ export { VlInfoblockComponent } from './lib/infoblock/vl-infoblock.component';
 export { VlInfoTile } from './lib/info-tile/vl-info-tile.component';
 export { VlModalComponent } from './lib/modal/vl-modal.component';
 export { VlLoaderComponent } from './lib/loader/vl-loader.component';
-export { VlPagerComponent } from './lib/pager/vl-pager.component';
+export { VlPagerComponent, Pagination } from './lib/pager/vl-pager.component';
 export { VlPillComponent } from './lib/pill/vl-pill.component';
 export { TYPE } from './lib/pill/vl-pill.model';
 export { VlButtonPillComponent } from './lib/pill/vl-button-pill.component';
