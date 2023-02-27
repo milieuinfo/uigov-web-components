@@ -3,9 +3,10 @@ const accordionTitleSlotUrl =
     'http://localhost:8080/iframe.html?id=components-accordion--accordion-title-slot&viewMode=story';
 const accordionDynamicToggleUrl =
     'http://localhost:8080/iframe.html?id=components-accordion--accordion-dynamic-toggle&viewMode=story';
-
+const accordionListUrl =
+    'http://localhost:8080/iframe.html?args=&id=components-accordion--accordion-list-default&viewMode=story';
 const toggleAccordion = () => {
-    cy.get('vl-accordion').shadow().find('button.vl-toggle').click();
+    cy.get('vl-accordion').shadow().find('button.vl-toggle').first().click();
 };
 
 const shouldBeClosed = () => {
@@ -117,6 +118,20 @@ describe('story vl-accordion title slot', () => {
 
     it('should emit event on toggle', () => {
         cy.visit(accordionTitleSlotUrl);
+
+        shouldEmitEventOnToggle();
+    });
+});
+
+describe('story vl-accordion-list', () => {
+    it('should be toggleable', () => {
+        cy.visit(accordionListUrl);
+
+        shouldBeToggleable();
+    });
+
+    it('should emit event on toggle', () => {
+        cy.visit(accordionListUrl);
 
         shouldEmitEventOnToggle();
     });
