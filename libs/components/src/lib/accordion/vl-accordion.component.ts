@@ -10,7 +10,7 @@ declare const vl: any;
 /**
  * VlAccordion
  * @class
- * @classdesc Deccordion component kan gebruikt worden om informatie te tonen of te verbergen aan de hand van een toggle.
+ * @classdesc Acccordion component kan gebruikt worden om informatie te tonen of te verbergen aan de hand van een toggle.
  *
  * @extends HTMLElement
  * @mixes vlElement
@@ -55,9 +55,9 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
             this._propagateTitleSlotClickToAccordion();
         }
 
-        /* 
+        /*
             Voeg de eventListener toe nadat this.dress() is aangeroepen om de correcte volgorde van de event listeners te garanderen.
-            Digitaal Vlaanderen accordion.js vuurt zelf een onChange event af bij het openen of sluiten van de accordion, 
+            Digitaal Vlaanderen accordion.js vuurt zelf een onChange event af bij het openen of sluiten van de accordion,
             maar om te vermijden dat we te veel steunen op de JS van Digitaal Vlaanderen vangen we het click event zelf op.
         */
         this._buttonElement?.addEventListener('click', () => {
