@@ -55,6 +55,7 @@ export class AppElement extends HTMLElement {
                     <playground-pager></playground-pager>
                     <playground-search></playground-search>
                     <playground-accordion></playground-accordion>
+                    <playground-accordion-list></playground-accordion-list>
                     <playground-infotile></playground-infotile>
                     <playground-steps></playground-steps>
                     <playground-datepicker></playground-datepicker>

@@ -14,6 +14,7 @@ import './app/annotation/annotation.element';
 import './app/autocomplete/autocomplete.element';
 import './app/action-group/action-group.element';
 import './app/accordion/accordion.element';
+import './app/accordion-list/accordion-list.element';
 import './app/breadcrumb/breadcrumb.element';
 import './app/buttons/buttons.element.ts';
 import './app/checkbox/checkbox.element';
