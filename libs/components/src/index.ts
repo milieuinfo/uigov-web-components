@@ -1,4 +1,5 @@
 export { VlAccordionComponent } from './lib/accordion/vl-accordion.component';
+export { VlAccordionListComponent } from './lib/accordion/vl-accordion-list.component';
 export { VlAlert } from './lib/alert/vl-alert.component';
 export { ALERT_ICON, ALERT_SIZE, ALERT_TYPE } from './lib/alert/vl-alert.model';
 export { VlAnnotation } from './lib/annotation/vl-annotation.component';
