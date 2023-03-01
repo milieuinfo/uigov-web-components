@@ -71,6 +71,7 @@ export class AppElement extends HTMLElement {
                     <playground-pill></playground-pill>
                     <playground-typography></playground-typography>
                     <playground-checkbox></playground-checkbox>
+                    <playground-range></playground-range>
                     <playground-radio></playground-radio>
                 </div>
             </div>

@@ -162,6 +162,7 @@
         "@govflanders-v14/vl-ui-toggle": "npm:@govflanders/vl-ui-toggle@14.0.2",
         "@govflanders-v14/vl-ui-tooltip": "npm:@govflanders/vl-ui-tooltip@14.0.2",
         "@govflanders-v14/vl-ui-typography": "npm:@govflanders/vl-ui-typography@14.0.2",
+        "@govflanders-v14/vl-ui-range": "npm:@govflanders/vl-ui-range@14.0.2",
         "@govflanders-v14/vl-ui-upload": "npm:@govflanders/vl-ui-upload@14.0.2",
         "@govflanders-v14/vl-ui-util": "npm:@govflanders/vl-ui-util@14.0.2",
         "@govflanders-v14/vl-ui-video-player": "npm:@govflanders/vl-ui-video-player@14.0.2",

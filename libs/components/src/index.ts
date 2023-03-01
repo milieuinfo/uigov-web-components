@@ -47,6 +47,7 @@ export { VlProzaMessagePreloader } from './lib/proza-message/vl-proza-message-pr
 export { VlProgressBarComponent } from './lib/progress-bar/vl-progress-bar.component';
 export { VlRadio } from './lib/radio/vl-radio.component';
 export { VlRadioGroup, vlRadioGroupComponent } from './lib/radio/vl-radio-group.component';
+export { VlRangeComponent } from './lib/range/vl-range.component';
 export { VlRichData } from './lib/rich-data/vl-rich-data.component';
 export { VlRichDataField } from './lib/rich-data-table/vl-rich-data-field.component';
 export { VlRichDataSorter } from './lib/rich-data-table/vl-rich-data-sorter.component';
