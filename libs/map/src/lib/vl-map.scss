@@ -52,6 +52,10 @@
             @media screen and (min-width: $vl-bp-large) {
                 width: 50%;
             }
+
+            &.vl-map-search--with-offset {
+                margin-left: 50px;
+            }
         }
     }
 }

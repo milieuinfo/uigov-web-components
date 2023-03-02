@@ -27,6 +27,14 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
         return ['placeholder', 'search-placeholder', 'search-empty-text', 'search-no-results-text'];
     }
 
+    static get _observedClassAttributes() {
+        return ['with-offset'];
+    }
+
+    get _classPrefix() {
+        return 'vl-map-search--';
+    }
+
     constructor() {
         super(`
       <style>
