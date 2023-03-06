@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+$vl-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/flanders/';
+$vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/iconfont/';
+
+// @govflanders global styles
+@import '@govflanders-v14/vl-ui-core/src/scss/core';
+@import '@govflanders-v14/vl-ui-util/src/scss/util';
+
+// @govflanders component styles
+@import '@govflanders-v14/vl-ui-input-field/src/scss/input-field';
+
+// Setting these variables only if they do not already exist as fallback should the variables be removed in the SCSS of Digitaal Vlaanderen.
+$vl-loblolly: #c6cdd3 !default;
+$vl-action-color: #05c !default;
+$vl-white: #fff !default;
+
+.vl-input-slider {
+    display: flex;
+    align-items: center;
+
+    .vl-input-slider__input-range {
+        width: calc(100% - 1rem);
+    }
+
+    .vl-input-slider__input-number {
+        font-size: 1.4rem;
+        width: 4.7rem;
+        margin-left: 1.5rem;
+        padding: 0 0 0 0.6rem !important;
+        height: 2.4rem;
+        line-height: 2.4rem;
+    }
+
+    input[type='range'] {
+        -webkit-appearance: none;
+        height: 2.4rem;
+    }
+
+    input[type='range']::-webkit-slider-runnable-track {
+        background: $vl-loblolly;
+        height: 0.4rem;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    input[type='range']::-moz-range-track {
+        background: $vl-loblolly;
+        height: 0.4rem;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        cursor: pointer;
+        width: 1.5rem;
+        height: 2.4rem;
+        background-color: mix($vl-action-color, $vl-white, 70%);
+        border-radius: 0.3rem;
+        margin-top: -1rem;
+        border-left: 0.7rem solid $vl-action-color;
+        border-right: 0.7rem solid $vl-action-color;
+        border-top: 0.55rem solid $vl-action-color;
+        border-bottom: 0.55rem solid $vl-action-color;
+    }
+
+    input[type='range']::-moz-range-thumb {
+        cursor: pointer;
+        width: 0.1rem;
+        height: 1.3rem;
+        background-color: mix($vl-action-color, $vl-white, 70%);
+        border-radius: 0.3rem;
+        margin-top: -1rem;
+        border-left: 0.7rem solid $vl-action-color;
+        border-right: 0.7rem solid $vl-action-color;
+        border-top: 0.55rem solid $vl-action-color;
+        border-bottom: 0.55rem solid $vl-action-color;
+    }
+}

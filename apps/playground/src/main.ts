@@ -39,6 +39,7 @@ import './app/info-tile/info-tile.element';
 import './app/input-addon/input-addon.element';
 import './app/input-group/input-group.element';
 import './app/input-field/input-field.element';
+import './app/input-slider/input-slider.element';
 import './app/image/image.element';
 import './app/introduction/introduction.element';
 import './app/link/link.element';
