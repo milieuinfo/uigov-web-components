@@ -2,8 +2,9 @@ const tabsUrl = 'http://localhost:8080/iframe.html?id=components-tabs--tabs-defa
 
 describe('story vl-tabs', () => {
     it('should contain three tabs with titles', () => {
-        cy.visit(`${tabsUrl}`);
-        cy.getDataCy('tabs')
+        cy.visit(tabsUrl);
+
+        cy.get('vl-tabs')
             .shadow()
             .find('ul.vl-tabs')
             .children()

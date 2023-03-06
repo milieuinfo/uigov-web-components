@@ -7,7 +7,7 @@ export class VlTabComponent extends BaseElementOfType(HTMLLIElement) {
     }
 
     static get _observedAttributes() {
-        return ['href', 'id'];
+        return ['href', 'id', 'disable-link'];
     }
 
     constructor() {
@@ -47,11 +47,15 @@ export class VlTabComponent extends BaseElementOfType(HTMLLIElement) {
         const a = this.__linkElementTemplate.firstElementChild;
         const slot = this.querySelector('slot');
         a.appendChild(slot);
-        a.addEventListener('click', () => this.__dispatchActiveTabChangedEvent());
+        a.addEventListener('click', (event: Event) => this.__dispatchActiveTabChangedEvent(event));
         this.appendChild(a);
     }
 
-    __dispatchActiveTabChangedEvent() {
+    __dispatchActiveTabChangedEvent(event: Event) {
+        if (this.hasAttribute('disable-link')) {
+            event.preventDefault();
+        }
+
         if (!this.isActive) {
             this.dispatchEvent(new CustomEvent('change', { detail: { activeTab: this.id }, composed: true }));
         }
