@@ -24,6 +24,7 @@ export class AppElement extends HTMLElement {
                     <playground-input-addon></playground-input-addon>
                     <playground-input-field></playground-input-field>
                     <playground-input-group></playground-input-group>
+                    <playground-input-slider></playground-input-slider>
                     <playground-introduction></playground-introduction>
                     <playground-link></playground-link>
                     <playground-link-list></playground-link-list>

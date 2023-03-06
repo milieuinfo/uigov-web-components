@@ -37,6 +37,7 @@ export { VlHttp506Message } from './lib/http-error-message/vl-http-506-message.c
 export { VlHttpErrorMessage } from './lib/http-error-message/vl-http-error-message.component';
 export { VlInfoblockComponent } from './lib/infoblock/vl-infoblock.component';
 export { VlInfoTile } from './lib/info-tile/vl-info-tile.component';
+export { VlInputSliderComponent } from './lib/input-slider/vl-input-slider.component';
 export { VlModalComponent } from './lib/modal/vl-modal.component';
 export { VlLoaderComponent } from './lib/loader/vl-loader.component';
 export { VlPagerComponent, Pagination } from './lib/pager/vl-pager.component';
