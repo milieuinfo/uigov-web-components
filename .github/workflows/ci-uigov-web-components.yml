@@ -2,8 +2,9 @@ name: ci-uigov-web-components
 
 on:
   push:
-    branches:
-      - '**'
+    branches-ignore:
+      - 'release'
+      - 'release-*'
     tags-ignore:
       - '**'
 
@@ -225,8 +226,8 @@ jobs:
 
   release-and-publish:
     if:
-      # only publish release and develop-team branches
-      contains('refs/heads/release, refs/heads/bugfix, refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
+      # only publish bugfix and develop branches
+      contains('refs/heads/bugfix, refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -253,13 +254,13 @@ jobs:
         run: |
           mv .releaserc-develop .releaserc
           npx semantic-release
-      - name: release the release branch
-        if: contains('refs/heads/release', github.ref)
-        env:
-          GH_TOKEN: ${{ secrets.PAT_UIG }}
-        run: |
-          mv .releaserc-release .releaserc
-          npx semantic-release
+#      - name: release the release branch
+#        if: contains('refs/heads/release', github.ref)
+#        env:
+#          GH_TOKEN: ${{ secrets.PAT_UIG }}
+#        run: |
+#          mv .releaserc-release .releaserc
+#          npx semantic-release
       - name: get package version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@main
@@ -274,12 +275,12 @@ jobs:
           pagesSubPath=${{ github.ref_name }}
           echo using $pagesSubPath as pages_sub_path
           echo "pages_sub_path=$pagesSubPath" >> $GITHUB_ENV
-      - name: build the pages_sub_path for the release branch
-        if: contains('refs/heads/release', github.ref)
-        run: |
-          pagesSubPath=${{ github.ref_name }}/${{ env.nextRelease_version }}
-          echo using $pagesSubPath as pages_sub_path
-          echo "pages_sub_path=$pagesSubPath" >> $GITHUB_ENV
+#      - name: build the pages_sub_path for the release branch
+#        if: contains('refs/heads/release', github.ref)
+#        run: |
+#          pagesSubPath=${{ github.ref_name }}/${{ env.nextRelease_version }}
+#          echo using $pagesSubPath as pages_sub_path
+#          echo "pages_sub_path=$pagesSubPath" >> $GITHUB_ENV
       - name: download artifacts
         uses: actions/download-artifact@v3
       - name: authenticate to local-npm repository

@@ -23,12 +23,6 @@
             }
         ],
         [
-            "@semantic-release/exec",
-            {
-                "prepareCmd": "echo 'nextRelease_version=${nextRelease.version}' >> $GITHUB_ENV",
-            }
-        ],
-        [
             "@semantic-release/git",
             {
                 "assets": ["resources/changelog/CHANGELOG.md", "package.json", "package-lock.json"],
@@ -36,12 +30,7 @@
             }
         ],
         [
-            "@semantic-release/github",
-            {
-                "assets": [
-                    {"path": "dist/**", "label": "distribution"}
-                ]
-            }
-        ],
+            "@semantic-release/github"
+        ]
     ]
 }
