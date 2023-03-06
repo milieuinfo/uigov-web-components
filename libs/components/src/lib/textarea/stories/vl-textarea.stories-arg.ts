@@ -1,14 +1,12 @@
 import { TYPES } from '@domg-wc/common-utilities';
 import { Args, ArgTypes } from '@storybook/web-components';
+import { defaultTinyMceToolbar } from '../vl-textarea.element';
 
 export const textareaArgs: Args = {
     block: false,
     error: false,
     success: false,
-    disabled: false,
-    focus: false,
     rich: false,
-    toolbar: '',
 };
 
 export const textareaArgTypes: ArgTypes = {
@@ -48,7 +46,8 @@ export const textareaArgTypes: ArgTypes = {
     },
     disabled: {
         name: 'data-vl-disabled',
-        description: 'Attribuut wordt gebruikt om te voorkomen dat de gebruiker tekst in de textarea kan ingeven.',
+        description:
+            'Attribuut wordt gebruikt om te voorkomen dat de gebruiker tekst in de textarea kan ingeven. Dit werkt enkel als `data-vl-rich` `false` is.',
         table: {
             type: {
                 summary: TYPES.BOOLEAN,
@@ -82,13 +81,13 @@ export const textareaArgTypes: ArgTypes = {
     toolbar: {
         name: 'data-vl-toolbar',
         description:
-            '[undo redo | bold italic underline strikethrough] data-vl-toolbar - Attribuut bepaalt welke WYSIWYG toolbar items gevisualiseerd worden zodat de toolbar naar wens samengesteld kan worden. Toolbar items kunnen visueel gescheiden worden door een | character.',
+            'Attribuut bepaalt welke WYSIWYG toolbar items gevisualiseerd worden zodat de toolbar naar wens samengesteld kan worden. Toolbar items kunnen visueel gescheiden worden door een | character. Enkel van belang als `data-vl-rich` `true` is.',
         table: {
             type: {
                 summary: TYPES.STRING,
             },
             category: 'Attributes',
-            defaultValue: { summary: false },
+            defaultValue: { summary: defaultTinyMceToolbar },
         },
     },
 };

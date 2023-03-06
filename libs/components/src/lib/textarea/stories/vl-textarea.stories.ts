@@ -1,17 +1,19 @@
 import { html } from 'lit-html';
 import '../vl-textarea.element';
 import { textareaArgs, textareaArgTypes } from './vl-textarea.stories-arg';
+import { StoryFn } from '@storybook/web-components';
+import textAreaDoc from './vl-textarea.stories-doc.mdx';
 
 export default {
     title: 'Components/textarea',
     args: textareaArgs,
     argTypes: textareaArgTypes,
     parameters: {
-        controls: { hideNoControlsWarning: true },
+        docs: { page: textAreaDoc },
     },
 };
 
-export const textareaDefault = ({rich, block, error, success, disabled, focus, toolbar}:typeof textareaArgs) => html`
+const Template: StoryFn<typeof textareaArgs> = ({ rich, block, error, success, disabled, focus, toolbar }) => html`
     <textarea
         id="textarea-rich"
         is="vl-textarea"
@@ -24,7 +26,6 @@ export const textareaDefault = ({rich, block, error, success, disabled, focus, t
         ?data-vl-disabled=${disabled}
         ?data-vl-focus=${focus}
         ?data-vl-toolbar=${toolbar}
-        data-cy="textarea"
     >
       <p>
           <h1>h1 title</h1>
@@ -67,7 +68,17 @@ export const textareaDefault = ({rich, block, error, success, disabled, focus, t
   </textarea
     >
 `;
-textareaDefault.args = {
-    toolbar: 'undo redo | bold italic underline strikethrough | h1 h2 h3 h4 h5 h6 | vlLink blockquote hr | numlist bullist'
-}
-textareaDefault.storyName = 'vl-textarea - default';
+
+export const TextareaDefault = Template.bind({});
+TextareaDefault.storyName = 'vl-textarea - default';
+TextareaDefault.args = {
+    disabled: false,
+    focus: false,
+};
+
+export const TextareaRich = Template.bind({});
+TextareaRich.storyName = 'vl-textarea - rich';
+TextareaRich.args = {
+    rich: true,
+    toolbar: 'undo redo | bold italic underline strikethrough',
+};

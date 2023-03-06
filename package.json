@@ -40,7 +40,7 @@
     },
     "private": true,
     "peerDependencies": {
-        "tinymce": "^5.10.3"
+        "tinymce": "5.10.6"
     },
     "devDependencies": {
         "@mdx-js/react": "1.6.22",
@@ -176,7 +176,7 @@
         "reflect-metadata": "^0.1.13",
         "regenerator-runtime": "0.13.7",
         "swipe-detect": "^1.0.1",
-        "tinymce": "^5.10.3",
+        "tinymce": "5.10.6",
         "tslib": "^2.3.0"
     },
     "volta": {
