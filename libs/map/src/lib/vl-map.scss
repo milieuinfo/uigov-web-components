@@ -20,6 +20,7 @@
     box-sizing: border-box;
     overflow: hidden;
     background: white;
+    z-index: 0;
 
     .ol-zoom,
     .ol-rotate {
