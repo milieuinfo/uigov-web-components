@@ -1,32 +1,61 @@
-import { TYPES } from '@domg-wc/common-utilities';
-import { Args, ArgTypes } from '@storybook/web-components';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { action } from '@storybook/addon-actions';
+import { ArgTypes } from '@storybook/web-components';
 
-export const tabsArgs: Args = {
+export const tabsArgs = {
+    activeTab: '',
+    disableLinks: false,
     alt: false,
     responsiveLabel: false,
+    onChangeActiveTab: action('vl-change-active-tab'),
 };
 
-export const tabsArgTypes: ArgTypes = {
+export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {
+    activeTab: {
+        name: 'data-vl-active-tab',
+        description:
+            'Het id van de actieve tab. De tab in kwestie wordt geselecteerd bij het aanpassen van dit id.<br>De default story gebruikt de volgende 3 ids:<br>• trein<br>• metro<br>• fiets',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
     alt: {
         name: 'data-vl-alt',
-        description: 'Attribuut om de alt variant van de tabs te tonen. Deze variant dient gebruikt te worden als subnavigatie onder de functional header.',
+        description:
+            'Toont de alt variant van de tabs. Deze variant dient gebruikt te worden als subnavigatie onder de functional header.',
         table: {
-            type: {
-                summary: TYPES.BOOLEAN,
-            },
-            category: 'Attributes',
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
+        },
+    },
+    disableLinks: {
+        name: 'data-vl-disable-links',
+        description:
+            'Zet de automatische url manipulaties uit.<br>Dit attribuut wordt enkel bij de initiële render van een tab gebruikt en werkt niet dynamisch.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: false },
         },
     },
     responsiveLabel: {
         name: 'data-vl-responsive-label',
-        description: 'Attribuut om de waarde in de tabs in responsive mode te veranderen. Enkel van toepassing wanneer geen tab is gekozen.',
+        description:
+            'Wordt afgebeeld op mobile wanneer de tabs samengevoegd worden tot een uitklapbaar menu. Wordt enkel afgebeeld wanneer er geen tab geselecteerd is.',
         table: {
-            type: {
-                summary: TYPES.BOOLEAN,
-            },
-            category: 'Attributes',
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: false },
+        },
+    },
+    onChangeActiveTab: {
+        name: 'change',
+        description: 'Afgevuurd na het klikken op een niet actieve tab. Het event bevat het id van de tab.',
+        table: {
+            type: { summary: '{ activeTab: string }' },
+            category: CATEGORIES.EVENTS,
         },
     },
 };

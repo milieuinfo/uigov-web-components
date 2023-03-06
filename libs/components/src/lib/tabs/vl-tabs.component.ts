@@ -15,7 +15,7 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     }
 
     static get _observedAttributes() {
-        return ['alt', 'responsive-label', 'active-tab', 'href'];
+        return ['alt', 'responsive-label', 'active-tab', 'href', 'disable-links'];
     }
 
     constructor() {
@@ -87,19 +87,26 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     }
 
     __getTabTemplate({ id, title }: any) {
+        const disableLinks = this.hasAttribute('disable-links');
+
         return this._template(`
-      <li is="vl-tab" data-vl-href="${this.__href}#${id}" data-vl-id="${id}">
-        <slot name="${id}-title-slot">${title}</slot>
-      </li>
-    `);
+            <li 
+                is="vl-tab" 
+                data-vl-id="${id}"
+                data-vl-href="${this.__href}#${id}"
+                ${disableLinks ? 'data-vl-disable-link' : ''}
+            >
+                <slot name="${id}-title-slot">${title}</slot>
+            </li>
+        `);
     }
 
     __getTabSectionTemplate({ id }: any) {
         return this._template(`
-      <section id="${id}-pane" is="vl-tab-section">
-        <slot name="${id}-slot"></slot>
-      </section>
-    `);
+            <section id="${id}-pane" is="vl-tab-section">
+                <slot name="${id}-slot"></slot>
+            </section>
+        `);
     }
 
     _addTab({ tabPane, index }: any) {
