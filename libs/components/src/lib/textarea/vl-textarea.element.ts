@@ -5,6 +5,8 @@ import { VlLinkToolbarFactory } from './vl-link-toolbar-factory';
 
 declare const tinyMCE: any;
 
+export const defaultTinyMceToolbar = 'undo redo | bold italic underline strikethrough';
+
 @webComponentPromised([vlFormValidation.ready()], 'vl-textarea', { extends: 'textarea' })
 export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTextAreaElement)) {
     static get _observedAttributes() {
@@ -55,6 +57,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
             branding: false,
             powerpaste_word_import: 'clean',
             powerpaste_html_import: 'clean',
+            // content_css: hier zou CDN link moeten komen voor de styling die zich in .style/vl-textarea.scss bevindt,
             verify_html: false,
             forced_root_block: 'p',
             body_class: 'vl-typography',
@@ -65,7 +68,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
                 underline: { inline: 'u' },
                 strikethrough: { inline: 's' },
             },
-            toolbar: this._toolbar || 'undo redo | bold italic underline strikethrough',
+            toolbar: this._toolbar || defaultTinyMceToolbar,
             setup: (editor: any) => {
                 this._registerVlLinkToolbar(editor);
                 this._initWysiwyg(editor);
@@ -83,9 +86,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
     _configureWysiwyg() {
         this.disabled = true;
         this._addBlockAttribute();
-        // opmerking: afnemers moeten zorgen dat icons, plugins, skins en themes
-        // van tinymce statisch beschikbaar zijn onder '/node_modules/tinymce'
-        tinyMCE.baseURL = '/node_modules/tinymce';
+        tinyMCE.baseURL = 'https://cdn.omgeving.vlaanderen.be/domg/tinymce/5.10.6';
         try {
             tinyMCE.init(this._wysiwygConfig);
         } catch (e) {

@@ -1,0 +1,49 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Textarea
+
+Gebruik een textarea als invoervak in een formulier, waarin de gebruiker over meerdere regels tekst kan invoeren.
+
+## Voorbeeld
+
+```js
+import { VlTextarea } from '@domg-wc/components';
+```
+
+```html
+<textarea is="vl-textarea"></textarea>
+```
+
+<DocsStory id="components-textarea--textarea-default" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Variant
+
+### Rich Text Editor
+
+Wanneer je `data-vl-rich` instelt als `true` wordt de textarea een WYSIWYG editor die achterliggend [TinyMCE](https://www.tiny.cloud/) gebruikt.
+
+<DocsStory id="components-textarea--textarea-rich" />
+
+## Referenties
+
+### TinyMCE - v5
+
+We gebruiken binnen de rich-text editor versie van `textarea`, TinyMCE 5.10.6
+
+**Documentatie TinyMCE v5**: https://www.tiny.cloud/docs/
+
+### Digitaal Vlaanderen
+
+**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-textarea
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/story/legacy-vl-textarea--default
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlTextarea.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-textarea.html
