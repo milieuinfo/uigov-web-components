@@ -4,7 +4,7 @@ import { Meta, StoryFn } from '@storybook/web-components';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import functionalHeaderDoc from './vl-functional-header.stories-doc.mdx';
 import { functionalHeaderArgs, functionalHeaderArgTypes } from './vl-functional-header.stories-arg';
-import { filterOutClasses } from '@domg-wc/common-utilities';
+import { filterOutClasses, formatHTML } from '@domg-wc/common-utilities';
 
 export default {
     title: 'Components/functional-header',
@@ -12,7 +12,9 @@ export default {
     parameters: {
         docs: {
             page: functionalHeaderDoc,
-            transformSource: filterOutClasses,
+            transformSource: (input: string) => {
+                return formatHTML(filterOutClasses(input));
+            },
         },
     },
 } as Meta<typeof functionalHeaderArgs>;
@@ -21,7 +23,9 @@ const Template: StoryFn<typeof functionalHeaderArgs> = ({
     back,
     backLink,
     disableBackLink,
+    fullWidth,
     link,
+    marginBottom,
     subTitle,
     title,
     actionsSlot,
@@ -38,7 +42,9 @@ const Template: StoryFn<typeof functionalHeaderArgs> = ({
         data-vl-back=${back || nothing}
         data-vl-back-link=${backLink || nothing}
         ?data-vl-disable-back-link=${disableBackLink}
+        ?data-vl-full-width=${fullWidth}
         data-vl-link=${link || nothing}
+        data-vl-margin-bottom=${marginBottom !== 'large' ? marginBottom : nothing}
         data-vl-sub-title=${subTitle || nothing}
         data-vl-title=${title || nothing}
         @vl-click-back=${onClickBack}
@@ -54,7 +60,9 @@ FunctionalHeaderDefault.args = {
     back: functionalHeaderArgs.back,
     backLink: functionalHeaderArgs.backLink,
     disableBackLink: functionalHeaderArgs.disableBackLink,
+    fullWidth: functionalHeaderArgs.fullWidth,
     link: functionalHeaderArgs.link,
+    marginBottom: functionalHeaderArgs.marginBottom,
     subTitle: functionalHeaderArgs.subTitle,
     title: functionalHeaderArgs.title,
     // Zet actionsSlot op 'nothing' zodat de volgorde van de categorieën blijft behouden.
@@ -69,7 +77,9 @@ FunctionalHeaderActions.args = {
     back: functionalHeaderArgs.back,
     backLink: functionalHeaderArgs.backLink,
     disableBackLink: functionalHeaderArgs.disableBackLink,
+    fullWidth: functionalHeaderArgs.fullWidth,
     link: functionalHeaderArgs.link,
+    marginBottom: functionalHeaderArgs.marginBottom,
     subTitle: functionalHeaderArgs.subTitle,
     title: functionalHeaderArgs.title,
     actionsSlot: functionalHeaderArgs.actionsSlot,
@@ -80,6 +90,8 @@ export const FunctionalHeaderTabs = Template.bind({});
 FunctionalHeaderTabs.storyName = 'vl-functional-header - tabs';
 FunctionalHeaderTabs.args = {
     title: functionalHeaderArgs.title,
+    fullWidth: functionalHeaderArgs.fullWidth,
+    marginBottom: functionalHeaderArgs.marginBottom,
     subHeaderSlot: `<vl-tabs slot="sub-header" data-vl-disable-links data-vl-within-functional-header data-vl-active-tab="trein">
             <vl-tabs-pane data-vl-id="trein" data-vl-title="Trein"></vl-tabs-pane>
             <vl-tabs-pane data-vl-id="metro" data-vl-title="Metro, tram en bus"></vl-tabs-pane>

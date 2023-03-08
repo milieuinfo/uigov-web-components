@@ -29,3 +29,9 @@ $vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-fon
         padding: 0.5rem 1rem 0 1rem;
     }
 }
+
+:host(.vl-functional-header--full-width) {
+    .vl-layout {
+        max-width: 100%;
+    }
+}
