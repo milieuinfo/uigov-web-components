@@ -112,6 +112,7 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
                     radius,
                 }),
                 text: this._getTextStyle(feature, textColor),
+                zIndex: this._featureZIndex(feature),
             });
         };
     }
