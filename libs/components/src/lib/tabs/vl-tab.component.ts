@@ -37,6 +37,10 @@ export class VlTabComponent extends BaseElementOfType(HTMLLIElement) {
      */
     activate() {
         this.__linkElement.click();
+        // Als de tabs afgebeeld worden in de functional header worden de sections niet toegevoegd aan de DOM.
+        // Als er geen sections in de DOM voorkomen gaat de JS van Digitaal Vlaanderen geen event listeners toevoegen aan de tabs en de active-class niet zetten.
+        // Zet de active-class manueel als backup.
+        this.classList.add('vl-tab--active');
     }
 
     _processClasses() {

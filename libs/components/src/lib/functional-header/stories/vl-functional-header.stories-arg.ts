@@ -104,7 +104,7 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
     subHeaderSlot: {
         name: 'sub-header',
         description:
-            'Wordt afgebeeld onder de horizontale lijn.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-back attribuut<br>• data-vl-back-link attribuut<br>• data-vl-disable-back-link attribuut<br>• data-vl-sub-title attribuut<br>• data-vl-link attribuut<br>• back slot<br>• back-link slot<br>• sub-title slot',
+            'Wordt afgebeeld onder de horizontale lijn.<br>Kan niet in combinatie gebruikt worden met:<br>• data-vl-back attribuut<br>• data-vl-back-link attribuut<br>• data-vl-disable-back-link attribuut<br>• data-vl-sub-title attribuut<br>• back slot<br>• back-link slot<br>• sub-title slot',
         table: {
             type: { summary: TYPES.HTML },
             category: CATEGORIES.SLOTS,
