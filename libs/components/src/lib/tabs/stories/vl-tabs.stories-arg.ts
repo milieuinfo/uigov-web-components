@@ -7,7 +7,7 @@ export const tabsArgs = {
     disableLinks: false,
     alt: false,
     responsiveLabel: false,
-    onChangeActiveTab: action('vl-change-active-tab'),
+    onChangeActiveTab: action('change'),
 };
 
 export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {

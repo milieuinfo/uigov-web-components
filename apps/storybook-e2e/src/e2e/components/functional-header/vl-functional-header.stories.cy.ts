@@ -2,6 +2,8 @@ const functionalHeaderUrl =
     'http://localhost:8080/iframe.html?id=components-functional-header--functional-header-default&viewMode=story';
 const functionalHeaderActionsUrl =
     'http://localhost:8080/iframe.html?id=components-functional-header--functional-header-actions&viewMode=story';
+const functionalHeaderTabsUrl =
+    'http://localhost:8080/iframe.html?id=components-functional-header--functional-header-tabs&viewMode=story';
 const functionalHeaderSlotsUrl =
     'http://localhost:8080/iframe.html?id=components-functional-header--functional-header-slots&viewMode=story';
 
@@ -159,6 +161,40 @@ describe('story vl-functional-header-actions', () => {
             .find('a')
             .should('have.attr', 'href', '#')
             .contains('Actie 2');
+    });
+});
+
+describe('story vl-functional-header-tabs', () => {
+    it('should set title link', () => {
+        cy.visit(`${functionalHeaderTabsUrl}&args=link:test`);
+
+        shouldSetTitleLink();
+    });
+
+    it('should set title text', () => {
+        cy.visit(`${functionalHeaderTabsUrl}&args=title:School+en+studietoelagen`);
+
+        shouldSetTitleText();
+    });
+
+    it('should have tabs', () => {
+        cy.visit(functionalHeaderTabsUrl);
+
+        cy.get('vl-tabs')
+            .shadow()
+            .find('ul.vl-tabs')
+            .children()
+            .each((tab, index) => {
+                if (index === 0) {
+                    cy.wrap(tab).find('slot').contains('Trein');
+                }
+                if (index === 1) {
+                    cy.wrap(tab).find('slot').contains('Metro, tram en bus');
+                }
+                if (index === 2) {
+                    cy.wrap(tab).find('slot').contains('Fiets');
+                }
+            });
     });
 });
 

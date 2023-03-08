@@ -15,7 +15,7 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     }
 
     static get _observedAttributes() {
-        return ['alt', 'responsive-label', 'active-tab', 'href', 'disable-links'];
+        return ['alt', 'responsive-label', 'active-tab', 'href', 'disable-links', 'within-functional-header'];
     }
 
     constructor() {
@@ -35,7 +35,11 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
 
     connectedCallback() {
         this._renderTabs();
-        this._renderSections();
+
+        if (!this.hasAttribute('within-functional-header')) {
+            this._renderSections();
+        }
+
         this.__dress();
         this._observer = this.__observeTabPanes((mutations: any) => this.__processTabPane(mutations));
     }
@@ -176,6 +180,14 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         }
     }
 
+    _withinFunctionalHeaderChangedCallback(oldValue: string, newValue: string) {
+        if (newValue != undefined) {
+            this.classList.add('vl-tabs--within-functional-header');
+        } else {
+            this.classList.remove('vl-tabs--within-functional-header');
+        }
+    }
+
     _hrefChangedCallback(oldValue: string, newValue: string) {
         this.__updateHrefs();
     }
@@ -212,12 +224,18 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     __addTabAndSection(tabPane: any) {
         const index = this.__tabPanes.indexOf(tabPane);
         this._addTab({ tabPane, index });
-        this._addTabSection({ id: tabPane.id, index });
+
+        if (!this.hasAttribute('within-functional-header')) {
+            this._addTabSection({ id: tabPane.id, index });
+        }
     }
 
     __removeTabAndSection(tabPane: any) {
         this._removeTab(tabPane.id);
-        this._removeTabSection(tabPane.id);
+
+        if (!this.hasAttribute('within-functional-header')) {
+            this._removeTabSection(tabPane.id);
+        }
     }
 }
 
