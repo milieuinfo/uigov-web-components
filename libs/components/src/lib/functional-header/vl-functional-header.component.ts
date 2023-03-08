@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, MARGINS, webComponent } from '@domg-wc/common-utilities';
 import styles from './style/vl-functional-header.scss';
 
 /**
@@ -19,7 +19,15 @@ import styles from './style/vl-functional-header.scss';
 @webComponent('vl-functional-header')
 export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
-        return ['back', 'back-link', 'disable-back-link', 'link', 'sub-title', 'title'];
+        return ['back', 'back-link', 'disable-back-link', 'link', 'margin-bottom', 'sub-title', 'title'];
+    }
+
+    static get _observedClassAttributes() {
+        return ['full-width'];
+    }
+
+    get _classPrefix() {
+        return 'vl-functional-header--';
     }
 
     constructor() {
@@ -155,6 +163,17 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
 
     _backLinkChangedCallback(oldValue: string, newValue: string) {
         this._backLinkElement.href = newValue || document.referrer;
+    }
+
+    _marginBottomChangedCallback(oldValue: string, newValue: string) {
+        const margin = MARGINS[newValue];
+        const header = this._shadow.querySelector('.vl-functional-header');
+
+        if (margin) {
+            header.style.marginBottom = margin;
+        } else {
+            header.style.removeProperty('margin-bottom');
+        }
     }
 
     _handleClickBackLink(event: Event) {

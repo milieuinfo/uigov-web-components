@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, MARGINS, TYPES } from '@domg-wc/common-utilities';
 import { ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 
@@ -6,7 +6,9 @@ export const functionalHeaderArgs = {
     back: '',
     backLink: '',
     disableBackLink: false,
+    fullWidth: false,
     link: '#',
+    marginBottom: 'large',
     subTitle: 'Voor lager, middelbaar en hoger onderwijs',
     title: 'School- en studietoelagen',
     actionsSlot: `<div slot="actions">
@@ -51,12 +53,36 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
             defaultValue: { summary: false },
         },
     },
+    fullWidth: {
+        name: 'data-vl-full-width',
+        description: 'Gebruik de volledige breedte van het scherm.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
+        },
+    },
     link: {
         name: 'data-vl-link',
         description: 'URL van de titel-link.',
         table: {
             type: { summary: TYPES.URL },
             category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    marginBottom: {
+        name: 'data-vl-margin-bottom',
+        description: 'De grootte van de margin onder de functional header.',
+        control: {
+            type: 'select',
+            options: [...Object.keys(MARGINS)],
+        },
+        table: {
+            type: {
+                summary: Object.keys(MARGINS),
+            },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: 'large' },
         },
     },
     subTitle: {
