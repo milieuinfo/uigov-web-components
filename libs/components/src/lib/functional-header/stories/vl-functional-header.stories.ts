@@ -4,12 +4,16 @@ import { Meta, StoryFn } from '@storybook/web-components';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import functionalHeaderDoc from './vl-functional-header.stories-doc.mdx';
 import { functionalHeaderArgs, functionalHeaderArgTypes } from './vl-functional-header.stories-arg';
+import { filterOutClasses } from '@domg-wc/common-utilities';
 
 export default {
     title: 'Components/functional-header',
     argTypes: functionalHeaderArgTypes,
     parameters: {
-        docs: { page: functionalHeaderDoc },
+        docs: {
+            page: functionalHeaderDoc,
+            transformSource: filterOutClasses,
+        },
     },
 } as Meta<typeof functionalHeaderArgs>;
 
@@ -70,6 +74,17 @@ FunctionalHeaderActions.args = {
     title: functionalHeaderArgs.title,
     actionsSlot: functionalHeaderArgs.actionsSlot,
     onClickBack: functionalHeaderArgs.onClickBack,
+};
+
+export const FunctionalHeaderTabs = Template.bind({});
+FunctionalHeaderTabs.storyName = 'vl-functional-header - tabs';
+FunctionalHeaderTabs.args = {
+    title: functionalHeaderArgs.title,
+    subHeaderSlot: `<vl-tabs slot="sub-header" data-vl-disable-links data-vl-within-functional-header data-vl-active-tab="trein">
+            <vl-tabs-pane data-vl-id="trein" data-vl-title="Trein"></vl-tabs-pane>
+            <vl-tabs-pane data-vl-id="metro" data-vl-title="Metro, tram en bus"></vl-tabs-pane>
+            <vl-tabs-pane data-vl-id="fiets" data-vl-title="Fiets"></vl-tabs-pane>
+        </vl-tabs>`,
 };
 
 export const FunctionalHeaderSlots = Template.bind({});
