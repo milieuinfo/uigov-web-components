@@ -3,8 +3,8 @@ import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 
 export const tabsArgs = {
-    activeTab: '',
-    disableLinks: false,
+    activeTab: 'trein',
+    disableLinks: true,
     alt: false,
     responsiveLabel: false,
     onChangeActiveTab: action('change'),

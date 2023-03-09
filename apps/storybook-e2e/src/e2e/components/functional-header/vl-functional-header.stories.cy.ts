@@ -44,7 +44,7 @@ const shouldSetTitleText = () => {
     cy.get('vl-functional-header').shadow().find('a.vl-functional-header__title').contains('School en studietoelagen');
 };
 
-describe('story vl-functional-header-default', () => {
+describe('story vl-functional-header default', () => {
     it('should have default back text', () => {
         cy.visit(functionalHeaderUrl);
 
@@ -94,7 +94,7 @@ describe('story vl-functional-header-default', () => {
     });
 });
 
-describe('story vl-functional-header-actions', () => {
+describe('story vl-functional-header actions', () => {
     it('should have default back text', () => {
         cy.visit(functionalHeaderActionsUrl);
 
@@ -164,7 +164,7 @@ describe('story vl-functional-header-actions', () => {
     });
 });
 
-describe('story vl-functional-header-tabs', () => {
+describe('story vl-functional-header tabs', () => {
     it('should set title link', () => {
         cy.visit(`${functionalHeaderTabsUrl}&args=link:test`);
 
@@ -177,28 +177,36 @@ describe('story vl-functional-header-tabs', () => {
         shouldSetTitleText();
     });
 
-    it('should have tabs', () => {
+    it('should have three tabs with titles', () => {
         cy.visit(functionalHeaderTabsUrl);
 
         cy.get('vl-tabs')
             .shadow()
             .find('ul.vl-tabs')
-            .children()
-            .each((tab, index) => {
-                if (index === 0) {
-                    cy.wrap(tab).find('slot').contains('Trein');
-                }
-                if (index === 1) {
-                    cy.wrap(tab).find('slot').contains('Metro, tram en bus');
-                }
-                if (index === 2) {
-                    cy.wrap(tab).find('slot').contains('Fiets');
-                }
-            });
+            .find('li[data-vl-id="trein"]')
+            .find('a')
+            .find('slot')
+            .contains('Trein');
+
+        cy.get('vl-tabs')
+            .shadow()
+            .find('ul.vl-tabs')
+            .find('li[data-vl-id="metro"]')
+            .find('a')
+            .find('slot')
+            .contains('Metro, tram en bus');
+
+        cy.get('vl-tabs')
+            .shadow()
+            .find('ul.vl-tabs')
+            .find('li[data-vl-id="fiets"]')
+            .find('a')
+            .find('slot')
+            .contains('Fiets');
     });
 });
 
-describe('story vl-functional-header-slots', () => {
+describe('story vl-functional-header slots', () => {
     it('should set title slot', () => {
         cy.visit(functionalHeaderSlotsUrl);
 

@@ -2,11 +2,17 @@ import { html, nothing } from 'lit-html';
 import '../vl-tabs.component';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { tabsArgs, tabsArgTypes } from './vl-tabs.stories-arg';
+import tabsDoc from './vl-tabs.stories-doc.mdx';
 
 export default {
     title: 'Components/tabs',
     args: tabsArgs,
     argTypes: tabsArgTypes,
+    parameters: {
+        docs: {
+            page: tabsDoc,
+        },
+    },
 } as Meta<typeof tabsArgs>;
 
 export const tabsDefault: StoryFn<typeof tabsArgs> = ({
@@ -42,7 +48,7 @@ export const tabsDefault: StoryFn<typeof tabsArgs> = ({
 `;
 tabsDefault.storyName = 'vl-tabs - default';
 
-export const tabsReactive: StoryFn<typeof tabsArgs> = ({
+export const tabsDynamic: StoryFn<typeof tabsArgs> = ({
     activeTab,
     alt,
     disableLinks,
@@ -50,7 +56,7 @@ export const tabsReactive: StoryFn<typeof tabsArgs> = ({
     onChangeActiveTab,
 }) =>
     html`
-        <button is="vl-button" onclick="addPane()">Pane toevoegen</button>
+        <button is="vl-button" id="add-pane-button" onclick="addPane()">Pane toevoegen</button>
         <vl-tabs
             id="tabs"
             data-vl-active-tab=${activeTab || nothing}
@@ -87,4 +93,4 @@ export const tabsReactive: StoryFn<typeof tabsArgs> = ({
             };
         </script>
     `;
-tabsReactive.storyName = 'vl-tabs - reactive';
+tabsDynamic.storyName = 'vl-tabs - dynamic';
