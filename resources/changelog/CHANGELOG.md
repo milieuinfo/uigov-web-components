@@ -1,3 +1,24 @@
+# [1.3.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.2.0...v1.3.0) (2023-03-10)
+
+
+### Bug Fixes
+
+* OMGVN-9147 - in een responsive layout moet het clear icoon dezelfde grootte behouden ([f23e912](https://github.com/milieuinfo/uigov-web-components/commit/f23e91257d7f441788f30666a2b339fd14157145))
+* OMGVN-9149 - featureZIndex property om te voorkomen dat feature text op de kaart door elkaar komt te staan ([bb8378c](https://github.com/milieuinfo/uigov-web-components/commit/bb8378cdd1430930ffacc956ee67074c90c0d1d0))
+
+
+### Features
+
+* KBOMG-81 - nieuwe vl-accordion-list component ([b917acc](https://github.com/milieuinfo/uigov-web-components/commit/b917acc7c190941ebf53c1ef382406eaf25fc1d4))
+* UIG-2135 - vl-tabs disable-links attribuut ([5e88a4f](https://github.com/milieuinfo/uigov-web-components/commit/5e88a4f182c46740f6e2304ba3bb8550aeb9ebf1))
+* UIG-2179 - releases via Bamboo uitvoeren ([c67c85b](https://github.com/milieuinfo/uigov-web-components/commit/c67c85bd436d38b80196c4d4b97f2f8add17e863))
+* UIG-2305 - voor textarea baseUrl updaten naar CDN link ([47254ce](https://github.com/milieuinfo/uigov-web-components/commit/47254ce6e69347390365d15fbea9b1151164f228))
+* UIG-2335 - z-index op 0 gezet in de VlMap ([99b3f27](https://github.com/milieuinfo/uigov-web-components/commit/99b3f27c03bcf6cf5742596cbbfe2a0d88514f53))
+* UIG-2342 - vl-input-slider ([01f312a](https://github.com/milieuinfo/uigov-web-components/commit/01f312a1c3f5b642a724f5d522fe90f887af50f6))
+* UIG-2343 - vl-functional-header ondersteuning voor tabs ([4ccb4ff](https://github.com/milieuinfo/uigov-web-components/commit/4ccb4ff1229b862891cf7ba70333e4679387fc2f))
+* UIG-2351 - map search side sheet ([5bc5d08](https://github.com/milieuinfo/uigov-web-components/commit/5bc5d08c922cec8720025b96d9ad08c97c8103e4))
+* UIG-2387 - vl-functional-header configureerbare margin en breedte ([28329b9](https://github.com/milieuinfo/uigov-web-components/commit/28329b9508bc9b41e5189e893d1420b855bea70f))
+
 # [1.2.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.1.0...v1.2.0) (2023-02-27)
 
 
