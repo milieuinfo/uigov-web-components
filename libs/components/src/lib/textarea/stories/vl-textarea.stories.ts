@@ -3,6 +3,7 @@ import '../vl-textarea.element';
 import { textareaArgs, textareaArgTypes } from './vl-textarea.stories-arg';
 import { StoryFn } from '@storybook/web-components';
 import textAreaDoc from './vl-textarea.stories-doc.mdx';
+import { nothing } from 'lit';
 
 export default {
     title: 'Components/textarea',
@@ -25,7 +26,7 @@ const Template: StoryFn<typeof textareaArgs> = ({ rich, block, error, success, d
         ?data-vl-success=${success}
         ?data-vl-disabled=${disabled}
         ?data-vl-focus=${focus}
-        ?data-vl-toolbar=${toolbar}
+        data-vl-toolbar=${toolbar || nothing}
     >
       <p>
           <h1>h1 title</h1>
