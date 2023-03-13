@@ -3,7 +3,7 @@ services:
     build:
         image: cypress/browsers:node16.17.0-chrome106
         container_name: uigov-web-components-build
-        command: sh uigov-web-components/resources/ci/build-and-release.sh
+        command: bash uigov-web-components/resources/ci/build-and-release.sh
         volumes:
             - ${HOME:-.}/.npmrc:/root/.npmrc:ro
             - ./../..:/uigov-web-components

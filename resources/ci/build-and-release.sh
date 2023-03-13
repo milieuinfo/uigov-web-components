@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # om dit script te gebruiken: start de docker container op met `docker compose up`
 #
 # om lokaal (om script snippets te testen):
@@ -16,10 +18,12 @@ set -e
 
 echo using ${test_token} as test_token
 
+cd uigov-web-components
+
 # de build mag niet lopen als de laatste commit boodschap [skip ci] bevat
 last_commit=$(git log -1 --pretty=%B | cat)
 skip_ci="[skip ci]"
-if [[ $last_commit == *"$skip_ci"* ]];
+if [[ ${last_commit} == *"$skip_ci"* ]];
   then
     echo "de meest recente commit bevat [skip ci] - de build stopt"
     exit 2
@@ -42,8 +46,6 @@ if [ -z ${GITHUB_TOKEN+x} ];
   else
     echo "GITHUB_TOKEN is gezet, OK"
 fi
-
-cd uigov-web-components
 
 echo "git remote -v"
 git remote -v
