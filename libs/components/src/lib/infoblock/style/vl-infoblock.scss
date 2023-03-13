@@ -4,8 +4,8 @@ $vl-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.
 $vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/iconfont/';
 
 // @govflanders global styles
-@import '@govflanders-v14/vl-ui-core/src/scss/core';
-@import '@govflanders-v14/vl-ui-util/src/scss/util';
+@import '@govflanders/vl-ui-core/src/scss/core';
+@import '@govflanders/vl-ui-util/src/scss/util';
 
 // @govflanders component styles
-@import '@govflanders-v14/vl-ui-infoblock/src/scss/infoblock';
+@import '@govflanders/vl-ui-infoblock/src/scss/infoblock';

@@ -3,7 +3,7 @@ const textAreaDefault =
 const textAreaRich = 'http://localhost:8080/iframe.html?args=&id=components-textarea--textarea-rich&viewMode=story';
 
 describe('story vl-textarea - default', () => {
-    before(() => cy.visit(textAreaDefault));
+    beforeEach(() => cy.visit(textAreaDefault));
 
     it('should not contain a textarea data-vl-rich attribute set to true', () => {
         cy.get('textarea[is="vl-textarea"]').should('not.have.attr', 'data-vl-rich', 'true');
@@ -15,7 +15,7 @@ describe('story vl-textarea - default', () => {
 });
 
 describe('story vl-textarea - rich', () => {
-    before(() => cy.visit(textAreaRich));
+    beforeEach(() => cy.visit(textAreaRich));
 
     it('should contain a textarea with rich attribute set to true', () => {
         cy.get('textarea[is="vl-textarea"]').should('have.attr', 'data-vl-rich');

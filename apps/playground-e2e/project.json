@@ -25,5 +25,6 @@
         }
     },
     "tags": [],
-    "implicitDependencies": ["playground"]
+    "implicitDependencies": ["playground"],
+    "name": "playground-e2e"
 }

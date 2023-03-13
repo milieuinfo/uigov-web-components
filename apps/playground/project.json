@@ -1,4 +1,5 @@
 {
+    "name": "playground",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
     "sourceRoot": "apps/playground/src",
@@ -19,7 +20,9 @@
                 "polyfills": "apps/playground/src/polyfills.ts",
                 "styles": ["apps/playground/src/styles.scss"],
                 "scripts": [],
-                "webpackConfig": "apps/playground/custom-webpack.config.js"
+                "webpackConfig": "apps/playground/custom-webpack.config.js",
+                "isolatedConfig": false,
+                "babelUpwardRootMode": true
             },
             "configurations": {
                 "production": {
@@ -58,7 +61,7 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/apps/playground"],
+            "outputs": ["{workspaceRoot}/coverage/apps/playground"],
             "options": {
                 "jestConfig": "apps/playground/jest.config.ts",
                 "passWithNoTests": true

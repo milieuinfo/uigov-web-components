@@ -2,15 +2,16 @@
 export default {
     displayName: 'map',
     preset: '../../jest.preset.js',
-    globals: {
-        'ts-jest': {
-            tsconfig: '<rootDir>/tsconfig.spec.json',
-        }
-    },
+    globals: {},
     transform: {
-        '^.+\\.[tj]sx?$': 'ts-jest'
+        '^.+\\.[tj]sx?$': [
+            'ts-jest',
+            {
+                tsconfig: '<rootDir>/tsconfig.spec.json',
+            },
+        ],
     },
     transformIgnorePatterns: [],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-    coverageDirectory: '../../coverage/libs/map'
+    coverageDirectory: '../../coverage/libs/map',
 };

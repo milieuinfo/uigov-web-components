@@ -28,7 +28,7 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/libs/map"],
+            "outputs": ["{workspaceRoot}/coverage/libs/map"],
             "options": {
                 "jestConfig": "libs/map/jest.config.ts",
                 "passWithNoTests": true
@@ -47,5 +47,6 @@
             }
         }
     },
-    "tags": []
+    "tags": [],
+    "name": "map"
 }

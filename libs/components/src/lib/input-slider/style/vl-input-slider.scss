@@ -4,11 +4,11 @@ $vl-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.
 $vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/iconfont/';
 
 // @govflanders global styles
-@import '@govflanders-v14/vl-ui-core/src/scss/core';
-@import '@govflanders-v14/vl-ui-util/src/scss/util';
+@import '@govflanders/vl-ui-core/src/scss/core';
+@import '@govflanders/vl-ui-util/src/scss/util';
 
 // @govflanders component styles
-@import '@govflanders-v14/vl-ui-input-field/src/scss/input-field';
+@import '@govflanders/vl-ui-input-field/src/scss/input-field';
 
 // Setting these variables only if they do not already exist as fallback should the variables be removed in the SCSS of Digitaal Vlaanderen.
 $vl-loblolly: #c6cdd3 !default;

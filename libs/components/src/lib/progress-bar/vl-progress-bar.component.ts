@@ -1,5 +1,5 @@
-import ProgressBar from '@govflanders-v14/vl-ui-progress-bar/src/js/progress-bar.js';
-import '@govflanders-v14/vl-ui-util/dist/js/util.js';
+import ProgressBar from '@govflanders/vl-ui-progress-bar/src/js/progress-bar.js';
+import '@govflanders/vl-ui-util/dist/js/util.js';
 import { css, html, LitElement, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
@@ -82,7 +82,6 @@ export class VlProgressBarComponent extends LitElement {
         </div>`;
     }
 }
-
 
 declare global {
     interface HTMLElementTagNameMap {

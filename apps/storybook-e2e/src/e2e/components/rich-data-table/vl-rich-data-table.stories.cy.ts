@@ -152,7 +152,7 @@ describe('story vl-rich-data-table default', () => {
 });
 
 describe('story vl-rich-data-table - sorting', () => {
-    before(() => cy.visit(`${richDataTableSortingUrl}`));
+    beforeEach(() => cy.visit(`${richDataTableSortingUrl}`));
 
     const { data: rowData } = {
         data: [
@@ -193,13 +193,14 @@ describe('story vl-rich-data-table - sorting', () => {
     it('should have no sorting, when sorter is currently sorting descending', () => {
         const keyToSortOn = 'id';
         clickSorterForField(keyToSortOn);
+        clickSorterForField(keyToSortOn);
 
         shouldHaveSorterAndDirectionShouldBeHidden(keyToSortOn);
     });
 });
 
 describe('story vl-rich-data-table - filter', () => {
-    before(() => cy.visit(`${richDataTableFilterUrl}`));
+    beforeEach(() => cy.visit(`${richDataTableFilterUrl}`));
     const data = rowsForFiltering;
     const filterField = 'name';
     const filterValue = 'Grond';
@@ -213,17 +214,19 @@ describe('story vl-rich-data-table - filter', () => {
     });
 
     it('should be able to find the filtered data in the table', () => {
+        cy.get('vl-rich-data-table').find(`input[name="${filterField}"]`).type(filterValue);
         const filteredData = data.filter((row) => row[filterField].indexOf(filterValue) !== -1);
         shouldMatchTableData(filteredData);
     });
 
     it('should not be able to find data not corresponding to search fields', () => {
+        cy.get('vl-rich-data-table').find(`input[name="${filterField}"]`).type(filterValue);
         executeForEveryRow((row, rowIndex) => shouldNotMatchCellWithData(row, rowIndex, data));
     });
 });
 
 describe('story vl-rich-data-table - paging', () => {
-    before(() => cy.visit(`${richDataTablePagingUrl}`));
+    beforeEach(() => cy.visit(`${richDataTablePagingUrl}`));
 
     const data = rowsForPagination;
     const itemsPerPage = 10; // this can be changed but should be lower than total amount of records
@@ -240,10 +243,13 @@ describe('story vl-rich-data-table - paging', () => {
             totalItems: data.length,
         });
     });
+
     it('should be able to select the second page', () => {
         selectPage(2);
     });
+
     it('should match displayed rows with data for second page & not with the next page', () => {
+        selectPage(2);
         shouldPaginateCorrectly('vl-rich-data-table', data, {
             currentPage: 2,
             totalPages: getTotalPages(data.length, itemsPerPage),

@@ -1,6 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '@govflanders-v14/vl-ui-infotext/dist/js/infotext.js';
-import '@govflanders-v14/vl-ui-util/dist/js/util.js';
+import '@govflanders/vl-ui-infotext/dist/js/infotext.js';
+import '@govflanders/vl-ui-util/dist/js/util.js';
 
 declare const vl: any;
 

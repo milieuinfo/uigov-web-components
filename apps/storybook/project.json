@@ -23,5 +23,6 @@
                 "lintFilePatterns": ["apps/storybook/**/*.ts"]
             }
         }
-    }
+    },
+    "name": "storybook"
 }

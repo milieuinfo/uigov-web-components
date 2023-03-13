@@ -1,3 +1,4 @@
+const { composePlugins, withNx } = require('@nrwl/webpack');
 const Sass = require('sass');
 const litCssLoaderRule = {
     test: /\.scss$/,
@@ -19,7 +20,7 @@ const litCssLoaderRule = {
     },
 };
 
-module.exports = (config, context) => {
+module.exports = composePlugins(withNx(), (config, { options, context }) => {
     // de bestaande rule vinden die de .scss verwerkt
     const scssRule = config.module.rules.find((rule) => rule.test.toString().includes('.scss'));
     // die scssRule uitbreiden met een exclude, de scss wordt door de litCssLoaderRule verwerkt
@@ -28,4 +29,4 @@ module.exports = (config, context) => {
     config.module.rules = [...config.module.rules, litCssLoaderRule];
     // console.log('custom-webpack.config.js - config', config.module.rules);
     return config;
-};
+});

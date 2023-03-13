@@ -1,5 +1,5 @@
 import { awaitUntil, BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '@govflanders-v14/vl-ui-tabs/dist/js/tabs.js';
+import '@govflanders/vl-ui-tabs/dist/js/tabs.js';
 import styles from './style/vl-tabs.scss';
 import './vl-tab-section.component';
 import './vl-tab.component';
@@ -94,8 +94,8 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         const disableLinks = this.hasAttribute('disable-links');
 
         return this._template(`
-            <li 
-                is="vl-tab" 
+            <li
+                is="vl-tab"
                 data-vl-id="${id}"
                 data-vl-href="${this.__href}#${id}"
                 ${disableLinks ? 'data-vl-disable-link' : ''}

@@ -1,7 +1,7 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '@govflanders-v14/vl-ui-util/dist/js/util.js';
-import '@govflanders-v14/vl-ui-core/dist/js/core.js';
-import '@govflanders-v14/vl-ui-code-preview/dist/js/code-preview.js';
+import '@govflanders/vl-ui-util/dist/js/util.js';
+import '@govflanders/vl-ui-core/dist/js/core.js';
+import '@govflanders/vl-ui-code-preview/dist/js/code-preview.js';
 import styles from './style/vl-code-preview.scss';
 
 declare const vl: any;

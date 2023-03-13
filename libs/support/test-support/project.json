@@ -22,12 +22,13 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/libs/support/test-support"],
+            "outputs": ["{workspaceRoot}/coverage/libs/support/test-support"],
             "options": {
                 "jestConfig": "libs/support/test-support/jest.config.ts",
                 "passWithNoTests": true
             }
         }
     },
-    "tags": []
+    "tags": [],
+    "name": "support-test-support"
 }

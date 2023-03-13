@@ -2,7 +2,7 @@ const sideNavigationUrl =
     'http://localhost:8080/iframe.html?id=elements-side-navigation--side-navigation-default&viewMode=story';
 
 describe('story vl-side-navigation default', () => {
-    before(() => cy.visit(sideNavigationUrl));
+    beforeEach(() => cy.visit(sideNavigationUrl));
 
     it('should have child and parent links', () => {
         const shouldHaveChildAttribute = (href: string, child: string) => {

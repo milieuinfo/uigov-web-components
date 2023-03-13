@@ -20,5 +20,6 @@
         }
     },
     "tags": [],
-    "implicitDependencies": ["storybook"]
+    "implicitDependencies": ["storybook"],
+    "name": "storybook-e2e"
 }

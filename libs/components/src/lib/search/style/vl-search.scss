@@ -4,14 +4,14 @@ $vl-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.
 $vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/iconfont/';
 
 // @govflanders global styles
-@import '@govflanders-v14/vl-ui-core/src/scss/core';
-@import '@govflanders-v14/vl-ui-util/src/scss/util';
+@import '@govflanders/vl-ui-core/src/scss/core';
+@import '@govflanders/vl-ui-util/src/scss/util';
 
 // @govflanders component styles
-@import '@govflanders-v14/vl-ui-button/src/scss/button';
-@import '@govflanders-v14/vl-ui-input-field/src/scss/input-field';
-@import '@govflanders-v14/vl-ui-select/src/scss/select';
-@import '@govflanders/vl-ui-search/src/scss/search';
+@import '@govflanders/vl-ui-button/src/scss/button';
+@import '@govflanders/vl-ui-input-field/src/scss/input-field';
+@import '@govflanders/vl-ui-select/src/scss/select';
+@import '@govflanders-v3/vl-ui-search/src/scss/search';
 
 slot[name='input'] {
     @extend .vl-search__input;
