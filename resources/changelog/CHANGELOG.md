@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.3.0...v1.3.1) (2023-03-14)
+
+
+### Bug Fixes
+
+* 1.3.0 hotfix - prettier dependency + kleine verbeteringen ([d343e52](https://github.com/milieuinfo/uigov-web-components/commit/d343e52ce1dd0d5690d204d1f6198c09c35fc19e))
+
 # [1.3.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.2.0...v1.3.0) (2023-03-10)
 
 
