@@ -1,6 +1,6 @@
 {
     "branches": [
-        "release-not",
+        "release",
         { name: "bugfix", prerelease: "fix" },
         { name: "develop", prerelease: "beta" },
         { name: "develop-apo", prerelease: "beta-apo" },
