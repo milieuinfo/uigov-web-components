@@ -3,4 +3,6 @@ export const MARGINS: { [key: string]: string } = {
     small: '0.5rem',
     medium: '1rem',
     large: '2rem',
-};
+} as const;
+
+export type MARGINS = typeof MARGINS[keyof typeof MARGINS];
