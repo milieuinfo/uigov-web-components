@@ -4,7 +4,7 @@ import { html } from 'lit';
 import '../../../../vl-map';
 import '../../../baselayer/vl-map-base-layer-grb-gray';
 import '../../../controls/vl-map-action-controls';
-import '../../../controls/vl-map-measure-control';
+import '../../../controls/measure-control/vl-map-measure-control';
 import '../../../layer/vector-layer/vl-map-features-layer';
 import '../../../layer/vector-layer/vl-map-wfs-layer';
 import '../vl-map-measure-action';

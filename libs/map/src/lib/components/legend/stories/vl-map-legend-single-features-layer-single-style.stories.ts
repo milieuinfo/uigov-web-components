@@ -5,7 +5,7 @@ import '../../baselayer/vl-map-base-layer-grb-gray';
 import '../../layer/vector-layer/vl-map-features-layer';
 import '../../layer-style/vl-map-layer-circle-style';
 import '../../controls/vl-map-action-controls';
-import '../../controls/vl-map-measure-control';
+import '../../controls/measure-control/vl-map-measure-control';
 import '../vl-map-legend';
 import {
     legendSingleFeaturesLayerSingleStyleArgs,

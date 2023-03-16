@@ -16,9 +16,15 @@ export class VlToggleButtonComponent extends LitElement {
     private narrow = false;
     private loading = false;
     private disabled = false;
-    private active: boolean | undefined = undefined;
-    private _active: boolean | undefined = false;
     private isInMap = false;
+    // TODO: Refactor
+    /*
+        Momenteel wordt 'active' gebruikt voor wanneer de active state van het component van buitenaf wordt gecontroleerd,
+        en '_active' als het component zelf zijn eigen active state aanpast.
+        Refactor dit zodat er maar 1 property active is, mogelijks gepaard met een boolean die aanduidt dat het component van buitenaf gecontroleerd wordt.
+    */
+    private _active: boolean | undefined = false;
+    public active: boolean | undefined = undefined;
 
     static get properties() {
         return {
@@ -184,10 +190,8 @@ export class VlToggleButtonComponent extends LitElement {
     }
 }
 
-
 declare global {
     interface HTMLElementTagNameMap {
         'vl-toggle-button': VlToggleButtonComponent;
     }
 }
-

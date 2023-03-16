@@ -1,8 +1,8 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import '../../vl-map';
-import '../action/draw-action/vl-map-measure-action';
-import '../layer/vector-layer/vl-map-features-layer';
-import './vl-map-action-controls';
+import '../../../vl-map';
+import '../../action/draw-action/vl-map-measure-action';
+import '../../layer/vector-layer/vl-map-features-layer';
+import '../vl-map-action-controls';
 import './vl-map-measure-control';
 
 const measureControlFixture = async () =>
