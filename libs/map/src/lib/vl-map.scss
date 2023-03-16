@@ -12,6 +12,12 @@
     height: calc(var(--vl-map-height, 500px) - var(--vl-map--margin-top));
 }
 
+:host(.vl-map--no-border) {
+    #map {
+        border: none;
+    }
+}
+
 #map {
     position: relative;
     height: calc(var(--vl-map-height, 500px) - var(--vl-map--margin-top));

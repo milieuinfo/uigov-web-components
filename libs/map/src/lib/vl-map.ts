@@ -14,6 +14,14 @@ import { VlMapFeaturesLayer } from './components/layer/vector-layer/vl-map-featu
 @webComponent('vl-map')
 export class VlMap extends BaseElementOfType(HTMLElement) {
     private observer: MutationObserver;
+    static get _observedClassAttributes() {
+        return ['no-border'];
+    }
+
+    get _classPrefix() {
+        return 'vl-map--';
+    }
+
     constructor() {
         super(`
       <style>
