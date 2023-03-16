@@ -52,7 +52,7 @@ const shouldEmitEventOnClose = () => {
 
 describe('story vl-accordion default', () => {
     it('should be toggleable', () => {
-        cy.visit(`${accordionUrl}`);
+        cy.visit(accordionUrl);
 
         shouldBeToggleable();
     });
@@ -78,7 +78,7 @@ describe('story vl-accordion default', () => {
 
 describe('story vl-accordion dynamic toggle', () => {
     it('should be toggleable', () => {
-        cy.visit(`${accordionDynamicToggleUrl}`);
+        cy.visit(accordionDynamicToggleUrl);
 
         shouldBeToggleable();
     });
@@ -104,7 +104,7 @@ describe('story vl-accordion dynamic toggle', () => {
 
 describe('story vl-accordion title slot', () => {
     it('should be toggleable', () => {
-        cy.visit(`${accordionTitleSlotUrl}`);
+        cy.visit(accordionTitleSlotUrl);
 
         shouldBeToggleable();
     });

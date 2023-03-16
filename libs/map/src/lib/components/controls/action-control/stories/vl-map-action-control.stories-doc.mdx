@@ -1,0 +1,35 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Action Control
+
+Gebruik een `action-control` om een actie aan of uit te zetten door behulp van een toggle-button.  
+Een `action-control` linken aan een actie gebeurt op de volgende manier:
+
+-   Plaats op de `action-control` het attribuut `data-vl-action-id` met als waarde bv. 'measure-action'
+-   Plaats op de actie het attribuut `id` en geef hier dezelfde waarde mee als in de vorige step
+
+## Voorbeeld
+
+```js
+import { VlMapActionControl } from '@domg-wc/map';
+```
+
+```html
+<vl-map-action-control></vl-map-action-control>
+```
+
+<DocsStory id="map-controls-action-control--action-control-default" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Varianten
+
+### Met icoon
+
+<DocsStory id="map-controls-action-control--action-control-icon" />
+
+### Meerdere acties
+
+<DocsStory id="map-controls-action-control--action-control-multiple" />
