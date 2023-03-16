@@ -1,5 +1,7 @@
 import { mapArgs, mapArgTypes } from './vl-map.stories-arg';
 import { html } from 'lit';
+import { Meta, StoryFn } from '@storybook/web-components';
+import mapDoc from './vl-map.stories-doc.mdx';
 import '@domg-wc/elements';
 import '@domg-wc/components';
 import '../vl-map';
@@ -24,43 +26,37 @@ import '../components/action/layer-action/vl-map-select-action';
 
 export default {
     title: 'map/map',
-    parameters: {
-        controls: { hideNoControlsWarning: true },
-    },
     args: mapArgs,
     argTypes: mapArgTypes,
-};
+    parameters: {
+        docs: {
+            page: mapDoc,
+        },
+    },
+} as Meta<typeof mapArgs>;
 
-const mapTemplate = ({
+export const MapDefault: StoryFn<typeof mapArgs> = ({
     allowFullscreen,
     disableEscape,
     disableRotation,
     disableMousewheelZoom,
     disableKeyboard,
-}: typeof mapArgs) => html`
+    noBorder,
+}) => html`
     <vl-map
         ?data-vl-allow-fullscreen=${allowFullscreen}
         ?data-vl-disable-escape-key=${disableEscape}
         ?data-vl-disable-rotation=${disableRotation}
         ?data-vl-disable-mouse-wheel-zoom=${disableMousewheelZoom}
         ?data-vl-disable-keyboard=${disableKeyboard}
+        ?data-vl-no-border=${noBorder}
         data-vl-zoomInTooltip="Zoom in"
         data-vl-zoomOutTooltip="Zoom uit"
     >
         <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     </vl-map>
 `;
-
-export const mapDefault = mapTemplate.bind({});
-mapDefault.storyName = 'vl-map - default';
-
-export const mapAllowFullscreen = mapTemplate.bind({});
-mapAllowFullscreen.args = { allowFullscreen: true };
-mapAllowFullscreen.storyName = 'vl-map - allow fullscreen';
-
-export const mapDisableMousewheelZoom = mapTemplate.bind({});
-mapDisableMousewheelZoom.args = { disableMousewheelZoom: true };
-mapDisableMousewheelZoom.storyName = 'vl-map - disable mousewheel zoom';
+MapDefault.storyName = 'vl-map - default';
 
 const purple = 'rgba(102, 51, 153, 0.6)';
 const toggleGroupStyling = 'width: 100%;';
@@ -113,7 +109,16 @@ const features = {
     ],
 };
 
-export const mapPlayground = (props) => {
+export const MapPlayground: StoryFn<typeof mapArgs> = ({
+    allowFullscreen,
+    disableEscape,
+    disableRotation,
+    disableMousewheelZoom,
+    disableKeyboard,
+    noBorder,
+    activeActionChange,
+    layerVisibleChange,
+}) => {
     const actionIdentifiers = ['draw-point', 'draw-line', 'draw-polygon', 'modify', 'delete'];
 
     const handleActiveActionChange = ({ detail: { previous, current } }) => {
@@ -142,17 +147,19 @@ export const mapPlayground = (props) => {
 
     return html`
         <vl-map
-            ?data-vl-allow-fullscreen=${props.allowFullscreen}
-            ?data-vl-disable-escape-key=${props.disableEscape}
-            ?data-vl-disable-rotation=${props.disableRotation}
-            ?data-vl-disable-mouse-wheel-zoom=${props.disableMousewheelZoom}
+            ?data-vl-allow-fullscreen=${allowFullscreen}
+            ?data-vl-disable-escape-key=${disableEscape}
+            ?data-vl-disable-rotation=${disableRotation}
+            ?data-vl-disable-mouse-wheel-zoom=${disableMousewheelZoom}
+            ?data-vl-disable-keyboard=${disableKeyboard}
+            ?data-vl-no-border=${noBorder}
             @vl-active-action-changed=${(event) => {
-                props.activeActionChange({ previous: event.detail.previous });
-                props.activeActionChange({ current: event.detail.current });
+                activeActionChange({ previous: event.detail.previous });
+                activeActionChange({ current: event.detail.current });
                 handleActiveActionChange(event);
             }}
             @vl-layer-visible-changed=${(event) => {
-                props.layerVisibleChange(event.detail);
+                layerVisibleChange(event.detail);
                 handleLayerVisibleChange(event);
             }}
         >
@@ -284,4 +291,4 @@ export const mapPlayground = (props) => {
         </vl-map>
     `;
 };
-mapPlayground.storyName = 'vl-map - playground';
+MapPlayground.storyName = 'vl-map - playground';
