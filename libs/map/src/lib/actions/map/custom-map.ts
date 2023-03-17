@@ -143,6 +143,10 @@ export class VlCustomMap extends VlMapWithActions {
         this._getOverlayLayersCollection().push(layer);
     }
 
+    removeOverlayLayer(layer: BaseLayer): void {
+        this._getOverlayLayersCollection().remove(layer);
+    }
+
     initializeView(boundingBox, maxZoom) {
         this.zoomViewToExtent(this.getView(), boundingBox, maxZoom);
     }

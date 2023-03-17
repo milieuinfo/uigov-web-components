@@ -2,6 +2,7 @@ import { awaitUntil, BaseElementOfType, webComponent } from '@domg-wc/common-uti
 import '@domg-wc/components';
 import '@domg-wc/elements';
 import formMessageStyles from './style/vl-map-layer-switcher.scss';
+import { VlMap } from '../../vl-map';
 
 /**
  * VlMapLayerSwitcher
@@ -60,7 +61,7 @@ export class VlMapLayerSwitcher extends BaseElementOfType(HTMLElement) {
         return this._slot.assignedElements().filter((input) => input.hasAttribute('data-vl-layer'));
     }
 
-    get _mapElement() {
+    get _mapElement(): VlMap | null {
         return this.closest('vl-map');
     }
 
