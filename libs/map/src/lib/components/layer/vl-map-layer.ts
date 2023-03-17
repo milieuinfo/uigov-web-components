@@ -1,4 +1,5 @@
 import { BaseElementOfType } from '@domg-wc/common-utilities';
+import { VlMap } from '../../vl-map';
 
 /**
  * VlMapLayer
@@ -16,7 +17,7 @@ import { BaseElementOfType } from '@domg-wc/common-utilities';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wms-layer.html|Demo}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wmts-layer.html|Demo}
  */
-export class VlMapLayer extends BaseElementOfType(HTMLElement) {
+export abstract class VlMapLayer extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['hidden'];
     }
@@ -93,6 +94,7 @@ export class VlMapLayer extends BaseElementOfType(HTMLElement) {
      *
      * @param {Boolean} value
      */
+    // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
     set visible(value) {
         this._layer.setVisible(value);
         this.rerender();
@@ -102,7 +104,7 @@ export class VlMapLayer extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    get mapElement() {
+    get mapElement(): VlMap {
         if (this.parentNode && this.parentNode.map) {
             return this.parentNode;
         }
