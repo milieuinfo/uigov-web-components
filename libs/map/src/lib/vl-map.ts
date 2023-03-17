@@ -7,9 +7,13 @@ import proj4 from 'proj4';
 import { VlCustomMap } from './actions';
 import { EVENT } from './vl-map.model';
 import styles from './vl-map.scss';
+import { VlMapLayer } from './components/layer/vl-map-layer';
+import { VlMapLayerSwitcher } from './components/layer-switcher/vl-map-layer-switcher';
+import { VlMapFeaturesLayer } from './components/layer/vector-layer/vl-map-features-layer';
 
 @webComponent('vl-map')
 export class VlMap extends BaseElementOfType(HTMLElement) {
+    private observer: MutationObserver;
     constructor() {
         super(`
       <style>
@@ -61,7 +65,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
      *
      * @return {Object[]}
      */
-    get nonBaseLayers() {
+    get nonBaseLayers(): VlMapLayer[] {
         return [...this.querySelectorAll(':scope > [data-vl-is-layer]')];
     }
 
@@ -145,6 +149,29 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         this.__updateOverviewMapSizeOnLoad();
 
         this._map.addControl(this.__createZoomControl());
+
+        this.observeRemovedMapLayers();
+    }
+
+    disconnectedCallback(): void {
+        if (this.observer) {
+            this.observer.disconnect();
+        }
+    }
+
+    private observeRemovedMapLayers(): void {
+        const mapElement = this as unknown as HTMLElement;
+        this.observer = new MutationObserver((mutations: MutationRecord[]) => {
+            // opbouwen lijst van alle VlMapLayer-nodes die verwijderd werden uit deze instantie van het VlMap component
+            mutations
+                .filter(({ target }) => target === mapElement)
+                .flatMap(({ removedNodes }) => Array.from(removedNodes).filter((node) => node instanceof VlMapLayer))
+                .forEach((removedMapLayer: VlMapLayer & Node) => {
+                    // verwijder elke MapLayer uit OL OverlayLayerCollection, die uit DOM werd verwijderd
+                    this.map.removeOverlayLayer((<VlMapLayer>removedMapLayer)._layer);
+                });
+        });
+        this.observer.observe(mapElement, { subtree: true, childList: true });
     }
 
     __createZoomControl() {

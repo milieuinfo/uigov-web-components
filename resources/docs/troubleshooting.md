@@ -1,6 +1,7 @@
 # Troubleshooting
 
 ## Storybook not starting
+> blank screen, empty `body` & empty `head` in html, no `console.log()`
 - check if there's not still a process running at the port defined, usually `8080`
 - remove `--quiet` to see logs
 - try changing port in `apps/storybook/project.json` to another port, e.g. `8081`
