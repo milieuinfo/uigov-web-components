@@ -15,7 +15,7 @@ import { VlMapFeaturesLayer } from './components/layer/vector-layer/vl-map-featu
 export class VlMap extends BaseElementOfType(HTMLElement) {
     private observer: MutationObserver;
     static get _observedClassAttributes() {
-        return ['no-border'];
+        return ['no-border', 'full-height'];
     }
 
     get _classPrefix() {
