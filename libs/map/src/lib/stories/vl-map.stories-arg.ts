@@ -9,6 +9,7 @@ export const mapArgs = {
     disableRotation: false,
     disableMousewheelZoom: false,
     disableKeyboard: false,
+    fullHeight: false,
     noBorder: false,
     activeActionChange: action(EVENT.ACTIVE_ACTION_CHANGED),
     layerVisibleChange: action(EVENT.LAYER_VISIBLE_CHANGED),
@@ -54,6 +55,16 @@ export const mapArgTypes: ArgTypes<typeof mapArgs> = {
     disableKeyboard: {
         name: 'data-vl-disable-keyboard',
         description: 'Schakelt de keyboard input uit voor de map.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
+        },
+    },
+    fullHeight: {
+        name: 'data-vl-full-height',
+        description:
+            'De map neemt de volledige beschikbare hoogte in van zijn parent.<br>Zie de docs pagina voor meer informatie over het gebruik van dit attribuut.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,

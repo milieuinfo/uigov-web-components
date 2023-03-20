@@ -1,4 +1,4 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgsTable, DocsStory, PRIMARY_STORY, Canvas, Story } from '@storybook/addon-docs';
 
 # Map
 
@@ -22,6 +22,19 @@ import { VlMap } from '@domg-wc/map';
 <ArgsTable story={PRIMARY_STORY} />
 
 ## Varianten
+
+### Volledige hoogte
+
+De map de volledige beschikbare hoogte in laten nemen kan op de volgende manier:
+
+-   Plaats op de parent een `height` of een `min-height`
+-   Plaats op de parent `display: flex` en `flex-direction: column`
+-   Plaats op de vl-map het attribuut `data-vl-full-height`
+-   Zorg dat de parent **geen elementen** heeft met `position: fixed` die deel uit moeten maken van de hoogte
+
+<Canvas>
+    <Story id="map-map--map-full-height" inline={false} height={850} />
+</Canvas>
 
 ### Playground
 
