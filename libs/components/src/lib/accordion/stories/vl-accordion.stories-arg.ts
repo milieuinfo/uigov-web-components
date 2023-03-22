@@ -1,9 +1,12 @@
 import { ArgTypes } from '@storybook/web-components';
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, PADDINGS, TYPES } from '@domg-wc/common-utilities';
 import { action } from '@storybook/addon-actions';
 
 export const accordionArgs = {
+    bold: false,
     closeToggleText: 'Sluit de onderwijsdoelstelling',
+    contentPadding: null,
+    disabled: false,
     openToggleText: 'Open de onderwijsdoelstelling',
     toggleText: 'Lees meer over de onderwijsdoelstelling',
     defaultSlot:
@@ -13,6 +16,15 @@ export const accordionArgs = {
 };
 
 export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
+    bold: {
+        name: 'data-vl-bold',
+        description: 'Beeldt de toggle-text van de accordion af in bold.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
+        },
+    },
     closeToggleText: {
         name: 'data-vl-close-toggle-text',
         description:
@@ -20,6 +32,30 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    contentPadding: {
+        name: 'data-vl-content-padding',
+        description:
+            'De grootte van de padding van de content.<br>Deze padding wordt toegepast op zowel desktop als mobile.',
+        control: {
+            type: 'select',
+            options: [...Object.keys(PADDINGS)],
+        },
+        table: {
+            type: {
+                summary: Object.keys(PADDINGS),
+            },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    disabled: {
+        name: 'data-vl-disabled',
+        description: 'Schakelt het openen en het sluiten van de accordion uit.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
         },
     },
     openToggleText: {

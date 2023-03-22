@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, PADDINGS, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import '@govflanders/vl-ui-accordion/dist/js/accordion.js';
 import styles from './style/vl-accordion.scss';
@@ -24,7 +24,15 @@ declare const vl: any;
 @webComponent('vl-accordion')
 export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
-        return ['toggle-text', 'open-toggle-text', 'close-toggle-text'];
+        return ['toggle-text', 'open-toggle-text', 'close-toggle-text', 'content-padding'];
+    }
+
+    static get _observedClassAttributes() {
+        return ['bold', 'disabled'];
+    }
+
+    get _classPrefix() {
+        return 'vl-accordion--';
     }
 
     constructor() {
@@ -167,6 +175,25 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
     _closeToggleTextChangedCallback(oldValue: string, newValue: string) {
         this._titleElement.classList.add('js-vl-accordion__toggle__text');
         this._titleElement.setAttribute('data-vl-accordion-close-text', newValue);
+    }
+
+    _contentPaddingChangedCallback(oldValue: string, newValue: string) {
+        const padding = PADDINGS[newValue];
+        const content = this._element.querySelector('.vl-accordion__panel');
+
+        if (padding) {
+            content.style.padding = padding;
+        } else {
+            content.style.removeProperty('padding');
+        }
+    }
+
+    _disabledChangedCallback(oldValue: string, newValue: string) {
+        if (newValue != undefined) {
+            this._buttonElement?.setAttribute('disabled', '');
+        } else {
+            this._buttonElement?.removeAttribute('disabled');
+        }
     }
 }
 
