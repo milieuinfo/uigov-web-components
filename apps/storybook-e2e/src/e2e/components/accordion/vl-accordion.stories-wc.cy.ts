@@ -21,6 +21,18 @@ const shouldBeToggleable = async () => {
     });
 };
 
+const shouldDisableAccordion = () => {
+    runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
+        expect(component._isOpen).to.be.false;
+        component.open();
+        expect(component._isOpen).to.be.false;
+        component.close();
+        expect(component._isOpen).to.be.false;
+        component.toggle();
+        expect(component._isOpen).to.be.false;
+    });
+};
+
 const shouldEmitEventOnToggle = () => {
     cy.createStubForEvent('vl-accordion', 'vl-on-toggle');
 
@@ -57,6 +69,12 @@ describe('story vl-accordion default', () => {
         shouldBeToggleable();
     });
 
+    it('should disable accordion', () => {
+        cy.visit(`${accordionUrl}&args=disabled:true`);
+
+        shouldDisableAccordion();
+    });
+
     it('should emit event on toggle', () => {
         cy.visit(accordionUrl);
 
@@ -83,6 +101,12 @@ describe('story vl-accordion dynamic toggle', () => {
         shouldBeToggleable();
     });
 
+    it('should disable accordion', () => {
+        cy.visit(`${accordionDynamicToggleUrl}&args=disabled:true`);
+
+        shouldDisableAccordion();
+    });
+
     it('should emit event on toggle', () => {
         cy.visit(accordionDynamicToggleUrl);
 
@@ -107,6 +131,12 @@ describe('story vl-accordion title slot', () => {
         cy.visit(accordionTitleSlotUrl);
 
         shouldBeToggleable();
+    });
+
+    it('should disable accordion', () => {
+        cy.visit(`${accordionTitleSlotUrl}&args=disabled:true`);
+
+        shouldDisableAccordion();
     });
 
     it('should emit event on toggle', () => {
