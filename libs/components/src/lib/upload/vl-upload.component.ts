@@ -1,9 +1,9 @@
-import { BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
+import { BaseElementOfType, VL, webComponentPromised } from '@domg-wc/common-utilities';
 import { vlFormValidation, vlFormValidationElement } from '@domg-wc/elements';
 import styles from './style/vl-upload.scss';
 import './vl-upload.lib.js';
 
-declare const vl: any;
+declare const vl: VL;
 
 @webComponentPromised([vlFormValidation.ready()], 'vl-upload')
 export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType(HTMLElement)) {
@@ -24,6 +24,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
                 'sub-title',
                 'title',
                 'url',
+                'reset-form-on-clear',
             ]);
     }
 
@@ -44,7 +45,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
     `);
     }
 
-    connectedCallback() {
+    connectedCallback(): void {
         this._appendTemplates();
         this.dress();
         this._processSlots();
@@ -54,17 +55,18 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      * Geeft de bestanden die toegevoegd zijn.
      * @return {File[]}
      */
-    get value() {
+    get value(): File[] | null {
         if (this.acceptedFiles && this.acceptedFiles.length > 0) {
             return this.acceptedFiles;
         }
+        return null;
     }
 
     /**
      * Geeft het upload element.
      * @return {HTMLElement}
      */
-    get uploadElement() {
+    get uploadElement(): HTMLElement {
         return this.shadowRoot.querySelector('.vl-upload__element');
     }
 
@@ -72,7 +74,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      * Haal de geaccepteerde bestanden (zonder error) op, die toegevoegd zijn.
      * @return {File[]}
      */
-    get acceptedFiles() {
+    get acceptedFiles(): File[] {
         return this._dropzone.getAcceptedFiles();
     }
 
@@ -80,7 +82,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      * Haal de niet-geaccepteerde bestanden (met error) op, die toegevoegd zijn.
      * @return {File[]}
      */
-    get rejectedFiles() {
+    get rejectedFiles(): File[] {
         return this._dropzone.getRejectedFiles();
     }
 
@@ -88,15 +90,15 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      * Haal alle bestanden op die toegevoegd zijn.
      * @return {File[]}
      */
-    get files() {
+    get files(): File[] {
         return this._dropzone.files;
     }
 
-    get _upload() {
+    get _upload(): HTMLElement {
         return this._element;
     }
 
-    get _dressed() {
+    get _dressed(): boolean {
         return !!this.getAttribute('data-vl-upload-dressed');
     }
 
@@ -106,7 +108,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
         }
     }
 
-    get _button() {
+    get _button(): HTMLButtonElement {
         return this._shadow.querySelector('.vl-upload__element__button');
     }
 
@@ -126,27 +128,27 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
         return document.body.querySelector('#uploadOverlay');
     }
 
-    get _titleSlotElement() {
+    get _titleSlotElement(): HTMLSlotElement | null {
         return this.querySelector('[slot="title"]');
     }
 
-    get _subTitleSlotElement() {
+    get _subTitleSlotElement(): HTMLSlotElement | null {
         return this.querySelector('[slot="sub-title"]');
     }
 
-    get _titleElement() {
+    get _titleElement(): HTMLElement | null {
         return this.uploadElement.querySelector('#title');
     }
 
-    get _slottedTitleElement() {
+    get _slottedTitleElement(): HTMLElement | null {
         return this.uploadElement.querySelector('#slotted-title');
     }
 
-    get _subTitleElement() {
+    get _subTitleElement(): HTMLElement | null {
         return this.uploadElement.querySelector('#sub-title');
     }
 
-    get _slottedSubTitleElement() {
+    get _slottedSubTitleElement(): HTMLElement | null {
         return this.uploadElement.querySelector('#slotted-sub-title');
     }
 
@@ -217,7 +219,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
     `);
     }
 
-    get _prefix() {
+    get _prefix(): string {
         return 'data-vl-upload-';
     }
 
@@ -225,12 +227,19 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      * Initialiseer de modal config.
      * @return {void}
      */
-    dress() {
+    dress(): void {
         if (!this._dressed) {
             vl.upload.dress(this._upload);
             this._dressFormValidation();
             this._dropzone.on('addedfile', () => this.__triggerChange());
-            this._dropzone.on('removedfile', () => this.__triggerChange());
+            this._dropzone.on('removedfile', () => {
+                const customAction = () => {
+                    if (this.hasAttribute('reset-form-on-clear')) {
+                        this.form.reset();
+                    }
+                };
+                this.__triggerChange(customAction);
+            });
             this._dropzone.on('success', (file: any, response: any) => {
                 file.responseBody = response;
                 this.__triggerChange();
@@ -239,8 +248,12 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
         }
     }
 
-    __triggerChange() {
-        setTimeout(() => this.dispatchEvent(new Event('change')));
+    // TODO meer specifieke events te definiëren, eenmaal we breaking changes kunnen introduceren
+    __triggerChange(customAction?: () => void): void {
+        setTimeout(() => {
+            this.dispatchEvent(new Event('change'));
+            if (customAction) customAction();
+        });
     }
 
     /**
@@ -248,7 +261,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      * @param {String} url
      * @return {void}
      */
-    upload(url: string) {
+    upload(url: string): void {
         if (url) {
             this._dropzone.options.url = url;
         }
@@ -259,7 +272,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      * Verwijder alle files in de dropzone.
      * @return {void}
      */
-    clear() {
+    clear(): void {
         this._dropzone.removeAllFiles();
     }
 
@@ -270,7 +283,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      * @param {Function} callback
      * @return {void}
      */
-    on(event: Event, callback: any) {
+    on(event: Event, callback: () => void): void {
         this._element.addEventListener(event, callback);
         this._dropzone.on(event, callback);
     }
@@ -284,7 +297,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      * @param {Object} responseBody - body van de response bij het opladen van het bestand
      * @return {void}
      */
-    addFile({ name, size, id, type, responseBody }: any) {
+    addFile({ name, size, id, type, responseBody }: any): void {
         const autoprocessActive = this.dataset.vlAutoprocess != undefined;
         if (autoprocessActive) {
             this._disableAutoProcessQueue();
@@ -301,34 +314,34 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
     /**
      * Geeft focus aan het link element.
      */
-    focus() {
+    focus(): void {
         this._button.focus();
     }
 
     /**
      * Enable input element.
      */
-    enable() {
+    enable(): void {
         vl.upload.enable(this._element);
     }
 
     /**
      * Disable input element.
      */
-    disable() {
+    disable(): void {
         vl.upload.disable(this._element);
     }
 
-    _acceptedFilesChangedCallback(oldValue: string, newValue: string) {
+    _acceptedFilesChangedCallback(oldValue: string, newValue: string): void {
         this._element.setAttribute(`${this._prefix}accepted-files`, newValue);
         this._element.setAttribute('accept', newValue);
     }
 
-    _autoprocessChangedCallback(oldValue: string, newValue: string) {
+    _autoprocessChangedCallback(oldValue: string, newValue: string): void {
         this._element.setAttribute(`${this._prefix}autoprocess`, newValue);
     }
 
-    _disabledChangedCallback(oldValue: string, newValue: string) {
+    _disabledChangedCallback(oldValue: string, newValue: string): void {
         if (newValue !== null) {
             this.disable();
         } else {
@@ -336,39 +349,39 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
         }
     }
 
-    _disallowDuplicatesChangedCallback(oldValue: string, newValue: string) {
+    _disallowDuplicatesChangedCallback(oldValue: string, newValue: string): void {
         this._element.setAttribute(`${this._prefix}disallow-duplicates`, newValue);
     }
 
-    _errorMessageAcceptedFilesChangedCallback(oldValue: string, newValue: string) {
+    _errorMessageAcceptedFilesChangedCallback(oldValue: string, newValue: string): void {
         this._element.setAttribute(`${this._prefix}error-message-accepted-files`, newValue);
     }
 
-    _errorMessageFilesizeChangedCallback(oldValue: string, newValue: string) {
+    _errorMessageFilesizeChangedCallback(oldValue: string, newValue: string): void {
         this._element.setAttribute(`${this._prefix}error-message-filesize`, newValue);
     }
 
-    _errorMessageMaxfilesChangedCallback(oldValue: string, newValue: string) {
+    _errorMessageMaxfilesChangedCallback(oldValue: string, newValue: string): void {
         this._element.setAttribute(`${this._prefix}error-message-maxfiles`, newValue);
     }
 
-    _inputNameChangedCallback(oldValue: string, newValue: string) {
+    _inputNameChangedCallback(oldValue: string, newValue: string): void {
         this._element.setAttribute(`${this._prefix}input-name`, newValue);
     }
 
-    _maxFilesChangedCallback(oldValue: string, newValue: string) {
+    _maxFilesChangedCallback(oldValue: string, newValue: string): void {
         this._element.setAttribute(`${this._prefix}max-files`, newValue);
     }
 
-    _maxSizeChangedCallback(oldValue: string, newValue: string) {
+    _maxSizeChangedCallback(oldValue: string, newValue: string): void {
         this._element.setAttribute(`${this._prefix}max-size`, newValue);
     }
 
-    _titleChangedCallback(oldValue: string, newValue: string) {
+    _titleChangedCallback(oldValue: string, newValue: string): void {
         this._changeTranslation('upload.add_files', newValue);
     }
 
-    _subTitleChangedCallback(oldValue: string, newValue: string) {
+    _subTitleChangedCallback(oldValue: string, newValue: string): void {
         this._changeTranslation('upload.add_files_subtitle', newValue);
     }
 
@@ -397,25 +410,25 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
         }
     }
 
-    _disableAutoProcessQueue() {
+    _disableAutoProcessQueue(): void {
         this._dropzone.options.autoProcessQueue = false;
     }
 
-    _enableAutoProcessQueue() {
+    _enableAutoProcessQueue(): void {
         this._dropzone.options.autoProcessQueue = true;
     }
 
-    _processSlots() {
+    _processSlots(): void {
         if (this._titleSlotElement) {
-            this._titleElement.remove();
+            this._titleElement?.remove();
         } else {
-            this._slottedTitleElement.remove();
+            this._slottedTitleElement?.remove();
         }
 
         if (this._subTitleSlotElement) {
-            this._subTitleElement.remove();
+            this._subTitleElement?.remove();
         } else {
-            this._slottedSubTitleElement.remove();
+            this._slottedSubTitleElement?.remove();
         }
     }
 }

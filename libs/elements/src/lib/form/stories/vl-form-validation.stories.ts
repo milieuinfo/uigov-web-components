@@ -5,14 +5,19 @@ import '../../form-grid/vl-form-grid.element';
 import '../../form-message/vl-form-annotation.element';
 import '../../form-message/vl-form-validation-message.element';
 import { formArgs, formArgTypes } from './vl-form.stories-arg';
+import formValidationDoc from './vl-form-validation.stories-doc.mdx';
+import { Meta, StoryFn } from '@storybook/web-components';
 
 export default {
     title: 'Elements/form',
     args: formArgs,
     argTypes: formArgTypes,
-};
+    parameters: {
+        docs: { page: formValidationDoc }
+    }
+} as Meta<typeof formArgs>;
 
-export const formValidation = ({ validate }: typeof formArgs) => html`
+export const formValidation: StoryFn<typeof formArgs> = ({ validate }: typeof formArgs) => html`
     <div style="max-width: 800px">
         <form is="vl-form" ?data-vl-validate=${validate}>
             <div is="vl-form-grid" data-vl-is-stacked>

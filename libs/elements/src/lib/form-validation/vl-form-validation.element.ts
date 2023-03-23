@@ -35,7 +35,7 @@ export const vlFormValidationElement = (SuperClass: Class): Class => {
          *
          * @param {string} message
          */
-        setCustomValidity(message: any) {
+        setCustomValidity(message: string): void {
             if (this._inputElement) {
                 this._inputElement.setCustomValidity(message);
             } else if (this._internals) {
@@ -54,7 +54,7 @@ export const vlFormValidationElement = (SuperClass: Class): Class => {
          *
          * @return {boolean}
          */
-        checkValidity() {
+        checkValidity(): boolean {
             if (this._inputElement) {
                 return this._inputElement.checkValidity();
             } else if (this._internals) {
@@ -66,7 +66,7 @@ export const vlFormValidationElement = (SuperClass: Class): Class => {
             }
         }
 
-        _dressFormValidation() {
+        _dressFormValidation(): void {
             if (this.form && this.form.hasAttribute('data-vl-validate')) {
                 this._setClassAttributes();
                 this._observer = this._observeFormValidationClasses();
@@ -76,9 +76,11 @@ export const vlFormValidationElement = (SuperClass: Class): Class => {
             }
         }
 
-        get _inputElement() {
+        get _inputElement(): HTMLInputElement | null {
             if (this.shadowRoot) {
                 return this.shadowRoot.querySelector('input');
+            } else {
+                return null;
             }
         }
 
@@ -87,11 +89,12 @@ export const vlFormValidationElement = (SuperClass: Class): Class => {
             const observer = new MutationObserver((mutations) => {
                 ['error', 'success'].forEach((type) => {
                     if (
-                        mutations.find((mutation: any) =>
-                            [...mutation.target.classList].find((clazz) =>
+                        mutations.find(({ target }) => {
+                            const mutationTarget = <HTMLElement>target;
+                            return [...mutationTarget.classList].find((clazz) =>
                                 clazz.includes(this.getAttribute(`data-vl-${type}-class`))
-                            )
-                        )
+                            );
+                        })
                     ) {
                         if (!this.hasAttribute(`data-vl-${type}`)) {
                             this.setAttribute(`data-vl-${type}`, '');

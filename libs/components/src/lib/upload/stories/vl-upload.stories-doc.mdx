@@ -1,0 +1,62 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Upload
+
+Gebruik de upload component om één of meerdere bestanden te selecteren of te slepen naar het upload veld.
+De gebruiker kan alternatief ook één of meerdere bestanden uploaden door op de link in het upload veld te klikken en de bestanden selecteren in het Bestand menu.
+
+## Voorbeeld
+
+```js
+import { VlUploadComponent } from '@domg-wc/components';
+```
+
+```html
+<vl-upload></vl-upload>
+```
+
+<DocsStory id="components-upload--upload-default" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Info
+
+Achterliggend gebruikt `vl-upload` de library `dropzone.js` ([https://www.dropzone.dev/](https://www.dropzone.dev/)).
+Daarnaast gebruikt `vl-upload` ook `vl-form-validation` element, die achterliggend op zijn beurt gebruik maakt van `validate.js` 0.12 ([http://validatejs.org/](http://validatejs.org/)).
+
+[Link naar `vl-form-validation`-component](/docs/elements-form--form-validation) documentatie in Storybook.
+
+### Detect changes
+
+Bij elke fileChange van `vl-upload` wordt custom event `vl.upload.hook.fileChange` geactiveerd. Deze custom event wordt zowel bij drop als bij verandering geactiveerd. Het evenement bevat een lijst van alle geüploade bestanden in `e.detail`.
+
+Je kunt ook een volledige lijst krijgen van alle geüploade bestanden per upload met `vl.upload.dropzoneInstances[i].files` waarbij `i` de index is van je `vl-upload`-instantie.
+
+Het event bubbelt omhoog: je kan de event listener toevoegen aan het document of op het element zelf.
+
+Naast deze listeners kun je ook alle evenementen gebruiken die `dropzone.js` ondersteunt, raadpleeg de `dropzone.js` documentatie voor meer info: [https://www.dropzone.dev/](https://www.dropzone.dev/).
+
+## Varianten
+
+### Binnen een form
+
+Gelijkaardig aan de andere controls die overerven van de [`vl-form-validation`](/docs/elements-form--form-validation) kan je de `vl-form-validation-message` gebruiken om een foutboodschap te tonen.
+
+In bepaalde instanties is het gewenst dat de `vl-upload` validatie gereset wordt na het verwijderen van bestanden. In dat geval kan je `data-vl-reset-form-on-clear` toevoegen.
+Dit gaat de validatie resetten van de `vl-form` tot de welke deze `vl-upload` behoort.
+
+<DocsStory id="components-upload--upload-in-form" />
+
+### Digitaal Vlaanderen
+
+**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-upload
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/legacy-vl-upload--uig-2120
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlUpload.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-upload.html

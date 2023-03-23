@@ -1,5 +1,6 @@
-import { TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 import { Args, ArgTypes } from '@storybook/web-components';
+import { action } from '@storybook/addon-actions';
 
 export const uploadArgs: Args = {
     acceptedFiles: '',
@@ -18,28 +19,31 @@ export const uploadArgs: Args = {
     success: false,
     title: '',
     url: 'http://httpbin.org/post',
-}
+    onChange: action('change'),
+};
 
 export const uploadArgTypes: ArgTypes = {
     acceptedFiles: {
         name: 'data-vl-accepted-files',
-        description: 'Attribuut om te bepalen welke bestanden worden geaccepteerd door component (extensie en mimetype).',
+        description:
+            'Attribuut om te bepalen welke bestanden worden geaccepteerd door component (extensie en mimetype).',
         table: {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: [] },
         },
     },
     autoProcess: {
         name: 'data-vl-autoprocess',
-        description: 'Attribuut om te activeren of deactiveren dat het het gedropte bestand direct moet opgeladen worden.',
+        description:
+            'Attribuut om te activeren of deactiveren dat het het gedropte bestand direct moet opgeladen worden.',
         table: {
             type: {
                 summary: TYPES.BOOLEAN,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: false },
         },
     },
@@ -50,18 +54,18 @@ export const uploadArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.BOOLEAN,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: false },
         },
     },
     disallowDuplicates: {
         name: 'data-vl-disallow-duplicates',
-        description: 'Attribuut om te voorkomen dat dezelfde bijlage meerdere keren kan opgeladen worden.',
+        description: 'Als dit op `true` staat, is het niet toegelaten om dezelfde bijlage meerdere keren te uploaden.',
         table: {
             type: {
                 summary: TYPES.BOOLEAN,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: false },
         },
     },
@@ -72,7 +76,7 @@ export const uploadArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.BOOLEAN,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: false },
         },
     },
@@ -83,7 +87,7 @@ export const uploadArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: '' },
         },
     },
@@ -94,7 +98,7 @@ export const uploadArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: '' },
         },
     },
@@ -105,18 +109,18 @@ export const uploadArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: '' },
         },
     },
     fullBodyDrop: {
         name: 'data-vl-full-body-drop',
-        description: 'Attribuut om te activeren of deactiveren dat het de dropzone over het heel scherm is.',
+        description: 'Attribuut om te activeren of deactiveren dat de dropzone over het heel scherm is.',
         table: {
             type: {
                 summary: TYPES.BOOLEAN,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: false },
         },
     },
@@ -127,29 +131,29 @@ export const uploadArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: '' },
         },
     },
     maxFiles: {
         name: 'data-vl-max-files',
-        description: 'Attribuut om het maximaal aantal bestanden dat opgeladen mag worden, aan te duiden.',
+        description: 'Bepaalt aantal upload-bestanden',
         table: {
             type: {
                 summary: 'number',
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 1 },
         },
     },
     maxSize: {
         name: 'data-vl-max-size',
-        description: 'Attribuut om de maximum grootte van een bestand dat opgeladen kan worden (20000000 = 2MB), aan te duiden.',
+        description: 'Bepaalt de maximum grootte van de combineerde upload-bestanden (20000000 = 2MB).',
         table: {
             type: {
                 summary: 'number',
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 20000000 },
         },
     },
@@ -160,18 +164,18 @@ export const uploadArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: '' },
         },
     },
     success: {
         name: 'data-vl-success',
-        description: 'Attribuut om aan te geven dat het upload element geen fout bevat.',
+        description: 'Geeft aan dat de geüploade bestanden gevalideerd zijn.',
         table: {
             type: {
                 summary: TYPES.BOOLEAN,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: false },
         },
     },
@@ -182,20 +186,41 @@ export const uploadArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: '' },
         },
     },
     url: {
         name: 'data-vl-url',
-        description: 'Attribuut om de url naar waar de component moet uploaden, te definiëren.',
+        description: 'Bepaalt de upload url',
         type: { name: 'string', required: true },
         table: {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: '' },
+        },
+    },
+    resetFormOnClear: {
+        name: 'data-vl-reset-form-on-clear',
+        description:
+            'Als dit ingesteld staat, zal de `form` waarin de `vl-upload` zich bevindt ook zijn validatie ' +
+            'resetten',
+        table: {
+            type: {
+                summary: TYPES.BOOLEAN,
+            },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
+        },
+    },
+    onChange: {
+        name: 'change',
+        description: 'Afgevuurd na het toevoegen of verwijderen van een bestand of een succesvolle upload',
+        table: {
+            type: { summary: 'change' },
+            category: CATEGORIES.EVENTS,
         },
     },
 };
