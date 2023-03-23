@@ -1,0 +1,46 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Form Validatie
+
+Een `<form is="vl-form">` met formuliervalidatie zorgt ervoor dat gebruikersinvoer in formulieren gevalideerd wordt.
+
+## Voorbeeld
+
+```js
+import { VlFormValidation, VlFormElement } from '@domg-wc/elements';
+```
+
+```html
+<form is="vl-form"></form>
+```
+
+<DocsStory id="elements-form--form-validation" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Info
+Info and options
+
+Het kenmerk `[data-validate-form]` is vereist voor het formulierelement.
+
+Als het formulier geen validatie vereist, stel dan het `[novalidate]` attribuut in. Dit voorkomt dat de standaard HTML5-validatie van de browser wordt geactiveerd.
+
+Als u een formulier opnieuw instelt, worden validatiefouten automatisch gereset. Als u validaties expliciet opnieuw wilt instellen (bijvoorbeeld na het verzenden aan de clientzijde), kunt u `vl.formValidation.reset(formEl)` aanroepen
+
+`vl-form-validation` element gebruikt achterliggend `validate.js` 0.12 ([http://validatejs.org/](http://validatejs.org/)).
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-form-validation
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/native-elements-vl-form--with-validation
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlForm.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-form.html
