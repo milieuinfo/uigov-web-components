@@ -1,6 +1,7 @@
-import { html, LitElement, TemplateResult, css, unsafeCSS, CSSResult, PropertyDeclarations } from 'lit';
+import { html, LitElement, TemplateResult, PropertyDeclarations, CSSResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import styles from '../accordion/style/vl-accordion.scss';
+import { accordionStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
 import 'reflect-metadata';
 
 @customElement('vl-accordion-list')
@@ -19,11 +20,7 @@ export class VlAccordionListComponent extends LitElement {
     }
 
     static get styles(): CSSResult[] {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [resetStyle, accordionStyle];
     }
 
     protected firstUpdated(): void {

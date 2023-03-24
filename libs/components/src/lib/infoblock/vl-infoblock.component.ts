@@ -1,5 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-infoblock.scss';
+import { infoblockStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
 
 /**
  * VlInfoblock
@@ -22,7 +23,8 @@ export class VlInfoblockComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${infoblockStyle}
       </style>
       <section id="infoblock-element" class="vl-infoblock">
         <header class="vl-infoblock__header" role="presentation">

@@ -1,7 +1,9 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-steps.scss';
 import './vl-duration-step.component';
 import './vl-step.component';
+import { stepsStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
+import stepsUigStyle from './vl-steps.uig-css';
 
 /**
  * VlSteps
@@ -22,7 +24,9 @@ export class VlStepsComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${stepsStyle}
+        ${stepsUigStyle}
       </style>
       <ul id="steps" class="vl-steps"></ul>
     `);

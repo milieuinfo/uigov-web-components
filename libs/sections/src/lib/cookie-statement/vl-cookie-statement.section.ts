@@ -7,7 +7,7 @@ import './cookie/vl-header-authentication-cookie.section';
 import './cookie/vl-header-cookie.section';
 import './cookie/vl-jsessionid-cookie.section';
 import './cookie/vl-sticky-session-cookie.section';
-import styles from './style/vl-cookie-statement.scss';
+import styles from './vl-cookie-statement.uig-css';
 
 @webComponent('vl-cookie-statement')
 export class VlCookieStatement extends BaseElementOfType(HTMLElement) {

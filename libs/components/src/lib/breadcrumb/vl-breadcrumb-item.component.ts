@@ -1,6 +1,7 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
+import { breadcrumbStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
+import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import styles from './style/vl-breadcrumb.scss';
 
 @customElement('vl-breadcrumb-item')
 export class VlBreadcrumbItemComponent extends LitElement {
@@ -13,11 +14,7 @@ export class VlBreadcrumbItemComponent extends LitElement {
     }
 
     static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [resetStyle, breadcrumbStyle];
     }
 
     render() {

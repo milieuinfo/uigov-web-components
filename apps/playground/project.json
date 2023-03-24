@@ -18,9 +18,8 @@
                 "index": "apps/playground/src/index.html",
                 "baseHref": "/",
                 "polyfills": "apps/playground/src/polyfills.ts",
-                "styles": ["apps/playground/src/styles.scss"],
+                "styles": ["apps/playground/src/styles.css"],
                 "scripts": [],
-                "webpackConfig": "apps/playground/custom-webpack.config.js",
                 "isolatedConfig": false,
                 "babelUpwardRootMode": true
             },

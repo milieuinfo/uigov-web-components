@@ -1,5 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from '../style/vl-cookie-statement.scss';
+import styles from '../vl-cookie-statement.uig-css';
 
 @webComponent('vl-cookie')
 export class VlCookie extends BaseElementOfType(HTMLElement) {

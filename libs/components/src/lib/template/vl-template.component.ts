@@ -1,5 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-template.scss';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import templateUigStyle from './vl-template.uig-css';
 
 /**
  * VlTemplate
@@ -21,7 +22,9 @@ export class VlTemplate extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${templateUigStyle}
+        ${baseStyle}
       </style>
       <div>
         <slot name="header"></slot>

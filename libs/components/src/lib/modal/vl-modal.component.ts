@@ -1,8 +1,10 @@
 import { awaitUntil, BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders/vl-ui-core/dist/js/core.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
-import styles from './style/vl-modal.scss';
 import './vl-modal.lib.js';
+import { actionGroupStyle, iconStyle, linkStyle, modalStyle } from '@domg/govflanders-style/component';
+import { accessibilityStyle, gridStyle, resetStyle } from '@domg/govflanders-style/common';
+import modalUigStyle from './vl-modal.uig-css';
 
 declare const vl: any;
 
@@ -38,7 +40,14 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${modalStyle}
+        ${modalUigStyle}
+        ${accessibilityStyle}
+        ${actionGroupStyle}
+        ${iconStyle}
+        ${linkStyle}
+        ${gridStyle}
       </style>
       <div class="vl-modal">
         <dialog class="vl-modal-dialog" data-vl-modal tabindex="-1" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-toggle-title" aria-describedby="modal-toggle-description">

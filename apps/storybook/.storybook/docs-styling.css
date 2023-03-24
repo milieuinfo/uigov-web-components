@@ -1,0 +1,20 @@
+.sbdocs.sbdocs-h2 {
+    margin-top: 1.2em !important;
+    font-weight: bold;
+}
+.sbdocs.sbdocs-h3 {
+    margin-top: 1em !important;
+}
+.sbdocs.sbdocs-preview {
+    margin-top: 1em;
+}
+.sbdocs details > summary {
+    cursor: pointer;
+}
+
+.docblock-argstable {
+    margin-top: 1em !important;
+}
+.docblock-argstable tr > *:nth-child(4) {
+    display: none;
+}

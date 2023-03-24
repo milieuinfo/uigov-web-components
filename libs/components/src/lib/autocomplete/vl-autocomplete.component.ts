@@ -1,8 +1,10 @@
-import { css, html, LitElement, PropertyValues, unsafeCSS } from 'lit';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { autocompleteStyle, inputFieldStyle } from '@domg/govflanders-style/component';
+import { html, LitElement, PropertyValues } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import 'reflect-metadata';
-import styles from './style/vl-autocomplete.scss';
 import { CAPTION_FORMAT } from './vl-autocomplete.model';
+import autocompleteUigStyle from './vl-autocomplete.uig-css';
 
 export const DEFAULT_MAX_MATCHES = 15;
 export const DEFAULT_MIN_CHARS = 3;
@@ -13,11 +15,7 @@ export const DEFAULT_CAPTION_FORMAT = CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL;
 // @ts-ignore
 export class VlAutocomplete extends LitElement {
     static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [resetStyle, baseStyle, autocompleteStyle, inputFieldStyle, autocompleteUigStyle];
     }
 
     static get properties() {

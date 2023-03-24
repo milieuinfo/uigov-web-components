@@ -123,6 +123,7 @@ describe('story vl-side-navigation mobile', () => {
         cy.get('button.vl-button.js-vl-scrollspy__toggle').should('have.attr', 'aria-expanded', 'false');
         cy.get('nav[is="vl-side-navigation"]').should('have.attr', 'data-vl-sticky-dressed', 'true');
         cy.get('nav[is="vl-side-navigation"]').should('not.be.visible');
+        cy.wait(500); // Het zou niet mogen, maar deze wait maakt de test 100% succesvol terwijl hij anders flaky is.
         cy.get('button.vl-button.js-vl-scrollspy__toggle').click();
         cy.get('nav[is="vl-side-navigation"]').should('be.visible');
     });

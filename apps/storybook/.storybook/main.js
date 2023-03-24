@@ -1,36 +1,9 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const Sass = require('sass');
-
-const scssLoader = {
-    test: /\.scss$/,
-    exclude: /\/libs\/(components|map|sections)\/src\/lib/,
-    use: ['style-loader', 'css-loader', 'sass-loader'],
-};
 
 const tsconfigPathsPlugin = new TsconfigPathsPlugin({
     configFile: './apps/storybook/tsconfig.json',
     extensions: ['.ts', '.tsx', '.js'],
 });
-
-const litCssLoaderRule = {
-    test: /\.scss$/,
-    loader: 'lit-css-loader',
-    include: /\/libs\/(components|map|sections)\/src\/lib/,
-    options: {
-        specifier: 'lit',
-        transform: (data, { filePath }) => {
-            // console.log('lit-css-loader - before', filePath, data);
-            // renderSync is deprecated en zou compile moeten worden, maar dat geeft een fout
-            const result = Sass.renderSync({
-                data,
-                file: filePath,
-                includePaths: ['./node_modules'],
-            }).css.toString();
-            // console.log('lit-css-loader - after', result);
-            return result;
-        },
-    },
-};
 
 const fixRulesForLit = (rules) => {
     rules.forEach((rule) => {
@@ -67,7 +40,6 @@ module.exports = {
     framework: '@storybook/web-components',
     webpackFinal: async (config) => {
         config.module.rules = fixRulesForLit(config.module.rules);
-        config.module.rules = [...config.module.rules, scssLoader, litCssLoaderRule];
         config.resolve.plugins = [tsconfigPathsPlugin];
         // console.log('>>>>>>>>>>>>');
         // console.log('webpackFinal', JSON.stringify(config.module.rules));

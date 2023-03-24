@@ -1,0 +1,40 @@
+import { css, CSSResult } from 'lit';
+
+// deze css is gegenereerd uit de oude custom scss
+const styles: CSSResult = css`
+    :host([data-vl-toggleable]) .vl-info-tile__header__wrapper {
+        width: 100%;
+        z-index: 1;
+    }
+    :host([data-vl-toggleable]) .vl-info-tile__header__wrapper .vl-toggle {
+        width: 100%;
+        text-decoration: none;
+    }
+    :host([data-vl-toggleable]) .vl-info-tile__header__wrapper .vl-toggle:hover,
+    :host([data-vl-toggleable]) .vl-info-tile__header__wrapper .vl-toggle:focus {
+        text-decoration: underline;
+    }
+    :host([data-vl-toggleable]) .vl-info-tile__header__title {
+        flex-grow: 1;
+    }
+    :host([data-vl-toggleable]) .vl-info-tile__header__subtitle {
+        margin-left: 2rem;
+    }
+    :host([data-vl-toggleable]) .vl-info-tile.js-vl-accordion:not(.js-vl-accordion--open) .vl-info-tile__content {
+        visibility: hidden;
+        overflow: hidden;
+        max-height: 0;
+        margin: 0;
+    }
+    :host([data-vl-toggleable]) .vl-info-tile.js-vl-accordion.js-vl-accordion--open .vl-info-tile__content {
+        visibility: visible;
+        max-height: 100%;
+        margin-left: 2rem;
+    }
+
+    slot[name='title-label'] {
+        display: inline-block;
+        margin-left: 3rem;
+    }
+`;
+export default styles;

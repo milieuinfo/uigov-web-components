@@ -1,9 +1,11 @@
 import { awaitUntil, BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders/vl-ui-tabs/dist/js/tabs.js';
-import styles from './style/vl-tabs.scss';
 import './vl-tab-section.component';
 import './vl-tab.component';
 import { VlTabsPaneComponent } from './vl-tabs-pane.component';
+import { tabsStyle } from '@domg/govflanders-style/component';
+import { baseStyle, elementStyle, resetStyle } from '@domg/govflanders-style/common';
+import tabsUigStyle from './vl-tabs.uig-css';
 
 declare const vl: any;
 declare const window: any;
@@ -21,7 +23,11 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
     <style>
-      ${styles}
+      ${resetStyle}
+      ${tabsStyle}
+      ${tabsUigStyle}
+      ${baseStyle}
+      ${elementStyle}
     </style>
     <div id="tabs" data-vl-tabs data-vl-tabs-responsive-label="Navigatie">
       <div id="tabs-wrapper" class="vl-tabs__wrapper">

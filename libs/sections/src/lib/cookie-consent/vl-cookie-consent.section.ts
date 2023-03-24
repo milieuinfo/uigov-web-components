@@ -1,7 +1,7 @@
 import { BaseElementOfType, webComponentConditional } from '@domg-wc/common-utilities';
 import '@domg-wc/components';
 import '@domg-wc/elements';
-import styles from './style/vl-cookie-consent.scss';
+import { vlElementsStyle } from '@domg-wc/elements';
 import { analytics } from './util/analytics.util';
 import './vl-cookie-consent-opt-in.section';
 
@@ -14,7 +14,7 @@ export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${vlElementsStyle}
       </style>
 
       <vl-modal data-vl-title="Cookie-toestemming" data-vl-not-cancellable>

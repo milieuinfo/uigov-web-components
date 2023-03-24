@@ -2,7 +2,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/components';
 import OlOverlay from 'ol/Overlay';
 import '../select-location/vl-select-location';
-import styles from './style/vl-map-search.scss';
+import { vlElementsStyle } from '@domg-wc/elements';
 
 /**
  * VlMapSearch
@@ -38,7 +38,7 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${vlElementsStyle}
         :host {
           display: block;
         }

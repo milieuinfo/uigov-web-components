@@ -1,16 +1,13 @@
-import { css, CSSResult, html, LitElement, TemplateResult, unsafeCSS } from 'lit';
+import { html, LitElement, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import styles from './style/vl-map-controls.scss';
+import { CSSResult } from 'lit/development';
 import { VlMapActionControl } from './action-control/vl-map-action-control';
+import styles from './vl-map-controls.uig-css';
 
 @customElement('vl-map-action-controls')
 export class VlMapActionControls extends LitElement {
     static get styles(): CSSResult[] {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [styles];
     }
 
     connectedCallback(): void {

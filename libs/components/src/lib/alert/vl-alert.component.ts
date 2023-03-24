@@ -1,5 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-alert.scss';
+import { alertStyle, iconStyle } from '@domg/govflanders-style/component';
+import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
 
 @webComponent('vl-alert')
 export class VlAlert extends BaseElementOfType(HTMLElement) {
@@ -10,7 +11,10 @@ export class VlAlert extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${iconStyle}
+        ${alertStyle}
+        ${accessibilityStyle}
       </style>
       <div id="alert" class="vl-alert" role="alert">
         <div id="content" class="vl-alert__content">

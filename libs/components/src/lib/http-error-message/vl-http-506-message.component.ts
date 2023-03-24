@@ -1,18 +1,15 @@
-import { css, html, LitElement, unsafeCSS } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import styles from './style/vl-http-error-message.scss';
+import { webComponentPromised } from '@domg-wc/common-utilities';
+import { baseStyle } from '@domg/govflanders-style/common';
+import { buttonStyle } from '@domg/govflanders-style/component';
+import { CSSResult, html, LitElement, TemplateResult } from 'lit';
 
-@customElement('vl-http-506-message')
+@webComponentPromised([customElements.whenDefined('vl-http-error-message')], 'vl-http-506-message')
 export class VlHttp506Message extends LitElement {
-    static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+    static get styles(): CSSResult[] {
+        return [baseStyle, buttonStyle];
     }
 
-    render() {
+    protected render(): TemplateResult {
         return html`
             <vl-http-error-message
                 data-vl-title="Interne configuratiefout"

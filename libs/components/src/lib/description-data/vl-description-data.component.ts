@@ -1,6 +1,7 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
+import { descriptionDataStyle } from '@domg/govflanders-style/component';
+import { gridStyle, resetStyle } from '@domg/govflanders-style/common';
+import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import styles from './style/vl-description-data.scss';
 
 @customElement('vl-description-data')
 export class VlDescriptionData extends LitElement {
@@ -14,11 +15,7 @@ export class VlDescriptionData extends LitElement {
     private extraSmallMaxSize = 0;
 
     static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [resetStyle, gridStyle, descriptionDataStyle];
     }
 
     static get properties() {
@@ -45,12 +42,12 @@ export class VlDescriptionData extends LitElement {
     render() {
         this.size = this.size || 12 / this.children.length;
 
-        return html`<div class="vl-description-data">
+        return html` <div class="vl-description-data">
             <div is="vl-grid">
                 ${[...Array.from(this.children)].map((child, index) => {
                     const name = `item-${index}`;
                     child.setAttribute('slot', name);
-                    return html`<div
+                    return html` <div
                         is="vl-column"
                         data-vl-size=${this.size}
                         data-vl-max-size=${this.maxSize}

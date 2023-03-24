@@ -1,7 +1,16 @@
 import { awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
 import { vlFormValidation, vlFormValidationElement, vlPattern } from '@domg-wc/elements';
 import './vl-datepicker.lib.js';
-import styles from './style/vl-datepicker.scss';
+import {
+    datepickerStyle,
+    iconStyle,
+    inputAddonStyle,
+    inputFieldStyle,
+    inputGroupStyle,
+    tooltipStyle,
+} from '@domg/govflanders-style/component';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import datepickerUigStyle from './vl-datepicker.uig-css';
 
 declare const vl: any;
 
@@ -130,15 +139,15 @@ export class VlDatepickerComponent extends vlFormValidationElement(BaseElementOf
     constructor() {
         super(`
       <style>
-        ${styles}
-
-        #wrapper {
-          position: relative;
-        }
-
-        .flatpickr-calendar {
-          display: none;
-        }
+        ${resetStyle}
+        ${baseStyle}
+        ${iconStyle}
+        ${inputFieldStyle}
+        ${inputAddonStyle}
+        ${inputGroupStyle}
+        ${tooltipStyle}
+        ${datepickerStyle}
+        ${datepickerUigStyle}
       </style>
       <div is="vl-input-group" id="wrapper" data-vl-datepicker>
         <input id="input" is="vl-input-field" data-vl-block type="text" class="js-vl-datepicker-input"/>

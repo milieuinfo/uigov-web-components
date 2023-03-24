@@ -1,6 +1,6 @@
 import { css, html, LitElement, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import styles from './style/vl-spotlight.scss';
+import styles from './vl-spotlight.uig-css';
 import { SIZE } from './vl-spotlight.model';
 
 @customElement('vl-spotlight')

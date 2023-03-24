@@ -1,8 +1,10 @@
-import { css, html, LitElement, unsafeCSS } from 'lit';
+import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import styles from './style/vl-toggle-button.scss';
 import { ICON_PLACEMENT } from './vl-toggle-button.model';
+import { buttonStyle, iconStyle } from '@domg/govflanders-style/component';
+import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
+import buttonUigStyle from './vl-toggle-button.uig-css';
 
 @customElement('vl-toggle-button')
 export class VlToggleButtonComponent extends LitElement {
@@ -89,11 +91,7 @@ export class VlToggleButtonComponent extends LitElement {
     }
 
     static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [resetStyle, buttonStyle, buttonUigStyle, accessibilityStyle, iconStyle];
     }
 
     createRenderRoot() {

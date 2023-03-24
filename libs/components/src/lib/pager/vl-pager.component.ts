@@ -1,5 +1,7 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-pager.scss';
+import { iconStyle, linkStyle, pagerStyle } from '@domg/govflanders-style/component';
+import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
+import pagerUigStyle from './vl-pager.uig-css';
 
 /**
  * Pager changed event
@@ -45,7 +47,12 @@ export class VlPagerComponent extends BaseElementOfType(HTMLElement) implements 
         super();
         this.shadow(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${pagerStyle}
+        ${pagerUigStyle}
+        ${iconStyle}
+        ${linkStyle}
+        ${accessibilityStyle}
       </style>
       <div class="vl-pager">
         <ul id="pager-list" class="vl-pager__list">

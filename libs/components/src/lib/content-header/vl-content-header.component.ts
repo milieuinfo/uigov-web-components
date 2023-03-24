@@ -1,5 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-content-header.scss';
+import { contentHeaderStyle } from '@domg/govflanders-style/component';
+import { baseStyle, layoutStyle, resetStyle } from '@domg/govflanders-style/common';
 
 /**
  * VlContentHeader
@@ -14,7 +15,10 @@ export class VlContentHeaderComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${baseStyle}
+        ${layoutStyle}
+        ${contentHeaderStyle}
       </style>
       <header class="vl-content-header vl-content-header--large vl-content-header--show-mobile vl-content-header--has-context">
         <div class="vl-content-header__wrapper">

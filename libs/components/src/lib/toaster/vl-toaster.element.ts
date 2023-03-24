@@ -1,7 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders/vl-ui-core/dist/js/core.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
-import './style/vl-toaster.scss';
 import './vl-toaster.lib.js';
 
 declare const vl: any;

@@ -1,7 +1,7 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/elements';
 import swipeDetect from 'swipe-detect/dist/';
-import styles from './style/vl-side-sheet.scss';
+import styles from './vl-side-sheet.uig-css';
 
 /**
  * VlSideSheet
