@@ -63,3 +63,4 @@ export {
 export { VlSideNavigationToggleElement } from './lib/side-navigation/vl-side-navigation-toggle.element';
 export { VlText } from './lib/text/vl-text.element';
 export { VlVideoPlayerElement } from './lib/video-player/vl-video-player.element';
+export { default as vlElementsStyle } from './lib/vl-elements.uig-css';

@@ -1,17 +1,6 @@
 import '@domg-wc/elements';
-// import '../../components/grid';
-// import '../../components/form-message';
-// import '../../components/icon';
-// import '../../components/button';
-// import '../../components/pager';
-// import gridStyles from '../../components/grid/styles.scss';
-// import formMessageStyles from '../../components/form-message/styles.scss';
-// import iconStyles from '../../components/icon/styles.scss';
-// import buttonStyles from '../../components/button/styles.scss';
-// import tableStyles from '../../components/data-table/styles.scss';
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '@domg-wc/elements';
-import styles from './style/vl-rich-data.scss';
+import styles from './vl-rich-data.uig-css';
 import { Pagination, VlPagerComponent } from '../pager/vl-pager.component';
 
 export interface RichDataMeta {
@@ -55,7 +44,7 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
         return 4;
     }
 
-    protected _data: (RichData) | undefined;
+    protected _data: RichData | undefined;
 
     constructor(style = '', content = '') {
         super(`

@@ -1,6 +1,7 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
+import { descriptionDataStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
+import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import styles from './style/vl-description-data.scss';
 
 @customElement('vl-description-data-item')
 export class VlDescriptionDataItem extends LitElement {
@@ -8,11 +9,7 @@ export class VlDescriptionDataItem extends LitElement {
     private value = '';
 
     static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [resetStyle, descriptionDataStyle];
     }
 
     static get properties() {
@@ -31,10 +28,11 @@ export class VlDescriptionDataItem extends LitElement {
         const valueClass = 'vl-description-data__value';
         return html`
             ${this.hasSlot('label')
-                ? html`<slot name="label" class=${labelClass}></slot>`
+                ? html` <slot name="label" class=${labelClass}></slot>`
                 : html`<span class=${labelClass}>${this.label}</span>`}
             ${this.hasSlot('value')
-                ? html`<slot name="value" class=${valueClass}></span>`
+                ? html`
+                    <slot name="value" class=${valueClass}></span>`
                 : html`<span class=${valueClass}>${this.value}</span>`}
         `;
     }

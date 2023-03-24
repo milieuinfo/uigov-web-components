@@ -1,5 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-map-side-sheet.scss';
+import { vlElementsStyle } from '@domg-wc/elements';
 
 /**
  * VlMapSideSheetMenuItem
@@ -25,7 +25,7 @@ export class VlMapSideSheetMenuItem extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${vlElementsStyle}
 
         .vl-map-side-sheet-menu-item {
           background: #e8ebee;

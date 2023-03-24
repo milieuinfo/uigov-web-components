@@ -2,7 +2,7 @@ import '@domg-wc/elements';
 import { css, html, LitElement, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import proj4 from 'proj4';
-import styles from './vl-map-current-location.scss';
+import styles from './vl-map-current-location.uig-css';
 
 export const DEFAULT_ZOOM = 10;
 export const DEFAULT_TOOLTIP = 'Huidige locatie';

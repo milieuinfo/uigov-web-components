@@ -1,5 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-loader.scss';
+import { loaderStyle } from '@domg/govflanders-style/component';
+import { accessibilityStyle, alignStyle, resetStyle } from '@domg/govflanders-style/common';
 
 /**
  * VlLoader
@@ -22,7 +23,10 @@ export class VlLoaderComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${loaderStyle}
+        ${alignStyle}
+        ${accessibilityStyle}
       </style>
       <div class="vl-u-align-center">
         <div class="vl-loader" role="alert" aria-busy="true"></div>

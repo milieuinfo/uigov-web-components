@@ -1,6 +1,8 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '../accordion/vl-accordion.component';
-import styles from './style/vl-info-tile.scss';
+import { accordionStyle, iconStyle, infoTileStyle, linkStyle, toggleStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
+import infoTileUigStyle from './vl-info-tile.uig-css';
 
 declare const vl: any;
 
@@ -13,7 +15,13 @@ export class VlInfoTile extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${infoTileStyle}
+        ${infoTileUigStyle}
+        ${linkStyle}
+        ${toggleStyle}
+        ${accordionStyle}
+        ${iconStyle}
       </style>
       <div class="vl-info-tile">
         <header class="vl-info-tile__header" role="presentation">

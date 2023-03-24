@@ -1,6 +1,8 @@
 import { BaseElementOfType, VL, webComponentPromised } from '@domg-wc/common-utilities';
 import { vlFormValidation, vlFormValidationElement } from '@domg-wc/elements';
-import styles from './style/vl-upload.scss';
+import { iconStyle, linkStyle, uploadStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
+import uploadUigStyle from './vl-upload.uig-css';
 import './vl-upload.lib.js';
 
 declare const vl: VL;
@@ -39,7 +41,11 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${linkStyle}
+        ${uploadStyle}
+        ${uploadUigStyle}
+        ${iconStyle}
       </style>
       <div class="vl-upload" data-vl-upload data-vl-upload-url="http://www.example.com"></div>
     `);

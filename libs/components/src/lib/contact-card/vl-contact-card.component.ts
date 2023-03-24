@@ -1,5 +1,7 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-contact-card.scss';
+import { contactCardStyle } from '@domg/govflanders-style/component';
+import { gridStyle, resetStyle } from '@domg/govflanders-style/common';
+import contactCardUigStyle from './vl-contact-card.uig-css';
 
 /**
  * VlContactCard
@@ -14,7 +16,10 @@ export class VlContactCardComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
         <style>
-            ${styles}
+            ${resetStyle}
+            ${gridStyle}
+            ${contactCardStyle}
+            ${contactCardUigStyle}
         </style>
         <div class="vl-contact-data">
             <div is="vl-grid" data-vl-is-stacked>
@@ -32,6 +37,6 @@ export class VlContactCardComponent extends BaseElementOfType(HTMLElement) {
 
 declare global {
     interface HTMLElementTagNameMap {
-        'vl-contact-card': VlContactCardComponent
+        'vl-contact-card': VlContactCardComponent;
     }
 }

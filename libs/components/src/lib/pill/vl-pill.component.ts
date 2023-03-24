@@ -1,9 +1,11 @@
-import { css, html, LitElement, unsafeCSS } from 'lit';
+import { pillStyle } from '@domg/govflanders-style/component';
+import { accessibilityStyle, baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { createRef, ref } from 'lit/directives/ref.js';
-import styles from './style/vl-pill.scss';
 import { TYPE } from './vl-pill.model';
+import pillUigStyle from './vl-pill.uig-css';
 
 @customElement('vl-pill')
 export class VlPillComponent extends LitElement {
@@ -16,11 +18,7 @@ export class VlPillComponent extends LitElement {
     private isInMap = false;
 
     static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [resetStyle, pillStyle, pillUigStyle, baseStyle, accessibilityStyle];
     }
 
     static get properties() {
@@ -99,18 +97,18 @@ export class VlPillComponent extends LitElement {
 
         if (this.closable) {
             return html`
-        <div class="${classMap(closableClasses)}">
-            <slot></slot>
-            <button
-              class="vl-pill__close"
-              type="button"
-              @click=${() => this.dispatchEvent(new CustomEvent('close'))}
-            >
-              <span class="vl-u-visually-hidden">Optie verwijderen</span>
-            </button>
-          </div>
-        </div>
-      `;
+                <div class="${classMap(closableClasses)}">
+                    <slot></slot>
+                    <button
+                        class="vl-pill__close"
+                        type="button"
+                        @click=${() => this.dispatchEvent(new CustomEvent('close'))}
+                    >
+                        <span class="vl-u-visually-hidden">Optie verwijderen</span>
+                    </button>
+                </div>
+                </div>
+            `;
         }
 
         if (this.checkable) {
@@ -136,7 +134,8 @@ export class VlPillComponent extends LitElement {
                             );
                         }}
                     />
-                    <span></span> <slot></slot>
+                    <span></span>
+                    <slot></slot>
                 </label>
             `;
         }
@@ -154,4 +153,3 @@ declare global {
         'vl-pill': VlPillComponent;
     }
 }
-

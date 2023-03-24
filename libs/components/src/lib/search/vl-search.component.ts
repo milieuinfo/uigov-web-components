@@ -1,6 +1,8 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { VlSelect } from '@domg-wc/elements';
-import styles from './style/vl-search.scss';
+import { buttonStyle, inputFieldStyle, searchStyle, selectStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
+import searchUigStyle from './vl-search.uig-css';
 
 /**
  * Search change event analoog aan native change event.
@@ -41,7 +43,12 @@ export class VlSearchComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${buttonStyle}
+        ${inputFieldStyle}
+        ${selectStyle}
+        ${searchStyle}
+        ${searchUigStyle}
       </style>
       <div class="vl-search">
         <slot name="input"></slot>

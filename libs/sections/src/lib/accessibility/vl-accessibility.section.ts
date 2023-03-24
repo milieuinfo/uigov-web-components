@@ -1,21 +1,17 @@
-import '@domg-wc/elements';
 import '@domg-wc/components';
-import { html, LitElement, css, unsafeCSS } from 'lit';
+import '@domg-wc/elements';
+import { vlElementsStyle } from '@domg-wc/elements';
+import { CSSResult, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { AccessibilityProperties, COMPLIANCE_STATUS, EVALUATION_STATUS, Limitations } from './vl-accessibility.model';
+import { content } from './child/content.section';
 import { header } from './child/header.section';
 import { title } from './child/title.section';
-import { content } from './child/content.section';
-import styles from './style/vl-accessibility.scss';
+import { AccessibilityProperties, COMPLIANCE_STATUS, EVALUATION_STATUS, Limitations } from './vl-accessibility.model';
 
 @customElement('vl-accessibility')
 export class VlAccessibility extends LitElement {
-    static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+    static get styles(): CSSResult[] {
+        return vlElementsStyle;
     }
 
     static get properties() {
@@ -72,7 +68,6 @@ export class VlAccessibility extends LitElement {
 
     constructor() {
         super();
-
         this.application = 'deze applicatie';
         this.compliance = 'PARTIALLY_COMPLIANT';
         this.date = '20 juli 2021';
@@ -94,7 +89,7 @@ export class VlAccessibility extends LitElement {
             limitations: this.limitations,
         };
 
-        return html`${header(props)} ${title(props)} ${content(props)}`;
+        return html` ${header(props)} ${title(props)} ${content(props)} `;
     }
 }
 

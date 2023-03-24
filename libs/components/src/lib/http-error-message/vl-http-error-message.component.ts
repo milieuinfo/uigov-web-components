@@ -1,5 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-http-error-message.scss';
+import { vlElementsStyle } from '@domg-wc/elements';
 import './vl-http-400-message.component';
 import './vl-http-401-message.component';
 import './vl-http-403-message.component';
@@ -29,7 +29,7 @@ export class VlHttpErrorMessage extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${vlElementsStyle}
       </style>
       <div is="vl-grid" data-vl-is-stacked data-vl-align-center data-vl-v-center>
         <div is="vl-column" data-vl-size="6" data-vl-medium-size="6" data-vl-small-size="6" data-vl-extra-small-size="6" class="vl-u-hidden vl-u-visible--s">

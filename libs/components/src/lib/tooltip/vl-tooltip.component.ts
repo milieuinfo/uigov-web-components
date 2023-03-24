@@ -1,7 +1,8 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders/vl-ui-util/dist/js/util.js';
-import styles from './style/vl-tooltip.scss';
 import './vl-tooltip.lib.js';
+import { tooltipStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
 
 declare const vl: any;
 
@@ -21,7 +22,8 @@ export class VlTooltipComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${tooltipStyle}
       </style>
     `);
     }

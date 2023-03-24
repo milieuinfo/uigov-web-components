@@ -1,5 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-checkbox.scss';
+import { checkboxStyle } from '@domg/govflanders-style/component';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 
 /**
  * VlCheckbox
@@ -35,7 +36,9 @@ export class VlCheckboxComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${baseStyle}
+        ${checkboxStyle}
       </style>
     `);
 

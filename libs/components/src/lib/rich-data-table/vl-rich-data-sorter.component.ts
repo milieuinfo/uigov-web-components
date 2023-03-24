@@ -1,6 +1,6 @@
 import '@domg-wc/elements';
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-rich-data-table.scss';
+import styles from './vl-rich-data-table.uig-css';
 
 @webComponent('vl-rich-data-sorter')
 export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
@@ -143,7 +143,7 @@ export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
         );
     }
 
-    static get PRIORITY_COMPARATOR(): (firstSorter: VlRichDataSorter, secondSorter: VlRichDataSorter) => (number) {
+    static get PRIORITY_COMPARATOR(): (firstSorter: VlRichDataSorter, secondSorter: VlRichDataSorter) => number {
         return ({ priority: firstPriority }: VlRichDataSorter, { priority: secondPriority }: VlRichDataSorter) => {
             if (secondPriority === undefined || (firstPriority ? firstPriority : 0) < secondPriority) {
                 return -1;

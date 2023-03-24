@@ -1,8 +1,10 @@
 /* eslint-disable no-undef */
 import { BaseElementOfType, PADDINGS, webComponent } from '@domg-wc/common-utilities';
+import { accordionStyle, buttonStyle, iconStyle, linkStyle, toggleStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
+import accordionUigStyle from './vl-accordion.uig-css';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import '@govflanders/vl-ui-accordion/dist/js/accordion.js';
-import styles from './style/vl-accordion.scss';
 import 'reflect-metadata';
 
 declare const vl: any;
@@ -38,7 +40,13 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-       ${styles}
+       ${resetStyle}
+       ${buttonStyle}
+       ${iconStyle}
+       ${linkStyle}
+       ${toggleStyle}
+       ${accordionStyle}
+       ${accordionUigStyle}
       </style>
       <div class="js">
         <div class="vl-accordion" data-vl-accordion>

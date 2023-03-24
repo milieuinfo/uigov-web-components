@@ -1,5 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-document.scss';
+import { documentStyle, iconStyle } from '@domg/govflanders-style/component';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 
 /**
  * VlDocument
@@ -20,7 +21,10 @@ export class VlDocumentComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${baseStyle}
+        ${documentStyle}
+        ${iconStyle}
       </style>
       <a class="vl-document" href="#" download>
         <div class="vl-document__type">

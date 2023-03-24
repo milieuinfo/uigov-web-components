@@ -1,5 +1,7 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-typography.scss';
+import { titlesStyle, typographyStyle } from '@domg/govflanders-style/component';
+import { baseStyle, elementStyle, resetStyle } from '@domg/govflanders-style/common';
+import typographyUigStyle from './vl-typography.uig-css';
 
 /**
  * VlTypography
@@ -21,7 +23,12 @@ export class VlTypography extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${baseStyle}
+        ${elementStyle}
+        ${typographyStyle}
+        ${typographyUigStyle}
+        ${titlesStyle}
       </style>
       <div id="content" class="vl-typography"></div>
     `);

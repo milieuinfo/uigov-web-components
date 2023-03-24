@@ -1,7 +1,7 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/elements';
 import { VlTypography } from '../typography/vl-typography.component';
-import elementStyles from './style/vl-proza-message.scss';
+import elementStyles from './vl-proza-message.uig-css';
 import { VlProzaMessagePreloader } from './vl-proza-message-preloader.component';
 import { ProzaRestClient } from './vl-proza-rest-client.util';
 

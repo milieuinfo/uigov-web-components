@@ -1,19 +1,15 @@
-import { css, html, LitElement, unsafeCSS } from 'lit';
+import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import styles from './style/vl-share-buttons.scss';
 import './vl-share-button.component';
+import shareButtonsStyle from './vl-share-buttons.uig-css';
 
 @customElement('vl-share-buttons')
 export class VlShareButtonsComponent extends LitElement {
     private alt = '';
 
     static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [shareButtonsStyle];
     }
 
     static get properties() {
@@ -21,7 +17,7 @@ export class VlShareButtonsComponent extends LitElement {
     }
 
     render() {
-        return html`<div class=${classMap({ 'vl-share-buttons': true, 'vl-share-buttons--alt': this.alt })}>
+        return html` <div class=${classMap({ 'vl-share-buttons': true, 'vl-share-buttons--alt': this.alt })}>
             <div class="vl-share-buttons__label">Deel:</div>
             <slot></slot>
         </div>`;

@@ -1,8 +1,9 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '@govflanders/vl-ui-util/dist/js/util.js';
-import '@govflanders/vl-ui-core/dist/js/core.js';
+import { codePreviewStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
 import '@govflanders/vl-ui-code-preview/dist/js/code-preview.js';
-import styles from './style/vl-code-preview.scss';
+import '@govflanders/vl-ui-core/dist/js/core.js';
+import '@govflanders/vl-ui-util/dist/js/util.js';
 
 declare const vl: any;
 
@@ -19,7 +20,8 @@ export class VlCodePreviewComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${codePreviewStyle}
       </style>
       <div class="vl-code-preview" data-vl-code-preview data-vl-code-preview-no-copy-button>
         <pre class="line-numbers">

@@ -1,7 +1,9 @@
-import { css, html, LitElement, unsafeCSS } from 'lit';
+import { iconStyle } from '@domg/govflanders-style/component';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import styles from './style/vl-share-button.scss';
 import { MEDIA_NAMES } from './vl-share-button.model';
+import shareButtonStyle from './vl-share-button.uig-css';
 
 @customElement('vl-share-button')
 export class VlShareButton extends LitElement {
@@ -9,11 +11,7 @@ export class VlShareButton extends LitElement {
     private href = '';
 
     static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [resetStyle, baseStyle, shareButtonStyle, iconStyle];
     }
 
     static get properties() {

@@ -2,7 +2,7 @@ import { css, html, LitElement, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { VlMapLayerCircleStyle } from '../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import { VlMapVectorLayer } from '../layer/vector-layer/vl-map-vector-layer';
-import styles from './style/vl-map-legend.scss';
+import styles from './vl-map-legend.uig-css';
 
 export const LEGEND_PLACEMENT = {
     TOP_LEFT: 'top_left',

@@ -226,8 +226,9 @@ jobs:
 
   release-and-publish:
     if:
+      false
       # only publish bugfix and develop branches
-      contains('refs/heads/bugfix, refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
+      # contains('refs/heads/bugfix, refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
     runs-on: ubuntu-latest
     defaults:
       run:

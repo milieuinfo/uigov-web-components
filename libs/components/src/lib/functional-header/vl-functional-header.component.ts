@@ -1,5 +1,7 @@
 import { BaseElementOfType, MARGINS, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-functional-header.scss';
+import functionalHeaderUigStyle from './vl-functional-header.uig-css';
+import { functionalHeaderStyle } from '@domg/govflanders-style/component';
+import { baseStyle, elementStyle, layoutStyle, resetStyle } from '@domg/govflanders-style/common';
 
 /**
  * VlFunctionalHeader
@@ -33,7 +35,12 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${resetStyle}
+        ${baseStyle}
+        ${layoutStyle}
+        ${elementStyle}
+        ${functionalHeaderStyle}
+        ${functionalHeaderUigStyle}
       </style>
       <header class="vl-functional-header">
         <div class="vl-layout">

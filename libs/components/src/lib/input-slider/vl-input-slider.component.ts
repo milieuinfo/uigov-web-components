@@ -1,7 +1,9 @@
-import { css, CSSResult, html, LitElement, PropertyDeclarations, TemplateResult, unsafeCSS } from 'lit';
+import { inputFieldStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
+import { CSSResult, html, LitElement, PropertyDeclarations, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import 'reflect-metadata';
-import styles from './style/vl-input-slider.scss';
+import inputSliderUigStyle from './vl-input-slider.uig-css';
 
 @customElement('vl-input-slider')
 export class VlInputSliderComponent extends LitElement {
@@ -10,11 +12,7 @@ export class VlInputSliderComponent extends LitElement {
     value = 0;
 
     static get styles(): CSSResult[] {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [resetStyle, inputFieldStyle, inputSliderUigStyle];
     }
 
     static get properties(): PropertyDeclarations {

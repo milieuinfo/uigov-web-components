@@ -1,7 +1,7 @@
 import { awaitUntil, BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/components';
 import '@domg-wc/elements';
-import formMessageStyles from './style/vl-map-layer-switcher.scss';
+import { vlElementsStyle } from '@domg-wc/elements';
 import { VlMap } from '../../vl-map';
 
 /**
@@ -23,7 +23,7 @@ export class VlMapLayerSwitcher extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${formMessageStyles}
+        ${vlElementsStyle}
 
         :host {
           display: block;

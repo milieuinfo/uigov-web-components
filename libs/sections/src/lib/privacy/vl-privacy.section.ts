@@ -2,7 +2,7 @@ import '@domg-wc/components';
 import '@domg-wc/elements';
 import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import styles from './style/vl-privacy.scss';
+import { vlElementsStyle } from '@domg-wc/elements';
 
 const props = {
     date: 'data-vl-date',
@@ -32,7 +32,7 @@ export class VlPrivacy extends LitElement {
     render() {
         return html`
             <style>
-                ${styles}
+                ${vlElementsStyle}
             </style>
             <vl-functional-header
                 data-vl-title="Departement Omgeving"
@@ -501,8 +501,8 @@ export class VlPrivacy extends LitElement {
                                                                 door de Vlaamse Toezichtscommissie (VTC). Elke
                                                                 organisatie die persoonsgegevens verwerkt en gevat is
                                                                 door de Algemene Verordening Gegevensbescherming is
-                                                                verplicht aan de Vlaamse Toezichtscommissie inzage
-                                                                in het register te geven.
+                                                                verplicht aan de Vlaamse Toezichtscommissie inzage in
+                                                                het register te geven.
                                                             </p>
                                                             <p>
                                                                 Voor die verwerkingen waarbij het Departement Omgeving
@@ -765,12 +765,12 @@ export class VlPrivacy extends LitElement {
                                                             </p>
                                                             <p>
                                                                 Daarnaast hebt u het recht om klacht in te dienen bij de
-                                                                Vlaamse Toezichtscommissie (VTC), indien u
-                                                                meent dat uw rechten geschaad zijn en u zich ook na
-                                                                vraagstelling bij de bevoegde diensten van het
-                                                                Departement Omgeving of de door het Departement Omgeving
-                                                                aangestelde Functionaris voor gegevensbescherming (DPO)
-                                                                niet voldoende in uw rechten erkend weet.
+                                                                Vlaamse Toezichtscommissie (VTC), indien u meent dat uw
+                                                                rechten geschaad zijn en u zich ook na vraagstelling bij
+                                                                de bevoegde diensten van het Departement Omgeving of de
+                                                                door het Departement Omgeving aangestelde Functionaris
+                                                                voor gegevensbescherming (DPO) niet voldoende in uw
+                                                                rechten erkend weet.
                                                             </p>
                                                         </vl-typography>
                                                     </div>

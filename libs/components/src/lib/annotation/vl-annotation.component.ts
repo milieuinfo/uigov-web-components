@@ -1,15 +1,12 @@
-import { css, html, LitElement, unsafeCSS } from 'lit';
+import { annotationStyle } from '@domg/govflanders-style/component';
+import { resetStyle } from '@domg/govflanders-style/common';
+import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import styles from './style/vl-annotation.scss';
 
 @customElement('vl-annotation')
 export class VlAnnotation extends LitElement {
     static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [resetStyle, annotationStyle];
     }
 
     private small = false;

@@ -1,7 +1,8 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-
-import styles from './style/vl-radio.scss';
 import { vlRadioGroupComponent as vlRadioGroup } from './vl-radio-group.component';
+import { radioStyle } from '@domg/govflanders-style/component';
+import { accessibilityStyle, baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import radioUigStyle from './vl-radio.uig-css';
 
 @webComponent('vl-radio')
 export class VlRadio extends BaseElementOfType(HTMLElement) {
@@ -20,9 +21,12 @@ export class VlRadio extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-      ${styles}
+        ${resetStyle}
+        ${baseStyle}
+        ${radioStyle}
+        ${radioUigStyle}
+        ${accessibilityStyle}
       </style>
-
       <label class="vl-radio" for="radio">
         <input class="vl-radio__toggle" type="radio" id="radio" name="radio"/>
         <div class="vl-radio__label">

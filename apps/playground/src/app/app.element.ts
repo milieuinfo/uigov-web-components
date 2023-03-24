@@ -1,14 +1,27 @@
-import './app.element.scss';
+import { vlElementsStyle } from '@domg-wc/elements';
+import { baseStyle, typographyStyle } from '@domg/govflanders-style/common';
+import appStyle from './app.element.css';
 
 export class AppElement extends HTMLElement {
     public static observedAttributes = [];
 
+    constructor() {
+        super();
+        document.adoptedStyleSheets = [
+            typographyStyle.styleSheet,
+            baseStyle.styleSheet,
+            ...vlElementsStyle.map((style) => style.styleSheet),
+            appStyle.styleSheet,
+        ];
+    }
+
     connectedCallback() {
+        // this.addElementsStyle();
         this.innerHTML = `
             <div class="wrapper">
                 <div class="container">
                     <h1 is="vl-h1" data-vl-alt data-vl-no-space-bottom>Elementen Overzicht UIG</h1>
-                    <playground-map></playground-map>
+<!--                    <playground-map></playground-map>-->
                     <playground-action-group></playground-action-group>
                     <playground-breadcrumb></playground-breadcrumb>
                     <playground-buttons></playground-buttons>

@@ -1,5 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import styles from './style/vl-cookie-consent.scss';
+import { vlElementsStyle } from '@domg-wc/elements';
 
 @webComponent('vl-cookie-consent-opt-in')
 export class VlCookieConsentOptIn extends BaseElementOfType(HTMLElement) {
@@ -10,7 +10,7 @@ export class VlCookieConsentOptIn extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <style>
-        ${styles}
+        ${vlElementsStyle}
       </style>
       <div>
           <vl-checkbox></vl-checkbox>

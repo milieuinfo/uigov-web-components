@@ -1,11 +1,13 @@
+import { progressBarStyle } from '@domg/govflanders-style/component';
+import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
 import ProgressBar from '@govflanders/vl-ui-progress-bar/src/js/progress-bar.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
-import { css, html, LitElement, unsafeCSS } from 'lit';
+import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import 'reflect-metadata';
 import '../tooltip/vl-tooltip.component';
-import styles from './style/vl-progress-bar.scss';
+import progressBarUigStyle from './vl-progress-bar.uig-css';
 
 @customElement('vl-progress-bar')
 export class VlProgressBarComponent extends LitElement {
@@ -16,11 +18,7 @@ export class VlProgressBarComponent extends LitElement {
     private steps = [];
 
     static get styles() {
-        return [
-            css`
-                ${unsafeCSS(styles)}
-            `,
-        ];
+        return [resetStyle, progressBarStyle, progressBarUigStyle, accessibilityStyle];
     }
 
     static get properties() {
@@ -59,9 +57,9 @@ export class VlProgressBarComponent extends LitElement {
             'vl-progress-bar--numeric': this.numeric,
             'vl-progress-bar--data-vl-numeric': this.numeric,
         };
-        return html`<div class=${classMap(classes)}>
+        return html` <div class=${classMap(classes)}>
             ${this.steps.map(
-                (step, index) => html`<div class="vl-progress-bar__step">
+                (step, index) => html` <div class="vl-progress-bar__step">
                     <button
                         @click=${() =>
                             this.dispatchEvent(
