@@ -15,15 +15,9 @@ export default {
     },
 } as Meta<typeof inputSliderArgs>;
 
-export const InputSliderDefault: StoryFn<typeof inputSliderArgs> = ({
-    initialValue,
-    maxValue,
-    minValue,
-    onChangeValue,
-}) =>
+export const InputSliderDefault: StoryFn<typeof inputSliderArgs> = ({ maxValue, minValue, value, onChangeValue }) =>
     html`
         <vl-input-slider
-            data-vl-initial-value=${initialValue || nothing}
             ${
                 /* 
                 Houd dit magisch nummer in sync met de default waarde van maxValue in vl-input-slider.component.ts.
@@ -31,6 +25,7 @@ export const InputSliderDefault: StoryFn<typeof inputSliderArgs> = ({
             }
             data-vl-max-value=${maxValue !== 100 ? maxValue : nothing}
             data-vl-min-value=${minValue || nothing}
+            data-vl-value=${value || nothing}
             @vl-change-value=${(event: CustomEvent) => onChangeValue(event.detail)}
         ></vl-input-slider>
     `;

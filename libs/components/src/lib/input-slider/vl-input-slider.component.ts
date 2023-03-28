@@ -5,9 +5,9 @@ import styles from './style/vl-input-slider.scss';
 
 @customElement('vl-input-slider')
 export class VlInputSliderComponent extends LitElement {
-    private initialValue = 0;
-    private maxValue = 100;
-    private minValue = 0;
+    maxValue = 100;
+    minValue = 0;
+    value = 0;
 
     static get styles(): CSSResult[] {
         return [
@@ -19,11 +19,6 @@ export class VlInputSliderComponent extends LitElement {
 
     static get properties(): PropertyDeclarations {
         return {
-            initialValue: {
-                type: Number,
-                attribute: 'data-vl-initial-value',
-                reflect: true,
-            },
             maxValue: {
                 type: Number,
                 attribute: 'data-vl-max-value',
@@ -34,28 +29,33 @@ export class VlInputSliderComponent extends LitElement {
                 attribute: 'data-vl-min-value',
                 reflect: true,
             },
+            value: {
+                type: Number,
+                attribute: 'data-vl-value',
+                reflect: true,
+            },
         };
     }
 
-    private handleInput(event: Event): void {
-        const target = event.target as HTMLInputElement | null;
-        const inputRangeElement: HTMLInputElement | null = this.renderRoot.querySelector('#input-range');
-        const inputNumberElement: HTMLInputElement | null = this.renderRoot.querySelector('#input-number');
+    protected updated(changedProperties: Map<string, unknown>): void {
+        if (changedProperties.has('value') || changedProperties.has('minValue') || changedProperties.has('maxValue')) {
+            const validatedValue = this.validateValue(this.value);
 
-        if (!target || !inputRangeElement || !inputNumberElement) {
-            return;
+            if (this.value !== validatedValue) {
+                this.value = validatedValue;
+                return;
+            }
+
+            if (changedProperties.has('value') && !isNaN(this.value)) {
+                this.dispatchEvent(
+                    new CustomEvent('vl-change-value', {
+                        detail: {
+                            value: this.value,
+                        },
+                    })
+                );
+            }
         }
-
-        inputRangeElement.value = target.value;
-        inputNumberElement.value = target.value;
-
-        this.dispatchEvent(
-            new CustomEvent('vl-change-value', {
-                detail: {
-                    value: target.value,
-                },
-            })
-        );
     }
 
     protected render(): TemplateResult {
@@ -64,23 +64,46 @@ export class VlInputSliderComponent extends LitElement {
                 <input
                     id="input-range"
                     type="range"
+                    aria-label="schuifregelaar"
                     class="vl-input-slider__input-range"
                     min=${this.minValue}
                     max=${this.maxValue}
-                    value=${this.initialValue}
+                    .value=${this.value}
                     @input=${this.handleInput}
                 />
                 <input
                     id="input-number"
                     type="number"
+                    aria-label="nummerinvoer"
                     class="vl-input-slider__input-number vl-input-field"
                     min=${this.minValue}
                     max=${this.maxValue}
-                    value=${this.initialValue}
+                    .value=${this.value}
                     @input=${this.handleInput}
                 />
             </div>
         `;
+    }
+
+    private handleInput(event: Event): void {
+        const target = event.target as HTMLInputElement | null;
+        const newValue = parseInt(target?.value ?? '');
+
+        this.value = newValue;
+    }
+
+    private validateValue(value: number) {
+        let validatedValue = value;
+
+        if (validatedValue < this.minValue) {
+            validatedValue = this.minValue;
+        }
+
+        if (validatedValue > this.maxValue) {
+            validatedValue = this.maxValue;
+        }
+
+        return validatedValue;
     }
 }
 
