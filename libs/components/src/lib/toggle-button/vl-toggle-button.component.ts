@@ -149,6 +149,8 @@ export class VlToggleButtonComponent extends LitElement {
                     'vl-button--map': this.isInMap,
                 })}
                 is="vl-button"
+                aria-label="toggle-button"
+                part="button template"
                 ?data-vl-error=${this._active && this.error}
                 ?data-vl-block=${this.block}
                 ?data-vl-large=${this.large}
