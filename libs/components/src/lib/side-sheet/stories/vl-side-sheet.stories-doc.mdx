@@ -1,0 +1,71 @@
+import {ArgsTable, Source, Story, Canvas, PRIMARY_STORY} from '@storybook/addon-docs';
+import sideSheetToggleImplementation from '!raw-loader!./vl-side-sheet.stories-utils';
+
+# Side sheet
+
+De `side-sheet`-component heeft containers die aan de linker- of rechterrand van het scherm zijn verankerd. Die kunnen open of dicht aan de hand van een knop.
+
+## Voorbeeld
+
+```js
+import { VlSideSheet } from '@domg-wc/components';
+```
+
+```html
+<vl-side-sheet>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum urna ante.</p>
+    <p>Sed vehicula tortor quis dignissim tincidunt.</p>
+</vl-side-sheet>
+```
+
+## Default
+
+<Canvas>
+    <Story id="components-side-sheet--side-sheet-default" height={300}/>
+</Canvas>
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY}/>
+
+## Custom icon
+
+Standaard is er een pijltje dat aanduidt of de `side-sheet` open of gesloten is. Je kan dit vervangen door een custom icon in te stellen. [Hier](https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon/) vind je een overzicht van alle beschikbare icons.
+
+Deze blijft dan dezelfde in de 2 richtingen.
+
+## Openen & sluiten zonder knop
+
+Je kan de `side-sheet` openen zonder de toggle knop;
+- stel `hide-toggle-button` in op `true`
+- roep `toggle()` aan op de `side-sheet`-instantie te wisselen tussen open en gesloten status
+- alternatief kan je ook uitdrukkelijk `open()` en `close()` aanroepen
+
+Hieronder volgt een voorbeeld met broncode:
+
+## Voorbeeld van buitenaf openen & sluiten
+
+<Canvas>
+    <Story id="components-side-sheet--side-sheet-toggle" height={300}/>
+</Canvas>
+
+<details>
+    <summary>voorbeeld code om side-sheet te openen en te sluiten van buitenaf</summary>
+    <Source code={sideSheetToggleImplementation} language="ts" dark={true}/>
+</details>
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+Er is geen `side-sheet`-component bij Digitaal Vlaanderen.
+
+In de [vue-component library](https://overheid.vlaanderen.be/webuniversum/v3/vue-documentation/?path=/story/components-vl-sidebar--sidebar-collapsible) van Digitaal Vlaanderen is er echter wel een component die dicht aanleunt tegen `vl-side-bar`-component.
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/custom-elements-vl-side-sheet--default
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlSideSheet.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-side-sheet.html

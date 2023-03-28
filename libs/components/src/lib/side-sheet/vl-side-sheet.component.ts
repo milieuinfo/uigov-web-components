@@ -16,6 +16,10 @@ import styles from './style/vl-side-sheet.scss';
  * @property {boolean} data-vl-absolute - Attribute wordt gebruikt om aan te duiden dat de side-sheet absoluut gepositioneerd wordt.
  * @property {boolean} data-vl-right - Attribute wordt gebruikt om aan te duiden dat de side-sheet de rechterkant van het scherm moet plaatsen.
  * @property {boolean} data-vl-toggle-text - Attribute wordt gebruikt om de toggle knop tekst te wijzigen.
+ * @property {boolean} data-vl-tooltip-text - Attribute wordt gebruikt om de tooltip van de knop te wijzigen.
+ * @property {boolean} data-vl-custom-icon - Attribute wordt gebruikt om een icon naar keuze voor de knop in te stellen.
+ * @property {boolean} data-vl-icon-placement - Attribute wordt gebruikt om te bepalen of de icon geplaatst wordt voor of na de tekst.
+ * @property {boolean} data-vl-hide-toggle-button - Attribute wordt gebruikt om de toggle knop te verbergen.
  *
  * @example Breedte van de side sheet aanpassen(op grote scherm):
  *  static get styles() {
@@ -35,7 +39,7 @@ import styles from './style/vl-side-sheet.scss';
 @webComponent('vl-side-sheet')
 export class VlSideSheet extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
-        return ['enable-swipe', 'toggle-text'];
+        return ['enable-swipe', 'toggle-text', 'tooltip-text', 'custom-icon', 'hide-toggle-button', 'icon-position'];
     }
 
     static get _observedClassAttributes() {
@@ -48,18 +52,21 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
         ${styles}
       </style>
       <div>
-        <button is="vl-button" type="button" class="vl-side-sheet__toggle">
-          <span is="vl-icon" data-vl-icon="nav-left"></span>
-          <span id="vl-side-sheet-toggle-text" is="vl-text" data-vl-visually-hidden>Zijpaneel</span>
-        </button>
-        <div id="vl-side-sheet-backdrop"></div>
-        <div id="vl-side-sheet">
-          <section is="vl-region">
-            <div is="vl-layout">
-              <slot></slot>
-            </div>
-          </section>
-        </div>
+          <vl-toggle-button
+              data-vl-icon="nav-left"
+              data-vl-icon-placement="before"
+              class="vl-side-sheet__toggle"
+          >
+            <span id="vl-side-sheet-toggle-text" is="vl-text"></span>
+          </vl-toggle-button>
+          <div id="vl-side-sheet-backdrop"></div>
+          <div id="vl-side-sheet">
+            <section is="vl-region">
+              <div is="vl-layout">
+                <slot></slot>
+              </div>
+            </section>
+          </div>
       </div>
     `);
     }
@@ -67,6 +74,13 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
     connectedCallback() {
         this._toggle = () => this.toggle();
         this._toggleButton.addEventListener('click', this._toggle);
+        this._toggleButton.active = false;
+        this.updateToggleText(this.toggleText);
+        if (this.iconPlacement !== 'after') {
+            this._toggleButton.setAttribute('data-vl-icon-placement', 'before');
+        } else {
+            this._toggleButton.setAttribute('data-vl-icon-placement', 'after');
+        }
     }
 
     disconnectedCallback() {
@@ -81,6 +95,22 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
         return this.hasAttribute('left');
     }
 
+    get toggleText() {
+        return this.getAttribute('toggle-text');
+    }
+
+    get hideToggleButton() {
+        return this.getAttribute('hide-toggle-button');
+    }
+
+    get customIcon() {
+        return this.getAttribute('data-vl-custom-icon');
+    }
+
+    get iconPlacement() {
+        return this.getAttribute('data-vl-icon-placement');
+    }
+
     get _classPrefix() {
         return 'vl-side-sheet--';
     }
@@ -91,10 +121,6 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
 
     get _toggleButtonTextElement() {
         return this._shadow.querySelector('#vl-side-sheet-toggle-text');
-    }
-
-    get _toggleButtonIcon() {
-        return this._toggleButton.querySelector('[is="vl-icon"]');
     }
 
     get _sheetElement() {
@@ -130,7 +156,13 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
     open() {
         this.setAttribute('data-vl-open', '');
         this._toggleButton.setAttribute('aria-expanded', 'true');
-        this._toggleButtonIcon.setAttribute('data-vl-icon', this.isLeft ? 'nav-left' : 'nav-right');
+        let openIcon: string;
+        if (!this.customIcon) {
+            openIcon = this.isLeft ? 'nav-left' : 'nav-right';
+        } else {
+            openIcon = this.customIcon;
+        }
+        this._toggleButton.setAttribute('data-vl-icon', openIcon);
     }
 
     /**
@@ -141,7 +173,13 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
     close() {
         this.removeAttribute('data-vl-open');
         this._toggleButton.setAttribute('aria-expanded', 'false');
-        this._toggleButtonIcon.setAttribute('data-vl-icon', this.isLeft ? 'nav-right' : 'nav-left');
+        let closeIcon: string;
+        if (!this.customIcon) {
+            closeIcon = this.isLeft ? 'nav-right' : 'nav-left';
+        } else {
+            closeIcon = this.customIcon;
+        }
+        this._toggleButton.setAttribute('data-vl-icon', closeIcon);
         if (this._onClose) {
             this._onClose();
         }
@@ -160,7 +198,7 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
         if (newValue !== null) {
             swipeDetect(
                 this._sheetElement,
-                (direction: any) => {
+                (direction: 'left' | 'right') => {
                     if ((this.isLeft && direction === 'left') || (!this.isLeft && direction === 'right')) {
                         this.close();
                     }
@@ -181,15 +219,45 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
     }
 
     _leftChangedCallback(oldValue: any, newValue: any) {
-        if (newValue != undefined) {
-            this._toggleButtonIcon.setAttribute('data-vl-icon', 'nav-right');
-        } else {
-            this._toggleButtonIcon.setAttribute('data-vl-icon', 'nav-left');
+        if (!this.customIcon) {
+            if (newValue != undefined) {
+                this._toggleButton.setAttribute('data-vl-icon', 'nav-right');
+            } else {
+                this._toggleButton.setAttribute('data-vl-icon', 'nav-left');
+            }
         }
     }
 
+    updateToggleText(value: string): void {
+        if (value && value !== '') {
+            this._toggleButton.removeAttribute('data-vl-text-hidden');
+        } else {
+            this._toggleButton.setAttribute('data-vl-text-hidden', '');
+        }
+        this._toggleButtonTextElement.textContent = value;
+    }
+
     _toggleTextChangedCallback(oldValue: any, newValue: any) {
-        this._toggleButtonTextElement.textContent = newValue;
+        this.updateToggleText(newValue);
+    }
+
+    _tooltipTextChangedCallback(oldValue: any, newValue: any) {
+        this._toggleButton.title = newValue;
+    }
+
+    _hideToggleButtonChangedCallback(oldValue: any, newValue: any) {
+        const hideToggleButton = Boolean(newValue === null);
+        if (!hideToggleButton) {
+            this._toggleButton.classList.add('vl-u-visually-hidden');
+        } else {
+            this._toggleButton.classList.remove('vl-u-visually-hidden');
+        }
+    }
+
+    _customIconChangedCallback(oldValue: string, newValue: string) {
+        if (newValue) {
+            this._toggleButton.setAttribute('data-vl-icon', newValue);
+        }
     }
 }
 
