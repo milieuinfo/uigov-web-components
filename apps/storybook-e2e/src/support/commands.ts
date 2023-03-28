@@ -5,6 +5,7 @@ declare namespace Cypress {
         getDataCy(selector: string, options?: any): Chainable<any>;
 
         createStubForEvent(selector: string, event: string): void;
+        visitWithA11y(url: string): void;
     }
 }
 
@@ -16,4 +17,9 @@ Cypress.Commands.add('createStubForEvent', (selector, event) => {
     cy.get(selector).then(($el) => {
         $el.get(0).addEventListener(event, cy.stub().as(event));
     });
+});
+
+Cypress.Commands.add('visitWithA11y', (url) => {
+    cy.visit(url);
+    cy.injectAxe();
 });

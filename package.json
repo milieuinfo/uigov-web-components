@@ -72,10 +72,12 @@
         "@web/dev-server-esbuild": "0.3.4",
         "@web/dev-server-rollup": "0.4.0",
         "@web/test-runner": "0.15.1",
+        "axe-core": "^4.6.3",
         "babel-jest": "29.5.0",
         "conventional-changelog-conventionalcommits": "5.0.0",
         "css-loader": "6.7.3",
         "cypress": "12.8.1",
+        "cypress-axe": "^1.4.0",
         "cypress-multi-reporters": "1.6.3",
         "eslint": "8.36.0",
         "eslint-config-prettier": "8.7.0",
@@ -105,6 +107,7 @@
         "typescript": "4.9.5"
     },
     "dependencies": {
+        "@govflanders-v3/vl-ui-search": "npm:@govflanders/vl-ui-search@3.12.33",
         "@govflanders/vl-ui-accordion": "14.0.2",
         "@govflanders/vl-ui-action-group": "14.0.2",
         "@govflanders/vl-ui-alert": "14.0.2",
@@ -165,7 +168,6 @@
         "@govflanders/vl-ui-util": "14.0.2",
         "@govflanders/vl-ui-video-player": "14.0.2",
         "@govflanders/vl-ui-wizard": "14.0.2",
-        "@govflanders-v3/vl-ui-search": "npm:@govflanders/vl-ui-search@3.12.33",
         "@ungap/custom-elements": "1.2.0",
         "bootstrap-sass": "3.4.3",
         "core-js": "3.29.1",
