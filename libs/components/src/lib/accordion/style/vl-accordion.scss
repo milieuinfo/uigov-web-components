@@ -34,3 +34,9 @@ $vl-disabled-color: #687483 !default;
         color: $vl-disabled-color;
     }
 }
+
+.vl-accordion:not(.js-vl-accordion--open) {
+    .vl-accordion__content {
+        display: none;
+    }
+}
