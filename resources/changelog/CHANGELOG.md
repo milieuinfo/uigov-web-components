@@ -1,3 +1,26 @@
+# [1.4.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.3.0...v1.4.0) (2023-03-29)
+
+
+### Bug Fixes
+
+* 1.3.0 hotfix - prettier dependency + kleine verbeteringen ([0210aa9](https://github.com/milieuinfo/uigov-web-components/commit/0210aa9618353c33ebf983df9e37696f783984d4))
+* correctie git branching strategie - bij de cherry-pick van de hotfix de tag en de changelog niet meenemen ([fb38411](https://github.com/milieuinfo/uigov-web-components/commit/fb384117d54ee83e30ca419f5193c68d2c06bba8))
+* de build stoppen als de meest recente commit '[skip ci]' bevat ([30430d0](https://github.com/milieuinfo/uigov-web-components/commit/30430d06492814b44dde8fdb64fd830a0e8f7ed6))
+* UIG-2307 - upgrade naar Node v18 van de build docker image ([6f47c42](https://github.com/milieuinfo/uigov-web-components/commit/6f47c429c3aff4dcda2f6e66cabf3b3ec94cf277))
+* UIG-2394 - vl-textarea Storybook correctie ([8ad4f3a](https://github.com/milieuinfo/uigov-web-components/commit/8ad4f3a39094e79fd4a4ffb7cc42b9e9133e552d))
+
+
+### Features
+
+* UIG-2307 - technische package upgrades ([13b040d](https://github.com/milieuinfo/uigov-web-components/commit/13b040d95e810c2b35aa067192a4d17311032ba8))
+* UIG-2326 - vl-upload - nieuw reset-form-on-clear attribuut ([781f19f](https://github.com/milieuinfo/uigov-web-components/commit/781f19f8d1f94b75591dffe336e86d592d440d37))
+* UIG-2352 - vl-map - re-render na toevoegen en verwijderen van map-layers uit vl-map ([04bf968](https://github.com/milieuinfo/uigov-web-components/commit/04bf96879fba53ecb7014eedca264f7514c0637a))
+* UIG-2380 - vl-accordion bold, disabled en padding ([67b4275](https://github.com/milieuinfo/uigov-web-components/commit/67b42754ea817c132614371d9b25e44993d06ec9))
+* UIG-2388 - vl-map zonder border ([5e95189](https://github.com/milieuinfo/uigov-web-components/commit/5e95189202a2f17d2a081585bf068837478969ab))
+* UIG-2389 - vl-map full height ([e7aa06c](https://github.com/milieuinfo/uigov-web-components/commit/e7aa06c9aaed618f3aba56f730b033bbfaa07e76))
+* UIG-2390 - vl-tabs storybook en cypress verbeteringen ([1306808](https://github.com/milieuinfo/uigov-web-components/commit/130680827e19988ce952d12b491790ec43c9f74d))
+* vl-map-action-control toegevoegd ([ec5ef1a](https://github.com/milieuinfo/uigov-web-components/commit/ec5ef1afcc95afc633b1a821f68b2d3ff27aaee1))
+
 # [1.3.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.2.0...v1.3.0) (2023-03-10)
 
 
