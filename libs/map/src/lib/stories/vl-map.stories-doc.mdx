@@ -1,4 +1,5 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY, Canvas, Story } from '@storybook/addon-docs';
+import { ArgsTable, DocsStory, PRIMARY_STORY, Canvas, Story, Source } from '@storybook/addon-docs';
+import mapStoryUtils from '!raw-loader!./vl-map.stories-util';
 
 # Map
 
@@ -38,7 +39,14 @@ De map de volledige beschikbare hoogte in laten nemen kan op de volgende manier:
 
 ### Playground
 
+Zie de code onder de story voor het volledige voorbeeld.
+
 <DocsStory id="map-map--map-playground" />
+
+<details>
+    <summary>TypeScript code</summary>
+    <Source code={mapStoryUtils} language="ts" dark={true} />
+</details>
 
 ## Referenties
 

@@ -1,28 +1,46 @@
-import { html } from 'lit-html';
+import { html, nothing } from 'lit-html';
 import '../../../../vl-map';
 import '../../../baselayer/vl-map-base-layer-grb-gray';
 import '../vl-map-tiled-wms-layer';
-import { wmsLayerArgTypes } from './vl-map-wms-layer.stories-arg';
-import { layerArgTypes } from '../../stories/vl-map-layer.stories-arg';
+import { wmsLayerArgTypes, wmsLayerArgs } from './vl-map-wms-layer.stories-arg';
+import { Meta, StoryFn } from '@storybook/web-components';
 
 export default {
     title: 'map/layer/wms-layer',
-    parameters: {
-        controls: { hideNoControlsWarning: true },
-    },
-    argTypes: { ...wmsLayerArgTypes, ...layerArgTypes },
-};
+    args: wmsLayerArgs,
+    argTypes: wmsLayerArgTypes,
+} as Meta<typeof wmsLayerArgs>;
 
-export const tiledWmsLayerDefault = () => html`
+export const tiledWmsLayerDefault: StoryFn<typeof wmsLayerArgs> = ({
+    hidden,
+    layers,
+    maxResolution,
+    minResolution,
+    name,
+    opacity,
+    styles,
+    url,
+    version,
+}) => html`
     <vl-map>
         <vl-map-tiled-wms-layer
-            data-vl-name="Gemeentegrenzen"
-            data-vl-version="1.3.0"
-            data-vl-opacity="1"
-            data-vl-url="https://geoservices.informatievlaanderen.be/raadpleegdiensten/GRB/wms"
-            data-vl-layers="GEM_GRENS"
+            ?data-vl-hidden=${hidden}
+            data-vl-layers=${layers || nothing}
+            data-vl-max-resolution=${maxResolution ?? nothing}
+            data-vl-min-resolution=${minResolution ?? nothing}
+            data-vl-name=${name || nothing}
+            data-vl-opacity=${opacity !== 1 ? opacity : nothing}
+            data-vl-styles=${styles || nothing}
+            data-vl-url=${url || nothing}
+            data-vl-version=${version || nothing}
         >
         </vl-map-tiled-wms-layer>
     </vl-map>
 `;
 tiledWmsLayerDefault.storyName = 'vl-map-tiled-wms-layer - default';
+tiledWmsLayerDefault.args = {
+    ...wmsLayerArgs,
+    layers: 'GEM_GRENS',
+    name: 'Gemeentegrenzen',
+    url: 'https://geoservices.informatievlaanderen.be/raadpleegdiensten/GRB/wms',
+};

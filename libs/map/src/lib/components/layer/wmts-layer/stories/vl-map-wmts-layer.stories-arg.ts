@@ -2,17 +2,17 @@ import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 import { layerArgTypes, layerArgs } from '../../stories/vl-map-layer.stories-arg';
 import { ArgTypes } from '@storybook/web-components';
 
-export const wfsLayerArgs = {
+export const wmtsLayerArgs = {
     ...layerArgs,
-    layers: '',
+    layer: '',
     url: '',
 };
 
-export const wfsLayerArgTypes: ArgTypes<typeof wfsLayerArgs> = {
+export const wmtsLayerArgTypes: ArgTypes<typeof wmtsLayerArgs> = {
     ...layerArgTypes,
-    layers: {
-        name: 'data-vl-layers',
-        description: 'De layers van de WFS.<br>Dit attribuut is niet reactief.',
+    layer: {
+        name: 'data-vl-layer',
+        description: 'De layer van de WMTS.<br>Dit attribuut is niet reactief.',
         type: { name: TYPES.STRING, required: true },
         table: {
             type: { summary: TYPES.STRING },
@@ -21,7 +21,7 @@ export const wfsLayerArgTypes: ArgTypes<typeof wfsLayerArgs> = {
     },
     url: {
         name: 'data-vl-url',
-        description: 'De WFS url.<br>Dit attribuut is niet reactief.',
+        description: 'De WMTS url.<br>Dit attribuut is niet reactief.',
         type: { name: TYPES.STRING, required: true },
         table: {
             type: { summary: TYPES.STRING },
