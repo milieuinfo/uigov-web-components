@@ -19,7 +19,7 @@ import { VlMap } from '../../vl-map';
  */
 export abstract class VlMapLayer extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
-        return ['hidden'];
+        return ['hidden', 'opacity'];
     }
 
     __counter: number;
@@ -77,7 +77,7 @@ export abstract class VlMapLayer extends BaseElementOfType(HTMLElement) {
      * @return {Boolean}
      */
     get visible() {
-        return this._layer.getVisible();
+        return this._layer?.getVisible();
     }
 
     /**
@@ -96,12 +96,30 @@ export abstract class VlMapLayer extends BaseElementOfType(HTMLElement) {
      */
     // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
     set visible(value) {
-        this._layer.setVisible(value);
+        this._layer?.setVisible(value);
         this.rerender();
 
         if (this.mapElement) {
             this.mapElement.handleLayerVisibilityChange(this);
         }
+    }
+
+    /**
+     * Geeft de opacity van de kaartlaag terug.
+     *
+     * @return {Number}
+     */
+    get opacity(): number {
+        return this._layer?.getOpacity();
+    }
+
+    /**
+     * Zet de opacity van de kaartlaag.
+     *
+     * @param {Number} value
+     */
+    set opacity(value: number) {
+        this._layer?.setOpacity(value);
     }
 
     get mapElement(): VlMap {
@@ -125,6 +143,10 @@ export abstract class VlMapLayer extends BaseElementOfType(HTMLElement) {
 
     get _maxResolution() {
         return this.getAttribute('max-resolution') || Infinity;
+    }
+
+    get _opacity() {
+        return Number(this.getAttribute('data-vl-opacity') || 1);
     }
 
     get _visible() {
@@ -168,6 +190,10 @@ export abstract class VlMapLayer extends BaseElementOfType(HTMLElement) {
         if (this._layer) {
             this.visible = newValue == undefined;
         }
+    }
+
+    _opacityChangedCallback(oldValue: string, newValue: string) {
+        this.opacity = Number(newValue || 1);
     }
 
     __setIsLayerMarkerAttribute() {

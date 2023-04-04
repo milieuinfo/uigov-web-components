@@ -64,18 +64,14 @@ export class VlMapWmsLayer extends VlMapLayer {
         return this.getAttribute('data-vl-version') || '1.3.0';
     }
 
-    get _opacity() {
-        return Number(this.getAttribute('data-vl-opacity') || 1);
-    }
-
     _createLayerConfig(source) {
         return {
             title: this._name,
             source: source,
-            opacity: this._opacity,
             minResolution: this._minResolution,
             maxResolution: this._maxResolution,
             visible: this._visible,
+            opacity: this._opacity,
         };
     }
 

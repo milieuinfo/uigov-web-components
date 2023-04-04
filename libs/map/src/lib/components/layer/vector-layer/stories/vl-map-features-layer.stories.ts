@@ -1,19 +1,52 @@
-import { html } from 'lit-html';
+import { html, nothing } from 'lit-html';
 import '../../../../vl-map';
 import '../../../baselayer/vl-map-base-layer-grb-gray';
 import '../vl-map-features-layer';
-import { featuresLayerArgTypes } from './vl-map-features-layer.stories-arg';
+import { featuresLayerArgs, featuresLayerArgTypes } from './vl-map-features-layer.stories-arg';
+import { Meta, StoryFn } from '@storybook/web-components';
 
 export default {
     title: 'map/layer/vector-layer',
-    parameters: {
-        controls: { hideNoControlsWarning: true },
-    },
+    args: featuresLayerArgs,
     argTypes: featuresLayerArgTypes,
-};
+} as Meta<typeof featuresLayerArgs>;
 
-export const featuresLayerDefault = () => {
-    const features = {
+export const featuresLayerDefault: StoryFn<typeof featuresLayerArgs> = ({
+    autoExtent,
+    autoExtentMaxZoom,
+    cluster,
+    clusterDistance,
+    features,
+    hidden,
+    maxResolution,
+    minResolution,
+    name,
+    opacity,
+    featuresProp,
+}) => {
+    return html`
+        <vl-map>
+            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+            <vl-map-features-layer
+                ?data-vl-auto-extent=${autoExtent}
+                data-vl-auto-extent-max-zoom=${autoExtentMaxZoom || nothing}
+                ?data-vl-cluster=${cluster}
+                data-vl-cluster-distance=${clusterDistance || nothing}
+                data-vl-features=${features || nothing}
+                .features=${featuresProp}
+                ?data-vl-hidden=${hidden}
+                data-vl-max-resolution=${maxResolution ?? nothing}
+                data-vl-min-resolution=${minResolution ?? nothing}
+                data-vl-name=${name || nothing}
+                data-vl-opacity=${opacity !== 1 ? opacity : nothing}
+            ></vl-map-features-layer>
+        </vl-map>
+    `;
+};
+featuresLayerDefault.storyName = 'vl-map-features-layer - default';
+featuresLayerDefault.args = {
+    ...featuresLayerArgs,
+    featuresProp: {
         type: 'FeatureCollection',
         features: [
             {
@@ -49,13 +82,5 @@ export const featuresLayerDefault = () => {
                 },
             },
         ],
-    };
-
-    return html`
-        <vl-map>
-            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-            <vl-map-features-layer .features=${features}></vl-map-features-layer>
-        </vl-map>
-    `;
+    },
 };
-featuresLayerDefault.storyName = 'vl-map-features-layer - default';

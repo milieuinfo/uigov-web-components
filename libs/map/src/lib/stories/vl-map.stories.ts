@@ -3,6 +3,13 @@ import { html } from 'lit';
 import { Meta, StoryFn } from '@storybook/web-components';
 import mapDoc from './vl-map.stories-doc.mdx';
 import { filterOutClasses, formatHTML } from '@domg-wc/common-utilities';
+import {
+    getActionElement,
+    getToggleButton,
+    handleActiveActionChange,
+    handleLayerVisibleChange,
+    handleOpacitySliderChange,
+} from './vl-map.stories-util';
 import '@domg-wc/elements';
 import '@domg-wc/components';
 import '../vl-map';
@@ -106,15 +113,6 @@ const purple = 'rgba(102, 51, 153, 0.6)';
 const toggleGroupStyling = 'width: 100%;';
 const toggleItemStyling = 'display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;';
 
-// Make sure the class that is given is unique and is not being used in other stories of the component.
-const getLastElementByClassName = (className) => {
-    const items = document.getElementsByClassName(className);
-    return items[items.length - 1];
-};
-
-const getActionElement = (name): any => getLastElementByClassName(`${name}-action`);
-const getToggleButton = (name): any => getLastElementByClassName(`${name}-toggle-button`);
-
 const features = {
     type: 'FeatureCollection',
     features: [
@@ -164,32 +162,6 @@ export const MapPlayground: StoryFn<typeof mapArgs> = ({
     activeActionChange,
     layerVisibleChange,
 }) => {
-    const actionIdentifiers = ['draw-point', 'draw-line', 'draw-polygon', 'modify', 'delete'];
-
-    const handleActiveActionChange = ({ detail: { previous, current } }) => {
-        // Activate/deactivate external controls when an action changes its state
-        actionIdentifiers.forEach((actionIdentifier) => {
-            if (previous === getActionElement(actionIdentifier)) {
-                getToggleButton(actionIdentifier).active = false;
-            } else if (current === getActionElement(actionIdentifier)) {
-                getToggleButton(actionIdentifier).active = true;
-            }
-        });
-    };
-
-    const handleLayerVisibleChange = ({ detail: { layer, visible } }) => {
-        // Enable/disable external controls when an action changes its state
-        const layerActions = layer.getElementsByClassName('action');
-
-        for (const layerAction of layerActions) {
-            actionIdentifiers.forEach((actionIdentifier) => {
-                if (layerAction === getActionElement(actionIdentifier)) {
-                    getToggleButton(actionIdentifier).disabled = !visible;
-                }
-            });
-        }
-    };
-
     return html`
         <vl-map
             ?data-vl-allow-fullscreen=${allowFullscreen}
@@ -217,6 +189,7 @@ export const MapPlayground: StoryFn<typeof mapArgs> = ({
                 <h6 is="vl-h6">Layers</h6>
 
                 <vl-map-layer-switcher></vl-map-layer-switcher>
+                <vl-input-slider data-vl-value=${100} @vl-change-value=${handleOpacitySliderChange}></vl-input-slider>
 
                 <hr />
 

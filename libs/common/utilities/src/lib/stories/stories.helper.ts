@@ -7,7 +7,7 @@ export const CATEGORIES = {
     EVENTS: 'Events',
     SLOTS: 'Slots',
     CHILD_ATTRIBUTES: 'Child attributes',
-};
+} as const;
 
 export const TYPES = {
     BOOLEAN: 'boolean',
@@ -16,7 +16,7 @@ export const TYPES = {
     HTML: 'html',
     URL: 'url',
     FUNCTION: 'function',
-};
+} as const;
 
 export const filterOutClasses = (input: string) => {
     return input?.replace(/ class=".*?"/, '');
