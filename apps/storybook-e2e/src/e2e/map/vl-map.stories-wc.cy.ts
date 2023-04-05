@@ -11,7 +11,9 @@ describe('story vl-map playground', () => {
             expect(shapesLayer.opacity).to.equal(1);
         });
 
+        cy.createStubForEvent('vl-input-slider', 'vl-change-value');
         cy.get('vl-input-slider').invoke('attr', 'data-vl-value', 50);
+        cy.get('@vl-change-value').should('have.been.calledOnce');
 
         runTestFor<VlMapFeaturesLayer>('vl-map-features-layer[data-vl-name="Shapes"]', (shapesLayer) => {
             expect(shapesLayer.opacity).to.equal(0.5);
