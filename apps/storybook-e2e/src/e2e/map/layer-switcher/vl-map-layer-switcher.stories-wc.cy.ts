@@ -57,13 +57,14 @@ const addLayer = (layerName) => {
 const removeLayer = (layerName) => {
     runTestFor<VlMapFeaturesLayer>(`vl-map-features-layer[data-vl-name="${layerName}"]`, (component) => {
         const layer = component as VlMapFeaturesLayer & Element;
-        layer.removeLayer();
+        layer.remove();
     });
 };
 
 describe('vl-map-layer-switcher', () => {
     it('vl-map-layer-switcher specialised - when clicking the checkbox, linked to a layer, the related map layer should become visible', () => {
         cy.visit(`${mapLayerSwitcherSpecialised}`);
+
         const layerName = 'layer-1';
         shouldHaveVisibleLayerFor(layerName);
         clickLayerSwitcherCheckboxOf(layerName);
@@ -71,6 +72,7 @@ describe('vl-map-layer-switcher', () => {
         clickLayerSwitcherCheckboxOf(layerName);
         shouldHaveVisibleLayerFor(layerName);
     });
+
     it('vl-map-layer-switcher dynamic - ', () => {
         cy.visit(`${mapLayerSwitcherDynamic}`);
 

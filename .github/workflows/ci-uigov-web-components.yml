@@ -135,7 +135,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        job: [1, 2, 3, 4, 5]
+          job: [ 1, 2, 3, 4, 5, 6 ]
     defaults:
       run:
         shell: bash
