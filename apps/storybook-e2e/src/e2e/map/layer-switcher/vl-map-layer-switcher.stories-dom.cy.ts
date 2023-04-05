@@ -6,6 +6,7 @@ const mapLayerSwitcherSpecialisedUrl =
 describe('vl-map-layer-switcher', () => {
     it('vl-map-layer-switcher default - wanneer er geen layer input child elementen aanwezig zijn, zullen deze automatisch gegenereerd worden', () => {
         cy.visit(`${mapLayerSwitcherDefaultUrl}`);
+
         const kaartlaagNamen = [
             'Kaartlaag 1',
             'Kaartlaag 2',
@@ -14,7 +15,8 @@ describe('vl-map-layer-switcher', () => {
             'WMS kaartlaag',
             'WFS kaartlaag',
         ];
-        cy.get('vl-map#map')
+
+        cy.get('vl-map')
             .find('vl-map-layer-switcher')
             .children()
             .each((checkbox: HTMLInputElement, index) => {
@@ -29,9 +31,7 @@ describe('vl-map-layer-switcher', () => {
 
     it('vl-map-layer-switcher specialised - wanneer er layer input child elementen aanwezig zijn, zullen er geen extra input elementen gegenereerd worden', () => {
         cy.visit(`${mapLayerSwitcherSpecialisedUrl}`);
-        cy.get('vl-map')
-            .find('vl-map-layer-switcher')
-            .children()
-            .should('have.length', 1);
+
+        cy.get('vl-map').find('vl-map-layer-switcher').children().should('have.length', 1);
     });
 });
