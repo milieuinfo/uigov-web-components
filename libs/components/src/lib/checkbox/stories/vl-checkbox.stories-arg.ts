@@ -1,85 +1,97 @@
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { ArgTypes } from '@storybook/web-components';
+
 export const checkboxArgs = {
     block: false,
+    checked: false,
     disabled: false,
     error: false,
     label: 'Optie 1',
     name: 'options',
     single: false,
-    switchAttr: false,
+    // Suffix met 'Attr' omdat 'switch' een reserved keyword is.
+    switchAttr: true,
     value: 'Optie 1',
 };
 
-export const checkboxArgTypes = {
+export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
     block: {
         name: 'data-vl-block',
-        description: 'Attribute to show the checkbox as a block element',
+        description: 'Beeldt de checkbox af als een block element.',
         table: {
-            type: { summary: 'boolean' },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
+        },
+    },
+    checked: {
+        name: 'data-vl-checked',
+        description: 'Vinkt de checkbox aan of uit.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
         },
     },
     disabled: {
         name: 'data-vl-disabled',
-        description: 'Attribute to disable the checkbox',
+        description: 'Schakelt de checkbox uit.',
         table: {
-            type: { summary: 'boolean' },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
         },
     },
     error: {
         name: 'data-vl-error',
-        description: 'Attribute to show an error state on the checkbox',
+        description: 'Beeldt de checkbox af in een error state.',
         table: {
-            type: { summary: 'boolean' },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
         },
     },
     label: {
         name: 'data-vl-label',
-        description: 'Attribute to set a label for the checkbox',
+        description: 'Het label van de checkbox.',
         table: {
-            type: { summary: 'string' },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
         },
     },
     name: {
         name: 'data-vl-name',
-        description: 'Attribute to the name of the checkbox',
+        description: 'De naam van de checkbox.',
         table: {
-            type: { summary: 'string' },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
         },
     },
     single: {
         name: 'data-vl-single',
-        description: 'Attribute to show a checkbox without label',
+        description: 'Beeldt de checkbox af zonder label.',
         table: {
-            type: { summary: 'boolean' },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
         },
     },
     switchAttr: {
         name: 'data-vl-switch',
-        description: 'Attribute to show a switch variant of the checkbox',
+        description: 'Beeldt de checkbox af als een switch.<br>Dit attribuut is niet reactief.',
+        control: false,
         table: {
-            type: { summary: 'boolean' },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
         },
     },
     value: {
         name: 'data-vl-value',
-        description: 'Attribute to determine the value of the checkbox',
+        description: 'De value van de checkbox.',
         table: {
-            type: { summary: 'string' },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
         },
     },
 };
