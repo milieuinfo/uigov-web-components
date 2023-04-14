@@ -41,4 +41,11 @@ export const baselayerArgTypes = {
         table: { category: CATEGORIES.ATTRIBUTES, defaultValue: { summary: '' } },
         control: { disable: true },
     },
+    backgroundLayer: {
+        name: 'data-vl-background-layer',
+        type: { summary: TYPES.BOOLEAN },
+        description:
+            'Geeft de gekozen base-layer een achtergrond-laag. Dit zal kaartlagen    tonen van het Nationaal Geografisch Instituut. Voor meer info [zie hier](https://www.ngi.be/website/aanbod/digitale-geodata/cartoweb-be/)',
+        table: { category: CATEGORIES.ATTRIBUTES, defaultValue: { summary: false } },
+    },
 };
