@@ -8,21 +8,35 @@ import './vl-map-base-layer';
 const baselayerFixture = async () =>
     fixture(html`
         <vl-map>
-            <vl-map-baselayer data-vl-url="https://localhost" data-vl-layer="layername_1"  data-vl-title="layer title 1"></vl-map-baselayer>
+            <vl-map-baselayer
+                data-vl-url="https://localhost"
+                data-vl-layer="layername_1"
+                data-vl-title="layer title 1"
+            ></vl-map-baselayer>
         </vl-map>
     `);
 
 const baselayerWmtsFixture = async () =>
     fixture(html`
         <vl-map>
-            <vl-map-baselayer data-vl-url="https://localhost/wmts" data-vl-layer="layername_2" data-vl-type='wmts' data-vl-title="layer title 2"></vl-map-baselayer>
+            <vl-map-baselayer
+                data-vl-url="https://localhost/wmts"
+                data-vl-layer="layername_2"
+                data-vl-type="wmts"
+                data-vl-title="layer title 2"
+            ></vl-map-baselayer>
         </vl-map>
     `);
 
 const baselayerWfsFixture = async () =>
     fixture(html`
         <vl-map>
-            <vl-map-baselayer data-vl-url="https://localhost/wfs" data-vl-layer="layername_3" data-vl-type='wfs' data-vl-title="layer title 3"></vl-map-baselayer>
+            <vl-map-baselayer
+                data-vl-url="https://localhost/wfs"
+                data-vl-layer="layername_3"
+                data-vl-type="wfs"
+                data-vl-title="layer title 3"
+            ></vl-map-baselayer>
         </vl-map>
     `);
 
@@ -73,7 +87,10 @@ describe('vl-map-baselayer', () => {
         const tileGrid = source.getTileGrid();
         assert.isTrue(tileGrid instanceof OlWMTSTileGrid);
         assert.deepEqual(tileGrid.getOrigin(), [9928, 329072]);
-        assert.deepEqual(tileGrid.getResolutions(), [1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1, 0.5, 0.25, 0.125, 0.0625, 0.03125]);
+        assert.deepEqual(
+            tileGrid.getResolutions(),
+            [1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1, 0.5, 0.25, 0.125, 0.0625, 0.03125]
+        );
         assert.deepEqual(tileGrid.getMatrixIds(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
     });
 
@@ -86,7 +103,15 @@ describe('vl-map-baselayer', () => {
 
     it('wanneer een WFS source wordt aangemaakt zal het formaat correct gedefinieerd worden', async () => {
         const element: any = await baselayerWfsFixture();
-        assert.equal(element.map.baseLayers[0].getSource().getFormat().dataProjection.getCode(), 'EPSG:31370');
+        const firstBaseLayer = element.map.baseLayers[0];
+        const baseLayerGroupLayers = firstBaseLayer.layers;
+        if (typeof firstBaseLayer.getSource === 'function') {
+            // if getSource a function, it means we have a single layer as first base layer
+            assert.equal(firstBaseLayer.getSource().getFormat().dataProjection.getCode(), 'EPSG:31370');
+        } else if (baseLayerGroupLayers && baseLayerGroupLayers.length) {
+            // if we have multiple layers in the first base layer, it means it is a group of layers
+            assert.equal(baseLayerGroupLayers[0].getSource().getFormat().dataProjection.getCode(), 'EPSG:31370');
+        }
     });
 
     it('een WMTS source wordt maar 1x aangemaakt', async () => {

@@ -1,15 +1,17 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import * as OlExtent from 'ol/extent';
 import OlGeoJSON from 'ol/format/GeoJSON';
-import OlTileLayer from 'ol/layer/Tile';
-import OlVectorLayer from 'ol/layer/Vector';
 import * as OlLoadingstrategy from 'ol/loadingstrategy';
 import OlVectorSource from 'ol/source/Vector';
 import OlWMTSSource from 'ol/source/WMTS';
+import TileWMS from 'ol/source/TileWMS';
 import OlStyleFill from 'ol/style/Fill';
 import OlStyleStroke from 'ol/style/Stroke';
 import OlStyle from 'ol/style/Style';
 import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
+import Group from 'ol/layer/Group';
+import TileLayer from 'ol/layer/Tile';
+import VectorLayer from 'ol/layer/Vector';
 
 /**
  * VlMapBaseLayer
@@ -74,7 +76,7 @@ export class VlMapBaseLayer extends BaseElementOfType(HTMLElement) {
      *
      * @Return {string}
      */
-    get title() {
+    get title(): string {
         return this.getAttribute('title') || this._title;
     }
 
@@ -136,6 +138,7 @@ export class VlMapBaseLayer extends BaseElementOfType(HTMLElement) {
     }
 
     _createVectorSource() {
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
         return new OlVectorSource({
             format: new OlGeoJSON({
@@ -149,29 +152,49 @@ export class VlMapBaseLayer extends BaseElementOfType(HTMLElement) {
     }
 
     _createBaseLayer() {
+        const hasBackgroundLayer = this.hasAttribute('background-layer');
+        const layers = [];
+        if (hasBackgroundLayer) {
+            layers.push(
+                new TileLayer({
+                    source: new TileWMS({
+                        params: { FORMAT: 'image/png', LAYERS: 'crossborder,topo' },
+                        url: 'https://cartoweb.wms.ngi.be/service',
+                    }),
+                    opacity: 0.3,
+                })
+            );
+        }
         switch (this.type) {
             case 'wmts':
-                return new OlTileLayer(<any>{
-                    title: this.title,
-                    type: 'base',
-                    source: this._WMTSSource,
-                });
+                layers.push(
+                    new TileLayer(<any>{
+                        title: this.title,
+                        type: 'base',
+                        source: this._WMTSSource,
+                    })
+                );
+                break;
             case 'wfs':
-                return new OlVectorLayer({
-                    source: this._vectorSource,
-                    style: new OlStyle({
-                        stroke: new OlStyleStroke({
-                            color: 'rgba(0, 0, 0, 1.0)',
-                            width: 1,
+                layers.push(
+                    new VectorLayer({
+                        source: this._vectorSource,
+                        style: new OlStyle({
+                            stroke: new OlStyleStroke({
+                                color: 'rgba(0, 0, 0, 1.0)',
+                                width: 1,
+                            }),
+                            fill: new OlStyleFill({
+                                color: 'rgba(255, 0, 0, 1.0)',
+                            }),
                         }),
-                        fill: new OlStyleFill({
-                            color: 'rgba(255, 0, 0, 1.0)',
-                        }),
-                    }),
-                });
+                    })
+                );
+                break;
             default:
                 return null;
         }
+        return new Group({ layers: layers });
     }
 }
 
