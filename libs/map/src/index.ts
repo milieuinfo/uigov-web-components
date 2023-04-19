@@ -62,3 +62,4 @@ export { VlMapLegend } from './lib/components/legend/vl-map-legend';
 export { VlSelectLocation } from './lib/components/select-location/vl-select-location';
 export { VlMapCurrentLocation } from './lib/components/current-location/vl-map-current-location';
 export { VlMapClickAction } from './lib/components/action/click-action/vl-map-click-action';
+export { VlMapLoadingAction } from './lib/components/action/loading-action/vl-map-loading-action';
