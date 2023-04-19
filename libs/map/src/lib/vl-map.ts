@@ -327,7 +327,17 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
      * @param {*} callback
      */
     on(event, callback) {
-        this.map.on(event, callback);
+        return this.map.on(event, callback);
+    }
+
+    /**
+     * unregister map event.
+     *
+     * @param {*} event
+     * @param {*} callback
+     */
+    un(event, callback) {
+        return this.map.un(event, callback);
     }
 
     /**
