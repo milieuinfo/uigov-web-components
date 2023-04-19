@@ -18,13 +18,24 @@ import { VlCheckboxComponent } from '@domg-wc/components';
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgsTable story={PRIMARY_STORY}/>
 
 ## Varianten
 
 ### Switch
 
-<DocsStory id="components-checkbox--checkbox-switch" />
+<DocsStory id="components-checkbox--checkbox-switch"/>
+
+### Form
+
+Achterliggend gebruikt `vl-checkbox` ook `vl-form-validation` element, die achterliggend op zijn beurt gebruik maakt van `validate.js` 0.12 ([http://validatejs.org/](http://validatejs.org/)).
+
+[Link naar `vl-form-validation`-component](/docs/elements-form--form-validation) documentatie in Storybook.
+
+Hieronder volgt een voorbeeld hoe je de `vl-checkbox` binnen een form kan gebruiken en hierbij ook validatie kunt laten werken voor `required` attribuut.
+
+<DocsStory id="components-checkbox--checkbox-form"/>
+
 
 ## Referenties
 

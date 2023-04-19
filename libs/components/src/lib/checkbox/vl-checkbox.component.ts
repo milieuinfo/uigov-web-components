@@ -1,5 +1,8 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, VL, webComponentPromised } from '@domg-wc/common-utilities';
 import styles from './style/vl-checkbox.scss';
+import { vlFormValidation, vlFormValidationElement } from '@domg-wc/elements';
+
+declare const vl: VL;
 
 /**
  * VlCheckbox
@@ -18,14 +21,10 @@ import styles from './style/vl-checkbox.scss';
  * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
  * @property {boolean} data-vl-value - Attribuut wordt gebruikt om de checkbox waarde te bepalen.
  */
-@webComponent('vl-checkbox')
-export class VlCheckboxComponent extends BaseElementOfType(HTMLElement) {
-    static get formAssociated() {
-        return true;
-    }
-
+@webComponentPromised([vlFormValidation.ready()], 'vl-checkbox')
+export class VlCheckboxComponent extends vlFormValidationElement(BaseElementOfType(HTMLElement)) {
     static get _observedAttributes() {
-        return ['label', 'name', 'value', 'checked', 'switch'];
+        return ['label', 'name', 'value', 'checked', 'switch', ...vlFormValidation._observedAttributes()];
     }
 
     static get _observedChildClassAttributes() {
@@ -70,18 +69,13 @@ export class VlCheckboxComponent extends BaseElementOfType(HTMLElement) {
       `)
             );
         }
-
-        if (this.attachInternals) {
-            this._internals = this.attachInternals();
-        } else {
-            this._internals = null;
-        }
     }
 
     connectedCallback() {
         this._inputElement.onchange = this._toggle;
         this._inputElement.oninput = (event: any) => event.stopPropagation();
         this._registerChangeEvent();
+        this._dressFormValidation();
     }
 
     /**
@@ -244,7 +238,30 @@ export class VlCheckboxComponent extends BaseElementOfType(HTMLElement) {
     }
 
     _registerChangeEvent() {
-        this._inputElement.addEventListener('change', () => this.dispatchEvent(new Event('change')));
+        this._inputElement.addEventListener('change', () => {
+            this.dispatchEvent(new Event('change'));
+            if (this.form) {
+                this.handleRequiredValidation();
+            }
+        });
+    }
+
+    private handleRequiredValidation(): void {
+        const isRequired =
+            this.hasAttribute('required') ||
+            this.hasAttribute('data-required') ||
+            this.hasAttribute('data-vl-required');
+
+        if (!isRequired || this.checked) {
+            // clear checkbox error
+            const checkbox = this as unknown as HTMLElement;
+            vl.util.removeClass(checkbox, 'vl-input-field--error');
+            this.removeAttribute('data-vl-error');
+            // clear checkbox error message
+            const errorPlaceholderId = this.getAttribute('error-placeholder');
+            const errorPlaceholder = this.form.querySelector(`[data-vl-error-id="${errorPlaceholderId}"]`);
+            if (errorPlaceholder) errorPlaceholder.setAttribute('hidden', '');
+        }
     }
 }
 

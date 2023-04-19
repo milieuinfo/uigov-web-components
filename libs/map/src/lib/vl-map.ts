@@ -8,8 +8,6 @@ import { VlCustomMap } from './actions';
 import { EVENT } from './vl-map.model';
 import styles from './vl-map.scss';
 import { VlMapLayer } from './components/layer/vl-map-layer';
-import { VlMapLayerSwitcher } from './components/layer-switcher/vl-map-layer-switcher';
-import { VlMapFeaturesLayer } from './components/layer/vector-layer/vl-map-features-layer';
 
 @webComponent('vl-map')
 export class VlMap extends BaseElementOfType(HTMLElement) {

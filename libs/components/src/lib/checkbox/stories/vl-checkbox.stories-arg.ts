@@ -12,6 +12,8 @@ export const checkboxArgs = {
     // Suffix met 'Attr' omdat 'switch' een reserved keyword is.
     switchAttr: true,
     value: 'Optie 1',
+    errorMessage: '',
+    required: false,
 };
 
 export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
@@ -51,6 +53,16 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
             defaultValue: { summary: false },
         },
     },
+    errorMessage: {
+        name: 'data-vl-error-message',
+        description:
+            'Foutboodschap om te tonen als de checkbox niet aangevinkt is en `required`-attribuut ingesteld staat. Hierbij hoort een `vl-form-validation-message`-element.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: '' },
+        },
+    },
     label: {
         name: 'data-vl-label',
         description: 'Het label van de checkbox.',
@@ -65,6 +77,15 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    required: {
+        name: 'data-vl-required',
+        description: 'Geeft aan dat de checkbox moet aangevinkt word binnen de context van een `vl-form`',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: false },
         },
     },
     single: {

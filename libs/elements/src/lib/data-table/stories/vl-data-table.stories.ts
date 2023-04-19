@@ -11,7 +11,7 @@ export default {
     parameters: {
         docs: { page: dataTableDoc },
         layout: 'fullscreen',
-        controls: { hideNoControlsWarning: true }
+        controls: { hideNoControlsWarning: true },
     },
 } as Meta<typeof dataTableArgs>;
 
@@ -267,7 +267,7 @@ DataTableExpandableCustomToggleDetailsColumn.parameters = {
         language: 'html',
         source: {
             format: true,
-            type: 'code'
+            type: 'code',
         },
     },
 };
