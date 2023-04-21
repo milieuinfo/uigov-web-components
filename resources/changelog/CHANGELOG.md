@@ -1,3 +1,22 @@
+# [1.5.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.4.0...v1.5.0) (2023-04-21)
+
+
+### Bug Fixes
+
+* OMGVN-9313 - init vl-map-features-layer vanuit connectedCallback ([cbfb966](https://github.com/milieuinfo/uigov-web-components/commit/cbfb966130f855df578bbe7ea2d9289c1445962f))
+* UIG-2386 - vl-accordion nested accordions fix ([e9048b8](https://github.com/milieuinfo/uigov-web-components/commit/e9048b8e7c2e82abc9525440fe33be949bb01232))
+* UIG-2423 - vl-map playground Cypress test ([2c475f7](https://github.com/milieuinfo/uigov-web-components/commit/2c475f770220abef4fdf11c0fd691b26a7a0f9e7))
+
+
+### Features
+
+* UIG-2294 - vl-map-baselayer - uitbreiden met optionele achtergrondlaag ([68176a6](https://github.com/milieuinfo/uigov-web-components/commit/68176a60b0097fca2895e7b964334d2fbad3367a))
+* UIG-2359 - uitbreiden functionaliteit van toggle-knop in de side-sheet ([6bd489e](https://github.com/milieuinfo/uigov-web-components/commit/6bd489ee40f56dda8d789855e48296ca4f01120a))
+* UIG-2410 - vl-map-layer opacity ([5be32c8](https://github.com/milieuinfo/uigov-web-components/commit/5be32c839c82a6f662d45c9b3ff5903ca110f084))
+* UIG-2411 - vl-input-slider verbeteringen ([da80e6a](https://github.com/milieuinfo/uigov-web-components/commit/da80e6ae1def0dbfb7d42a12a0698006c725c013))
+* UIG-2416 - vl-checkbox storybook verbeteringen ([668fe28](https://github.com/milieuinfo/uigov-web-components/commit/668fe28494276bc74bf8d6692ef57c49e87460a2))
+* UIG-2423 - fix layer-switcher tests & cypress tests voor map inschakelen voor CI / GitHub Actions ([0eabe92](https://github.com/milieuinfo/uigov-web-components/commit/0eabe9254a0c0c178e5df9a256212126694e403d))
+
 # [1.4.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.3.0...v1.4.0) (2023-03-29)
 
 
