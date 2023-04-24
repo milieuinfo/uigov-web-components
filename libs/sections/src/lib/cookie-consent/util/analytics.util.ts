@@ -80,12 +80,16 @@ class AnalyticsUtil {
                 url: this._matomoOntwikkelUrl,
             },
             'omgevingsloketinzage-ontwikkel.omgeving.vlaanderen.be': {
-                'id': 37,
-                'url': this._matomoOntwikkelUrl,
+                id: 37,
+                url: this._matomoOntwikkelUrl,
             },
             'omgevingsloketinzage2-ontwikkel.omgeving.vlaanderen.be': {
-                'id': 38,
-                'url': this._matomoOntwikkelUrl,
+                id: 38,
+                url: this._matomoOntwikkelUrl,
+            },
+            'kruispuntbank-ontwikkel.omgeving.vlaanderen.be': {
+                id: 39,
+                url: this._matomoOntwikkelUrl,
             },
         }[window.location.host];
 
@@ -144,12 +148,16 @@ class AnalyticsUtil {
                     url: this._matomoOefenUrl,
                 },
                 'omgevingsloketinzage-oefen.omgeving.vlaanderen.be': {
-                    'id': 27,
-                    'url': this._matomoOefenUrl,
+                    id: 27,
+                    url: this._matomoOefenUrl,
                 },
                 'omgevingsloketinzage2-oefen.omgeving.vlaanderen.be': {
-                    'id': 28,
-                    'url': this._matomoOefenUrl,
+                    id: 28,
+                    url: this._matomoOefenUrl,
+                },
+                'kruispuntbank-oefen.omgeving.vlaanderen.be': {
+                    id: 29,
+                    url: this._matomoOefenUrl,
                 },
             }[window.location.host];
         }
@@ -213,8 +221,12 @@ class AnalyticsUtil {
                     url: this._matomoProdUrl,
                 },
                 'omgevingsloketinzage.omgeving.vlaanderen.be': {
-                    'id': 62,
-                    'url': this._matomoProdUrl,
+                    id: 62,
+                    url: this._matomoProdUrl,
+                },
+                'kruispuntbank.omgeving.vlaanderen.be': {
+                    id: 64,
+                    url: this._matomoProdUrl,
                 },
             }[window.location.host];
         }
