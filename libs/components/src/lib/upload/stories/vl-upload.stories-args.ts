@@ -14,7 +14,7 @@ export const uploadArgs: Args = {
     fullBodyDrop: false,
     inputName: 'file',
     maxFiles: 1,
-    maxSize: 20000000,
+    maxSize: 2000000,
     subTitle: '',
     success: false,
     title: '',
@@ -148,13 +148,13 @@ export const uploadArgTypes: ArgTypes = {
     },
     maxSize: {
         name: 'data-vl-max-size',
-        description: 'Bepaalt de maximum grootte van de combineerde upload-bestanden (20000000 = 2MB).',
+        description: 'Bepaalt de maximum grootte van de combineerde upload-bestanden (2000000 = 2MB).',
         table: {
             type: {
                 summary: 'number',
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 20000000 },
+            defaultValue: { summary: 2000000 },
         },
     },
     subTitle: {
