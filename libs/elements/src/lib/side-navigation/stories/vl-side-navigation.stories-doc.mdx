@@ -29,9 +29,14 @@ import { VlSideNavigation } from '@domg-wc/elements';
     <Story id="elements-side-navigation--side-navigation-default" />
 </Canvas>
 
+## Responsive variant
+
+Op mobiel zal de `vl-side-navigation` een knop bovenaan tonen die de gebruiker de mogelijkheid geeft het navigatie-menu te zien.
+Als de gebruiker scrollt, zal deze knop verdwijnen en komt na een korte delay een sticky knop met dezelfde functionaliteit. Deze knop blijft zichtbaar zolang de gebruiker scrollt in een gebied gerelateerd tot de `vl-side-navigation-reference`.
+
 ## Parent en child links
 
-Het is mogelijk om parent en child links te gebruiken (zie content 1 en content 2).  
+Het is mogelijk om parent en child links te gebruiken (zie content 1 en content 2).
 Dit gebeurt op de volgende manier (we gebruiken content 1 als voorbeeld):
 
 1. Plaats op het parent VlSideNavigationItem element het attribuut `data-vl-parent="content-1"`

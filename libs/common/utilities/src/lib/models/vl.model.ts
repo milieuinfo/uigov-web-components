@@ -55,6 +55,9 @@ interface Select {
 
 interface SideNavigation {
     dress(sideNav: any): void;
+
+    undress(): void;
+
     dressAll(): void;
 }
 
@@ -83,23 +86,41 @@ interface Upload {
 
 interface Util {
     accurateNumber(number: any): any;
+
     addClass(el: HTMLElement, classes: string): void;
+
     addClassFor(el: HTMLElement, classes: string, duration: number): void;
+
     asArray(a: unknown): any[];
+
     bytesToSize(bytes: number, addUnits: boolean, base: number): number;
+
     closest(value: any, to: any): any;
+
     countDecimals(numStr: unknown): any;
+
     debounce(func: () => any, wait: number, immediate?: boolean): any;
-    each(arr: any[], fn: () => any): any;
+
+    each(arr: any[], fn: (el: any) => any): any;
+
     exists(value: unknown): any;
+
     getJson(url: string, callback: () => any): any;
+
     getParents(elem: HTMLElement, selector: string): any;
+
     getParentsUntil(elem: HTMLElement, parent: HTMLElement, selector: string): any;
+
     hasClass(el: HTMLElement, classes: any): any;
+
     insertAfter(newElement: HTMLElement, targetElement: HTMLElement): void;
+
     isNumeric(number: unknown): boolean;
+
     limit(a: any): any;
+
     offset(el: HTMLElement): any;
+
     parseTemplate(str: string, data: any): any;
     randomIntFromInterval(min: number, max: number): number;
     removeClass(el: HTMLElement, classes: any): void;
@@ -138,6 +159,8 @@ export interface VL {
     ns: 'vl-';
     pattern: Pattern;
     select: Select;
+    scrollspy: any;
+    sticky: any;
     sideNavigation: SideNavigation;
     tabs: Tabs;
     toaster: Toaster;
