@@ -1,5 +1,7 @@
 import { Class } from '../type/types';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
+import { VL } from '../models';
+declare const vl: VL;
 
 /**
  * Als web-componenten geïmporteerd worden met named imports (aanbevolen, oa voor tree shaking), dan wordt de component
@@ -87,6 +89,58 @@ export const awaitUntil = (condition: any): Promise<void> =>
         }
         resolve();
     });
+
+/**
+ * will remove the parent node from the given element
+ * does the opposite of vl.util.wrap
+ * @param element
+ */
+export const unwrap = (element: Element) => {
+    if (vl.util.exists(element)) {
+        const fragment = document.createDocumentFragment();
+        while (element.firstChild) {
+            fragment.appendChild(element.firstChild);
+        }
+        if (element.parentNode) element.parentNode.replaceChild(fragment, element);
+    }
+};
+
+/**
+ * creates new Promise that resolves in x milliseconds
+ * returns created Promise & function to cancel the Promise
+ * @param ms
+ */
+export const deferred = (ms: number): { promise: Promise<unknown>; cancel: any } => {
+    let cancel: unknown;
+    const promise = new Promise((resolve, reject) => {
+        cancel = reject;
+        setTimeout(resolve, ms);
+    });
+    return { promise, cancel };
+};
+
+/**
+ * debouncing a task will wait to execute the given task until it hasn't been called for the amount of given milliseconds
+ * @param task - function to debounce
+ * @param ms - milliseconds to delay until last iteration of function should be called
+ */
+export const debounce = (task: (...args: any) => void, ms: number) => {
+    // t: local binding for local state
+    let t: { cancel: any; promise: Promise<unknown> } = {
+        promise: null!,
+        cancel: (_?: any) => void 0,
+    };
+    return async (...args: any) => {
+        try {
+            t.cancel();
+            t = deferred(ms);
+            await t.promise;
+            await task(...args);
+        } catch (_) {
+            //
+        }
+    };
+};
 
 export const returnNotEmptyString = (s: string) => (s && s !== '' ? s : undefined);
 export const returnNumber = (n: number) => (!isNaN(n) ? n : undefined);

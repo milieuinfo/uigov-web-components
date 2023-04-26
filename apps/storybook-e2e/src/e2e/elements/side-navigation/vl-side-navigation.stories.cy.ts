@@ -109,4 +109,37 @@ describe('story vl-side-navigation default', () => {
     it('should set correct classes on vl-side-navigation-reference', () => {
         cy.get('div[is="vl-side-navigation-reference"]').should('have.class', 'js-vl-scrollspy__content');
     });
+
+    it('should set correct classes on vl-side-navigation-reference', () => {
+        cy.get('div[is="vl-side-navigation-reference"]').should('have.class', 'js-vl-scrollspy__content');
+    });
+});
+
+describe('story vl-side-navigation mobile', () => {
+    it('should open mobile side-navigation menu', () => {
+        cy.viewport(320, 480);
+        cy.visit(sideNavigationUrl);
+
+        cy.get('button.vl-button.js-vl-scrollspy__toggle').should('have.attr', 'aria-expanded', 'false');
+        cy.get('nav[is="vl-side-navigation"]').should('have.attr', 'data-vl-sticky-dressed', 'true');
+        cy.get('nav[is="vl-side-navigation"]').should('not.be.visible');
+        cy.get('button.vl-button.js-vl-scrollspy__toggle').click();
+        cy.get('nav[is="vl-side-navigation"]').should('be.visible');
+    });
+
+    it('should be able to switch between mobile & desktop', () => {
+        cy.visit(sideNavigationUrl);
+
+        cy.viewport(320, 480);
+        cy.get('button.vl-button.js-vl-scrollspy__toggle').should('be.visible');
+        cy.get('nav[is="vl-side-navigation"]').should('not.be.visible');
+
+        cy.viewport(1000, 660);
+        cy.get('button.vl-button.js-vl-scrollspy__toggle').should('not.be.visible');
+        cy.get('nav[is="vl-side-navigation"]').should('be.visible');
+
+        cy.viewport(320, 480);
+        cy.get('button.vl-button.js-vl-scrollspy__toggle').should('be.visible');
+        cy.get('nav[is="vl-side-navigation"]').should('not.be.visible');
+    });
 });

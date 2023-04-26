@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, debounce, unwrap, VL, webComponent } from '@domg-wc/common-utilities';
 import './vl-side-navigation-content.element';
 import './vl-side-navigation-group.element';
 import './vl-side-navigation-item.element';
@@ -7,7 +7,7 @@ import './vl-side-navigation-title.element';
 import './vl-side-navigation-toggle.element';
 import './vl-side-navigation.lib.js';
 
-declare const vl: any;
+declare const vl: VL;
 
 /**
  * VlSideNavigation
@@ -23,14 +23,42 @@ export class VlSideNavigation extends BaseElementOfType(HTMLElement) {
         super();
         this._processAttributes();
         this._processClasses();
-        this._dress();
+        this._rerender();
+        this.addEventListener('resize', debounce(this._rerender, 200));
     }
 
-    _dress() {
+    _dress(): void {
+        vl.sideNavigation.dress(this._element);
+        this.style.position = '';
+    }
+
+    _rerender() {
         setTimeout(() => {
-            vl.sideNavigation.dress(this._element);
-            this.style.position = '';
-        });
+            this._undress();
+            this._dress();
+        }, 200);
+    }
+
+    /**
+     * DV's component doesn't foresee user changing breakpoint at runtime
+     * without "undress" styles for mobile will be applied to desktop template & vice versa
+     */
+    _undress() {
+        // remove .vl-u-no-overflow
+        vl.util.removeClass(document.body, vl.ns + 'u-no-overflow');
+        // delete .js-vl-scrollspy__toggle
+        const scrollSpyToggleElements = document.querySelectorAll('.js-vl-scrollspy__toggle');
+        if (scrollSpyToggleElements.length) {
+            vl.util.each(Array.from(scrollSpyToggleElements), (element: Element) => element.remove());
+        }
+        // delete .js-vl-scrollspy__close
+        const scrollSpyCloseElements = document.querySelectorAll('.js-vl-scrollspy__close');
+        if (scrollSpyCloseElements.length) {
+            vl.util.each(Array.from(scrollSpyCloseElements), (element: Element) => element.remove());
+        }
+        // unwrap .js-vl-scrollspy-placeholder - remove parent specific for mobile template, keeping child elements
+        const scrollSpyPlaceholderElement = document.querySelector('.js-vl-scrollspy-placeholder');
+        if (scrollSpyPlaceholderElement) unwrap(scrollSpyPlaceholderElement);
     }
 
     _processAttributes() {
