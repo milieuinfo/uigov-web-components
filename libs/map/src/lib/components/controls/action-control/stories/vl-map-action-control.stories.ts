@@ -1,60 +1,66 @@
-import { html, nothing } from 'lit-html';
+import { html } from 'lit-html';
 import '../../../../vl-map';
-import '../../../baselayer/vl-map-base-layer-grb-gray';
-import '../../../layer/vector-layer/vl-map-features-layer';
-import '../../../action/draw-action/vl-map-draw-polygon-action';
-import '../../../action/layer-action/vl-map-delete-action';
-import '../../../action/layer-action/vl-map-modify-action';
-import '../../../action/draw-action/vl-map-measure-action';
+import '../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
+import '../../../action/draw-action/draw-polygon-action/vl-map-draw-polygon-action';
+import '../../../action/layer-action/delete-action/vl-map-delete-action';
+import '../../../action/layer-action/modify-action/vl-map-modify-action';
 import '../../vl-map-action-controls';
 import '../vl-map-action-control';
 import { Meta, StoryFn } from '@storybook/web-components';
 import actionControlDoc from './vl-map-action-control.stories-doc.mdx';
-import { actionControlArgs, actionControlArgTypes } from './vl-map-action-control.stories-arg';
+import { mapActionControlArgs, mapActionControlArgTypes } from './vl-map-action-control.stories-arg';
+import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
 
 export default {
     title: 'map/controls/action-control',
-    args: actionControlArgs,
-    argTypes: actionControlArgTypes,
+    args: mapActionControlArgs,
+    argTypes: mapActionControlArgTypes,
     parameters: {
-        controls: {
-            hideNoControlsWarning: true,
-        },
         docs: {
             page: actionControlDoc,
         },
+        controls: {
+            hideNoControlsWarning: true,
+        },
     },
-} as Meta<typeof actionControlArgs>;
+} as Meta<typeof mapActionControlArgs>;
 
-const Template: StoryFn<typeof actionControlArgs> = ({ actionId, icon, label }) => html`
-    <vl-map>
-        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-        <vl-map-features-layer>
-            <vl-map-measure-action id=${actionId}></vl-map-measure-action>
-        </vl-map-features-layer>
-        <vl-map-action-controls>
-            <vl-map-action-control
-                data-vl-action-id=${actionId}
-                data-vl-icon=${icon || nothing}
-                data-vl-label=${label || nothing}
-            ></vl-map-action-control>
-        </vl-map-action-controls>
-    </vl-map>
-`;
+const Template: StoryFn<typeof mapActionControlArgs> = (args) => {
+    const { actionId, icon, label } = setDefaultArgsToNothing(args, mapActionControlArgs);
 
-export const ActionControlDefault = Template.bind({});
-ActionControlDefault.storyName = 'vl-map-action-control - default';
-ActionControlDefault.args = {
-    icon: '',
+    return html`
+        <vl-map>
+            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+            <vl-map-features-layer>
+                <vl-map-draw-polygon-action id=${actionId}></vl-map-draw-polygon-action>
+            </vl-map-features-layer>
+            <vl-map-action-controls>
+                <vl-map-action-control
+                    data-vl-action-id=${actionId}
+                    data-vl-icon=${icon}
+                    data-vl-label=${label}
+                ></vl-map-action-control>
+            </vl-map-action-controls>
+        </vl-map>
+    `;
 };
 
-export const ActionControlIcon = Template.bind({});
-ActionControlIcon.storyName = 'vl-map-action-control - icon';
-ActionControlIcon.args = {
-    label: '',
+export const MapActionControlDefault = Template.bind({});
+MapActionControlDefault.storyName = 'vl-map-action-control - default';
+MapActionControlDefault.args = {
+    actionId: 'draw-polygon-action',
+    label: 'Teken',
 };
 
-export const ActionControlMultiple = () => html`
+export const MapActionControlIcon = Template.bind({});
+MapActionControlIcon.storyName = 'vl-map-action-control - icon';
+MapActionControlIcon.args = {
+    actionId: 'draw-polygon-action',
+    icon: 'pencil',
+};
+
+export const MapActionControlMultiple = () => html`
     <vl-map>
         <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
         <vl-map-features-layer>
@@ -69,4 +75,4 @@ export const ActionControlMultiple = () => html`
         </vl-map-action-controls>
     </vl-map>
 `;
-ActionControlMultiple.storyName = 'vl-map-action-control - multiple';
+MapActionControlMultiple.storyName = 'vl-map-action-control - multiple';

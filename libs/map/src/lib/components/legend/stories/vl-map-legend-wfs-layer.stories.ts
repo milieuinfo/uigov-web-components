@@ -1,22 +1,28 @@
 import { html } from 'lit';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import '../../../vl-map';
-import '../../baselayer/vl-map-base-layer-grb-gray';
-import '../../layer/vector-layer/vl-map-wfs-layer';
-import '../../layer-style/vl-map-layer-circle-style';
+import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../../layer/vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
+import '../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import '../vl-map-legend';
-import { legendWfsLayerArgs, legendWfsLayerArgTypes } from './vl-map-legend-wfs-layer.stories-arg';
+import { mapLegendArgTypes, mapLegendArgs } from './vl-map-legend.stories-arg';
+import mapLegendDoc from './vl-map-legend.stories-doc.mdx';
+import { Meta, StoryFn } from '@storybook/web-components';
+import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
 
 export default {
     title: 'map/legend',
+    args: mapLegendArgs,
+    argTypes: mapLegendArgTypes,
     parameters: {
-        controls: { hideNoControlsWarning: true },
+        docs: {
+            page: mapLegendDoc,
+        },
     },
-    args: legendWfsLayerArgs,
-    argTypes: legendWfsLayerArgTypes,
-};
+} as Meta<typeof mapLegendArgs>;
 
-export const legendWfsLayer = (props) => {
+export const MapLegendWfsLayer: StoryFn<typeof mapLegendArgs> = (args) => {
+    const { bottom, left, placement, right, top } = setDefaultArgsToNothing(args, mapLegendArgs);
+
     return html`
         <vl-map>
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
@@ -34,13 +40,13 @@ export const legendWfsLayer = (props) => {
                 ></vl-map-layer-circle-style>
             </vl-map-wfs-layer>
             <vl-map-legend
-                data-vl-placement="${props.placement}"
-                top="${ifDefined(props.top)}"
-                right="${ifDefined(props.right)}"
-                bottom="${ifDefined(props.bottom)}"
-                left="${ifDefined(props.left)}"
+                data-vl-placement=${placement}
+                bottom=${bottom}
+                top=${top}
+                right=${right}
+                left=${left}
             ></vl-map-legend>
         </vl-map>
     `;
 };
-legendWfsLayer.storyName = 'vl-map-legend - wfs-layer';
+MapLegendWfsLayer.storyName = 'vl-map-legend - wfs-layer';

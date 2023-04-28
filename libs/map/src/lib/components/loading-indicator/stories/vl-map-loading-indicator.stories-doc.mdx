@@ -1,19 +1,20 @@
+import { Canvas, Story } from '@storybook/addon-docs';
 
-# Loading Indicator
+# Map Loading Indicator
 
-Vangt op wanneer de `VlMap` aan het laden is (via de loadstart en loadend events van OL). Zal een 'loading' bar bovenaan de map zetten.
+Gebruik het `map-loading-indicator` component om op te vangen wanneer de [vl-map](/docs/map-map--map-default) aan het laden is.<br/>
+Toont een 'loading' bar bovenaan de map.
 
 ## Voorbeeld
 
 ```js
-import { VlMapLoadingIndicator } from '@domg-lib/components'
+import { VlMapLoadingIndicator } from '@domg-lib/map';
 ```
 
 ```html
-        <vl-map>
-            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-            <vl-map-loading-indicator></vl-map-loading-indicator>
-        </vl-map>
+<vl-map-loading-indicator></vl-map-loading-indicator>
 ```
 
-
+<Canvas>
+    <Story id="map-loading-indicator--map-loading-indicator-default" height={560} inline={false} />
+</Canvas>

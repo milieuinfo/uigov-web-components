@@ -1,9 +1,9 @@
 import { awaitUntil } from '@domg-wc/common-utilities';
 import { assert, fixture, html } from '@open-wc/testing';
 import '../../../vl-map';
-import './vl-map-wms-style';
-import './vl-map-image-wms-layer';
-import './vl-map-tiled-wms-layer';
+import './vl-map-wms-style/vl-map-wms-style';
+import './vl-map-image-wms-layer/vl-map-image-wms-layer';
+import './vl-map-tiled-wms-layer/vl-map-tiled-wms-layer';
 
 const mapFixture = async () => fixture(html` <vl-map></vl-map> `);
 

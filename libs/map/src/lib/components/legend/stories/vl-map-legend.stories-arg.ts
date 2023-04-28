@@ -1,19 +1,39 @@
+import { ArgTypes } from '@storybook/web-components';
 import { LEGEND_PLACEMENT } from '../vl-map-legend';
 import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 
-export const legendArgTypes = {
+export const mapLegendArgs = {
+    bottom: '',
+    left: '',
+    placement: LEGEND_PLACEMENT.BOTTOM_RIGHT,
+    right: '',
+    top: '',
+};
+
+export const mapLegendArgTypes: ArgTypes<typeof mapLegendArgs> = {
+    bottom: {
+        name: 'bottom',
+        description:
+            'Bepaalt de "bottom" positie van de legende op de kaart.<br>Kan gebruikt worden in combinatie met data-vl-placement.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapLegendArgs.bottom },
+        },
+    },
+    left: {
+        name: 'left',
+        description:
+            'Bepaalt de "left" positie van de legende op de kaart.<br>Kan gebruikt worden in combinatie met data-vl-placement.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapLegendArgs.left },
+        },
+    },
     placement: {
         name: 'data-vl-placement',
-        type: {
-            summary: `${LEGEND_PLACEMENT.TOP_LEFT} | ${LEGEND_PLACEMENT.TOP_RIGHT} | ${LEGEND_PLACEMENT.BOTTOM_LEFT}
-        | ${LEGEND_PLACEMENT.BOTTOM_RIGHT}`,
-            required: false,
-        },
-        description: 'Attribuut wordt gebruikt om de plaats van de legende op de kaart te bepalen',
-        table: {
-            category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: `${LEGEND_PLACEMENT.BOTTOM_RIGHT}` },
-        },
+        description: 'Bepaalt de plaats van de legende op de kaart.',
         control: {
             type: 'select',
             options: [
@@ -23,49 +43,35 @@ export const legendArgTypes = {
                 LEGEND_PLACEMENT.BOTTOM_RIGHT,
             ],
         },
-    },
-    left: {
-        name: 'left',
-        type: { summary: TYPES.STRING },
-        description:
-            'Attribuut wordt gebruikt om de "left" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
         table: {
+            type: {
+                summary: `"${LEGEND_PLACEMENT.TOP_LEFT}" | 
+                "${LEGEND_PLACEMENT.TOP_RIGHT}" | 
+                "${LEGEND_PLACEMENT.BOTTOM_LEFT}" | 
+                "${LEGEND_PLACEMENT.BOTTOM_RIGHT}"`,
+            },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 'undefined' },
+            defaultValue: { summary: mapLegendArgs.placement },
         },
-        control: { type: 'text' },
-    },
-    top: {
-        name: 'top',
-        type: { summary: TYPES.STRING },
-        description:
-            'Attribuut wordt gebruikt om de "top" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
-        table: {
-            category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 'undefined' },
-        },
-        control: { type: 'text' },
     },
     right: {
         name: 'right',
-        type: { summary: TYPES.STRING },
         description:
-            'Attribuut wordt gebruikt om de "right" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
+            'Bepaalt de "right" positie van de legende op de kaart.<br>Kan gebruikt worden in combinatie met data-vl-placement.',
         table: {
+            type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 'undefined' },
+            defaultValue: { summary: mapLegendArgs.right },
         },
-        control: { type: 'text' },
     },
-    bottom: {
-        name: 'bottom',
-        type: { summary: TYPES.STRING },
+    top: {
+        name: 'top',
         description:
-            'Attribuut wordt gebruikt om de "bottom" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
+            'Bepaalt de "top" positie van de legende op de kaart.<br>Kan gebruikt worden in combinatie met data-vl-placement.',
         table: {
+            type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 'undefined' },
+            defaultValue: { summary: mapLegendArgs.top },
         },
-        control: { type: 'text' },
     },
 };

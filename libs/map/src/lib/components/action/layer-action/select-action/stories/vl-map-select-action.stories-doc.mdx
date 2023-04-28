@@ -1,0 +1,38 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Map Select Action
+
+Gebruik het `map-select-action` component om een feature op een [map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default) te selecteren.<br/>
+Dit component erft over van de `VlMapLayerAction` klasse, die op zijn beurt overerft van de `VlMapAction` klasse.
+
+## Voorbeeld
+
+```js
+import { VlMapSelectAction } from '@domg-wc/map';
+```
+
+```html
+<vl-map-select-action></vl-map-select-action>
+```
+
+<DocsStory id="map-action-layer-action-select-action--map-select-action-default" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Varianten
+
+### Clustering
+
+<DocsStory id="map-action-layer-action-select-action--map-select-action-clustering" />
+
+## Referenties
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/custom-elements-vl-map-vl-map-select-action--default
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapSelectAction.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html

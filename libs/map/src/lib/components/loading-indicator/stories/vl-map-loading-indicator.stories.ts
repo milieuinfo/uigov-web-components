@@ -1,6 +1,8 @@
 import { html } from 'lit';
-
-import { StoryFn } from '@storybook/web-components';
+import { Meta, StoryFn } from '@storybook/web-components';
+import '../../../vl-map';
+import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../vl-map-loading-indicator';
 import mapLoadingIndicatorDoc from './vl-map-loading-indicator.stories-doc.mdx';
 import { MapEvent } from 'ol';
 
@@ -10,34 +12,7 @@ export default {
         controls: { hideNoControlsWarning: true },
         docs: { page: mapLoadingIndicatorDoc },
     },
-};
-
-const Template: StoryFn = () => {
-    return html`
-        <button
-            data-cy="short-wait"
-            is="vl-button"
-            @click="${() => {
-                fakeLoadMap(500);
-            }}"
-        >
-            Fake kort wachten
-        </button>
-        <button
-            data-cy="long-wait"
-            is="vl-button"
-            @click="${() => {
-                fakeLoadMap(10000);
-            }}"
-        >
-            Fake lang wachten
-        </button>
-        <vl-map>
-            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-            <vl-map-loading-indicator></vl-map-loading-indicator>
-        </vl-map>
-    `;
-};
+} as Meta;
 
 const fakeLoadMap = async (ttw) => {
     const vlMap = document.querySelector('vl-map');
@@ -46,5 +21,32 @@ const fakeLoadMap = async (ttw) => {
     vlMap.map.dispatchEvent(new MapEvent('loadend', vlMap.map));
 };
 
-export const loadingIndicatorDefault = Template.bind({});
-loadingIndicatorDefault.storyName = 'vl-map-loading-indicator - default';
+export const MapLoadingIndicatorDefault: StoryFn = () => {
+    return html`
+        <div style="margin-bottom:10px">
+            <button
+                data-cy="short-wait"
+                is="vl-button"
+                @click="${() => {
+                    fakeLoadMap(500);
+                }}"
+            >
+                Fake kort wachten
+            </button>
+            <button
+                data-cy="long-wait"
+                is="vl-button"
+                @click="${() => {
+                    fakeLoadMap(10000);
+                }}"
+            >
+                Fake lang wachten
+            </button>
+        </div>
+        <vl-map>
+            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+            <vl-map-loading-indicator></vl-map-loading-indicator>
+        </vl-map>
+    `;
+};
+MapLoadingIndicatorDefault.storyName = 'vl-map-loading-indicator - default';

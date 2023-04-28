@@ -2,10 +2,10 @@ import { awaitUntil } from '@domg-wc/common-utilities';
 import { assert, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import '../../vl-map';
-import './vector-layer/vl-map-features-layer';
-import './vector-layer/vl-map-wfs-layer';
-import './wms-layer/vl-map-image-wms-layer';
-import './wms-layer/vl-map-tiled-wms-layer';
+import './vector-layer/vl-map-features-layer/vl-map-features-layer';
+import './vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
+import './wms-layer/vl-map-image-wms-layer/vl-map-image-wms-layer';
+import './wms-layer/vl-map-tiled-wms-layer/vl-map-tiled-wms-layer';
 import './wmts-layer/vl-map-wmts-layer';
 
 const featuresLayerFixture = async () =>

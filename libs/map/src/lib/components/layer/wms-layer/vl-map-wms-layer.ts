@@ -1,5 +1,5 @@
 import { VlMapLayer } from '../vl-map-layer';
-import './vl-map-wms-style';
+import './vl-map-wms-style/vl-map-wms-style';
 
 /**
  * VlMapWmsLayer

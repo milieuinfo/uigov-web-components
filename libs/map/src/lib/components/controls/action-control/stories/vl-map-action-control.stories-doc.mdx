@@ -1,12 +1,12 @@
 import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
 
-# Action Control
+# Map Action Control
 
-Gebruik een `action-control` om een actie aan of uit te zetten door behulp van een toggle-button.  
-Een `action-control` linken aan een actie gebeurt op de volgende manier:
+Gebruik het `map-action-control` component om een map-actie aan of uit te zetten door behulp van een [toggle-button](/docs/components-toggle-button--toggle-button-default).<br/>
+Een `map-action-control` linken aan een map-actie gebeurt op de volgende manier:
 
--   Plaats op de `action-control` het attribuut `data-vl-action-id` met als waarde bv. 'measure-action'
--   Plaats op de actie het attribuut `id` en geef hier dezelfde waarde mee als in de vorige step
+-   Plaats op de `map-action-control` het attribuut `data-vl-action-id` met als waarde bv. 'draw-polygon-action'
+-   Plaats op de map-actie het attribuut `id` en geef hier dezelfde waarde mee als in de vorige stap
 
 ## Voorbeeld
 
@@ -18,7 +18,7 @@ import { VlMapActionControl } from '@domg-wc/map';
 <vl-map-action-control></vl-map-action-control>
 ```
 
-<DocsStory id="map-controls-action-control--action-control-default" />
+<DocsStory id="map-controls-action-control--map-action-control-default" />
 
 ## Configuratie
 
@@ -28,8 +28,14 @@ import { VlMapActionControl } from '@domg-wc/map';
 
 ### Met icoon
 
-<DocsStory id="map-controls-action-control--action-control-icon" />
+<DocsStory id="map-controls-action-control--map-action-control-icon" />
 
 ### Meerdere acties
 
-<DocsStory id="map-controls-action-control--action-control-multiple" />
+<DocsStory id="map-controls-action-control--map-action-control-multiple" />
+
+## Referenties
+
+### Legacy Documentatie
+
+Dit component is een nieuw component en heeft geen legacy documentatie.

@@ -1,17 +1,17 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
-import { layerArgTypes, layerArgs } from '../../stories/vl-map-layer.stories-arg';
+import { mapLayerArgs, mapLayerArgTypes } from '../../stories/vl-map-layer.stories-arg';
 import { ArgTypes } from '@storybook/web-components';
 
-export const wmsLayerArgs = {
-    ...layerArgs,
+export const mapWmsLayerArgs = {
+    ...mapLayerArgs,
     layers: '',
     styles: '',
     url: '',
-    version: '',
+    version: '1.3.0',
 };
 
-export const wmsLayerArgTypes: ArgTypes<typeof wmsLayerArgs> = {
-    ...layerArgTypes,
+export const mapWmsLayerArgTypes: ArgTypes<typeof mapWmsLayerArgs> = {
+    ...mapLayerArgTypes,
     layers: {
         name: 'data-vl-layers',
         description: 'De WMS layers.<br>Dit attribuut is niet reactief.',
@@ -19,6 +19,7 @@ export const wmsLayerArgTypes: ArgTypes<typeof wmsLayerArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapWmsLayerArgs.layers },
         },
     },
     styles: {
@@ -28,6 +29,7 @@ export const wmsLayerArgTypes: ArgTypes<typeof wmsLayerArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapWmsLayerArgs.styles },
         },
     },
     url: {
@@ -37,6 +39,7 @@ export const wmsLayerArgTypes: ArgTypes<typeof wmsLayerArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapWmsLayerArgs.url },
         },
     },
     version: {
@@ -46,7 +49,7 @@ export const wmsLayerArgTypes: ArgTypes<typeof wmsLayerArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '1.3.0' },
+            defaultValue: { summary: mapWmsLayerArgs.version },
         },
     },
 };

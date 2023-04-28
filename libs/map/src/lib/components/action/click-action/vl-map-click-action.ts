@@ -4,7 +4,7 @@ import { MapBrowserEvent } from 'ol';
 import Overlay from 'ol/Overlay';
 import { customElement } from 'lit/decorators.js';
 import { VlMapClickActionPindrop } from './vl-map-click-action-pindrop';
-import { VlMapClickedEvent } from '../VlMapClickedEvent';
+import { VlMapClickedEvent } from './VlMapClickedEvent';
 
 /**
  * VlMapClickAction

@@ -1,0 +1,51 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY, Source } from '@storybook/addon-docs';
+import mapLegendUtils from '!raw-loader!./vl-map-legend.stories-util';
+
+# Map Legend
+
+Gebruik het `map-legend` component om een legende af te beelden op de kaart.
+
+## Voorbeeld
+
+```js
+import { VlMapLegend } from '@domg-wc/map';
+```
+
+```html
+<vl-map-legend></vl-map-legend>
+```
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Voorbeelden
+
+### Features Layer Multiple Styles
+
+Zie onder de story voor de TypeScript code.
+
+<DocsStory id="map-legend--map-legend-features-layer-multiple-styles" />
+
+<details>
+    <summary>TypeScript code</summary>
+    <Source code={mapLegendUtils} language="ts" dark={true} />
+</details>
+
+### Features Layer
+
+<DocsStory id="map-legend--map-legend-features-layer" />
+
+### Multiple Features Layers
+
+<DocsStory id="map-legend--map-legend-multiple-features-layers" />
+
+### WFS Layer
+
+<DocsStory id="map-legend--map-legend-wfs-layer" />
+
+## Referenties
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/custom-elements-vl-map-vl-map-legend-vl-map-legend-wfs-layer--default

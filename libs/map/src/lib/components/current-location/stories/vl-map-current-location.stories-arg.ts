@@ -1,30 +1,30 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 import { DEFAULT_ZOOM, DEFAULT_TOOLTIP } from '../vl-map-current-location';
+import { ArgTypes } from '@storybook/web-components';
 
-export const currentLocationArgs = {
-    zoom: 10,
-    tooltip: 'Huidige locatie',
+export const mapCurrentLocationArgs = {
+    tooltip: DEFAULT_TOOLTIP,
+    zoom: DEFAULT_ZOOM,
 };
 
-export const currentLocationArgTypes = {
-    zoom: {
-        name: 'zoom',
-        type: { summary: TYPES.NUMBER, required: false },
-        description:
-            'Attribuut wordt gebruikt om te bepalen hoever er ingezoomd moet worden wanneer de gebruiker op de current location knop drukt om huidige locatie centraal op de kaart te tonen.',
-        control: { type: 'range', min: 1, max: 13, step: 1 },
+export const mapCurrentLocationArgTypes: ArgTypes<typeof mapCurrentLocationArgs> = {
+    tooltip: {
+        name: 'data-vl-tooltip',
+        description: 'Bepaalt de tekst van de tooltip van de huidige locatie knop.',
         table: {
-            defaultValue: { summary: DEFAULT_ZOOM },
+            type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapCurrentLocationArgs.tooltip },
         },
     },
-    tooltip: {
-        name: 'tooltip',
-        type: { summary: TYPES.STRING, required: false },
-        description: 'Bepaalt de text van de tooltip van de huidige locatie knop.',
+    zoom: {
+        name: 'data-vl-zoom',
+        description: 'Bepaalt hoever er ingezoomd wordt bij het klikken op de huidige locatie knop.',
+        control: { type: 'range', min: 1, max: 13, step: 1 },
         table: {
-            defaultValue: { summary: DEFAULT_TOOLTIP },
+            type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapCurrentLocationArgs.zoom },
         },
     },
 };

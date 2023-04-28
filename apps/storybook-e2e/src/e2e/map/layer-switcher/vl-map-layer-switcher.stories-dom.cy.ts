@@ -1,8 +1,8 @@
 const mapLayerSwitcherDefaultUrl =
-    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--layer-switcher-default&viewMode=story';
+    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--map-layer-switcher-default&viewMode=story';
 
 const mapLayerSwitcherSpecialisedUrl =
-    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--layer-switcher-specialised-options&viewMode=story';
+    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--map-layer-switcher-specialised-options&viewMode=story';
 describe('vl-map-layer-switcher', () => {
     it('vl-map-layer-switcher default - wanneer er geen layer input child elementen aanwezig zijn, zullen deze automatisch gegenereerd worden', () => {
         cy.visit(`${mapLayerSwitcherDefaultUrl}`);

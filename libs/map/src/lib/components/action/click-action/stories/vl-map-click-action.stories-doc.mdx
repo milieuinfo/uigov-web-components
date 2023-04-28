@@ -1,20 +1,18 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
 
-# Click Action
+# Map Click Action
 
-Capteert een klikactie op de `VlMap`. Plaatst een `VlMapClickActionPindrop` op de kaart en vuurt een event `VlMapClickedEvent` af die kan worden opgevangen.
-Het event bevat de aangeklikte pixel, coördinaten & de bounding box op moment van klikken.
+Gebruik het `map-click-action` component om een klikactie op de [map](/docs/map-map--map-default) op te vangen.<br/>
+Bij het klikken op de [map](/docs/map-map--map-default) wordt er een `vl-map-click-action-pindrop` op de kaart geplaatst.
 
 ## Voorbeeld
 
 ```js
-import { VlMapClickAction } from '@domg-lib/components'
+import { VlMapClickAction } from '@domg-wc/map';
 ```
 
 ```html
-        <vl-map>
-            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-            <vl-map-click-action @vl-map-clicked="${(evt: VlMapClickedEvent) => {console.log(evt)})}}"></vl-map-click-action>
-        </vl-map>
+<vl-map-click-action></vl-map-click-action>
 ```
 
-
+<DocsStory id="map-action-click-action--map-click-action-default" />

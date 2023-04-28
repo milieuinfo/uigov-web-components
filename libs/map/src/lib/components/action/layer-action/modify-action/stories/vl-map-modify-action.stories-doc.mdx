@@ -1,0 +1,38 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Map Modify Action
+
+Gebruik het `map-modify-action` component om een feature op een [map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default) aan te passen.<br/>
+Dit component erft over van de `VlMapLayerAction` klasse, die op zijn beurt overerft van de `VlMapAction` klasse.
+
+## Voorbeeld
+
+```js
+import { VlMapModifyAction } from '@domg-wc/map';
+```
+
+```html
+<vl-map-modify-action></vl-map-modify-action>
+```
+
+<DocsStory id="map-action-layer-action-modify-action--map-modify-action-default" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Varianten
+
+### Snapping
+
+<DocsStory id="map-action-layer-action-modify-action--map-modify-action-snapping" />
+
+## Referenties
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/custom-elements-vl-map-vl-map-modify-action--default
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapModifyAction.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html

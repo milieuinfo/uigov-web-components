@@ -1,20 +1,19 @@
 import { CATEGORIES } from '@domg-wc/common-utilities';
-import { Args } from '@storybook/web-components';
-import { action } from '@storybook/addon-actions';
+import { ArgTypes } from '@storybook/web-components';
+import { logStorybookEvent } from '../../../../utils/util';
 
-export const mapClickActionArgs: Args = {
-    onClickActionStoryBook: action('vl-map-clicked'),
+export const mapClickActionArg = {
+    onMapClicked: logStorybookEvent('vl-map-clicked'),
 };
 
-export const mapClickActionArgTypes = {
-    onClickActionStoryBook: {
-        table: {
-            disable: true,
-        },
-    },
-    vlMapClicked: {
+export const mapClickActionArgTypes: ArgTypes<typeof mapClickActionArg> = {
+    onMapClicked: {
         name: 'vl-map-clicked',
-        description: 'Event dat wordt afgevuurd wanneer op de map werd geklikt. Zie action tab & docs.',
-        table: { category: CATEGORIES.EVENTS },
+        description:
+            'Afgevuurd wanneer er op de map geklikt wordt.<br>Het event bevat de locatie informatie, zie de console logs van Storybook voor het volledige event.',
+        table: {
+            type: { summary: '{ coordinate: Coordinate, resolution: number, projection: ProjectionLike }' },
+            category: CATEGORIES.EVENTS,
+        },
     },
 };

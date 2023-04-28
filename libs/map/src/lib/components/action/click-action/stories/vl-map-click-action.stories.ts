@@ -1,40 +1,28 @@
-import { mapClickActionArgs, mapClickActionArgTypes } from './vl-map-click-action.stories-arg';
 import { html } from 'lit';
 import '../../../../vl-map';
-import '../../../baselayer/vl-map-base-layer-grb-gray';
-import '../../../layer/vector-layer/vl-map-features-layer';
+import '../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../vl-map-click-action';
-import { StoryFn } from '@storybook/web-components';
+import { Meta, StoryFn } from '@storybook/web-components';
+import { mapClickActionArg, mapClickActionArgTypes } from './vl-map-click-action.stories-arg';
 import mapClickActionDoc from './vl-map-click-action.stories-doc.mdx';
-import { VlMapClickedEvent } from '../../VlMapClickedEvent';
 
 export default {
-    title: 'map/action',
-    args: mapClickActionArgs,
+    title: 'map/action/click-action',
+    args: mapClickActionArg,
     argTypes: mapClickActionArgTypes,
     parameters: {
         controls: { hideNoControlsWarning: true },
         docs: { page: mapClickActionDoc },
     },
-};
+} as Meta<typeof mapClickActionArg>;
 
-const Template: StoryFn<typeof mapClickActionArgs> = ({ onClickActionStoryBook }: typeof mapClickActionArgs) => {
+export const MapClickActionDefault: StoryFn<typeof mapClickActionArg> = ({ onMapClicked }) => {
     return html`
         <vl-map>
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-            <vl-map-click-action @vl-map-clicked="${storybookTest}"></vl-map-click-action>
+            <vl-map-click-action @vl-map-clicked=${onMapClicked}></vl-map-click-action>
         </vl-map>
     `;
-
-    function storybookTest(evt: VlMapClickedEvent) {
-        onClickActionStoryBook({
-            evt,
-            coordinate: evt.coordinate,
-            resolution: evt.resolution,
-            projection: evt.projection,
-        });
-    }
 };
-
-export const clickActionDefault = Template.bind({});
-clickActionDefault.storyName = 'vl-map-click-action - default';
+MapClickActionDefault.storyName = 'vl-map-click-action - default';
