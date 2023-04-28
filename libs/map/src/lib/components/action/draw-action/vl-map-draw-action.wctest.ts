@@ -1,10 +1,10 @@
 import { awaitUntil } from '@domg-wc/common-utilities';
 import { assert, fixture, html } from '@open-wc/testing';
 import '../../../vl-map';
-import '../../layer/vector-layer/vl-map-features-layer';
-import './vl-map-draw-point-action';
-import './vl-map-draw-line-action';
-import './vl-map-draw-polygon-action';
+import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
+import './draw-point-action/vl-map-draw-point-action';
+import './draw-line-action/vl-map-draw-line-action';
+import './draw-polygon-action/vl-map-draw-polygon-action';
 
 const mapDrawActionsFixture = async () =>
     fixture(html`

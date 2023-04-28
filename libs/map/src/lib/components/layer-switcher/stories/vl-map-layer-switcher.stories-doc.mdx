@@ -3,7 +3,7 @@ import dynamicLayerSwitcherImplementation from '!raw-loader!./vl-map-layer-switc
 
 # Map Layer Switcher
 
-Dit component laat de gebruiker toe om verschillende lagen van de `vl-map` zichtbaar en weer onzichtbaar te maken.
+Gebruik het `map-layer-switcher` component om kaartlagen zichtbaar of onzichtbaar te maken.
 
 ## Voorbeeld
 
@@ -15,11 +15,11 @@ import { VlMapLayerSwitcher } from '@domg-wc/map';
 <vl-map-layer-switcher></vl-map-layer-switcher>
 ```
 
-<DocsStory id="map-layer-switcher--layer-switcher-default" />
+<DocsStory id="map-layer-switcher--map-layer-switcher-default" />
 
 ## Gebruik
 
-Deze component wordt typisch in de `vl-map-side-sheet` gebruikt [meer info](?path=/docs/map-side-sheet--map-side-sheet-default).
+Dit component wordt typisch in de `vl-map-side-sheet` gebruikt [meer info](?path=/docs/map-side-sheet--map-side-sheet-default).
 
 -   het is belangrijk dat de `vl-map-layer-switcher` zich binnen `vl-map` bevindt waarvan de kaartlagen moeten worden gemanipuleerd
 -   daarnaast is het ook belangrijk dat elke kaartlaag de property `data-vl-name` krijgt:
@@ -40,13 +40,13 @@ bv.
 </vl-map-layer-switcher>
 ```
 
-<DocsStory id="map-layer-switcher--layer-switcher-specialised-options" />
+<DocsStory id="map-layer-switcher--map-layer-switcher-specialised-options" />
 
 ### Kaartlagen met resolutie
 
 Kaart met optie om kaartlagen met resolutie te tonen en verbergen
 
-<DocsStory id="map-layer-switcher--layer-switcher-resolution-option" />
+<DocsStory id="map-layer-switcher--map-layer-switcher-resolution-option" />
 
 ### Dynamisch
 
@@ -96,7 +96,7 @@ Hieronder volgt het volledige code voorbeeld om:
 </details>
 
 <Canvas>
-    <Story id="map-layer-switcher--layer-switcher-dynamic" inline={false} height={650} />
+    <Story id="map-layer-switcher--map-layer-switcher-dynamic" inline={false} height={650} />
 </Canvas>
 
 ## Referenties

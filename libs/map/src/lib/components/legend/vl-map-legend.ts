@@ -1,6 +1,6 @@
 import { css, html, LitElement, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { VlMapLayerCircleStyle } from '../layer-style/vl-map-layer-circle-style';
+import { VlMapLayerCircleStyle } from '../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import { VlMapVectorLayer } from '../layer/vector-layer/vl-map-vector-layer';
 import styles from './style/vl-map-legend.scss';
 
@@ -41,6 +41,7 @@ export class VlMapLegend extends LitElement {
     }
 
     static get properties() {
+        // TODO: Aligneer deze attributen (missen data-vl- prefix)
         return {
             left: { type: String, reflect: true },
             top: { type: String, reflect: true },

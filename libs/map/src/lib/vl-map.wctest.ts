@@ -9,9 +9,9 @@ import { VlSelectAction } from './actions';
 import { VlMapMeasureControl } from './components/controls/measure-control/vl-map-measure-control';
 import './vl-map';
 import './components/controls/vl-map-action-controls';
-import './components/layer/vector-layer/vl-map-features-layer';
-import './components/action/draw-action/vl-map-measure-action';
-import './components/action/layer-action/vl-map-select-action';
+import './components/layer/vector-layer/vl-map-features-layer/vl-map-features-layer.js';
+import './components/action/draw-action/measure-action/vl-map-measure-action';
+import './components/action/layer-action/select-action/vl-map-select-action';
 
 const mapFixture = async () => fixture(html`<vl-map></vl-map>`);
 const mapFullscreenFixture = async () => fixture(html`<vl-map data-vl-allow-fullscreen></vl-map>`);

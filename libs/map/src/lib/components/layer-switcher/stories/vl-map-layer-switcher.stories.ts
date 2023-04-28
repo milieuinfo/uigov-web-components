@@ -1,32 +1,34 @@
 import { html } from 'lit-html';
 import '../../../vl-map';
-import '../../baselayer/vl-map-base-layer-grb-gray';
-import '../../baselayer/vl-map-base-layer-grb';
-import '../../baselayer/vl-map-base-layer-grb-ortho';
+import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../../baselayer/vl-map-base-layer-grb/vl-map-base-layer-grb';
+import '../../baselayer/vl-map-base-layer-grb-ortho/vl-map-base-layer-grb-ortho';
 import '../../overview-map/vl-map-overview-map';
 import '../../side-sheet/vl-map-side-sheet';
-import '../../layer/vector-layer/vl-map-features-layer';
-import '../../layer/vector-layer/vl-map-wfs-layer';
-import '../../layer-style/vl-map-layer-circle-style';
+import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
+import '../../layer/vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
+import '../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import '../../layer/wmts-layer/vl-map-wmts-layer';
-import '../../layer/wms-layer/vl-map-tiled-wms-layer';
+import '../../layer/wms-layer/vl-map-tiled-wms-layer/vl-map-tiled-wms-layer';
 import '../vl-map-layer-switcher';
 import { storyControlTemplates, mapLayersToAddOrRemove } from './vl-map-layer-switcher.stories-templates';
-import { StoryFn } from '@storybook/web-components';
+import { Meta, StoryFn } from '@storybook/web-components';
 import mapLayerSwitcherDoc from './vl-map-layer-switcher.stories-doc.mdx';
 import { dynamicLayerSwitcherImplementation } from './vl-map-layer-switcher.stories-utils';
 
 export default {
     title: 'map/layer-switcher',
     parameters: {
-        controls: { hideNoControlsWarning: true },
+        controls: {
+            hideNoControlsWarning: true,
+        },
         docs: {
-            page: mapLayerSwitcherDoc
+            page: mapLayerSwitcherDoc,
         },
     },
-};
+} as Meta;
 
-export const LayerSwitcherDefault: StoryFn = () => {
+export const MapLayerSwitcherDefault: StoryFn = () => {
     const features1 = {
         type: 'FeatureCollection',
         features: [
@@ -54,6 +56,7 @@ export const LayerSwitcherDefault: StoryFn = () => {
             },
         ],
     };
+
     return html`
         <vl-map>
             <vl-map-side-sheet>
@@ -96,9 +99,9 @@ export const LayerSwitcherDefault: StoryFn = () => {
         </vl-map>
     `;
 };
-LayerSwitcherDefault.storyName = 'vl-map-layer-switcher - default';
+MapLayerSwitcherDefault.storyName = 'vl-map-layer-switcher - default';
 
-export const LayerSwitcherSpecialisedOptions = () => {
+export const MapLayerSwitcherSpecialisedOptions = () => {
     const features1 = {
         type: 'FeatureCollection',
         features: [
@@ -126,6 +129,7 @@ export const LayerSwitcherSpecialisedOptions = () => {
             },
         ],
     };
+
     return html`
         <vl-map>
             <vl-map-side-sheet>
@@ -149,9 +153,9 @@ export const LayerSwitcherSpecialisedOptions = () => {
         </vl-map>
     `;
 };
-LayerSwitcherSpecialisedOptions.storyName = 'vl-map-layer-switcher - specialised options';
+MapLayerSwitcherSpecialisedOptions.storyName = 'vl-map-layer-switcher - specialised options';
 
-export const LayerSwitcherResolutionOption = () => {
+export const MapLayerSwitcherResolutionOption = () => {
     const features1 = {
         type: 'FeatureCollection',
         features: [
@@ -197,11 +201,12 @@ export const LayerSwitcherResolutionOption = () => {
         </vl-map>
     `;
 };
-LayerSwitcherResolutionOption.storyName = 'vl-map-layer-switcher - resolution option';
+MapLayerSwitcherResolutionOption.storyName = 'vl-map-layer-switcher - resolution option';
 
-export const LayerSwitcherDynamic = () => {
+export const MapLayerSwitcherDynamic = () => {
     const layerIds = ['zwart', 'geel', 'rood'];
     const { handleAddLayerForId, handleRemoveLayerForId } = dynamicLayerSwitcherImplementation();
+
     return html`
         ${storyControlTemplates(layerIds, handleAddLayerForId, handleRemoveLayerForId)} ${mapLayersToAddOrRemove()}
         <vl-map id="map-dynamic-layers">
@@ -215,4 +220,4 @@ export const LayerSwitcherDynamic = () => {
         </vl-map>
     `;
 };
-LayerSwitcherDynamic.storyName = 'vl-map-layer-switcher - dynamic';
+MapLayerSwitcherDynamic.storyName = 'vl-map-layer-switcher - dynamic';

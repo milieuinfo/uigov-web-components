@@ -2,7 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import { VlMapWithActions } from '../../../actions';
 import '../../../vl-map';
-import '../../layer/vector-layer/vl-map-features-layer';
+import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import { VlMapLayerAction } from './vl-map-layer-action';
 import './vl-map-layer-action';
 
@@ -35,8 +35,8 @@ const mapLayerActionLayerFixture = async () =>
 const mapLayerActionLayerByNameFixture = async () =>
     fixture(html`
         <vl-map>
-            <vl-map-features-layer data-vl-name='layer'></vl-map-features-layer>
-            <vl-map-layer-action data-vl-layer='layer'></vl-map-layer-action>
+            <vl-map-features-layer data-vl-name="layer"></vl-map-features-layer>
+            <vl-map-layer-action data-vl-layer="layer"></vl-map-layer-action>
         </vl-map>
     `);
 
@@ -46,7 +46,7 @@ describe.only('vl-map-layer-action', () => {
     const action = {
         interactions: [],
         deactivate: sandbox.spy(),
-        activate: sandbox.spy()
+        activate: sandbox.spy(),
     };
 
     afterEach(() => {

@@ -1,15 +1,15 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
-import { layerArgTypes, layerArgs } from '../../stories/vl-map-layer.stories-arg';
+import { mapLayerArgs, mapLayerArgTypes } from '../../stories/vl-map-layer.stories-arg';
 import { ArgTypes } from '@storybook/web-components';
 
-export const wmtsLayerArgs = {
-    ...layerArgs,
+export const mapWmtsLayerArgs = {
+    ...mapLayerArgs,
     layer: '',
     url: '',
 };
 
-export const wmtsLayerArgTypes: ArgTypes<typeof wmtsLayerArgs> = {
-    ...layerArgTypes,
+export const mapWmtsLayerArgTypes: ArgTypes<typeof mapWmtsLayerArgs> = {
+    ...mapLayerArgTypes,
     layer: {
         name: 'data-vl-layer',
         description: 'De layer van de WMTS.<br>Dit attribuut is niet reactief.',
@@ -17,6 +17,7 @@ export const wmtsLayerArgTypes: ArgTypes<typeof wmtsLayerArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapWmtsLayerArgs.layer },
         },
     },
     url: {
@@ -26,6 +27,7 @@ export const wmtsLayerArgTypes: ArgTypes<typeof wmtsLayerArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapWmtsLayerArgs.url },
         },
     },
 };

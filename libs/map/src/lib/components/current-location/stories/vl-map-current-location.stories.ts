@@ -1,22 +1,31 @@
 import { html } from 'lit-html';
+import { Meta, StoryFn } from '@storybook/web-components';
 import '../../../vl-map';
-import '../../baselayer/vl-map-base-layer-grb-gray';
+import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../vl-map-current-location';
-import { currentLocationArgs, currentLocationArgTypes } from './vl-map-current-location.stories-arg';
+import { mapCurrentLocationArgs, mapCurrentLocationArgTypes } from './vl-map-current-location.stories-arg';
+import mapCurrentLocationDoc from './vl-map-current-location.stories-doc.mdx';
+import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
 
 export default {
     title: 'map/current-location',
+    args: mapCurrentLocationArgs,
+    argTypes: mapCurrentLocationArgTypes,
     parameters: {
-        controls: { hideNoControlsWarning: true },
+        docs: {
+            page: mapCurrentLocationDoc,
+        },
     },
-    args: currentLocationArgs,
-    argTypes: currentLocationArgTypes,
-};
+} as Meta<typeof mapCurrentLocationArgs>;
 
-export const currentLocationDefault = ({ zoom, tooltip }) => html`
-    <vl-map id="map" data-vl-zoomInTooltip="Zoom in" data-vl-zoomOutTooltip="Zoom uit">
-        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-        <vl-map-current-location data-vl-zoom="${zoom}" data-vl-tooltip="${tooltip}"></vl-map-current-location>
-    </vl-map>
-`;
-currentLocationDefault.storyName = 'vl-map-current-location - default';
+export const MapCurrentLocationDefault: StoryFn<typeof mapCurrentLocationArgs> = (args) => {
+    const { tooltip, zoom } = setDefaultArgsToNothing(args, mapCurrentLocationArgs);
+
+    return html`
+        <vl-map>
+            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+            <vl-map-current-location data-vl-tooltip=${tooltip} data-vl-zoom=${zoom}></vl-map-current-location>
+        </vl-map>
+    `;
+};
+MapCurrentLocationDefault.storyName = 'vl-map-current-location - default';

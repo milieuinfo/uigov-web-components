@@ -1,40 +1,39 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { ArgTypes } from '@storybook/web-components';
 
 export const mapActionArgs = {
-    active: true,
-    defaultActive: true,
-    layer: false,
+    active: false,
+    defaultActive: false,
+    layer: '',
 };
 
-export const mapActionArgTypes = {
+export const mapActionArgTypes: ArgTypes<typeof mapActionArgs> = {
     active: {
         name: 'active',
-        description: 'Controls the active state of the action.',
+        description: 'Controleert de actieve status van de actie.',
         table: {
-            type: {
-                summary: TYPES.BOOLEAN,
-            },
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.PROPERTIES,
+            defaultValue: { summary: mapActionArgs.active },
         },
     },
     defaultActive: {
         name: 'data-vl-default-active',
-        description: 'Used to trigger the action by default.',
+        description: 'Zet de actie default op actief.',
         table: {
             type: { summary: TYPES.BOOLEAN },
-            defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapActionArgs.active },
         },
     },
     layer: {
         name: 'data-vl-layer',
-        type: { summary: TYPES.STRING },
-        description: 'Used to link the action to a map layer via the name attribute.',
+        description:
+            'Linkt de actie aan een map-layer.<br>Geef hier het data-vl-name attribuut van de map-layer mee.<br>Wordt gebruikt als de actie niet binnen het map-layer element staat.',
+        control: { disable: true },
         table: {
-            defaultValue: { summary: '' },
+            type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
         },
-        control: { disable: true },
     },
 };

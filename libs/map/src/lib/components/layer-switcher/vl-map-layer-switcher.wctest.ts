@@ -1,9 +1,9 @@
 import { awaitUntil } from '@domg-wc/common-utilities';
 import { assert, fixture, html } from '@open-wc/testing';
 import '../../vl-map';
-import '../action/draw-action/vl-map-draw-point-action';
-import '../layer/vector-layer/vl-map-features-layer';
-import '../layer/vector-layer/vl-map-wfs-layer';
+import '../action/draw-action/draw-point-action/vl-map-draw-point-action';
+import '../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
+import '../layer/vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
 import '../side-sheet/vl-map-side-sheet';
 import './vl-map-layer-switcher';
 

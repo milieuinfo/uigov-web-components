@@ -17,6 +17,7 @@ export const TYPES = {
     HTML: 'html',
     URL: 'url',
     FUNCTION: 'function',
+    XML: 'xml',
 } as const;
 
 export const filterOutClasses = (input: string) => {
@@ -45,8 +46,8 @@ export const formatHTML = (input: string) => {
     }
 };
 
-// Gebruik deze functie om de args van een story die overeenkomen met de default args van een component
-// om te zetten naar 'nothing', zodat deze args niet meegegeven worden aan het compoenent en niet getoond worden in de source code op de docs.
+// Gebruik deze functie om de args van een story die overeen komen met de default args van een component
+// om te zetten naar 'nothing' zodat deze args niet getoond worden in de source code op de docs pagina van de story.
 export const setDefaultArgsToNothing = <T extends object>(args: T, defaultArgs: T) => {
     return Object.keys(args).reduce((result, key) => {
         const value = (args as any)[key];

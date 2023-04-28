@@ -3,7 +3,7 @@ import { VlMapAction, VlMapActionControl } from '@domg-wc/map';
 import { runTestFor } from '../../../../../src/support/utils';
 
 const mapActionControlMultipleUrl =
-    'http://localhost:8080/iframe.html?id=map-controls-action-control--action-control-multiple&viewMode=story';
+    'http://localhost:8080/iframe.html?id=map-controls-action-control--map-action-control-multiple&viewMode=story';
 
 const drawActionId = 'draw-action';
 const modifyActionId = 'modify-action';

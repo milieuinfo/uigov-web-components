@@ -1,43 +1,55 @@
-import { baselayerArgs, baselayerArgTypes } from './vl-map-baselayer.stories-arg';
 import { html } from 'lit-html';
 import '../../../vl-map';
-import '../vl-map-base-layer-grb';
+import '../vl-map-base-layer';
+import { Meta, StoryFn } from '@storybook/web-components';
+import { mapBaselayerArgTypes, mapBaselayerArgs } from './vl-map-baselayer.stories-arg';
+import mapBaselayerDoc from './vl-map-baselayer.stories-doc.mdx';
+import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
 
 export default {
     title: 'map/baselayer',
+    args: mapBaselayerArgs,
+    argTypes: mapBaselayerArgTypes,
     parameters: {
-        controls: { hideNoControlsWarning: true },
+        docs: {
+            page: mapBaselayerDoc,
+        },
     },
-    args: baselayerArgs,
-    argTypes: baselayerArgTypes,
+} as Meta<typeof mapBaselayerArgs>;
+
+const Template: StoryFn<typeof mapBaselayerArgs> = (args) => {
+    const { backgroundLayer, layer, title, type, url } = setDefaultArgsToNothing(args, mapBaselayerArgs);
+
+    return html`
+        <vl-map>
+            <vl-map-baselayer
+                ?data-vl-background-layer=${backgroundLayer}
+                data-vl-layer=${layer}
+                data-vl-title=${title}
+                data-vl-type=${type}
+                data-vl-url=${url}
+            ></vl-map-baselayer>
+        </vl-map>
+    `;
 };
 
-export const baselayerGrbDefault = () => html`
-    <vl-map>
-        <vl-map-baselayer-grb></vl-map-baselayer-grb>
-    </vl-map>
-`;
-baselayerGrbDefault.storyName = 'vl-map-baselayer-grb - default';
+export const MapBaselayerDefault: StoryFn<typeof mapBaselayerArgs> = Template.bind({});
+MapBaselayerDefault.storyName = 'vl-map-baselayer - default';
+MapBaselayerDefault.args = {
+    ...mapBaselayerArgs,
+    layer: 'grb_bsk',
+    title: 'GRB basis laag',
+    type: 'wmts',
+    url: 'https://geo.api.vlaanderen.be/GRB/wmts',
+};
 
-export const baselayerGrbGrayDefault = () => html`
-    <vl-map>
-        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-    </vl-map>
-`;
-baselayerGrbGrayDefault.storyName = 'vl-map-baselayer-grb-gray - default';
-
-export const baselayerGrbOrthoDefault = () => html`
-    <vl-map>
-        <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
-    </vl-map>
-`;
-baselayerGrbOrthoDefault.storyName = 'vl-map-baselayer-grb-ortho - default';
-
-export const baselayerGrbWithBackgroundLayer = () => html`
-    <vl-map>
-        <vl-map-baselayer-grb-gray data-vl-background-layer></vl-map-baselayer-grb-gray>
-        <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
-        <vl-map-overview-map></vl-map-overview-map>
-    </vl-map>
-`;
-baselayerGrbWithBackgroundLayer.storyName = 'vl-map-baselayer-grb - with background layer';
+export const MapBaselayerBackgroundLayer: StoryFn<typeof mapBaselayerArgs> = Template.bind({});
+MapBaselayerBackgroundLayer.storyName = 'vl-map-baselayer - background layer';
+MapBaselayerBackgroundLayer.args = {
+    ...mapBaselayerArgs,
+    backgroundLayer: true,
+    layer: 'grb_bsk',
+    title: 'GRB basis laag',
+    type: 'wmts',
+    url: 'https://geo.api.vlaanderen.be/GRB/wmts',
+};

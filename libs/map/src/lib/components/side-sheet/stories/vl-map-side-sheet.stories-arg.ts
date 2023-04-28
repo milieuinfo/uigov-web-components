@@ -2,21 +2,26 @@ import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapSideSheetArgs = {
-    right: false,
+    customIcon: '',
     enableSwipe: false,
-    title: '',
+    hideToggleButton: false,
     href: '#',
-    defaultSlot: '<div>Plaats hier je zijpaneel inhoud</div>',
+    iconPlacement: 'before',
+    right: false,
+    title: 'Terug',
+    toggleText: '',
+    tooltipText: '',
+    defaultSlot: '',
 };
 
 export const mapSideSheetArgTypes: ArgTypes<typeof mapSideSheetArgs> = {
-    right: {
-        name: 'data-vl-right',
-        description: 'Het zijpaneel wordt aan de rechterrand gepositioneerd.',
+    customIcon: {
+        name: 'data-vl-custom-icon',
+        description: 'Het icoon van de toggle button.',
         table: {
-            type: { summary: TYPES.BOOLEAN },
+            type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: mapSideSheetArgs.customIcon },
         },
     },
     enableSwipe: {
@@ -25,16 +30,16 @@ export const mapSideSheetArgTypes: ArgTypes<typeof mapSideSheetArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: mapSideSheetArgs.enableSwipe },
         },
     },
-    title: {
-        name: 'data-vl-title',
-        description: 'De titel van het menu item.',
+    hideToggleButton: {
+        name: 'data-vl-hide-toggle-button',
+        description: 'Verbergt de toggle button.',
         table: {
-            type: { summary: TYPES.STRING },
-            category: CATEGORIES.CHILD_ATTRIBUTES,
-            defaultValue: { summary: 'Terug' },
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapSideSheetArgs.hideToggleButton },
         },
     },
     href: {
@@ -43,6 +48,56 @@ export const mapSideSheetArgTypes: ArgTypes<typeof mapSideSheetArgs> = {
         table: {
             type: { summary: TYPES.URL },
             category: CATEGORIES.CHILD_ATTRIBUTES,
+            defaultValue: { summary: mapSideSheetArgs.href },
+        },
+    },
+    iconPlacement: {
+        name: 'data-vl-icon-placement',
+        description: 'De positie van het icoon van de toggle button.<br>Dit attribuut is niet reactief.',
+        control: {
+            type: 'select',
+            options: ['before', 'after'],
+        },
+        table: {
+            type: { summary: 'before | after' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapSideSheetArgs.iconPlacement },
+        },
+    },
+    right: {
+        name: 'data-vl-right',
+        description: 'Positioneert het zijpaneel aan de rechterrand.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapSideSheetArgs.right },
+        },
+    },
+    title: {
+        name: 'data-vl-title',
+        description: 'De titel van het menu item.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.CHILD_ATTRIBUTES,
+            defaultValue: { summary: mapSideSheetArgs.title },
+        },
+    },
+    toggleText: {
+        name: 'data-vl-toggle-text',
+        description: 'De tekst van de toggle button.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapSideSheetArgs.toggleText },
+        },
+    },
+    tooltipText: {
+        name: 'data-vl-tooltip-text',
+        description: 'De tooltip van de toggle button.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapSideSheetArgs.tooltipText },
         },
     },
     defaultSlot: {

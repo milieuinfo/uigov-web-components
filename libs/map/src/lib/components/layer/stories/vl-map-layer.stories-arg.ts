@@ -1,22 +1,22 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 import { ArgTypes } from '@storybook/web-components';
 
-export const layerArgs = {
+export const mapLayerArgs = {
     hidden: false,
     opacity: 1,
-    maxResolution: null as number,
-    minResolution: null as number,
+    maxResolution: Infinity,
+    minResolution: 0,
     name: '',
 };
 
-export const layerArgTypes: ArgTypes<typeof layerArgs> = {
+export const mapLayerArgTypes: ArgTypes<typeof mapLayerArgs> = {
     hidden: {
         name: 'data-vl-hidden',
         description: 'Bepaalt of de kaartlaag zichtbaar is.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: mapLayerArgs.hidden },
         },
     },
     opacity: {
@@ -26,7 +26,7 @@ export const layerArgTypes: ArgTypes<typeof layerArgs> = {
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 1 },
+            defaultValue: { summary: mapLayerArgs.opacity },
         },
     },
     maxResolution: {
@@ -37,7 +37,7 @@ export const layerArgTypes: ArgTypes<typeof layerArgs> = {
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: Infinity },
+            defaultValue: { summary: mapLayerArgs.maxResolution },
         },
     },
     minResolution: {
@@ -48,7 +48,7 @@ export const layerArgTypes: ArgTypes<typeof layerArgs> = {
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 0 },
+            defaultValue: { summary: mapLayerArgs.minResolution },
         },
     },
     name: {
@@ -57,6 +57,7 @@ export const layerArgTypes: ArgTypes<typeof layerArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapLayerArgs.name },
         },
     },
 };

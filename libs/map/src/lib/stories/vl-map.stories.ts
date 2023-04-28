@@ -10,6 +10,7 @@ import {
     handleLayerVisibleChange,
     handleOpacitySliderChange,
 } from './vl-map.stories-util';
+import { LEGEND_PLACEMENT } from '../components/legend/vl-map-legend';
 import '@domg-wc/elements';
 import '@domg-wc/components';
 import '../vl-map';
@@ -18,19 +19,20 @@ import '../components/controls/measure-control/vl-map-measure-control';
 import '../components/side-sheet/vl-map-side-sheet';
 import '../components/layer-switcher/vl-map-layer-switcher';
 import '../components/overview-map/vl-map-overview-map';
-import '../components/baselayer/vl-map-base-layer-grb-gray';
-import '../components/baselayer/vl-map-base-layer-grb';
-import '../components/baselayer/vl-map-base-layer-grb-ortho';
-import '../components/layer/vector-layer/vl-map-features-layer';
+import '../components/baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../components/baselayer/vl-map-base-layer-grb/vl-map-base-layer-grb';
+import '../components/baselayer/vl-map-base-layer-grb-ortho/vl-map-base-layer-grb-ortho';
+import '../components/layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../components/layer-style/vl-map-layer-style';
-import '../components/layer-style/vl-map-layer-circle-style';
-import '../components/action/draw-action/vl-map-draw-point-action';
-import '../components/action/draw-action/vl-map-draw-line-action';
-import '../components/action/draw-action/vl-map-draw-polygon-action';
-import '../components/action/draw-action/vl-map-measure-action';
-import '../components/action/layer-action/vl-map-modify-action';
-import '../components/action/layer-action/vl-map-delete-action';
-import '../components/action/layer-action/vl-map-select-action';
+import '../components/layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
+import '../components/action/draw-action/draw-point-action/vl-map-draw-point-action';
+import '../components/action/draw-action/draw-line-action/vl-map-draw-line-action';
+import '../components/action/draw-action/draw-polygon-action/vl-map-draw-polygon-action';
+import '../components/action/draw-action/measure-action/vl-map-measure-action';
+import '../components/action/layer-action/modify-action/vl-map-modify-action';
+import '../components/action/layer-action/delete-action/vl-map-delete-action';
+import '../components/action/layer-action/select-action/vl-map-select-action';
+import '../components/legend/vl-map-legend';
 
 export default {
     title: 'map/map',
@@ -289,7 +291,11 @@ export const MapPlayground: StoryFn<typeof mapArgs> = ({
             <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
 
             <vl-map-features-layer data-vl-name="Shapes" .features=${features}>
-                <vl-map-layer-style data-vl-border-color=${purple} data-vl-color=${purple}></vl-map-layer-style>
+                <vl-map-layer-style
+                    data-vl-name="Shapes"
+                    data-vl-border-color=${purple}
+                    data-vl-color=${purple}
+                ></vl-map-layer-style>
                 <vl-map-layer-circle-style
                     data-vl-border-color=${purple}
                     data-vl-color=${purple}
@@ -305,8 +311,14 @@ export const MapPlayground: StoryFn<typeof mapArgs> = ({
             </vl-map-features-layer>
 
             <vl-map-features-layer data-vl-name="Measurements">
+                <vl-map-layer-style
+                    data-vl-color="rgba(6, 163, 247, 1)"
+                    data-vl-border-size="2"
+                    data-vl-border-color="rgba(6, 163, 247, 1)"
+                ></vl-map-layer-style>
                 <vl-map-measure-action class="measure-action action"></vl-map-measure-action>
             </vl-map-features-layer>
+            <vl-map-legend data-vl-placement=${LEGEND_PLACEMENT.BOTTOM_RIGHT} right="140px"></vl-map-legend>
         </vl-map>
     `;
 };

@@ -1,36 +1,34 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 import { mapActionArgs, mapActionArgTypes } from '../../stories/vl-map-action.stories-arg';
+import { ArgTypes } from '@storybook/web-components';
 
-export const mapDrawActionActionArgs = {
+export const mapDrawActionArgs = {
     ...mapActionArgs,
-    snapping: true,
-    snappingPixelTolerance: 1000,
+    snapping: false,
+    snappingPixelTolerance: 10,
 };
 
-export const mapDrawActionActionArgTypes = {
+export const mapDrawActionArgTypes: ArgTypes<typeof mapDrawActionArgs> = {
     ...mapActionArgTypes,
     snapping: {
         name: 'data-vl-snapping',
         description:
-            'Attribuut wordt gebruikt om aan te geven dat er bij het tekenen snapping mag gebeuren, hetzij op de laag waarop getekend wordt (indien geen vl-map-wfs-layer(s) als child elementen), hetzij op de meegegeven vl-map-wfs-layers.',
+            'Geeft aan dat er bij het tekenen snapping mag gebeuren, hetzij op de laag waarop getekend wordt (indien geen vl-map-wfs-layer(s) als child elementen), hetzij op de meegegeven vl-map-wfs-layers.<br>Dit attribuut is niet reactief.',
+        control: false,
         table: {
-            defaultValue: { summary: 'false' },
-            type: {
-                summary: TYPES.BOOLEAN,
-            },
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapDrawActionArgs.snapping },
         },
     },
     snappingPixelTolerance: {
         name: 'data-vl-snapping-pixel-tolerance',
-        description: 'Attribuut om aan te geven binnen de hoeveel pixel van een feature er gesnapt mag worden.',
+        description:
+            'Binnen de hoeveel pixel van een feature er gesnapt mag worden.<br>Dit attribuut is niet reactief.',
         table: {
-            defaultValue: { summary: 10 },
-            type: {
-                summary: TYPES.NUMBER,
-            },
+            type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapDrawActionArgs.snappingPixelTolerance },
         },
-        if: { arg: 'snapping' },
     },
 };

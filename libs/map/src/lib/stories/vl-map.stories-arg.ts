@@ -18,47 +18,48 @@ export const mapArgs = {
 export const mapArgTypes: ArgTypes<typeof mapArgs> = {
     allowFullscreen: {
         name: 'data-vl-allow-fullscreen',
-        description: 'Laat de map toe afgebeeld te worden in fullscreen.<br>Dit kan niet gebruikt worden op mobile.',
+        description:
+            'Laat de map toe afgebeeld te worden in fullscreen.<br>Dit kan niet gebruikt worden op mobile.<br>Dit attribuut is niet reactief.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: mapArgs.allowFullscreen },
         },
     },
     disableEscape: {
         name: 'data-vl-disable-escape-key',
-        description: 'Schakelt de escape-key uit.',
+        description: 'Schakelt de escape-key uit.<br>Dit attribuut is niet reactief.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: mapArgs.disableEscape },
         },
     },
     disableRotation: {
         name: 'data-vl-disable-rotation',
-        description: 'Schakelt het roteren van de map uit.',
+        description: 'Schakelt het roteren van de map uit.<br>Dit attribuut is niet reactief.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: mapArgs.disableRotation },
         },
     },
     disableMousewheelZoom: {
         name: 'data-vl-disable-mouse-wheel-zoom',
-        description: 'Schakelt het zoomen van de map via het muiswiel uit.',
+        description: 'Schakelt het zoomen van de map via het muiswiel uit.<br>Dit attribuut is niet reactief.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: mapArgs.disableMousewheelZoom },
         },
     },
     disableKeyboard: {
         name: 'data-vl-disable-keyboard',
-        description: 'Schakelt de keyboard input uit voor de map.',
+        description: 'Schakelt de keyboard input uit voor de map.<br>Dit attribuut is niet reactief.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: mapArgs.disableKeyboard },
         },
     },
     fullHeight: {
@@ -68,7 +69,7 @@ export const mapArgTypes: ArgTypes<typeof mapArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: mapArgs.fullHeight },
         },
     },
     noBorder: {
@@ -77,20 +78,20 @@ export const mapArgTypes: ArgTypes<typeof mapArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: mapArgs.noBorder },
         },
     },
     activeActionChange: {
         name: EVENT.ACTIVE_ACTION_CHANGED,
-        description: 'Afgevuurd als de huidige actieve actie verandert.',
+        description: 'Afgevuurd als de actieve map-actie verandert.',
         table: {
-            type: { summary: '{ previous: VlMapAction, current: VlMapAction }' },
+            type: { summary: '{ previous?: VlMapAction, current?: VlMapAction }' },
             category: CATEGORIES.EVENTS,
         },
     },
     layerVisibleChange: {
         name: EVENT.LAYER_VISIBLE_CHANGED,
-        description: 'Afgevuurd als de visible state van een layer verandert.',
+        description: 'Afgevuurd als de visible state van een map-layer verandert.',
         table: {
             type: { summary: '{ layer: VlMapLayer, visible: boolean }' },
             category: CATEGORIES.EVENTS,

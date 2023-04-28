@@ -2,9 +2,9 @@ import { VlMap, VlMapFeaturesLayer, VlMapLayerSwitcher, VlMapSideSheet } from '@
 import { runTestFor } from '../../../support/utils';
 
 const mapLayerSwitcherSpecialised =
-    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--layer-switcher-specialised-options&viewMode=story';
+    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--map-layer-switcher-specialised-options&viewMode=story';
 const mapLayerSwitcherDynamic =
-    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--layer-switcher-dynamic&viewMode=story';
+    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--map-layer-switcher-dynamic&viewMode=story';
 
 const shouldHaveVisibleLayerFor = (layerName: string): void => {
     runTestFor<VlMapFeaturesLayer>(`vl-map-features-layer[data-vl-name="${layerName}"]`, (component) => {

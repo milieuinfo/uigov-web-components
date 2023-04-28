@@ -1,0 +1,42 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Map Layer Style
+
+Gebruik het `map-layer-style` component om een [features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default) of een [wfs-layer](/docs/map-layer-vector-layer-wfs-layer--map-wfs-layer-default) te stylen.<br/>
+**Let op**: Bij gebruik van de [map-legend](/docs/map-legend--map-legend-features-layer-multiple-styles) worden de attributen niet reactief toegepast op de legende.
+
+## Voorbeeld
+
+```js
+import { VlMapLayerStyle } from '@domg-wc/map';
+```
+
+```html
+<vl-map-layer-style></vl-map-layer-style>
+```
+
+<DocsStory id="map-layer-style--map-layer-style-default" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Varianten
+
+### Met tekst
+
+<DocsStory id="map-layer-style--map-layer-style-text" />
+
+### Met legende
+
+<DocsStory id="map-layer-style--map-layer-style-legend" />
+
+## Referenties
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/custom-elements-vl-map-vl-map-layer-style--default
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapLayerStyle.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-layer-style.html

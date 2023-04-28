@@ -3,4 +3,5 @@ import theme from './voTheme';
 
 addons.setConfig({
     theme,
+    enableShortcuts: false,
 });

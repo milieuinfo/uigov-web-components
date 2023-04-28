@@ -1,21 +1,21 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 import { ArgTypes } from '@storybook/web-components';
 
-export const actionControlArgs = {
-    actionId: 'measure-action',
-    icon: 'ruler',
-    label: 'Meten',
+export const mapActionControlArgs = {
+    actionId: '',
+    icon: '',
+    label: '',
 };
 
-export const actionControlArgTypes: ArgTypes<typeof actionControlArgs> = {
+export const mapActionControlArgTypes: ArgTypes<typeof mapActionControlArgs> = {
     actionId: {
         name: 'data-vl-action-id',
         description:
-            'Het id van de actie die gelinkt is aan deze action-control.<br>Houd dit in sync met het id attribuut dat je op de actie plaatst.',
+            'Het id van de actie die gelinkt is aan deze map-action-control.<br>Houd dit in sync met het id attribuut dat je op de actie plaatst.',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: mapActionControlArgs.actionId },
         },
     },
     icon: {
@@ -24,7 +24,7 @@ export const actionControlArgTypes: ArgTypes<typeof actionControlArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: mapActionControlArgs.icon },
         },
     },
     label: {
@@ -33,7 +33,7 @@ export const actionControlArgTypes: ArgTypes<typeof actionControlArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: mapActionControlArgs.label },
         },
     },
 };

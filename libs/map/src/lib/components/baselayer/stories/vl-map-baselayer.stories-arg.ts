@@ -1,51 +1,59 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { ArgTypes } from '@storybook/web-components';
 
-export const baselayerArgs = {
-    type: 'wmts',
-    url: '',
+export const mapBaselayerArgs = {
+    backgroundLayer: false,
     layer: '',
     title: '',
+    type: '',
+    url: '',
 };
 
-// to do: remove attributes at preset baselayers docs, add story for custom baselayer with custom attributes
-export const baselayerArgTypes = {
-    type: {
-        name: 'data-vl-type',
-        type: 'select',
-        options: ['wmts', 'wfs'],
-        description: 'Attribuut wordt gebruikt om aan te geven wat het type is van de kaartlaag.',
-        table: { category: CATEGORIES.ATTRIBUTES, type: { summary: 'string' }, defaultValue: { summary: '' } },
-        control: { disable: true },
-    },
-    url: {
-        name: 'data-vl-url',
-        type: { summary: TYPES.STRING },
-        description: 'Attribuut geeft aan via welke URL gebruikt wordt om de kaartlaag op te halen.',
+export const mapBaselayerArgTypes: ArgTypes<typeof mapBaselayerArgs> = {
+    backgroundLayer: {
+        name: 'data-vl-background-layer',
+        description:
+            'Geeft de gekozen base-layer een achtergrond-laag.<br>Dit zal kaartlagen tonen van het Nationaal Geografisch Instituut.<br>Voor meer info [zie hier](https://www.ngi.be/website/aanbod/digitale-geodata/cartoweb-be/).<br>Dit attribuut is niet reactief.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: mapBaselayerArgs.backgroundLayer },
         },
-        control: { disable: true },
     },
     layer: {
         name: 'data-vl-layer',
-        type: { summary: TYPES.STRING },
-        description: 'Attribuut geeft aan wat de kaartlaag identifier is.',
-        table: { category: CATEGORIES.ATTRIBUTES, defaultValue: { summary: '' } },
-        control: { disable: true },
+        description: 'De identifier van de kaartlaag.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+        },
     },
     title: {
         name: 'data-vl-title',
-        type: { summary: TYPES.STRING },
-        description: 'Attribuut bepaalt de titel van de kaartlaag.',
-        table: { category: CATEGORIES.ATTRIBUTES, defaultValue: { summary: '' } },
-        control: { disable: true },
+        description: 'De titel van de kaartlaag.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+        },
     },
-    backgroundLayer: {
-        name: 'data-vl-background-layer',
-        type: { summary: TYPES.BOOLEAN },
-        description:
-            'Geeft de gekozen base-layer een achtergrond-laag. Dit zal kaartlagen    tonen van het Nationaal Geografisch Instituut. Voor meer info [zie hier](https://www.ngi.be/website/aanbod/digitale-geodata/cartoweb-be/)',
-        table: { category: CATEGORIES.ATTRIBUTES, defaultValue: { summary: false } },
+    type: {
+        name: 'data-vl-type',
+        description: 'Het type van de kaartlaag.<br>Dit attribuut is niet reactief.',
+        control: {
+            type: 'select',
+            options: ['wmts', 'wfs'],
+        },
+        table: {
+            type: { summary: 'wmts | wfs' },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    url: {
+        name: 'data-vl-url',
+        description: 'De URL die gebruikt wordt om de kaartlaag op te halen.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+        },
     },
 };

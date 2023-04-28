@@ -5,7 +5,7 @@ import { VlMap } from '../../../vl-map';
 import { VlMapClickAction } from '../../../components/action/click-action/vl-map-click-action';
 import { MapBrowserEvent } from 'ol';
 import Overlay from 'ol/Overlay';
-import { VlMapClickedEvent } from '../VlMapClickedEvent';
+import { VlMapClickedEvent } from './VlMapClickedEvent';
 
 const clickActionFixture = async () =>
     fixture(html`

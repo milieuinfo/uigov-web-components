@@ -1,4 +1,6 @@
-import { VlMap, VlMapLayer, VlMapLayerSwitcher } from '@domg-wc/map';
+import { VlMap } from '../../../vl-map';
+import { VlMapLayer } from '../../layer/vl-map-layer';
+import { VlMapLayerSwitcher } from '../vl-map-layer-switcher';
 
 /**
  * voegt een nieuwe map layer to aan de `vl-map`
@@ -25,11 +27,9 @@ export const dynamicLayerSwitcherImplementation = () => {
     const vlMapSelector = 'vl-map#map-dynamic-layers';
     const vlMapSideSheetSelector = 'vl-map-side-sheet#dynamic-layer-switcher';
 
-    let mapWrapper: VlMap & Element;
     let mapSideSheet;
 
     customElements.whenDefined('vl-map').then(() => {
-        mapWrapper = document.querySelector(vlMapSelector);
         mapSideSheet = document.querySelector(vlMapSideSheetSelector);
     });
 
