@@ -24,8 +24,8 @@
     text-transform: none
 }
 
-.js-vl-select[data-type*=multiple] .vl-pill__close::before {
-    content: ""
+.js-vl-select[data-type*=multiple] .vl-pill__close {
+    @include vi-cross;
 }
 
 .js-vl-select[data-type*=multiple] .vl-pill__close:hover,
