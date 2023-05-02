@@ -9,3 +9,7 @@ $vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-fon
 
 // @govflanders component styles
 @import '@govflanders/vl-ui-radio/src/scss/radio';
+
+.vl-radio--disabled .vl-radio__toggle:checked + .vl-radio__label::before {
+    background-color: #fff;
+}
