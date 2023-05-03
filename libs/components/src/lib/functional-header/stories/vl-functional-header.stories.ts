@@ -1,113 +1,122 @@
-import { html, nothing } from 'lit-html';
+import { html } from 'lit-html';
 import '../vl-functional-header.component';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import functionalHeaderDoc from './vl-functional-header.stories-doc.mdx';
 import { functionalHeaderArgs, functionalHeaderArgTypes } from './vl-functional-header.stories-arg';
-import { filterOutClasses, formatHTML } from '@domg-wc/common-utilities';
+import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setActiveTab } from './vl-functional-header.stories-util';
 
 export default {
     title: 'Components/functional-header',
+    args: functionalHeaderArgs,
     argTypes: functionalHeaderArgTypes,
     parameters: {
         docs: {
             page: functionalHeaderDoc,
-            transformSource: (input: string) => {
-                return formatHTML(filterOutClasses(input));
-            },
+            transformSource: (input: string) => formatHTML(filterOutClasses(input)),
         },
     },
 } as Meta<typeof functionalHeaderArgs>;
 
-const Template: StoryFn<typeof functionalHeaderArgs> = ({
-    back,
-    backLink,
-    disableBackLink,
-    fullWidth,
-    link,
-    marginBottom,
-    subTitle,
-    title,
-    actionsSlot,
-    backSlot,
-    backLinkSlot,
-    subHeaderSlot,
-    subTitleSlot,
-    titleSlot,
-    topLeftSlot,
-    topRightSlot,
-    onClickBack,
-}) => html`
-    <vl-functional-header
-        data-vl-back=${back || nothing}
-        data-vl-back-link=${backLink || nothing}
-        ?data-vl-disable-back-link=${disableBackLink}
-        ?data-vl-full-width=${fullWidth}
-        data-vl-link=${link || nothing}
-        data-vl-margin-bottom=${marginBottom !== 'large' ? marginBottom : nothing}
-        data-vl-sub-title=${subTitle || nothing}
-        data-vl-title=${title || nothing}
-        @vl-click-back=${onClickBack}
-    >
-        ${unsafeHTML(actionsSlot)}${unsafeHTML(backSlot)}${unsafeHTML(backLinkSlot)}${unsafeHTML(subHeaderSlot)}
-        ${unsafeHTML(subTitleSlot)}${unsafeHTML(titleSlot)}${unsafeHTML(topLeftSlot)}${unsafeHTML(topRightSlot)}
-    </vl-functional-header>
-`;
+const Template: StoryFn<typeof functionalHeaderArgs> = (args) => {
+    const {
+        back,
+        backLink,
+        disableBackLink,
+        fullWidth,
+        link,
+        marginBottom,
+        subTitle,
+        title,
+        actionsSlot,
+        backSlot,
+        backLinkSlot,
+        subHeaderSlot,
+        subTitleSlot,
+        titleSlot,
+        topLeftSlot,
+        topRightSlot,
+        onClickBack,
+    } = setDefaultArgsToNothing(args, functionalHeaderArgs);
+
+    return html`
+        <vl-functional-header
+            data-vl-back=${back}
+            data-vl-back-link=${backLink}
+            ?data-vl-disable-back-link=${disableBackLink}
+            ?data-vl-full-width=${fullWidth}
+            data-vl-link=${link}
+            data-vl-margin-bottom=${marginBottom}
+            data-vl-sub-title=${subTitle}
+            data-vl-title=${title}
+            @vl-click-back=${onClickBack}
+        >
+            ${unsafeHTML(actionsSlot)}${unsafeHTML(backSlot)}${unsafeHTML(backLinkSlot)}${unsafeHTML(subHeaderSlot)}
+            ${unsafeHTML(subTitleSlot)}${unsafeHTML(titleSlot)}${unsafeHTML(topLeftSlot)}${unsafeHTML(topRightSlot)}
+        </vl-functional-header>
+    `;
+};
 
 export const FunctionalHeaderDefault = Template.bind({});
 FunctionalHeaderDefault.storyName = 'vl-functional-header - default';
 FunctionalHeaderDefault.args = {
-    back: functionalHeaderArgs.back,
-    backLink: functionalHeaderArgs.backLink,
-    disableBackLink: functionalHeaderArgs.disableBackLink,
-    fullWidth: functionalHeaderArgs.fullWidth,
-    link: functionalHeaderArgs.link,
-    marginBottom: functionalHeaderArgs.marginBottom,
-    subTitle: functionalHeaderArgs.subTitle,
-    title: functionalHeaderArgs.title,
-    // Zet actionsSlot op 'nothing' zodat de volgorde van de categorieën blijft behouden.
-    // @ts-ignore: Negeer de type-check van actionsSlot.
-    actionsSlot: nothing,
-    onClickBack: functionalHeaderArgs.onClickBack,
+    ...functionalHeaderArgs,
+    subTitle: 'Voor lager, middelbaar en hoger onderwijs',
+    title: 'School- en studietoelagen',
 };
 
 export const FunctionalHeaderActions = Template.bind({});
 FunctionalHeaderActions.storyName = 'vl-functional-header - actions';
 FunctionalHeaderActions.args = {
-    back: functionalHeaderArgs.back,
-    backLink: functionalHeaderArgs.backLink,
-    disableBackLink: functionalHeaderArgs.disableBackLink,
-    fullWidth: functionalHeaderArgs.fullWidth,
-    link: functionalHeaderArgs.link,
-    marginBottom: functionalHeaderArgs.marginBottom,
-    subTitle: functionalHeaderArgs.subTitle,
-    title: functionalHeaderArgs.title,
-    actionsSlot: functionalHeaderArgs.actionsSlot,
-    onClickBack: functionalHeaderArgs.onClickBack,
-};
-
-export const FunctionalHeaderTabs = Template.bind({});
-FunctionalHeaderTabs.storyName = 'vl-functional-header - tabs';
-FunctionalHeaderTabs.args = {
-    title: functionalHeaderArgs.title,
-    fullWidth: functionalHeaderArgs.fullWidth,
-    marginBottom: functionalHeaderArgs.marginBottom,
-    subHeaderSlot: `<vl-tabs slot="sub-header" data-vl-disable-links data-vl-within-functional-header data-vl-active-tab="trein">
-            <vl-tabs-pane data-vl-id="trein" data-vl-title="Trein"></vl-tabs-pane>
-            <vl-tabs-pane data-vl-id="metro" data-vl-title="Metro, tram en bus"></vl-tabs-pane>
-            <vl-tabs-pane data-vl-id="fiets" data-vl-title="Fiets"></vl-tabs-pane>
-        </vl-tabs>`,
+    ...functionalHeaderArgs,
+    subTitle: 'Voor lager, middelbaar en hoger onderwijs',
+    title: 'School- en studietoelagen',
+    actionsSlot: `<div slot="actions">
+        <a href="#">Actie 1</a>
+        <a href="#">Actie 2</a>
+    </div>`,
 };
 
 export const FunctionalHeaderSlots = Template.bind({});
 FunctionalHeaderSlots.storyName = 'vl-functional-header - slots';
 FunctionalHeaderSlots.args = {
     ...functionalHeaderArgs,
-    back: '',
-    backLink: '',
-    disableBackLink: false,
-    link: '',
-    subTitle: '',
-    title: '',
-    actionsSlot: '',
+    backSlot: '<span slot="back">Terug</span>',
+    backLinkSlot: '<a slot="back-link" href="#">Terug</a>',
+    subHeaderSlot: '<span slot="sub-header">Sub header content</span>',
+    subTitleSlot: '<span slot="sub-title">Voor lager, middelbaar en hoger onderwijs</span>',
+    titleSlot: '<span slot="title">School- en studietoelagen</span>',
+    topLeftSlot: '<span slot="top-left">Linkerbovenhoek content</span>',
+    topRightSlot: '<span slot="top-right">Rechterbovenhoek content</span>',
+};
+
+export const FunctionalHeaderTabs: StoryFn<typeof functionalHeaderArgs> = (args) => {
+    const { fullWidth, marginBottom, title, link } = setDefaultArgsToNothing(args, functionalHeaderArgs);
+
+    return html`
+        <vl-functional-header
+            ?data-vl-full-width=${fullWidth}
+            data-vl-link=${link}
+            data-vl-margin-bottom=${marginBottom}
+            data-vl-title=${title}
+        >
+            <vl-tabs
+                slot="sub-header"
+                data-vl-disable-links
+                data-vl-within-functional-header
+                data-vl-active-tab="trein"
+                @change=${(event: CustomEvent) => setActiveTab(event.detail.activeTab)}
+            >
+                <vl-tabs-pane data-vl-id="trein" data-vl-title="Trein"></vl-tabs-pane>
+                <vl-tabs-pane data-vl-id="metro" data-vl-title="Metro, tram en bus"></vl-tabs-pane>
+                <vl-tabs-pane data-vl-id="fiets" data-vl-title="Fiets"></vl-tabs-pane>
+            </vl-tabs>
+        </vl-functional-header>
+    `;
+};
+FunctionalHeaderTabs.storyName = 'vl-functional-header - tabs';
+FunctionalHeaderTabs.args = {
+    ...functionalHeaderArgs,
+    title: 'School- en studietoelagen',
 };

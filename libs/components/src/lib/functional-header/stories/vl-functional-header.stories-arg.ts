@@ -3,25 +3,22 @@ import { ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 
 export const functionalHeaderArgs = {
-    back: '',
-    backLink: '',
+    back: 'Terug',
+    backLink: 'document.referrer',
     disableBackLink: false,
     fullWidth: false,
-    link: '#',
+    link: '',
     marginBottom: 'large',
-    subTitle: 'Voor lager, middelbaar en hoger onderwijs',
-    title: 'School- en studietoelagen',
-    actionsSlot: `<div slot="actions">
-    <a href="#">Actie 1</a>
-    <a href="#">Actie 2</a>
-</div>`,
-    backSlot: '<span slot="back">Terug</span>',
-    backLinkSlot: '<a slot="back-link" href="#">Terug</a>',
-    subHeaderSlot: '<span slot="sub-header">Sub header content</span>',
-    subTitleSlot: '<span slot="sub-title">Voor lager, middelbaar en hoger onderwijs</span>',
-    titleSlot: '<span slot="title">School- en studietoelagen</span>',
-    topLeftSlot: '<span slot="top-left">Linkerbovenhoek content</span>',
-    topRightSlot: '<span slot="top-right">Rechterbovenhoek content</span>',
+    subTitle: '',
+    title: '',
+    actionsSlot: '',
+    backSlot: '',
+    backLinkSlot: '',
+    subHeaderSlot: '',
+    subTitleSlot: '',
+    titleSlot: '',
+    topLeftSlot: '',
+    topRightSlot: '',
     onClickBack: action('vl-click-back'),
 };
 
@@ -32,7 +29,7 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '"Terug"' },
+            defaultValue: { summary: functionalHeaderArgs.back },
         },
     },
     backLink: {
@@ -41,7 +38,7 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
         table: {
             type: { summary: TYPES.URL },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 'document.referrer' },
+            defaultValue: { summary: functionalHeaderArgs.backLink },
         },
     },
     disableBackLink: {
@@ -50,7 +47,7 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: functionalHeaderArgs.disableBackLink },
         },
     },
     fullWidth: {
@@ -59,7 +56,7 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: functionalHeaderArgs.fullWidth },
         },
     },
     link: {
@@ -68,6 +65,7 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
         table: {
             type: { summary: TYPES.URL },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: functionalHeaderArgs.link },
         },
     },
     marginBottom: {
@@ -82,7 +80,7 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
                 summary: Object.keys(MARGINS),
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 'large' },
+            defaultValue: { summary: functionalHeaderArgs.marginBottom },
         },
     },
     subTitle: {
@@ -91,6 +89,7 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: functionalHeaderArgs.subTitle },
         },
     },
     title: {
@@ -99,6 +98,7 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: functionalHeaderArgs.title },
         },
     },
     actionsSlot: {

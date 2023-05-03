@@ -1,3 +1,4 @@
+import { nothing } from 'lit';
 import * as prettier from 'prettier/standalone';
 import * as prettierBabel from 'prettier/parser-babel';
 
@@ -42,4 +43,23 @@ export const formatHTML = (input: string) => {
         // Geeft de originele input terug als het formatteren mislukt is.
         return input;
     }
+};
+
+// Gebruik deze functie om de args van een story die overeenkomen met de default args van een component
+// om te zetten naar 'nothing', zodat deze args niet meegegeven worden aan het compoenent en niet getoond worden in de source code op de docs.
+export const setDefaultArgsToNothing = <T extends object>(args: T, defaultArgs: T) => {
+    return Object.keys(args).reduce((result, key) => {
+        const value = (args as any)[key];
+        const defaultValue = (defaultArgs as any)[key];
+
+        if (typeof value === 'function') {
+            // Bij een event arg is de value van het type 'function', geef hier altijd de value terug.
+            (result as any)[key] = value;
+        } else {
+            // Geef de value terug indien deze verschilt van de defaultValue, anders geef 'nothing' terug.
+            (result as any)[key] = value !== defaultValue ? value : nothing;
+        }
+
+        return result;
+    }, {} as T);
 };

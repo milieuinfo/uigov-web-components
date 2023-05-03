@@ -1,8 +1,9 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY, Story, Canvas } from '@storybook/addon-docs';
+import { ArgsTable, DocsStory, PRIMARY_STORY, Story, Canvas, Source } from '@storybook/addon-docs';
+import tabsStoryUtils from '!raw-loader!./vl-tabs.stories-util';
 
 # Tabs
 
-Gebruik tabs om gerelateerde informatie op te splitsen in kleinere stukken content.  
+Gebruik het `tabs` component om gerelateerde informatie op te splitsen in kleinere stukken content.  
 Op mobiel wordt de tab navigatie omgevormd tot een uitklapbaar menu.
 
 ## Voorbeeld
@@ -25,9 +26,16 @@ import { VlTabsComponent } from '@domg-wc/components';
 
 ### Dynamisch
 
+Zie de code onder de story voor het volledige voorbeeld.
+
 <Canvas>
     <Story id="components-tabs--tabs-dynamic" inline={false} height={200} />
 </Canvas>
+
+<details>
+    <summary>TypeScript code</summary>
+    <Source code={tabsStoryUtils} language="ts" dark={true} />
+</details>
 
 ## Referenties
 
