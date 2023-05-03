@@ -1,8 +1,9 @@
 import { ArgsTable, DocsStory, PRIMARY_STORY, Source } from '@storybook/addon-docs';
+import functionalHeaderStoryUtils from '!raw-loader!./vl-functional-header.stories-util';
 
 # Functional Header
 
-Toont bovenaan de pagina generieke informatie zonder af te leiden zoals bijvoorbeeld titel en acties.
+Gebruik het `functional-header` component om bovenaan de pagina generieke informatie te tonen zoals bijvoorbeeld titel en acties.
 
 ## Voorbeeld
 
@@ -26,18 +27,22 @@ import { VlFunctionalHeaderComponent } from '@domg-lib/components';
 
 <DocsStory id="components-functional-header--functional-header-actions" />
 
-### Met tabs
-
-Je kan de `vl-tabs` gebruiken in het sub-header slot om tabs af te beelden binnen de functional header.  
-Het klikken op een tab vuurt enkel een event af en past de actieve tab niet aan, hiervoor moet je het attribuut `data-vl-active-tab` aanpassen.
-
-Voor meer informatie zie het [tabs](/story/components-tabs--tabs-default) component.
-
-<DocsStory id="components-functional-header--functional-header-tabs" />
-
 ### Met slots
 
 <DocsStory id="components-functional-header--functional-header-slots" />
+
+### Met tabs
+
+Gebruik het [vl-tabs](/docs/components-tabs--tabs-default) component in het sub-header slot om tabs af te beelden binnen de `functional-header`.<br/>
+Het klikken op een tab vuurt enkel een event af en past de actieve tab niet aan, hiervoor moet je het attribuut `data-vl-active-tab` aanpassen.<br/>
+Zie de code onder de story voor het volledige voorbeeld.
+
+<DocsStory id="components-functional-header--functional-header-tabs" />
+
+<details>
+    <summary>TypeScript code</summary>
+    <Source code={functionalHeaderStoryUtils} language="ts" dark={true} />
+</details>
 
 ## Referenties
 

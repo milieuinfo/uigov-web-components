@@ -174,10 +174,18 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
 
     async _activeTabChangedCallback(oldValue: string, newValue: string) {
         await this.ready();
-        const tab = [...this.__tabList.children].find((tab) => tab.id == newValue);
-        if (tab && !tab.isActive) {
-            tab.activate();
-        }
+        [...this.__tabList.children].forEach((tab) => {
+            if (!tab) return;
+
+            if (tab.id == newValue) {
+                if (!tab.isActive) {
+                    tab.activate();
+                    tab.setActiveClass();
+                }
+            } else {
+                tab.removeActiveClass();
+            }
+        });
     }
 
     _withinFunctionalHeaderChangedCallback(oldValue: string, newValue: string) {

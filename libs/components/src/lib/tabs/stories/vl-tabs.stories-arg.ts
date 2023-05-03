@@ -3,9 +3,9 @@ import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 
 export const tabsArgs = {
-    activeTab: 'trein',
-    disableLinks: true,
+    activeTab: '',
     alt: false,
+    disableLinks: false,
     responsiveLabel: false,
     onChangeActiveTab: action('change'),
 };
@@ -13,11 +13,11 @@ export const tabsArgs = {
 export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {
     activeTab: {
         name: 'data-vl-active-tab',
-        description:
-            'Het id van de actieve tab. De tab in kwestie wordt geselecteerd bij het aanpassen van dit id.<br>De default story gebruikt de volgende 3 ids:<br>• trein<br>• metro<br>• fiets',
+        description: 'Het id van de actieve tab. De tab in kwestie wordt geselecteerd bij het aanpassen van dit id.',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: tabsArgs.activeTab },
         },
     },
     alt: {
@@ -27,7 +27,7 @@ export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: tabsArgs.alt },
         },
     },
     disableLinks: {
@@ -37,7 +37,7 @@ export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: tabsArgs.disableLinks },
         },
     },
     responsiveLabel: {
@@ -47,7 +47,7 @@ export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: tabsArgs.responsiveLabel },
         },
     },
     onChangeActiveTab: {
