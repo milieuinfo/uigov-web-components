@@ -153,7 +153,6 @@ export const toggleButtonArgTypes = {
     ...sharedButtonArgTypes,
     error: {
         ...sharedButtonArgTypes.error,
-        description:
-            'Used to emphasize the importance or consequences of an action when the toggle button is in an active state.',
+        description: 'Used to emphasize the importance or consequences of an action.',
     },
 };

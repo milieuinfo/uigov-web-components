@@ -151,7 +151,7 @@ export class VlToggleButtonComponent extends LitElement {
                 is="vl-button"
                 aria-label="toggle-button"
                 part="button template"
-                ?data-vl-error=${this._active && this.error}
+                ?data-vl-error=${this.error}
                 ?data-vl-block=${this.block}
                 ?data-vl-large=${this.large}
                 ?data-vl-wide=${this.wide}
