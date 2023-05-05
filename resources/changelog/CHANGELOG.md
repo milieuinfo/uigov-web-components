@@ -1,3 +1,23 @@
+# [1.6.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.5.0...v1.6.0) (2023-05-05)
+
+
+### Bug Fixes
+
+* UIG-2419 - vl-toggle-button - kan nu ook error status tonen zonder actief te zijn ([aaeafb0](https://github.com/milieuinfo/uigov-web-components/commit/aaeafb0da81f73e0b83b6e6a29ecfa790fb40938))
+* UIG-2424 - vl-functional-header - tabs niet gedeactiveerd ([8f7a586](https://github.com/milieuinfo/uigov-web-components/commit/8f7a586ad6873003048021f205c0c0d827149504))
+* UIG-2425 - vl-multiselect foutief icoon ([1194d38](https://github.com/milieuinfo/uigov-web-components/commit/1194d387a93c226a204743bc3debeb74438d0f1c))
+* UIG-2450 - vl-radio foutieve styling disabled ([a9a5fbe](https://github.com/milieuinfo/uigov-web-components/commit/a9a5fbe5a81fe77d6e3f90db13ddf522b1ffe627))
+* vl-upload - in Storybook stond er een 0 te veel bij de upload grootte - 2000000 = 2MB ([8d7e956](https://github.com/milieuinfo/uigov-web-components/commit/8d7e956cdda9fabb2e1036d3eaca69048a281051))
+
+
+### Features
+
+* UIG-2286 - vl-side-navigation - uitbreiden met responsiveness ([1bf211a](https://github.com/milieuinfo/uigov-web-components/commit/1bf211a4894e20feceb44d33d3fb064247b5e6a8))
+* UIG-2358 - introductie vl-map-loading-indicator component ([43bf8c9](https://github.com/milieuinfo/uigov-web-components/commit/43bf8c9ae75361a748c31f11b0bd5965b17b2371))
+* UIG-2429 - vl-data-table - collapsed view styling ([cc3fbd2](https://github.com/milieuinfo/uigov-web-components/commit/cc3fbd22c96cd1703b0362d53c55a3cc05d0aa32))
+* UIG-2440 - vl-data-table - lege cellen ([87c94c3](https://github.com/milieuinfo/uigov-web-components/commit/87c94c39bdb894c859cc3a15e362870c7e406922))
+* UIG-2446 - vl-cookie-consent analytics uitbreiden voor Kruispuntbank Omgeving ([f0e65ac](https://github.com/milieuinfo/uigov-web-components/commit/f0e65ac5d5edebd1b4c834b846a3c1da05bc6724))
+
 # [1.5.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.4.0...v1.5.0) (2023-04-21)
 
 
