@@ -12,6 +12,10 @@ const styles: CSSResult = css`
         --vl-theme-fg-color-70: #707070;
     }
 
+    .vl-tab__link {
+        cursor: pointer;
+    }
+
     .vl-vi::before,
     .vl-vi::after {
         font-family: 'vlaanderen-icon' !important;
