@@ -55,23 +55,21 @@ export class VlTabComponent extends BaseElementOfType(HTMLLIElement) {
         const a = this.__linkElementTemplate.firstElementChild;
         const slot = this.querySelector('slot');
         a.appendChild(slot);
-        a.addEventListener('click', (event: Event) => this.__dispatchActiveTabChangedEvent(event));
+        a.addEventListener('click', () => this.__dispatchActiveTabChangedEvent());
         this.appendChild(a);
     }
 
-    __dispatchActiveTabChangedEvent(event: Event) {
-        if (this.hasAttribute('disable-link')) {
-            event.preventDefault();
-        }
-
+    __dispatchActiveTabChangedEvent() {
         if (!this.isActive) {
             this.dispatchEvent(new CustomEvent('change', { detail: { activeTab: this.id }, composed: true }));
         }
     }
 
     _hrefChangedCallback(oldValue: string, newValue: string) {
-        this.__linkElement.setAttribute('href', newValue);
-        this.__linkElement.setAttribute('aria-controls', `${newValue}-pane`);
+        if (!this.hasAttribute('disable-link')) {
+            this.__linkElement.setAttribute('href', newValue);
+            this.__linkElement.setAttribute('aria-controls', `${newValue}-pane`);
+        }
     }
 
     _idChangedCallback(oldValue: string, newValue: string) {
