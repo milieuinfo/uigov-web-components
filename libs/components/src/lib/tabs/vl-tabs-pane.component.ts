@@ -56,6 +56,16 @@ export class VlTabsPaneComponent extends BaseElementOfType(HTMLElement) {
         observer.observe(this.titleSlot, { childList: true, subtree: true, characterData: true });
         return observer;
     }
+
+    _titleChangedCallback(oldValue: string, newValue: string) {
+        if (this.hasAttribute('observe-title')) {
+            const tab = this.parentElement?.shadowRoot?.querySelector(`a.vl-tab__link#${this.id}`);
+
+            if (tab) {
+                tab.innerHTML = `<slot name="${this.id}-title-slot">${newValue}</slot>`;
+            }
+        }
+    }
 }
 
 declare global {
