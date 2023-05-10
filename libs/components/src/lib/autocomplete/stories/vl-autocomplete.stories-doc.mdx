@@ -1,0 +1,93 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY, Canvas, Story, Source } from '@storybook/addon-docs';
+import autocompleteApiImplementation from '!raw-loader!./vl-autocomplete-api.stories-util';
+import autocompleteMockedApiImplementation from '!raw-loader!./vl-autocomplete-mocked-api.stories-util';
+
+# Autocomplete
+
+Gebruik het `autocomplete` component om om een lijst met suggesties weer te geven, gefilterd op de ingevoerde tekst. De lijst kan een statische lijst zijn (`data-vl-static-list`) of kan worden opgehaald uit een api (dataFetcher).
+
+## Voorbeeld
+
+```js
+import { VlAutocomplete } from '@domg-wc/components';
+```
+
+```html
+<vl-autocomplete></vl-autocomplete>
+```
+
+<DocsStory id="components-autocomplete--autocomplete-default" />
+
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Varianten
+
+### Suggesties groeperen per subtitle
+
+
+<DocsStory id="components-autocomplete--autocomplete-group-by-subtitle" />
+
+
+### Voorbeeld met location API
+
+Om te werken met een API, luister je naar `search`-event die opgeworpen wordt wanneer de gebruiker begint te typen.
+Dan kan je op basis daarvan `.matches` instellen van `autocomplete`-component om de suggesties te tonen.
+
+Zie onderstaande code voorbeeld.
+
+<DocsStory id="components-autocomplete--autocomplete-input-and-api-call" />
+
+
+<details>
+    <summary>code voorbeeld met location API</summary>
+    <Source code={autocompleteApiImplementation} language="ts" dark={true} />
+</details>
+
+### Voorbeeld met mocked API call
+
+Typ "Drab" om een van de mocked resultaten te zien.
+Je kan deze manier van werken gebruiken als de suggesties een onveranderlijke lijst zijn.
+
+Gelijkaardig aan bovenstaande voorbeeld, kan je `.matches` instellen om de suggesties voor gebruiker in te stellen op basis van de input.
+
+Zie onderstaande code voorbeeld.
+
+<DocsStory id="components-autocomplete--autocomplete-input-and-mocked-api-call" />
+
+
+<details>
+    <summary>code voorbeeld voor mocked API</summary>
+    <Source code={autocompleteMockedApiImplementation} language="ts" dark={true} />
+</details>
+
+### Zonder suggesties voor autocomplete
+
+Als je `autocomplete` wil gebruiken zonder suggesties kan je `.items`-array weglaten.
+Echter in dit geval zal bij input de loading indicator blijven staan gezien die verwacht dat er een lijst van suggesties komt.
+
+Je kan hiervoor ofwel:
+- altijd de loading indicator afzetten door `disable-loading` attribuut in te stellen
+- `.matches` property van het component gelijkstellen aan een lege array (`[]`), dezelfde manier waarop resultaten van een API call worden ingeladen. Dan wordt de loading indicator niet langer getoond.
+
+<DocsStory id="components-autocomplete--autocomplete-without-suggestions" />
+
+
+### Voorbeeld in een side-sheet
+
+<Canvas>
+    <Story id="components-autocomplete--autocomplete-in-side-sheet" inline={false}  height={400} />
+</Canvas>
+
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/js-components/vl-ui-autocomplete/
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/custom-elements-vl-autocomplete--default
