@@ -11,6 +11,7 @@ export const CATEGORIES = {
 } as const;
 
 export const TYPES = {
+    ARRAY: 'array',
     BOOLEAN: 'boolean',
     STRING: 'string',
     NUMBER: 'number',

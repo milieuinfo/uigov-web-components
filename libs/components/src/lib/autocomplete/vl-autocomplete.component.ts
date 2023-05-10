@@ -51,12 +51,14 @@ export class VlAutocomplete extends LitElement {
             noMatchesText: { type: String, attribute: 'data-vl-no-matches-text', reflect: true },
             labelSmall: { type: Boolean, attribute: 'data-vl-label-small', reflect: true },
             clearTooltip: { type: String, attribute: 'data-vl-clear-tooltip', reflect: true },
+            disableLoading: { type: Boolean, attribute: 'data-vl-disable-loading', reflect: true },
         };
     }
 
     private initialised: boolean;
     private initialValue: string;
     private showClear: boolean;
+    private disableLoading: boolean;
     private label: any; // string ?
     private noMatchesText: string;
     private minChars = 0;
@@ -72,22 +74,22 @@ export class VlAutocomplete extends LitElement {
     private clearTooltip = '';
     private labelSmall = '';
 
-    private _inputEl: any;
+    private _inputEl: HTMLInputElement | null;
     private _eventReferences: any;
     private _matches: any;
     private _groupedMatches: any;
-    private _suggestionEl: any;
+    private _suggestionEl: HTMLElement | null;
     private _highlightedEl: any;
-    private _blur: any;
-    private _mouseEnter: any;
+    private _blur = false;
+    private _mouseEnter = false;
 
-    get contentElement() {
+    get contentElement(): HTMLInputElement | null {
         if (this._inputEl) {
             return this._inputEl;
         }
 
         if (this.shadowRoot) {
-            this._inputEl = this.shadowRoot.getElementById(this.defaultInputId);
+            this._inputEl = this.shadowRoot.getElementById(this.defaultInputId) as unknown as HTMLInputElement;
             return this._inputEl;
         }
 
@@ -117,9 +119,14 @@ export class VlAutocomplete extends LitElement {
 
         this.initialValue = '';
 
+        this._inputEl = null;
+        this._highlightedEl = null;
+        this._suggestionEl = null;
+
         this.loading = false;
         this.opened = false;
         this.showClear = false;
+        this.disableLoading = false;
 
         this.maxSuggestions = DEFAULT_MAX_MATCHES;
         this.captionFormat = DEFAULT_CAPTION_FORMAT;
@@ -130,7 +137,7 @@ export class VlAutocomplete extends LitElement {
 
     firstUpdated() {
         this._suggestionEl = (this as any).shadowRoot.getElementById('suggestions');
-        this._suggestionEl.style.width = `100%`;
+        if (this._suggestionEl) this._suggestionEl.style.width = `100%`;
 
         this._eventReferences.onFocus = this._onFocus.bind(this);
         this._eventReferences.onBlur = this._onBlur.bind(this);
@@ -138,25 +145,29 @@ export class VlAutocomplete extends LitElement {
         this._eventReferences.onKeyDown = this._onKeyDown.bind(this);
         this._eventReferences.onKeyUp = this._onKeyUp.bind(this);
 
-        this.contentElement.addEventListener('focus', this._eventReferences.onFocus);
-        this.contentElement.addEventListener('blur', this._eventReferences.onBlur);
+        if (this.contentElement) {
+            this.contentElement.addEventListener('focus', this._eventReferences.onFocus);
+            this.contentElement.addEventListener('blur', this._eventReferences.onBlur);
 
-        this.contentElement.addEventListener('keydown', this._eventReferences.onKeyDown);
-        this.contentElement.addEventListener('keyup', this._eventReferences.onKeyUp);
+            this.contentElement.addEventListener('keydown', this._eventReferences.onKeyDown);
+            this.contentElement.addEventListener('keyup', this._eventReferences.onKeyUp);
+        }
     }
 
     updated(changed: PropertyValues) {
+        const { _suggestionEl } = this;
         if (
             (changed.has('opened') || changed.has('firstValidItemIndex')) &&
             this.opened &&
-            this._suggestionEl.childElementCount
+            _suggestionEl &&
+            _suggestionEl.childElementCount
         ) {
-            for (const item of this._suggestionEl.children) {
+            for (const item of _suggestionEl.children) {
                 item.classList.remove('vl-autocomplete__cta--focus');
             }
 
             if (this.firstValidItemIndex != null) {
-                this._highlightedEl = this._suggestionEl.children[this.firstValidItemIndex];
+                this._highlightedEl = _suggestionEl.children[this.firstValidItemIndex];
                 if (this._highlightedEl) this._highlightedEl.classList.add('vl-autocomplete__cta--focus');
             }
         }
@@ -312,8 +323,7 @@ export class VlAutocomplete extends LitElement {
     }
 
     suggest(suggestions: any) {
-        const { contentElement } = this;
-        const searchTerm = contentElement ? this.contentElement.value : null;
+        const searchTerm = this.contentElement ? this.contentElement.value : null;
 
         if (searchTerm && searchTerm.length >= this.minChars) {
             this._matches = suggestions || [];
@@ -391,7 +401,7 @@ export class VlAutocomplete extends LitElement {
     autocomplete(title: string, value: string) {
         if (value == null) return;
 
-        this.contentElement.value = title;
+        if (this.contentElement) this.contentElement.value = title;
 
         this.close();
 
@@ -412,8 +422,8 @@ export class VlAutocomplete extends LitElement {
         this.loading = true;
 
         try {
-            const searchTerm = this.contentElement.value;
-            if (searchTerm.length >= this.minChars) {
+            const searchTerm = this.contentElement && this.contentElement.value;
+            if (searchTerm && searchTerm.length >= this.minChars) {
                 if (this.items && this.items.length) {
                     this.filterAndSuggest(searchTerm, this.items);
                 } else {
@@ -434,7 +444,7 @@ export class VlAutocomplete extends LitElement {
     }
 
     _clear() {
-        this.contentElement.value = '';
+        if (this.contentElement) this.contentElement.value = '';
         this.suggest([]);
         const options = {
             bubbles: true,
@@ -492,7 +502,7 @@ export class VlAutocomplete extends LitElement {
                             ? 'ui-autocomplete__loader-with-clear'
                             : ''}"
                         aria-hidden="true"
-                        ?hidden=${!this.loading}
+                        ?hidden=${!this.loading || this.disableLoading}
                     ></div>
                     ${this._generateClear()}
                     <div
