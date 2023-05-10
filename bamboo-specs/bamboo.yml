@@ -1,0 +1,191 @@
+---
+version: 2
+plan:
+  project-key: UIGOV
+  key: CUWC
+  name: ci-uigov-web-components
+
+stages:
+  - Checkout, Install and Cache Stage:
+      jobs:
+        - checkout-install-and-cache
+  - Build and Test Stage:
+      jobs:
+        - build-apps-libs-and-storybook
+        - perform-all-unit-tests
+        - perform-all-web-tests
+        - e2e-tests-storybook-1
+        - e2e-tests-storybook-2
+        - e2e-tests-storybook-3
+        - e2e-tests-storybook-4
+        - e2e-tests-storybook-5
+        - e2e-tests-storybook-6
+  - Report, Release and Publish Stage:
+      jobs:
+        - report-e2e-tests-storybook
+        - release-and-publish
+
+checkout-install-and-cache:
+  requirements: &requirements
+    - Docker
+    - Git
+    - REMOTE_ONLY
+  tasks:
+    - clean
+    - script: |
+        # export variables
+        export secret_github_token=${bamboo.secret_github_token}
+        export test_token=${bamboo.test_token}
+        bash ./resources/ci/scripts/checkout-install-and-cache-docker.sh
+    - script: |
+        # move the folder './node_modules' to './node-modules-cache/node_modules'
+        # this is done so the artifact is shared (in other jobs) in the correct folder (Bamboo 7.2 limitation)
+        mkdir node-modules-cache
+        mv node_modules node-modules-cache
+  artifacts:
+    - name: node-modules-cache
+      location: node-modules-cache
+      pattern: '**/*.*'
+      required: true
+      shared: true
+
+build-apps-libs-and-storybook:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: bash ./resources/ci/scripts/build-apps-libs-and-storybook-docker.sh
+    - script: &dist-artifact |
+        # move the folder './dist' to './dist-artifact/dist'
+        # this is done so the artifact is shared (in other jobs) in the correct folder (Bamboo 7.2 limitation)
+        mkdir dist-artifact
+        mv dist dist-artifact
+  artifacts:
+    - name: dist-build-apps-libs-and-storybook
+      location: dist-artifact
+      pattern: '**/*.*'
+      shared: true
+
+# de unit testen genereren (nog) geen rapport - er is dus geen artifact
+perform-all-unit-tests:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: bash ./resources/ci/scripts/perform-all-unit-tests-docker.sh
+
+perform-all-web-tests:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: bash ./resources/ci/scripts/perform-all-web-tests-docker.sh
+    - script: *dist-artifact
+  artifacts:
+    - name: dist-perform-all-web-tests
+      location: dist-artifact
+      pattern: '**/*.*'
+
+e2e-tests-storybook-1:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 1
+    - script: *dist-artifact
+  artifacts:
+    - name: dist-e2e-tests-storybook-1
+      location: dist-artifact
+      pattern: '**/*.*'
+      shared: true
+
+e2e-tests-storybook-2:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 2
+    - script: *dist-artifact
+  artifacts:
+    - name: dist-e2e-tests-storybook-2
+      location: dist-artifact
+      pattern: '**/*.*'
+      shared: true
+
+e2e-tests-storybook-3:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 3
+    - script: *dist-artifact
+  artifacts:
+    - name: dist-e2e-tests-storybook-3
+      location: dist-artifact
+      pattern: '**/*.*'
+      shared: true
+
+e2e-tests-storybook-4:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 4
+    - script: *dist-artifact
+  artifacts:
+    - name: dist-e2e-tests-storybook-4
+      location: dist-artifact
+      pattern: '**/*.*'
+      shared: true
+
+e2e-tests-storybook-5:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 5
+    - script: *dist-artifact
+  artifacts:
+    - name: dist-e2e-tests-storybook-5
+      location: dist-artifact
+      pattern: '**/*.*'
+      shared: true
+
+e2e-tests-storybook-6:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 6
+    - script: *dist-artifact
+  artifacts:
+    - name: dist-e2e-tests-storybook-6
+      location: dist-artifact
+      pattern: '**/*.*'
+      shared: true
+
+report-e2e-tests-storybook:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: bash ./resources/ci/scripts/report-e2e-tests-storybook-docker.sh
+  artifacts:
+    - name: dist-report-e2e-tests-storybook
+      location: dist/cypress
+      pattern: '**/*.*'
+
+release-and-publish:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: |
+        # export variables
+        export secret_github_token=${bamboo.secret_github_token}
+        export test_token=${bamboo.test_token}
+        # boot the specific docker container
+        bash ./resources/ci/scripts/release-and-publish-docker.sh
+  artifacts:
+    - name: dist-release-and-publish
+      location: dist
+      pattern: '**/*.*'
+
+---
+version: 2
+plan:
+  key: UIGOV-CUWC
+
+plan-permissions:
+  - groups: developer-admin
+    permissions: build
+

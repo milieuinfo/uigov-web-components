@@ -27,7 +27,7 @@ jobs:
       - name: authenticate to acd-npm repository
         run: |
           echo "registry=https://repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/"  > ~/.npmrc
-          echo "//repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/:_authToken=${{ secrets.NPM_TOKEN_DOMG_ACD_NPM }}" >> ~/.npmrc
+          echo "//repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/:_authToken=${{ secrets.NPM_TOKEN_DOMG }}" >> ~/.npmrc
       - name: npm ci
         run: npm ci
         continue-on-error: false
@@ -226,9 +226,7 @@ jobs:
 
   release-and-publish:
     if:
-      false
-      # only publish bugfix and develop branches
-      # contains('refs/heads/bugfix, refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
+       contains('refs/heads/bugfix, refs/heads/develop, refs/heads/develop-apo, refs/heads/develop-dec, refs/heads/develop-olo, refs/heads/develop-phe, refs/heads/develop-uig', github.ref)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -255,13 +253,6 @@ jobs:
         run: |
           mv .releaserc-develop .releaserc
           npx semantic-release
-#      - name: release the release branch
-#        if: contains('refs/heads/release', github.ref)
-#        env:
-#          GH_TOKEN: ${{ secrets.PAT_UIG }}
-#        run: |
-#          mv .releaserc-release .releaserc
-#          npx semantic-release
       - name: get package version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@main
@@ -276,28 +267,22 @@ jobs:
           pagesSubPath=${{ github.ref_name }}
           echo using $pagesSubPath as pages_sub_path
           echo "pages_sub_path=$pagesSubPath" >> $GITHUB_ENV
-#      - name: build the pages_sub_path for the release branch
-#        if: contains('refs/heads/release', github.ref)
-#        run: |
-#          pagesSubPath=${{ github.ref_name }}/${{ env.nextRelease_version }}
-#          echo using $pagesSubPath as pages_sub_path
-#          echo "pages_sub_path=$pagesSubPath" >> $GITHUB_ENV
       - name: download artifacts
         uses: actions/download-artifact@v3
       - name: authenticate to local-npm repository
         run: |
           echo "registry=https://repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/"  > ~/.npmrc
           echo "//repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/:_authToken=${{ secrets.NPM_TOKEN_DOMG }}" > ~/.npmrc
-      - name: publish to npm
+      - name: pack the artifacts
         run: |
           cd dist-build-apps-libs-and-storybook/libs
           echo path: $(pwd)
-          cd ./common/utilities && npm version ${{ env.nextRelease_version }} && npm publish
-          cd ../../elements && npm version ${{ env.nextRelease_version }} && npm publish
-          cd ../components && npm version ${{ env.nextRelease_version }} && npm publish
-          cd ../sections && npm version ${{ env.nextRelease_version }} && npm publish
-          cd ../map && npm version ${{ env.nextRelease_version }} && npm publish
-          cd ../support/test-support && npm version ${{ env.nextRelease_version }} && npm publish
+          cd ./common/utilities && npm version ${{ env.nextRelease_version }} && npm pack
+          cd ../../elements && npm version ${{ env.nextRelease_version }} && npm pack
+          cd ../components && npm version ${{ env.nextRelease_version }} && npm pack
+          cd ../sections && npm version ${{ env.nextRelease_version }} && npm pack
+          cd ../map && npm version ${{ env.nextRelease_version }} && npm pack
+          cd ../support/test-support && npm version ${{ env.nextRelease_version }} && npm pack
       - name: output the build result path
         run: echo "the build results (dist folders) are available at /build-apps/${{ github.ref_name }}/${{ env.root_semver }}"
       - name: replace the base-href with the correct path for playground
@@ -313,35 +298,19 @@ jobs:
           sed -i'.bak' "s,$toReplace,$newVersion," dist-build-apps-libs-and-storybook/apps/playground/index.html
       - name: prepare to publish
         run: |
-          mkdir to-publish
+          mkdir -p to-publish/packages
           mv dist-build-apps-libs-and-storybook/apps/playground to-publish/playground
           mv dist-build-apps-libs-and-storybook/apps/storybook to-publish/storybook
+          mv dist-build-apps-libs-and-storybook/libs/common/utilities/*.tgz to-publish/packages
+          mv dist-build-apps-libs-and-storybook/libs/elements/*.tgz to-publish/packages
+          mv dist-build-apps-libs-and-storybook/libs/components/*.tgz to-publish/packages
+          mv dist-build-apps-libs-and-storybook/libs/sections/*.tgz to-publish/packages
+          mv dist-build-apps-libs-and-storybook/libs/map/*.tgz to-publish/packages
+          mv dist-build-apps-libs-and-storybook/libs/support/test-support/*.tgz to-publish/packages
       - name: authenticate to acd-npm repository
         run: |
           echo "registry=https://repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/"  > ~/.npmrc
-          echo "//repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/:_authToken=${{ secrets.NPM_TOKEN_DOMG_ACD_NPM }}" >> ~/.npmrc
-#      - name: upgrade the alliance version and dependencies
-#        run: |
-#          cd applications
-#          npm version ${{ env.nextRelease_version }}
-#          npm install \
-#            @domg-wc/common-utilities@${{ env.nextRelease_version }} \
-#            @domg-wc/components@${{ env.nextRelease_version }} \
-#            @domg-wc/elements@${{ env.nextRelease_version }} \
-#            @domg-wc/map@${{ env.nextRelease_version }} \
-#            @domg-wc/sections@${{ env.nextRelease_version }}
-#      - name: commit the applications package.json
-#        env:
-#          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
-#          CI_COMMIT_MESSAGE: 'chore(post-release): upgrading Alliance dependencies'
-#          CI_COMMIT_AUTHOR: 'ci-web-components'
-#          CI_COMMIT_EMAIL: 'noreply@vlaanderen.be'
-#        run: |
-#          cd applications
-#          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-#          git config --global user.email "${{ env.CI_COMMIT_EMAIL }}"
-#          git commit package.json package-lock.json -m "${{ env.CI_COMMIT_MESSAGE }}"
-#          git push -f --set-upstream origin ${{ env.BRANCH_NAME }}
+          echo "//repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/:_authToken=${{ secrets.NPM_TOKEN_DOMG }}" >> ~/.npmrc
       - name: info of documentation on github-pages
         run: echo "the build results (dist folders) are available at /build-apps/${{ env.pages_sub_path }}"
       - name: publish on github-pages
