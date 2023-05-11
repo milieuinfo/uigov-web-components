@@ -332,6 +332,13 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
     }
 
     /**
+     * Verwijder al de actieve opties.
+     */
+    removeActiveItems() {
+        this._choices.removeActiveItems();
+    }
+
+    /**
      * Toon de dropdown met de mogelijke keuzes.
      */
     showDropdown() {
