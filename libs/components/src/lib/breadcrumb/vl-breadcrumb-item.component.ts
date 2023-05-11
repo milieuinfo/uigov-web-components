@@ -2,6 +2,7 @@ import { breadcrumbStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import breadcrumbUigStyle from './vl-breadcrumb.uig-css';
 
 @customElement('vl-breadcrumb-item')
 export class VlBreadcrumbItemComponent extends LitElement {
@@ -9,19 +10,31 @@ export class VlBreadcrumbItemComponent extends LitElement {
 
     static get properties() {
         return {
-            href: { type: String, attribute: 'data-vl-href', reflect: true },
+            href: {
+                type: String,
+                attribute: 'data-vl-href',
+                reflect: true,
+            },
         };
     }
 
     static get styles() {
-        return [resetStyle, breadcrumbStyle];
+        return [resetStyle, breadcrumbStyle, breadcrumbUigStyle];
     }
 
     render() {
+        if (this.href) {
+            return html`
+                <a href=${this.href} class="vl-breadcrumb__list__item__cta">
+                    <slot></slot>
+                </a>
+            `;
+        }
+
         return html`
-            <a href=${this.href} class="vl-breadcrumb__list__item__cta">
+            <span class="vl-breadcrumb__list__item__cta">
                 <slot></slot>
-            </a>
+            </span>
         `;
     }
 }
