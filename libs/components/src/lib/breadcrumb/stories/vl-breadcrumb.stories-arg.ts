@@ -1,47 +1,48 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { ArgTypes } from '@storybook/web-components';
 
 export const breadcrumbItemArgs = {
-    href1: '#',
-    href2: '#',
-    href3: '#',
-    href4: '#',
-}
+    href1: '',
+    href2: '',
+    href3: '',
+    href4: '',
+};
 
-export const breadcrumbItemArgTypes = {
+export const breadcrumbItemArgTypes: ArgTypes<typeof breadcrumbItemArgs> = {
     href1: {
         name: 'data-vl-href',
-        description: 'Url voor bread-crumb-item #1 naar toe zal navigeren.',
-        type: { summary: TYPES.STRING },
+        description: 'Url voor bread-crumb-item #1.',
         table: {
-            defaultValue: { summary: '#' },
+            type: { summary: TYPES.URL },
             category: CATEGORIES.CHILD_ATTRIBUTES,
+            defaultValue: { summary: breadcrumbItemArgs.href1 },
         },
     },
     href2: {
         name: 'data-vl-href',
-        description: 'Url voor bread-crumb-item #2 naar toe zal navigeren.',
-        type: { summary: TYPES.STRING },
+        description: 'Url voor bread-crumb-item #2.',
         table: {
-            defaultValue: { summary: '#' },
+            type: { summary: TYPES.URL },
             category: CATEGORIES.CHILD_ATTRIBUTES,
+            defaultValue: { summary: breadcrumbItemArgs.href2 },
         },
     },
     href3: {
         name: 'data-vl-href',
-        description: 'Url voor bread-crumb-item #3 naar toe zal navigeren.',
-        type: { summary: TYPES.STRING },
+        description: 'Url voor bread-crumb-item #3.',
         table: {
-            defaultValue: { summary: '#' },
+            type: { summary: TYPES.URL },
             category: CATEGORIES.CHILD_ATTRIBUTES,
+            defaultValue: { summary: breadcrumbItemArgs.href3 },
         },
     },
     href4: {
         name: 'data-vl-href',
-        description: 'Url voor bread-crumb-item #4 naar toe zal navigeren.',
-        type: { summary: TYPES.STRING },
+        description: 'Url voor bread-crumb-item #4.',
         table: {
-            defaultValue: { summary: '#' },
+            type: { summary: TYPES.URL },
             category: CATEGORIES.CHILD_ATTRIBUTES,
+            defaultValue: { summary: breadcrumbItemArgs.href3 },
         },
     },
-}
+};
