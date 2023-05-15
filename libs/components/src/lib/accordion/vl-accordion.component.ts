@@ -20,6 +20,10 @@ declare const vl: any;
  * @property {string} data-vl-toggle-text - Tekst waarop de gebruiker kan klikken om de accordion te openen of te sluiten.
  * @property {string} data-vl-open-toggle-text - Tekst waarop de gebruiker kan klikken om de accordion te openen.
  * @property {string} data-vl-close-toggle-text - Tekst waarop de gebruiker kan klikken om de accordion te sluiten.
+ * @property {PADDINGS} data-vl-content-padding - De grootte van de padding van de content. Deze padding wordt toegepast op zowel desktop als mobile.
+ * @property {boolean} data-vl-bold - Beeldt de toggle-text van de accordion af in bold.
+ * @property {boolean} data-vl-disabled - Schakelt het openen en het sluiten van de accordion uit.
+ * @property {string} data-vl-icon - Icoon dat getoond wordt voor de tekst van de toggle.
  * @event vl-on-toggle - Afgevuurd bij het openen en sluiten van de accordion. Het event bevat of de accordion geopend of gesloten is.
  */
 
@@ -71,6 +75,11 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
             this._propagateTitleSlotClickToAccordion();
         }
 
+        if (this.hasAttribute('icon')) {
+            this._addIconElement();
+            this._accordionElement.classList.add('vl-accordion--has-icon');
+        }
+
         /*
             Voeg de eventListener toe nadat this.dress() is aangeroepen om de correcte volgorde van de event listeners te garanderen.
             Digitaal Vlaanderen accordion.js vuurt zelf een onChange event af bij het openen of sluiten van de accordion,
@@ -92,6 +101,21 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
             event.stopPropagation();
             this._buttonElement.click();
         });
+    }
+
+    _addIconElement() {
+        const icon = this.getAttribute('icon');
+        const iconEl = document.createElement('i');
+        iconEl.classList.add(
+            'vl-accordion__icon',
+            'vl-link__icon',
+            'vl-link__icon--before',
+            'vl-toggle__icon',
+            'vl-vi',
+            `vl-vi-${icon}`
+        );
+        iconEl.setAttribute('aria-hidden', 'true');
+        this._buttonElement?.prepend(iconEl);
     }
 
     _hasTitleSlot() {
