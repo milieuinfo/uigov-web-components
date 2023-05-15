@@ -4,14 +4,14 @@ import { action } from '@storybook/addon-actions';
 
 export const accordionArgs = {
     bold: false,
-    closeToggleText: 'Sluit de onderwijsdoelstelling',
+    closeToggleText: '',
     contentPadding: null,
     disabled: false,
-    openToggleText: 'Open de onderwijsdoelstelling',
-    toggleText: 'Lees meer over de onderwijsdoelstelling',
-    defaultSlot:
-        '<span>Onderwijs helpt jonge mensen en volwassenen om zichzelf te ontwikkelen en hun weg te vinden in onze samenleving. Het hoger onderwijs speelt daarnaast een belangrijke rol in innovatie dankzij het belang van wetenschappelijk onderzoek.</span>',
-    titleSlot: '<span slot="title">Lees meer over de onderwijsdoelstelling</span>',
+    icon: '',
+    openToggleText: '',
+    toggleText: '',
+    defaultSlot: '',
+    titleSlot: '',
     onToggle: action('vl-on-toggle'),
 };
 
@@ -22,7 +22,7 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: accordionArgs.bold },
         },
     },
     closeToggleText: {
@@ -32,6 +32,7 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: accordionArgs.closeToggleText },
         },
     },
     contentPadding: {
@@ -43,10 +44,9 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
             options: [...Object.keys(PADDINGS)],
         },
         table: {
-            type: {
-                summary: Object.keys(PADDINGS),
-            },
+            type: { summary: Object.keys(PADDINGS) },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: accordionArgs.contentPadding },
         },
     },
     disabled: {
@@ -55,7 +55,16 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: accordionArgs.disabled },
+        },
+    },
+    icon: {
+        name: 'data-vl-icon',
+        description: 'Icoon dat getoond wordt voor de tekst van de toggle.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: accordionArgs.icon },
         },
     },
     openToggleText: {
@@ -65,6 +74,7 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: accordionArgs.openToggleText },
         },
     },
     toggleText: {
@@ -74,6 +84,7 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: accordionArgs.toggleText },
         },
     },
     defaultSlot: {
@@ -82,6 +93,7 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
         table: {
             type: { summary: TYPES.HTML },
             category: CATEGORIES.SLOTS,
+            defaultValue: { summary: accordionArgs.defaultSlot },
         },
     },
     titleSlot: {
@@ -91,6 +103,7 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
         table: {
             type: { summary: TYPES.HTML },
             category: CATEGORIES.SLOTS,
+            defaultValue: { summary: accordionArgs.titleSlot },
         },
     },
     onToggle: {
