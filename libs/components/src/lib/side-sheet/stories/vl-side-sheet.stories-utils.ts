@@ -11,8 +11,10 @@ export const sideSheetToggleImplementation = () => {
         ) as unknown as VlButtonElement;
     });
     const toggleSideSheet = () => sideSheet?.toggle();
+
     const openSideSheet = () => sideSheet?.open();
     const closeSideSheet = () => sideSheet?.close();
+
     return { toggleSideSheet, openSideSheet, closeSideSheet };
 };
 

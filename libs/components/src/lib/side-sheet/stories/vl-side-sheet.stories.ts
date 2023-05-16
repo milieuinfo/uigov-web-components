@@ -29,19 +29,6 @@ export const sideSheetDefault: StoryFn<typeof sideSheetArgs> = ({
     hideToggleButton,
     iconPlacement,
 }) => html`
-    <style>
-        .close-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: auto;
-            color: #05c;
-            flex: 0 0 44px;
-            width: 44px;
-            height: 28px;
-            transform: translate3d(15px, -7px, 0);
-        }
-    </style>
     <vl-side-sheet
         ?data-vl-enable-swipe=${enableSwipe}
         ?data-vl-absolute=${absolute}
@@ -114,6 +101,10 @@ export const sideSheetToggle: StoryFn<typeof sideSheetArgs> = ({
     const { toggleSideSheet, openSideSheet, closeSideSheet } = sideSheetToggleImplementation();
     return html`
         <style>
+            :root {
+                --vl-side-sheet-width-mobile: 100%;
+                --vl-side-sheet-width: 480px;
+            }
             #vl-side-sheet-close-button {
                 position: fixed;
                 top: 1rem;
@@ -225,5 +216,5 @@ export const sideSheetToggle: StoryFn<typeof sideSheetArgs> = ({
 };
 sideSheetToggle.storyName = 'vl-side-sheet - toggle';
 sideSheetToggle.args = {
-    hideToggleButton: true,
+    // hideToggleButton: true,
 };

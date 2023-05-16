@@ -114,7 +114,7 @@ const styles: CSSResult = css`
     }
     @media screen and (max-width: 767px) {
         :host([data-vl-open]) {
-            width: calc(100vw - 56px);
+            width: var(--vl-side-sheet-width-mobile, calc(100vw - 56px));
         }
     }
     :host([data-vl-open]) #vl-side-sheet {
