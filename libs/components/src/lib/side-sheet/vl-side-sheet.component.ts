@@ -20,6 +20,7 @@ import styles from './vl-side-sheet.uig-css';
  * @property {boolean} data-vl-custom-icon - Attribute wordt gebruikt om een icon naar keuze voor de knop in te stellen.
  * @property {boolean} data-vl-icon-placement - Attribute wordt gebruikt om te bepalen of de icon geplaatst wordt voor of na de tekst.
  * @property {boolean} data-vl-hide-toggle-button - Attribute wordt gebruikt om de toggle knop te verbergen.
+ * @property {boolean} data-vl-custom-size - Laat toe zelf dimensies in te stellen met css variabelen.
  *
  * @example Breedte van de side sheet aanpassen(op grote scherm):
  *  static get styles() {
@@ -39,7 +40,15 @@ import styles from './vl-side-sheet.uig-css';
 @webComponent('vl-side-sheet')
 export class VlSideSheet extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
-        return ['enable-swipe', 'toggle-text', 'tooltip-text', 'custom-icon', 'hide-toggle-button', 'icon-position'];
+        return [
+            'enable-swipe',
+            'toggle-text',
+            'tooltip-text',
+            'custom-icon',
+            'hide-toggle-button',
+            'icon-position',
+            'custom-size',
+        ];
     }
 
     static get _observedClassAttributes() {

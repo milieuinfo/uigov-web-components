@@ -1,16 +1,16 @@
-import { Args, ArgTypes } from '@storybook/web-components';
+import { ArgTypes } from '@storybook/web-components';
 import { TYPES } from '@domg-wc/common-utilities';
 
 export const sideSheetArgs = {
-    enableSwipe: false,
-    left: false,
-    right: false,
     absolute: false,
-    toggleText: '',
-    tooltipText: '',
     customIcon: '',
+    enableSwipe: false,
     hideToggleButton: false,
     iconPlacement: 'before',
+    left: false,
+    right: false,
+    toggleText: '',
+    tooltipText: '',
 };
 
 export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {

@@ -28,13 +28,34 @@ import { VlSideSheet } from '@domg-wc/components';
 
 <ArgsTable story={PRIMARY_STORY}/>
 
-## Custom icon
+## Varianten
+
+### Custom icon
 
 Standaard is er een pijltje dat aanduidt of de `side-sheet` open of gesloten is. Je kan dit vervangen door een custom icon in te stellen. [Hier](https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon/) vind je een overzicht van alle beschikbare icons.
 
 Deze blijft dan dezelfde in de 2 richtingen.
 
-## Openen & sluiten zonder knop
+### Breedte zelf instellen.
+
+Het is ook mogelijk de breedte zelf in te stellen.
+
+Dan kan je voor mobile en/of desktop de width instellen door de respectievelijke css variabelen in te stellen. Dit stelt de `width` in voor het component.
+- Breekpunt voor desktop naar mobile is vanaf `767px`
+- voor desktop gebruik je `--vl-side-sheet-width`
+- voor mobile gebruik je `--vl-side-sheet-width-mobile`
+- hier kan je ook gelijk welke andere waardes meegeven die geldig zijn voor `width`
+
+```css
+:root {
+    --vl-side-sheet-width: 480px; /* voor desktop */
+    --vl-side-sheet-width-mobile: 100%; /* voor mobile */
+}
+```
+
+In de stories
+
+### Openen & sluiten zonder knop
 
 Je kan de `side-sheet` openen zonder de toggle knop;
 - stel `hide-toggle-button` in op `true`
@@ -43,7 +64,7 @@ Je kan de `side-sheet` openen zonder de toggle knop;
 
 Hieronder volgt een voorbeeld met broncode:
 
-## Voorbeeld van buitenaf openen & sluiten
+### Voorbeeld van buitenaf openen & sluiten
 
 <Canvas>
     <Story id="components-side-sheet--side-sheet-toggle" height={300}/>
@@ -60,7 +81,7 @@ Hieronder volgt een voorbeeld met broncode:
 
 Er is geen `side-sheet`-component bij Digitaal Vlaanderen.
 
-In de [vue-component library](https://overheid.vlaanderen.be/webuniversum/v3/vue-documentation/?path=/story/components-vl-sidebar--sidebar-collapsible) van Digitaal Vlaanderen is er echter wel een component die dicht aanleunt tegen `vl-side-bar`-component.
+In de Vue Component library van Digitaal Vlaanderen is er echter wel een component die er dicht tegen aanleunt: `vl-side-bar`-component (link [side-bar-component](https://overheid.vlaanderen.be/webuniversum/v3/vue-documentation/?path=/story/components-vl-sidebar--sidebar-collapsible)).
 
 ### Legacy Documentatie
 
