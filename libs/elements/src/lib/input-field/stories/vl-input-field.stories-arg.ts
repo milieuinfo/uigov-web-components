@@ -3,6 +3,7 @@ import '../../button/vl-button.element';
 import '../../link/vl-link.element';
 import '../../form-message/vl-form-validation-message.element';
 import { formValidationArgs, formValidationArgTypes } from '../../form-validation/stories/form-validation.stories-arg';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 
 export const inputFieldArgs = {
     block: false,
@@ -16,38 +17,47 @@ export const inputFieldArgs = {
 export const inputFieldArgTypes = {
     block: {
         name: 'data-vl-block',
-        description: 'The input field will take the width of its parent.',
+        description: 'Laat het input veld de breedte van zijn parent innemen.',
         table: {
             category: 'Attributes',
-            type: { summary: 'boolean' },
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: inputFieldArgs.block },
         },
     },
     error: {
         name: 'data-vl-error',
-        description: 'Causes a red border to appear around the input field.',
+        description: 'Plaatst een rode rand rond het input veld.',
         table: {
             category: 'Attributes',
-            type: { summary: 'boolean' },
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: inputFieldArgs.error },
         },
     },
     small: {
         name: 'data-vl-small',
-        description: 'Small variant of the input field.',
+        description: 'Smalle variant van het input veld.',
         table: {
             category: 'Attributes',
-            type: { summary: 'boolean' },
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: inputFieldArgs.small },
         },
     },
     success: {
         name: 'data-vl-success',
-        description: 'Causes a green border to appear around the input field.',
+        description: 'Plaatst een groene rand rond het input veld.',
         table: {
             category: 'Attributes',
-            type: { summary: 'string' },
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: inputFieldArgs.success },
+        },
+    },
+    disabled: {
+        name: 'data-vl-disabled',
+        description: 'Stelt disabled styling in & voorkomt gebruiker input in te geven.',
+        table: {
+            category: CATEGORIES.ATTRIBUTES,
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: inputFieldArgs.disabled },
         },
     },
     ...formValidationArgTypes,

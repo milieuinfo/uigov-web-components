@@ -1,4 +1,5 @@
 import { VALIDATION_TYPE } from '../vl-form-validation.model';
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
 
 export const formValidationArgs = {
     validationType: '',
@@ -17,12 +18,12 @@ export const formValidationArgs = {
 export const formValidationArgTypes = {
     validationType: {
         name: 'data-vl-validation-type',
-        description: 'Attribute is used to indicate which validation applies.',
+        description: 'Bepaalt het validatie type.',
         table: {
             type: {
                 summary: `${VALIDATION_TYPE.EMAIL} | ${VALIDATION_TYPE.DATE} | ${VALIDATION_TYPE.RRN} | ${VALIDATION_TYPE.UUID} | ${VALIDATION_TYPE.PHONE} | ${VALIDATION_TYPE.IBAN} | ${VALIDATION_TYPE.SELECT} | ${VALIDATION_TYPE.NUMERICAL}`,
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
         },
         control: {
             type: 'select',
@@ -40,94 +41,91 @@ export const formValidationArgTypes = {
     },
     required: {
         name: 'data-vl-required',
-        description: 'Attribute is used to indicate that the field is required.',
+        description: 'Geeft aan of het een verplicht veld betreft (`required`).',
         table: {
-            type: { summary: 'boolean' },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: formValidationArgs.required },
         },
     },
     errorMessage: {
         name: 'data-vl-error-message',
-        description: 'Attribute is used to determine the text that appears in the vl-form-validation component.',
+        description: 'De tekst die bij fout getoond wordt in het `vl-form-validation`-component.',
         table: {
             type: { summary: '' },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: formValidationArgs.errorMessage },
         },
     },
     errorPlaceholder: {
         name: 'data-vl-error-placeholder',
         description:
-            'Attribute is used to make the link with the corresponding vl-form-validation component with id attribute `data-vl-error-id`.',
+            'Maakt de link het corresponderende `vl-form-validation`-component met id attribuut `data-vl-error-id`.',
         table: {
             type: { summary: '' },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: '' },
         },
     },
     successClass: {
         name: 'data-vl-success-class',
-        description:
-            'Attribute is used to set the class when a vl-form-validation component is successfully validated.',
+        description: 'Stel de css klasse in wanneer de `vl-form-validation`-component validatie succesvol was.',
         table: {
-            type: { summary: 'boolean' },
-            category: 'Attributes',
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
     },
     errorClass: {
         name: 'data-vl-error-class',
-        description: 'Attribute is used to set the class if a vl-form-validation component is incorrectly validated.',
+        description: 'Stel de css klasse in wanneer de `vl-form-validation`-component validatie in fout ging.',
         table: {
-            type: { summary: 'boolean' },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: formValidationArgs.errorClass },
         },
     },
     numericalOnlyInteger: {
         name: 'data-vl-numerical-only-integer',
-        description: 'Attribute is used to indicate that only integers are valid for numerical validation.',
+        description: 'Bepaalt dat enkel integers valide zijn voor numerieke validatie.',
         table: {
-            type: { summary: 'boolean' },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: formValidationArgs.numericalOnlyInteger },
         },
     },
     numericalGreaterThan: {
         name: 'data-vl-numerical-greater-than',
-        description:
-            'Attribute is used to indicate that for numerical validation the number must be greater than the number in this attribute.',
+        description: 'Bij numerieke validatie bepaalt moet het ingegeven cijfer hoger liggen dat dit cijfer.',
         table: {
-            type: { summary: 'number' },
-            category: 'Attributes',
+            type: { summary: TYPES.NUMBER },
+            category: CATEGORIES.ATTRIBUTES,
         },
     },
     numericalGreaterThanOrEqualTo: {
         name: 'data-vl-numerical-greater-than-or-equal-to',
         description:
-            'Attribute is used to indicate that for numerical validation the number must be greater than or equal to the number in this attribute.',
+            'Bij numerieke validatie bepaalt moet het ingegeven cijfer gelijk zijn aan of hoger liggen dat dit cijfer.',
         table: {
-            type: { summary: 'number' },
-            category: 'Attributes',
+            type: { summary: TYPES.NUMBER },
+            category: CATEGORIES.ATTRIBUTES,
         },
     },
     numericalLessThan: {
         name: 'data-vl-numerical-less-than',
-        description:
-            'Attribute is used to indicate that for numerical validation the number must be less than the number in this attribute.',
+        description: 'Bij numerieke validatie bepaalt moet het ingegeven cijfer lager liggen dat dit cijfer.',
         table: {
-            type: { summary: 'number' },
-            category: 'Attributes',
+            type: { summary: TYPES.NUMBER },
+            category: CATEGORIES.ATTRIBUTES,
         },
     },
     numericalLessThanOrEqualTo: {
         name: 'data-vl-numerical-less-than-or-equal-to',
         description:
-            'Attribute is used to indicate that for numerical validation the number must be less than or equal to the number in this attribute.',
+            'Bij numerieke validatie bepaalt moet het ingegeven cijfer gelijk zijn aan of lager liggen dat dit cijfer.',
         table: {
-            type: { summary: 'number' },
-            category: 'Attributes',
+            type: { summary: TYPES.NUMBER },
+            category: CATEGORIES.ATTRIBUTES,
         },
     },
 };
