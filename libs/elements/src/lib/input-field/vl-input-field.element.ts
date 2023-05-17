@@ -47,6 +47,15 @@ export class VlInputFieldElement extends vlFormValidationElement(BaseElementOfTy
         Object.assign(this, vlPattern);
         this.dress(this);
     }
+
+    _disabledChangedCallback(oldValue: string, newValue: string) {
+        // wanneer we disabledChangedCallBack gebruiken is er geen distinctie tussen "disabled" & "data-vl-disabled"
+        // gezien we bij wijziging van "data-vl-disabled", "disabled" toevoegen, is er risico van oneindige loop (BaseElementOfType logica)
+        // daarom willen we enkel "disabled" wijzigen wanneer de oude en de nieuwe waarde verschillen
+        if (newValue !== oldValue) {
+            this.disabled = newValue !== null;
+        }
+    }
 }
 
 declare global {
