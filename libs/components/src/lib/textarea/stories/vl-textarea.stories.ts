@@ -14,7 +14,16 @@ export default {
     },
 };
 
-const Template: StoryFn<typeof textareaArgs> = ({ rich, block, error, success, disabled, focus, toolbar }) => html`
+const Template: StoryFn<typeof textareaArgs> = ({
+    rich,
+    block,
+    error,
+    success,
+    disabled,
+    focus,
+    toolbar,
+    readonly,
+}) => html`
     <textarea
         id="textarea-rich"
         is="vl-textarea"
@@ -26,6 +35,7 @@ const Template: StoryFn<typeof textareaArgs> = ({ rich, block, error, success, d
         ?data-vl-success=${success}
         ?data-vl-disabled=${disabled}
         ?data-vl-focus=${focus}
+        ?data-vl-readonly=${readonly}
         data-vl-toolbar=${toolbar || nothing}
     >
       <p>
