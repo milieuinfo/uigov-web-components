@@ -108,7 +108,7 @@
         "typescript": "4.9.5"
     },
     "dependencies": {
-        "@domg/govflanders-style": "14.0.0",
+        "@domg/govflanders-style": "14.0.1",
         "@govflanders/vl-ui-accordion": "14.0.2",
         "@govflanders/vl-ui-code-preview": "14.0.2",
         "@govflanders/vl-ui-core": "15.0.2",
