@@ -1,5 +1,4 @@
 import { vlElementsStyle } from '@domg-wc/elements';
-import { baseStyle, typographyStyle } from '@domg/govflanders-style/common';
 import appStyle from './app.element.css';
 
 export class AppElement extends HTMLElement {
@@ -7,12 +6,7 @@ export class AppElement extends HTMLElement {
 
     constructor() {
         super();
-        document.adoptedStyleSheets = [
-            typographyStyle.styleSheet,
-            baseStyle.styleSheet,
-            ...vlElementsStyle.map((style) => style.styleSheet),
-            appStyle.styleSheet,
-        ];
+        document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet), appStyle.styleSheet];
     }
 
     connectedCallback() {
