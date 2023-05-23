@@ -1,12 +1,16 @@
 import { TYPES } from '@domg-wc/common-utilities';
-import { Args, ArgTypes } from '@storybook/web-components';
+import { ArgTypes } from '@storybook/web-components';
 import { defaultTinyMceToolbar } from '../vl-textarea.element';
 
-export const textareaArgs: Args = {
+export const textareaArgs = {
     block: false,
+    disabled: false,
     error: false,
+    focus: false,
     success: false,
     rich: false,
+    readonly: false,
+    toolbar: defaultTinyMceToolbar,
 };
 
 export const textareaArgTypes: ArgTypes = {
@@ -19,7 +23,7 @@ export const textareaArgTypes: ArgTypes = {
                 summary: TYPES.BOOLEAN,
             },
             category: 'Attributes',
-            defaultValue: { summary: false },
+            defaultValue: { summary: textareaArgs.block },
         },
     },
     error: {
@@ -30,7 +34,7 @@ export const textareaArgTypes: ArgTypes = {
                 summary: TYPES.BOOLEAN,
             },
             category: 'Attributes',
-            defaultValue: { summary: false },
+            defaultValue: { summary: textareaArgs.error },
         },
     },
     success: {
@@ -41,19 +45,19 @@ export const textareaArgTypes: ArgTypes = {
                 summary: TYPES.BOOLEAN,
             },
             category: 'Attributes',
-            defaultValue: { summary: false },
+            defaultValue: { summary: textareaArgs.success },
         },
     },
     disabled: {
         name: 'data-vl-disabled',
         description:
-            'Attribuut wordt gebruikt om te voorkomen dat de gebruiker tekst in de textarea kan ingeven. Dit werkt enkel als `data-vl-rich` `false` is.',
+            'Attribuut wordt gebruikt om te voorkomen dat de gebruiker tekst in de textarea kan ingeven. Dit gaat ook een disabled styling toepassen op het invoerveld.',
         table: {
             type: {
                 summary: TYPES.BOOLEAN,
             },
             category: 'Attributes',
-            defaultValue: { summary: false },
+            defaultValue: { summary: textareaArgs.disabled },
         },
     },
     focus: {
@@ -64,18 +68,30 @@ export const textareaArgTypes: ArgTypes = {
                 summary: TYPES.BOOLEAN,
             },
             category: 'Attributes',
-            defaultValue: { summary: false },
+            defaultValue: { summary: textareaArgs.focus },
         },
     },
-    rich: {
-        name: 'data-vl-rich',
-        description: 'Attribuut om aan te geven of het om een rich area text area gaat.',
+    readonly: {
+        name: 'data-vl-readonly',
+        description:
+            'Geeft aan dat de tekst van de textarea in rich-text-modus niet gewijzigd kan worden door de gebruiker. \nDit gaat standaard ook de toolbar verwijderen.',
         table: {
             type: {
                 summary: TYPES.BOOLEAN,
             },
             category: 'Attributes',
-            defaultValue: { summary: false },
+            defaultValue: { summary: textareaArgs.readonly },
+        },
+    },
+    rich: {
+        name: 'data-vl-rich',
+        description: 'Attribuut om aan te geven of het om een rich textarea gaat.',
+        table: {
+            type: {
+                summary: TYPES.BOOLEAN,
+            },
+            category: 'Attributes',
+            defaultValue: { summary: textareaArgs.rich },
         },
     },
     toolbar: {
@@ -87,7 +103,7 @@ export const textareaArgTypes: ArgTypes = {
                 summary: TYPES.STRING,
             },
             category: 'Attributes',
-            defaultValue: { summary: defaultTinyMceToolbar },
+            defaultValue: { summary: textareaArgs.toolbar },
         },
     },
 };

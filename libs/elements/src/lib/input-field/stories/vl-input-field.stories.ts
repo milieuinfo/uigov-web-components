@@ -23,7 +23,9 @@ export default {
 };
 
 export const InputFieldDefault: StoryFn<typeof inputFieldArgs> = ({ block, disabled, error, success, small }) => html`
+    <label for="input-field">Ingave:</label>
     <input
+        id="input-field"
         is="vl-input-field"
         ?data-vl-block=${block}
         ?data-vl-disabled=${disabled}
