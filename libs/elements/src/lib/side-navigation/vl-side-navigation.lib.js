@@ -1,4 +1,7 @@
-import ScrollSpy from '@govflanders/vl-ui-side-navigation/src/js/modules/scrollspy';
+import ScrollSpy from './vl-side-navigation.scrollspy.lib';
+
+// UIG-2278: vl lijkt niet in alle gevallen defined te zijn, terwijl deze lib daar precies wel op steunt
+window.vl = window.vl || {};
 
 // sticky.js - start
 // source code copied from node_modules/@govflanders/vl-ui-side-navigation/src/js/side-navigation.js "version": "14.0.2"
@@ -629,9 +632,6 @@ const _setNavMinHeight = (element) => {
 
     element.style.maxHeight = `${maxHeight}px`;
 };
-
-// UIG-2278: vl lijkt niet in alle gevallen defined te zijn, terwijl deze lib daar precies wel op steunt
-window.vl = window.vl || {};
 
 class SideNavigation {
     dress(sideNav) {
