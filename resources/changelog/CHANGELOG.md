@@ -1,3 +1,26 @@
+# [1.7.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.6.0...v1.7.0) (2023-05-24)
+
+
+### Bug Fixes
+
+* UIG-2492 - vl-side-navigation - window.vl fix toevoegen in scrollspy.js ([7cbd9e0](https://github.com/milieuinfo/uigov-web-components/commit/7cbd9e05840200272bd64698b50df97748f3c6e1))
+
+
+### Features
+
+* UIG-2314 - vl-map - storybook verbeteringen ([668667f](https://github.com/milieuinfo/uigov-web-components/commit/668667f80756e376dded41b6cfc92aadd4ff3c47))
+* UIG-2316 - scss preprocessing ([6cd8066](https://github.com/milieuinfo/uigov-web-components/commit/6cd80662bbbd752dd95d07b0fc232447c9941926))
+* UIG-2393 - vl-textarea - stylen van de inhoud in rich-text mode ([0a9cadb](https://github.com/milieuinfo/uigov-web-components/commit/0a9cadba2361cde1dce11b1a7b9394d11259fda4))
+* UIG-2418 - vl-autocomplete - loading animatie optioneel maken ([8a6b20d](https://github.com/milieuinfo/uigov-web-components/commit/8a6b20d6c3d63c1879a65e19af5a644ff93f5e59))
+* UIG-2421 - vl-accordion - icoon ([ac6bf19](https://github.com/milieuinfo/uigov-web-components/commit/ac6bf19fd5a02fb86a02af88fdf5f8cf2ca4311c))
+* UIG-2431 - vl-select - removeActiveItems methode ([bb5b4ff](https://github.com/milieuinfo/uigov-web-components/commit/bb5b4ffc81a4ffda1c75bcf2fb1f9d77612425d6))
+* UIG-2433 - vl-breadcrumb - style item anders indien geen href ([c5a32dc](https://github.com/milieuinfo/uigov-web-components/commit/c5a32dc73d73d39f9c9eda878d2d58a6bbbdda1b))
+* UIG-2434 - vl-tabs - verwijder href als links uitgeschakeld zijn ([9184374](https://github.com/milieuinfo/uigov-web-components/commit/91843743c651870fe16d4607ce163e031d8809de))
+* UIG-2436 - vl-side-sheet - uitbreiden mogelijkheden om breedte aan te passen ([76303f3](https://github.com/milieuinfo/uigov-web-components/commit/76303f31b1bf6c2f1437be6b1529777a2109abbb))
+* UIG-2438 - vl-tabs - tabs pane observeer title ([7b20b21](https://github.com/milieuinfo/uigov-web-components/commit/7b20b218700c0d1afbd18ab9900dc29ad0ab3f42))
+* UIG-2454 - vl-proza-message - baseUrl attribuut ([d5e451f](https://github.com/milieuinfo/uigov-web-components/commit/d5e451f01fae0639ffbe0befaa4e5264853793b8))
+* UIG-2458 - vl-input-field - vl-data-disabled voegt ook native disabled attribuut toe ([bcbe8fb](https://github.com/milieuinfo/uigov-web-components/commit/bcbe8fbf3b72471b5cea1f5ab26c9bdb773d8797))
+
 # [1.6.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.5.0...v1.6.0) (2023-05-05)
 
 
