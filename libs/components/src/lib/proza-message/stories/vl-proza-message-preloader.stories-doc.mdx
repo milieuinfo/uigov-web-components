@@ -1,0 +1,35 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Proza Message Preloader
+
+Gebruik het `proza-message-preloader` component om alle Proza berichten van een domein in 1 keer op te halen en in cache te stoppen.<br/>
+Het [proza-message](/docs/components-proza-message--proza-message-default) component gaat eerst kijken of het bericht in de cache zit vooraleer een request naar buiten te doen.<br/>
+Dit component voeg je 1 keer toe in je applicatie per domein, bij voorkeur op het hoogste niveau.
+
+```js
+import { VlProzaMessagePreloader } from '@domg-wc/components';
+```
+
+```html
+<vl-proza-message-preloader></vl-proza-message-preloader>
+```
+
+<DocsStory id="components-proza-message-preloader--proza-message-preloader-default" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Base Url
+
+Je kan optioneel een `baseUrl` meegeven aan het `proza-message-preloader` component waarvan de Proza berichten opgehaald worden.<br/>
+De Proza berichten zullen opgehaald worden vanaf `{baseUrl}/proza/domein/{domain}`.<br/>
+Indien er geen `baseUrl` meegegeven wordt, worden de Proza berichten opgehaald relatief tov de huidige url op het pad `proza/domein/{domain}`.<br/>
+Dit attribuut is niet reactief, zorg ervoor dat als je dit attribuut gebruikt het meteen correct ingevuld is.
+
+## Referenties
+
+### Legacy Documentatie
+
+-   https://webcomponenten.omgeving.vlaanderen.be/doc/VlProzaMessagePreloader.html
+-   https://webcomponenten.omgeving.vlaanderen.be/doc/VlProzaMessage.html

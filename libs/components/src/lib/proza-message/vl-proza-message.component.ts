@@ -15,8 +15,9 @@ import { ProzaRestClient } from './vl-proza-rest-client.util';
  *
  * @property {string} data-vl-domain - Het Proza domein waarin het Proza bericht zit.
  * @property {string} data-vl-code - De code die het Proza bericht identificeert.
- * @property {string} data-vl-block - Attribuut om aan te duiden dat de inhoud van het Proza bericht een block element is.
+ * @property {boolean} data-vl-block - Duidt aan dat de inhoud van het Proza bericht een block element is.
  * @property {string} data-vl-parameters - De key/value parameters die verwerkt en getoond zullen worden in het content element.
+ * @property {string} [data-vl-base-url] - Optionele baseUrl waarvan het Proza bericht opgehaald wordt.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/issues|Issues}
@@ -98,9 +99,13 @@ export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
         return this.dataset.vlParameters;
     }
 
+    get _baseUrl() {
+        return this.dataset.vlBaseUrl;
+    }
+
     _loadMessage() {
         if (!!this._domain && !!this._code) {
-            VlProzaMessage.getMessage(this._domain, this._code, null).then((message: string) => {
+            VlProzaMessage.getMessage(this._domain, this._code, null, this._baseUrl).then((message: string) => {
                 this._typographyElement.innerHTML = message;
                 if (this.__containsBlockElement()) {
                     this.toggleAttribute('data-vl-block', true);
@@ -114,7 +119,7 @@ export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
     }
 
     _reloadMessage() {
-        VlProzaMessage.__getSingleMessage(this._domain, this._code, { forceUpdate: true });
+        VlProzaMessage.__getSingleMessage(this._domain, this._code, { forceUpdate: true }, this._baseUrl);
         this._loadMessage();
     }
 
@@ -124,10 +129,11 @@ export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
      * @param {string} domain Het Proza domein waarin het Proza bericht zit.
      * @param {string} code De code die het Proza bericht identificeert.
      * @param {object} [parameters] Eventuele parameters die gebruikt kunnen worden om placeholders in het Proza bericht te vervangen.
+     * @param {object} [baseUrl] Optionele baseUrl waarvan het Proza bericht gefetched wordt.
      * @return {Promise<string>} Resolved naar het Proza bericht indien teruggevonden en anders wordt de Promise rejected.
      */
-    static async getMessage(domain: string, code: string, parameters: any) {
-        const message = await VlProzaMessage.__getRawMessage(domain, code);
+    static async getMessage(domain: string, code: string, parameters: any, baseUrl?: string) {
+        const message = await VlProzaMessage.__getRawMessage(domain, code, baseUrl);
 
         if (parameters) {
             return VlTypography.replaceTemplateParameters(message, parameters);
@@ -135,7 +141,7 @@ export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
         return message;
     }
 
-    static async __getRawMessage(domain: string, code: string) {
+    static async __getRawMessage(domain: string, code: string, baseUrl?: string) {
         const messageCache = VlProzaMessage.__getMessageCacheForDomain(domain);
 
         if (messageCache[code]) {
@@ -145,7 +151,7 @@ export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
             return await VlProzaMessage.__getMessageFromPreloaderCache(domain, code);
         } catch (error) {
             console.info(error);
-            return VlProzaMessage.__getSingleMessage(domain, code);
+            return VlProzaMessage.__getSingleMessage(domain, code, undefined, baseUrl);
         }
     }
 
@@ -161,22 +167,27 @@ export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
         });
     }
 
-    static __getSingleMessage(domain: string, code: string, options = { forceUpdate: false }) {
+    static __getSingleMessage(domain: string, code: string, options = { forceUpdate: false }, baseUrl?: string) {
         const messageCache = VlProzaMessage.__getMessageCacheForDomain(domain);
         if (!messageCache[code] || (options && options.forceUpdate)) {
-            VlProzaMessage._putMessageInCache(domain, code, options);
+            VlProzaMessage._putMessageInCache(domain, code, options, baseUrl);
         }
         return messageCache[code];
     }
 
-    static _putMessageInCache(domain: string, code: string, options: any) {
-        VlProzaMessage.__getMessageCacheForDomain(domain)[code] = ProzaRestClient.getMessage(domain, code, options);
+    static _putMessageInCache(domain: string, code: string, options: any, baseUrl?: string) {
+        VlProzaMessage.__getMessageCacheForDomain(domain)[code] = ProzaRestClient.getMessage(
+            domain,
+            code,
+            options,
+            baseUrl
+        );
     }
 
-    static _getToegelatenOperaties(domain: string) {
+    static _getToegelatenOperaties(domain: string, baseUrl?: string) {
         let toegelatenOperatiesCache = VlProzaMessage.__getToegelatenOperatiesCacheForDomain(domain);
         if (!toegelatenOperatiesCache) {
-            toegelatenOperatiesCache = ProzaRestClient.getToegelatenOperaties(domain);
+            toegelatenOperatiesCache = ProzaRestClient.getToegelatenOperaties(domain, baseUrl);
             VlProzaMessage.__setToegelatenOperatiesCacheForDomain(domain, toegelatenOperatiesCache);
         }
         return toegelatenOperatiesCache;
@@ -220,7 +231,7 @@ export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
     }
 
     async __updatenIsToegelaten() {
-        return (await VlProzaMessage._getToegelatenOperaties(this._domain)).update;
+        return (await VlProzaMessage._getToegelatenOperaties(this._domain, this._baseUrl)).update;
     }
 
     __setupUpdatableMessage() {
