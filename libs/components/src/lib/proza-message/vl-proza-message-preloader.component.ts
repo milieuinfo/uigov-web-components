@@ -10,6 +10,7 @@ import { ProzaRestClient } from './vl-proza-rest-client.util';
  * @mixes vlElement
  *
  * @property {string} data-vl-domain - Het Proza domein waarin de Proza berichten zitten.
+ * @property {string} [data-vl-base-url] - Optionele baseUrl waarvan de Proza berichten opgehaald worden.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/issues|Issues}
@@ -35,15 +36,22 @@ export class VlProzaMessagePreloader extends BaseElementOfType(HTMLElement) {
         return this.dataset.vlDomain;
     }
 
+    get _baseUrl() {
+        return this.dataset.vlBaseUrl;
+    }
+
     _preload() {
         if (this._domain) {
-            VlProzaMessagePreloader._preload(this._domain);
+            VlProzaMessagePreloader._preload(this._domain, this._baseUrl);
         }
     }
 
-    static _preload(domain: string) {
+    static _preload(domain: string, baseUrl?: string) {
         if (!VlProzaMessagePreloader.isPreloaded(domain)) {
-            VlProzaMessagePreloader.__setPreloadedMessagesCacheForDomain(domain, ProzaRestClient.getMessages(domain));
+            VlProzaMessagePreloader.__setPreloadedMessagesCacheForDomain(
+                domain,
+                ProzaRestClient.getMessages(domain, baseUrl)
+            );
         }
     }
 
@@ -70,12 +78,13 @@ export class VlProzaMessagePreloader extends BaseElementOfType(HTMLElement) {
      *
      * @param {String} domain - Het Proza domein waarin het Proza bericht zit.
      * @param {String} prefix - De prefix van de code die het Proza bericht
+     * @param {String} [baseUrl] - De baseUrl waarvan de Proza berichten gefetched worden.
      * identificeert.
      * @return {Promise<[string]>} Resolved naar de Proza codes met de
      * opgegeven prefix
      */
-    static async getProzaCodes(domain: string, prefix: string) {
-        VlProzaMessagePreloader._preload(domain);
+    static async getProzaCodes(domain: string, prefix: string, baseUrl?: string) {
+        VlProzaMessagePreloader._preload(domain, baseUrl);
         const messages = await VlProzaMessagePreloader._getMessages(domain);
         return Object.keys(messages).filter((code) => code.startsWith(prefix));
     }

@@ -1,0 +1,50 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Proza Message
+
+Gebruik het `proza-message` component om een Proza bericht af te beelden dat achterliggend beheerd kan worden door de business.<br/>
+Voor het ophalen van alle Proza berichten voor een domein zie het [proza-message-preloader](/docs/components-proza-message-preloader--proza-message-preloader-default) component.
+
+## Voorbeeld
+
+```js
+import { VlProzaMessage } from '@domg-wc/components';
+```
+
+```html
+<vl-proza-message></vl-proza-message>
+```
+
+<DocsStory id="components-proza-message--proza-message-default" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Base Url
+
+Je kan optioneel een `baseUrl` meegeven aan het `proza-message` component waarvan het Proza bericht opgehaald wordt.<br/>
+Het Proza bericht zal opgehaald worden vanaf `{baseUrl}/proza/domein/{domain}/{code}`.<br/>
+Indien er geen `baseUrl` meegegeven wordt, wordt het Proza bericht opgehaald relatief tov de huidige url op het pad `proza/domein/{domain}/{code}`.<br/>
+Dit attribuut is niet reactief, zorg ervoor dat als je dit attribuut gebruikt het meteen correct ingevuld is.
+
+## Varianten
+
+### Editeerbaar
+
+Bij het ophalen van een Proza bericht voor een domein wordt er voor dat domein de toegelaten operaties opgehaald op basis van de rechten van de huidige gebruiker.
+Indien er voor de huidige gebruiker ingesteld is dat de Proza berichten voor dit domein editeerbaar zijn, wordt er naast de Proza berichten een edit-knop en refresh-knop afgebeeld.<br/><br/>
+De edit-knop brengt de gebruiker naar het Proza portaal waar het bericht in kwestie aangepast kan worden.<br/>
+De refresh-knop kan gebruikt worden om na de aanpassing het Proza bericht opnieuw op te halen.
+
+<DocsStory id="components-proza-message--proza-message-editable" />
+
+## Referenties
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://uig-webcomponents.omgeving.vlaanderen.be/?path=/docs/legacy-vl-proza-message--non-editable
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlProzaMessage.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-proza-message.html
