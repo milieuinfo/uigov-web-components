@@ -4,7 +4,7 @@ import ScrollSpy from './vl-side-navigation.scrollspy.lib';
 window.vl = window.vl || {};
 
 // sticky.js - start
-// source code copied from node_modules/@govflanders/vl-ui-side-navigation/src/js/side-navigation.js "version": "14.0.2"
+// source code copied from node_modules/@govflanders/vl-ui-side-navigation/src/js/modules/sticky.js "version": "14.0.2"
 // er zijn echter enkele aanpassingen gebeurd om te kunnen switchen tussen mobile & desktop
 // idealiter importeren we sticky.js als aparte file, maar wegens issues met rollup imports staat deze nu binnen de .lib
 const stiClass = `js-${vl.ns}sticky`,
@@ -417,6 +417,8 @@ class Sticky {
         this.sidebar.addEventListener('update.sticky', this);
 
         /*
+        // UIG-2286 - deze code werd gedeactiveerd omdat ResizeSensor problemen geeft in onze build-setup
+        // in plaats daarvan gebruiken we de native resize-gebeurtenis in het vl-side-navigation.element om de responsiviteit te verwerken
         if (vl.util.exists(ResizeSensor)) {
             new ResizeSensor(this.sidebarInner, this.handleEvent);
         }
@@ -443,8 +445,8 @@ class Sticky {
             offsetLeft;
 
         do {
-            offsetTop = element.offsetTop;
-            offsetLeft = element.offsetLeft;
+            offsetTop = element && element.offsetTop;
+            offsetLeft = element && element.offsetLeft;
 
             if (!isNaN(offsetTop)) {
                 result.top += offsetTop;
@@ -454,7 +456,7 @@ class Sticky {
                 result.left += offsetLeft;
             }
 
-            element = element.tagName === 'body' ? element.parentElement : element.offsetParent;
+            element = element && element.tagName === 'body' ? element.parentElement : element && element.offsetParent;
         } while (element);
 
         return result;
@@ -474,7 +476,7 @@ class Sticky {
 
         // Container of sticky sidebar dimensions.
         dims.containerTop = this._offsetRelative(this.container).top;
-        dims.containerHeight = this.container.clientHeight;
+        dims.containerHeight = this.container && this.container.clientHeight;
         dims.containerBottom = dims.containerTop + dims.containerHeight;
 
         // Sidebar dimensions.
@@ -606,6 +608,8 @@ class Sticky {
 
         // Detach ResizeSensor
         /*
+        // UIG-2286 - deze code werd gedeactiveerd omdat ResizeSensor problemen geeft in onze build-setup
+        // in plaats daarvan gebruiken we de native resize-gebeurtenis in het vl-side-navigation.element om de responsiviteit te verwerken
         if (vl.util.exists(ResizeSensor)) {
             ResizeSensor.detach(this.sidebarInner, this.handleEvent);
         }
@@ -637,15 +641,21 @@ class SideNavigation {
     dress(sideNav) {
         if (sideNav.hasAttribute(snScrollSpyAtt) || vl.util.hasClass(sideNav, snScrollSpyClass)) {
             vl.scrollspy = new ScrollSpy();
-            vl.scrollspy.dressAll();
+            // UIG-2490 - omdat we geen toegang kunnen krijgen tot het element wanneer de schaduwdom er omheen is gewikkeld, moeten we het op deze manier ophalen
+            // vl.scrollspy.dressAll();
+            vl.scrollspy.dress(sideNav);
         }
 
         if (sideNav.hasAttribute(snStickyAtt) || vl.util.hasClass(sideNav, snStickyClass)) {
             vl.sticky = new Sticky();
-            vl.sticky.dressAll();
+            // UIG-2490 - omdat we geen toegang kunnen krijgen tot het element wanneer de schadow dom er omheen is gewikkeld, moeten we het op deze manier ophalen
+            // vl.sticky.dressAll();
+            vl.sticky.dress(sideNav);
         }
 
         /*
+        // UIG-2286 - deze code werd gedeactiveerd omdat ResizeSensor problemen geeft in onze build-setup
+        // in plaats daarvan gebruiken we de native resize-gebeurtenis in het vl-side-navigation.element om de responsiviteit te verwerken
         if (vl.util.exists(ResizeSensor) && vl.util.exists(vl.sticky)) {
             new ResizeSensor(
                 document.querySelectorAll(`[${snScrollSpyContentAtt}]`),

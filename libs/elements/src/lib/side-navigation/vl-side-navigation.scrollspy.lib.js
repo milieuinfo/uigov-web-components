@@ -1,8 +1,12 @@
+// source code copied from node_modules/@govflanders/vl-ui-side-navigation/src/js/modules/scrollspy.js "version": "14.0.2"
+// de veranderingen zijn gemarkeerd met referentie naar specifiek ticket
+
 /**
  * Scrollspy navigation
  * We assume that in a sticky element items with an anchor link should have a scrollspy functionality
  */
 
+// UIG-2278: vl lijkt niet in alle gevallen defined te zijn, terwijl deze lib daar precies wel op steunt
 window.vl = window.vl || {};
 
 // Private variables
@@ -40,7 +44,8 @@ const _closePopup = (placeholder, button) => {
 
 // Gets an element height
 const _getHeight = (element) => {
-    return Math.max(element.scrollHeight, element.offsetHeight, element.clientHeight);
+    // UIG-2490 - null checks toegevoegd op element (element > element?)
+    return Math.max(element?.scrollHeight, element?.offsetHeight, element?.clientHeight);
 };
 
 const _scrollSpyMobile = (elements, wrapper, contentWrapper) => {
@@ -182,7 +187,9 @@ class ScrollSpy {
     }
 
     _checkScrollSpy(element) {
-        let hasBreadcrumb = document.querySelector(`.${globalHvisibleClass}`),
+        // UIG-2490 - omdat we geen toegang kunnen krijgen tot het element wanneer de schaduwdom er omheen is gewikkeld, moeten we het op deze manier ophalen
+        // let hasBreadcrumb = document.querySelector(`.${globalHvisibleClass}`),
+        let hasBreadcrumb = element.getRootNode().querySelector(`.${globalHvisibleClass}`),
             initialOffset = this.scrollSpyWrapper.getAttribute(stickyOffsetTopAtt) || 75,
             target,
             currentScrollPosition,
@@ -207,7 +214,9 @@ class ScrollSpy {
         }
 
         // Check if global header breadcrumb is shown
-        target = document.querySelector(href);
+        // UIG-2490 - omdat we geen toegang kunnen krijgen tot het element wanneer de schaduwdom er omheen is gewikkeld, moeten we het op deze manier ophalen
+        // target = document.querySelector(href);
+        target = element.getRootNode().querySelector(href);
         currentScrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
         bounds = {
@@ -248,13 +257,14 @@ class ScrollSpy {
     _getOffsetTop(element) {
         let location = 0;
 
-        if (element.offsetParent) {
+        // UIG-2490 - null checks toegevoegd op element (element > element?)
+        if (element?.offsetParent) {
             do {
-                location += element.offsetTop;
-                element = element.offsetParent;
+                location += element?.offsetTop;
+                element = element?.offsetParent;
             } while (element);
         } else {
-            location = element.offsetTop;
+            location = element?.offsetTop;
         }
 
         location = location - this.parameters.offset;
@@ -265,10 +275,10 @@ class ScrollSpy {
     dress(wrapper) {
         let id = vl.util.uniqueId(),
             correspondingRegion = wrapper.closest(`.${regionClass}`),
-            scrollSpyContentWrapper = correspondingRegion.querySelector(`[${ssContentAtt}]`);
+            scrollSpyContentWrapper = correspondingRegion && correspondingRegion.querySelector(`[${ssContentAtt}]`);
 
         if (!vl.util.exists(scrollSpyContentWrapper)) {
-            scrollSpyContentWrapper = correspondingRegion.querySelector(`.${ssContentClass}`);
+            scrollSpyContentWrapper = correspondingRegion && correspondingRegion.querySelector(`.${ssContentClass}`);
         }
 
         this.scrollSpyWrapper = wrapper;

@@ -123,15 +123,16 @@ describe('story vl-side-navigation mobile', () => {
         cy.get('button.vl-button.js-vl-scrollspy__toggle').should('have.attr', 'aria-expanded', 'false');
         cy.get('nav[is="vl-side-navigation"]').should('have.attr', 'data-vl-sticky-dressed', 'true');
         cy.get('nav[is="vl-side-navigation"]').should('not.be.visible');
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
         cy.wait(500); // Het zou niet mogen, maar deze wait maakt de test 100% succesvol terwijl hij anders flaky is.
         cy.get('button.vl-button.js-vl-scrollspy__toggle').click();
         cy.get('nav[is="vl-side-navigation"]').should('be.visible');
     });
 
     it('should be able to switch between mobile & desktop', () => {
+        cy.viewport(320, 480);
         cy.visit(sideNavigationUrl);
 
-        cy.viewport(320, 480);
         cy.get('button.vl-button.js-vl-scrollspy__toggle').should('be.visible');
         cy.get('nav[is="vl-side-navigation"]').should('not.be.visible');
 
