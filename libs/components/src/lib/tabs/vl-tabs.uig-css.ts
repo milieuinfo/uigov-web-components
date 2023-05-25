@@ -65,6 +65,16 @@ const styles: CSSResult = css`
         transform: rotate(180deg);
     }
 
+    .vl-tab__link {
+        text-decoration: none;
+    }
+
+    .vl-tab.vl-tab--active > .vl-tab__link {
+        color: var(--vl-theme-fg-color);
+    }
+
+    /* Functional header styles */
+
     :host(.vl-tabs--within-functional-header) .vl-tabs {
         margin: 0 0 -1.5rem 0;
         border: 0;
