@@ -38,4 +38,22 @@ describe('story vl-privacy', () => {
 
         cy.get('vl-privacy').shadow().find('section').find('span').contains('v24');
     });
+
+    it('should show child links on scroll', () => {
+        cy.visit(privacyUrl);
+
+        const shouldHaveExpandedToggle = (href: string, expanded: boolean) => {
+            cy.get('vl-privacy')
+                .shadow()
+                .find('nav[is="vl-side-navigation"]')
+                .find(`a[is="vl-side-navigation-toggle"][href="${href}"]`)
+                .should('have.attr', 'aria-expanded', `${expanded}`);
+        };
+
+        shouldHaveExpandedToggle('#privacy-declaration', false);
+
+        cy.get('vl-privacy').shadow().find('h2#privacy-declaration').scrollIntoView();
+
+        shouldHaveExpandedToggle('#privacy-declaration', true);
+    });
 });
