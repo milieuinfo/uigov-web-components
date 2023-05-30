@@ -64,7 +64,7 @@ export const content = (props: AccessibilityProperties) => {
                                     op met Departement Omgeving.
                                 </p>
                                 <br />
-                                <vl-contact-card id="contact-card">
+                                <vl-contact-card id="contact-card-1">
                                     <vl-infoblock slot="info" data-vl-type="contact">
                                         <h3 slot="title">Departement Omgeving</h3>
                                     </vl-infoblock>
@@ -108,7 +108,7 @@ export const content = (props: AccessibilityProperties) => {
                                     Omgeving.
                                 </p>
                                 <br />
-                                <vl-contact-card id="contact-card">
+                                <vl-contact-card id="contact-card-2">
                                     <vl-infoblock slot="info" data-vl-type="contact">
                                         <h3 slot="title">Klachtenbehandelaar</h3>
                                     </vl-infoblock>
@@ -138,7 +138,7 @@ export const content = (props: AccessibilityProperties) => {
                                     Ombudsdienst.
                                 </p>
                                 <br />
-                                <vl-contact-card id="contact-card">
+                                <vl-contact-card id="contact-card-3">
                                     <vl-infoblock slot="info" data-vl-type="contact">
                                         <h3 slot="title">Vlaamse ombudsdienst</h3>
                                     </vl-infoblock>

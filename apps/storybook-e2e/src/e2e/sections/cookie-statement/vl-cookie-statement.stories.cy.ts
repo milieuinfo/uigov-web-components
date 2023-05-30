@@ -1,7 +1,14 @@
 const cookieStatementUrl =
     'http://localhost:8080/iframe.html?id=sections-cookie-statement--cookie-statement-default&viewMode=story';
+const cookieStatementHeaderSlotUrl =
+    'http://localhost:8080/iframe.html?args=&id=sections-cookie-statement--cookie-statement-header-slot&viewMode=story';
 
-describe('story vl-cookie-statement', () => {
+describe('story vl-cookie-statement - default', () => {
+    it('should be accessible', () => {
+        cy.visitWithA11y(cookieStatementUrl);
+        cy.checkA11y('vl-cookie-statement');
+    });
+
     it('should have cookie statement header', () => {
         cy.visit(cookieStatementUrl);
 
@@ -38,5 +45,13 @@ describe('story vl-cookie-statement', () => {
         cy.visit(`${cookieStatementUrl}&args=version:v24`);
 
         cy.get('vl-cookie-statement').shadow().find('section').find('span').contains('v24');
+    });
+});
+
+describe('story vl-cookie-statement - header slot', () => {
+    it('should have replace default header with custom header', () => {
+        cy.visit(cookieStatementHeaderSlotUrl);
+
+        cy.get('vl-cookie-statement').find('vl-functional-header').shadow().find('slot[name="back"]').contains('Start');
     });
 });

@@ -10,7 +10,7 @@ export const sideNavigation = ({ compliance }: AccessibilityProperties) => {
         data-vl-extra-small-size="0"
     >
         <nav is="vl-side-navigation" id="side-nav-accessibility" aria-label="inhoudsopgave">
-            <h5 is="vl-side-navigation-h5">Op deze pagina</h5>
+            <h1 is="vl-side-navigation-h1">Op deze pagina</h1>
             <div is="vl-side-navigation-content">
                 <ul is="vl-side-navigation-group">
                     <li is="vl-side-navigation-item" data-vl-parent>

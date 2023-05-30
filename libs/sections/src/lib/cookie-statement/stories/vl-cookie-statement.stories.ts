@@ -3,6 +3,7 @@ import '../vl-cookie-statement.section';
 import { Meta, StoryFn } from '@storybook/web-components';
 import cookieStatementDoc from './vl-cookie-statement.stories-doc.mdx';
 import { cookieStatementArgs, cookieStatementArgTypes } from './vl-cookie-statement.stories-arg';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 export default {
     title: 'sections/cookie-statement',
@@ -14,7 +15,13 @@ export default {
     },
 } as Meta<typeof cookieStatementArgs>;
 
-const Template: StoryFn<typeof cookieStatementArgs> = ({ date, disableBackLink, version, onClickBack }) => html`
+const Template: StoryFn<typeof cookieStatementArgs> = ({
+    date,
+    disableBackLink,
+    version,
+    onClickBack,
+    headerSlot,
+}) => html`
     <vl-cookie-statement
         data-vl-date=${date || nothing}
         ?data-vl-disable-back-link=${disableBackLink}
@@ -39,8 +46,24 @@ const Template: StoryFn<typeof cookieStatementArgs> = ({ date, disableBackLink, 
             data-vl-validity="Permanente cookie met een geldigheid van 3 weken"
         >
         </vl-cookie>
+        ${unsafeHTML(headerSlot)}
     </vl-cookie-statement>
 `;
 
 export const CookieStatementDefault = Template.bind({});
 CookieStatementDefault.storyName = 'vl-cookie-statement - default';
+
+export const CookieStatementHeaderSlot = Template.bind({});
+CookieStatementHeaderSlot.storyName = 'vl-cookieStatement - header slot';
+CookieStatementHeaderSlot.args = {
+    ...cookieStatementArgs,
+    headerSlot: `
+    <vl-functional-header
+        slot="header"
+        data-vl-title="Departement Omgeving"
+        data-vl-sub-title="Cookieverklaring"
+        data-vl-link="https://omgeving.vlaanderen.be"
+        data-vl-back="Start"
+    ></vl-functional-header>
+`,
+};
