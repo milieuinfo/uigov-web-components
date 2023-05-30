@@ -73,6 +73,10 @@ const styles: CSSResult = css`
         color: var(--vl-theme-fg-color);
     }
 
+    .vl-tab__pane[role='tabpanel']:focus {
+        outline: none;
+    }
+
     /* Functional header styles */
 
     :host(.vl-tabs--within-functional-header) .vl-tabs {
