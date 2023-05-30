@@ -3,14 +3,15 @@ import '@domg-wc/elements';
 import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { vlElementsStyle } from '@domg-wc/elements';
+import { header } from './child/header.section';
 
-const props = {
+export const privacyProps = {
     date: 'data-vl-date',
     disableBackLink: 'data-vl-disable-back-link',
     version: 'data-vl-version',
 };
 
-const { date, disableBackLink, version } = props;
+const { date, disableBackLink, version } = privacyProps;
 
 @customElement('vl-privacy')
 export class VlPrivacy extends LitElement {
@@ -34,12 +35,7 @@ export class VlPrivacy extends LitElement {
             <style>
                 ${vlElementsStyle}
             </style>
-            <vl-functional-header
-                data-vl-title="Departement Omgeving"
-                data-vl-sub-title="Privacy"
-                data-vl-link="https://omgeving.vlaanderen.be"
-                ?data-vl-disable-back-link=${(this as any)[disableBackLink]}
-            ></vl-functional-header>
+            <slot name="header">${header(privacyProps)}</slot>
             <section is="vl-region">
                 <div is="vl-layout">
                     <div is="vl-grid" data-vl-is-stacked>
@@ -878,7 +874,7 @@ export class VlPrivacy extends LitElement {
                             data-vl-extra-small-size="0"
                         >
                             <nav is="vl-side-navigation" aria-label="inhoudsopgave">
-                                <h5 is="vl-side-navigation-h5">Op deze pagina</h5>
+                                <h1 is="vl-side-navigation-h1">Op deze pagina</h1>
                                 <div is="vl-side-navigation-content">
                                     <ul is="vl-side-navigation-group">
                                         <li is="vl-side-navigation-item" data-vl-parent>
@@ -987,7 +983,7 @@ export class VlPrivacy extends LitElement {
                         <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
                             <vl-contact-card id="contact-card">
                                 <vl-infoblock slot="info" data-vl-type="contact">
-                                    <h3 slot="title">DPO van Departement Omgeving</h3>
+                                    <h2 slot="title">DPO van Departement Omgeving</h2>
                                 </vl-infoblock>
                                 <vl-properties slot="properties">
                                     <dl is="vl-properties-list">

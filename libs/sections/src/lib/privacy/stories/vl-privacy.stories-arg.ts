@@ -3,10 +3,11 @@ import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 
 export const privacyArgs = {
-    date: '',
+    date: '3 maart 2021',
     disableBackLink: false,
-    version: '',
+    version: '1.0.0',
     onClickBack: action('vl-click-back'),
+    headerSlot: '',
 };
 
 export const privacyArgTypes: ArgTypes<typeof privacyArgs> = {
@@ -16,7 +17,7 @@ export const privacyArgTypes: ArgTypes<typeof privacyArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '"3 maart 2021"' },
+            defaultValue: { summary: privacyArgs.date },
         },
     },
     disableBackLink: {
@@ -25,7 +26,7 @@ export const privacyArgTypes: ArgTypes<typeof privacyArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: privacyArgs.disableBackLink },
         },
     },
     version: {
@@ -34,7 +35,7 @@ export const privacyArgTypes: ArgTypes<typeof privacyArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '"1.0.0"' },
+            defaultValue: { summary: privacyArgs.version },
         },
     },
     onClickBack: {
@@ -43,6 +44,15 @@ export const privacyArgTypes: ArgTypes<typeof privacyArgs> = {
         table: {
             type: { summary: '-' },
             category: CATEGORIES.EVENTS,
+        },
+    },
+    headerSlot: {
+        name: 'header',
+        description: 'Hiermee kan je de standaard functional header vervangen door een header naar keuze.',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+            defaultValue: privacyArgs.headerSlot,
         },
     },
 };

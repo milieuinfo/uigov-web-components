@@ -1,6 +1,13 @@
 const privacyUrl = 'http://localhost:8080/iframe.html?id=sections-privacy--privacy-default&viewMode=story';
+const privacyHeaderSlotUrl =
+    'http://localhost:8080/iframe.html?args=&id=sections-privacy--privacy-header-slot&viewMode=story';
 
 describe('story vl-privacy', () => {
+    it('should be accessible', () => {
+        cy.visitWithA11y(privacyUrl);
+        cy.checkA11y('vl-privacy');
+    });
+
     it('should have privacy header', () => {
         cy.visit(privacyUrl);
 
@@ -37,5 +44,13 @@ describe('story vl-privacy', () => {
         cy.visit(`${privacyUrl}&args=version:v24`);
 
         cy.get('vl-privacy').shadow().find('section').find('span').contains('v24');
+    });
+});
+
+describe('story vl-privacy - header slot', () => {
+    it('should have replace default header with custom header', () => {
+        cy.visit(privacyHeaderSlotUrl);
+
+        cy.get('vl-privacy').find('vl-functional-header').shadow().find('slot[name="back"]').contains('Start');
     });
 });

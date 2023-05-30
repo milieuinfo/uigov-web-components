@@ -8,6 +8,7 @@ import './cookie/vl-header-cookie.section';
 import './cookie/vl-jsessionid-cookie.section';
 import './cookie/vl-sticky-session-cookie.section';
 import styles from './vl-cookie-statement.uig-css';
+import { header } from './child/header.section';
 
 @webComponent('vl-cookie-statement')
 export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
@@ -20,7 +21,7 @@ export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
             <style>
                 ${styles}
             </style>
-            <vl-functional-header data-vl-title="Departement Omgeving" data-vl-sub-title="Cookieverklaring" data-vl-link="https://omgeving.vlaanderen.be"></vl-functional-header>
+            <slot name="header">${header()}</slot>
         `);
 
         this._element.insertAdjacentHTML(

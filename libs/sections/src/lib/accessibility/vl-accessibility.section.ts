@@ -89,7 +89,7 @@ export class VlAccessibility extends LitElement {
             limitations: this.limitations,
         };
 
-        return html` ${header(props)} ${title(props)} ${content(props)} `;
+        return html` <slot name="header">${header(props)}</slot> ${title(props)} ${content(props)} `;
     }
 }
 

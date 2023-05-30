@@ -1,4 +1,5 @@
 import { html, nothing } from 'lit-html';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import '../vl-accessibility.section';
 import { Meta, StoryFn } from '@storybook/web-components';
 import accessibilityDoc from './vl-accessibility.stories-doc.mdx';
@@ -38,6 +39,7 @@ const Template: StoryFn<typeof accessibilityArgs> = ({
     version,
     limitations,
     onClickBack,
+    headerSlot,
 }) => html`
     <vl-accessibility
         data-vl-application=${application || nothing}
@@ -49,8 +51,24 @@ const Template: StoryFn<typeof accessibilityArgs> = ({
         data-vl-version=${version || nothing}
         .limitations=${limitations}
         @vl-click-back=${onClickBack}
-    ></vl-accessibility>
+    >
+        ${unsafeHTML(headerSlot)}
+    </vl-accessibility>
 `;
 
 export const AccessibilityDefault = Template.bind({});
 AccessibilityDefault.storyName = 'vl-accessibility - default';
+
+export const AccessibilityHeaderSlot = Template.bind({});
+AccessibilityHeaderSlot.storyName = 'vl-accessibility - header slot';
+AccessibilityHeaderSlot.args = {
+    ...accessibilityArgs,
+    headerSlot: `
+    <vl-functional-header
+        slot="header"
+        data-vl-title="Departement Omgeving & Andere"
+        data-vl-sub-title="Toegankelijkheid en gebruiksvoorwaarden "
+        data-vl-link="https://omgeving.vlaanderen.be"
+        data-vl-back="Start"
+    ></vl-functional-header>`,
+};

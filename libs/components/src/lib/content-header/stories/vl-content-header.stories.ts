@@ -1,14 +1,23 @@
 import { html } from 'lit-html';
 import '../vl-content-header.component';
 import { contentHeaderArgs, contentHeaderArgTypes } from './vl-content-header.stories-arg';
+import { filterOutClasses, formatHTML } from '@domg-wc/common-utilities';
+import { Meta, StoryFn } from '@storybook/web-components';
+import contentHeaderDoc from './vl-content-header.stories-doc.mdx';
 
 export default {
     title: 'Components/content-header',
     args: contentHeaderArgs,
     argTypes: contentHeaderArgTypes,
-};
+    parameters: {
+        docs: {
+            page: contentHeaderDoc,
+            transformSource: (input: string) => formatHTML(filterOutClasses(input)),
+        },
+    },
+} as Meta<typeof contentHeaderArgs>;
 
-export const contentHeaderDefault = ({ contextLink, titleLink }: typeof contentHeaderArgs) => html`
+const Template: StoryFn<typeof contentHeaderArgs> = ({ contextLink, titleLink }) => html`
     <vl-content-header>
         <img
             is="vl-image"
@@ -32,4 +41,5 @@ export const contentHeaderDefault = ({ contextLink, titleLink }: typeof contentH
         <a slot="title-link" href="https://www.vlaanderen.be">${titleLink}</a>
     </vl-content-header>
 `;
-contentHeaderDefault.storyName = 'vl-content-header - default';
+export const ContentHeaderDefault = Template.bind({});
+ContentHeaderDefault.storyName = 'vl-content-header - default';

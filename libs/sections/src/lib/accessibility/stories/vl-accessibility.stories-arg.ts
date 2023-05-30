@@ -4,13 +4,13 @@ import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 
 export const accessibilityArgs = {
-    application: '',
-    compliance: null,
-    date: '',
-    dateModified: '',
+    application: '"deze applicatie"',
+    compliance: `${COMPLIANCE_STATUS.PARTIALLY_COMPLIANT}`,
+    date: '20 juli 2021',
+    dateModified: '20 juli 2021',
     disableBackLink: false,
-    evaluation: null,
-    version: '',
+    evaluation: `${EVALUATION_STATUS.NOT_EVALUATED}`,
+    version: '1.0.0',
     limitations: {
         withTiming: [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -26,6 +26,7 @@ export const accessibilityArgs = {
         ],
     },
     onClickBack: action('vl-click-back'),
+    headerSlot: '',
 };
 
 export const accessibilityArgTypes: ArgTypes<typeof accessibilityArgs> = {
@@ -35,7 +36,7 @@ export const accessibilityArgTypes: ArgTypes<typeof accessibilityArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '"deze applicatie"' },
+            defaultValue: { summary: accessibilityArgs.application },
         },
     },
     compliance: {
@@ -51,12 +52,12 @@ export const accessibilityArgTypes: ArgTypes<typeof accessibilityArgs> = {
         },
         table: {
             type: {
-                summary: `"${COMPLIANCE_STATUS.FULLY_COMPLIANT}" | 
-                "${COMPLIANCE_STATUS.PARTIALLY_COMPLIANT}" | 
+                summary: `"${COMPLIANCE_STATUS.FULLY_COMPLIANT}" |
+                "${COMPLIANCE_STATUS.PARTIALLY_COMPLIANT}" |
                 "${COMPLIANCE_STATUS.NOT_COMPLIANT}"`,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: `"${COMPLIANCE_STATUS.PARTIALLY_COMPLIANT}"` },
+            defaultValue: { summary: accessibilityArgs.compliance },
         },
     },
     date: {
@@ -65,7 +66,7 @@ export const accessibilityArgTypes: ArgTypes<typeof accessibilityArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '"20 juli 2021"' },
+            defaultValue: { summary: accessibilityArgs.date },
         },
     },
     dateModified: {
@@ -74,7 +75,7 @@ export const accessibilityArgTypes: ArgTypes<typeof accessibilityArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '"20 juli 2021"' },
+            defaultValue: { summary: accessibilityArgs.dateModified },
         },
     },
     disableBackLink: {
@@ -83,7 +84,7 @@ export const accessibilityArgTypes: ArgTypes<typeof accessibilityArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: accessibilityArgs.disableBackLink },
         },
     },
     evaluation: {
@@ -104,7 +105,7 @@ export const accessibilityArgTypes: ArgTypes<typeof accessibilityArgs> = {
                     "${EVALUATION_STATUS.NOT_EVALUATED}"`,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: `"${EVALUATION_STATUS.NOT_EVALUATED}"` },
+            defaultValue: { summary: accessibilityArgs.evaluation },
         },
     },
     version: {
@@ -113,7 +114,7 @@ export const accessibilityArgTypes: ArgTypes<typeof accessibilityArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '"1.0.0"' },
+            defaultValue: { summary: accessibilityArgs.version },
         },
     },
     limitations: {
@@ -131,6 +132,15 @@ export const accessibilityArgTypes: ArgTypes<typeof accessibilityArgs> = {
         table: {
             type: { summary: '-' },
             category: CATEGORIES.EVENTS,
+        },
+    },
+    headerSlot: {
+        name: 'header',
+        description: 'Hiermee kan je de standaard functional header vervangen door een header naar keuze.',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+            defaultValue: accessibilityArgs.headerSlot,
         },
     },
 };
