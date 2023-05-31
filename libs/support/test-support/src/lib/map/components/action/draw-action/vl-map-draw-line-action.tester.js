@@ -9,8 +9,10 @@ export class VlMapDrawLineActionTester extends VlMapDrawActionTester {
             await map.driver
                 .actions()
                 .move({ origin: map, x: pixel1.x, y: pixel1.y })
+                .pause(1000)  // wacht bij een move/klik aangezien te snel klikken problematisch is
                 .click()
                 .move({ origin: map, x: pixel2.x, y: pixel2.y })
+                .pause(1000)  // wacht bij een move/klik aangezien te snel klikken problematisch is
                 .doubleClick()
                 .perform();
         });
