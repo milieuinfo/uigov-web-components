@@ -32,6 +32,13 @@ const styles: CSSResult = css`
         margin-left: 2rem;
     }
 
+    :host([data-vl-toggleable])
+        .vl-info-tile.js-vl-accordion.js-vl-accordion--open
+        .vl-toggle
+        > .vl-vi-arrow-right-fat::before {
+        transform: rotate(-90deg);
+    }
+
     slot[name='title-label'] {
         display: inline-block;
         margin-left: 3rem;
