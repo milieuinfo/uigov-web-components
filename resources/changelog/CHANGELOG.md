@@ -1,3 +1,21 @@
+# [1.8.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.7.0...v1.8.0) (2023-06-02)
+
+
+### Bug Fixes
+
+* UIG-2477 - vl-functional-header - back link extra spatie ([dfb5dfd](https://github.com/milieuinfo/uigov-web-components/commit/dfb5dfd68f2e7020e5cb8d433841fae649094dbe))
+* UIG-2483 - vl-functional-header - gedrag tabs ([8085cd9](https://github.com/milieuinfo/uigov-web-components/commit/8085cd910f046196aa9f18ac98a9ce65cbed8cab))
+* UIG-2487 - vl-info-tile - positie pijltje ([78dc37d](https://github.com/milieuinfo/uigov-web-components/commit/78dc37d120969806978631ea28d10c8ec17d6792))
+* UIG-2490 - vl-side-navigation - terug werkbaar gemaakt in shadow dom ([2771c7b](https://github.com/milieuinfo/uigov-web-components/commit/2771c7b7f28c720f51b60f6a5ba5ce3bb52b2855))
+
+
+### Features
+
+* UIG-2478 - vl-accessibility, vl-cookie-statement, vl-privacy - uitgebreid met headerSlot ([c5aecf3](https://github.com/milieuinfo/uigov-web-components/commit/c5aecf30abfe4065d9770cda5fd01893430b2b53))
+* UIG-2484 - vl-tabs - tab styling ([5b35427](https://github.com/milieuinfo/uigov-web-components/commit/5b354272e7d1b69ac5e4c267625f1059ff7402c5))
+* UIG-2489 - vl-textarea - uitbreiden met readonly attribuut ([465cdec](https://github.com/milieuinfo/uigov-web-components/commit/465cdec12fc46c8b67a2c5c405d3f2b311e702cc))
+* UIG-2497 - vl-tabs - tabpanel outline verwijderd ([fd2061a](https://github.com/milieuinfo/uigov-web-components/commit/fd2061aaae5eb3d7f129dd49653fcc9e3f7cfd3b))
+
 # [1.7.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.6.0...v1.7.0) (2023-05-24)
 
 
