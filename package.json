@@ -114,8 +114,6 @@
         "@govflanders/vl-ui-core": "15.0.2",
         "@govflanders/vl-ui-infotext": "14.0.2",
         "@govflanders/vl-ui-progress-bar": "14.0.2",
-        "@govflanders/vl-ui-side-navigation": "14.0.2",
-        "@govflanders/vl-ui-tabs": "14.0.2",
         "@govflanders/vl-ui-util": "14.0.2",
         "@ungap/custom-elements": "1.2.0",
         "bootstrap-sass": "3.4.3",

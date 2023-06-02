@@ -64,6 +64,21 @@ describe('story vl-tabs default', () => {
         cy.get('vl-tabs').shadow().find('a#trein').click();
         cy.get('@change').should('have.been.calledOnce');
     });
+
+    it('should open/close tablist on mobile', () => {
+        cy.viewport(550, 750);
+        cy.visit(tabsUrl);
+
+        cy.get('vl-tabs').shadow().find('ul#tab-list').should('have.attr', 'data-vl-show', 'false');
+        cy.get('vl-tabs').shadow().find('button.vl-tabs__toggle').click();
+        cy.get('vl-tabs').shadow().find('ul#tab-list').should('have.attr', 'data-vl-show', 'true');
+        cy.get('vl-tabs').shadow().find('button.vl-tabs__toggle').click();
+        cy.get('vl-tabs').shadow().find('ul#tab-list').should('have.attr', 'data-vl-show', 'false');
+        cy.get('vl-tabs').shadow().find('button.vl-tabs__toggle').click();
+        cy.get('vl-tabs').shadow().find('ul#tab-list').should('have.attr', 'data-vl-show', 'true');
+        cy.get('vl-tabs').shadow().find('a#trein').click();
+        cy.get('vl-tabs').shadow().find('ul#tab-list').should('have.attr', 'data-vl-show', 'false');
+    });
 });
 
 describe('story vl-tabs dynamic', () => {

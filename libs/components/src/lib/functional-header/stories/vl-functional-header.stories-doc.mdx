@@ -1,5 +1,4 @@
 import { ArgsTable, DocsStory, PRIMARY_STORY, Source } from '@storybook/addon-docs';
-import functionalHeaderStoryUtils from '!raw-loader!./vl-functional-header.stories-util';
 
 # Functional Header
 
@@ -33,16 +32,9 @@ import { VlFunctionalHeaderComponent } from '@domg-lib/components';
 
 ### Met tabs
 
-Gebruik het [vl-tabs](/docs/components-tabs--tabs-default) component in het sub-header slot om tabs af te beelden binnen de `functional-header`.<br/>
-Het klikken op een tab vuurt enkel een event af en past de actieve tab niet aan, hiervoor moet je het attribuut `data-vl-active-tab` aanpassen.<br/>
-Zie de code onder de story voor het volledige voorbeeld.
+Gebruik het [vl-tabs](/docs/components-tabs--tabs-default) component in het sub-header slot om tabs af te beelden binnen de `functional-header`.
 
 <DocsStory id="components-functional-header--functional-header-tabs" />
-
-<details>
-    <summary>TypeScript code</summary>
-    <Source code={functionalHeaderStoryUtils} language="ts" dark={true} />
-</details>
 
 ## Referenties
 
