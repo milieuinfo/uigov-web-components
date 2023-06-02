@@ -39,14 +39,6 @@ export class VlTabComponent extends BaseElementOfType(HTMLLIElement) {
         this.__linkElement.click();
     }
 
-    setActiveClass() {
-        this.classList.add('vl-tab--active');
-    }
-
-    removeActiveClass() {
-        this.classList.remove('vl-tab--active');
-    }
-
     _processClasses() {
         this.classList.add('vl-tab');
     }

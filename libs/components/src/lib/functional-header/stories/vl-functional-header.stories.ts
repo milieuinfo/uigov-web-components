@@ -1,11 +1,11 @@
 import { html } from 'lit-html';
 import '../vl-functional-header.component';
 import { Meta, StoryFn } from '@storybook/web-components';
+import { action } from '@storybook/addon-actions';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import functionalHeaderDoc from './vl-functional-header.stories-doc.mdx';
 import { functionalHeaderArgs, functionalHeaderArgTypes } from './vl-functional-header.stories-arg';
 import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-utilities';
-import { setActiveTab } from './vl-functional-header.stories-util';
 
 export default {
     title: 'Components/functional-header',
@@ -106,7 +106,7 @@ export const FunctionalHeaderTabs: StoryFn<typeof functionalHeaderArgs> = (args)
                 data-vl-disable-links
                 data-vl-within-functional-header
                 data-vl-active-tab="trein"
-                @change=${(event: CustomEvent) => setActiveTab(event.detail.activeTab)}
+                @change=${(event: CustomEvent) => action('change')(event.detail)}
             >
                 <vl-tabs-pane data-vl-id="trein" data-vl-title="Trein"></vl-tabs-pane>
                 <vl-tabs-pane data-vl-id="metro" data-vl-title="Metro, tram en bus"></vl-tabs-pane>

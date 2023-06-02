@@ -1,5 +1,5 @@
 import { awaitUntil, BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '@govflanders/vl-ui-tabs/dist/js/tabs.js';
+import './vl-tabs.lib.js';
 import './vl-tab-section.component';
 import './vl-tab.component';
 import { VlTabsPaneComponent } from './vl-tabs-pane.component';
@@ -86,6 +86,10 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
 
     get __tabList() {
         return this.shadowRoot.getElementById('tab-list');
+    }
+
+    get __tabsToggle() {
+        return this.shadowRoot.querySelector('.vl-tabs__toggle');
     }
 
     get __responsiveLabel() {
@@ -180,18 +184,14 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
 
     async _activeTabChangedCallback(oldValue: string, newValue: string) {
         await this.ready();
-        [...this.__tabList.children].forEach((tab) => {
-            if (!tab) return;
-
-            if (tab.id == newValue) {
-                if (!tab.isActive) {
-                    tab.activate();
-                    tab.setActiveClass();
-                }
-            } else {
-                tab.removeActiveClass();
+        const tab = [...this.__tabList.children].find((tab) => tab.id == newValue);
+        if (tab && !tab.isActive) {
+            tab.activate();
+            if (this.__tabsToggle && this.__tabList.getAttribute('data-vl-show') === 'true') {
+                // Als de tabsToggle aanwezig is en de tabList open is, klik op de tabsToggle om de tabList te sluiten.
+                this.__tabsToggle.click();
             }
-        });
+        }
     }
 
     _withinFunctionalHeaderChangedCallback(oldValue: string, newValue: string) {
