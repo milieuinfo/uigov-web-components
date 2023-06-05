@@ -4,6 +4,7 @@ import { CSSResult } from 'lit';
 import {
     accessibilityStyle,
     alignStyle,
+    backgroundStyle,
     baseStyle,
     elementStyle,
     gridStyle,
@@ -23,6 +24,7 @@ const commonStyles: CSSResult[] = [
     layoutStyle,
     commonTypographyStyle,
     visibilityStyle,
+    backgroundStyle,
 ];
 
 // @govflanders component styles
