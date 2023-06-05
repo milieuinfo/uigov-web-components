@@ -1,9 +1,10 @@
 class AnalyticsUtil {
-    private _matomoScriptId;
-    private _matomoPiwikScriptId;
-    private _matomoOntwikkelUrl;
-    private _matomoOefenUrl;
-    private _matomoProdUrl;
+    private _matomoScriptId: string;
+    private _matomoPiwikScriptId: string;
+    private _matomoOntwikkelUrl: string;
+    private _matomoOefenUrl: string;
+    private _matomoProdUrl: string;
+    private matomoParameters: { matomoId: number; matomoUrl: string } | undefined;
 
     constructor() {
         this._matomoScriptId = 'vl-cookie-consent-matomo-script';
@@ -13,11 +14,11 @@ class AnalyticsUtil {
         this._matomoProdUrl = '//stats.milieuinfo.be/';
     }
 
-    get scriptId() {
+    get scriptId(): string {
         return this._matomoScriptId;
     }
 
-    get id() {
+    getUrlIdMatch(): { id: number; url: string } | undefined {
         let match = {
             'stats-ontwikkel.milieuinfo.be': {
                 id: 1,
@@ -239,7 +240,27 @@ class AnalyticsUtil {
         return match;
     }
 
-    get script() {
+    /**
+     * matomo config manueel instellen ipv te rekenen op the interne config
+     * @param matomoId
+     * @param matomoUrl
+     */
+    setMatomoConfig(matomoId: number, matomoUrl: string): void {
+        this.matomoParameters = { matomoId, matomoUrl };
+    }
+
+    get id(): { id: number; url: string } | undefined {
+        let urlIdResult = this.getUrlIdMatch();
+        if (this.matomoParameters) {
+            const { matomoId, matomoUrl } = this.matomoParameters;
+            if (matomoId && matomoUrl) {
+                urlIdResult = { id: matomoId, url: matomoUrl };
+            }
+        }
+        return urlIdResult;
+    }
+
+    get script(): HTMLScriptElement {
         const matomo = analytics.id;
         const element = document.createElement('script');
         element.setAttribute('id', this._matomoScriptId);

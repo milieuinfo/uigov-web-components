@@ -7,8 +7,25 @@ import './vl-cookie-consent-opt-in.section';
 
 @webComponentConditional('vl-modal', 'vl-cookie-consent')
 export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
+    private initialized = false;
+
     static get _observedAttributes() {
-        return ['analytics', 'owner', 'link'];
+        return ['owner', 'link', 'matomo-id', 'matomo-url', 'analytics'];
+    }
+
+    //*
+    connectedCallback() {
+        // we willen wachten tot cookie-consent element is gerenderd om te zien of matomo uitdrukkelijk is geconfigureerd,
+        // voor we het matomo script opbouwen
+        if (!this.initialized) {
+            this.initialized = true;
+            const matomoId = this.getAttribute('matomo-id');
+            const matomoUrl = this.getAttribute('matomo-url');
+            if (matomoId && matomoUrl) {
+                analytics.setMatomoConfig(matomoId, matomoUrl);
+            }
+            this.__addAnalyticsIfOptedIn();
+        }
     }
 
     constructor() {
@@ -342,14 +359,18 @@ export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
     }
 
     _analyticsChangedCallback(oldValue: any, newValue: any) {
-        if (newValue != undefined) {
-            if (!this._isFunctionalOptInDisabled) {
-                this._addAnalytics();
-            } else {
-                console.error(
-                    'analytics kunnen alleen toegevoegd worden wanneer de functionele cookies opt-in geactiveerd werd!'
-                );
-            }
+        if (newValue != undefined && this.initialized) {
+            this.__addAnalyticsIfOptedIn();
+        }
+    }
+
+    __addAnalyticsIfOptedIn(): void {
+        if (!this._isFunctionalOptInDisabled) {
+            this._addAnalytics();
+        } else {
+            console.error(
+                'analytics kunnen alleen toegevoegd worden wanneer de functionele cookies opt-in geactiveerd werd!'
+            );
         }
     }
 
