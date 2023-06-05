@@ -5,6 +5,8 @@ export const cookieConsentArgs = {
     autoOptInFunctionalDisabled: false,
     owner: '',
     link: '',
+    matomoId: '',
+    matomoUrl: '',
 };
 
 export const cookieConsentArgTypes = {
@@ -54,6 +56,26 @@ export const cookieConsentArgTypes = {
         table: {
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: '' },
+        },
+    },
+    matomoId: {
+        name: 'data-vl-matomo-id',
+        type: { summary: TYPES.NUMBER },
+        description:
+            'Bepaald matomo id. Dit moet in combinatie met `matomo-url` gebruikt worden. Wanneer deze 2 properties ingesteld zijn, wordt niet meer `window.location.host` gekeken om de matomo id & url te bepalen.',
+        table: {
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: cookieConsentArgs.matomoId },
+        },
+    },
+    matomoUrl: {
+        name: 'data-vl-matomo-url',
+        type: { summary: TYPES.STRING },
+        description:
+            'Bepaald matomo url. Dit moet in combinatie met `matomo-id` gebruikt worden. Wanneer deze 2 properties ingesteld zijn, wordt niet meer `window.location.host` gekeken om de matomo id & url te bepalen.',
+        table: {
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: cookieConsentArgs.matomoUrl },
         },
     },
 };
