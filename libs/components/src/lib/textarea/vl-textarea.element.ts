@@ -68,10 +68,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
             branding: false,
             powerpaste_word_import: 'clean',
             powerpaste_html_import: 'clean',
-            // deze lijn hieronder moet aangepast worden wanneer nieuwe versie er is, zie UIG-2489
-            // test met (wanneer in de branch waar css is aangepast)
-            // content_css: 'http://127.0.0.1:8081/govflanders-style/dist/src/lib/custom/tinymce.css',
-            content_css: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-style/14.0.1/custom/tinymce.css',
+            content_css: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-style/14.1.0/custom/tinymce.css',
             verify_html: false,
             forced_root_block: 'p',
             body_class: 'vl-typography',
