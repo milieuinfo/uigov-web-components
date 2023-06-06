@@ -1,3 +1,11 @@
+## [1.8.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.8.0...v1.8.1) (2023-06-06)
+
+
+### Bug Fixes
+
+* UIG-2489 - vl-textarea - readonly mode ([d4747f4](https://github.com/milieuinfo/uigov-web-components/commit/d4747f4aad8177d365adbbfc90adb7c39645244e))
+* UIG-2496 - css - achtergrond kleuren voorzien ([cbd0e7a](https://github.com/milieuinfo/uigov-web-components/commit/cbd0e7a03a1a22a79da27607f5e603f0821d3431))
+
 # [1.8.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.7.0...v1.8.0) (2023-06-02)
 
 
