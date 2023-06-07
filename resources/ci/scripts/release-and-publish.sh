@@ -69,11 +69,15 @@ echo 'git remote rm origin'
 git remote rm origin
 echo 'git remote add origin https://${secret_github_token}@github.com/milieuinfo/uigov-web-components.git'
 git remote add origin https://${secret_github_token}@github.com/milieuinfo/uigov-web-components.git
+echo 'git fetch --prune origin'
+git fetch --prune origin
 echo 'git pull origin ${gitRefName}'
 git pull origin ${gitRefName}
 # the git fetch is necessary -> otherwise semantic-release is unaware of the previous version
 # this gives 'does not point to a valid object!' errors - they can be ignored
-echo 'git fetch --tags'
+echo 'delete all local git tags'
+git tag -d $(git tag -l)
+echo 'fetch all remote git tags'
 git fetch --tags
 
 GITHUB_USER=kspeltix
@@ -116,6 +120,11 @@ echo using $nextRelease_version as nextRelease_version
 # releasen van de packages
 cd dist/libs
 
+# opkuisen van de packages
+rm -rf ./map/**/*.wctest.*
+
+# de feitelijke release actie is afhankelijk van de branch
+
 if [[ ${release_branch} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG repository"
@@ -125,7 +134,7 @@ if [[ ${release_branch} == true ]];
     cd ../sections && npm version $nextRelease_version && npm publish
     cd ../map && npm version $nextRelease_version && npm publish
     cd ../support/test-support && npm version $nextRelease_version && npm publish
-    cd ../../../..
+    cd ../../..
 fi
 
 if [[ ${develop_branch} == true ]];
@@ -137,5 +146,14 @@ if [[ ${develop_branch} == true ]];
     cd ../sections && npm version $nextRelease_version && npm pack
     cd ../map && npm version $nextRelease_version && npm pack
     cd ../support/test-support && npm version $nextRelease_version && npm pack
-    cd ../../../..
+    cd ../../..
 fi
+
+echo "update domg-wc-sections met versie nummer en maak er een tgz van"
+# het versie nummer toevoegen aan de 'fat-js'
+cd ./fat-libs/sections/lib
+mv domg-wc-sections.js domg-wc-sections-${nextRelease_version}.js
+mv domg-wc-sections.js.map domg-wc-sections-${nextRelease_version}.js.map
+mv domg-wc-sections.min.js domg-wc-sections-${nextRelease_version}.min.js
+# een tar maken om via artifactory op de cdn te krijgen
+tar cfz ../domg-wc-sections-${nextRelease_version}.tgz .

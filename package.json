@@ -23,21 +23,28 @@
         "storybook:ci-test-parallel-6": "start-server-and-test 'npx nx storybook storybook' http://localhost:8080 'npx nx e2e storybook-e2e -- --spec **/src/e2e/map/**/*'",
         "killstart:storybook": "npx kill-port 8080 && npx nx storybook storybook",
         "killstart:playground": "npx kill-port 4200 && npx nx serve playground",
-        "build:common-utilities": "npx nx build common-utilities",
-        "build:elements": "npx nx build elements",
-        "build:components": "npx nx build components",
-        "build:map": "npx nx build map",
-        "build:sections": "npx nx build sections",
-        "build:test-support": "npx nx build support-test-support",
-        "process:scss": "npx nx process-scss elements && npx nx process-scss components && npx nx process-scss map && npx nx process-scss sections && node post-process-libs.mjs",
-        "build:all": "npm run build:common-utilities && npm run build:elements && npm run build:components && npm run build:map && npm run build:sections && npm run build:test-support && npm run process:scss",
-        "release:common-utilities": "cd ./dist/libs/common/utilities && npm version $npm_package_version && npm publish",
-        "release:elements": "cd ./dist/libs/elements && npm version $npm_package_version && npm publish",
-        "release:components": "cd ./dist/libs/components && npm version $npm_package_version && npm publish",
-        "release:map": "cd ./dist/libs/map && npm version $npm_package_version && npm publish",
-        "release:sections": "cd ./dist/libs/sections && npm version $npm_package_version && npm publish",
-        "release:test-support": "cd ./dist/libs/support/test-support && npm version $npm_package_version && npm publish",
-        "release:all": "npm run release:common-utilities && npm run release:elements && npm run release:components && npm run release:map && npm run release:sections && npm run release:test-support"
+        "build:common-utilities": "npx nx build-with-js common-utilities",
+        "build:elements": "npx nx build-with-js elements",
+        "build:components": "npx nx build-with-js components",
+        "build:map": "npx nx build-with-js map",
+        "build:sections": "npx nx build-with-js sections",
+        "build:test-support": "npx nx build-with-js support-test-support",
+        "build:all": "npm run build:common-utilities && npm run build:elements && npm run build:components && npm run build:map && npm run build:sections && npm run build:test-support",
+        "build-fat-libs:sections": "npx nx build-fat-libs sections",
+        "pack:common-utilities": "cd ./dist/libs/common/utilities && npm version $npm_package_version && npm pack",
+        "pack:elements": "cd ./dist/libs/elements && npm version $npm_package_version && npm pack",
+        "pack:components": "cd ./dist/libs/components && npm version $npm_package_version && npm pack",
+        "pack:map": "cd ./dist/libs/map && npm version $npm_package_version && npm pack",
+        "pack:sections": "cd ./dist/libs/sections && npm version $npm_package_version && npm pack",
+        "pack:test-support": "cd ./dist/libs/support/test-support && npm version $npm_package_version && npm pack",
+        "pack:all": "npm run pack:common-utilities && npm run pack:elements && npm run pack:components && npm run pack:map && npm run pack:sections && npm run pack:test-support",
+        "publish:common-utilities": "cd ./dist/libs/common/utilities && npm version $npm_package_version && npm publish",
+        "publish:elements": "cd ./dist/libs/elements && npm version $npm_package_version && npm publish",
+        "publish:components": "cd ./dist/libs/components && npm version $npm_package_version && npm publish",
+        "publish:map": "cd ./dist/libs/map && npm version $npm_package_version && npm publish",
+        "publish:sections": "cd ./dist/libs/sections && npm version $npm_package_version && npm publish",
+        "publish:test-support": "cd ./dist/libs/support/test-support && npm version $npm_package_version && npm publish",
+        "publish:all": "npm run publish:common-utilities && npm run publish:elements && npm run publish:components && npm run publish:map && npm run publish:sections && npm run publish:test-support"
     },
     "private": true,
     "peerDependencies": {
@@ -104,6 +111,7 @@
         "sinon": "15.0.2",
         "start-server-and-test": "2.0.0",
         "storybook-addon-mock": "3.2.0",
+        "terser-webpack-plugin": "5.3.9",
         "ts-jest": "29.0.5",
         "ts-node": "10.9.1",
         "typescript": "4.9.5"
@@ -133,3 +141,4 @@
         "node": "18.15.0"
     }
 }
+

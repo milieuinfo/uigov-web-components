@@ -1,13 +1,21 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
+        "allowJs": false,
         "outDir": "../../dist/out-tsc",
-        "sourceMap": false,
+        "sourceMap": true,
+        "inlineSources": true,
         "declaration": true,
         "types": [
-            "mocha",
+            "mocha"
         ]
     },
-    "include": ["**/*.ts"],
-    "exclude": ["jest.config.ts", "**/*.spec.ts"]
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "jest.config.ts",
+        "**/*.spec.ts",
+        "**/stories"
+    ]
 }

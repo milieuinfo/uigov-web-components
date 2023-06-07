@@ -72,7 +72,7 @@ export const awaitScript = (id: string, src: string): Promise<void> => {
  * @param {Number} ms - aantal milliseconden dat er gewacht moeten worden
  * @return {Promise}
  */
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Wacht tot conditie geldig (truthy) is.

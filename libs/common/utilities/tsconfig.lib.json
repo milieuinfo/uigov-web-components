@@ -2,7 +2,8 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "../../../dist/out-tsc",
-        "sourceMap": false,
+        "sourceMap": true,
+        "inlineSources": true,
         "declaration": true,
         "types": []
     },
@@ -12,6 +13,6 @@
     "exclude": [
         "jest.config.ts",
         "**/*.spec.ts",
-        "**/stories/*"
+        "**/stories"
     ]
 }

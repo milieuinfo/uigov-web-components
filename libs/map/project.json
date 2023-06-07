@@ -13,10 +13,11 @@
                 "assets": ["libs/map/*.md"]
             }
         },
-        "process-scss": {
+        "build-with-js": {
             "executor": "nx:run-commands",
+            "dependsOn": ["build"],
             "options": {
-                "command": "sass libs/map/src/lib:dist/libs/map/src/lib --no-source-map --load-path ./node_modules"
+                "command": "node tools/build-with-js/copy-map-js.mjs"
             }
         },
         "lint": {

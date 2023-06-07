@@ -13,6 +13,13 @@
                 "assets": ["libs/support/test-support/*.md"]
             }
         },
+        "build-with-js": {
+            "executor": "nx:run-commands",
+            "dependsOn": ["build"],
+            "options": {
+                "command": "node tools/build-with-js/copy-test-support-js.mjs"
+            }
+        },
         "lint": {
             "executor": "@nrwl/linter:eslint",
             "outputs": ["{options.outputFile}"],

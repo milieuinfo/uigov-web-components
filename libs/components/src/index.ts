@@ -1,74 +1,62 @@
-export { VlAccordionComponent } from './lib/accordion/vl-accordion.component';
-export { VlAccordionListComponent } from './lib/accordion-list/vl-accordion-list.component';
-export { VlAlert } from './lib/alert/vl-alert.component';
-export { ALERT_ICON, ALERT_SIZE, ALERT_TYPE } from './lib/alert/vl-alert.model';
-export { VlAnnotation } from './lib/annotation/vl-annotation.component';
-export { VlAutocomplete } from './lib/autocomplete/vl-autocomplete.component';
-export { VlBreadcrumbComponent } from './lib/breadcrumb/vl-breadcrumb.component';
-export { VlBreadcrumbItemComponent } from './lib/breadcrumb/vl-breadcrumb-item.component';
-export { VlCheckboxComponent } from './lib/checkbox/vl-checkbox.component';
-export { VlCodePreviewComponent } from './lib/code-preview/vl-code-preview.component';
-export { VlContactCardComponent } from './lib/contact-card/vl-contact-card.component';
-export { VlContentHeaderComponent } from './lib/content-header/vl-content-header.component';
-export { VlDatepickerComponent } from './lib/datepicker/vl-datepicker.component';
-export { VlDescriptionDataItem } from './lib/description-data/vl-description-data-item.component';
-export { VlDescriptionData } from './lib/description-data/vl-description-data.component';
-export { VlDocumentComponent } from './lib/document/vl-document.component';
-export { VlFunctionalHeaderComponent } from './lib/functional-header/vl-functional-header.component';
-export { VlHttp400Message } from './lib/http-error-message/vl-http-400-message.component';
-export { VlHttp401Message } from './lib/http-error-message/vl-http-401-message.component';
-export { VlHttp403Message } from './lib/http-error-message/vl-http-403-message.component';
-export { VlHttp404Message } from './lib/http-error-message/vl-http-404-message.component';
-export { VlHttp405Message } from './lib/http-error-message/vl-http-405-message.component';
-export { VlHttp408Message } from './lib/http-error-message/vl-http-408-message.component';
-export { VlHttp410Message } from './lib/http-error-message/vl-http-410-message.component';
-export { VlHttp411Message } from './lib/http-error-message/vl-http-411-message.component';
-export { VlHttp412Message } from './lib/http-error-message/vl-http-412-message.component';
-export { VlHttp413Message } from './lib/http-error-message/vl-http-413-message.component';
-export { VlHttp414Message } from './lib/http-error-message/vl-http-414-message.component';
-export { VlHttp415Message } from './lib/http-error-message/vl-http-415-message.component';
-export { VlHttp500Message } from './lib/http-error-message/vl-http-500-message.component';
-export { VlHttp501Message } from './lib/http-error-message/vl-http-501-message.component';
-export { VlHttp502Message } from './lib/http-error-message/vl-http-502-message.component';
-export { VlHttp503Message } from './lib/http-error-message/vl-http-503-message.component';
-export { VlHttp504Message } from './lib/http-error-message/vl-http-504-message.component';
-export { VlHttp505Message } from './lib/http-error-message/vl-http-505-message.component';
-export { VlHttp506Message } from './lib/http-error-message/vl-http-506-message.component';
-export { VlHttpErrorMessage } from './lib/http-error-message/vl-http-error-message.component';
-export { VlInfoblockComponent } from './lib/infoblock/vl-infoblock.component';
-export { VlInfoTile } from './lib/info-tile/vl-info-tile.component';
-export { VlInputSliderComponent } from './lib/input-slider/vl-input-slider.component';
-export { VlModalComponent } from './lib/modal/vl-modal.component';
-export { VlLoaderComponent } from './lib/loader/vl-loader.component';
-export { VlPagerComponent, Pagination } from './lib/pager/vl-pager.component';
-export { VlPillComponent } from './lib/pill/vl-pill.component';
-export { TYPE } from './lib/pill/vl-pill.model';
-export { VlButtonPillComponent } from './lib/pill/vl-button-pill.component';
-export { VlProzaMessage } from './lib/proza-message/vl-proza-message.component';
-export { VlProzaMessagePreloader } from './lib/proza-message/vl-proza-message-preloader.component';
-export { VlProgressBarComponent } from './lib/progress-bar/vl-progress-bar.component';
-export { VlRadio } from './lib/radio/vl-radio.component';
-export { VlRadioGroup, vlRadioGroupComponent } from './lib/radio/vl-radio-group.component';
-export { VlRichData } from './lib/rich-data/vl-rich-data.component';
-export { VlRichDataField } from './lib/rich-data-table/vl-rich-data-field.component';
-export { VlRichDataSorter } from './lib/rich-data-table/vl-rich-data-sorter.component';
-export { VlRichDataTable } from './lib/rich-data-table/vl-rich-data-table.component';
-export { VlShareButton } from './lib/share-buttons/vl-share-button.component';
-export { MEDIA, MEDIA_NAMES } from './lib/share-buttons/vl-share-button.model';
-export { VlShareButtonsComponent } from './lib/share-buttons/vl-share-buttons.component';
-export { VlSearchComponent } from './lib/search/vl-search.component';
-export { VlSideSheet } from './lib/side-sheet/vl-side-sheet.component';
-export { VlSpotlight } from './lib/spotlight/vl-spotlight.component';
-export { VlStepsComponent } from './lib/steps/vl-steps.component';
-export { VlTabsComponent } from './lib/tabs/vl-tabs.component';
-export { VlTemplate } from './lib/template/vl-template.component';
-export { VlToggleButtonComponent } from './lib/toggle-button/vl-toggle-button.component';
-export { ICON_PLACEMENT } from './lib/toggle-button/vl-toggle-button.model';
-export { VlTypography } from './lib/typography/vl-typography.component';
-export { VlTextarea } from './lib/textarea/vl-textarea.element';
-export { VlTextareaModal } from './lib/textarea/vl-textarea-modal.component';
-export { VlToasterElement } from './lib/toaster/vl-toaster.element';
-export { VlTooltipComponent } from './lib/tooltip/vl-tooltip.component';
-export { VlUploadComponent } from './lib/upload/vl-upload.component';
-export { VlWizard } from './lib/wizard/vl-wizard.component';
-export { VlWizardPane } from './lib/wizard/vl-wizard-pane.component';
+export { VlAccordionComponent } from './lib/accordion';
+export { VlAccordionListComponent } from './lib/accordion-list';
+export { VlAlert, ALERT_ICON, ALERT_SIZE, ALERT_TYPE } from './lib/alert';
+export { VlAnnotation } from './lib/annotation';
+export { VlAutocomplete } from './lib/autocomplete';
+export { VlBreadcrumbComponent, VlBreadcrumbItemComponent } from './lib/breadcrumb';
+export { VlCheckboxComponent } from './lib/checkbox';
+export { VlCodePreviewComponent } from './lib/code-preview';
+export { VlContactCardComponent } from './lib/contact-card';
+export { VlContentHeaderComponent } from './lib/content-header';
+export { VlDatepickerComponent } from './lib/datepicker';
+export { VlDescriptionData, VlDescriptionDataItem } from './lib/description-data';
+export { VlDocumentComponent } from './lib/document';
+export { VlFunctionalHeaderComponent } from './lib/functional-header';
+export {
+    VlHttp400Message,
+    VlHttp401Message,
+    VlHttp403Message,
+    VlHttp404Message,
+    VlHttp405Message,
+    VlHttp408Message,
+    VlHttp410Message,
+    VlHttp411Message,
+    VlHttp412Message,
+    VlHttp413Message,
+    VlHttp414Message,
+    VlHttp415Message,
+    VlHttp500Message,
+    VlHttp501Message,
+    VlHttp502Message,
+    VlHttp503Message,
+    VlHttp504Message,
+    VlHttp505Message,
+    VlHttp506Message,
+    VlHttpErrorMessage,
+} from './lib/http-error-message';
+export { VlInfoblockComponent } from './lib/infoblock';
+export { VlInfoTile } from './lib/info-tile';
+export { VlInputSliderComponent } from './lib/input-slider';
+export { VlModalComponent } from './lib/modal';
+export { VlLoaderComponent } from './lib/loader';
+export { VlPagerComponent, Pagination } from './lib/pager';
+export { VlButtonPillComponent, VlPillComponent, TYPE } from './lib/pill';
+export { VlProzaMessage, VlProzaMessagePreloader } from './lib/proza-message';
+export { VlProgressBarComponent } from './lib/progress-bar';
+export { VlRadio, VlRadioGroup, vlRadioGroupComponent } from './lib/radio';
+export { VlRichData } from './lib/rich-data';
+export { VlRichDataField, VlRichDataSorter, VlRichDataTable } from './lib/rich-data-table';
+export { VlSearchComponent } from './lib/search';
+export { VlShareButton, MEDIA, MEDIA_NAMES, VlShareButtonsComponent } from './lib/share-buttons';
+export { VlSideSheet } from './lib/side-sheet';
+export { VlSpotlight } from './lib/spotlight';
+export { VlStepsComponent } from './lib/steps';
+export { VlTabsComponent } from './lib/tabs';
+export { VlTemplate } from './lib/template';
+export { VlTextarea, VlTextareaModal } from './lib/textarea';
+export { VlToasterElement } from './lib/toaster';
+export { VlToggleButtonComponent, ICON_PLACEMENT } from './lib/toggle-button';
+export { VlTooltipComponent } from './lib/tooltip';
+export { VlTypography } from './lib/typography';
+export { VlUploadComponent } from './lib/upload';
+export { VlWizard, VlWizardPane } from './lib/wizard';

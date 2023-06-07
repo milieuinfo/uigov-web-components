@@ -11,6 +11,5 @@ echo "npm install yargs - specific to solve an issue with 'npx nx wct map' (that
 npm install yargs@17.7.1 --save-dev
 echo "run all unit tests"
 npx nx run-many --all --target=test --parallel --maxParallel=4 --skip-nx-cache
-echo "run all web tests"
-npm run build:all
-npx nx wct map
+echo "run all web component tests (wct)"
+npm run test:wct

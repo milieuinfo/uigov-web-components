@@ -14,6 +14,13 @@
                 "assets": ["libs/common/utilities/*.md"]
             }
         },
+        "build-with-js": {
+            "executor": "nx:run-commands",
+            "dependsOn": ["build"],
+            "options": {
+                "command": "node tools/build-with-js/copy-common-utilities-js.mjs"
+            }
+        },
         "lint": {
             "executor": "@nrwl/linter:eslint",
             "outputs": ["{options.outputFile}"],

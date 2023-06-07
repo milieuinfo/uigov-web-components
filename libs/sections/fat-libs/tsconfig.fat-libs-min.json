@@ -1,0 +1,19 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../../dist",
+        "sourceMap": false,
+        "inlineSources": false,
+        "declaration": false,
+        "types": []
+    },
+    "include": [
+        "**/*.ts",
+        "../../components/src/types"
+    ],
+    "exclude": [
+        "jest.config.ts",
+        "**/*.spec.ts",
+        "**/stories"
+    ]
+}

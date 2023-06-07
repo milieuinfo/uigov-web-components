@@ -14,10 +14,11 @@
                 "assets": ["libs/elements/*.md"]
             }
         },
-        "process-scss": {
+        "build-with-js": {
             "executor": "nx:run-commands",
+            "dependsOn": ["build"],
             "options": {
-                "command": "sass libs/elements/src/lib:dist/libs/elements/src/lib --no-source-map --load-path ./node_modules"
+                "command": "node tools/build-with-js/copy-elements-js.mjs"
             }
         },
         "lint": {
