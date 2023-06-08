@@ -21,15 +21,24 @@ import { VlFormValidation, VlFormElement } from '@domg-wc/elements';
 <ArgsTable story={PRIMARY_STORY} />
 
 ## Info
-Info and options
+> `vl-form-validation` element gebruikt achterliggend `validate.js` 0.12 ([http://validatejs.org/](http://validatejs.org/)).
 
 Het kenmerk `[data-validate-form]` is vereist voor het formulierelement.
 
-Als het formulier geen validatie vereist, stel dan het `[novalidate]` attribuut in. Dit voorkomt dat de standaard HTML5-validatie van de browser wordt geactiveerd.
+Standaard zal de HTML5-validatie van de browser deactiveren.
 
-Als u een formulier opnieuw instelt, worden validatiefouten automatisch gereset. Als u validaties expliciet opnieuw wilt instellen (bijvoorbeeld na het verzenden aan de clientzijde), kunt u `vl.formValidation.reset(formEl)` aanroepen
+### Reset
 
-`vl-form-validation` element gebruikt achterliggend `validate.js` 0.12 ([http://validatejs.org/](http://validatejs.org/)).
+Als u een formulier opnieuw instelt, worden validatiefouten automatisch gereset. Als u validaties uitdrukkelijk opnieuw wilt instellen (bijvoorbeeld na het verzenden aan de clientzijde), kunt u `vl.formValidation.reset(formEl)` aanroepen
+
+### Required
+
+Om de `form-validation` te laten werken voor een control moet je uitdrukkelijk `data-vl-required` op het te valideren element zetten. Anders wordt het element als een optioneel invoerveld gezien.
+
+Je vindt een voorbeeld hieronder; naam is verplicht en voornaam is niet verplicht.
+
+<DocsStory id="elements-form--form-validation-optional" />
+
 
 ## Referenties
 
