@@ -6690,7 +6690,9 @@
         var errorMessage = {
             message: obj.errorMessage,
         };
-        obj.validationConstraints.presence = errorMessage;
+
+        // enkel required instellen wanneer required uitdrukkelijk is ingesteld op het component
+        obj.validationConstraints.presence = obj && obj.required ? errorMessage : null;
 
         switch (obj.validationType) {
             case 'email':
