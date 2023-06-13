@@ -1,12 +1,22 @@
 const formValidationDefaultUrl =
     'http://localhost:8080/iframe.html?globals=backgrounds.value:!hex(F8F8F8)&viewMode=story&id=elements-form--form-validation';
 const formValidationOptionalUrl =
-    'http://localhost:8080/iframe.html?globals=backgrounds.value:!hex(F8F8F8)&args=&id=elements-form--form-validation-optional&viewMode=story';
+    'http://localhost:8080/iframe.html?globals=backgrounds.value:!hex(F8F8F8)&id=elements-form--form-validation-optional&viewMode=story';
 
-describe('story vl-form-validation - default', () => {
+describe('story vl-form - with validation', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(`${formValidationDefaultUrl}`);
         cy.checkA11y('[is="vl-form"]');
+    });
+
+    it('should by default, not have native HTML validation', () => {
+        cy.visit(`${formValidationDefaultUrl}`);
+        cy.get('[is="vl-form"]').should('have.attr', 'novalidate');
+    });
+
+    it('should have native HTML validation', () => {
+        cy.visit(`${formValidationDefaultUrl}&args=nativeValidation:true`);
+        cy.get('[is="vl-form"]').should('not.have.attr', 'novalidate');
     });
 });
 
