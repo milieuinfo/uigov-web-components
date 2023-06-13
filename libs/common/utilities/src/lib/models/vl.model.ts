@@ -78,8 +78,8 @@ interface Upload {
     dress(element: any): void;
     dressAll(): void;
     undress(): void;
-    enable(element: HTMLElement): void;
-    disable(element: HTMLElement): void;
+    enable(element: HTMLElement | undefined): void;
+    disable(element: HTMLElement | undefined): void;
     dropzoneInstances: any[];
     disabledMutationObserver: MutationObserver;
 }

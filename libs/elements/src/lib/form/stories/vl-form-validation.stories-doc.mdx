@@ -14,7 +14,7 @@ import { VlFormValidation, VlFormElement } from '@domg-wc/elements';
 <form is="vl-form"></form>
 ```
 
-<DocsStory id="elements-form--form-validation" />
+<DocsStory id="elements-form--form-default" />
 
 ## Configuratie
 
@@ -23,9 +23,15 @@ import { VlFormValidation, VlFormElement } from '@domg-wc/elements';
 ## Info
 > `vl-form-validation` element gebruikt achterliggend `validate.js` 0.12 ([http://validatejs.org/](http://validatejs.org/)).
 
-Het kenmerk `[data-validate-form]` is vereist voor het formulierelement.
+Het attribuut `[data-validate-form]` is vereist voor het formulierelement.
 
-Standaard zal de HTML5-validatie van de browser deactiveren.
+<DocsStory id="elements-form--form-validation" />
+
+### Native validation
+
+Standaard zal de HTML5-validatie van de browser gedeactiveerd worden en word `novalidate` attribuut toegevoegd. [Zie hier voor meer info op MDN.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#novalidate)
+
+Als je toch native HTML validation wil toelaten, moet je het attribuut `data-vl-native-validation` toevoegen.
 
 ### Reset
 
@@ -38,6 +44,14 @@ Om de `form-validation` te laten werken voor een control moet je uitdrukkelijk `
 Je vindt een voorbeeld hieronder; naam is verplicht en voornaam is niet verplicht.
 
 <DocsStory id="elements-form--form-validation-optional" />
+
+### Group
+
+Met `vl-form-group` wordt styling toegevoegd om makkelijker te onderscheiden tussen verschillende form controls.
+
+Zie voorbeeld hieronder:
+
+<DocsStory id="elements-form--form-group" />
 
 
 ## Referenties

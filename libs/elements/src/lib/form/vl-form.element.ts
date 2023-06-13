@@ -13,7 +13,7 @@ import './vl-form-group.element';
 @webComponent('vl-form', { extends: 'form' })
 export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
     static get _observedAttributes() {
-        return ['target', 'action', 'validate'];
+        return ['target', 'action', 'validate', 'native-validation'];
     }
 
     static get _targetElementName() {
@@ -76,7 +76,10 @@ export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
     }
 
     _disableNativeValidation() {
-        this.setAttribute('novalidate', '');
+        const nativeValidationEnabled = this.getAttribute('data-vl-native-validation') !== null;
+        if (!nativeValidationEnabled) {
+            this.setAttribute('novalidate', '');
+        }
     }
 
     _addClasses() {
