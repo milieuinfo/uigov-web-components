@@ -32,6 +32,7 @@ export const vlFormValidationElement = (SuperClass: Class): Class => {
 
         /**
          * Sets a custom validity message for the element.
+         * used in vl-form-validation.lib.js
          *
          * @param {string} message
          */
@@ -84,6 +85,9 @@ export const vlFormValidationElement = (SuperClass: Class): Class => {
             }
         }
 
+        /**
+         * hier worden data-vl-error & data-vl-succes ingesteld
+         */
         _observeFormValidationClasses() {
             const node = this as unknown as Node;
             const observer = new MutationObserver((mutations) => {

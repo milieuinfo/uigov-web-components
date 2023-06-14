@@ -214,7 +214,7 @@ describe('story vl-upload - in a form', () => {
         shouldHaveUploadFiles(1);
         shouldRemoveFile();
         cy.get('vl-upload').shadow().find('div').not('.vl-upload__file');
-        cy.get('p[is=vl-form-validation-message]').should('be.visible');
+        cy.get('p[is=vl-form-validation-message]').should('not.be.visible');
     });
 
     it('can select a file to upload, inside a form, removing the files will reset validation if resetFormOnClear is true', () => {

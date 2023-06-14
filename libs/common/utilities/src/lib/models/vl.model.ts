@@ -24,9 +24,10 @@ interface Datepicker {
 }
 
 interface FormValidation {
-    dress(form: HTMLFormElement): void;
+    dress(form: any): void;
+    undress(form: any): void;
     dressAll(): void;
-    reset(): void;
+    reset(form: any): void;
     _resetInput(el: HTMLElement): void;
 }
 
