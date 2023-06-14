@@ -1,5 +1,7 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, VL, webComponent } from '@domg-wc/common-utilities';
 import './vl-form-group.element';
+
+declare const vl: VL;
 
 /**
  * VlForm
@@ -12,6 +14,8 @@ import './vl-form-group.element';
  */
 @webComponent('vl-form', { extends: 'form' })
 export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
+    private observer: MutationObserver | undefined;
+
     static get _observedAttributes() {
         return ['target', 'action', 'validate', 'native-validation'];
     }
@@ -23,6 +27,11 @@ export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
     connectedCallback() {
         this._process();
         this._addClasses();
+        this._observeAddedElements();
+    }
+
+    disconnectedCallback() {
+        this.observer?.disconnect();
     }
 
     get _targetElement() {
@@ -42,6 +51,35 @@ export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
             this._addTargetElement();
         }
         this._disableNativeValidation();
+    }
+
+    /**
+     * this function creates a MutationObserver that will observe the elements added to the form
+     * if it detects that a form validation element has been added, it'll undress & dress the form again
+     */
+    _observeAddedElements(): void {
+        const node = this as unknown as Node;
+        const vlFormElement = node as unknown as VlFormElement;
+        const observer = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                const { addedNodes } = mutation;
+                for (const node of addedNodes) {
+                    const isElementNode = node.nodeType === Node.ELEMENT_NODE;
+                    if (!isElementNode) continue; // not an element so we exit loop here
+                    const element = node as HTMLElement;
+                    // we look if the added element matches or contains a form element for which validation can happen
+                    const formElementSelector = 'input, textarea, select, [data-vl-error-placeholder]';
+                    if (element.matches(formElementSelector) || element.querySelector(formElementSelector)) {
+                        // in case a new formElement was added, we need to undress the form to avoid duplicate event listeners
+                        vl.formValidation.undress(vlFormElement);
+                        // then dress the form again
+                        vl.formValidation.dress(vlFormElement);
+                    }
+                }
+            }
+        });
+        observer.observe(node, { attributes: false, childList: true, characterData: false, subtree: true });
+        this.observer = observer;
     }
 
     _addTargetElement() {

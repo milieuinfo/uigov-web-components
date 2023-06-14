@@ -2,6 +2,8 @@
 // Voor JavaScript componenten, gebruikt Digitaal Vlaanderen een `vl`-object dat ze creëren op Window
 // typisch worden de sub-objecten van `vl` gebruikt binnen die JavaScript componenten
 
+import { VlFormElement } from '@domg-wc/elements';
+
 interface Accordion {
     dress(element: any): void;
     dressAll(): void;
@@ -24,9 +26,10 @@ interface Datepicker {
 }
 
 interface FormValidation {
-    dress(form: HTMLFormElement): void;
+    dress(form: VlFormElement): void;
+    undress(form: VlFormElement): void;
     dressAll(): void;
-    reset(): void;
+    reset(form: VlFormElement): void;
     _resetInput(el: HTMLElement): void;
 }
 
