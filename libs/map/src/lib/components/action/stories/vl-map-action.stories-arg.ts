@@ -29,7 +29,7 @@ export const mapActionArgTypes: ArgTypes<typeof mapActionArgs> = {
     layer: {
         name: 'data-vl-layer',
         description:
-            'Linkt de actie aan een map-layer.<br>Geef hier het data-vl-name attribuut van de map-layer mee.<br>Wordt gebruikt als de actie niet binnen het map-layer element staat.',
+            'Linkt de actie aan een kaartlaag.<br>Geef hier het data-vl-name attribuut van de kaartlaag mee.<br>Wordt gebruikt als de actie niet binnen een kaartlaag element staat.',
         control: { disable: true },
         table: {
             type: { summary: TYPES.STRING },

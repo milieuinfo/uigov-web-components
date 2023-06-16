@@ -19,6 +19,9 @@ import { VlMapLayerAction } from '../vl-map-layer-action';
  */
 @webComponent('vl-map-modify-action')
 export class VlMapModifyAction extends VlMapLayerAction {
+    private __snappingLayer: VlCompositeVectorLayer;
+    private __onSnappingLayerStyleChanged;
+
     static get _observedAttributes() {
         return ['snapping', 'snapping-pixel-tolerance'];
     }

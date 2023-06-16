@@ -1,4 +1,5 @@
-import { MapActionPayload } from '../../vl-map.model';
+import OlBaseEvent from 'ol/events/Event';
+import { MapActionPayload, OlVectorLayerType } from '../../vl-map.model';
 import { VlSelectAction } from './select-action';
 import { never } from 'ol/events/condition';
 import Feature from 'ol/Feature';
@@ -8,7 +9,7 @@ import VectorSource from 'ol/source/Vector';
 import Style from 'ol/style/Style';
 
 describe('select action', () => {
-    const createVlSelectAction = ({ layer = <VectorLayer<any>>{}, callback, options}: MapActionPayload) => {
+    const createVlSelectAction = ({ layer = <OlVectorLayerType>{}, callback, options }: MapActionPayload) => {
         const action = new VlSelectAction(layer, callback, options);
         action.map = new Map({});
         return action;
@@ -52,7 +53,7 @@ describe('select action', () => {
             getSource: () => ({
                 getFeatureById: (id) => (id == 1 ? feature1 : feature2),
             }),
-        };
+        } as OlVectorLayerType;
         const selectAction = createVlSelectAction({ layer });
         selectAction.markFeatureWithId(1);
         expect(selectAction.isMarked(feature1)).toBe(true);
@@ -101,12 +102,12 @@ describe('select action', () => {
             getSource: () => ({
                 getFeatures: () => [feature],
             }),
-        };
+        } as unknown as OlVectorLayerType;
         const onSelect = jest.fn();
         const feature = new Feature({ id: 1 });
         const selectAction = createVlSelectAction({ layer, callback: onSelect });
         selectAction.selectInteraction.getFeatures().push(feature);
-        const event = { type: 'select' };
+        const event = { type: 'select' } as OlBaseEvent;
         selectAction.selectInteraction.dispatchEvent(event);
         expect(onSelect).toHaveBeenCalledTimes(1);
         const argsForCall = onSelect.mock.calls[0];
@@ -129,7 +130,7 @@ describe('select action', () => {
                         getFeatures: () => [feature, feature2, feature3],
                     }),
                 },
-            ],
+            ] as unknown as OlVectorLayerType,
             callback: onSelect,
         });
 
@@ -137,13 +138,14 @@ describe('select action', () => {
         selectAction.selectInteraction.getFeatures().push(feature2);
         selectAction.selectInteraction.getFeatures().push(feature3);
 
-        selectAction.selectInteraction.dispatchEvent({ type: 'select' });
+        // TODO: Zorg ervoor dat dispatchEvent een OL BaseEvent afvuurt, onderstaande manier behouden voor backwards-compatibility.
+        selectAction.selectInteraction.dispatchEvent({ type: 'select' } as OlBaseEvent);
         expect(onSelect.mock.calls[0][0]).toBe(feature);
-        selectAction.selectInteraction.dispatchEvent({ type: 'select' });
+        selectAction.selectInteraction.dispatchEvent({ type: 'select' } as OlBaseEvent);
         expect(onSelect.mock.calls[1][0]).toBe(feature2);
-        selectAction.selectInteraction.dispatchEvent({ type: 'select' });
+        selectAction.selectInteraction.dispatchEvent({ type: 'select' } as OlBaseEvent);
         expect(onSelect.mock.calls[2][0]).toBe(feature3);
-        selectAction.selectInteraction.dispatchEvent({ type: 'select' });
+        selectAction.selectInteraction.dispatchEvent({ type: 'select' } as OlBaseEvent);
         expect(onSelect.mock.calls[3][0]).toBe(feature);
     });
 
@@ -172,7 +174,7 @@ describe('select action', () => {
                         },
                     }),
                 },
-            ],
+            ] as unknown as OlVectorLayerType,
             callback: onSelect,
         });
 
@@ -180,9 +182,9 @@ describe('select action', () => {
         selectAction.clearFeatures();
 
         selectAction.selectInteraction.getFeatures().push(feature2);
-        selectAction.selectInteraction.dispatchEvent({ type: 'select' });
+        selectAction.selectInteraction.dispatchEvent({ type: 'select' } as OlBaseEvent);
         selectAction.selectInteraction.getFeatures().push(feature3);
-        selectAction.selectInteraction.dispatchEvent({ type: 'select' });
+        selectAction.selectInteraction.dispatchEvent({ type: 'select' } as OlBaseEvent);
 
         expect(onSelect.mock.calls[0][0].get('id')).toBe(1);
         expect(onSelect.mock.calls[1][0].get('id')).toBe(2);
@@ -215,7 +217,7 @@ describe('select action', () => {
                         }
                     },
                 }),
-            },
+            } as unknown as OlVectorLayerType,
             callback: onSelect,
         });
 
@@ -223,18 +225,18 @@ describe('select action', () => {
         selectAction.selectInteraction.getFeatures().push(feature2);
         selectAction.selectInteraction.getFeatures().push(feature3);
 
-        selectAction.selectInteraction.dispatchEvent({ type: 'select' });
+        selectAction.selectInteraction.dispatchEvent({ type: 'select' } as OlBaseEvent);
         expect(onSelect.mock.calls[0][0]).toBe(feature);
-        selectAction.selectInteraction.dispatchEvent({ type: 'select' });
+        selectAction.selectInteraction.dispatchEvent({ type: 'select' } as OlBaseEvent);
         expect(onSelect.mock.calls[1][0]).toBe(feature2);
         selectAction.deselect();
-        selectAction.selectInteraction.dispatchEvent({ type: 'select' });
+        selectAction.selectInteraction.dispatchEvent({ type: 'select' } as OlBaseEvent);
         expect(onSelect.mock.calls[2][0]).toBe(feature);
     });
 
     it('zal de onselect functie oproepen met lege argumenten als er een select wordt gedaan niet op een feature', () => {
         const onSelect = jest.fn();
-        const selectAction = createVlSelectAction({ layer: [{}], callback: onSelect });
+        const selectAction = createVlSelectAction({ layer: [{}] as unknown as OlVectorLayerType, callback: onSelect });
         selectAction.map = new Map({});
         selectAction.activate();
         selectAction.selectInteraction.dispatchEvent('select');
@@ -242,7 +244,7 @@ describe('select action', () => {
     });
 
     it('zal bij een deactivate de selectie features clearen', () => {
-        const selectAction = createVlSelectAction({ layer: [{}] });
+        const selectAction = createVlSelectAction({ layer: [{}] as unknown as OlVectorLayerType });
         selectAction.map = new Map({});
         const feature = new Feature({ id: 1 });
         selectAction.selectInteraction.getFeatures().push(feature);
@@ -278,7 +280,9 @@ describe('select action', () => {
         feature.setId(2);
         let filter: any = (feature) => feature.getId() == 1;
         const selectAction = createVlSelectAction({
-            layer: [new VectorLayer({ source: new VectorSource({ features: [feature, featureWithId2] }) })],
+            layer: [
+                new VectorLayer({ source: new VectorSource({ features: [feature, featureWithId2] }) }),
+            ] as unknown as OlVectorLayerType,
             options: {
                 filter,
             },
@@ -290,7 +294,7 @@ describe('select action', () => {
 
     it('zal bij activatie de functie activeren om na het zoomen de selectie bij clustering goed te zetten', () => {
         const selectAction = createVlSelectAction({
-            layer: [{}],
+            layer: [{}] as unknown as OlVectorLayerType,
             options: {
                 cluster: true,
             },
@@ -304,14 +308,14 @@ describe('select action', () => {
 
     it('zal bij deactivate de functie deactiveren om na het zoomen de selectie bij clustering goed te zetten', () => {
         const selectAction = createVlSelectAction({
-            layer: [{}],
+            layer: [{}] as unknown as OlVectorLayerType,
             options: {
                 cluster: true,
             },
         });
         selectAction.map = <Map>{
-            on: <any>(jest.fn()),
-            un: <any>(jest.fn()),
+            on: <any>jest.fn(),
+            un: <any>jest.fn(),
         };
         selectAction.activate();
         selectAction.deactivate();
@@ -327,7 +331,7 @@ describe('select action', () => {
                 getFeatures: () => [feature],
                 getFeatureById: (id) => (id == 1 ? feature : null),
             }),
-        };
+        } as unknown as OlVectorLayerType;
         const selectAction = createVlSelectAction({
             layer,
             options: {
@@ -339,7 +343,7 @@ describe('select action', () => {
         expect(selectAction.selectInteraction.getFeatures().getLength()).toBe(1);
         expect(selectAction.markInteraction.getFeatures().getLength()).toBe(0);
         expect(selectAction.hoverInteraction.getFeatures().getLength()).toBe(0);
-        const event = { type: 'select' };
+        const event = { type: 'select' } as OlBaseEvent;
         selectAction.selectInteraction.dispatchEvent(event);
         expect(selectAction.selectInteraction.getFeatures().getLength()).toBe(0);
         expect(selectAction.markInteraction.getFeatures().getLength()).toBe(1);

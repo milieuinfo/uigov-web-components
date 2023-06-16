@@ -3,11 +3,11 @@ import Style from 'ol/style/Style';
 import VectorSource from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
 import Feature from 'ol/Feature';
-import { MapActionPayload } from '../../vl-map.model';
+import { MapActionPayload, OlVectorLayerType } from '../../vl-map.model';
 import { VlDeleteAction } from './delete-action';
 
 describe('delete action', () => {
-    const createVlDeleteAction = ({ layer = <VectorLayer<any>>{}, callback, options}: MapActionPayload) => {
+    const createVlDeleteAction = ({ layer = <OlVectorLayerType>{}, callback, options }: MapActionPayload) => {
         const action = new VlDeleteAction(layer, callback, options);
         action.map = new Map({});
         action.map.render = jest.fn();
@@ -15,7 +15,7 @@ describe('delete action', () => {
     };
 
     it('indien er geen delete stijl gedefinieerd is zal de standaard stijl gebruikt worden', () => {
-        const deleteAction = createVlDeleteAction({ layer: {} });
+        const deleteAction = createVlDeleteAction({ layer: {} as OlVectorLayerType });
         expect(deleteAction.style).toBeDefined();
     });
 
@@ -120,10 +120,12 @@ describe('delete action', () => {
                 getFeatureById: () => feature,
                 removeFeature: () => {},
             }),
-        };
+        } as unknown as OlVectorLayerType;
 
         const deleteAction = createVlDeleteAction({ layer });
-        const stub = jest.spyOn(deleteAction.dragBoxInteraction, 'getGeometry').mockClear()
+        const stub = jest
+            .spyOn(deleteAction.dragBoxInteraction, 'getGeometry')
+            .mockClear()
             // @ts-ignore
             .mockReturnValue({ getExtent: () => {} });
         deleteAction.dragBoxInteraction.dispatchEvent('boxdrag');
