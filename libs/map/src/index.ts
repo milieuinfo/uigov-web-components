@@ -42,6 +42,7 @@ export { VlMapBaseLayerGRBOrtho } from './lib/components/baselayer/vl-map-base-l
 export { VlMapAction } from './lib/components/action/vl-map-action';
 export { VlMapLayerAction } from './lib/components/action/layer-action/vl-map-layer-action';
 export { VlMapSelectAction } from './lib/components/action/layer-action/select-action/vl-map-select-action';
+export { VlMapSelectActions } from './lib/components/action/layer-action/select-action/select-actions/vl-map-select-actions';
 export { VlMapDeleteAction } from './lib/components/action/layer-action/delete-action/vl-map-delete-action';
 export { VlMapModifyAction } from './lib/components/action/layer-action/modify-action/vl-map-modify-action';
 export { VlMapDrawPointAction } from './lib/components/action/draw-action/draw-point-action/vl-map-draw-point-action';

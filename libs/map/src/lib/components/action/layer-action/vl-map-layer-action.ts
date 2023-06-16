@@ -1,5 +1,7 @@
 import { webComponent } from '@domg-wc/common-utilities';
 import { VlMapAction } from '../vl-map-action';
+import { VlMapVectorLayer } from '../../layer/vector-layer/vl-map-vector-layer';
+import { OlVectorLayerType } from '../../../vl-map.model';
 
 /**
  * VlMapLayerAction
@@ -19,54 +21,38 @@ import { VlMapAction } from '../vl-map-action';
  */
 @webComponent('vl-map-layer-action')
 export class VlMapLayerAction extends VlMapAction {
-    static get _observedAttributes() {
+    static get _observedAttributes(): string[] {
         return ['layer'];
     }
 
-    connectedCallback() {
+    connectedCallback(): void {
         this._layerChangedCallback();
         return super.connectedCallback();
     }
 
-    /**
-     * Geeft de OL6 kaartlaag.
-     *
-     * @return {Object}
-     */
-    // @ts-ignore
-    get layer() {
+    get layer(): OlVectorLayerType {
         return this._layer;
     }
 
-    /**
-     * Zet de kaartlaag.
-     *
-     * @param {Object} layer OL6 kaartlaag
-     */
-    set layer(layer) {
+    set layer(layer: OlVectorLayerType) {
         this._layer = layer;
         this._processAction();
     }
 
-    get _layerElement() {
+    get _layerElement(): VlMapVectorLayer {
         return (
             this._mapElement.querySelector(`[data-vl-is-layer][data-vl-name="${this.dataset.vlLayer}"]`) ||
             this.closest('[data-vl-is-layer]')
         );
     }
 
-    _layerChangedCallback() {
+    _layerChangedCallback(): void {
         if (this._layerElement) {
             this.layer = this._layerElement.layer;
         }
     }
 
-    _createAction(layer?) {
-        // @ts-ignore
-        super._createAction(layer);
-    }
-
-    _processAction() {
+    _processAction(layers?: OlVectorLayerType[]): void {
         this._mapElement.ready.then(() => {
             if (this._action) {
                 this._mapElement.removeAction(this._action);
@@ -74,6 +60,11 @@ export class VlMapLayerAction extends VlMapAction {
 
             if (this.layer) {
                 this._action = this._createAction(this.layer);
+                super._processAction();
+            }
+
+            if (layers) {
+                this._action = this._createAction(layers);
                 super._processAction();
             }
         });

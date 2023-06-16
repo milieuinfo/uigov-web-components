@@ -18,3 +18,10 @@
 .docblock-argstable tr > *:nth-child(4) {
     display: none;
 }
+details > summary {
+    font-weight: bold;
+    font-size: 16px;
+    border: 1px solid black;
+    padding: 8px 12px;
+    width: max-content;
+}

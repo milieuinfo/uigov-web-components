@@ -2,6 +2,7 @@ import { webComponent } from '@domg-wc/common-utilities';
 import { VlDeleteAction } from '../../../../actions';
 import { VlMapLayerStyle } from '../../../layer-style/vl-map-layer-style';
 import { VlMapLayerAction } from '../vl-map-layer-action';
+import { StyleLike as OlStyleLike } from 'ol/style/Style';
 
 /**
  * VlMapDeleteAction
@@ -16,11 +17,14 @@ import { VlMapLayerAction } from '../vl-map-layer-action';
  */
 @webComponent('vl-map-delete-action')
 export class VlMapDeleteAction extends VlMapLayerAction {
+    protected _style: OlStyleLike;
+
     /**
      * Returns the style that a selected feature will be given.
      *
      * @return {Object} de stijl
      */
+    // @ts-ignore: Negeer override van de property "style" van de native Element klasse die van een ander type is.
     get style() {
         return this._style;
     }
@@ -30,6 +34,7 @@ export class VlMapDeleteAction extends VlMapLayerAction {
      *
      * @param {VlMapLayerStyle|Object} style - the style: a VlMapLayerStyle or an OpenLayers Style
      */
+    // @ts-ignore: Negeer override van de property "style" van de native Element klasse die van een ander type is.
     set style(style) {
         if (style instanceof VlMapLayerStyle) {
             this._style = style.style;

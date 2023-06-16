@@ -2,6 +2,9 @@ import { webComponent } from '@domg-wc/common-utilities';
 import { VlSelectAction } from '../../../../actions';
 import { VlMapLayerStyle } from '../../../layer-style/vl-map-layer-style';
 import { VlMapLayerAction } from '../vl-map-layer-action';
+import { StyleLike as OlStyleLike } from 'ol/style/Style';
+import { Feature as OlFeature } from 'ol';
+import { OlVectorLayerType } from '../../../../vl-map.model';
 
 /**
  * VlMapSelectAction
@@ -18,22 +21,15 @@ import { VlMapLayerAction } from '../vl-map-layer-action';
  */
 @webComponent('vl-map-select-action')
 export class VlMapSelectAction extends VlMapLayerAction {
-    _action;
-    /**
-     * Returns the style that a selected feature will be given.
-     *
-     * @return {Object} the style
-     */
-    get style() {
+    protected _style: OlStyleLike;
+
+    // @ts-ignore: Negeer override van de property "style" van de native Element klasse die van een ander type is.
+    get style(): OlStyleLike {
         return this._style;
     }
 
-    /**
-     * Configures the style that a selected feature will be given.
-     *
-     * @param {VlMapLayerStyle|Object} style - the style: a VlMapLayerStyle or an OpenLayers Style
-     */
-    set style(style) {
+    // @ts-ignore: Negeer override van de property "style" van de native Element klasse die van een ander type is.
+    set style(style: VlMapLayerStyle | OlStyleLike) {
         if (style instanceof VlMapLayerStyle) {
             this._style = style.style;
         } else {
@@ -46,31 +42,31 @@ export class VlMapSelectAction extends VlMapLayerAction {
         return this.getAttribute('cluster');
     }
 
-    mark(id) {
+    mark(id: string | number, layer?: OlVectorLayerType): void {
         if (this._action && id) {
-            this._action.markFeatureWithId(id, this.layer);
+            (this._action as VlSelectAction).markFeatureWithId(id, layer || this.layer);
         }
     }
 
-    removeMarks() {
+    removeMarks(): void {
         if (this._action) {
-            this._action.demarkAllFeatures();
+            (this._action as VlSelectAction).demarkAllFeatures();
         }
     }
 
-    select(feature) {
+    select(feature: OlFeature): void {
         if (this.action && feature) {
-            this.action.selectFeature(feature);
+            (this._action as VlSelectAction).selectFeature(feature);
         }
     }
 
-    onSelect(callback) {
+    onSelect(callback: (...args: unknown[]) => void): void {
         this.__callback = callback;
     }
 
-    reset() {
+    reset(): void {
         if (this.action) {
-            this.action.clearFeatures();
+            (this._action as VlSelectAction).clearFeatures();
         }
     }
 
@@ -82,11 +78,11 @@ export class VlMapSelectAction extends VlMapLayerAction {
      *
      * @Return {boolean} true if the action is allowed to be performed, false if the action may not be performed for the supplied feature and/or layer
      */
-    appliesTo(feature, layer) {
+    appliesTo(feature: OlFeature, layer: OlVectorLayerType) {
         return true;
     }
 
-    _createAction(layer?) {
+    _createAction(layer?: OlVectorLayerType): VlSelectAction {
         const options = {
             style: this.style,
             cluster: this._cluster !== undefined,

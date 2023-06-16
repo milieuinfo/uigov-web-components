@@ -1,0 +1,50 @@
+import { ArgsTable, Story, PRIMARY_STORY, Source, Canvas } from '@storybook/addon-docs';
+import defaultStorySource from '!raw-loader!./vl-map-select-actions.stories-default';
+import clusteringStorySource from '!raw-loader!./vl-map-select-actions.stories-clustering';
+
+# Map Select Actions
+
+Gebruik het `map-select-actions` component om features op meerdere [map-features-layers](/docs/map-layer-vector-layer-features-layer--map-features-layer-default) te selecteren.<br/>
+Dit component erft over van het [map-select-action](/docs/map-action-layer-action-select-action--map-select-action-default) component.
+
+## Voorbeeld
+
+```js
+import { VlMapSelectActions } from '@domg-wc/map';
+```
+
+```html
+<vl-map-select-actions></vl-map-select-actions>
+```
+
+<Canvas withSource="none">
+    <Story id="map-action-layer-action-select-action-select-actions--map-select-actions-default" />
+</Canvas>
+
+<details>
+    <summary>Toon code</summary>
+    <Source code={defaultStorySource} language="ts" dark={true} />
+</details>
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Varianten
+
+### Clustering
+
+<Canvas withSource="none">
+    <Story id="map-action-layer-action-select-action-select-actions--map-select-actions-clustering" />
+</Canvas>
+
+<details>
+    <summary>Toon code</summary>
+    <Source code={clusteringStorySource} language="ts" dark={true} />
+</details>
+
+## Referenties
+
+### Legacy Documentatie
+
+Dit is een nieuw component en heeft geen legacy documentatie.

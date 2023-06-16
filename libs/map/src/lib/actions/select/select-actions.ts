@@ -1,78 +1,41 @@
 import { VlSelectAction } from './select-action';
-import VectorLayer from 'ol/layer/Vector';
-import { Style } from 'ol/style';
+import { ActionOptions, OlVectorLayerType } from '../../vl-map.model';
+import { Feature as OlFeature } from 'ol';
 
 export class VlSelectActions extends VlSelectAction {
-    layerConfiguraties: {
-        layer: VectorLayer<any>,
-        style: Style,
-        hoverStyle: Style,
-    }[];
-    layers: VectorLayer<any>[];
+    public layers: OlVectorLayerType[];
 
+    constructor(layers: OlVectorLayerType[], onSelect?: (...args: any[]) => void, options?: ActionOptions) {
+        // @ts-ignore: Negeer type error door het meegeven van een array van layers ipv een single layer.
+        // Methoden om de layer op te vragen worden in deze file overschreven zodat er altijd maar 1 layer teruggegeven wordt.
+        super(layers, onSelect, options);
 
-  constructor(layerConfiguraties, onSelect?, options?) {
-    const layers = layerConfiguraties.map((layerConfiguratie) => layerConfiguratie.layer);
-
-    const style = (feature) => {
-      const layer = this._getLayer(feature);
-      const style = this._getLayerStyle(layer);
-      return style && typeof style === 'function' ? style(feature) : style;
-    };
-
-    const hoverStyle = (feature) => {
-      const layer = this._getLayer(feature);
-      const style = this._getLayerHoverStyle(layer);
-      return style && typeof style === 'function' ? style(feature) : style;
-    };
-
-    const filter = (feature, layer) => {
-      let layerFilter = false;
-      this.layers.forEach((_layer) => {
-        if (_layer == layer) {
-          layerFilter = true;
-        }
-      });
-      if (options && options.filter) {
-        return layerFilter && options.filter(feature);
-      }
-      return layerFilter;
-    };
-
-    super(layers, onSelect, {
-      filter,
-      style,
-      hoverStyle,
-    });
-
-    this.layerConfiguraties = layerConfiguraties;
-    this.layers = layers;
-    this.style = style;
-    this.hoverStyle = hoverStyle;
-    this.filter = filter;
-  }
-
-  _getLayer(feature) {
-    return this.layers.find((layer) => layer.getSource().getFeatures().indexOf(feature) !== -1);
-  }
-
-  _getLayerStyle(layer, type?) {
-    const layerConfiguratie = this.layerConfiguraties.find((layerConfiguratie) => layerConfiguratie.layer === layer);
-    return layerConfiguratie ? layerConfiguratie[type || 'style'] : null;
-  }
-
-  _getLayerHoverStyle(layer) {
-    return this._getLayerStyle(layer, 'hoverStyle') || this._getLayerStyle(layer);
-  }
-
-  markFeatureWithId(id, layer?) {
-    if (layer) {
-      super.markFeatureWithId(id, layer);
-    } else {
-      this.layers.forEach((layer) => {
-        super.markFeatureWithId(id, layer);
-      });
-      // todo refactor! : this is wrong: what if multiple features have same id but different layer?
+        this.layers = layers;
+        this.getLayer = (): OlVectorLayerType => {
+            return this.getLayerByFeature(this.layers, this.selectedFeature) || this.layers[0];
+        };
     }
-  }
+
+    public get layer(): OlVectorLayerType {
+        return this.getLayer();
+    }
+
+    private set layer(layer: OlVectorLayerType) {
+        this._layer = layer;
+    }
+
+    private getLayerByFeature(layers: OlVectorLayerType[], feature: OlFeature): OlVectorLayerType {
+        return layers.find((layer) => {
+            const features = layer.getSource().getFeatures();
+            const clusteredFeature = feature?.get('features')?.[0];
+            if (features.indexOf(feature) !== -1) {
+                return true;
+            }
+            return features.some((cluster) => {
+                return cluster.get('features')?.some((feature: OlFeature) => {
+                    return feature?.getId() === clusteredFeature?.getId();
+                });
+            });
+        });
+    }
 }
