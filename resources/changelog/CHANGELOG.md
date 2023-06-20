@@ -1,3 +1,22 @@
+# [1.9.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.8.0...v1.9.0) (2023-06-20)
+
+
+### Bug Fixes
+
+* UIG-2489 - vl-textarea - readonly mode ([9a1aedc](https://github.com/milieuinfo/uigov-web-components/commit/9a1aedccd1902d2992cccad77c8b8862460ed484))
+* UIG-2496 - css - achtergrond kleuren voorzien ([1b86bba](https://github.com/milieuinfo/uigov-web-components/commit/1b86bba96f327ee22c748edc9eb1fd3c70db03a4))
+* UIG-2503 - vl-form-validation - data-vl-required werkt nu zoals verwacht ([f68be79](https://github.com/milieuinfo/uigov-web-components/commit/f68be79fd36b8ad8b58e0f0d3d09c9c55214ee2f))
+* UIG-2510 - vl-map - wacht tussen move en click in vl-map-draw-line-action.tester en vl-map-draw-polygon-action.tester ([7bf60d1](https://github.com/milieuinfo/uigov-web-components/commit/7bf60d1e5b078a5407334e03b17d4aa54cd2b617))
+
+
+### Features
+
+* UIG-2187 - vl-cookie-consent - uitgebreid met externe configuratie voor matomo ([4475e82](https://github.com/milieuinfo/uigov-web-components/commit/4475e8245ef1ae7bfe377163652fce48f5044ba5))
+* UIG-2466 - bamboo build ([616397b](https://github.com/milieuinfo/uigov-web-components/commit/616397b6418bde560dbd294c6b323f123be358b1))
+* UIG-2486 - vl-map-select-actions - selecteren over meerdere lagen ([eaa7744](https://github.com/milieuinfo/uigov-web-components/commit/eaa7744aa50320d22405380c359f9aa5bbe5749e))
+* UIG-2504 - vl-form - validatie voor dynamische toegevoegde form-elementen ([7964e75](https://github.com/milieuinfo/uigov-web-components/commit/7964e75487d78ab7e652e2de0e017486cf49354c))
+* UIG-2505 - vl-form - native-validation attribuut toegevoegd ([4cc736d](https://github.com/milieuinfo/uigov-web-components/commit/4cc736d2ea0bf208cfd66f56a061b2a5f0dc279f))
+
 # [1.8.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.7.0...v1.8.0) (2023-06-02)
 
 
