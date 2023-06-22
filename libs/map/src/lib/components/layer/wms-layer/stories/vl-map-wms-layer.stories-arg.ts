@@ -14,7 +14,7 @@ export const mapWmsLayerArgTypes: ArgTypes<typeof mapWmsLayerArgs> = {
     ...mapLayerArgTypes,
     layers: {
         name: 'data-vl-layers',
-        description: 'De WMS layers.<br>Dit attribuut is niet reactief.',
+        description: 'De WMS layers.',
         type: { name: TYPES.STRING, required: true },
         table: {
             type: { summary: TYPES.STRING },
@@ -24,7 +24,7 @@ export const mapWmsLayerArgTypes: ArgTypes<typeof mapWmsLayerArgs> = {
     },
     styles: {
         name: 'data-vl-styles',
-        description: 'De WMS stijlen.<br>Dit attribuut is niet reactief.',
+        description: 'De WMS stijlen.',
         type: { name: TYPES.STRING },
         table: {
             type: { summary: TYPES.STRING },
@@ -34,7 +34,7 @@ export const mapWmsLayerArgTypes: ArgTypes<typeof mapWmsLayerArgs> = {
     },
     url: {
         name: 'data-vl-url',
-        description: 'De WMS url.<br>Dit attribuut is niet reactief.',
+        description: 'De WMS url.',
         type: { name: TYPES.STRING, required: true },
         table: {
             type: { summary: TYPES.STRING },
@@ -44,7 +44,7 @@ export const mapWmsLayerArgTypes: ArgTypes<typeof mapWmsLayerArgs> = {
     },
     version: {
         name: 'data-vl-version',
-        description: 'De WMS versie.<br>Dit attribuut is niet reactief.',
+        description: 'De WMS versie.',
         type: { name: TYPES.STRING },
         table: {
             type: { summary: TYPES.STRING },
