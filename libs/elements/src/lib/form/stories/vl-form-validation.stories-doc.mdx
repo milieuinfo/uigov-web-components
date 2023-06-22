@@ -35,7 +35,11 @@ Als je toch native HTML validation wil toelaten, moet je het attribuut `data-vl-
 
 ### Reset
 
-Als u een formulier opnieuw instelt, worden validatiefouten automatisch gereset. Als u validaties uitdrukkelijk opnieuw wilt instellen (bijvoorbeeld na het verzenden aan de clientzijde), kunt u `vl.formValidation.reset(formEl)` aanroepen
+Als je een formulier opnieuw instelt, worden validatiefouten automatisch gereset. Als je de validaties uitdrukkelijk opnieuw wilt instellen (bijvoorbeeld na het verzenden aan de clientzijde), kan je `vl.formValidation.reset(formEl)` aanroepen
+
+### Reset individueel form element
+
+Om een form element manueel te resetten, kan je tevens ook `resetValidity()` aanroepen op form elementen die overerven van `vlFormValidationElement`; `vl-datepicker`, `vl-textarea`, `vl-upload`, `vl-input-field` en `vl-select`.
 
 ### Required
 
