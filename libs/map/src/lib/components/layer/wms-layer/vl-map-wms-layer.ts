@@ -19,6 +19,10 @@ import './vl-map-wms-style/vl-map-wms-style';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wms-layer.html|Demo}
  */
 export class VlMapWmsLayer extends VlMapLayer {
+    static get _observedAttributes(): string[] {
+        return VlMapLayer._observedAttributes.concat(['url', 'layers', 'styles', 'version']);
+    }
+
     constructor(layerClass, sourceClass) {
         super();
         this.__layerClass = layerClass;
@@ -95,5 +99,30 @@ export class VlMapWmsLayer extends VlMapLayer {
 
     __createSource(SourceClass) {
         return new SourceClass(this._sourceConfig);
+    }
+
+    _layersChangedCallback(): void {
+        this.updateOlLayerSource();
+    }
+
+    _urlChangedCallback(): void {
+        this.updateOlLayerSource();
+    }
+
+    _stylesChangedCallback(): void {
+        this.updateOlLayerSource();
+    }
+
+    _versionChangedCallback(): void {
+        this.updateOlLayerSource();
+    }
+
+    private updateOlLayerSource(): void {
+        if (!this._layer) {
+            return;
+        }
+
+        const olSource = this.__createSource(this.__sourceClass);
+        this._layer.setSource(olSource);
     }
 }
