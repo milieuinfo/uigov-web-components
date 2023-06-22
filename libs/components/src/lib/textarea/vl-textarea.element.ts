@@ -119,7 +119,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
         editor.on('focus', () => {
             if (!this.isDisabled) {
                 editor.editorContainer.classList.add('focus');
-                editor.getBody().classList.add('focus');
+                editor.getBody()?.classList.add('focus');
             }
         });
         editor.on('blur', () => {
@@ -127,7 +127,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
                 editor.editorContainer.classList.remove('focus');
             }
             if (editor.getBody) {
-                editor.getBody().classList.remove('focus');
+                editor.getBody()?.classList.remove('focus');
             }
             editor.save();
             this.dispatchEvent(new Event('change'));
@@ -187,14 +187,14 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
             const disabledClass = 'vl-textarea--disabled';
             if (disabled) {
                 // toolbar disablen
-                editor.ui.disable();
+                editor.ui?.disable();
                 // disabled styling toevoegen
-                editor.getBody().classList.add(disabledClass);
+                editor.getBody()?.classList.add(disabledClass);
             } else {
                 // zal enablen disablen
-                editor.ui.enable();
+                editor.ui?.enable();
                 // disabled styling toevoegen
-                editor.getBody().classList.remove(disabledClass);
+                editor.getBody()?.classList.remove(disabledClass);
             }
         }
     }
