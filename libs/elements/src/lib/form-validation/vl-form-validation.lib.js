@@ -1,3 +1,5 @@
+// in dit DV-bestand zijn veranderingen toegevoegd door UIG, die zijn doorgaans aangeduid met UIG-prefixes
+// veranderingen die ouder zijn, zijn doorgaans niet aangeduid
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined'
         ? (module.exports = factory())
@@ -7054,6 +7056,7 @@
                                         }
                                     }
                                 },
+                                // feat: UIG-2504 - vl-form - validatie voor dynamische toegevoegde form-elementen
                                 { signal: field.abortController.signal }
                             );
                             field.addEventListener(
@@ -7061,6 +7064,7 @@
                                 function (event) {
                                     _validateField(event.target, validationConfig, form);
                                 },
+                                // feat: UIG-2504 - vl-form - validatie voor dynamische toegevoegde form-elementen
                                 { signal: field.abortController.signal }
                             );
                         }
@@ -7074,6 +7078,7 @@
 
                             _validateForm(event.target, validationConfig);
                         },
+                        // feat: UIG-2504 - vl-form - validatie voor dynamische toegevoegde form-elementen
                         { signal: form.abortController.signal }
                     );
                     form.addEventListener(
@@ -7081,11 +7086,13 @@
                         function (event) {
                             _resetAllError(event.target);
                         },
+                        // feat: UIG-2504 - vl-form - validatie voor dynamische toegevoegde form-elementen
                         { signal: form.abortController.signal }
                     );
                 },
             },
             {
+                // feat: UIG-2504 - vl-form - validatie voor dynamische toegevoegde form-elementen
                 key: 'undress',
                 value: function undress(form) {
                     var fields,
@@ -7125,6 +7132,11 @@
                         _this.dress(form);
                     });
                 },
+            },
+            {
+                // UIG-2534 - vl.formValidation.resetInput publiekelijk toegankelijk maken
+                key: 'resetInput',
+                value: _resetInput,
             },
         ]);
 

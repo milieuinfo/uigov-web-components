@@ -1,4 +1,4 @@
-import { BaseElementOfType, VL, webComponentPromised } from '@domg-wc/common-utilities';
+import { BaseHTMLElement, VL, webComponentPromised } from '@domg-wc/common-utilities';
 import { vlFormValidation, vlFormValidationElement } from '@domg-wc/elements';
 import { iconStyle, linkStyle, uploadStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
@@ -8,7 +8,7 @@ import './vl-upload.lib.js';
 declare const vl: VL;
 
 @webComponentPromised([vlFormValidation.ready()], 'vl-upload')
-export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType(HTMLElement)) {
+export class VlUploadComponent extends vlFormValidationElement(BaseHTMLElement) {
     static get _observedAttributes() {
         return vlFormValidation
             ._observedAttributes()
@@ -100,7 +100,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
         return this._dropzone.files;
     }
 
-    get _upload(): HTMLElement {
+    get _upload(): HTMLElement | undefined {
         return this._element;
     }
 
@@ -280,6 +280,8 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      */
     clear(): void {
         this._dropzone.removeAllFiles();
+        this.resetValidity();
+        this._dropzone.reset();
     }
 
     /**
@@ -289,8 +291,8 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      * @param {Function} callback
      * @return {void}
      */
-    on(event: Event, callback: () => void): void {
-        this._element.addEventListener(event, callback);
+    on(event: string, callback: () => void): void {
+        this._element?.addEventListener(event, callback);
         this._dropzone.on(event, callback);
     }
 
@@ -328,23 +330,23 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
      * Enable input element.
      */
     enable(): void {
-        vl.upload.enable(this._element);
+        if (this._element) vl.upload.enable(this._element);
     }
 
     /**
      * Disable input element.
      */
     disable(): void {
-        vl.upload.disable(this._element);
+        if (this._element) vl.upload.disable(this._element);
     }
 
     _acceptedFilesChangedCallback(oldValue: string, newValue: string): void {
-        this._element.setAttribute(`${this._prefix}accepted-files`, newValue);
-        this._element.setAttribute('accept', newValue);
+        this._element?.setAttribute(`${this._prefix}accepted-files`, newValue);
+        this._element?.setAttribute('accept', newValue);
     }
 
     _autoprocessChangedCallback(oldValue: string, newValue: string): void {
-        this._element.setAttribute(`${this._prefix}autoprocess`, newValue);
+        this._element?.setAttribute(`${this._prefix}autoprocess`, newValue);
     }
 
     _disabledChangedCallback(oldValue: string, newValue: string): void {
@@ -356,31 +358,31 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
     }
 
     _disallowDuplicatesChangedCallback(oldValue: string, newValue: string): void {
-        this._element.setAttribute(`${this._prefix}disallow-duplicates`, newValue);
+        this._element?.setAttribute(`${this._prefix}disallow-duplicates`, newValue);
     }
 
     _errorMessageAcceptedFilesChangedCallback(oldValue: string, newValue: string): void {
-        this._element.setAttribute(`${this._prefix}error-message-accepted-files`, newValue);
+        this._element?.setAttribute(`${this._prefix}error-message-accepted-files`, newValue);
     }
 
     _errorMessageFilesizeChangedCallback(oldValue: string, newValue: string): void {
-        this._element.setAttribute(`${this._prefix}error-message-filesize`, newValue);
+        this._element?.setAttribute(`${this._prefix}error-message-filesize`, newValue);
     }
 
     _errorMessageMaxfilesChangedCallback(oldValue: string, newValue: string): void {
-        this._element.setAttribute(`${this._prefix}error-message-maxfiles`, newValue);
+        this._element?.setAttribute(`${this._prefix}error-message-maxfiles`, newValue);
     }
 
     _inputNameChangedCallback(oldValue: string, newValue: string): void {
-        this._element.setAttribute(`${this._prefix}input-name`, newValue);
+        this._element?.setAttribute(`${this._prefix}input-name`, newValue);
     }
 
     _maxFilesChangedCallback(oldValue: string, newValue: string): void {
-        this._element.setAttribute(`${this._prefix}max-files`, newValue);
+        this._element?.setAttribute(`${this._prefix}max-files`, newValue);
     }
 
     _maxSizeChangedCallback(oldValue: string, newValue: string): void {
-        this._element.setAttribute(`${this._prefix}max-size`, newValue);
+        this._element?.setAttribute(`${this._prefix}max-size`, newValue);
     }
 
     _titleChangedCallback(oldValue: string, newValue: string): void {
@@ -392,7 +394,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseElementOfType
     }
 
     _urlChangedCallback(oldValue: string, newValue: string) {
-        this._element.setAttribute(`${this._prefix}url`, newValue);
+        this._element?.setAttribute(`${this._prefix}url`, newValue);
         if (this._dropzone && this._dropzone.options) {
             this._dropzone.options.url = newValue;
         }

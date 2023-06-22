@@ -1,8 +1,10 @@
-import { Class } from '@domg-wc/common-utilities';
+import { Class, VL } from '@domg-wc/common-utilities';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import '@govflanders/vl-ui-core/dist/js/core.js';
 import './vl-form-validation.lib.js';
 import { vlFormValidation } from './vl-form-validation';
+
+declare const vl: VL;
 
 /**
  * Gebruik de form validation element mixin in combinatie met elementen die formulier validatie bevatten.
@@ -65,6 +67,15 @@ export const vlFormValidationElement = (SuperClass: Class): Class => {
             } else {
                 return true;
             }
+        }
+
+        /**
+         * reset validatie van individueel form element
+         */
+        resetValidity(): void {
+            const thisElement = this as unknown as HTMLElement;
+            // naamgeving "resetInput" kan verwarrend lijken, de value van de input blijft dezelfde, enkel de validatie word gerest
+            vl.formValidation.resetInput(thisElement);
         }
 
         _dressFormValidation(): void {

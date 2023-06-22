@@ -28,7 +28,7 @@ interface FormValidation {
     undress(form: any): void;
     dressAll(): void;
     reset(form: any): void;
-    _resetInput(el: HTMLElement): void;
+    resetInput(el: HTMLElement): void;
 }
 
 interface Translation {
