@@ -1,5 +1,6 @@
 import { BaseElementOfType } from '@domg-wc/common-utilities';
 import { VlMap } from '../../vl-map';
+import { VlMapLayerStyle } from '../layer-style/vl-map-layer-style';
 
 /**
  * VlMapLayer
@@ -23,6 +24,7 @@ export abstract class VlMapLayer extends BaseElementOfType(HTMLElement) {
     }
 
     __counter: number;
+    __styleCount: number;
     __ready: boolean;
     _layer: any;
     _source: any;
@@ -42,7 +44,21 @@ export abstract class VlMapLayer extends BaseElementOfType(HTMLElement) {
             await this.mapElement.ready;
             this.mapElement.addLayer(this._layer);
         }
+        // bereken hoeveel VlMapStyle elementen er actief zouden moeten zijn
+        this.__styleCount = this.getStyleCount();
         this.__markAsReady();
+    }
+
+    /**
+     * bereken op basis van direct child elements hoeveel er van het type VlMapLayerStyle zijn
+     */
+    getStyleCount(): number {
+        const childNodeList = (<any>this).querySelectorAll(':scope > *');
+        return Array.from(childNodeList)?.filter((child) => child instanceof VlMapLayerStyle).length;
+    }
+
+    disconnectedCallback() {
+        this._layer?.dispose();
     }
 
     static get _counter() {
@@ -154,6 +170,11 @@ export abstract class VlMapLayer extends BaseElementOfType(HTMLElement) {
     }
 
     get _styles() {
+        // als er meer styles zijn op het VlMapLayer, dan dat er VlMapLayerStyle elementen zijn
+        // dan verwijderen we de dubbels
+        if (this.__styles.length > this.__styleCount) {
+            this.__styles = Array.from(new Set(this.__styles));
+        }
         return this.__styles;
     }
 
