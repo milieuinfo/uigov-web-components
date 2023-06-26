@@ -5,7 +5,7 @@
 ## Inhoudstafel
 
 - 🚀 [Project](#project)
-- 📒 [Meer Info](#meer-info)
+- 📒 [Documentatie](#documentatie)
 - 👥 [Ontwikkel Team](#ontwikkel-team)
 
 ## Project
@@ -14,14 +14,10 @@ Deze __monorepo__ bevat de ontwikkeling die gebeurd door het __UIG-team__ (User 
 van [Departement Omgeving](https://omgeving.vlaanderen.be/), onderdeel van
 de [Vlaamse Overheid](https://www.vlaanderen.be/).
 
-## Meer info
+## Documentatie
 
-Het startpunt van de documentatie is te vinden op [uigov-pages](https://milieuinfo.github.io/uigov-pages/). Van hieruit kan
-je ge-versioneerd / ge-branched naar Storybook of één van de demo toepassingen.
-
-In Storybook vind je de verschillende componenten terug alsook de documentatie. Daarnaast zijn er 2 demo 
-toepassingen: Playground en Alliance. Playground is een ad-hoc toepassing om use-cases of bugs te simuleren.
-Alliance is een basis toepassing die integreert met de aangeleverde artifacts, net zoals een eindtoepassing zou doen.
+Het project wordt gedocumenteerd m.b.v. Storybook, de nieuwste versie vind je terug
+onder [uigov-builds](https://milieuinfo.github.io/uigov-builds/release/latest/storybook).
 
 <hr></hr>
 
