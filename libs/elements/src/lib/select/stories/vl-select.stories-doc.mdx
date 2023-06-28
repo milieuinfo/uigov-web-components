@@ -1,0 +1,45 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY, Story, Canvas } from '@storybook/addon-docs';
+
+# Select
+
+Gebruik het `select` component om gebruikers toe te laten een selectie te maken uit een lijst met voorgedefinieerde opties.<br/>
+Het is aangeraden om enkel deze component te gebruiken als er 5 of meer opties zijn. Bij minder opties, kan er gebruik gemaakt worden van de radio component.
+
+## Voorbeeld
+
+```js
+import { VlSelect } from '@domg-wc/elements';
+```
+
+```html
+<vl-select></vl-select>
+```
+
+<DocsStory id="elements-select--select-default" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Varianten
+
+### Uitgebreid
+
+Je kan de uitgebreide select-functionaliteit inclusief zoeken activeren door het `data-vl-select` attribuut mee te geven.<br/>
+In deze modus wordt er achterliggend gebruik gemaakt van [Choices.js](https://github.com/Choices-js/Choices).
+
+<Canvas>
+    <Story id="elements-select--select-extended" inline={false} height={300} />
+</Canvas>
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-select/
+
+### Legacy Documentatie
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlSelect.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-select.html

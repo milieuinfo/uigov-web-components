@@ -1,138 +1,152 @@
+import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { ArgTypes } from '@storybook/web-components';
+
 export const selectArgs = {
     block: false,
-    error: false,
-    success: false,
     disabled: false,
+    error: false,
+    noMoreOptions: 'Geen resterende opties gevonden',
+    searchNoResultsText: 'Geen resultaten gevonden',
+    searchPlaceholder: 'Zoek item',
     select: false,
+    selectDeletable: false,
+    selectDisableSearch: false,
     selectSearch: false,
     selectSearchEmptyText: '',
-    selectSearchResultLimit: 0,
-    selectSearchNoResultLimit: 0,
-    selectDeletable: false,
-    searchPlaceholder: '',
-    searchNoResultsText: '',
-    noMoreOptions: '',
+    selectSearchNoResultLimit: false,
+    selectSearchResultLimit: 4,
+    success: false,
 };
 
-export const selectArgTypes = {
+export const selectArgTypes: ArgTypes<typeof selectArgs> = {
     block: {
         name: 'data-vl-block',
-        type: { summary: 'Boolean' },
         description:
-            'Attribuut wordt gebruikt om ervoor te zorgen dat de textarea getoond wordt als een block element en bijgevolg de breedte van de parent zal aannemen.',
+            'Beeldt de textarea af als een block element en waardoor die de breedte van de parent zal aannemen.',
         table: {
-            defaultValue: { summary: 'false' },
-            category: 'Attributes',
-        },
-    },
-    error: {
-        name: 'data-vl-error',
-        type: { summary: 'Boolean' },
-        description:
-            'Attribuut wordt gebruikt om aan te duiden dat het select element verplicht is of ongeldige tekst bevat.',
-        table: {
-            defaultValue: { summary: 'false' },
-            category: 'Attributes',
-        },
-    },
-    success: {
-        name: 'data-vl-success',
-        type: { summary: 'Boolean' },
-        description: 'Attribuut wordt gebruikt om aan te duiden dat het select element correct werd ingevuld.',
-        table: {
-            defaultValue: { summary: 'false' },
-            category: 'Attributes',
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.block },
         },
     },
     disabled: {
         name: 'data-vl-disabled',
-        type: { summary: 'Boolean' },
-        description:
-            'Attribuut wordt gebruikt om te voorkomen dat de gebruiker iets kan kiezen uit het select element.',
+        description: 'Schakelt het select element uit.',
         table: {
-            defaultValue: { summary: 'false' },
-            category: 'Attributes',
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.disabled },
         },
     },
-    select: {
-        name: 'data-vl-select',
-        type: { summary: 'Boolean' },
-        description: 'Attribuut zorgt ervoor dat de zoek functionaliteit geïnitialiseerd wordt.',
+    error: {
+        name: 'data-vl-error',
+        description: 'Duidt aan dat het select element niet correct werd ingevuld.',
         table: {
-            defaultValue: { summary: 'false' },
-            category: 'Attributes',
-        },
-    },
-    selectSearch: {
-        name: 'data-vl-select-search',
-        type: { summary: 'Boolean' },
-        description: 'Attribuut om de zoek functionaliteit te activeren of deactiveren.',
-        table: {
-            defaultValue: { summary: 'false' },
-            category: 'Attributes',
-        },
-    },
-    selectSearchEmptyText: {
-        name: 'data-vl-select-search-empty-text',
-        type: { summary: 'String' },
-        description: 'Attribuut bepaalt de tekst die getoond wordt wanneer er geen resultaten gevonden zijn.',
-        table: {
-            defaultValue: { summary: '' },
-            category: 'Attributes',
-        },
-    },
-    selectSearchResultLimit: {
-        name: 'data-vl-select-search-result-limit',
-        type: { summary: 'Number' },
-        description: 'Attribuut om het aantal resultaten te limiteren.',
-        table: {
-            defaultValue: { summary: 0 },
-            category: 'Attributes',
-        },
-    },
-    selectSearchNoResultLimit: {
-        name: 'data-vl-select-search-no-result-limit',
-        type: { summary: 'Number' },
-        description: 'Attribuut om het aantal resultaten te limiteren.',
-        table: {
-            defaultValue: { summary: 0 },
-            category: 'Attributes',
-        },
-    },
-    selectDeletable: {
-        name: 'data-vl-select-deletable',
-        type: { summary: 'Boolean' },
-        description: 'Attribuut om te activeren of deactiveren dat het geselecteerde kan verwijderd worden.',
-        table: {
-            defaultValue: { summary: 'false' },
-            category: 'Attributes',
-        },
-    },
-    searchPlaceholder: {
-        name: 'data-vl-search-placeholder',
-        type: { summary: 'String' },
-        description: 'Attribuut bepaalt de placeholder van het zoek adres input element.',
-        table: {
-            defaultValue: { summary: '' },
-            category: 'Attributes',
-        },
-    },
-    searchNoResultsText: {
-        name: 'data-vl-search-no-results-text',
-        type: { summary: 'String' },
-        description: 'Attribuut bepaalt de tekst wanneer er geen zoekresultaten meer zijn.',
-        table: {
-            defaultValue: { summary: '' },
-            category: 'Attributes',
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.error },
         },
     },
     noMoreOptions: {
         name: 'data-vl-no-more-options',
-        type: { summary: 'String' },
-        description: 'Attribuut bepaalt de tekst wanneer er geen keuzes meer mogelijk zijn.',
+        description: 'De tekst die getoond wordt wanneer er geen keuzes meer zijn.<br>Dit attribuut is niet reactief.',
         table: {
-            defaultValue: { summary: '' },
-            category: 'Attributes',
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.noMoreOptions },
+        },
+    },
+    searchNoResultsText: {
+        name: 'data-vl-search-no-results-text',
+        description: 'De tekst die getoond wordt wanneer er geen resultaten zijn.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.searchNoResultsText },
+        },
+    },
+    searchPlaceholder: {
+        name: 'data-vl-search-placeholder',
+        description: 'De placeholder van het zoekveld.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.searchPlaceholder },
+        },
+    },
+    select: {
+        name: 'data-vl-select',
+        description:
+            'Activeert de uitgebreide select functionaliteit.<br>Maakt achterliggend gebruik van Choices.js.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.select },
+        },
+    },
+    selectDeletable: {
+        name: 'data-vl-select-deletable',
+        description: 'Zorgt ervoor dat het geselecteerde verwijderd kan worden.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.selectDeletable },
+        },
+    },
+    selectDisableSearch: {
+        name: 'data-vl-select-disable-search',
+        description: 'Deactiveert de zoek functionaliteit.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.selectDisableSearch },
+        },
+    },
+    selectSearch: {
+        name: 'data-vl-select-search',
+        description: `[DEPRECATED]<br>Gebruik in de plaats het 'data-vl-select-disable-search' attribuut.<br>Activeert of deactiveert de zoek functionaliteit.<br>Dit attribuut is niet reactief.`,
+        control: false,
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.selectSearch },
+        },
+    },
+    selectSearchEmptyText: {
+        name: 'data-vl-select-search-empty-text',
+        description: `[DEPRECATED]<br>Gebruik in de plaats het 'data-vl-search-no-results-text' attribuut.<br>De tekst die getoond wordt wanneer er geen resultaten zijn.<br>Dit attribuut is niet reactief.`,
+        control: false,
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.selectSearchEmptyText },
+        },
+    },
+    selectSearchNoResultLimit: {
+        name: 'data-vl-select-search-no-result-limit',
+        description: 'Deactiveert het limiet voor het aantal resultaten.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.selectSearchNoResultLimit },
+        },
+    },
+    selectSearchResultLimit: {
+        name: 'data-vl-select-search-result-limit',
+        description: 'Limiteert het aantal resultaten.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.NUMBER },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.selectSearchResultLimit },
+        },
+    },
+    success: {
+        name: 'data-vl-success',
+        description: 'Duidt aan dat het select element correct werd ingevuld.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.success },
         },
     },
 };
