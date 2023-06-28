@@ -13,18 +13,20 @@ declare const vl: any;
  * @extends HTMLSelectElement
  * @mixes nativeVlElement
  *
- * @property {boolean} data-vl-block - Attribuut wordt gebruikt om ervoor te zorgen dat de textarea getoond wordt als een block element en bijgevolg de breedte van de parent zal aannemen.
- * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat het select element verplicht is of ongeldige tekst bevat.
- * @property {boolean} data-vl-success - Attribuut wordt gebruikt om aan te duiden dat het select element correct werd ingevuld.
- * @property {boolean} data-vl-select - Attribuut zorgt ervoor dat de zoek functionaliteit geïnitialiseerd wordt.
- * @property {boolean} data-vl-select-search - Attribuut om de zoek functionaliteit te activeren of deactiveren.
- * @property {boolean} data-vl-select-search-empty-text - Attribuut bepaalt de tekst die getoond wordt wanneer er geen resultaten gevonden zijn.
- * @property {boolean} data-vl-select-search-result-limit - Attribuut om het aantal resultaten te limiteren.
- * @property {boolean} data-vl-select-search-no-result-limit - Attribuut om het aantal resultaten te limiteren.
- * @property {boolean} data-vl-select-deletable - Attribuut om te activeren of deactiveren dat het geselecteerde kan verwijderd worden.
- * @property {string} data-vl-search-placeholder - Attribuut bepaalt de placeholder van het zoek adres input element.
- * @property {string} data-vl-search-no-results-text - Attribuut bepaalt de tekst wanneer er geen zoekresultaten meer zijn.
- * @property {string} data-vl-no-more-options - Attribuut bepaalt de tekst wanneer er geen keuzes meer mogelijk zijn.
+ * @property {boolean} data-vl-block - Beeldt de textarea af als een block element en waardoor die de breedte van de parent zal aannemen.
+ * @property {boolean} data-vl-error - Duidt aan dat het select element niet correct werd ingevuld.
+ * @property {boolean} data-vl-success - Duidt aan dat het select element correct werd ingevuld.
+ * @property {boolean} data-vl-disabled - Schakelt het select element uit.
+ * @property {boolean} data-vl-select - Activeert de uitgebreide select functionaliteit. Maakt achterliggend gebruik van Choices.js.
+ * @property {boolean} data-vl-select-search - [DEPRECATED] Gebruik in de plaats het 'data-vl-select-disable-search' attribuut. Activeert of deactiveert de zoek functionaliteit.
+ * @property {boolean} data-vl-select-disable-search - Deactiveert de zoek functionaliteit.
+ * @property {boolean} data-vl-select-search-empty-text - [DEPRECATED] Gebruik in de plaats het 'data-vl-search-no-results-text' attribuut. De tekst die getoond wordt wanneer er geen resultaten zijn.
+ * @property {string} data-vl-search-no-results-text - De tekst die getoond wordt wanneer er geen resultaten zijn.
+ * @property {boolean} data-vl-select-search-result-limit - Limiteert het aantal resultaten.
+ * @property {boolean} data-vl-select-search-no-result-limit - Deactiveert het limiet voor het aantal resultaten.
+ * @property {boolean} data-vl-select-deletable - Zorgt ervoor dat het geselecteerde verwijderd kan worden.
+ * @property {string} data-vl-search-placeholder - De placeholder van het zoekveld.
+ * @property {string} data-vl-no-more-options - De tekst die getoond wordt wanneer er geen keuzes meer zijn.
  */
 @webComponentPromised([vlFormValidation.ready()], 'vl-select', { extends: 'select' })
 export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSelectElement)) {

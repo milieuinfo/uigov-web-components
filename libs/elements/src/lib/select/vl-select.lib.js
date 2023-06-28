@@ -3110,12 +3110,12 @@
                     (function (t) {
                         var i = 'object' == _typeof(t) && t && t.Object === Object && t;
                         e.exports = i;
-                    }.call(
+                    }).call(
                         t,
                         (function () {
                             return this;
                         })()
-                    ));
+                    );
                 },
                 function (e, t, i) {
                     function n(e) {
@@ -3196,13 +3196,13 @@
                                 : n;
                         var c = (0, a.default)(o);
                         t.default = c;
-                    }.call(
+                    }).call(
                         t,
                         (function () {
                             return this;
                         })(),
                         i(19)(e)
-                    ));
+                    );
                 },
                 function (e, t) {
                     e.exports = function (e) {
@@ -4198,6 +4198,7 @@
         sDressedAtt = ''.concat(sSelectorAtt, '-dressed'),
         sMultiDressedAtt = ''.concat(sMultiSelectorAtt, '-dressed'),
         sSearchAtt = ''.concat(sSelectorAtt, '-search'),
+        sDisableSearchAtt = ''.concat(sSelectorAtt, '-disable-search'),
         sdeletableAtt = ''.concat(sSelectorAtt, '-deletable'),
         sSearchEmptyAtt = ''.concat(sSelectorAtt, '-search-empty-text'),
         sSearchResultLimitAtt = ''.concat(sSelectorAtt, '-search-result-limit'),
@@ -4212,9 +4213,15 @@
             placeholderValue = vl.i18n.t('select.placeholder_value'),
             disabled = false; // Select has search - default behavior
 
+        /** @deprecated: This is not how boolean attributes should work, use data-vl-select-disable-search attribute instead */
         if (element.hasAttribute(sSearchAtt)) {
             searchEnabled = element.getAttribute(sSearchAtt) === 'true';
-        } // Select is disabled
+        }
+
+        // Disable search if attribute is set, no matter what its value is (https://developer.mozilla.org/en-US/docs/Glossary/Boolean/HTML)
+        if (element.hasAttribute(sDisableSearchAtt)) {
+            searchEnabled = false;
+        }
 
         disabled = element.disabled; // Select has empty-search-text attribute
 

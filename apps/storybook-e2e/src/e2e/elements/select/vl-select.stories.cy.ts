@@ -2,38 +2,39 @@ const selectUrl = 'http://localhost:8080/iframe.html?id=elements-select--select-
 
 describe('story vl-select', () => {
     it('should contain an option to select', () => {
-        cy.visit(`${selectUrl}`);
-        cy.getDataCy('select').select('Frankrijk').should('have.value', 'France');
+        cy.visit(selectUrl);
+
+        cy.get('[is="vl-select"]').select('Frankrijk').should('have.value', 'Frankrijk');
     });
 
     it('should contain select with an error state', () => {
         cy.visit(`${selectUrl}&args=error:true`);
-        cy.getDataCy('select').should('have.class', 'vl-select--error');
+
+        cy.get('[is="vl-select"]').should('have.class', 'vl-select--error');
     });
 
-    it('should contain select with an success state', () => {
+    it('should contain select with a success state', () => {
         cy.visit(`${selectUrl}&args=success:true`);
-        cy.getDataCy('select').should('have.class', 'vl-select--success');
-    });
 
-    it('should contain select with an success state', () => {
-        cy.visit(`${selectUrl}&args=success:true`);
-        cy.getDataCy('select').should('have.class', 'vl-select--success');
+        cy.get('[is="vl-select"]').should('have.class', 'vl-select--success');
     });
 
     it('should contain select as a block level element', () => {
         cy.visit(`${selectUrl}&args=block:true`);
-        cy.getDataCy('select').should('have.class', 'vl-select--block');
+
+        cy.get('[is="vl-select"]').should('have.class', 'vl-select--block');
     });
 
     it('should contain a disabled select', () => {
         cy.visit(`${selectUrl}&args=disabled:true`);
-        cy.getDataCy('select').should('have.class', 'vl-select--disabled');
+
+        cy.get('[is="vl-select"]').should('have.class', 'vl-select--disabled');
     });
 
     it('should contain a select with search functionality', () => {
         cy.visit(`${selectUrl}&args=select:true`);
-        cy.getDataCy('select')
+
+        cy.get('[is="vl-select"]')
             .parent()
             .parent()
             .should('have.class', 'js-vl-select')
@@ -44,7 +45,7 @@ describe('story vl-select', () => {
             .find('.vl-select__item')
             .contains('België');
 
-        cy.getDataCy('select')
+        cy.get('[is="vl-select"]')
             .parent()
             .parent()
             .find('.vl-select__list')
@@ -53,6 +54,12 @@ describe('story vl-select', () => {
             .eq(1)
             .click();
 
-        cy.getDataCy('select').parent().parent().find('.vl-select__item').contains('Duitsland');
+        cy.get('[is="vl-select"]').parent().parent().find('.vl-select__item').contains('Duitsland');
+    });
+
+    it('should disable search for extended functionality', () => {
+        cy.visit(`${selectUrl}&args=select:true;selectDisableSearch:true`);
+
+        cy.get('[is="vl-select"]').parent().parent().find('input.vl-input-field').should('not.exist');
     });
 });
