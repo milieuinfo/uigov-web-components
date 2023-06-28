@@ -1,7 +1,8 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseHTMLElement, webComponent } from '@domg-wc/common-utilities';
+import OlFeature from 'ol/Feature';
 import OlStyleFill from 'ol/style/Fill';
 import OlStyleStroke from 'ol/style/Stroke';
-import OlStyle from 'ol/style/Style';
+import OlStyle, { StyleFunction as OlStyleFunction, StyleLike as OlStyleLike } from 'ol/style/Style';
 import OlStyleText from 'ol/style/Text';
 
 /**
@@ -29,8 +30,26 @@ import OlStyleText from 'ol/style/Text';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-layer-style.html|Demo}
  */
 @webComponent('vl-map-layer-style')
-export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
-    connectedCallback() {
+export class VlMapLayerStyle extends BaseHTMLElement {
+    public featureStyleCache: Map<OlFeature, OlStyle> = new Map();
+
+    static get _observedAttributes(): string[] {
+        return [
+            'color',
+            'border-color',
+            'border-size',
+            'text-background-color',
+            'text-border-color',
+            'text-border-size',
+            'text-color',
+            'text-feature-attribute-name',
+            'text-offset-x',
+            'text-offset-y',
+            'text-size',
+        ];
+    }
+
+    connectedCallback(): void {
         this._setStyleOnParent();
     }
 
@@ -39,7 +58,7 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {string}
      */
-    get name() {
+    get name(): string {
         return this.getAttribute('data-vl-name');
     }
 
@@ -48,7 +67,7 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {string}
      */
-    get color() {
+    get color(): string {
         return this.getAttribute('color') || 'rgba(2, 85, 204, 0.8)';
     }
 
@@ -57,7 +76,7 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {string}
      */
-    get borderColor() {
+    get borderColor(): string {
         return this.getAttribute('border-color') || 'rgba(2, 85, 204, 1)';
     }
 
@@ -66,8 +85,8 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {number}
      */
-    get borderSize() {
-        return this.getAttribute('border-size') || 1;
+    get borderSize(): number {
+        return Number(this.getAttribute('border-size')) || 1;
     }
 
     /**
@@ -75,7 +94,7 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {string}
      */
-    get textColor() {
+    get textColor(): string {
         return this.getAttribute('text-color') || '#FFF';
     }
 
@@ -84,7 +103,7 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {string}
      */
-    get textBackgroundColor() {
+    get textBackgroundColor(): string {
         return this.getAttribute('text-background-color') || 'rgba(0, 0, 0, 0)';
     }
 
@@ -93,7 +112,7 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {string}
      */
-    get textBorderColor() {
+    get textBorderColor(): string {
         return this.getAttribute('text-border-color') || 'rgba(255, 255, 255, 0)';
     }
 
@@ -102,7 +121,7 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {number}
      */
-    get textBorderSize() {
+    get textBorderSize(): number {
         return Number(this.getAttribute('text-border-size') || 1);
     }
 
@@ -111,7 +130,7 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {string}
      */
-    get textSize() {
+    get textSize(): string {
         return this.getAttribute('text-size') || '10px';
     }
 
@@ -120,7 +139,7 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {string}
      */
-    get textFeatureAttributeName() {
+    get textFeatureAttributeName(): string | null {
         return this.getAttribute('text-feature-attribute-name') || null;
     }
 
@@ -129,8 +148,8 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {number}
      */
-    get textOffsetX() {
-        return this.getAttribute('text-offset-x') || 0;
+    get textOffsetX(): number {
+        return Number(this.getAttribute('text-offset-x')) || 0;
     }
 
     /**
@@ -138,8 +157,8 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {number}
      */
-    get textOffsetY() {
-        return this.getAttribute('text-offset-y') || 0;
+    get textOffsetY(): number {
+        return Number(this.getAttribute('text-offset-y')) || 0;
     }
 
     /**
@@ -147,8 +166,9 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {Function} Een stijl functie die zorgt voor de stijl op een {VlMapLayer}
      */
-    get style() {
-        return (feature, resolution) => {
+    // @ts-ignore: Negeer override van de property "style" van de native Element klasse die van een ander type is.
+    get style(): OlStyleFunction {
+        return (feature: OlFeature, resolution: number) => {
             if (!this.appliesTo(feature)) {
                 return null;
             }
@@ -156,8 +176,12 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
         };
     }
 
-    get _styleFunction() {
-        return (feature, resolution) => {
+    get _styleFunction(): OlStyleFunction {
+        return (feature: OlFeature) => {
+            const cachedFeatureStyle = this.featureStyleCache.get(feature);
+            if (cachedFeatureStyle) {
+                return cachedFeatureStyle;
+            }
             const styleConfig = {
                 fill: new OlStyleFill({
                     color: this.color,
@@ -169,11 +193,13 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
                 text: undefined,
             };
             styleConfig.text = this._getTextStyle(feature);
-            return new OlStyle(styleConfig);
+            const featureStyle = new OlStyle(styleConfig);
+            this.featureStyleCache.set(feature, featureStyle);
+            return featureStyle;
         };
     }
 
-    _getTextStyle(feature, textColor?) {
+    _getTextStyle(feature: OlFeature, textColor?: string): OlStyleText {
         return new OlStyleText({
             font: `${this.textSize} "Flanders Art Sans",sans-serif`,
             text: this.featureLabelFunction(feature),
@@ -199,7 +225,7 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {boolean} true als de stijl geldig is op basis van een feature, indien false, zal de stijl niet gemaakt worden
      */
-    appliesTo(feature) {
+    appliesTo(feature: OlFeature): boolean {
         return true;
     }
 
@@ -208,38 +234,44 @@ export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
      *
      * @Return {Function|null} de functie die gebruikt wordt om de label te maken op basis van een feature
      */
-    get featureLabelFunction() {
+    get featureLabelFunction(): (feature?: OlFeature) => string {
         return this.textFeatureAttributeName ? (feature) => feature.get(this.textFeatureAttributeName) : () => '';
     }
 
-    _featureZIndex(feature) {
+    attributeChangedCallback(attr: string, oldValue: string, newValue: string): void {
+        super.attributeChangedCallback(attr, oldValue, newValue);
+        this.featureStyleCache.clear();
+    }
+
+    _featureZIndex(feature: OlFeature): number {
         return feature && feature.get ? feature.get('zIndex') : 0;
     }
 
-    _hasUniqueStyles(features) {
+    _hasUniqueStyles(features: OlFeature[]): boolean {
         const styles = this._getStyles(features);
         return styles && this._containsObject(styles) && this._areIdentical(styles);
     }
 
-    _containsStyle(features) {
+    _containsStyle(features: OlFeature[]): boolean {
         return this._containsObject(features.map((feature) => feature.getStyle()));
     }
 
-    _getStyles(features) {
+    _getStyles(features: OlFeature[]): OlStyleLike[] {
         return features.map((feature) => feature.getStyle());
     }
 
-    _containsObject(objects) {
+    _containsObject(objects: object[]): boolean {
         return objects.some((object) => !!object);
     }
 
-    _areIdentical(objects) {
+    _areIdentical(objects: object[]): boolean {
         return objects.every((object, i, objects) => object == objects[0]);
     }
 
-    _setStyleOnParent() {
+    _setStyleOnParent(): void {
         if (this.parentElement) {
             customElements.whenDefined(this.parentElement.tagName.toLowerCase()).then(() => {
+                // @ts-ignore: Negeer setten van de read-only property "style" van de native Element klasse.
                 this.parentElement.style = this;
             });
         }
