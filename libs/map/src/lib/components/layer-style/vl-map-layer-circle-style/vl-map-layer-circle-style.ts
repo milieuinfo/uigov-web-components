@@ -2,8 +2,7 @@ import { webComponent } from '@domg-wc/common-utilities';
 import OlStyleCircle from 'ol/style/Circle';
 import OlStyleFill from 'ol/style/Fill';
 import OlStyleStroke from 'ol/style/Stroke';
-import OlStyle, { StyleFunction as OlStyleFunction } from 'ol/style/Style';
-import OlFeature from 'ol/Feature';
+import OlStyle from 'ol/style/Style';
 import { VlMapLayerStyle } from '../vl-map-layer-style';
 
 /**
@@ -14,6 +13,8 @@ import { VlMapLayerStyle } from '../vl-map-layer-style';
  * @extends VlMapLayerStyle
  *
  * @property {number} data-vl-size - Attribuut wordt gebruikt om aan te geven wat de grootte is van de cirkels.
+ * @property {string} data-vl-border-color - Attribuut wordt gebruikt om aan te geven wat de color is van de randen van de cirkels.
+ * @property {number} data-vl-border-size - Attribuut wordt gebruikt om aan te geven wat de grootte is van de randen van de cirkels.
  * @property {string} data-vl-cluster-text-color - Attribuut wordt gebruikt om aan te geven wat de kleur van de tekst is bij het clusteren van features.
  * @property {string} data-vl-cluster-color - Attribuut wordt gebruikt om aan te geven wat de kleur is bij het clusteren van features.
  *
@@ -23,16 +24,14 @@ import { VlMapLayerStyle } from '../vl-map-layer-style';
  */
 @webComponent('vl-map-layer-circle-style')
 export class VlMapLayerCircleStyle extends VlMapLayerStyle {
-    static get _observedAttributes(): string[] {
-        return VlMapLayerStyle._observedAttributes.concat(['size', 'cluster-text-color', 'cluster-color']);
-    }
     /**
      * Geeft de grootte van de cirkels terug.
      *
      * @Return {number}
      */
     get size(): number {
-        return Number(this.getAttribute('size')) || 5;
+        const getSize = Number(this.getAttribute('size'));
+        return getSize || 5;
     }
 
     /**
@@ -40,7 +39,7 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
      *
      * @Return {string}
      */
-    get borderColor(): string {
+    get borderColor() {
         return this.getAttribute('border-color') || 'rgba(0, 0, 0, 0)';
     }
 
@@ -49,8 +48,8 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
      *
      * @Return {number}
      */
-    get borderSize(): number {
-        return Number(this.getAttribute('border-size')) || 1;
+    get borderSize() {
+        return this.getAttribute('border-size') || 1;
     }
 
     /**
@@ -58,7 +57,7 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
      *
      * @Return {string}
      */
-    get clusterTextColor(): string {
+    get clusterTextColor() {
         return this.getAttribute('cluster-text-color') || '#FFF';
     }
 
@@ -67,16 +66,12 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
      *
      * @Return {string}
      */
-    get clusterColor(): string {
+    get clusterColor() {
         return this.getAttribute('cluster-color') || 'rgba(2, 85, 204, 1)';
     }
 
-    get _styleFunction(): OlStyleFunction {
-        return (feature: OlFeature, resolution: number) => {
-            const cachedFeatureStyle = this.featureStyleCache.get(feature);
-            if (cachedFeatureStyle) {
-                return cachedFeatureStyle;
-            }
+    get _styleFunction() {
+        return (feature, resolution) => {
             const features = feature && feature.get ? feature.get('features') || [] : [];
             const size = features.length || 1;
             const clusterMultiplier = size == 1 ? 1 : Math.max(1.5, size.toString().length);
@@ -105,7 +100,7 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
                 }
             }
 
-            const featureStyle = new OlStyle({
+            return new OlStyle({
                 image: new OlStyleCircle({
                     fill: new OlStyleFill({
                         color,
@@ -119,13 +114,11 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
                 text: this._getTextStyle(feature, textColor),
                 zIndex: this._featureZIndex(feature),
             });
-            this.featureStyleCache.set(feature, featureStyle);
-            return featureStyle;
         };
     }
 
-    get featureLabelFunction(): (feature: OlFeature) => string {
-        return (feature: OlFeature) => {
+    get featureLabelFunction() {
+        return (feature) => {
             const features = feature && feature.get ? feature.get('features') || [] : [];
 
             if (Array.isArray(features) && features.length > 0) {
@@ -142,9 +135,9 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
         };
     }
 
-    __getFeatureText(feature: OlFeature): string {
+    __getFeatureText(f) {
         if (this.textFeatureAttributeName) {
-            return this.textFeatureAttributeName ? feature.get(this.textFeatureAttributeName) : '';
+            return this.textFeatureAttributeName ? f.get(this.textFeatureAttributeName) : '';
         }
 
         return '';
