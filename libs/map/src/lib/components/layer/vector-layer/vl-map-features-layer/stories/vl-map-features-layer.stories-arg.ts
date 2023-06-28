@@ -44,6 +44,7 @@ export const mapFeaturesLayerArgTypes: ArgTypes<typeof mapFeaturesLayerArgs> = {
     clusterDistance: {
         name: 'data-vl-cluster-distance',
         description: 'De afstand vanaf er tussen features geclusterd mag worden.<br>Dit attribuut is niet reactief.',
+        control: { type: 'number' },
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
