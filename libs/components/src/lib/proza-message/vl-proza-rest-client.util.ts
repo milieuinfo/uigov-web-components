@@ -1,7 +1,7 @@
 export class ProzaRestClient {
     static getMessage(domain: string, code: string, options: any = {}, baseUrl?: string) {
         const fetchOptions: any = {};
-        const url = baseUrl ? `${baseUrl}/proza/domein/${domain}/${code}` : `proza/domein/${domain}/${code}`;
+        const url = baseUrl ? `${baseUrl}proza/domein/${domain}/${code}` : `proza/domein/${domain}/${code}`;
         if (options.forceUpdate) {
             // Dev. Note: Maakt dat de request direct word opgevraagd van de server & niet uit de cache.
             //            Daarnaast beland de request ook niet in de cache.
@@ -20,7 +20,7 @@ export class ProzaRestClient {
     }
 
     static getMessages(domain: string, baseUrl?: string) {
-        const url = baseUrl ? `${baseUrl}/proza/domein/${domain}` : `proza/domein/${domain}`;
+        const url = baseUrl ? `${baseUrl}proza/domein/${domain}` : `proza/domein/${domain}`;
         // Dev. Note: Maakt een "no-cache" request zodat deze altijd een "conditional-request" zal maken naar de server
         //            om te controleren of er wijzigingen zijn gebeurd.
         //            Zie: https://developer.mozilla.org/en-US/docs/Web/API/Request/cache
@@ -39,7 +39,7 @@ export class ProzaRestClient {
 
     static getToegelatenOperaties(domain: string, baseUrl?: string) {
         const url = baseUrl
-            ? `${baseUrl}/proza/domein/${domain}/toegelatenoperaties`
+            ? `${baseUrl}proza/domein/${domain}/toegelatenoperaties`
             : `proza/domein/${domain}/toegelatenoperaties`;
         return ProzaRestClient.__fetchJson(url, null).catch((error) => {
             console.error(
