@@ -60,7 +60,7 @@ export class VlMapSelectAction extends VlMapLayerAction {
         }
     }
 
-    onSelect(callback: (...args: unknown[]) => void): void {
+    onSelect(callback: (...args: any[]) => void): void {
         this.__callback = callback;
     }
 
