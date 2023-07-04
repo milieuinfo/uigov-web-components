@@ -1,10 +1,10 @@
-import { VlMap, VlMapFeaturesLayer, VlMapLayerSwitcher, VlMapSideSheet } from '@domg-wc/map';
+import { VlMap, VlMapFeaturesLayer } from '@domg-wc/map';
 import { runTestFor } from '../../../support/utils';
 
-const mapLayerSwitcherSpecialised =
-    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--map-layer-switcher-specialised-options&viewMode=story';
+const mapLayerSwitcherDefaultUrl =
+    'http://localhost:8080/iframe.html?id=map-layer-switcher--map-layer-switcher-default&viewMode=story';
 const mapLayerSwitcherDynamic =
-    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--map-layer-switcher-dynamic&viewMode=story';
+    'http://localhost:8080/iframe.html?id=map-layer-switcher--map-layer-switcher-dynamic&viewMode=story';
 
 const shouldHaveVisibleLayerFor = (layerName: string): void => {
     runTestFor<VlMapFeaturesLayer>(`vl-map-features-layer[data-vl-name="${layerName}"]`, (component) => {
@@ -21,80 +21,49 @@ const shouldHaveInvisibleLayerFor = (layerName: string): void => {
 const clickLayerSwitcherCheckboxOf = (layerName: string): void => {
     cy.get('vl-map')
         .find('vl-map-layer-switcher')
+        .shadow()
         .find(`vl-checkbox[data-vl-layer="${layerName}"]`)
         .shadow()
         .find('input')
         .click({ force: true });
 };
 
-const rerenderLayerSwitcher = (): void => {
-    runTestFor<VlMapSideSheet>(`vl-map-side-sheet`, (mapSideSheetComponent) => {
-        const mapSideSheet = mapSideSheetComponent as VlMapSideSheet & HTMLElement;
-        runTestFor<VlMapLayerSwitcher>(`vl-map-layer-switcher`, (layerSwitcherComponent) => {
-            const layerSwitcher = layerSwitcherComponent as VlMapLayerSwitcher & HTMLElement;
-            mapSideSheet.removeChild(layerSwitcher);
-            const newLayerSwitcher = '<vl-map-layer-switcher></vl-map-layer-switcher>';
-            mapSideSheet.insertAdjacentHTML('beforeend', newLayerSwitcher);
-        });
-    });
-};
 const shouldHaveFeatureLayerCount = (count: number) => {
     runTestFor<VlMap>('vl-map#map-dynamic-layers', (map) => {
         expect(map.featuresLayers).to.be.have.length(count);
     });
 };
 
-// TODO ideally we want to simply test addMapLayer() from libs/map/src/lib/utils/layer-manager.utils.ts, this can be done once .scss of web-component-library can processed for cypress tests
-const addLayer = (layerName) => {
-    runTestFor<VlMap>('vl-map#map-dynamic-layers', (map) => {
-        runTestFor<VlMapFeaturesLayer>(`vl-map-features-layer[data-vl-name="${layerName}"]`, (layer) => {
-            map.appendChild(layer);
-        });
-    });
-};
+describe('story vl-map-layer-switcher default', () => {
+    it('should show/hide layer when clicking the checkbox linked to a layer', () => {
+        const layerName = 'Kaartlaag 1';
 
-// TODO ideally we want to simply test removeLayer() from libs/map/src/lib/utils/layer-manager.utils.ts, this can be done once .scss of web-component-library can processed for cypress tests
-const removeLayer = (layerName) => {
-    runTestFor<VlMapFeaturesLayer>(`vl-map-features-layer[data-vl-name="${layerName}"]`, (component) => {
-        const layer = component as VlMapFeaturesLayer & Element;
-        layer.remove();
-    });
-};
+        cy.visit(mapLayerSwitcherDefaultUrl);
 
-describe('vl-map-layer-switcher', () => {
-    it('vl-map-layer-switcher specialised - when clicking the checkbox, linked to a layer, the related map layer should become visible', () => {
-        cy.visit(`${mapLayerSwitcherSpecialised}`);
-
-        const layerName = 'layer-1';
         shouldHaveVisibleLayerFor(layerName);
         clickLayerSwitcherCheckboxOf(layerName);
         shouldHaveInvisibleLayerFor(layerName);
         clickLayerSwitcherCheckboxOf(layerName);
         shouldHaveVisibleLayerFor(layerName);
     });
+});
 
-    it('vl-map-layer-switcher dynamic - ', () => {
-        cy.visit(`${mapLayerSwitcherDynamic}`);
-
+describe('story vl-map-layer-switcher dynamic', () => {
+    it('should add/remove layers dynamically', () => {
         const layerId = 'zwart';
         const layerName = `Kaartlaag ${layerId}`;
 
+        cy.visit(`${mapLayerSwitcherDynamic}`);
+
         shouldHaveFeatureLayerCount(0);
-
-        addLayer(layerName);
-
+        cy.get(`button#add-${layerId}`).click();
         shouldHaveFeatureLayerCount(1);
-
-        rerenderLayerSwitcher();
-
         shouldHaveVisibleLayerFor(layerName);
         clickLayerSwitcherCheckboxOf(layerName);
         shouldHaveInvisibleLayerFor(layerName);
         clickLayerSwitcherCheckboxOf(layerName);
         shouldHaveVisibleLayerFor(layerName);
-
-        removeLayer(layerName);
-
+        cy.get(`button#remove-${layerId}`).click();
         shouldHaveFeatureLayerCount(0);
     });
 });

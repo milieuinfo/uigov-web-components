@@ -49,8 +49,9 @@ export const storyControlTemplates = (
     return layerIds.map(
         (id) =>
             html`
-                <section id="${id}">
+                <section id=${id}>
                     <button
+                        id=${`add-${id}`}
                         @click=${(event: Event) => {
                             addFn(id, event);
                         }}
@@ -58,6 +59,7 @@ export const storyControlTemplates = (
                         toevoegen ${id} laag
                     </button>
                     <button
+                        id=${`remove-${id}`}
                         disabled
                         @click=${(event: Event) => {
                             removeFn(id, event);
