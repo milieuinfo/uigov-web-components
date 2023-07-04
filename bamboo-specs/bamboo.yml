@@ -12,14 +12,8 @@ stages:
   - Build and Test Stage:
       jobs:
         - build-apps-libs-and-storybook
-        - perform-all-unit-tests
-        - perform-all-web-tests
-        - e2e-tests-storybook-1
-        - e2e-tests-storybook-2
-        - e2e-tests-storybook-3
-        - e2e-tests-storybook-4
-        - e2e-tests-storybook-5
-        - e2e-tests-storybook-6
+        - perform-all-unit-and-web-tests
+        - e2e-tests-storybook
   - Report, Release and Publish Stage:
       jobs:
         - report-e2e-tests-storybook
@@ -65,92 +59,26 @@ build-apps-libs-and-storybook:
       pattern: '**/*.*'
       shared: true
 
-# de unit testen genereren (nog) geen rapport - er is dus geen artifact
-perform-all-unit-tests:
+# de unit testen genereren (nog) geen rapport
+perform-all-unit-and-web-tests:
   requirements: *requirements
   tasks:
     - clean
-    - script: bash ./resources/ci/scripts/perform-all-unit-tests-docker.sh
-
-perform-all-web-tests:
-  requirements: *requirements
-  tasks:
-    - clean
-    - script: bash ./resources/ci/scripts/perform-all-web-tests-docker.sh
+    - script: bash ./resources/ci/scripts/perform-all-unit-and-web-tests-docker.sh
     - script: *dist-artifact
   artifacts:
-    - name: dist-perform-all-web-tests
+    - name: dist-perform-all-unit-and-web-tests
       location: dist-artifact
       pattern: '**/*.*'
 
-e2e-tests-storybook-1:
+e2e-tests-storybook:
   requirements: *requirements
   tasks:
     - clean
-    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 1
+    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh
     - script: *dist-artifact
   artifacts:
-    - name: dist-e2e-tests-storybook-1
-      location: dist-artifact
-      pattern: '**/*.*'
-      shared: true
-
-e2e-tests-storybook-2:
-  requirements: *requirements
-  tasks:
-    - clean
-    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 2
-    - script: *dist-artifact
-  artifacts:
-    - name: dist-e2e-tests-storybook-2
-      location: dist-artifact
-      pattern: '**/*.*'
-      shared: true
-
-e2e-tests-storybook-3:
-  requirements: *requirements
-  tasks:
-    - clean
-    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 3
-    - script: *dist-artifact
-  artifacts:
-    - name: dist-e2e-tests-storybook-3
-      location: dist-artifact
-      pattern: '**/*.*'
-      shared: true
-
-e2e-tests-storybook-4:
-  requirements: *requirements
-  tasks:
-    - clean
-    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 4
-    - script: *dist-artifact
-  artifacts:
-    - name: dist-e2e-tests-storybook-4
-      location: dist-artifact
-      pattern: '**/*.*'
-      shared: true
-
-e2e-tests-storybook-5:
-  requirements: *requirements
-  tasks:
-    - clean
-    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 5
-    - script: *dist-artifact
-  artifacts:
-    - name: dist-e2e-tests-storybook-5
-      location: dist-artifact
-      pattern: '**/*.*'
-      shared: true
-
-e2e-tests-storybook-6:
-  requirements: *requirements
-  tasks:
-    - clean
-    - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh 6
-    - script: *dist-artifact
-  artifacts:
-    - name: dist-e2e-tests-storybook-6
+    - name: dist-e2e-tests-storybook
       location: dist-artifact
       pattern: '**/*.*'
       shared: true
