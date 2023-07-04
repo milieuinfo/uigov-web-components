@@ -1,4 +1,4 @@
-import { Canvas, DocsStory, Story, Source } from '@storybook/addon-docs';
+import { Canvas, DocsStory, Story, Source, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
 import dynamicLayerSwitcherImplementation from '!raw-loader!./vl-map-layer-switcher.stories-utils';
 
 # Map Layer Switcher
@@ -17,87 +17,43 @@ import { VlMapLayerSwitcher } from '@domg-wc/map';
 
 <DocsStory id="map-layer-switcher--map-layer-switcher-default" />
 
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
 ## Gebruik
 
-Dit component wordt typisch in de `vl-map-side-sheet` gebruikt [meer info](?path=/docs/map-side-sheet--map-side-sheet-default).
-
--   het is belangrijk dat de `vl-map-layer-switcher` zich binnen `vl-map` bevindt waarvan de kaartlagen moeten worden gemanipuleerd
--   daarnaast is het ook belangrijk dat elke kaartlaag de property `data-vl-name` krijgt:
-    -   enkel voor de lagen met `data-vl-name` wordt een control toegevoegd
-    -   op basis van `data-vl-name`-property, wordt automatisch ook het label voor elke checkbox aangemaakt
+-   Het is belangrijk dat de kaartlagen zich binnen de [vl-map](?path=/docs/map-map--map-default) bevinden
+-   Het is belangrijk dat de `vl-map-layer-switcher` zich binnen de [vl-map](?path=/docs/map-map--map-default) bevindt
+-   Het `data-vl-name` attribuut van de kaartlaag wordt gebruikt als label voor de checkbox
+-   Dit component wordt typisch in de [vl-map-side-sheet](?path=/docs/map-side-sheet--map-side-sheet-default) gebruikt
 
 ## Varianten
 
-### Menu items op maat
+### Subselectie van kaartlagen
 
-Kaart met gepersonaliseerde optie om kaartlagen te tonen en verbergen. Op deze manier kan je zelf de control bepalen voor de specifieke kaartlaag.
+Kan gebruikt worden om een subselectie van kaartlagen te tonen.<br/>
+Kaartlagen worden niet langer automatisch toegevoegd of verwijderd in de layer-switcher.
 
-bv.
+<DocsStory id="map-layer-switcher--map-layer-switcher-subselection" />
 
-```html
-<vl-map-layer-switcher>
-    <vl-checkbox data-vl-label="Kaartlaag" data-vl-layer="layer-1"></vl-checkbox>
-</vl-map-layer-switcher>
-```
+### Kaartlagen met resoluties
 
-<DocsStory id="map-layer-switcher--map-layer-switcher-specialised-options" />
+<DocsStory id="map-layer-switcher--map-layer-switcher-resolutions" />
 
-### Kaartlagen met resolutie
+### Dynamische kaartlagen
 
-Kaart met optie om kaartlagen met resolutie te tonen en verbergen
-
-<DocsStory id="map-layer-switcher--map-layer-switcher-resolution-option" />
-
-### Dynamisch
-
-Voorbeeld hoe dynamisch lagen toegevoegd en verwijderd kunnen worden uit het `vl-map`-component.
-Dit behoudt dezelfde werking als standaard functionaliteit: de gebruiker kan de toegevoegde lagen zichtbaar en onzichtbaar maken.
-Je kan ook dynamisch `vl-map-layer`-componenten toevoegen en verwijderen. Hieronder volgt voorbeeld en uitleg.
-
-#### Laag toevoegen
-
-Dit doe je gewoon door de `vl-map-layer` toe te voegen aan de `vl-map` met native DOM `append()` of `appendChild()` methodes.
-Belangrijk dat die dus toegevoegd wordt binnen de `<vl-map></vl-map>` tag.
-De `vl-map` regelt automagisch het rerenderen van de layer in z'n interne OpenLayers' instantie.
-
-<Source
-    language="typescript"
-    format={true}
-    code={`
-             const newLayer: VlMapLayer & HTMLElement = document.querySelector(layerSelector);
-             const vlMap: VlMap & HTMLElement = document.querySelector(vlMapSelector);
-             vlMap.appendChild(newLayer);
-              `}
-></Source>
-
-#### Laag verwijderen
-
-Dit doe je door de relevante `vl-map-layer` te verwijderen uit `vl-map` door bv. native DOM `remove()` of `removeChild()` aan te roepen.
-Achterliggend wordt de `vl-map-layer` verwijderd van de DOM en ook meteen de relevante OverlayLayer verwijderd uit de OpenLayer map.
-De `vl-map` regelt automatisch het rerenderen.
-
-<Source
-    language="typescript"
-    format={true}
-    code={`
-              const layerToRemove: VlMapLayer & HTMLElement = document.querySelector(layerSelector);
-              const vlMap: VlMap & HTMLElement = document.querySelector(vlMapSelector);
-              vlMap.removeChild(layerToRemove); // of: layerToRemove.remove();
-              `}
-></Source>
-
-Hieronder volgt het volledige code voorbeeld om:
-- dynamisch lagen toe te voegen en te verwijderen op de `vl-map`
-- de aanwezige lagen in de `vl-map` in de `vl-layer-switcher` te renderen
-
-<details>
-    <summary>volledig code voorbeeld van onderstaande implementatie</summary>
-    <Source code={dynamicLayerSwitcherImplementation} language="ts" dark={true} />
-</details>
+Voorbeeld hoe dynamisch lagen toegevoegd en verwijderd kunnen worden.<br/>
+Zie onder de story voor het volledige code voorbeeld.
 
 <Canvas>
     <Story id="map-layer-switcher--map-layer-switcher-dynamic" inline={false} height={650} />
 </Canvas>
+
+<details>
+    <summary>volledig code voorbeeld van bovenstaande implementatie</summary>
+    <Source code={dynamicLayerSwitcherImplementation} language="ts" dark={true} />
+</details>
 
 ## Referenties
 

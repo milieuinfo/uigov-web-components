@@ -1,37 +1,48 @@
 const mapLayerSwitcherDefaultUrl =
-    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--map-layer-switcher-default&viewMode=story';
-
+    'http://localhost:8080/iframe.html?id=map-layer-switcher--map-layer-switcher-default&viewMode=story';
 const mapLayerSwitcherSpecialisedUrl =
-    'http://localhost:8080/iframe.html?args=&id=map-layer-switcher--map-layer-switcher-specialised-options&viewMode=story';
-describe('vl-map-layer-switcher', () => {
-    it('vl-map-layer-switcher default - wanneer er geen layer input child elementen aanwezig zijn, zullen deze automatisch gegenereerd worden', () => {
-        cy.visit(`${mapLayerSwitcherDefaultUrl}`);
+    'http://localhost:8080/iframe.html?id=map-layer-switcher--map-layer-switcher-subselection&viewMode=story';
 
-        const kaartlaagNamen = [
-            'Kaartlaag 1',
-            'Kaartlaag 2',
-            'Kaartlaag 3',
-            'WMTS kaartlaag',
-            'WMS kaartlaag',
-            'WFS kaartlaag',
-        ];
+describe('story vl-map-layer-switcher default ', () => {
+    it('should display all layers', () => {
+        const layers = ['Kaartlaag 1', 'Kaartlaag 2', 'Kaartlaag 3'];
+
+        cy.visit(mapLayerSwitcherDefaultUrl);
 
         cy.get('vl-map')
             .find('vl-map-layer-switcher')
-            .children()
+            .shadow()
+            .find('vl-checkbox')
+            .should('have.length', 3)
             .each((checkbox: HTMLInputElement, index) => {
                 cy.wrap(checkbox)
                     .shadow()
                     .find('label')
                     .find('div.vl-checkbox__label')
                     .find('span')
-                    .should('have.text', kaartlaagNamen[index]);
+                    .should('have.text', layers[index]);
             });
     });
+});
 
-    it('vl-map-layer-switcher specialised - wanneer er layer input child elementen aanwezig zijn, zullen er geen extra input elementen gegenereerd worden', () => {
-        cy.visit(`${mapLayerSwitcherSpecialisedUrl}`);
+describe('story vl-map-layer-switcher subselection ', () => {
+    it('should display a subselection of layers', () => {
+        const layers = ['Kaartlaag 1', 'Kaartlaag 2'];
 
-        cy.get('vl-map').find('vl-map-layer-switcher').children().should('have.length', 1);
+        cy.visit(mapLayerSwitcherSpecialisedUrl);
+
+        cy.get('vl-map')
+            .find('vl-map-layer-switcher')
+            .shadow()
+            .find('vl-checkbox')
+            .should('have.length', 2)
+            .each((checkbox: HTMLInputElement, index) => {
+                cy.wrap(checkbox)
+                    .shadow()
+                    .find('label')
+                    .find('div.vl-checkbox__label')
+                    .find('span')
+                    .should('have.text', layers[index]);
+            });
     });
 });
