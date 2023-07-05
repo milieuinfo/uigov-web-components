@@ -1,0 +1,104 @@
+import {Meta} from '@storybook/addon-docs';
+import autocompletePng from '../../resources/afnemen/autocomplete.png';
+
+<Meta title="Afnemen/Cookbook"/>
+
+# Cookbook (WIP)
+
+## Inhoudstafel
+
+- [Artifacts](#artifacts)
+- [Styling](#styling)
+- [Map](#map)
+
+
+## Artifacts
+
+### Beschikbaarheid
+
+Alle artifacts zijn beschikbaar via de [JFrog Artifactory](https://repo.omgeving.vlaanderen.be/ui/packages) van
+Departement Omgeving. Om ze af te nemen dien je je `~/.npmrc` als volgt te configureren:
+
+```
+registry=https://repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/
+//repo.omgeving.vlaanderen.be/artifactory/api/npm/acd-npm/:_authToken=xXxyYyzZz
+```
+
+Je persoonlijk authToken kan je vinden door naar [JFrog Artifactory](https://repo.omgeving.vlaanderen.be/ui/packages)
+te gaan, dan rechtsboven een `Log in` doen, links via `Artifacts` de repo `acd-npm` selecteren en dan via `Set Me Up`
+kan je een __token__ genereren.
+
+> ** Opmerking**: als je (tijdelijk) wil wisselen naar de 'default' npm repository kan je in je `~/.npmrc` bestand de
+registry lijn in commentaar zetten en vervangen door `registry=https://registry.npmjs.org/`
+
+<br />
+
+### Typing - .d.ts files
+
+De broncode van de uigov-web-components wordt in TypeScript geschreven. In de npm packages wordt die code naar
+JavaScript getranspilede, daarnaast zitten er ook .d.ts bestanden in de bundel. Door eindtoepassingen in TypeScript te
+schrijven zorgen deze .d.ts bestanden ervoor dat je typed kan werken en er bvb. autocomplete functionaliteit in
+je IDE is.
+
+<img src={autocompletePng} alt="Autocomplete" height="350px"/>
+<br />
+
+
+### Debugging - map files
+
+In de npm packages van de uigov-web-components zitten ook .js.map bestanden. De .js bestanden hebben een referentie
+naar die .js.map bestanden waarin de originele broncode (in TypeScript) zit. Als de configuratie juist is kan je
+daarmee de broncode van de uigov-web-components debuggen.
+
+Als je je eindtoepassing bundelt met [webpack](https://webpack.js.org/) dien je in je webpack configuratie de
+[source-map-loader](https://webpack.js.org/loaders/source-map-loader/) toe te voegen. Deze plugin zorgt ervoor dat
+de .js.map bestanden transitief mee opgenomen worden in de bundel van de eindtoepassing.
+
+Om de plugin te gebruiken moet je hem installeren
+```
+npm i -D source-map-loader
+```
+
+en nadien configureren
+```
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        enforce: "pre",
+        use: ["source-map-loader"],
+      },
+    ],
+  },
+};
+```
+
+
+### FatJs
+
+TODO - Kris S.
+
+
+## Styling
+
+### Custom CSS
+
+TODO - Kristof Spaas
+
+
+### 4 background css classes
+
+TODO - Kris S.
+
+
+### kleuren palet
+
+TODO - na implementatie van https://www.milieuinfo.be/jira/browse/UIG-2514
+
+
+## Map
+
+### Open Layers
+
+TODO - referentie(s) - Karim D.

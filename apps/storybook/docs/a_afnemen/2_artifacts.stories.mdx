@@ -1,0 +1,79 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Afnemen/Artifacts"/>
+
+# Artifacts
+
+## Inhoudstafel
+
+- [Overzicht](#overzicht)
+- [@domg-wc/common-utilities](#domg-wccommon-utilities)
+- [@domg-wc/elements](#domg-wcelements)
+- [@domg-wc/components](#domg-wccomponents)
+- [@domg-wc/sections](#domg-wcsections)
+- [@domg-wc/map](#domg-wcmap)
+
+
+## Overzicht
+
+Alle web-componenten van Departement Omgeving zitten in artifacts onder de npm scope `@domg-wc`; __common-utilities__
+bevat technische code, de overige 4 artifacts: __elements__, __components__, __map__ en __sections__ bevatten
+web-componenten.
+
+> ** ⚠ Waarschuwing**: er is een elements / components concept gedefinieerd, dit is een streefdoel, de huidige code
+volgt dit concept in grote lijnen maar niet volledig. Afwijkingen komen voor!
+
+
+## @domg-wc/common-utilities
+
+__common-utilities__ is een technische bibliotheek met basis code en utilities. Afnemers kunnen het gebruik beperken tot de
+`registerWebComponents` methode.
+
+
+## @domg-wc/elements
+
+Een __element__ is geïmplementeerd als een native html-element en heeft technisch volgende eigenschappen:
+
+- extends steeds van een sub-klasse van HTMLElement (bvb. HTMLButtonElement)
+- dus steeds te gebruiken met 'is='; bvb. `<button is="vl-button"></button>`
+- heeft __geen__ shadow DOM
+- de styling wordt globaal gedefinieerd
+- de bulk van de styling komt van DV (Digitaal Vlaanderen)
+- afnemers dienen expliciet deze css eenmalig te refereren - zie [Styling](/story/afnemen-aan-de-slag--page#styling)
+  onder `Aan De Slag`
+
+
+## @domg-wc/components
+
+Historisch werd een __component__ geïmplementeerd als een `BaseElement`: een eigen basis klasse beschikbaar in
+@domg-wc/common-utilities via de methode `BaseElementOfType`. Nieuwere componenten worden geïmplementeerd m.b.v.
+[LitElement](https://lit.dev/docs/api/LitElement/); het doel op (lange) termijn is van alles (ook van de elementen,
+sections en map) LitElementen te maken.
+
+Een __component__ heeft technisch volgende eigenschappen:
+
+- extends van BaseElement of van LitElement
+- dus steeds te gebruiken als custom tag; bvb. `<vl-breadcrumb></vl-breadcrumb>`
+- heeft __steeds een__ shadow DOM
+- de styling komt mee met de component (geïnjecteerd in de shadow DOM)
+- ook de element styling is (waar nodig) voorzien in de shadow DOM
+- geneste elementen worden dus steeds correct gestyled
+- afnemers moeten niets doen m.b.t. styling
+
+
+## @domg-wc/sections
+
+Onder __sections__ zitten web-componenten specifiek voor Departement Omgeving. Het zijn geen bouwstenen
+zoals de andere __componenten__ of __elementen__. Het __sections__ artifact bevat: __vl-header__, __vl-footer__,
+__vl-accessibility__, __vl-cookie-consent__, __vl-cookie-consent-opt-in__, __vl-cookie-statement__ en __vl-privacy__.
+
+> ** ! Opmerking**: voor legacy toepassingen is er specifiek van de __sections__ een fat-js variant; zie
+[FatJs](/story/afnemen-cookbook--page#fatjs) onder `Cookbook`
+
+
+## @domg-wc/map
+
+De __map__ is de grootste en uitgebreidste component. Het is een kaart component die achterliggend
+[OpenLayers v6.14.1](https://openlayers.org/en/v6.14.1/doc/) gebruikt. De functionaliteit zit in sub-componenten
+die een plugin opzet volgen.
+

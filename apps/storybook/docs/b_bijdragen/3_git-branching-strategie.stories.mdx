@@ -1,18 +1,26 @@
-import { Meta } from '@storybook/addon-docs';
-import uigBranching from '../../resources/Git Branching Strategie - UIG.png';
-import teamBranching from '../../resources/Git Branching Strategie - Teams.png';
+import {Meta} from '@storybook/addon-docs';
+import teamBranching from '../../resources/bijdragen/git-branching-strategie-teams.png';
 
-<Meta title="Ontwikkeling/Git Branching Strategie" />
+<Meta title="Bijdragen/Git Branching Strategie"/>
 
 # Git Branching Strategie
 
-De ontwikkeling gebeurd in [git](https://git-scm.com/) op [GitHub](https://github.com/milieuinfo/uigov-web-components).
-Er is een [algemene branching strategie](#algemene-branching-stategie) om m.b.v. feature-branches tot pre-releases en
-uiteindelijk finale releases te komen. Ontwikkelteams (ApoCow, Decibel, Phoenix, ...) kunnen bijdrages leveren, de
-[team branching strategie](#team-branching-stategie) daarvoor is apart uitgetekend (het is eigenlijk een versimpelde
-variant van de algemene strategie)
+## Inhoudstafel
 
-## Algemene Branching Stategie
+- [Overzicht](#overzicht)
+- [Branching Concepten](#branching-concepten)
+- [Team Branching Strategie](#team-branching-strategie)
+
+
+## Overzicht
+
+De ontwikkeling gebeurd in [git](https://git-scm.com/) op [GitHub](https://github.com/milieuinfo/uigov-web-components).
+De algemene branching strategie is om via feature-branches tot pre-releases en uiteindelijk finale releases te komen.
+Ontwikkelteams (ApoCow, Decibel, Phoenix, ...) kunnen bijdrages leveren m.b.v. de
+[team branching strategie](#team-branching-strategie).
+
+
+## Branching Concepten
 
 ### Feature Branches
 
@@ -25,16 +33,16 @@ er een ge-hyphende zin van te maken!
 
 ### Commit Boodschappen
 
-Voor [releases](/story/ontwikkeling-build-release--page) wordt
+Voor [releases](/story/beheren-ci-cd--page) wordt
 [semantic-release](https://github.com/semantic-release/semantic-release) gebruikt, dat steunt op commit
 boodschappen die de [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) specificatie volgen.
 
 De commits dienen bij ons volgende structuur te hebben, waarbij __type__ typisch 'fix' of 'feat' is.
 
 ```
-<type>: <ticket-nummer> - <omschrijving>
+<type>: <ticket-nummer> - <component> - <korte beschrijving>
 
-[optionele details]
+[optioneel - details / uitgebreidere beschrijving]
 ```
 
 In het voorbeeld van hierboven zet je dus als commit boodschap:
@@ -50,15 +58,15 @@ het infra-team breidt hun scripts uit zodat de code uit de artefact op de CDN ge
 
 Het doel is: __1 ticket = 1 feature branch = 1 uiteindelijke commit__
 
-Om dit te bereiken dien je alvorens de feature-branch naar develop te brengen (via PR) de commits te squashen.
-Tijdens ontwikkeling kan je committen en pushen naar believe, het is enkel op het moment dat je werk afrond is dat je
-zorgt dat je eindigt met 1 commit die de conventional commit conventie volgt.
+Om dit te bereiken dien je alvorens de feature-branch naar develop te brengen (via een PR) de commits te squashen.
+Tijdens ontwikkeling kan je committen en pushen naar believe, het is enkel op het moment dat je je werk afrond dat je
+zorgt te eindigen met 1 commit die de conventional commit conventie volgt.
 
-Opgelet: indien je squashed moet je nadien een force-push doen daar je je historiek herschreven hebt.
+Opgelet: indien je squashed moet je nadien een force-push doen daar je je historiek herschreven hebt!
 
 ### Rebasen
 
-Om het werk op een feature-branch naar de develop branch te brengen zorgen we ervoor om een lineaire historiek (d.m.v.
+Om het werk op een feature-branch naar de develop-branch te brengen zorgen we ervoor een lineaire historiek (d.m.v.
 fast-forwards) te behouden. Om dit te bereiken dien je eventueel te rebasen. Mergen of rebasen is een keuze, omdat
 het in dit geval om een componenten bibliotheek gaat (en geen eindtoepassing) opteren wij om te rebasen, dit is de
 minst makkelijke optie van de 2, je dient bewust om te gaan met de integratie van commits in andere branches!
@@ -91,26 +99,27 @@ Alvorens een PR te lanceren via GitHub dien je te verifieren dat
 - de commit boodschap conform conventional commit is
 
 Telkens je pushed naar je feature-branch zal er een build lopen. Alvorens de PR te lanceren dient de build van je
-feature branch geslaagd te zijn.
+feature branch geslaagd te zijn! Indien dit in orde is kan je de PR lanceren t.o.v. de develop branch. GitHub meld of
+hij de branch kan inmergen via een fast-forward, indien dit niet kan dien je eerst te rebasen tov develop en te
+force-pushen.
 
-Indien dit in orde is kan je de PR lanceren t.o.v. de develop branch. GitHub meld of hij de branch kan inmergen via
-een fast-forward, indien dit niet kan dien je eerst te rebasen tov develop en te force-pushen.
+Nadat de PR is ingediend wordt de code ge-reviewed door iemand van het UIG-team, na integratie wordt de feature-branch
+verwijderd!
 
-Nadat de PR is ingediend wordt de code ge-reviewed door iemand van het UIG-team en wordt het normale GitHub PR process
-doorlopen. Nadat een PR geïntegreerd is wordt de feature branch in kwestie verwijderd!
 
-### Diagram
+### PR Code Reviews
 
-Onderstaand diagram geeft een overzicht van hoe commit's - door ze naar verschillende branches te brengen - tot
-(pre-)releases leiden. De blauwe boxen geven tags aan die gelegd worden in GitHub. Voor elke tag zal er een
-artefact geproduceerd worden met de tag als suffix. De artefacts zijn beschikbaar onder
-[artifactory](https://repo.omgeving.vlaanderen.be/ui/packages).<br/>
-Via de pre-release branches worden er beta-releases gebouwd, via de release-branches finale releases.<br/>
-Na een commit op eender welke branch loopt de build en alle testen.
+Reviews mogen (op uitnodiging) ook door team-genoten gebeuren, om de code echter in develop te krijgen dienen er 2
+approvals te zijn van het UIG-team. Wij (Kris Speltincx, Kristof Spaas en Karim Dehbi) zijn in de verschillende repo's
+gespecifieerd als code-owners.
 
-<img src={uigBranching} alt="UIG Branching Strategie" />
+In GitHub staat de vlag ook op dat approvals vervallen bij een nieuwe commit. Je dient dus ge-squashed te hebben en
+een correcte commit boodschap te voorzien alvorens we approven, ook de build op Bamboo moet gelukt zijn. Omdat
+integratie tussen Bamboo en GitHub op dit vlak niet mogelijk is vragen we dat de indiener in de PR de Bamboo-build-link
+van de branch vermeld, approvers kunnen dan snel verifieren dat de build in orde is.
 
-## Team Branching Stategie
+
+## Team Branching Strategie
 
 Artefacts worden enkel gebouwd voor pre-release en release branches. Teams die ontwikkeling doen aan de component
 bibliotheek doen dat meestal in de context van aanpassingen voor een concrete eindtoepassing. Vaak is dat werk
@@ -120,4 +129,4 @@ definitief is moeten ze squashen, rebasen en een PR indienen om hun code te inte
 
 De aanpak van deze specifieke branching strategy wordt verduidelijkt in onderstaand diagram.
 
-<img src={teamBranching} alt="Teams Branching Strategie" />
+<img src={teamBranching} alt="Teams Branching Strategie"/>

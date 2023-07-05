@@ -1,0 +1,108 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Afnemen/Aan De Slag"/>
+
+# Aan De Slag
+
+## Inhoudstafel
+
+- [Node en NPM](#node-en-npm)
+- [Dependencies - package.json](#dependencies---packagejson)
+- [Registratie van een web-component](#registratie-van-een-web-component)
+- [Styling](#styling)
+- [Documentatie](#documentatie)
+
+
+## Node en NPM
+
+De basis van hedendaagse JavaScript ontwikkeling - zowel voor deze componenten bibliotheek als voor eindtoepassingen -
+is [Node.js](https://nodejs.org/en) gebruik makend van [npm](https://www.npmjs.com/) (of bvb.
+[Yarn](https://yarnpkg.com/)).
+
+
+## Dependencies - package.json
+
+Er worden [5 bibliotheken](/story/afnemen-artifacts--page) aangeboden, je dient ze - zie hieronder bij "dependencies" -
+op te nemen in je `package.json`. De packages kunnen enkel afgenomen worden als je toegang hebt tot de artifactory van
+Departement Omgeving! Om node versie problemen te vermijden is het aanbevolen [Volta](https://volta.sh/) te gebruiken.
+
+```
+{
+    "name": "web-app",
+    "version": "1.2.0",
+    "license": "MIT",
+    "scripts": {
+        "build": "nx build",
+    },
+    "private": true,
+    "devDependencies": {
+        "cypress": "12.8.1",
+        "eslint": "8.36.0",
+        "jest": "29.5.0",
+        "nx": "15.8.6",
+        "prettier": "2.8.4",
+        "typescript": "4.9.5"
+    },
+    "dependencies": {
+        "@domg-wc/common-utilities": "1.10.0",
+        "@domg-wc/elements": "1.10.0",
+        "@domg-wc/components": "1.10.0",
+        "@domg-wc/sections": "1.10.0",
+        "@domg-wc/map": "1.10.0"
+    },
+    "volta": {
+        "node": "18.15.0"
+    }
+}
+```
+
+> De minimaal op te nemen packages om componenten af te nemen zijn: __'@domg-wc/common-utilities'__,
+__'@domg-wc/elements'__ en __'@domg-wc/components'__. De __'@domg-wc/sections'__ zal typisch ook opgenomen worden
+omdat de header en footer component verplicht zijn in een Departement Omgeving toepassing. De __'@domg-wc/map'__
+bevat de kaart functionaliteit en zal dus niet in alle gevallen nodig zijn.
+
+
+## Registratie van een web-component
+
+Alvorens je een web-component kan gebruiken in je html dient hij geregistreerd te worden in de browser. De aanbevolen
+manier is dit als volgt te doen:
+
+```
+import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlHeader } from '@domg-wc/sections';
+
+registerWebComponents([VlHeader]);
+```
+
+Nadien kent je browser de tag `<vl-header></vl-header>`, de details van een component (attributen, events, ...) kan je
+terugvinden onder de desbetreffende docs pagina, [vl-header - default](/docs/sections-header--header-default)
+in dit geval.
+
+
+## Styling
+
+Een deel van de aangeboden web-componenten heeft een [shadow-dom](https://web.dev/shadowdom-v1/), die componenten
+bevatten hun eigen styling. De componenten uit `@domg-wc/elements` hebben geen shadow-dom, daardoor dient die styling op
+applicatie niveau voorzien te worden. Dit doe je door op root niveau de `vlElementsStyle` te injecteren:
+
+```
+import { vlElementsStyle } from '@domg-wc/elements';
+// en dan bvb. in de constructor van je component op root niveau
+document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
+```
+
+
+## Documentatie
+
+Technische documentatie is te vinden in deze Storybook waarvan de nieuwste versie terug te vinden is onder
+[uigov-builds](https://milieuinfo.github.io/uigov-builds/release/latest/storybook)
+
+De Storybook documentatie wordt bij elke release verbeterd en aangevuld. Per component vind je onder de 'Docs' tab
+detail informatie, daaronder wordt typisch het volgende vermeld:
+
+- de beschrijving van de component
+- een 'default' voorbeeld, inclusief hoe je de component importeert en integreert
+- configuratie details van de attributen, slots, events en properties
+- specifieke varianten
+- referenties met eventueel links naar legacy versies en indien relevant naar de Digitaal Vlaanderen component (waar op
+verder gebouwd wordt)

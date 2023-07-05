@@ -1,0 +1,187 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Bijdragen/Storybook"/>
+
+# Storybook (WIP)
+
+TODO - aan te vullen / te evalueren - Kristof S. of Karim
+
+## Inhoudstafel
+
+TODO
+
+
+## Storybook - legacy
+
+Vroeger:
+Er zijn al conventies m.b.t. Storybook en Cypress (testen t.o.v. Storybook), maar deze zijn nog niet gedocumenteerd. De
+conventies zijn doorgevoerd in de __accordion__ en __progress-bar__ componenten, deze kunnen dus als voorbeeld dienen.
+We zullen stelselmatig de web-componenten stroomlijnen zodat ze uniform gedocumenteerd en getest worden. Op korte
+termijn (streefdoel hier is eind maart 2023) wordt documentatie voorzien m.b.t. die richtlijnen.
+
+
+## Doel
+
+Deze pagina bevat de richtlijnen die gehanteerd worden bij het schrijven van de Storybook documentatie.
+
+Voor voorbeelden van deze richtlijnen zie volgende componenten:
+
+VlAccordion
+VlProgressBar
+VlFunctionalHeader
+VlAccessibility
+VlHeader
+
+
+## Args
+-> uit - https://www.milieuinfo.be/confluence/display/FEO/Args+en+ArgTypes
+
+Het bestand dat de args specifiëert heeft een naam conform: `vl-component.stories-arg.ts`
+
+De conventies m.b.t. het args bestand zijn:
+
+- bij voorkeur alfabetisch gesorteerd, er kan van afgeweken worden mits een geldige reden
+- maak geen gebruik van de Args-interface uit @storybook/web-component omdat anders de types verloren geraken
+- waarde:
+    * args met een default waarde in het component krijgen de default waarde van het type (lege string, false, 0, ..).
+      <br/>Dit zorgt ervoor dat de default waarde in het component afgetest kan worden.
+    * args zonder default waarde in het component krijgen een willekeurige waarde
+- slots:
+    * naamgeving eindigt op "slot", bv. "titleSlot"
+    * default slot gebruikt de naamgeving "defaultSlot"
+- events maken gebruik van de action addon van Storybook zodat het event getoond wordt in de actions sectie
+
+
+## ArgTypes
+
+- alfabetisch gesorteerd, kan van afgeweken worden mits geldige reden
+- maak gebruik van de ArgTypes-interface uit @storybook/web-components
+
+### samenstelling object
+
+* __name__: naam die in het component gebruikt wordt<br/>Slots gebruiken de waarde van het name attribuut
+            van het slot of de waarde "[default]" indien het een default slot is
+* __description__: korte omschrijving, vermeldt de argumenten die niet in combinatie gebruikt kunnen worden
+* __table__
+    * __type__
+        * __summary__: het type (string, number, boolean, html, ...), maakt gebruik van constante<br/>
+                       Voor een enum worden alle mogelijke waarden genoteerd, bv. "&lt;waarde 1&gt; | &lt;waarde 2&gt; | &lt;waarde 3&gt;"
+    * __category__: de categorie, bepaalt de groepering in de controls sectie van Storybook, maakt gebruik van constante
+    * __defaultValue__ (optioneel)
+        * __summary__: de default waarde in het component, laat heel de property defaultValue weg indien er geen default waarde is
+* __control__ (optioneel), wordt gebruikt bij oa een enum om een dropdown control te tonen
+    * __type__: type van control (select, ...)
+    * __options__: de opties van de control
+
+
+## Docs
+
+De docs voor Storybook worden geschreven in MDX (https://mdxjs.com/).
+
+Naamgeving bestand: component.stories-doc.mdx
+
+Opbouw pagina
+
+- Naam en omschrijving
+- Voorbeeld
+    * Import statement
+    * Custom tag
+    * Default story + source
+- Configuratie: de argsTable van de default story
+- Varianten + source
+- Referenties
+    * Digitaal Vlaanderen documentatie
+    * Legacy Storybook
+    * Legacy documentatie
+    * Legacy dmeo
+
+
+TEMPLATE
+```
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# <naam>
+
+<omschrijving>
+
+## Voorbeeld
+
+\`\`\`js
+<import statement>
+\`\`\`
+
+\`\`\`html
+<custom tag>
+\`\`\`
+
+<DocsStory id="<default story id>" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Varianten
+
+### <variant 1 naam>
+
+<DocsStory id="<variant 1 id>" />
+
+### <variant 2 naam>
+
+<DocsStory id="<variant 2 id>" />
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+**Documentatie Digitaal Vlaanderen:** <url documentatie Digitaal Vlaanderen>
+
+### Legacy Documentatie
+
+**Legacy Storybook:**  <url legacy Storybook>
+
+**Legacy Documentatie:** <url legacy documentatie>
+
+**Legacy Demo:**  <url legacy demo>
+```
+
+## Stories
+
+__Naamgeving bestand__: &lt;component&gt;.stories.ts
+
+Een story bestand bestaat uit 3 delen:
+
+- Default export
+- Story template
+- Stories
+
+
+### Default export
+
+- __title__: de titel van de Storybook entry, bv. "Components/accordion"
+    Het deel voor de "/" bepaalt de positie in het linker zijmenu
+- __args__ (optioneel): args uit het component.stories-arg.ts bestand
+    Laat dit weg indien je de args zet in de stories zelf, zie sectie Stories
+- __argTypes__: argTypes uit het component.stories-arg.ts bestand
+- __parameters__:
+    * layout (optioneel): "fullscreen" voor componenten die de volledige breedte in beslag nemen
+    * docs:
+        * page: import component.stories-doc.mdx bestand
+
+### Story template
+
+- Opgebouwd met Lit
+- Bevat alle args
+- Args zijn alfabetisch gesorteerd, kan van afgeweken worden mits geldige reden
+- Attributen zonder waarde worden weggelaten door de nothing operator van Lit te gebruiken, bv. "data-vl-toggle-text=${toggleText ?? nothing}"
+- Properties worden geprefixed met ".", bv. ".steps=${steps}"
+- Events worden geprefixed met "@", bv. "@vl-click-step=${(event: CustomEvent) => onClickStep(event.detail)}"
+- Slots gebruiken het unsafeHTML directive van Lit zodat de HTML niet ge-escaped wordt, bv. "${unsafeHTML(titleSlot)}"
+
+### Stories
+
+- Elk component heeft minstens 1 story
+- Component met logische varianten
+    * Story per variant
+    * Args meegeven/overschrijven op story niveau
+- !! Pas nooit de argTypes van een story aan, dit zorgt ervoor dat de controls sectie van Storybook niet hetzelfde is voor alle stories

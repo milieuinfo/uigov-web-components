@@ -1,0 +1,39 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Bijdragen/Cypress"/>
+
+# Cypress (WIP)
+
+TODO - aan te vullen / te evalueren - Kristof S. of Karim
+
+## Inhoudstafel
+
+- [algemeen](#algemeen)
+
+## algemeen
+
+- descriptions in Engels
+- begint altijd met should
+- gebruik data ingesteld tijdens story
+    * als je die toch gebruikt, zorg dat je niet te diepe relatieve url gebruikt ..../../../
+- remove interpolation
+- manier hoe we cypress testen doen:
+    * enkel visueel testen, niet interne methodes
+
+## cypress dom testen vs wc testen
+
+- wc-testen enkel houden voor zaken die niet testbaar zijn zonder wc testen
+- publiek toegankelijke methodes moeten ook getest worden, bedoeling enkel die te testen in de wc-testen
+
+## structuur testen
+
+- gebruik context als hierarchy nuttig is, probeer zo flat mogelijk testen te structureren
+
+## volledigheid
+
+- ga niet direct van table naar element die je moet hebben, maar pak verschillende sub niveau's zodat je meteen ook
+  test dat alle elementen correct genest zijn
+- voor regel 171, 172 function header
+    * voor shadow slot, waarbij we verwijzen naar extern element die erin gebruikt
+    * hier cypress commando voor maken?
+- wc test naam enkel bijvoegen als er zowel dom als wc test zijn, anders mag standaard blijven

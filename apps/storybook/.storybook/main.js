@@ -35,7 +35,7 @@ module.exports = {
         '../../../libs/map/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
         '../../../libs/sections/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     ],
-    // staticDirs: ['../../../'], TODO: dit geeft problemen bij een storybook-build -> logisch zou de complete root naar een lager path kopieren !!!
+    staticDirs: ['../resources/public'],
     addons: ['@storybook/addon-links', '@storybook/addon-essentials', 'storybook-addon-mock'],
     framework: '@storybook/web-components',
     webpackFinal: async (config) => {
