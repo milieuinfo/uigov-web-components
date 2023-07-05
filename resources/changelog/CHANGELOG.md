@@ -1,3 +1,24 @@
+# [1.10.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.9.0...v1.10.0) (2023-07-05)
+
+
+### Bug Fixes
+
+* UIG-2454 - vl-proza-message - absolute path ([82f83d9](https://github.com/milieuinfo/uigov-web-components/commit/82f83d9044c581a3225c70ab762e9ee8aa183fd8))
+* UIG-2486 - vl-map-select-action - typing issue ([4ca1aab](https://github.com/milieuinfo/uigov-web-components/commit/4ca1aabb042bd14468ae53dba91df18764049f21))
+* UIG-2523 - vl-textarea - add null checks ([7c0c1b9](https://github.com/milieuinfo/uigov-web-components/commit/7c0c1b915e00f247e7a33e25666d7e30034ddf99))
+* UIG-2534 - vl-form-validation - validatie reset toegevoegd ([9880c01](https://github.com/milieuinfo/uigov-web-components/commit/9880c019d0188c9e9a2225f110a68ab6e1ce938a))
+
+
+### Features
+
+* UIG-2488 - vl-map-layer-style - cache feature styles ([ab658ea](https://github.com/milieuinfo/uigov-web-components/commit/ab658eac5cb12c600373f7951c0cda2d90cd3eb9))
+* UIG-2502 - vl-map-layer - voorkom duplicate styling op VlMapLayer element ([b630b0a](https://github.com/milieuinfo/uigov-web-components/commit/b630b0aec9acfd6d92b921740a3a29609bb466c1))
+* UIG-2506 - vl-select - disable search ([0f794cd](https://github.com/milieuinfo/uigov-web-components/commit/0f794cd0ff59b56c1406982be346ffb103cea3ac))
+* UIG-2508 - vl-map-wms-layer - reactieve attributen ([54fe8f4](https://github.com/milieuinfo/uigov-web-components/commit/54fe8f4916b83bcaf538ca191d2a869ffd80849a))
+* UIG-2509 - vl-map-layer-switcher - dynamic layers ([7191796](https://github.com/milieuinfo/uigov-web-components/commit/7191796d7643505a5b118219429d16e43f67c686))
+* UIG-2527 - de meest recente Storybook terug aanbieden via GitHub-pages ([9d9887b](https://github.com/milieuinfo/uigov-web-components/commit/9d9887b044213d0a9683ae490808ab78ce684f63))
+* UIG-2544 - build aanpassing, max. 3 parallelle jobs ([f5961c0](https://github.com/milieuinfo/uigov-web-components/commit/f5961c0d11416a6e29a2390228ee435bebc9e40c))
+
 # [1.9.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.8.0...v1.9.0) (2023-06-20)
 
 
