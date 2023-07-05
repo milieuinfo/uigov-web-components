@@ -1,22 +1,12 @@
 const sideNavigationUrl =
     'http://localhost:8080/iframe.html?id=elements-side-navigation--side-navigation-default&viewMode=story';
+const stepsWithSideNavigationUrl =
+    'http://localhost:8080/iframe.html?args=&id=components-steps--steps-with-side-navigation&viewMode=story';
 
 describe('story vl-side-navigation default', () => {
     beforeEach(() => cy.visit(sideNavigationUrl));
 
     it('should have child and parent links', () => {
-        const shouldHaveChildAttribute = (href: string, child: string) => {
-            cy.get('nav[is="vl-side-navigation"]')
-                .find(`a[is="vl-side-navigation-toggle"][href="${href}"]`)
-                .should('have.attr', 'data-vl-child', child);
-        };
-
-        const shouldHaveParentAttribute = (href: string, parent: string) => {
-            cy.get('nav[is="vl-side-navigation"]')
-                .find(`a[href="${href}"]`)
-                .should('have.attr', 'data-vl-parent', parent);
-        };
-
         shouldHaveChildAttribute('#content-1', 'content-1');
         shouldHaveChildAttribute('#content-2', 'content-2');
 
@@ -31,12 +21,6 @@ describe('story vl-side-navigation default', () => {
     });
 
     it('should show child links on scroll', () => {
-        const shouldHaveExpandedToggle = (href: string, expanded: boolean) => {
-            cy.get('nav[is="vl-side-navigation"]')
-                .find(`a[is="vl-side-navigation-toggle"][href="${href}"]`)
-                .should('have.attr', 'aria-expanded', `${expanded}`);
-        };
-
         shouldHaveExpandedToggle('#content-1', false);
         shouldHaveExpandedToggle('#content-2', false);
 
@@ -145,3 +129,48 @@ describe('story vl-side-navigation mobile', () => {
         cy.get('nav[is="vl-side-navigation"]').should('not.be.visible');
     });
 });
+
+describe('story vl-side-navigation with vl-steps', () => {
+    beforeEach(() => cy.visit(stepsWithSideNavigationUrl));
+
+    it('should show child links on scroll', () => {
+        shouldHaveExpandedToggle('#vl-steps-4-step-2', false);
+
+        cy.get('vl-steps')
+            .shadow()
+            .find('#vl-steps-4-step-2-abstract')
+            .scrollIntoView({ duration: 2500 })
+            .should('be.visible');
+        shouldHaveExpandedToggle('#vl-steps-4-step-2', true);
+
+        cy.get('vl-steps')
+            .shadow()
+            .find('#vl-steps-4-step-2-volledig')
+            .scrollIntoView({ duration: 2500 })
+            .should('be.visible');
+        shouldHaveExpandedToggle('#vl-steps-4-step-2', true);
+
+        cy.get('vl-steps')
+            .shadow()
+            .find('#vl-steps-4-step-3')
+            .scrollIntoView({ duration: 2500 })
+            .should('be.visible');
+        shouldHaveExpandedToggle('#vl-steps-4-step-2', false);
+    });
+});
+
+const shouldHaveChildAttribute = (href: string, child: string) => {
+    cy.get('nav[is="vl-side-navigation"]')
+        .find(`a[is="vl-side-navigation-toggle"][href="${href}"]`)
+        .should('have.attr', 'data-vl-child', child);
+};
+
+const shouldHaveParentAttribute = (href: string, parent: string) => {
+    cy.get('nav[is="vl-side-navigation"]').find(`a[href="${href}"]`).should('have.attr', 'data-vl-parent', parent);
+};
+
+const shouldHaveExpandedToggle = (href: string, expanded: boolean) => {
+    cy.get('nav[is="vl-side-navigation"]')
+        .find(`a[is="vl-side-navigation-toggle"][href="${href}"]`)
+        .should('have.attr', 'aria-expanded', `${expanded}`);
+};

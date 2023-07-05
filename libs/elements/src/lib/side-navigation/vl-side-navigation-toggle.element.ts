@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, findDeepestElementThroughShadowRoot, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlSideNavigationToggle
@@ -19,7 +19,7 @@ export class VlSideNavigationToggleElement extends BaseElementOfType(HTMLAnchorE
 
     connectedCallback() {
         this.addEventListener('click', () => {
-            const element = this.getRootNode().querySelector(this.getAttribute('href'));
+            const element = findDeepestElementThroughShadowRoot(this.getRootNode(), this.getAttribute('href'));
             if (element) {
                 element.scrollIntoView();
                 window.scrollBy(0, -43);
