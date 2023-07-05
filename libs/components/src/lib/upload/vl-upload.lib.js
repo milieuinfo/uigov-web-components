@@ -1,3 +1,4 @@
+// UIG-2520 - wijzigingen toegevoegd om duplicaat detectie uit te breiden
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined'
         ? (module.exports = factory())
@@ -2152,13 +2153,20 @@
                     },
                     {
                         key: 'removeFile',
-                        value: function removeFile(file) {
+                        // feat: UIG-2520 - options toegevoegd
+                        value: function removeFile(file, options) {
                             if (file.status === Dropzone.UPLOADING) {
                                 this.cancelUpload(file);
                             }
 
                             this.files = without(this.files, file);
+
                             this.emit('removedfile', file);
+
+                            // feat: UIG-2520 - als duplicaten worden verwijderd, event afvuren
+                            if (options && options.isDuplicate) {
+                                this.emit('duplicateRemoved', file);
+                            }
 
                             if (this.files.length === 0) {
                                 return this.emit('reset');
@@ -4103,21 +4111,69 @@
             this.dropzoneInstances = [];
         }
 
+        // UIG-2520 - lijst van fileHashes
+        const fileHashes = [];
+
+        // UIG-2520 - functie om te zien of hash al bestaat in lijst van fileHashes,
+        // indien niet, wordt die in lijst van fileHashes toegevoegd
+        const checkIfFileHasDuplicateHash = (fileToCheck) => {
+            /**
+             * this function will use digest method from native Crypto API to calculate unique hex string
+             * it'll return the same hex string regardless of file meta-data but based on the blob data itself
+             * @param arrayBuffer
+             * @returns {Promise<string>}
+             */
+            async function getDigestHexString(arrayBuffer) {
+                const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer); // hash the message
+                const hashArray = Array.from(new Uint8Array(hashBuffer)); // convert buffer to byte array
+                const hexString = hashArray.map((b) => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
+                return hexString;
+            }
+
+            /**
+             * returns true if hex string is found in previously added files
+             * @param file
+             * @returns {Promise<boolean>}
+             */
+            async function detectDuplicate(file) {
+                const arrayBuffer = await file.arrayBuffer();
+
+                const digestHex = await getDigestHexString(arrayBuffer);
+                const hexStringFound = fileHashes.indexOf(digestHex) !== -1;
+
+                if (!hexStringFound) {
+                    // no duplicate was found, so we add the generated hex string in to the list of current hashes
+                    // if a duplicate was found, we'll remove it from the list of files,
+                    // so in that case we don't need to add it again to the list of hashes
+                    fileHashes.push(digestHex);
+                }
+
+                return hexStringFound;
+            }
+
+            if (fileToCheck instanceof File) {
+                return detectDuplicate(fileToCheck);
+            }
+            return false;
+        };
+
         _createClass(Upload, [
             {
                 key: 'removeDuplicate',
                 value: function removeDuplicate(dz, file) {
                     const { files } = dz;
-
                     if (files) {
                         let i = 0;
-                        const filesLength = files.length;
-                        const ref = files.slice();
-
+                        // we reverse the file list so that last file added
+                        // will be the first duplicate found to be removed
+                        const reversedFilesList = files.reverse();
+                        const filesLength = reversedFilesList.length;
+                        const ref = reversedFilesList.slice();
                         for (; i < filesLength - 1; i++) {
                             if (ref[i] && file) {
-                                if (ref[i].name === file.name && ref[i].size === file.size) {
-                                    dz.removeFile(ref[i]);
+                                const isDuplicate = checkIfFileHasDuplicateHash(file);
+                                if ((ref[i].name === file.name && ref[i].size === file.size) || isDuplicate) {
+                                    dz.removeFile(ref[i], { isDuplicate: true });
                                 }
                             }
                         }
@@ -4128,14 +4184,9 @@
                 key: 'updateFileList',
                 value: function updateFileList(dz, el, file) {
                     const fileList = el.querySelector('.'.concat(filesClass));
-
                     if (dz.files.length) {
                         vl.util.addClass(fileList, hasFilesClass);
-
-                        if (
-                            el.hasAttribute(dataDisallowedDuplicates) &&
-                            el.getAttribute(dataDisallowedDuplicates) === 'true'
-                        ) {
+                        if (el.hasAttribute(dataDisallowedDuplicates)) {
                             this.removeDuplicate(dz, file);
                         }
                     } else {
@@ -4209,7 +4260,7 @@
                         dropzone$$1.on('addedfiles', () => {
                             setTimeout(() => vl.util.triggerEvent(element, 'vl.upload.hook.fileChange'));
                         });
-                        dropzone$$1.on('removedfile', () => {
+                        dropzone$$1.on('removedfile', (test, t, e) => {
                             _this.updateFileList(dropzone$$1, element);
                             setTimeout(() => vl.util.triggerEvent(element, 'vl.upload.hook.fileChange'));
                         });

@@ -150,6 +150,15 @@ describe('story vl-upload - default', () => {
         cy.get('vl-upload').shadow().find('.dz-error-message').should('contain', errorMessage, '');
     });
 
+    it('when adding duplicate files, only one will be added & duplicateRemoved event will be thrown', () => {
+        cy.visit(uploadUrl.concat(`&args=maxFiles:2;disallowDuplicates:true`));
+
+        shouldAddPdfFiles(2);
+        shouldHaveUploadFiles(1);
+        cy.createStubForEvent('vl-upload', 'duplicateRemoved');
+        cy.get('@duplicateRemoved').should('have.been.called');
+    });
+
     it('when adding a file that is bigger than allowed, it will generate an error', () => {
         const errorMessage = 'Dit bestand heeft de maximale bestandsgrootte overschreden';
         cy.visit(
