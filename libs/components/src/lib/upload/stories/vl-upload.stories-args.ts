@@ -20,6 +20,7 @@ export const uploadArgs: Args = {
     title: '',
     url: 'http://httpbin.org/post',
     onChange: action('change'),
+    onDuplicateRemoved: action('duplicateRemoved'),
 };
 
 export const uploadArgTypes: ArgTypes = {
@@ -60,7 +61,8 @@ export const uploadArgTypes: ArgTypes = {
     },
     disallowDuplicates: {
         name: 'data-vl-disallow-duplicates',
-        description: 'Als dit op `true` staat, is het niet toegelaten om dezelfde bijlage meerdere keren te uploaden.',
+        description:
+            'Bepaalt dat het niet is toegelaten om dezelfde bijlage meerdere keren te uploaden. Niet reactief.',
         table: {
             type: {
                 summary: TYPES.BOOLEAN,
@@ -220,6 +222,15 @@ export const uploadArgTypes: ArgTypes = {
         description: 'Afgevuurd na het toevoegen of verwijderen van een bestand of een succesvolle upload',
         table: {
             type: { summary: 'change' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onDuplicateRemoved: {
+        name: 'duplicateRemoved',
+        description:
+            'Afgevuurd nadat een file is verwijderd die dezelfde content had als een file die reeds geselecteerd was.',
+        table: {
+            type: { summary: 'duplicateRemoved' },
             category: CATEGORIES.EVENTS,
         },
     },

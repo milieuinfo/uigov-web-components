@@ -4,6 +4,7 @@ import { uploadArgs, uploadArgTypes } from './vl-upload.stories-args';
 import uploadDoc from './vl-upload.stories-doc.mdx';
 import { nothing } from 'lit';
 import { Meta, StoryFn } from '@storybook/web-components';
+import addDuplicateWarning from './vl-upload.stories-util';
 
 export default {
     title: 'Components/upload',
@@ -34,7 +35,8 @@ export const UploadDefault: StoryFn<typeof uploadArgs> = ({
     url,
     resetFormOnClear,
     onChange,
-}: typeof uploadArgs) => {
+    onDuplicateRemoved,
+}) => {
     return html`
         <vl-upload
             data-vl-url=${url}
@@ -55,6 +57,10 @@ export const UploadDefault: StoryFn<typeof uploadArgs> = ({
             ?data-vl-success=${success}
             ?data-vl-reset-form-on-clear=${resetFormOnClear}
             @change=${(event: CustomEvent) => onChange(event.detail)}
+            @duplicateRemoved=${(event: CustomEvent) => {
+                addDuplicateWarning();
+                onDuplicateRemoved(event.detail);
+            }}
             id="vl-upload"
         ></vl-upload>
     `;
@@ -80,6 +86,7 @@ export const UploadInForm: StoryFn<typeof uploadArgs> = ({
     url,
     resetFormOnClear,
     onChange,
+    onDuplicateRemoved,
 }: typeof uploadArgs) => {
     return html`
         <form is="vl-form" data-vl-validate data-validate-form>
@@ -107,6 +114,10 @@ export const UploadInForm: StoryFn<typeof uploadArgs> = ({
                             ?data-vl-success=${success}
                             ?data-vl-reset-form-on-clear=${resetFormOnClear}
                             @change=${(event: CustomEvent) => onChange(event.detail)}
+                            @duplicateRemoved=${(event: CustomEvent) => {
+                                addDuplicateWarning();
+                                onDuplicateRemoved(event.detail);
+                            }}
                             id="vl-upload"
                         ></vl-upload>
                         <p

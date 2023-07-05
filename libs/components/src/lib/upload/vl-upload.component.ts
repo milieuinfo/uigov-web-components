@@ -237,28 +237,35 @@ export class VlUploadComponent extends vlFormValidationElement(BaseHTMLElement) 
         if (!this._dressed) {
             vl.upload.dress(this._upload);
             this._dressFormValidation();
-            this._dropzone.on('addedfile', () => this.__triggerChange());
-            this._dropzone.on('removedfile', () => {
+            this._dropzone.on('addedfile', (file: File) => this.__triggerChange(file));
+            this._dropzone.on('removedfile', (file: File) => {
                 const customAction = () => {
                     if (this.hasAttribute('reset-form-on-clear')) {
                         this.form.reset();
                     }
                 };
-                this.__triggerChange(customAction);
+                this.__triggerChange(file, customAction);
             });
             this._dropzone.on('success', (file: any, response: any) => {
                 file.responseBody = response;
-                this.__triggerChange();
+                this.__triggerChange(file);
             });
+            this._dropzone.on('duplicateRemoved', (file: File) => this.__duplicateRemoved(file));
             this._dropzone.timeout = 0; // 0 value will disable the connection timeout
         }
     }
 
     // TODO meer specifieke events te definiëren, eenmaal we breaking changes kunnen introduceren
-    __triggerChange(customAction?: () => void): void {
+    __triggerChange(data: unknown, customAction?: () => void): void {
         setTimeout(() => {
-            this.dispatchEvent(new Event('change'));
+            this.dispatchEvent(new CustomEvent('change', { detail: { data } }));
             if (customAction) customAction();
+        });
+    }
+
+    __duplicateRemoved(file: File): void {
+        setTimeout(() => {
+            this.dispatchEvent(new CustomEvent('duplicateRemoved', { detail: { data: file } }));
         });
     }
 
