@@ -146,3 +146,25 @@ export const returnNotEmptyString = (s: string) => (s && s !== '' ? s : undefine
 export const returnNumber = (n: number) => (!isNaN(n) ? n : undefined);
 export const ifDefinedString = (s: string) => ifDefined(returnNotEmptyString(s));
 export const ifDefinedNumber = (n: number) => ifDefined(returnNumber(n));
+
+/**
+ * Zoekt het element onder een meegegeven root element dat overeenkomt met een meegegeven css selector en dit
+ * doorheen de shadow roots van onderliggende elementen. Het matching element in de diepste shadow root wordt
+ * teruggegeven.
+ * @param {Element|ShadowRoot|null} rootElement - het element waaronder we beginnen met zoeken
+ * @param {String} selector - de css selector waarnaar we zoeken
+ * @return {Element|null} het element, matching aan de selector, dat in de diepste shadow root ligt
+ */
+export const findDeepestElementThroughShadowRoot = (
+    rootElement: Element | ShadowRoot | null,
+    selector: string
+): Element | null => {
+    if (rootElement) {
+        const deepestElement = Array.from(rootElement.querySelectorAll('*'))
+            .filter((el) => !!el.shadowRoot)
+            .map((el) => findDeepestElementThroughShadowRoot(el.shadowRoot, selector))
+            .find((el) => !!el);
+        return deepestElement || rootElement.querySelector(selector);
+    }
+    return null;
+};

@@ -6,6 +6,8 @@
  * We assume that in a sticky element items with an anchor link should have a scrollspy functionality
  */
 
+import { findDeepestElementThroughShadowRoot } from '@domg-wc/common-utilities';
+
 // UIG-2278: vl lijkt niet in alle gevallen defined te zijn, terwijl deze lib daar precies wel op steunt
 window.vl = window.vl || {};
 
@@ -216,7 +218,7 @@ class ScrollSpy {
         // Check if global header breadcrumb is shown
         // UIG-2490 - omdat we geen toegang kunnen krijgen tot het element wanneer de schaduwdom er omheen is gewikkeld, moeten we het op deze manier ophalen
         // target = document.querySelector(href);
-        target = element.getRootNode().querySelector(href);
+        target = findDeepestElementThroughShadowRoot(element.getRootNode(), href);
         currentScrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
         bounds = {
