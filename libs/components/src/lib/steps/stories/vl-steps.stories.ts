@@ -82,8 +82,8 @@ export const stepsWithAccordions = ({ timeline }: typeof stepsArgs) => html`
 `;
 stepsWithAccordions.storyName = 'vl-steps - with accordions';
 
-export const stepsWithTimeline = ({ timeline }: typeof stepsArgs) => html`
-    <vl-steps id="vl-steps-3" ?data-vl-timeline=${timeline} data-cy="steps-with-timeline">
+export const stepsWithTimeline = () => html`
+    <vl-steps id="vl-steps-3" data-vl-timeline data-cy="steps-with-timeline">
         <vl-step data-cy="timeline-step-1">
             <span slot="identifier">2</span>
             <span slot="identifier-annotation">maa</span>
