@@ -84,14 +84,13 @@ describe('story vl-steps', () => {
             .should('have.class', 'vl-step--error');
     });
 
-    // TODO kspeltin: waarom faalt deze test ?
-    it.skip('should contain a clickable button ', () => {
+    it('should contain a clickable button ', () => {
         // Check closed state
-        cy.visit(`${stepsWithAccordionsUrl}`);
-        cy.getDataCy('steps-with-accordions')
+        cy.visit(stepsWithAccordionsUrl);
+        cy.get('vl-steps')
             .shadow()
-            .find('ul.vl-steps')
-            .children('li.vl-step--accordion')
+            .find('.vl-steps')
+            .find('li.vl-step--accordion')
             .eq(0)
             .should('have.class', 'vl-step')
             .should('have.class', 'vl-step--accordion')
@@ -101,8 +100,8 @@ describe('story vl-steps', () => {
         // Click toggle button
         cy.getDataCy('steps-with-accordions')
             .shadow()
-            .find('ul.vl-steps')
-            .children('li.vl-step--accordion')
+            .find('.vl-steps')
+            .find('li.vl-step--accordion')
             .eq(0)
             .find('button.js-vl-accordion__toggle')
             .click();
@@ -113,7 +112,7 @@ describe('story vl-steps', () => {
         cy.visit(`${stepsWithTimelineUrl}`);
         cy.getDataCy('steps-with-timeline')
             .shadow()
-            .find('ul.vl-steps')
+            .find('.vl-steps')
             .children()
             .first()
             .find('span[slot="identifier-annotation"]')
@@ -125,7 +124,7 @@ describe('story vl-steps', () => {
         cy.visit(`${stepsWithTimelineUrl}`);
         cy.getDataCy('steps-with-timeline')
             .shadow()
-            .find('ul.vl-steps')
+            .find('.vl-steps')
             .children()
             .first()
             .find('span[slot="title"]')
@@ -137,7 +136,7 @@ describe('story vl-steps', () => {
         cy.visit(`${stepsWithTimelineUrl}`);
         cy.getDataCy('steps-with-timeline')
             .shadow()
-            .find('ul.vl-steps')
+            .find('.vl-steps')
             .children()
             .first()
             .find('span[slot="title-annotation"]')
@@ -149,9 +148,14 @@ describe('story vl-steps', () => {
         cy.visit(`${stepsWithTimelineUrl}`);
         cy.getDataCy('steps-with-timeline')
             .shadow()
-            .find('ul.vl-steps')
-            .children('.vl-duration-step')
-            .first()
+            .find('.vl-steps')
+            .find('.vl-duration-step')
             .contains('Vrije tijd: 1 uur');
+    });
+
+    it('should contain a div.vl-steps around the ul.vl-steps__list and a div.vl-step__container per step', () => {
+        cy.visit(stepsWithTimelineUrl);
+        cy.get('vl-steps').shadow().find('div.vl-steps > ul.vl-steps__list').should('exist');
+        cy.get('vl-steps').shadow().find('li.vl-step > div.vl-step__container').should('exist');
     });
 });

@@ -33,33 +33,35 @@ export class VlStepComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
       <li class="vl-step">
-        <div id="icon" class="vl-step__icon">
-          <span slot="identifier"></span>
-          <span id="sub-icon" class="vl-step__icon__sub">
-            <span slot="identifier-annotation"></span>
-          </span>
-        </div>
-        <div class="vl-step__wrapper">
-          <div class="vl-step__header">
-            <div class="vl-step__header__titles">
-              <h3 id="title" class="vl-step__title">
-                <span slot="title"></span>
-                <span id="title-label">
-                  <span slot="title-label"></span>
-                </span>
-                <span id="title-annotation" class="vl-step__title__annotation">
-                  <span slot="title-annotation"></span>
-                </span>
-              </h3>
-              <p id="sub-title" class="vl-step__subtitle">
-                <span slot="sub-title"></span>
+        <div class="vl-step__container">
+          <div id="icon" class="vl-step__icon">
+            <span slot="identifier"></span>
+            <span id="sub-icon" class="vl-step__icon__sub">
+              <span slot="identifier-annotation"></span>
+            </span>
+          </div>
+          <div class="vl-step__wrapper">
+            <div class="vl-step__header">
+              <div class="vl-step__header__titles">
+                <h3 id="title" class="vl-step__title">
+                  <span slot="title"></span>
+                  <span id="title-label">
+                    <span slot="title-label"></span>
+                  </span>
+                  <span id="title-annotation" class="vl-step__title__annotation">
+                    <span slot="title-annotation"></span>
+                  </span>
+                </h3>
+                <p id="sub-title" class="vl-step__subtitle">
+                  <span slot="sub-title"></span>
+                </p>
+              </div>
+            </div>
+            <div class="vl-step__content-wrapper">
+              <p id="content" class="vl-step__content">
+                <span slot="content"></span>
               </p>
             </div>
-          </div>
-          <div class="vl-step__content-wrapper">
-            <p id="content" class="vl-step__content">
-              <span slot="content"></span>
-            </p>
           </div>
         </div>
       </li>

@@ -28,7 +28,9 @@ export class VlStepsComponent extends BaseElementOfType(HTMLElement) {
         ${stepsStyle}
         ${stepsUigStyle}
       </style>
-      <ul id="steps" class="vl-steps"></ul>
+      <div class="vl-steps">
+        <ul id="steps" class="vl-steps__list"></ul>
+      </div>
     `);
     }
 
