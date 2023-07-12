@@ -123,13 +123,13 @@ export class VlMapLayerSwitcher extends LitElement {
         this.layerObserver = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 mutation.addedNodes.forEach((node) => {
-                    if ((node as HTMLElement).hasAttribute('data-vl-is-layer')) {
+                    if (node instanceof HTMLElement && node.hasAttribute('data-vl-is-layer')) {
                         this.vlMapLayers = [...this.vlMapLayers, node as unknown as VlMapLayer];
                     }
                 });
 
                 mutation.removedNodes.forEach((node) => {
-                    if ((node as HTMLElement).hasAttribute('data-vl-is-layer')) {
+                    if (node instanceof HTMLElement && node.hasAttribute('data-vl-is-layer')) {
                         this.vlMapLayers = this.vlMapLayers.filter(
                             (layer) => (node as unknown as VlMapLayer) !== layer
                         );
