@@ -1,3 +1,19 @@
+# [1.11.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.10.0...v1.11.0) (2023-07-13)
+
+
+### Bug Fixes
+
+* UIG-2525 - vl-side-navigation - niet langer onnodig rerenderen ([7608a46](https://github.com/milieuinfo/uigov-web-components/commit/7608a46d14d2d1e10f83d88f834c0dec9fb2e728))
+* UIG-2547 - vl-side-navigation - zoek doorheen shadowroot van elementen tijdens scrollen en wanneer je op een item klikt ([3796534](https://github.com/milieuinfo/uigov-web-components/commit/3796534be659d0b7a7388750dd9b78e4d4c42532))
+* UIG-2555 - vl-steps - timeline was gebroken, maar nu niet meer ([a1e4412](https://github.com/milieuinfo/uigov-web-components/commit/a1e4412933afc553c3abb17cecb125fb1402d674))
+* UIG-2569 - vl-map-layer-switcher - beschouw enkel HTMLElement nodes om vlMapLayers te bepalen ([cc026a2](https://github.com/milieuinfo/uigov-web-components/commit/cc026a2fc56f53ab2a08552ad35b8e5662b8c0f7))
+
+
+### Features
+
+* UIG-2488 - vl-map-layer-style - revert cache feature styles ([aad4e85](https://github.com/milieuinfo/uigov-web-components/commit/aad4e85ec024cad48d2ede3fb32b0d6487580512))
+* UIG-2520 - vl-upload - uitgebreid met duplicaat detectie op basis van bestandsinhoud ([3b604f3](https://github.com/milieuinfo/uigov-web-components/commit/3b604f38f8b537ec6c43cbb728f1bb4bb9d78abc))
+
 # [1.10.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.9.0...v1.10.0) (2023-07-05)
 
 
