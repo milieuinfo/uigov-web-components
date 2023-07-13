@@ -127,6 +127,22 @@ describe('story vl-side-navigation mobile', () => {
         cy.viewport(320, 480);
         cy.get('button.vl-button.js-vl-scrollspy__toggle').should('be.visible');
         cy.get('nav[is="vl-side-navigation"]').should('not.be.visible');
+
+        cy.viewport(1000, 660);
+        cy.get('button.vl-button.js-vl-scrollspy__toggle').should('not.be.visible');
+        cy.get('nav[is="vl-side-navigation"]').should('be.visible');
+
+        cy.viewport(320, 480);
+        cy.get('button.vl-button.js-vl-scrollspy__toggle').should('be.visible');
+        cy.get('nav[is="vl-side-navigation"]').should('not.be.visible');
+
+        cy.viewport(1000, 660);
+        cy.get('button.vl-button.js-vl-scrollspy__toggle').should('not.be.visible');
+        cy.get('nav[is="vl-side-navigation"]').should('be.visible');
+
+        cy.viewport(320, 480);
+        cy.get('button.vl-button.js-vl-scrollspy__toggle').should('be.visible');
+        cy.get('nav[is="vl-side-navigation"]').should('not.be.visible');
     });
 });
 

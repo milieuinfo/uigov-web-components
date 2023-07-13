@@ -691,9 +691,12 @@ class SideNavigation {
 
 if (!('sideNavigation' in vl)) {
     vl.sideNavigation = new SideNavigation();
+    // UIG-2525 - niet langer onnodig rerenderen; als we dit laten staan breekt dit de side-navigation
+    /*
     window.addEventListener('load', () => {
         vl.sideNavigation.dressAll();
     });
+     */
 }
 
 export default SideNavigation;
