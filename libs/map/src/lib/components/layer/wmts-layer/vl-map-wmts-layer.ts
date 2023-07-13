@@ -92,7 +92,7 @@ export class VlMapWmtsLayer extends VlMapLayer {
         const matrixIds = new Array(16);
         for (let z = 0; z < 16; ++z) {
             resolutions[z] = size / Math.pow(2, z);
-            matrixIds[z] = z;
+            matrixIds[z] = this.__grbMatrixSet +':'+ z;
         }
         return { matrixIds, resolutions };
     }

@@ -69,7 +69,24 @@ describe('vl-map-wmts-layer', () => {
             tileGrid.getResolutions(),
             [1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1, 0.5, 0.25, 0.125, 0.0625, 0.03125],
         );
-        assert.deepEqual(tileGrid.getMatrixIds(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+        assert.deepEqual(tileGrid.getMatrixIds(), [
+            'BPL72VL:0',
+            'BPL72VL:1',
+            'BPL72VL:2',
+            'BPL72VL:3',
+            'BPL72VL:4',
+            'BPL72VL:5',
+            'BPL72VL:6',
+            'BPL72VL:7',
+            'BPL72VL:8',
+            'BPL72VL:9',
+            'BPL72VL:10',
+            'BPL72VL:11',
+            'BPL72VL:12',
+            'BPL72VL:13',
+            'BPL72VL:14',
+            'BPL72VL:15'
+        ]);
     });
 
     it('de kaartlaag zal pas angemaakt worden na constructie zodat op moment van constructie nog niet al de attributen gekend moeten zijn', async () => {
