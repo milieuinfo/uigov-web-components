@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.11.0...v1.12.0) (2023-07-14)
+
+
+### Features
+
+* UIG-2324 - fat-js van sections ([0673da9](https://github.com/milieuinfo/uigov-web-components/commit/0673da901e4008a1a2d809f7710c7727d631a274))
+
 # [1.11.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.10.0...v1.11.0) (2023-07-13)
 
 
