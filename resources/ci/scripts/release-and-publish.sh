@@ -37,15 +37,6 @@ if [[ ${develop_branch} == false ]] && [[ ${release_branch} == false ]];
     exit 0
 fi
 
-# de build mag niet lopen als de laatste commit boodschap [skip ci] bevat
-last_commit=$(git log -1 --pretty=%B | cat)
-skip_ci="[skip ci]"
-if [[ ${last_commit} == *"$skip_ci"* ]];
-  then
-    echo "de meest recente commit bevat [skip ci] - de build stopt"
-    exit 2
-fi
-
 # op Bamboo bevat secret_github_token het GitHub PAT met de juiste rechten
 if [ -z ${secret_github_token+x} ];
   then
@@ -161,3 +152,11 @@ mv domg-wc-sections.js.map domg-wc-sections-${nextRelease_version}.js.map
 mv domg-wc-sections.min.js domg-wc-sections-${nextRelease_version}.min.js
 # een tar maken om via artifactory op de cdn te krijgen
 tar cfz ../domg-wc-sections-${nextRelease_version}.tgz .
+cd ../../../..
+
+# builden van storybook
+echo "build storybook en maak er een tgz van"
+npm run storybook:build
+# tgz van Storybook maken
+cd ./dist/apps/storybook
+tar cfz ../storybook-${nextRelease_version}.tgz .

@@ -11,7 +11,7 @@ stages:
         - checkout-install-and-cache
   - Build and Test Stage:
       jobs:
-        - build-apps-libs-and-storybook
+        - build-apps-and-libs
         - perform-all-unit-and-web-tests
         - e2e-tests-storybook
   - Report, Release and Publish Stage:
@@ -43,18 +43,18 @@ checkout-install-and-cache:
       required: true
       shared: true
 
-build-apps-libs-and-storybook:
+build-apps-and-libs:
   requirements: *requirements
   tasks:
     - clean
-    - script: bash ./resources/ci/scripts/build-apps-libs-and-storybook-docker.sh
+    - script: bash ./resources/ci/scripts/build-apps-and-libs-docker.sh
     - script: &dist-artifact |
         # move the folder './dist' to './dist-artifact/dist'
         # this is done so the artifact is shared (in other jobs) in the correct folder (Bamboo 7.2 limitation)
         mkdir dist-artifact
         mv dist dist-artifact
   artifacts:
-    - name: dist-build-apps-libs-and-storybook
+    - name: dist-build-apps-and-libs
       location: dist-artifact
       pattern: '**/*.*'
       shared: true
