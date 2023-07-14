@@ -14,6 +14,7 @@
         "test:wctdetail": "npm run build:all && npx nx wctdetail map",
         "test:wctdetailonly": "npx nx wctdetail map",
         "storybook": "npx nx storybook storybook http://localhost:8080",
+        "storybook:build": "npx nx build-storybook storybook",
         "storybook:ci-test": "start-server-and-test 'npx nx storybook storybook' http://localhost:8080 'npx nx e2e storybook-e2e'",
         "storybook:ci-test-parallel-1": "start-server-and-test 'npx nx storybook storybook' http://localhost:8080 'npx nx e2e storybook-e2e -- --spec **/src/e2e/components/[a-m]*/**/*'",
         "storybook:ci-test-parallel-2": "start-server-and-test 'npx nx storybook storybook' http://localhost:8080 'npx nx e2e storybook-e2e -- --spec **/src/e2e/components/[n-z]*/**/*'",
