@@ -13,7 +13,6 @@
     "exclude": [
         "fat-libs",
         "jest.config.ts",
-        "**/*.spec.ts",
-        "**/stories"
+        "**/*.spec.ts"
     ]
 }

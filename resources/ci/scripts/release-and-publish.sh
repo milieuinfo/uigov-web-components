@@ -122,6 +122,10 @@ cd dist/libs
 
 # opkuisen van de packages
 rm -rf ./map/**/*.wctest.*
+rm -rf ./components/**/stories
+rm -rf ./elements/**/stories
+rm -rf ./map/**/stories
+rm -rf ./sections/**/stories
 
 # de feitelijke release actie is afhankelijk van de branch
 
