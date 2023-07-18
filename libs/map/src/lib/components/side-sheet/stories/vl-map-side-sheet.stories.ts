@@ -3,7 +3,7 @@ import { mapSideSheetArgs, mapSideSheetArgTypes } from './vl-map-side-sheet.stor
 import { Meta, StoryFn } from '@storybook/web-components';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import mapSideSheetDoc from './vl-map-side-sheet.stories-doc.mdx';
-import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../vl-map-side-sheet';

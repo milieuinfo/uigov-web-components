@@ -3,7 +3,7 @@ import '../../button/vl-button.element';
 import '../../link/vl-link.element';
 import '../../form-message/vl-form-validation-message.element';
 import { formValidationArgs, formValidationArgTypes } from '../../form-validation/stories/form-validation.stories-arg';
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 
 export const inputFieldArgs = {
     block: false,

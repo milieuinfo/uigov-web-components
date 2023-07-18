@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { DEFAULT_ZOOM, DEFAULT_TOOLTIP } from '../vl-map-current-location';
 import { ArgTypes } from '@storybook/web-components';
 

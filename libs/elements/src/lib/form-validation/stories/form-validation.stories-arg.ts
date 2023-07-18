@@ -1,5 +1,5 @@
 import { VALIDATION_TYPE } from '../vl-form-validation.model';
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 
 export const formValidationArgs = {
     validationType: '',

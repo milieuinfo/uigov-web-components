@@ -1,6 +1,5 @@
-import { CATEGORIES } from '@domg-wc/common-utilities';
+import { CATEGORIES, logStorybookEvent } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { logStorybookEvent } from '../../../../utils/util';
 
 export const mapClickActionArg = {
     onMapClicked: logStorybookEvent('vl-map-clicked'),

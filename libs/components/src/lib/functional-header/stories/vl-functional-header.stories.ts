@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import functionalHeaderDoc from './vl-functional-header.stories-doc.mdx';
 import { functionalHeaderArgs, functionalHeaderArgTypes } from './vl-functional-header.stories-arg';
-import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/functional-header',

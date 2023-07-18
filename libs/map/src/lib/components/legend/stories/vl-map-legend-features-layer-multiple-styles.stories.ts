@@ -9,7 +9,7 @@ import { mapLegendArgTypes, mapLegendArgs } from './vl-map-legend.stories-arg';
 import mapLegendDoc from './vl-map-legend.stories-doc.mdx';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { linkStylesToFeatures } from './vl-map-legend.stories-util';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/legend',

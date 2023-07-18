@@ -10,7 +10,7 @@ import '../vl-map-action-control';
 import { Meta, StoryFn } from '@storybook/web-components';
 import actionControlDoc from './vl-map-action-control.stories-doc.mdx';
 import { mapActionControlArgs, mapActionControlArgTypes } from './vl-map-action-control.stories-arg';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/controls/action-control',

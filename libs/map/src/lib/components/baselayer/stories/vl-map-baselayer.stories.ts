@@ -4,7 +4,7 @@ import '../vl-map-base-layer';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { mapBaselayerArgTypes, mapBaselayerArgs } from './vl-map-baselayer.stories-arg';
 import mapBaselayerDoc from './vl-map-baselayer.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/baselayer',

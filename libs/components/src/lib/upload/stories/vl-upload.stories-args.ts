@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { Args, ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 
