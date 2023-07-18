@@ -6,6 +6,8 @@ export const mapWmtsLayerArgs = {
     ...mapLayerArgs,
     layer: '',
     url: '',
+    matrixSet: 'BPL72VL',
+    matrixPrefix: false
 };
 
 export const mapWmtsLayerArgTypes: ArgTypes<typeof mapWmtsLayerArgs> = {
@@ -30,4 +32,23 @@ export const mapWmtsLayerArgTypes: ArgTypes<typeof mapWmtsLayerArgs> = {
             defaultValue: { summary: mapWmtsLayerArgs.url },
         },
     },
+    matrixSet: {
+        name: 'data-vl-matrix-set',
+        description: 'De matrix set van de WMTS.<br>Dit attribuut is niet reactief.',
+        type: { name: TYPES.STRING, required: false },
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapWmtsLayerArgs.matrixSet }
+        }
+    },
+    matrixPrefix: {
+        name: 'data-vl-matrix-prefix',
+        description: 'Definieert of de matrix moet geprefixt worden met de matrix set.<br/>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapWmtsLayerArgs.matrixPrefix },
+        },
+    }
 };
