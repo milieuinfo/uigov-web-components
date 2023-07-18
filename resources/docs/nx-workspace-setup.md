@@ -20,6 +20,7 @@ Dit document beschrijft (in grote lijnen) de stappen utgevoerd om de UIG repo op
     * no distributed caching
 - npm install -D @nrwl/web
 - npx nx g @nrwl/web:lib common/utilities --buildable --importPath=@domg-wc/common-utilities
+- npx nx g @nrwl/web:lib common/storybook --buildable --importPath=@domg-wc/common-storybook
 - npx nx g @nrwl/web:lib elements --buildable --publishable --importPath=@domg-wc/elements
 - npx nx g @nrwl/web:lib components --buildable --publishable --importPath=@domg-wc/components
 - npx nx g @nrwl/web:lib sections --buildable --publishable --importPath=@domg-wc/sections

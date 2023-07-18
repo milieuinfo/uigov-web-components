@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { mapLayerStyleArg, mapLayerStyleArgTypes } from '../../stories/vl-map-layer-style.stories-arg';
 import { ArgTypes } from '@storybook/web-components';
 

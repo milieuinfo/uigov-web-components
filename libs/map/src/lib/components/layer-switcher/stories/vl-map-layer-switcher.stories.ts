@@ -10,7 +10,7 @@ import { Meta, StoryFn } from '@storybook/web-components';
 import mapLayerSwitcherDoc from './vl-map-layer-switcher.stories-doc.mdx';
 import { dynamicLayerSwitcherImplementation } from './vl-map-layer-switcher.stories-utils';
 import { mapLayerSwitcherArgTypes, mapLayerSwitcherArgs } from './vl-map-layer-switcher.stories-arg';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer-switcher',

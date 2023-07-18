@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../vl-select.element';
 import { selectArgs, selectArgTypes } from './vl-select.stories-arg';
-import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 import { Meta, StoryFn } from '@storybook/web-components';
 import selectDoc from './vl-select.stories-doc.mdx';
 

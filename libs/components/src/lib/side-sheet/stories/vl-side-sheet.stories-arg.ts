@@ -1,5 +1,5 @@
 import { ArgTypes } from '@storybook/web-components';
-import { TYPES } from '@domg-wc/common-utilities';
+import { TYPES } from '@domg-wc/common-storybook';
 
 export const sideSheetArgs = {
     absolute: false,

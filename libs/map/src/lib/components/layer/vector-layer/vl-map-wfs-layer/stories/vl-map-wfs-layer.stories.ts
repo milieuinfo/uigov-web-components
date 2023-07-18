@@ -5,7 +5,7 @@ import '../vl-map-wfs-layer';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { mapWfsLayerArgs, mapWfsLayerArgTypes } from './vl-map-wfs-layer.stories-arg';
 import mapWfsLayerDoc from './vl-map-wfs-layer.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/vector-layer/wfs-layer',

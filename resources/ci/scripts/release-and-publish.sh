@@ -124,6 +124,7 @@ if [[ ${release_branch} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG repository"
     cd ./common/utilities && npm version $nextRelease_version && npm publish
+    cd ../../common/storybook && npm version $nextRelease_version && npm publish
     cd ../../elements && npm version $nextRelease_version && npm publish
     cd ../components && npm version $nextRelease_version && npm publish
     cd ../sections && npm version $nextRelease_version && npm publish
@@ -136,6 +137,7 @@ if [[ ${develop_branch} == true ]];
   then
     echo "pack van de npm packages - beschikbaar via artifact"
     cd ./common/utilities && npm version $nextRelease_version && npm pack
+    cd ../../common/storybook && npm version $nextRelease_version && npm pack
     cd ../../elements && npm version $nextRelease_version && npm pack
     cd ../components && npm version $nextRelease_version && npm pack
     cd ../sections && npm version $nextRelease_version && npm pack

@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapSearchArgs = {

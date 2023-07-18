@@ -1,0 +1,42 @@
+{
+    "name": "common-storybook",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/common/storybook/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "clean": true,
+                "outputPath": "dist/libs/common/storybook",
+                "main": "libs/common/storybook/src/index.ts",
+                "tsConfig": "libs/common/storybook/tsconfig.lib.json",
+                "assets": ["libs/common/storybook/*.md"]
+            }
+        },
+        "build-with-js": {
+            "executor": "nx:run-commands",
+            "dependsOn": ["build"],
+            "options": {
+                "command": "node tools/build-with-js/copy-common-storybook-js.mjs"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["libs/common/storybook/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/libs/common/storybook"],
+            "options": {
+                "jestConfig": "libs/common/storybook/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

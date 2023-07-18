@@ -1,6 +1,7 @@
 import { ArgTypes } from '@storybook/web-components';
-import { CATEGORIES, PADDINGS, TYPES } from '@domg-wc/common-utilities';
 import { action } from '@storybook/addon-actions';
+import { PADDINGS } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 
 export const accordionArgs = {
     bold: false,

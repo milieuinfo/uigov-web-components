@@ -1,5 +1,5 @@
 import { ArgTypes } from '@storybook/web-components';
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { mapSelectActionArgTypes, mapSelectActionArgs } from '../../stories/vl-map-select-action.stories-arg';
 
 export const mapSelectActionsArgs = {

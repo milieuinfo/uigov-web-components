@@ -5,7 +5,7 @@ import '../vl-map-image-wms-layer';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { mapWmsLayerArgs, mapWmsLayerArgTypes } from '../../stories/vl-map-wms-layer.stories-arg';
 import mapImageWmsLayerDoc from './vl-map-image-wms-layer.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/wms-layer/image-wms-layer',

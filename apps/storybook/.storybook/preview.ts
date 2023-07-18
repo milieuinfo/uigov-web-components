@@ -1,4 +1,4 @@
-import { formatHTML } from '@domg-wc/common-utilities';
+import { formatHTML } from '@domg-wc/common-storybook';
 import './docs-styling.css';
 import vlElementsStyle from '../../../libs/elements/src/lib/vl-elements.uig-css';
 
