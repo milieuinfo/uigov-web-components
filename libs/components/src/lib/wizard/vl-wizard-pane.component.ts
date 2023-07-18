@@ -1,8 +1,9 @@
-import { html, LitElement, nothing } from 'lit';
+import { BaseLitElement } from '@domg-wc/common-utilities';
+import { html, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 @customElement('vl-wizard-pane')
-export class VlWizardPane extends LitElement {
+export class VlWizardPane extends BaseLitElement {
     private isActive = false;
     private name = '';
 

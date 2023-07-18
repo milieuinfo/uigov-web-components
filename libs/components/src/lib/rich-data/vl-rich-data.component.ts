@@ -94,6 +94,8 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback(): void {
+        super.connectedCallback();
+
         this.__processSearchFilter();
         this.__processSorter();
         this.__processContent();

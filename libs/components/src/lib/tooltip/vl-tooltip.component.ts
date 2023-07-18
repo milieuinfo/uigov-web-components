@@ -29,6 +29,8 @@ export class VlTooltipComponent extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         const node = this as unknown as Node;
         new MutationObserver(() => {
             if (!this._isStatic) {

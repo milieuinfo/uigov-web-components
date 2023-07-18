@@ -1,15 +1,15 @@
 import { html } from 'lit-html';
 import '../../../vl-map';
 import '../vl-map-base-layer';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import { mapBaselayerArgTypes, mapBaselayerArgs } from './vl-map-baselayer.stories-arg';
 import mapBaselayerDoc from './vl-map-baselayer.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/baselayer',
-    args: mapBaselayerArgs,
-    argTypes: mapBaselayerArgTypes,
+    args: storyArgs(mapBaselayerArgs),
+    argTypes: storyArgTypes(mapBaselayerArgTypes),
     parameters: {
         docs: {
             page: mapBaselayerDoc,
@@ -17,10 +17,9 @@ export default {
     },
 } as Meta<typeof mapBaselayerArgs>;
 
-const Template: StoryFn<typeof mapBaselayerArgs> = (args) => {
-    const { backgroundLayer, layer, title, type, url } = setDefaultArgsToNothing(args, mapBaselayerArgs);
-
-    return html`
+const Template = story(
+    mapBaselayerArgs,
+    ({ backgroundLayer, layer, title, type, url }) => html`
         <vl-map>
             <vl-map-baselayer
                 ?data-vl-background-layer=${backgroundLayer}
@@ -30,23 +29,21 @@ const Template: StoryFn<typeof mapBaselayerArgs> = (args) => {
                 data-vl-url=${url}
             ></vl-map-baselayer>
         </vl-map>
-    `;
-};
+    `
+);
 
-export const MapBaselayerDefault: StoryFn<typeof mapBaselayerArgs> = Template.bind({});
+export const MapBaselayerDefault = Template.bind({});
 MapBaselayerDefault.storyName = 'vl-map-baselayer - default';
 MapBaselayerDefault.args = {
-    ...mapBaselayerArgs,
     layer: 'grb_bsk',
     title: 'GRB basis laag',
     type: 'wmts',
     url: 'https://geo.api.vlaanderen.be/GRB/wmts',
 };
 
-export const MapBaselayerBackgroundLayer: StoryFn<typeof mapBaselayerArgs> = Template.bind({});
+export const MapBaselayerBackgroundLayer = Template.bind({});
 MapBaselayerBackgroundLayer.storyName = 'vl-map-baselayer - background layer';
 MapBaselayerBackgroundLayer.args = {
-    ...mapBaselayerArgs,
     backgroundLayer: true,
     layer: 'grb_bsk',
     title: 'GRB basis laag',

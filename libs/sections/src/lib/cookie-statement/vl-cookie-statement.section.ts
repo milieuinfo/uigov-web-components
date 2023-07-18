@@ -24,6 +24,7 @@ export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
             <slot name="header">${header()}</slot>
         `);
 
+        this.allowCustomCSS = false;
         this._element.insertAdjacentHTML(
             'afterend',
             `

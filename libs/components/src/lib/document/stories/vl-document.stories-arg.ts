@@ -1,3 +1,5 @@
+import { ArgTypes } from '@storybook/web-components';
+
 export const documentArgs = {
     href: '#',
     type: 'PDF',
@@ -5,12 +7,12 @@ export const documentArgs = {
     metadata: 'PDF - 580 kB',
 };
 
-export const documentArgTypes = {
+export const documentArgTypes: ArgTypes<typeof documentArgs> = {
     href: {
         name: 'data-vl-href',
-        type: { summary: 'string' },
         description: 'Attribuut wordt gebruikt om de download link te bepalen.',
         table: {
+            type: { summary: 'string' },
             defaultValue: { summary: '#' },
         },
     },

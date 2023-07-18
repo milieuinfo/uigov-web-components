@@ -8,12 +8,13 @@ import '../../../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-st
 import '../vl-map-modify-action';
 import { mapModifyActionArgs, mapModifyActionArgTypes } from './vl-map-modify-action.stories-arg';
 import mapModifyActionDoc from './vl-map-modify-action.stories-doc.mdx';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
+import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/layer-action/modify-action',
-    args: mapModifyActionArgs,
-    argTypes: mapModifyActionArgTypes,
+    args: storyArgs(mapModifyActionArgs),
+    argTypes: storyArgTypes(mapModifyActionArgTypes),
     parameters: {
         docs: {
             page: mapModifyActionDoc,
@@ -21,7 +22,7 @@ export default {
     },
 } as Meta<typeof mapModifyActionArgs>;
 
-export const MapModifyActionDefault: StoryFn<typeof mapModifyActionArgs> = ({ active, defaultActive }) => {
+export const MapModifyActionDefault = story(mapModifyActionArgs, ({ active, defaultActive }) => {
     const features = {
         type: 'FeatureCollection',
         features: [
@@ -81,59 +82,55 @@ export const MapModifyActionDefault: StoryFn<typeof mapModifyActionArgs> = ({ ac
             </vl-map-features-layer>
         </vl-map>
     `;
-};
+});
 MapModifyActionDefault.storyName = 'vl-map-modify-action - default';
 MapModifyActionDefault.args = {
-    ...mapModifyActionArgs,
     active: true,
 };
 
-export const MapModifyActionSnapping: StoryFn<typeof mapModifyActionArgs> = ({
-    active,
-    defaultActive,
-    snapping,
-    snappingPixelTolerance,
-}) => {
-    const features = {
-        type: 'FeatureCollection',
-        features: [
-            {
-                type: 'Feature',
-                id: 1,
-                geometry: {
-                    type: 'Point',
-                    coordinates: [151285.5138477709, 211586.43498009123],
+export const MapModifyActionSnapping = story(
+    mapModifyActionArgs,
+    ({ active, defaultActive, snapping, snappingPixelTolerance }) => {
+        const features = {
+            type: 'FeatureCollection',
+            features: [
+                {
+                    type: 'Feature',
+                    id: 1,
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [151285.5138477709, 211586.43498009123],
+                    },
                 },
-            },
-        ],
-    };
+            ],
+        };
 
-    return html`
-        <vl-map>
-            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-            <vl-map-features-layer .features=${features}>
-                <vl-map-modify-action
-                    .active=${active}
-                    ?data-vl-default-active=${defaultActive}
-                    ?data-vl-snapping=${snapping}
-                    data-vl-snapping-pixel-tolerance=${snappingPixelTolerance}
-                >
-                    <vl-map-wfs-layer
-                        data-vl-name="Stromend waterlichamen"
-                        data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
-                        data-vl-layers="owl_l"
-                        data-vl-max-resolution="4"
-                    ></vl-map-wfs-layer>
-                </vl-map-modify-action>
-                <vl-map-layer-style data-vl-border-size="2"></vl-map-layer-style>
-                <vl-map-layer-circle-style data-vl-border-size="2"></vl-map-layer-circle-style>
-            </vl-map-features-layer>
-        </vl-map>
-    `;
-};
+        return html`
+            <vl-map>
+                <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+                <vl-map-features-layer .features=${features}>
+                    <vl-map-modify-action
+                        .active=${active}
+                        ?data-vl-default-active=${defaultActive}
+                        ?data-vl-snapping=${snapping}
+                        data-vl-snapping-pixel-tolerance=${snappingPixelTolerance}
+                    >
+                        <vl-map-wfs-layer
+                            data-vl-name="Stromend waterlichamen"
+                            data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
+                            data-vl-layers="owl_l"
+                            data-vl-max-resolution="4"
+                        ></vl-map-wfs-layer>
+                    </vl-map-modify-action>
+                    <vl-map-layer-style data-vl-border-size="2"></vl-map-layer-style>
+                    <vl-map-layer-circle-style data-vl-border-size="2"></vl-map-layer-circle-style>
+                </vl-map-features-layer>
+            </vl-map>
+        `;
+    }
+);
 MapModifyActionSnapping.storyName = 'vl-map-modify-action - snapping';
 MapModifyActionSnapping.args = {
-    ...mapModifyActionArgs,
     active: true,
     snapping: true,
     snappingPixelTolerance: 1000,

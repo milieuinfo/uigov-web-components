@@ -1,8 +1,7 @@
 import { mapArgs, mapArgTypes } from './vl-map.stories-arg';
 import { html } from 'lit';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import mapDoc from './vl-map.stories-doc.mdx';
-import { filterOutClasses, formatHTML } from '@domg-wc/common-storybook';
 import {
     getActionElement,
     getToggleButton,
@@ -33,62 +32,30 @@ import '../components/action/layer-action/modify-action/vl-map-modify-action';
 import '../components/action/layer-action/delete-action/vl-map-delete-action';
 import '../components/action/layer-action/select-action/vl-map-select-action';
 import '../components/legend/vl-map-legend';
+import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/map',
-    args: mapArgs,
-    argTypes: mapArgTypes,
+    args: storyArgs(mapArgs),
+    argTypes: storyArgTypes(mapArgTypes),
     parameters: {
         docs: {
             page: mapDoc,
-            transformSource: (input: string) => {
-                return formatHTML(filterOutClasses(input));
-            },
         },
     },
 } as Meta<typeof mapArgs>;
 
-export const MapDefault: StoryFn<typeof mapArgs> = ({
-    allowFullscreen,
-    disableEscape,
-    disableRotation,
-    disableMousewheelZoom,
-    disableKeyboard,
-    noBorder,
-    fullHeight,
-}) => html`
-    <vl-map
-        ?data-vl-allow-fullscreen=${allowFullscreen}
-        ?data-vl-disable-escape-key=${disableEscape}
-        ?data-vl-disable-rotation=${disableRotation}
-        ?data-vl-disable-mouse-wheel-zoom=${disableMousewheelZoom}
-        ?data-vl-disable-keyboard=${disableKeyboard}
-        ?data-vl-no-border=${noBorder}
-        ?data-vl-full-height=${fullHeight}
-        data-vl-zoomInTooltip="Zoom in"
-        data-vl-zoomOutTooltip="Zoom uit"
-    >
-        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-    </vl-map>
-`;
-MapDefault.storyName = 'vl-map - default';
-
-export const MapFullHeight: StoryFn<typeof mapArgs> = ({
-    allowFullscreen,
-    disableEscape,
-    disableRotation,
-    disableMousewheelZoom,
-    disableKeyboard,
-    noBorder,
-    fullHeight,
-}) => html`
-    <div style="height: 800px; display: flex; flex-direction: column; border: 1px solid black">
-        <vl-functional-header
-            data-vl-sub-title=${'Voor lager, middelbaar en hoger onderwijs'}
-            data-vl-title=${'School- en studietoelagen'}
-            data-vl-margin-bottom=${'none'}
-            ?data-vl-disable-back-link=${true}
-        ></vl-functional-header>
+export const MapDefault = story(
+    mapArgs,
+    ({
+        allowFullscreen,
+        disableEscape,
+        disableRotation,
+        disableMousewheelZoom,
+        disableKeyboard,
+        noBorder,
+        fullHeight,
+    }) => html`
         <vl-map
             ?data-vl-allow-fullscreen=${allowFullscreen}
             ?data-vl-disable-escape-key=${disableEscape}
@@ -102,11 +69,46 @@ export const MapFullHeight: StoryFn<typeof mapArgs> = ({
         >
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
         </vl-map>
-    </div>
-`;
+    `
+);
+MapDefault.storyName = 'vl-map - default';
+
+export const MapFullHeight = story(
+    mapArgs,
+    ({
+        allowFullscreen,
+        disableEscape,
+        disableRotation,
+        disableMousewheelZoom,
+        disableKeyboard,
+        noBorder,
+        fullHeight,
+    }) => html`
+        <div style="height: 800px; display: flex; flex-direction: column; border: 1px solid black">
+            <vl-functional-header
+                data-vl-sub-title=${'Voor lager, middelbaar en hoger onderwijs'}
+                data-vl-title=${'School- en studietoelagen'}
+                data-vl-margin-bottom=${'none'}
+                ?data-vl-disable-back-link=${true}
+            ></vl-functional-header>
+            <vl-map
+                ?data-vl-allow-fullscreen=${allowFullscreen}
+                ?data-vl-disable-escape-key=${disableEscape}
+                ?data-vl-disable-rotation=${disableRotation}
+                ?data-vl-disable-mouse-wheel-zoom=${disableMousewheelZoom}
+                ?data-vl-disable-keyboard=${disableKeyboard}
+                ?data-vl-no-border=${noBorder}
+                ?data-vl-full-height=${fullHeight}
+                data-vl-zoomInTooltip="Zoom in"
+                data-vl-zoomOutTooltip="Zoom uit"
+            >
+                <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+            </vl-map>
+        </div>
+    `
+);
 MapFullHeight.storyName = 'vl-map - full height';
 MapFullHeight.args = {
-    ...mapArgs,
     noBorder: true,
     fullHeight: true,
 };
@@ -153,18 +155,19 @@ const features = {
     ],
 };
 
-export const MapPlayground: StoryFn<typeof mapArgs> = ({
-    allowFullscreen,
-    disableEscape,
-    disableRotation,
-    disableMousewheelZoom,
-    disableKeyboard,
-    noBorder,
-    fullHeight,
-    activeActionChange,
-    layerVisibleChange,
-}) => {
-    return html`
+export const MapPlayground = story(
+    mapArgs,
+    ({
+        allowFullscreen,
+        disableEscape,
+        disableRotation,
+        disableMousewheelZoom,
+        disableKeyboard,
+        noBorder,
+        fullHeight,
+        activeActionChange,
+        layerVisibleChange,
+    }) => html`
         <vl-map
             ?data-vl-allow-fullscreen=${allowFullscreen}
             ?data-vl-disable-escape-key=${disableEscape}
@@ -320,6 +323,6 @@ export const MapPlayground: StoryFn<typeof mapArgs> = ({
             </vl-map-features-layer>
             <vl-map-legend data-vl-placement=${LEGEND_PLACEMENT.BOTTOM_RIGHT} right="140px"></vl-map-legend>
         </vl-map>
-    `;
-};
+    `
+);
 MapPlayground.storyName = 'vl-map - playground';

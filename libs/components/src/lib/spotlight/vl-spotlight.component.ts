@@ -1,10 +1,11 @@
-import { css, html, LitElement, unsafeCSS } from 'lit';
+import { css, html, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import styles from './vl-spotlight.uig-css';
 import { SIZE } from './vl-spotlight.model';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-spotlight')
-export class VlSpotlight extends LitElement {
+export class VlSpotlight extends BaseLitElement {
     static get styles() {
         return [
             css`

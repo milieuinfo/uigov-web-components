@@ -5,14 +5,20 @@ import uploadDoc from './vl-upload.stories-doc.mdx';
 import { nothing } from 'lit';
 import { Meta, StoryFn } from '@storybook/web-components';
 import addDuplicateWarning from './vl-upload.stories-util';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/upload',
-    args: uploadArgs,
-    argTypes: uploadArgTypes,
+    args: storyArgs(uploadArgs),
+    argTypes: storyArgTypes(uploadArgTypes),
     parameters: {
-        controls: { hideNoControlsWarning: true, sort: 'requiredFirst' },
-        docs: { page: uploadDoc },
+        docs: {
+            page: uploadDoc,
+        },
+        controls: {
+            hideNoControlsWarning: true,
+            sort: 'requiredFirst',
+        },
     },
 } as Meta<typeof uploadArgs>;
 

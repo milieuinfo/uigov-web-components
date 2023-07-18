@@ -1,10 +1,11 @@
 import { descriptionDataStyle } from '@domg/govflanders-style/component';
 import { gridStyle, resetStyle } from '@domg/govflanders-style/common';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-description-data')
-export class VlDescriptionData extends LitElement {
+export class VlDescriptionData extends BaseLitElement {
     private size = 0;
     private maxSize = 0;
     private mediumSize = 0;

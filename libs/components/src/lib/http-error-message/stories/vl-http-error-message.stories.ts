@@ -1,11 +1,12 @@
 import { html } from 'lit-html';
 import '../vl-http-error-message.component';
 import { httpErrorMessageArgs, httpErrorMessageArgTypes } from './vl-http-error-message.stories-arg';
+import { storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'components/http-error-message',
-    args: httpErrorMessageArgs,
-    argTypes: httpErrorMessageArgTypes,
+    args: storyArgs(httpErrorMessageArgs),
+    argTypes: storyArgTypes(httpErrorMessageArgTypes),
 };
 
 export const httpErrorMessageDefault = ({

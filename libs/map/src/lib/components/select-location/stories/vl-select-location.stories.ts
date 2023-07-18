@@ -1,14 +1,14 @@
 import { html } from 'lit';
 import '../vl-select-location';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import { selectLocationArg, selectLocationArgTypes } from './vl-select-location.stories-arg';
 import mapSelectLocationDoc from './vl-select-location.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/select-location',
-    args: selectLocationArg,
-    argTypes: selectLocationArgTypes,
+    args: storyArgs(selectLocationArg),
+    argTypes: storyArgTypes(selectLocationArgTypes),
     parameters: {
         docs: {
             page: mapSelectLocationDoc,
@@ -16,18 +16,18 @@ export default {
     },
 } as Meta<typeof selectLocationArg>;
 
-export const SelectLocationDefault: StoryFn<typeof selectLocationArg> = (args) => {
-    const { onChange, onSearch } = args;
-    const {
+export const SelectLocationDefault = story(
+    selectLocationArg,
+    ({
         placeholder,
         searchEmptyText,
         searchNoResultsText,
         searchPlaceholder,
         selectDeletable,
         selectSearchResultLimit,
-    } = setDefaultArgsToNothing(args, selectLocationArg);
-
-    return html`
+        onChange,
+        onSearch,
+    }) => html`
         <select
             is="vl-select-location"
             data-vl-placeholder=${placeholder}
@@ -39,6 +39,6 @@ export const SelectLocationDefault: StoryFn<typeof selectLocationArg> = (args) =
             @change=${onChange}
             @search=${onSearch}
         ></select>
-    `;
-};
+    `
+);
 SelectLocationDefault.storyName = 'vl-select-location - default';

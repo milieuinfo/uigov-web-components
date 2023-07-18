@@ -159,6 +159,8 @@ export class VlDatepickerComponent extends vlFormValidationElement(BaseElementOf
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this.dress();
         this._registerChangeEvent();
     }

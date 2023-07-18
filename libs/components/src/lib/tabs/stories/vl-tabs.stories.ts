@@ -1,15 +1,15 @@
 import { html } from 'lit-html';
 import '../vl-tabs.component';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import { tabsArgs, tabsArgTypes } from './vl-tabs.stories-arg';
 import tabsDoc from './vl-tabs.stories-doc.mdx';
 import { addPane } from './vl-tabs.stories-util';
-import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/tabs',
-    args: tabsArgs,
-    argTypes: tabsArgTypes,
+    args: storyArgs(tabsArgs),
+    argTypes: storyArgTypes(tabsArgTypes),
     parameters: {
         docs: {
             page: tabsDoc,
@@ -17,13 +17,9 @@ export default {
     },
 } as Meta<typeof tabsArgs>;
 
-export const tabsDefault: StoryFn<typeof tabsArgs> = (args) => {
-    const { activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab, observeTitle } = setDefaultArgsToNothing(
-        args,
-        tabsArgs
-    );
-
-    return html`
+export const tabsDefault = story(
+    tabsArgs,
+    ({ activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab, observeTitle }) => html`
         <vl-tabs
             data-vl-active-tab=${activeTab}
             ?data-vl-alt=${alt}
@@ -47,22 +43,17 @@ export const tabsDefault: StoryFn<typeof tabsArgs> = (args) => {
                 facilisis in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
             </vl-tabs-pane>
         </vl-tabs>
-    `;
-};
+    `
+);
 tabsDefault.storyName = 'vl-tabs - default';
 tabsDefault.args = {
-    ...tabsArgs,
     activeTab: 'trein',
     disableLinks: true,
 };
 
-export const tabsDynamic: StoryFn<typeof tabsArgs> = (args) => {
-    const { activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab } = setDefaultArgsToNothing(
-        args,
-        tabsArgs
-    );
-
-    return html`
+export const tabsDynamic = story(
+    tabsArgs,
+    ({ activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab }) => html`
         <div>
             <button is="vl-button" id="add-pane-button" @click=${addPane}>Pane toevoegen</button>
             <vl-tabs
@@ -85,11 +76,10 @@ export const tabsDynamic: StoryFn<typeof tabsArgs> = (args) => {
                 </vl-tabs-pane>
             </vl-tabs>
         </div>
-    `;
-};
+    `
+);
 tabsDynamic.storyName = 'vl-tabs - dynamic';
 tabsDynamic.args = {
-    ...tabsArgs,
     activeTab: 'trein',
     disableLinks: true,
 };

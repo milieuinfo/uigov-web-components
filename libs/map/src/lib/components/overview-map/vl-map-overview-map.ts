@@ -15,6 +15,8 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 @webComponent('vl-map-overview-map')
 export class VlMapOverviewMap extends BaseElementOfType(HTMLElement) {
     connectedCallback() {
+        super.connectedCallback();
+
         this._configureMap();
     }
 

@@ -1,12 +1,14 @@
 import { html } from 'lit-html';
 import '../vl-pill.component';
 import { pillArgs, pillArgTypes } from './vl-pill.stories-arg';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/pill',
-    args: pillArgs,
-    argTypes: pillArgTypes,
-};
+    args: storyArgs(pillArgs),
+    argTypes: storyArgTypes(pillArgTypes),
+} as Meta<typeof pillArgs>;
 
 export const pillDefault = ({ closable, checkable, checked, type, disabled, close, check }: typeof pillArgs) => html`
     <vl-pill

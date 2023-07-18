@@ -1,5 +1,4 @@
-import { awaitScript, webComponentCustom } from '@domg-wc/common-utilities';
-import { LitElement } from 'lit';
+import { BaseLitElement, awaitScript, webComponentCustom } from '@domg-wc/common-utilities';
 
 const customRegistration = () =>
     awaitScript(
@@ -19,7 +18,7 @@ const customRegistration = () =>
         });
 
 @webComponentCustom(customRegistration)
-export class VlFooter extends LitElement {
+export class VlFooter extends BaseLitElement {
     private development = false;
     private identifier = '';
     private observer: MutationObserver | null = null;
@@ -37,6 +36,12 @@ export class VlFooter extends LitElement {
                 reflect: true,
             },
         };
+    }
+
+    constructor() {
+        super();
+
+        this.allowCustomCSS = false;
     }
 
     get footerContainer() {

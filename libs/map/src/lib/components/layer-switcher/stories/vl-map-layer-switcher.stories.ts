@@ -6,16 +6,16 @@ import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import '../vl-map-layer-switcher';
 import { storyControlTemplates, mapLayersToAddOrRemove } from './vl-map-layer-switcher.stories-templates';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import mapLayerSwitcherDoc from './vl-map-layer-switcher.stories-doc.mdx';
 import { dynamicLayerSwitcherImplementation } from './vl-map-layer-switcher.stories-utils';
 import { mapLayerSwitcherArgTypes, mapLayerSwitcherArgs } from './vl-map-layer-switcher.stories-arg';
-import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer-switcher',
-    args: mapLayerSwitcherArgs,
-    argTypes: mapLayerSwitcherArgTypes,
+    args: storyArgs(mapLayerSwitcherArgs),
+    argTypes: storyArgTypes(mapLayerSwitcherArgTypes),
     parameters: {
         docs: {
             page: mapLayerSwitcherDoc,
@@ -51,10 +51,9 @@ const features3 = {
     ],
 };
 
-const Template: StoryFn<typeof mapLayerSwitcherArgs> = (args) => {
-    const { title, layers } = setDefaultArgsToNothing(args, mapLayerSwitcherArgs);
-
-    return html`
+const Template = story(
+    mapLayerSwitcherArgs,
+    ({ title, layers }) => html`
         <vl-map>
             <vl-map-side-sheet>
                 <vl-map-layer-switcher data-vl-title=${title} .layers=${layers}></vl-map-layer-switcher>
@@ -72,22 +71,21 @@ const Template: StoryFn<typeof mapLayerSwitcherArgs> = (args) => {
             </vl-map-wmts-layer>
             </vl-map-wfs-layer>
         </vl-map>
-    `;
-};
+    `
+);
 
-export const MapLayerSwitcherDefault: StoryFn<typeof mapLayerSwitcherArgs> = Template.bind({});
+export const MapLayerSwitcherDefault = Template.bind({});
 MapLayerSwitcherDefault.storyName = 'vl-map-layer-switcher - default';
 
-export const MapLayerSwitcherSubselection: StoryFn<typeof mapLayerSwitcherArgs> = Template.bind({});
+export const MapLayerSwitcherSubselection = Template.bind({});
 MapLayerSwitcherSubselection.storyName = 'vl-map-layer-switcher - subselection';
 MapLayerSwitcherSubselection.args = {
     layers: ['Kaartlaag 1', 'Kaartlaag 2'],
 };
 
-export const MapLayerSwitcherResolutions: StoryFn<typeof mapLayerSwitcherArgs> = (args) => {
-    const { title, layers } = setDefaultArgsToNothing(args, mapLayerSwitcherArgs);
-
-    return html`
+export const MapLayerSwitcherResolutions = story(
+    mapLayerSwitcherArgs,
+    ({ title, layers }) => html`
         <vl-map>
             <vl-map-side-sheet>
                 <vl-map-layer-switcher data-vl-title=${title} .layers=${layers}></vl-map-layer-switcher>
@@ -118,12 +116,11 @@ export const MapLayerSwitcherResolutions: StoryFn<typeof mapLayerSwitcherArgs> =
                 <vl-map-layer-circle-style data-vl-color="red"></vl-map-layer-circle-style>
             </vl-map-features-layer>
         </vl-map>
-    `;
-};
+    `
+);
 MapLayerSwitcherResolutions.storyName = 'vl-map-layer-switcher - resolutions';
 
-export const MapLayerSwitcherDynamic: StoryFn<typeof mapLayerSwitcherArgs> = (args) => {
-    const { title, layers } = setDefaultArgsToNothing(args, mapLayerSwitcherArgs);
+export const MapLayerSwitcherDynamic = story(mapLayerSwitcherArgs, ({ title, layers }) => {
     const layerIds = ['zwart', 'geel', 'rood'];
     const { handleAddLayerForId, handleRemoveLayerForId } = dynamicLayerSwitcherImplementation();
 
@@ -136,5 +133,5 @@ export const MapLayerSwitcherDynamic: StoryFn<typeof mapLayerSwitcherArgs> = (ar
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
         </vl-map>
     `;
-};
+});
 MapLayerSwitcherDynamic.storyName = 'vl-map-layer-switcher - dynamic layers';

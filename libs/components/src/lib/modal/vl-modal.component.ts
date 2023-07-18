@@ -70,6 +70,8 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this.dress();
     }
 

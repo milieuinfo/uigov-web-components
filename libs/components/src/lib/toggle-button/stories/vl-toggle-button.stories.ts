@@ -2,6 +2,8 @@ import { html } from 'lit-html';
 import '../vl-toggle-button.component';
 import { toggleButtonArgs, toggleButtonArgTypes } from './vl-toggle-button.stories-arg';
 import { ICON_PLACEMENT } from '../vl-toggle-button.model';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 const getLastElement = (element: any) => {
     const [lastItem] = [...Array(document.querySelectorAll(element))].slice(-1);
@@ -10,9 +12,9 @@ const getLastElement = (element: any) => {
 
 export default {
     title: 'Components/toggle-button',
-    args: toggleButtonArgs,
-    argTypes: toggleButtonArgTypes,
-};
+    args: storyArgs(toggleButtonArgs),
+    argTypes: storyArgTypes(toggleButtonArgTypes),
+} as Meta<typeof toggleButtonArgs>;
 
 export const toggleButtonDefault = ({
     active,

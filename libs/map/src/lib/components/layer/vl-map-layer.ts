@@ -39,6 +39,8 @@ export abstract class VlMapLayer extends BaseElementOfType(HTMLElement) {
     }
 
     async connectedCallback() {
+        super.connectedCallback();
+
         this.__setIsLayerMarkerAttribute();
         if (this.mapElement) {
             await this.mapElement.ready;

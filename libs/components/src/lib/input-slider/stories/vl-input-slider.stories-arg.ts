@@ -16,7 +16,7 @@ export const inputSliderArgTypes: ArgTypes<typeof inputSliderArgs> = {
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 100 },
+            defaultValue: { summary: inputSliderArgs.maxValue },
         },
     },
     minValue: {
@@ -25,7 +25,7 @@ export const inputSliderArgTypes: ArgTypes<typeof inputSliderArgs> = {
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 0 },
+            defaultValue: { summary: inputSliderArgs.minValue },
         },
     },
     value: {
@@ -35,7 +35,7 @@ export const inputSliderArgTypes: ArgTypes<typeof inputSliderArgs> = {
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 0 },
+            defaultValue: { summary: inputSliderArgs.value },
         },
     },
     onChangeValue: {

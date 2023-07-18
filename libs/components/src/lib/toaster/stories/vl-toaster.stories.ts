@@ -7,39 +7,40 @@ export default {
     args: toasterArgs,
     argTypes: toasterArgTypes,
     parameters: {
-        controls: { hideNoControlsWarning: true },
+        controls: {
+            hideNoControlsWarning: true,
+        },
     },
 };
 
-export const toasterDefault = ({topLeft, topRight, bottomLeft, bottomRight, fadeOut}:typeof toasterArgTypes) => html`
-    <div id="dynamic-toaster" is="vl-toaster"
-         ?data-vl-top-left=${topLeft}
-         ?data-vl-top-right=${topRight}
-         ?data-vl-bottom-left=${bottomLeft}
-         ?data-vl-bottom-right=${bottomRight}
-         ?data-vl-fadeout=${fadeOut}
-         data-cy="dynamic-toaster"></div>
+export const toasterDefault = ({ topLeft, topRight, bottomLeft, bottomRight, fadeOut }: typeof toasterArgTypes) => html`
+    <div
+        id="dynamic-toaster"
+        is="vl-toaster"
+        ?data-vl-top-left=${topLeft}
+        ?data-vl-top-right=${topRight}
+        ?data-vl-bottom-left=${bottomLeft}
+        ?data-vl-bottom-right=${bottomRight}
+        ?data-vl-fadeout=${fadeOut}
+        data-cy="dynamic-toaster"
+    ></div>
 
     <div id="top-left-toaster" is="vl-toaster" data-vl-top-left data-vl-fadeout data-cy="toaster-top-left"></div>
     <div id="top-right-toaster" is="vl-toaster" data-vl-top-right data-cy="toaster-top-right"></div>
     <div id="bottom-left-toaster" is="vl-toaster" data-vl-bottom-left data-cy="toaster-bottom-left"></div>
     <div id="bottom-right-toaster" is="vl-toaster" data-vl-bottom-right data-cy="toaster-bottom-right"></div>
 
-    <button is="vl-button" onclick="dynamicToaster().push(newSuccessAlert());" data-cy="button-success">
-        Success
-    </button>
+    <button is="vl-button" onclick="dynamicToaster().push(newSuccessAlert());" data-cy="button-success">Success</button>
     <button is="vl-button" onclick="dynamicToaster().push(newWarningAlert());" data-cy="button-warning">
         Warning toaster
     </button>
     <button is="vl-button" onclick="dynamicToaster().push(newSuccessAlert());" data-cy="button-error">
         Error toaster
     </button>
-    <button is="vl-button" onclick="dynamicToaster().push(newCtaAlert());" data-cy="button-cta">
-        CTA toaster
-    </button>
+    <button is="vl-button" onclick="dynamicToaster().push(newCtaAlert());" data-cy="button-cta">CTA toaster</button>
 
-    <br>
-    <br>
+    <br />
+    <br />
 
     <button is="vl-button" onclick="topLeftToaster().push(newSuccessAlert());" data-cy="button-top-left">
         Top-left

@@ -1,11 +1,12 @@
 import { breadcrumbStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import breadcrumbUigStyle from './vl-breadcrumb.uig-css';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-breadcrumb-item')
-export class VlBreadcrumbItemComponent extends LitElement {
+export class VlBreadcrumbItemComponent extends BaseLitElement {
     private href = '';
 
     static get properties() {

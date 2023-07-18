@@ -1,3 +1,5 @@
+import { ArgTypes } from '@storybook/web-components';
+
 export const infoblockArgs = {
     title: '',
     content: '',
@@ -5,12 +7,12 @@ export const infoblockArgs = {
     icon: '',
 };
 
-export const infoblockArgTypes = {
+export const infoblockArgTypes: ArgTypes<typeof infoblockArgs> = {
     type: {
         name: 'data-vl-type',
-        type: 'select',
         options: ['contact', 'publications', 'faq', 'news', 'timeline', 'question'],
         description: 'Er kan een vast icoon gekozen worden (contact, publications, faq, news, timeline, question).',
+        control: 'select',
         table: {
             type: { summary: 'string' },
             defaultValue: { summary: '' },
@@ -18,19 +20,20 @@ export const infoblockArgTypes = {
     },
     title: {
         name: 'data-vl-title',
-        type: { summary: 'string' },
         description: 'Attribuut dat wordt gebruikt om de titel van de infoblock te zetten.',
         table: {
+            type: { summary: 'string' },
             defaultValue: { summary: '' },
         },
     },
     icon: {
         name: 'data-vl-icon',
-        type: 'select',
+
         options: ['calendar', 'programming-bug', 'key'],
         description:
             'Attribuut dat wordt gebruikt om een icoon vooraan aan de titel toe te voegen. Het icoon kan gekozen worden uit de lijst op https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon.',
         control: {
+            type: 'select',
             disable: true,
         },
         table: {
@@ -40,6 +43,8 @@ export const infoblockArgTypes = {
     },
     content: {
         name: 'content (for demo purposes)',
-        type: { summary: 'string' },
+        table: {
+            type: { summary: 'string' },
+        },
     },
 };

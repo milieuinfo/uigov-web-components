@@ -1,15 +1,19 @@
 import { html } from 'lit-html';
 import '../vl-radio.component';
 import { radioArgs, radioArgTypes } from './vl-radio.stories-arg';
+import { Meta } from '@storybook/web-components';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/radio',
+    args: storyArgs(radioArgs),
+    argTypes: storyArgTypes(radioArgTypes),
     parameters: {
-        controls: { hideNoControlsWarning: true },
+        controls: {
+            hideNoControlsWarning: true,
+        },
     },
-    args: radioArgs,
-    argTypes: radioArgTypes,
-};
+} as Meta<typeof radioArgs>;
 
 export const radioDefault = ({ block, checked, disabled, error, label, name, single, value }: typeof radioArgs) => html`
     <vl-radio

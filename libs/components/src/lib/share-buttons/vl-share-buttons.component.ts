@@ -1,11 +1,12 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import './vl-share-button.component';
 import shareButtonsStyle from './vl-share-buttons.uig-css';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-share-buttons')
-export class VlShareButtonsComponent extends LitElement {
+export class VlShareButtonsComponent extends BaseLitElement {
     private alt = '';
 
     static get styles() {

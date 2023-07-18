@@ -22,6 +22,8 @@ export class VlMapAction extends BaseHTMLElement {
     }
 
     connectedCallback(): void {
+        super.connectedCallback();
+
         this.__defineLayer();
     }
 

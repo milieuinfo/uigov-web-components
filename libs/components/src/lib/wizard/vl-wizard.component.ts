@@ -1,12 +1,13 @@
 import { wizardStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import '../progress-bar/vl-progress-bar.component';
 import './vl-wizard-pane.component';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-wizard')
-export class VlWizard extends LitElement {
+export class VlWizard extends BaseLitElement {
     private panes: any[];
     public activeStep: number;
 

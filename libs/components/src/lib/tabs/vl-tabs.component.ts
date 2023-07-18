@@ -40,6 +40,8 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this._renderTabs();
 
         if (!this.hasAttribute('within-functional-header')) {

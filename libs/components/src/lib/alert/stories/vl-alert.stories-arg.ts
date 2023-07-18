@@ -1,3 +1,4 @@
+import { ArgTypes } from '@storybook/web-components';
 import { ALERT_ICON, ALERT_SIZE, ALERT_TYPE } from '../vl-alert.model';
 
 export const alertArgs = {
@@ -12,19 +13,18 @@ export const alertArgs = {
         'Phasellus congue ipsum ut felis auctor, eget maximus justo dapibus. Nam sit amet pulvinar odio. Maecenas rhoncus quam eget neque porttitor, et faucibus nisl elementum.',
 };
 
-export const alertArgTypes = {
+export const alertArgTypes: ArgTypes<typeof alertArgs> = {
     title: {
         name: 'data-vl-title',
-        type: { summary: 'String' },
         description: 'Attribuut wordt gebruikt om de titel te bepalen.',
         table: {
+            type: { summary: 'String' },
             defaultValue: { summary: '' },
             category: 'Attributes',
         },
     },
     icon: {
         name: 'data-vl-icon',
-        type: { summary: 'String' },
         description:
             'Attribuut wordt gebruikt om het icoon type te bepalen. Het icoon kan gekozen worden uit de lijst op https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon.',
         control: {
@@ -32,46 +32,45 @@ export const alertArgTypes = {
             options: [ALERT_ICON.WARNING, ALERT_ICON.CHECK, ALERT_ICON.INFO_CIRCLE],
         },
         table: {
+            type: { summary: 'String' },
             defaultValue: { summary: '' },
             category: 'Attributes',
         },
     },
     size: {
         name: 'data-vl-size',
-        type: {
-            summary: `${ALERT_SIZE.SMALL}`,
-        },
         description: 'Attribuut activeert een variant van de waarschuwing maar kleiner.',
         control: {
             type: 'select',
             options: [ALERT_SIZE.SMALL],
         },
         table: {
+            type: { summary: `${ALERT_SIZE.SMALL}` },
             defaultValue: { summary: `` },
             category: 'Attributes',
         },
     },
     type: {
         name: 'data-vl-type',
-        type: {
-            summary: `${ALERT_TYPE.INFO} | ${ALERT_TYPE.SUCCESS} | ${ALERT_TYPE.WARNING} | ${ALERT_TYPE.ERROR}`,
-        },
         description: 'Attribuut bepaalt de soort van waarschuwing, foutmelding, probleemmelding of succesmelding.',
         control: {
             type: 'select',
             options: [ALERT_TYPE.INFO, ALERT_TYPE.SUCCESS, ALERT_TYPE.WARNING, ALERT_TYPE.ERROR],
         },
         table: {
+            type: {
+                summary: `${ALERT_TYPE.INFO} | ${ALERT_TYPE.SUCCESS} | ${ALERT_TYPE.WARNING} | ${ALERT_TYPE.ERROR}`,
+            },
             defaultValue: { summary: '' },
             category: 'Attributes',
         },
     },
     closable: {
         name: 'data-vl-closable',
-        type: { summary: 'Boolean' },
         description:
             'Attribuut wordt gebruikt om de optie toe te voegen om de waarschuwing te sluiten door op het sluit icoon te klikken in de rechterbovenhoek.',
         table: {
+            type: { summary: 'Boolean' },
             defaultValue: { summary: 'false' },
             category: 'Attributes',
         },

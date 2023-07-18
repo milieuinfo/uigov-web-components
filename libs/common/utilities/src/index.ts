@@ -1,5 +1,6 @@
 export { BaseElementOfType } from './lib/base/base.element';
 export { BaseHTMLElement } from './lib/base/base.html.element';
+export { BaseLitElement } from './lib/base/base.lit.element';
 export { MARGINS, PADDINGS } from './lib/constants/constants';
 export {
     webComponent,

@@ -4,25 +4,21 @@ import { CAPTION_FORMAT, GROUP_BY } from '../vl-autocomplete.model';
 import { fetchDataFromMockedApiCall } from './vl-autocomplete-mocked-api.stories-util';
 import { fetchDataFromApiCall } from './vl-autocomplete-api.stories-util';
 import '../vl-autocomplete.component';
-import { filterOutClasses, formatHTML } from '@domg-wc/common-storybook';
 import autocompleteDoc from './vl-autocomplete.stories-doc.mdx';
-import { StoryFn } from '@storybook/web-components';
+import { Meta, StoryFn } from '@storybook/web-components';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/autocomplete',
-    args: autocompleteArgs,
-    argTypes: autocompleteArgTypes,
+    args: storyArgs(autocompleteArgs),
+    argTypes: storyArgTypes(autocompleteArgTypes),
     parameters: {
-        controls: { hideNoControlsWarning: true },
         docs: {
             page: autocompleteDoc,
-            transformSource: (input: string) => {
-                return formatHTML(filterOutClasses(input));
-            },
         },
     },
     decorators: [(story: () => unknown) => html` <div style="height: 400px;">${story()}</div>`],
-};
+} as Meta<typeof autocompleteArgs>;
 
 export const AutocompleteDefault: StoryFn<typeof autocompleteArgs> = ({
     placeholder,
@@ -60,7 +56,6 @@ export const AutocompleteDefault: StoryFn<typeof autocompleteArgs> = ({
     `;
 AutocompleteDefault.storyName = 'vl-autocomplete - default';
 AutocompleteDefault.args = {
-    ...autocompleteArgs,
     placeholder: 'Hint: typ Gent',
     minChars: 1,
     maxSuggestions: 5,

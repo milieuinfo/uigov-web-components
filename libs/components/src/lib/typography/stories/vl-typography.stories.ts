@@ -1,15 +1,19 @@
 import { html } from 'lit-html';
 import '../vl-typography.component';
 import { typographyArgs, typographyArgTypes } from './vl-typography.stories-arg';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/typography',
+    args: storyArgs(typographyArgs),
+    argTypes: storyArgTypes(typographyArgTypes),
     parameters: {
-        controls: { hideNoControlsWarning: true },
+        controls: {
+            hideNoControlsWarning: true,
+        },
     },
-    args: typographyArgs,
-    argTypes: typographyArgTypes,
-};
+} as Meta<typeof typographyArgs>;
 
 export const typographyDefault = () => html` <vl-typography data-cy="typography">
     <p>

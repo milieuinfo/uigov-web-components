@@ -1,25 +1,25 @@
 import { html } from 'lit-html';
 import '../vl-accordion.component';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import { accordionArgs, accordionArgTypes } from './vl-accordion.stories-arg';
 import accordionDoc from './vl-accordion.stories-doc.mdx';
-import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-storybook';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/accordion',
-    args: accordionArgs,
-    argTypes: accordionArgTypes,
+    args: storyArgs(accordionArgs),
+    argTypes: storyArgTypes(accordionArgTypes),
     parameters: {
         docs: {
             page: accordionDoc,
-            transformSource: (input: string) => formatHTML(filterOutClasses(input)),
         },
     },
 } as Meta<typeof accordionArgs>;
 
-const Template: StoryFn<typeof accordionArgs> = (args) => {
-    const {
+const Template = story(
+    accordionArgs,
+    ({
         bold,
         closeToggleText,
         contentPadding,
@@ -30,9 +30,7 @@ const Template: StoryFn<typeof accordionArgs> = (args) => {
         defaultSlot,
         titleSlot,
         onToggle,
-    } = setDefaultArgsToNothing(args, accordionArgs);
-
-    return html`
+    }) => html`
         <vl-accordion
             ?data-vl-bold=${bold}
             data-vl-content-padding=${contentPadding}
@@ -45,8 +43,8 @@ const Template: StoryFn<typeof accordionArgs> = (args) => {
         >
             ${unsafeHTML(defaultSlot)}${unsafeHTML(titleSlot)}
         </vl-accordion>
-    `;
-};
+    `
+);
 
 export const AccordionDefault = Template.bind({});
 AccordionDefault.storyName = 'vl-accordion - default';

@@ -43,6 +43,8 @@ export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
     }
 
     async connectedCallback() {
+        super.connectedCallback();
+
         if (await this.__updatenIsToegelaten()) {
             this.__setupUpdatableMessage();
         }

@@ -15,7 +15,9 @@ export const BaseElementOfType = (SuperClass: typeof HTMLElement): any => {
      * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-core/issues|Issues}
      */
     return class BaseElement extends SuperClass {
+        protected allowCustomCSS = true;
         private _shadow: any;
+        private customCSS: CSSStyleSheet | null = null;
 
         /**
          * VlElement constructor die een shadow DOM voorziet op basis van de HTML {Literal} parameter.
@@ -96,6 +98,10 @@ export const BaseElementOfType = (SuperClass: typeof HTMLElement): any => {
 
         static get _observedPrefixChildClassAttributes(): string[] {
             return this._observedChildClassAttributes.map((attribute) => BaseElement.attributePrefix + attribute);
+        }
+
+        connectedCallback(): void {
+            this.addCustomCSS();
         }
 
         attributeChangedCallback(attr: string, oldValue: string, newValue: string) {
@@ -320,6 +326,22 @@ export const BaseElementOfType = (SuperClass: typeof HTMLElement): any => {
                 } else {
                     element.classList.remove((classPrefix || this._classPrefix) + attribute);
                 }
+            }
+        }
+
+        private addCustomCSS(): void {
+            if (this.customCSS && !this.allowCustomCSS) {
+                console.warn('Custom CSS is niet toegelaten voor dit component.');
+                return;
+            }
+
+            if (this.customCSS && !this._shadow) {
+                console.warn('Dit component heeft geen shadow DOM om custom CSS aan toe te voegen.');
+                return;
+            }
+
+            if (this.customCSS && this._shadow) {
+                this._shadow.adoptedStyleSheets = [...this._shadow.adoptedStyleSheets, this.customCSS];
             }
         }
     };

@@ -1,6 +1,6 @@
-import { CSSResult, LitElement, PropertyDeclarations, TemplateResult, html } from 'lit';
+import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { awaitUntil } from '@domg-wc/common-utilities';
+import { BaseLitElement, awaitUntil } from '@domg-wc/common-utilities';
 import mapLayerSwitcherUigStyle from './vl-map-layer-switcher.uig-css';
 import { VlMapLayer } from '../layer/vl-map-layer';
 import '@domg-wc/components';
@@ -9,7 +9,7 @@ import { vlElementsStyle } from '@domg-wc/elements';
 import { VlMap } from '../../vl-map';
 
 @customElement('vl-map-layer-switcher')
-export class VlMapLayerSwitcher extends LitElement {
+export class VlMapLayerSwitcher extends BaseLitElement {
     // Attributen
     private componentTitle = 'Kaartlagen';
     private layers: string[] | null = null;
@@ -67,6 +67,8 @@ export class VlMapLayerSwitcher extends LitElement {
     }
 
     disconnectedCallback(): void {
+        super.disconnectedCallback();
+
         this.layerObserver?.disconnect();
         this.mapElement?.un('moveend', this.computeDisabledAttributes);
     }

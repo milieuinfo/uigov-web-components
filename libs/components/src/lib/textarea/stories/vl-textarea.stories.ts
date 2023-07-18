@@ -1,43 +1,38 @@
 import { html } from 'lit-html';
 import '../vl-textarea.element';
 import { textareaArgs, textareaArgTypes } from './vl-textarea.stories-arg';
-import { StoryFn } from '@storybook/web-components';
+import { Meta, StoryFn } from '@storybook/web-components';
 import textAreaDoc from './vl-textarea.stories-doc.mdx';
-import { nothing } from 'lit';
+import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/textarea',
-    args: textareaArgs,
-    argTypes: textareaArgTypes,
+    args: storyArgs(textareaArgs),
+    argTypes: storyArgTypes(textareaArgTypes),
     parameters: {
-        docs: { page: textAreaDoc },
+        docs: {
+            page: textAreaDoc,
+        },
     },
-};
+} as Meta<typeof textareaArgs>;
 
-const Template: StoryFn<typeof textareaArgs> = ({
-    rich,
-    block,
-    error,
-    success,
-    disabled,
-    focus,
-    toolbar,
-    readonly,
-}) => html`
-    <textarea
-        id="textarea-rich"
-        is="vl-textarea"
-        cols="40"
-        rows="50"
-        ?data-vl-rich=${rich}
-        ?data-vl-block=${block}
-        ?data-vl-error=${error}
-        ?data-vl-success=${success}
-        ?data-vl-disabled=${disabled}
-        ?data-vl-focus=${focus}
-        ?data-vl-readonly=${readonly}
-        data-vl-toolbar=${toolbar || nothing}
-    >
+const Template: StoryFn<typeof textareaArgs> = story(
+    textareaArgs,
+    ({ rich, block, error, success, disabled, focus, toolbar, readonly }) => html`
+        <textarea
+            id="textarea-rich"
+            is="vl-textarea"
+            cols="40"
+            rows="50"
+            ?data-vl-rich=${rich}
+            ?data-vl-block=${block}
+            ?data-vl-error=${error}
+            ?data-vl-success=${success}
+            ?data-vl-disabled=${disabled}
+            ?data-vl-focus=${focus}
+            ?data-vl-readonly=${readonly}
+            data-vl-toolbar=${toolbar}
+        >
       <p>
           <h1>h1 title</h1>
           <h2>h2 title</h2>
@@ -77,8 +72,9 @@ const Template: StoryFn<typeof textareaArgs> = ({
           </ol>
       </p>
   </textarea
-    >
-`;
+        >
+    `
+);
 
 export const TextareaDefault = Template.bind({});
 TextareaDefault.storyName = 'vl-textarea - default';

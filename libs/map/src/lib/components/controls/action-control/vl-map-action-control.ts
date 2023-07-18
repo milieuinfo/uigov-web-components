@@ -1,10 +1,10 @@
-import { LitElement, PropertyDeclarations } from 'lit';
-import { webComponent } from '@domg-wc/common-utilities';
+import { PropertyDeclarations } from 'lit';
+import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 import { VlMapControl } from '../vl-map-control.mixin';
 import { VlMapAction } from '../../action/vl-map-action';
 
 @webComponent('vl-map-action-control')
-export class VlMapActionControl extends VlMapControl(LitElement) {
+export class VlMapActionControl extends VlMapControl(BaseLitElement) {
     private actionId = '';
     private icon = '';
     private label = '';

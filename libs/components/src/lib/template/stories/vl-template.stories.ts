@@ -2,12 +2,14 @@ import { html } from 'lit-html';
 import { version } from '../../../../package.json';
 import '../vl-template.component';
 import { templateArgs, templateArgTypes } from './vl-template.stories-arg';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'components/template',
-    args: templateArgs,
-    argTypes: templateArgTypes,
-};
+    args: storyArgs(templateArgs),
+    argTypes: storyArgTypes(templateArgTypes),
+} as Meta<typeof templateArgs>;
 
 // const version = '1.2.3'; // TODO uit de package.json halen, om een json te kunnen importeren moet je echter wat config wijzigen
 

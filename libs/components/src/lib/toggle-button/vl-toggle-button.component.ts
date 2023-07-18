@@ -1,13 +1,14 @@
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ICON_PLACEMENT } from './vl-toggle-button.model';
 import { buttonStyle, iconStyle } from '@domg/govflanders-style/component';
 import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
 import buttonUigStyle from './vl-toggle-button.uig-css';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-toggle-button')
-export class VlToggleButtonComponent extends LitElement {
+export class VlToggleButtonComponent extends BaseLitElement {
     private icon = '';
     private iconPlacement = '';
     private textHidden = false;

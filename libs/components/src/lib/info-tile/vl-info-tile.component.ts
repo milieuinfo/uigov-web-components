@@ -47,6 +47,8 @@ export class VlInfoTile extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this.__processAutoOpen();
         this.__processSlots();
         this.__processAutoOpen();

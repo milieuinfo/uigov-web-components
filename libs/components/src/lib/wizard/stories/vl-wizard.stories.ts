@@ -3,12 +3,14 @@ import '../vl-wizard.component';
 import '../vl-wizard-pane.component';
 import { wizardArgs, wizardArgTypes } from './vl-wizard.stories-arg';
 import { getWizard } from './vl-wizard.stories-util';
+import { Meta } from '@storybook/web-components';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/wizard',
-    args: wizardArgs,
-    argTypes: wizardArgTypes,
-};
+    args: storyArgs(wizardArgs),
+    argTypes: storyArgTypes(wizardArgTypes),
+} as Meta<typeof wizardArgs>;
 
 export const wizardDefault = ({ activeStepSlider, title, header, onClickStep }: typeof wizardArgs) => html` <div
     style="max-width: 780px;"

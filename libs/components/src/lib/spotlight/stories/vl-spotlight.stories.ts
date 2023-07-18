@@ -2,15 +2,19 @@ import { html } from 'lit-html';
 import { spotlightArgs, spotlightArgTypes } from './vl-spotlight.stories-arg';
 import { SIZE } from '../vl-spotlight.model';
 import '../vl-spotlight.component';
+import { Meta } from '@storybook/web-components';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'components/spotlight',
+    args: storyArgs(spotlightArgs),
+    argTypes: storyArgTypes(spotlightArgTypes),
     parameters: {
-        controls: { hideNoControlsWarning: true },
+        controls: {
+            hideNoControlsWarning: true,
+        },
     },
-    args: spotlightArgs,
-    argTypes: spotlightArgTypes,
-};
+} as Meta<typeof spotlightArgs>;
 
 const spotlightTemplate = ({
     link,

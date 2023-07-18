@@ -2,12 +2,14 @@ import { html } from 'lit-html';
 import '../vl-share-buttons.component';
 import '../vl-share-button.component';
 import { shareButtonArgs, shareButtonArgTypes } from './vl-share-button.stories-arg';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/share-buttons',
-    args: shareButtonArgs,
-    argTypes: shareButtonArgTypes,
-};
+    args: storyArgs(shareButtonArgs),
+    argTypes: storyArgTypes(shareButtonArgTypes),
+} as Meta<typeof shareButtonArgs>;
 
 export const shareButtonDefault = ({ href, medium }: typeof shareButtonArgs) =>
     html` <vl-share-buttons>

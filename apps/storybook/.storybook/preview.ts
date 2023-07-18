@@ -1,4 +1,4 @@
-import { formatHTML } from '@domg-wc/common-storybook';
+import { formatHTML, filterOutClasses } from '@domg-wc/common-storybook';
 import './docs-styling.css';
 import vlElementsStyle from '../../../libs/elements/src/lib/vl-elements.uig-css';
 
@@ -15,6 +15,6 @@ export const parameters = {
         sort: 'alpha',
     },
     docs: {
-        transformSource: formatHTML,
+        transformSource: (input: string) => formatHTML(filterOutClasses(input)),
     },
 };

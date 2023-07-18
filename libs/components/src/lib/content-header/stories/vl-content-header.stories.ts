@@ -1,18 +1,17 @@
 import { html } from 'lit-html';
 import '../vl-content-header.component';
 import { contentHeaderArgs, contentHeaderArgTypes } from './vl-content-header.stories-arg';
-import { filterOutClasses, formatHTML } from '@domg-wc/common-storybook';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { Meta, StoryFn } from '@storybook/web-components';
 import contentHeaderDoc from './vl-content-header.stories-doc.mdx';
 
 export default {
     title: 'Components/content-header',
-    args: contentHeaderArgs,
-    argTypes: contentHeaderArgTypes,
+    args: storyArgs(contentHeaderArgs),
+    argTypes: storyArgTypes(contentHeaderArgTypes),
     parameters: {
         docs: {
             page: contentHeaderDoc,
-            transformSource: (input: string) => formatHTML(filterOutClasses(input)),
         },
     },
 } as Meta<typeof contentHeaderArgs>;

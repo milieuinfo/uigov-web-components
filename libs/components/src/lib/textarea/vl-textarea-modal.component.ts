@@ -26,6 +26,8 @@ export class VlTextareaModal extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this._modal.on('close', () => setTimeout(() => this.clear()));
     }
 
