@@ -5,7 +5,7 @@ import '../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer'
 import '../vl-map-layer-circle-style';
 import { mapLayerCircleStyleArg, mapLayerCircleStyleArgTypes } from './vl-map-layer-circle-style.stories-arg';
 import { Meta, StoryFn } from '@storybook/web-components';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 import mapLayerCircleStyleDox from './vl-map-layer-circle-style.stories-doc.mdx';
 
 export default {

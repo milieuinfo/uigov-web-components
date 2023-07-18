@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../vl-content-header.component';
 import { contentHeaderArgs, contentHeaderArgTypes } from './vl-content-header.stories-arg';
-import { filterOutClasses, formatHTML } from '@domg-wc/common-utilities';
+import { filterOutClasses, formatHTML } from '@domg-wc/common-storybook';
 import { Meta, StoryFn } from '@storybook/web-components';
 import contentHeaderDoc from './vl-content-header.stories-doc.mdx';
 

@@ -1,5 +1,5 @@
 import { SIZE } from '../vl-spotlight.model';
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 
 export const spotlightArgs = {
     link: '',

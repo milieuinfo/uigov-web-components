@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { StoryFn } from '@storybook/web-components';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 import '../vl-cookie-consent.section';
 import { cookieConsentArgs, cookieConsentArgTypes } from './vl-cookie-consent.stories-arg';
 import cookieConsentDoc from './vl-cookie-consent.stories-doc.mdx';

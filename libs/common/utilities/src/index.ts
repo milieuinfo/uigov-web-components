@@ -8,14 +8,6 @@ export {
     webComponentConditional,
 } from './lib/decorator/decorators';
 export { VL } from './lib/models/vl.model';
-export {
-    CATEGORIES,
-    TYPES,
-    filterOutClasses,
-    formatHTML,
-    setDefaultArgsToNothing,
-    logStorybookEvent,
-} from './lib/stories/stories.helper';
 export { Class } from './lib/type/types';
 export {
     registerWebComponents,

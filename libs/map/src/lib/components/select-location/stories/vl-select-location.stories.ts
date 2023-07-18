@@ -3,7 +3,7 @@ import '../vl-select-location';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { selectLocationArg, selectLocationArgTypes } from './vl-select-location.stories-arg';
 import mapSelectLocationDoc from './vl-select-location.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/select-location',

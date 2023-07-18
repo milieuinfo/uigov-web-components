@@ -1,6 +1,6 @@
-import {Meta} from '@storybook/addon-docs';
+import { Meta } from '@storybook/addon-docs';
 
-<Meta title="Ontwikkeling/Project Structuur"/>
+<Meta title="Ontwikkeling/Project Structuur" />
 
 # Project Structuur
 
@@ -9,11 +9,11 @@ import {Meta} from '@storybook/addon-docs';
 Hieronder staat de projectstructuur van de [uigov-web-components](https://github.com/milieuinfo/uigov-web-components)
 repo beschreven, achter de pijltjes staan de artifacts gespecifieerd die uit de sub-projecten komen.
 
-Er zitten 2 applicaties in de repo: __Storybook__ en __Playground__, waarbij storybook streeft naar het aanbieden van
+Er zitten 2 applicaties in de repo: **Storybook** en **Playground**, waarbij storybook streeft naar het aanbieden van
 zo correct mogelijke informatie en documentie. Playground heeft momenteel eerder een experimentele insteek.
 
 De feitelijke componenten zitten opgesplitst in een aantal bibliotheken onder de libs folder. Ze worden aangeboden
-als npm packages die gepubliceerd worden onder de scope __@domg-wc__.
+als npm packages die gepubliceerd worden onder de scope **@domg-wc**.
 
 ## Structuur
 
@@ -29,6 +29,8 @@ als npm packages die gepubliceerd worden onder de scope __@domg-wc__.
   │  ├─ common/
   │  │  ├─ utilities/
   │  │  │   -> @domg-wc/common-utilities
+  │  │  ├─ storybook/
+  │  │  │   -> @domg-wc/common-storybook
   │  ├─ components/
   │  │   -> @domg-wc/components (http-error-message / proza-message)
   │  ├─ elements/

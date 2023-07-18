@@ -1,4 +1,5 @@
-import { CATEGORIES, MARGINS, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { MARGINS } from '@domg-wc/common-utilities';
 import { ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 

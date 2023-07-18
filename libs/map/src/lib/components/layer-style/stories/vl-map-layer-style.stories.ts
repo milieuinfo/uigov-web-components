@@ -6,7 +6,7 @@ import '../vl-map-layer-style';
 import { mapLayerStyleArg, mapLayerStyleArgTypes } from './vl-map-layer-style.stories-arg';
 import { Meta, StoryFn } from '@storybook/web-components';
 import mapLayerStyleDoc from './vl-map-layer-style.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer-style',

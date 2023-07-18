@@ -11,7 +11,7 @@ import '../vl-map-legend';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { mapLegendArgTypes, mapLegendArgs } from './vl-map-legend.stories-arg';
 import mapLegendDoc from './vl-map-legend.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/legend',

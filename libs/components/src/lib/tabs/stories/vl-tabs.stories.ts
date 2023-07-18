@@ -4,7 +4,7 @@ import { Meta, StoryFn } from '@storybook/web-components';
 import { tabsArgs, tabsArgTypes } from './vl-tabs.stories-arg';
 import tabsDoc from './vl-tabs.stories-doc.mdx';
 import { addPane } from './vl-tabs.stories-util';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/tabs',
