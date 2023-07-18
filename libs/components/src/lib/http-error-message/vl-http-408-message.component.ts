@@ -1,10 +1,10 @@
-import { webComponentPromised } from '@domg-wc/common-utilities';
+import { BaseLitElement, webComponentPromised } from '@domg-wc/common-utilities';
 import { baseStyle } from '@domg/govflanders-style/common';
 import { buttonStyle } from '@domg/govflanders-style/component';
-import { CSSResult, html, LitElement } from 'lit';
+import { CSSResult, html } from 'lit';
 
 @webComponentPromised([customElements.whenDefined('vl-http-error-message')], 'vl-http-408-message')
-export class VlHttp408Message extends LitElement {
+export class VlHttp408Message extends BaseLitElement {
     static get styles(): CSSResult[] {
         return [baseStyle, buttonStyle];
     }

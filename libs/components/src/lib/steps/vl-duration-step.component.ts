@@ -17,6 +17,8 @@ export class VlDurationStepComponent extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this._processSlots();
     }
 

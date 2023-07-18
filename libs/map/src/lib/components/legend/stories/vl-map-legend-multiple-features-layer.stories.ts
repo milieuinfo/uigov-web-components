@@ -8,15 +8,15 @@ import '../../action/draw-action/measure-action/vl-map-measure-action';
 import '../../controls/vl-map-action-controls';
 import '../../controls/measure-control/vl-map-measure-control';
 import '../vl-map-legend';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import { mapLegendArgTypes, mapLegendArgs } from './vl-map-legend.stories-arg';
 import mapLegendDoc from './vl-map-legend.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/legend',
-    args: mapLegendArgs,
-    argTypes: mapLegendArgTypes,
+    args: storyArgs(mapLegendArgs),
+    argTypes: storyArgTypes(mapLegendArgTypes),
     parameters: {
         docs: {
             page: mapLegendDoc,
@@ -24,8 +24,7 @@ export default {
     },
 } as Meta<typeof mapLegendArgs>;
 
-export const MapLegendMultipleFeaturesLayers: StoryFn<typeof mapLegendArgs> = (args) => {
-    const { bottom, left, placement, right, top } = setDefaultArgsToNothing(args, mapLegendArgs);
+export const MapLegendMultipleFeaturesLayers = story(mapLegendArgs, ({ bottom, left, placement, right, top }) => {
     const features1 = {
         type: 'FeatureCollection',
         features: [
@@ -168,5 +167,5 @@ export const MapLegendMultipleFeaturesLayers: StoryFn<typeof mapLegendArgs> = (a
             left=${left}
         ></vl-map-legend>
     </vl-map>`;
-};
+});
 MapLegendMultipleFeaturesLayers.storyName = 'vl-map-legend - multiple features-layers';

@@ -105,6 +105,8 @@ export class VlRadioGroup extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this._groupRadios();
         this._processTabIndex();
         this._transmitFocus();

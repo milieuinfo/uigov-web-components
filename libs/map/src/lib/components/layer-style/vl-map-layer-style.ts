@@ -31,6 +31,8 @@ import OlStyleText from 'ol/style/Text';
 @webComponent('vl-map-layer-style')
 export class VlMapLayerStyle extends BaseElementOfType(HTMLElement) {
     connectedCallback() {
+        super.connectedCallback();
+
         this._setStyleOnParent();
     }
 

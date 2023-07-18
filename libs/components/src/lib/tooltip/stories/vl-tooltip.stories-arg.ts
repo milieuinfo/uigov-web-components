@@ -1,3 +1,5 @@
+import { ArgTypes } from '@storybook/web-components';
+
 const PLACEMENT = {
     TOP: 'top',
     RIGHT: 'right',
@@ -11,12 +13,12 @@ export const tooltipArgs = {
     vlStatic: false,
 };
 
-export const tooltipArgTypes = {
+export const tooltipArgTypes: ArgTypes<typeof tooltipArgs> = {
     placement: {
         name: 'data-vl-placement',
-        type: 'select',
         options: [PLACEMENT.TOP, PLACEMENT.RIGHT, PLACEMENT.BOTTOM, PLACEMENT.LEFT],
         description: 'The position of the tooltip',
+        control: 'select',
         table: {
             type: {
                 summary: `${PLACEMENT.TOP} | ${PLACEMENT.RIGHT} | ${PLACEMENT.BOTTOM} | ${PLACEMENT.LEFT}`,

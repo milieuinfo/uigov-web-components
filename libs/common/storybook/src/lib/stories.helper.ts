@@ -1,6 +1,7 @@
 import { nothing } from 'lit';
 import * as prettier from 'prettier/standalone';
 import * as prettierBabel from 'prettier/parser-babel';
+import { Args, ArgTypes, StoryFn, StoryContext, WebComponentsFramework } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 
 export const CATEGORIES = {
@@ -59,9 +60,39 @@ export const logStorybookEvent = <T extends Event>(eventName: string) => {
     };
 };
 
+export const story = <T extends object>(defaultArgs: T, storyFn: StoryFn<T>): StoryFn<T> => {
+    return (args: T, context: StoryContext<WebComponentsFramework, T>) => {
+        const newArgs = setDefaultArgsToNothing(args, defaultArgs);
+        return storyFn(newArgs, context);
+    };
+};
+
+export const storyArgs = (args: Args) => {
+    return {
+        ...args,
+        customCSS: null,
+    };
+};
+
+export const storyArgTypes = (argTypes: ArgTypes) => {
+    return {
+        ...argTypes,
+        customCSS: {
+            name: 'customCSS',
+            description: 'Custom CSSStylesheet object.<br>Wordt toegevoegd aan de adoptedStyles van de shadow DOM.',
+            control: false,
+            table: {
+                type: { summary: 'CSSStylesheet' },
+                category: CATEGORIES.PROPERTIES,
+                defaultValue: { summary: null },
+            },
+        },
+    };
+};
+
 // Gebruik deze functie om de args van een story die overeen komen met de default args van een component
 // om te zetten naar 'nothing' zodat deze args niet getoond worden in de source code op de docs pagina van de story.
-export const setDefaultArgsToNothing = <T extends object>(args: T, defaultArgs: T) => {
+const setDefaultArgsToNothing = <T extends object>(args: T, defaultArgs: T): T => {
     return Object.keys(args).reduce((result, key) => {
         const value = (args as any)[key];
         const defaultValue = (defaultArgs as any)[key];

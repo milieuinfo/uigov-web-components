@@ -6,23 +6,29 @@ import '../vl-map-click-action';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { mapClickActionArg, mapClickActionArgTypes } from './vl-map-click-action.stories-arg';
 import mapClickActionDoc from './vl-map-click-action.stories-doc.mdx';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/click-action',
-    args: mapClickActionArg,
-    argTypes: mapClickActionArgTypes,
+    args: storyArgs(mapClickActionArg),
+    argTypes: storyArgTypes(mapClickActionArgTypes),
     parameters: {
-        controls: { hideNoControlsWarning: true },
-        docs: { page: mapClickActionDoc },
+        controls: {
+            hideNoControlsWarning: true,
+        },
+        docs: {
+            page: mapClickActionDoc,
+        },
     },
 } as Meta<typeof mapClickActionArg>;
 
-export const MapClickActionDefault: StoryFn<typeof mapClickActionArg> = ({ onMapClicked }) => {
-    return html`
+export const MapClickActionDefault: StoryFn<typeof mapClickActionArg> = story(
+    mapClickActionArg,
+    ({ onMapClicked }) => html`
         <vl-map>
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
             <vl-map-click-action @vl-map-clicked=${onMapClicked}></vl-map-click-action>
         </vl-map>
-    `;
-};
+    `
+);
 MapClickActionDefault.storyName = 'vl-map-click-action - default';

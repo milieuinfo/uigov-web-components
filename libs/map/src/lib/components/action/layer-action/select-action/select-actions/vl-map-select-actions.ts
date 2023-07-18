@@ -39,6 +39,8 @@ export class VlMapSelectActions extends VlMapSelectAction {
     }
 
     connectedCallback(): void {
+        super.connectedCallback();
+
         const olLayers: OlVectorLayerType[] = this.layerNames?.map((name) => {
             return this._mapElement.querySelector(`[data-vl-is-layer][data-vl-name="${name}"]`)?._layer;
         });

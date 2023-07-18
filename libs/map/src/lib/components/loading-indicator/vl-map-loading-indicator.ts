@@ -1,11 +1,12 @@
+import { BaseLitElement } from '@domg-wc/common-utilities';
 import { VlMap } from '../../vl-map';
-import { css, LitElement } from 'lit';
+import { css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { EventsKey } from 'ol/events';
 import { unByKey } from 'ol/Observable';
 
 @customElement('vl-map-loading-indicator')
-export class VlMapLoadingIndicator extends LitElement {
+export class VlMapLoadingIndicator extends BaseLitElement {
     static styles = css`
         @keyframes progress {
             0% {

@@ -35,6 +35,8 @@ export class VlStepsComponent extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this._observer = this.__observeChildElements(() => this._processSteps());
         this._processSteps();
     }

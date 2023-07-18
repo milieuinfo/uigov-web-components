@@ -1,16 +1,23 @@
 import { html } from 'lit';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../vl-map-loading-indicator';
 import mapLoadingIndicatorDoc from './vl-map-loading-indicator.stories-doc.mdx';
 import { MapEvent } from 'ol';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/loading-indicator',
+    args: storyArgs({}),
+    argTypes: storyArgTypes({}),
     parameters: {
-        controls: { hideNoControlsWarning: true },
-        docs: { page: mapLoadingIndicatorDoc },
+        docs: {
+            page: mapLoadingIndicatorDoc,
+        },
+        controls: {
+            hideNoControlsWarning: true,
+        },
     },
 } as Meta;
 
@@ -21,8 +28,9 @@ const fakeLoadMap = async (ttw) => {
     vlMap.map.dispatchEvent(new MapEvent('loadend', vlMap.map));
 };
 
-export const MapLoadingIndicatorDefault: StoryFn = () => {
-    return html`
+export const MapLoadingIndicatorDefault = story(
+    {},
+    () => html`
         <div style="margin-bottom:10px">
             <button
                 data-cy="short-wait"
@@ -47,6 +55,6 @@ export const MapLoadingIndicatorDefault: StoryFn = () => {
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
             <vl-map-loading-indicator></vl-map-loading-indicator>
         </vl-map>
-    `;
-};
+    `
+);
 MapLoadingIndicatorDefault.storyName = 'vl-map-loading-indicator - default';

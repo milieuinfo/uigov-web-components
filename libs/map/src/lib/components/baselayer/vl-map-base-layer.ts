@@ -33,6 +33,8 @@ import VectorLayer from 'ol/layer/Vector';
 @webComponent('vl-map-baselayer')
 export class VlMapBaseLayer extends BaseElementOfType(HTMLElement) {
     connectedCallback() {
+        super.connectedCallback();
+
         this._configureMap();
     }
 

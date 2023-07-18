@@ -1,21 +1,23 @@
 import { html } from 'lit-html';
 import '../vl-infoblock.component';
 import { infoblockArgs, infoblockArgTypes } from './vl-infoblock.stories-arg';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta, StoryFn } from '@storybook/web-components';
 
 export default {
     title: 'Components/infoblock',
-    args: infoblockArgs,
-    argTypes: infoblockArgTypes,
-};
+    args: storyArgs(infoblockArgs),
+    argTypes: storyArgTypes(infoblockArgTypes),
+} as Meta<typeof infoblockArgs>;
 
-const infoblockTemplate = ({ title, content, type, icon }: typeof infoblockArgs) =>
+const infoblockTemplate: StoryFn<typeof infoblockArgs> = ({ title, content, type, icon }: typeof infoblockArgs) =>
     html`
         <vl-infoblock slot="info" data-vl-title=${title} data-vl-type=${type} data-vl-icon=${icon} data-cy="infoblock"
             >${content}
         </vl-infoblock>
     `;
 
-export const infoblockContact = infoblockTemplate.bind({}) as any;
+export const infoblockContact = infoblockTemplate.bind({});
 infoblockContact.args = {
     title: 'Contactenlijst',
     content: 'Hieronder bevindt zich een overzicht van al uw contacten binnen de Vlaamse Overheid.',
@@ -23,7 +25,7 @@ infoblockContact.args = {
 };
 infoblockContact.storyName = 'vl-infoblock - contact';
 
-export const infoblockPublications = infoblockTemplate.bind({}) as any;
+export const infoblockPublications = infoblockTemplate.bind({});
 infoblockPublications.args = {
     title: 'Contracten',
     content: 'Hieronder bevindt zich een overzicht van al uw contracten binnen de Vlaamse Overheid',
@@ -31,7 +33,7 @@ infoblockPublications.args = {
 };
 infoblockPublications.storyName = 'vl-infoblock - publications';
 
-export const infoblockFAQ = infoblockTemplate.bind({}) as any;
+export const infoblockFAQ = infoblockTemplate.bind({});
 infoblockFAQ.args = {
     title: 'Veelgestelde vragen',
     content: 'Hieronder bevindt zich een overzicht van alle veelgestelde vragen binnen de Vlaamse Overheid.',
@@ -39,7 +41,7 @@ infoblockFAQ.args = {
 };
 infoblockFAQ.storyName = 'vl-infoblock - faq';
 
-export const infoblockNews = infoblockTemplate.bind({}) as any;
+export const infoblockNews = infoblockTemplate.bind({});
 infoblockNews.args = {
     title: 'Nieuwsberichten',
     content: 'Hieronder bevindt zich een overzicht van alle nieuwsberichten binnen de Vlaamse Overheid.',
@@ -47,7 +49,7 @@ infoblockNews.args = {
 };
 infoblockNews.storyName = 'vl-infoblock - news';
 
-export const infoblockTimeline = infoblockTemplate.bind({}) as any;
+export const infoblockTimeline = infoblockTemplate.bind({});
 infoblockTimeline.args = {
     title: 'Archief',
     content: 'Hieronder bevindt zicht een overzicht van alle gearchiveerde berichten binnen de Vlaamse Overheid.',
@@ -55,7 +57,7 @@ infoblockTimeline.args = {
 };
 infoblockTimeline.storyName = 'vl-infoblock - time line';
 
-export const infoblockQuestion = infoblockTemplate.bind({}) as any;
+export const infoblockQuestion = infoblockTemplate.bind({});
 infoblockQuestion.args = {
     title: 'Overheidsdiensten',
     content: 'Hieronder bevindt zicht een overzicht van alle overheidsdiensten binnen de Vlaamse Overheid.',
@@ -63,7 +65,7 @@ infoblockQuestion.args = {
 };
 infoblockQuestion.storyName = 'vl-infoblock - question';
 
-export const infoblockCustomIcon = infoblockTemplate.bind({}) as any;
+export const infoblockCustomIcon = infoblockTemplate.bind({});
 infoblockCustomIcon.storyName = 'vl-infoblock - custom icon';
 infoblockCustomIcon.args = {
     title: 'Evenementen',
@@ -78,7 +80,7 @@ infoblockCustomIcon.argTypes = {
     },
 };
 
-export const infoblockWithSlotElements = ({ title, content, type }: any) => html`
+export const infoblockWithSlotElements: StoryFn<typeof infoblockArgs> = ({ title, content, type }) => html`
     <vl-infoblock data-vl-type=${type} data-cy="infoblock-with-slot-elements">
         <h2 is="vl-h2" slot="title">${title}</h2>
         ${content}

@@ -5,11 +5,12 @@ import { nothing } from 'lit';
 import sideSheetDoc from './vl-side-sheet.stories-doc.mdx';
 import { Meta, StoryFn } from '@storybook/web-components';
 import sideSheetToggleImplementation from './vl-side-sheet.stories-utils';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/side-sheet',
-    args: sideSheetArgs,
-    argTypes: sideSheetArgTypes,
+    args: storyArgs(sideSheetArgs),
+    argTypes: storyArgTypes(sideSheetArgTypes),
     parameters: {
         docs: {
             page: sideSheetDoc,
@@ -215,6 +216,3 @@ export const sideSheetToggle: StoryFn<typeof sideSheetArgs> = ({
     `;
 };
 sideSheetToggle.storyName = 'vl-side-sheet - toggle';
-sideSheetToggle.args = {
-    // hideToggleButton: true,
-};

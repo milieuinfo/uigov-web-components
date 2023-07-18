@@ -1,11 +1,12 @@
-import { html, LitElement, TemplateResult, PropertyDeclarations, CSSResult } from 'lit';
+import { html, TemplateResult, PropertyDeclarations, CSSResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { accordionStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
 import 'reflect-metadata';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-accordion-list')
-export class VlAccordionListComponent extends LitElement {
+export class VlAccordionListComponent extends BaseLitElement {
     private bordered = false;
     private observer: MutationObserver | null = null;
 

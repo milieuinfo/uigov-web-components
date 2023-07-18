@@ -2,15 +2,16 @@ import { progressBarStyle } from '@domg/govflanders-style/component';
 import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
 import ProgressBar from '@govflanders/vl-ui-progress-bar/src/js/progress-bar.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import 'reflect-metadata';
 import '../tooltip/vl-tooltip.component';
 import progressBarUigStyle from './vl-progress-bar.uig-css';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-progress-bar')
-export class VlProgressBarComponent extends LitElement {
+export class VlProgressBarComponent extends BaseLitElement {
     private numeric = false;
     private focusOnChange = false;
     private activeStep = 1;

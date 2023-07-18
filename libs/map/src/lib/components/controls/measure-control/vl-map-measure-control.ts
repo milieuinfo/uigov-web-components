@@ -1,12 +1,11 @@
-import { webComponent } from '@domg-wc/common-utilities';
+import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 import '@domg-wc/components';
-import { LitElement } from 'lit';
 import { unByKey } from 'ol/Observable';
 import { CONTROL_TYPE, IDENTIFIER } from '../../../vl-map.model';
 import { VlMapControl } from '../vl-map-control.mixin';
 
 @webComponent('vl-map-measure-control')
-export class VlMapMeasureControl extends VlMapControl(LitElement) {
+export class VlMapMeasureControl extends VlMapControl(BaseLitElement) {
     constructor() {
         super();
         this.controlElement = document.createElement('vl-toggle-button');

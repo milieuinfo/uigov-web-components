@@ -1,12 +1,14 @@
 import { html } from 'lit-html';
 import '../vl-pager.component';
 import { pagerArgs, pagerArgTypes } from './vl-pager.stories-arg';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/pager',
-    args: pagerArgs,
-    argTypes: pagerArgTypes,
-};
+    args: storyArgs(pagerArgs),
+    argTypes: storyArgTypes(pagerArgTypes),
+} as Meta<typeof pagerArgs>;
 
 const pagerTemplate = ({
     totalItems,

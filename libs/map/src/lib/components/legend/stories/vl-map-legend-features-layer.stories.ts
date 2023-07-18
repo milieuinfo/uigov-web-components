@@ -4,15 +4,15 @@ import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import '../vl-map-legend';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import { mapLegendArgTypes, mapLegendArgs } from './vl-map-legend.stories-arg';
 import mapLegendDoc from './vl-map-legend.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/legend',
-    args: mapLegendArgs,
-    argTypes: mapLegendArgTypes,
+    args: storyArgs(mapLegendArgs),
+    argTypes: storyArgTypes(mapLegendArgTypes),
     parameters: {
         docs: {
             page: mapLegendDoc,
@@ -20,8 +20,7 @@ export default {
     },
 } as Meta<typeof mapLegendArgs>;
 
-export const MapLegendFeaturesLayer: StoryFn<typeof mapLegendArgs> = (args) => {
-    const { bottom, left, placement, right, top } = setDefaultArgsToNothing(args, mapLegendArgs);
+export const MapLegendFeaturesLayer = story(mapLegendArgs, ({ bottom, left, placement, right, top }) => {
     const features = {
         type: 'FeatureCollection',
         features: [
@@ -61,5 +60,5 @@ export const MapLegendFeaturesLayer: StoryFn<typeof mapLegendArgs> = (args) => {
             left=${left}
         ></vl-map-legend>
     </vl-map>`;
-};
+});
 MapLegendFeaturesLayer.storyName = 'vl-map-legend - features-layer';

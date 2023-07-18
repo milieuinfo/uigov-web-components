@@ -1,13 +1,14 @@
-import { html, nothing } from 'lit-html';
+import { html } from 'lit-html';
 import '../vl-input-slider.component';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import { inputSliderArgs, inputSliderArgTypes } from './vl-input-slider.stories-arg';
 import inputSliderDoc from './vl-input-slider.stories-doc.mdx';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/input-slider',
-    args: inputSliderArgs,
-    argTypes: inputSliderArgTypes,
+    args: storyArgs(inputSliderArgs),
+    argTypes: storyArgTypes(inputSliderArgTypes),
     parameters: {
         docs: {
             page: inputSliderDoc,
@@ -15,18 +16,16 @@ export default {
     },
 } as Meta<typeof inputSliderArgs>;
 
-export const InputSliderDefault: StoryFn<typeof inputSliderArgs> = ({ maxValue, minValue, value, onChangeValue }) =>
-    html`
-        <vl-input-slider
-            ${
-                /* 
-                Houd dit magisch nummer in sync met de default waarde van maxValue in vl-input-slider.component.ts.
-                Dit zorgt ervoor dat als de maxValue van de story overeenkomt met de default maxValue dit attribuut niet getoond wordt bij de source in de docs.*/ ''
-            }
-            data-vl-max-value=${maxValue !== 100 ? maxValue : nothing}
-            data-vl-min-value=${minValue || nothing}
-            data-vl-value=${value || nothing}
-            @vl-change-value=${(event: CustomEvent) => onChangeValue(event.detail)}
-        ></vl-input-slider>
-    `;
+export const InputSliderDefault = story(
+    inputSliderArgs,
+    ({ maxValue, minValue, value, onChangeValue }) =>
+        html`
+            <vl-input-slider
+                data-vl-max-value=${maxValue}
+                data-vl-min-value=${minValue}
+                data-vl-value=${value}
+                @vl-change-value=${(event: CustomEvent) => onChangeValue(event.detail)}
+            ></vl-input-slider>
+        `
+);
 InputSliderDefault.storyName = 'vl-input-slider - default';

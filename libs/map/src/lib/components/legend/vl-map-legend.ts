@@ -1,8 +1,9 @@
-import { css, html, LitElement, unsafeCSS } from 'lit';
+import { css, html, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { VlMapLayerCircleStyle } from '../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import { VlMapVectorLayer } from '../layer/vector-layer/vl-map-vector-layer';
 import styles from './vl-map-legend.uig-css';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 export const LEGEND_PLACEMENT = {
     TOP_LEFT: 'top_left',
@@ -19,7 +20,7 @@ export interface Position {
 }
 
 @customElement('vl-map-legend')
-export class VlMapLegend extends LitElement {
+export class VlMapLegend extends BaseLitElement {
     top: string;
     left: string;
     right: string;

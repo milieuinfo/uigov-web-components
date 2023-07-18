@@ -1,13 +1,14 @@
 import { html } from 'lit-html';
 import '../vl-annotation.component';
 import { annotationArgs, annotationArgTypes } from './vl-annotation.stories-arg';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/annotation',
-    description: 'Use annotation to show annotations.',
-    args: annotationArgs,
-    argTypes: annotationArgTypes,
-};
+    args: storyArgs(annotationArgs),
+    argTypes: storyArgTypes(annotationArgTypes),
+} as Meta<typeof annotationArgs>;
 
 const annotationTemplate = ({ content, small }: typeof annotationArgs) => html`
     <vl-annotation ?data-vl-small=${small}>${content}</vl-annotation>

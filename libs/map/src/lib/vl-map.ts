@@ -131,6 +131,8 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this.__initializeCoordinateSystem();
 
         this._map = new VlCustomMap({
@@ -153,9 +155,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         this._map.initializeView();
         this.__updateMapSizeOnLoad();
         this.__updateOverviewMapSizeOnLoad();
-
         this._map.addControl(this.__createZoomControl());
-
         this.observeRemovedMapLayers();
     }
 

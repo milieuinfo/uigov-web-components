@@ -8,12 +8,16 @@ import { sortingRichTableImplementation } from './vl-rich-data-table-sorting.sto
 import { filterRichTableImplementation } from './vl-rich-data-table-filter.stories-util';
 import { paginationRichTableImplementation } from './vl-rich-data-table-pagination.stories-util';
 import richDataFilterPagerData from './vl-rich-data-table-pagination.stories-mock';
+import { storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/rich-data-table',
-    argTypes: richDataTableArgTypes,
+    args: storyArgs(richDataTableArgs),
+    argTypes: storyArgTypes(richDataTableArgTypes),
     parameters: {
-        docs: { page: richDataTableDoc },
+        docs: {
+            page: richDataTableDoc,
+        },
         layout: 'fullscreen',
     },
 } as Meta<typeof richDataTableArgs>;
@@ -41,7 +45,6 @@ const TemplateBase: StoryFn<typeof richDataTableArgs> = ({ collapsedM, collapsed
 };
 export const RichDataTableDefault = TemplateBase.bind({});
 RichDataTableDefault.storyName = 'vl-rich-data-table - default';
-RichDataTableDefault.args = richDataTableArgs;
 RichDataTableDefault.args = {
     collapsedM: false,
     collapsedS: false,
@@ -178,7 +181,6 @@ const TemplateFilter: StoryFn<typeof richDataTableArgs> = ({
 export const RichDataTableFilter = TemplateFilter.bind({});
 RichDataTableFilter.storyName = 'vl-rich-data-table - filter';
 RichDataTableFilter.args = {
-    ...richDataTableArgs,
     filterCloseable: true,
 };
 
@@ -270,7 +272,6 @@ const TemplateFilterPaging: StoryFn<typeof richDataTableArgs> = ({
 export const RichDataTableFilterAndPagination = TemplateFilterPaging.bind({});
 RichDataTableFilterAndPagination.storyName = 'vl-rich-data-table - filter and pagination';
 RichDataTableFilterAndPagination.args = {
-    ...richDataTableArgs,
     filterCloseable: true,
     filterClosed: true,
 };

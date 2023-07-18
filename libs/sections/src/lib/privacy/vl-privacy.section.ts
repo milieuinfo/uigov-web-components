@@ -1,9 +1,10 @@
 import '@domg-wc/components';
 import '@domg-wc/elements';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { header } from './child/header.section';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 export const privacyProps = {
     date: 'data-vl-date',
@@ -14,7 +15,7 @@ export const privacyProps = {
 const { date, disableBackLink, version } = privacyProps;
 
 @customElement('vl-privacy')
-export class VlPrivacy extends LitElement {
+export class VlPrivacy extends BaseLitElement {
     static get properties() {
         return {
             [date]: { type: String },
@@ -25,6 +26,8 @@ export class VlPrivacy extends LitElement {
 
     constructor() {
         super();
+
+        this.allowCustomCSS = false;
         (this as any)[date] = '3 maart 2021';
         (this as any)[disableBackLink] = false;
         (this as any)[version] = '1.0.0';

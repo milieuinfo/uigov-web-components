@@ -1,5 +1,4 @@
-import { awaitScript, webComponentCustom } from '@domg-wc/common-utilities';
-import { LitElement } from 'lit';
+import { BaseLitElement, awaitScript, webComponentCustom } from '@domg-wc/common-utilities';
 
 const customRegistration = () =>
     awaitScript(
@@ -19,7 +18,7 @@ const customRegistration = () =>
         });
 
 @webComponentCustom(customRegistration)
-export class VlHeader extends LitElement {
+export class VlHeader extends BaseLitElement {
     private authenticatedUserUrl = '/sso/ingelogde_gebruiker';
     private development = false;
     private identifier = '';
@@ -73,6 +72,12 @@ export class VlHeader extends LitElement {
                 reflect: true,
             },
         };
+    }
+
+    constructor() {
+        super();
+
+        this.allowCustomCSS = false;
     }
 
     private get headerContainer() {

@@ -39,6 +39,8 @@ export class VlInfoblockComponent extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         const title = this.getAttribute('title');
         if (title) {
             this._titleChangedCallback('', this.getAttribute('title'));

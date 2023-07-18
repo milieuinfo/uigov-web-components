@@ -3,13 +3,16 @@ import '../vl-progress-bar.component';
 import { progressBarArgs, progressBarArgTypes } from './vl-progress-bar.stories-arg';
 import { Meta, StoryFn } from '@storybook/web-components';
 import progressBarDoc from './vl-progress-bar.stories-doc.mdx';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/progress-bar',
-    args: progressBarArgs,
-    argTypes: progressBarArgTypes,
+    args: storyArgs(progressBarArgs),
+    argTypes: storyArgTypes(progressBarArgTypes),
     parameters: {
-        docs: { page: progressBarDoc },
+        docs: {
+            page: progressBarDoc,
+        },
     },
 } as Meta<typeof progressBarArgs>;
 

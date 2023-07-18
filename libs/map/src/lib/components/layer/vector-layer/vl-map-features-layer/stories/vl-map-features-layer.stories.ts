@@ -2,15 +2,15 @@ import { html } from 'lit-html';
 import '../../../../../vl-map';
 import '../../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../vl-map-features-layer';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import { mapFeaturesLayerArgs, mapFeaturesLayerArgTypes } from './vl-map-features-layer.stories-arg';
 import mapFeaturesLayerDoc from './vl-map-features-layer.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/vector-layer/features-layer',
-    args: mapFeaturesLayerArgs,
-    argTypes: mapFeaturesLayerArgTypes,
+    args: storyArgs(mapFeaturesLayerArgs),
+    argTypes: storyArgTypes(mapFeaturesLayerArgTypes),
     parameters: {
         docs: {
             page: mapFeaturesLayerDoc,
@@ -18,8 +18,9 @@ export default {
     },
 } as Meta<typeof mapFeaturesLayerArgs>;
 
-export const MapFeaturesLayerDefault: StoryFn<typeof mapFeaturesLayerArgs> = (args) => {
-    const {
+export const MapFeaturesLayerDefault = story(
+    mapFeaturesLayerArgs,
+    ({
         autoExtent,
         autoExtentMaxZoom,
         cluster,
@@ -31,9 +32,7 @@ export const MapFeaturesLayerDefault: StoryFn<typeof mapFeaturesLayerArgs> = (ar
         name,
         opacity,
         featuresProp,
-    } = setDefaultArgsToNothing(args, mapFeaturesLayerArgs);
-
-    return html`
+    }) => html`
         <vl-map>
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
             <vl-map-features-layer
@@ -53,11 +52,10 @@ export const MapFeaturesLayerDefault: StoryFn<typeof mapFeaturesLayerArgs> = (ar
                 <vl-map-layer-circle-style data-vl-border-size="2"></vl-map-layer-circle-style>
             </vl-map-features-layer>
         </vl-map>
-    `;
-};
+    `
+);
 MapFeaturesLayerDefault.storyName = 'vl-map-features-layer - default';
 MapFeaturesLayerDefault.args = {
-    ...mapFeaturesLayerArgs,
     featuresProp: {
         type: 'FeatureCollection',
         features: [

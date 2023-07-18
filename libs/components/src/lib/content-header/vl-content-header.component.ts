@@ -35,6 +35,8 @@ export class VlContentHeaderComponent extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this.__processSlotElements();
         this._observer = this.__observeSlotElements(() => this.__processSlotElements());
     }

@@ -1,14 +1,15 @@
 import '@domg-wc/elements';
-import { css, html, LitElement, unsafeCSS } from 'lit';
+import { css, html, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import proj4 from 'proj4';
 import styles from './vl-map-current-location.uig-css';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 export const DEFAULT_ZOOM = 10;
 export const DEFAULT_TOOLTIP = 'Huidige locatie';
 
 @customElement('vl-map-current-location')
-export class VlMapCurrentLocation extends LitElement {
+export class VlMapCurrentLocation extends BaseLitElement {
     private zoom: number;
     private tooltip: string;
     private _mapElement: any;

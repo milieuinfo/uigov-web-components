@@ -1,12 +1,13 @@
 import { inputFieldStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
-import { CSSResult, html, LitElement, PropertyDeclarations, TemplateResult } from 'lit';
+import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import 'reflect-metadata';
 import inputSliderUigStyle from './vl-input-slider.uig-css';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-input-slider')
-export class VlInputSliderComponent extends LitElement {
+export class VlInputSliderComponent extends BaseLitElement {
     maxValue = 100;
     minValue = 0;
     value = 0;

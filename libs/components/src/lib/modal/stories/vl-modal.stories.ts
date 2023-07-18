@@ -1,12 +1,14 @@
 import { html } from 'lit-html';
 import '../vl-modal.component';
 import { modalArgs, modalArgTypes } from './vl-modal.stories-arg';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/modal',
-    args: modalArgs,
-    argTypes: modalArgTypes,
-};
+    args: storyArgs(modalArgs),
+    argTypes: storyArgTypes(modalArgTypes),
+} as Meta<typeof modalArgs>;
 
 export const modalDefault = ({
     title,

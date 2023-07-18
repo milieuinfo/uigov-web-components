@@ -1,8 +1,9 @@
-import { css, LitElement } from 'lit';
+import { BaseLitElement } from '@domg-wc/common-utilities';
+import { css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 @customElement('vl-map-click-action-pindrop')
-export class VlMapClickActionPindrop extends LitElement {
+export class VlMapClickActionPindrop extends BaseLitElement {
     // Overgenomen van: https://hungyi.net/posts/pure-css-map-marker/
     static styles = css`
         :host {

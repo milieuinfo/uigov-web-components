@@ -87,6 +87,8 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this._observer = this.__observeSlotElements(() => this.__processSlotElements());
         this.__processSlotElements();
         this._backLinkElement.onclick = (event: Event) => this._handleClickBackLink(event);

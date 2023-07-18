@@ -1,12 +1,14 @@
 import { html } from 'lit-html';
 import '../vl-loader.component';
 import { loaderArgs, loaderArgTypes } from './vl-loader.stories-arg';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/loader',
-    args: loaderArgs,
-    argTypes: loaderArgTypes,
-};
+    args: storyArgs(loaderArgs),
+    argTypes: storyArgTypes(loaderArgTypes),
+} as Meta<typeof storyArgs>;
 
 export const loaderDefault = ({ light, text, single }: typeof loaderArgs) => html`
     <vl-loader ?data-vl-light=${light} data-vl-text=${text} ?data-vl-single=${single} data-cy="loader"></vl-loader>

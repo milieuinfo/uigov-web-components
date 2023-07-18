@@ -1,10 +1,11 @@
 import { annotationStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-annotation')
-export class VlAnnotation extends LitElement {
+export class VlAnnotation extends BaseLitElement {
     static get styles() {
         return [resetStyle, annotationStyle];
     }

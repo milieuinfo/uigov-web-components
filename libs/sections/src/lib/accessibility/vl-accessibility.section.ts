@@ -1,15 +1,16 @@
 import '@domg-wc/components';
 import '@domg-wc/elements';
 import { vlElementsStyle } from '@domg-wc/elements';
-import { CSSResult, html, LitElement } from 'lit';
+import { CSSResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { content } from './child/content.section';
 import { header } from './child/header.section';
 import { title } from './child/title.section';
 import { AccessibilityProperties, COMPLIANCE_STATUS, EVALUATION_STATUS, Limitations } from './vl-accessibility.model';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-accessibility')
-export class VlAccessibility extends LitElement {
+export class VlAccessibility extends BaseLitElement {
     static get styles(): CSSResult[] {
         return vlElementsStyle;
     }
@@ -68,6 +69,8 @@ export class VlAccessibility extends LitElement {
 
     constructor() {
         super();
+
+        this.allowCustomCSS = false;
         this.application = 'deze applicatie';
         this.compliance = 'PARTIALLY_COMPLIANT';
         this.date = '20 juli 2021';

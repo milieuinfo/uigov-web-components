@@ -2,14 +2,14 @@ import { html } from 'lit-html';
 import '../vl-alert.component';
 import { ALERT_TYPE, ALERT_ICON } from '../vl-alert.model';
 import { alertArgs, alertArgTypes } from './vl-alert.stories-arg';
+import { Meta } from '@storybook/web-components';
+import { storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/alert',
-    description:
-        'Use the description data component to give more information about the content on the page, for example about a contact person, an entity or a publication.',
-    args: alertArgs,
-    argTypes: alertArgTypes,
-};
+    args: storyArgs(alertArgs),
+    argTypes: storyArgTypes(alertArgTypes),
+} as Meta<typeof alertArgs>;
 
 const alertTemplate = ({ closable, icon, title, size, type, content }: typeof alertArgs) => html`
     <vl-alert

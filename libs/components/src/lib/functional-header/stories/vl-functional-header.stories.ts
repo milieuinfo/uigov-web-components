@@ -1,26 +1,26 @@
 import { html } from 'lit-html';
 import '../vl-functional-header.component';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import functionalHeaderDoc from './vl-functional-header.stories-doc.mdx';
 import { functionalHeaderArgs, functionalHeaderArgTypes } from './vl-functional-header.stories-arg';
-import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-storybook';
+import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/functional-header',
-    args: functionalHeaderArgs,
-    argTypes: functionalHeaderArgTypes,
+    args: storyArgs(functionalHeaderArgs),
+    argTypes: storyArgTypes(functionalHeaderArgTypes),
     parameters: {
         docs: {
             page: functionalHeaderDoc,
-            transformSource: (input: string) => formatHTML(filterOutClasses(input)),
         },
     },
 } as Meta<typeof functionalHeaderArgs>;
 
-const Template: StoryFn<typeof functionalHeaderArgs> = (args) => {
-    const {
+const Template = story(
+    functionalHeaderArgs,
+    ({
         back,
         backLink,
         disableBackLink,
@@ -38,9 +38,7 @@ const Template: StoryFn<typeof functionalHeaderArgs> = (args) => {
         topLeftSlot,
         topRightSlot,
         onClickBack,
-    } = setDefaultArgsToNothing(args, functionalHeaderArgs);
-
-    return html`
+    }) => html`
         <vl-functional-header
             data-vl-back=${back}
             data-vl-back-link=${backLink}
@@ -55,13 +53,12 @@ const Template: StoryFn<typeof functionalHeaderArgs> = (args) => {
             ${unsafeHTML(actionsSlot)}${unsafeHTML(backSlot)}${unsafeHTML(backLinkSlot)}${unsafeHTML(subHeaderSlot)}
             ${unsafeHTML(subTitleSlot)}${unsafeHTML(titleSlot)}${unsafeHTML(topLeftSlot)}${unsafeHTML(topRightSlot)}
         </vl-functional-header>
-    `;
-};
+    `
+);
 
 export const FunctionalHeaderDefault = Template.bind({});
 FunctionalHeaderDefault.storyName = 'vl-functional-header - default';
 FunctionalHeaderDefault.args = {
-    ...functionalHeaderArgs,
     subTitle: 'Voor lager, middelbaar en hoger onderwijs',
     title: 'School- en studietoelagen',
 };
@@ -69,7 +66,6 @@ FunctionalHeaderDefault.args = {
 export const FunctionalHeaderActions = Template.bind({});
 FunctionalHeaderActions.storyName = 'vl-functional-header - actions';
 FunctionalHeaderActions.args = {
-    ...functionalHeaderArgs,
     subTitle: 'Voor lager, middelbaar en hoger onderwijs',
     title: 'School- en studietoelagen',
     actionsSlot: `<div slot="actions">
@@ -81,7 +77,6 @@ FunctionalHeaderActions.args = {
 export const FunctionalHeaderSlots = Template.bind({});
 FunctionalHeaderSlots.storyName = 'vl-functional-header - slots';
 FunctionalHeaderSlots.args = {
-    ...functionalHeaderArgs,
     backSlot: '<span slot="back">Terug</span>',
     backLinkSlot: '<a slot="back-link" href="#">Terug</a>',
     subHeaderSlot: '<span slot="sub-header">Sub header content</span>',
@@ -91,10 +86,9 @@ FunctionalHeaderSlots.args = {
     topRightSlot: '<span slot="top-right">Rechterbovenhoek content</span>',
 };
 
-export const FunctionalHeaderTabs: StoryFn<typeof functionalHeaderArgs> = (args) => {
-    const { fullWidth, marginBottom, title, link } = setDefaultArgsToNothing(args, functionalHeaderArgs);
-
-    return html`
+export const FunctionalHeaderTabs = story(
+    functionalHeaderArgs,
+    ({ fullWidth, marginBottom, title, link }) => html`
         <vl-functional-header
             ?data-vl-full-width=${fullWidth}
             data-vl-link=${link}
@@ -113,10 +107,9 @@ export const FunctionalHeaderTabs: StoryFn<typeof functionalHeaderArgs> = (args)
                 <vl-tabs-pane data-vl-id="fiets" data-vl-title="Fiets"></vl-tabs-pane>
             </vl-tabs>
         </vl-functional-header>
-    `;
-};
+    `
+);
 FunctionalHeaderTabs.storyName = 'vl-functional-header - tabs';
 FunctionalHeaderTabs.args = {
-    ...functionalHeaderArgs,
     title: 'School- en studietoelagen',
 };

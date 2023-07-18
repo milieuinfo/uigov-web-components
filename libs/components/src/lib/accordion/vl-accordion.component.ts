@@ -69,6 +69,8 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this.dress();
 
         if (this._hasTitleSlot()) {

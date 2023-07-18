@@ -1,14 +1,15 @@
 import { pillStyle } from '@domg/govflanders-style/component';
 import { accessibilityStyle, baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { createRef, ref } from 'lit/directives/ref.js';
 import { TYPE } from './vl-pill.model';
 import pillUigStyle from './vl-pill.uig-css';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-pill')
-export class VlPillComponent extends LitElement {
+export class VlPillComponent extends BaseLitElement {
     private disabled = false;
     private type = '';
     private closable = false;

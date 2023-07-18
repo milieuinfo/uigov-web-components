@@ -1,12 +1,13 @@
 import { iconStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { html, LitElement } from 'lit';
+import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { MEDIA_NAMES } from './vl-share-button.model';
 import shareButtonStyle from './vl-share-button.uig-css';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-share-button')
-export class VlShareButton extends LitElement {
+export class VlShareButton extends BaseLitElement {
     private medium = '';
     private href = '';
 

@@ -7,12 +7,13 @@ import '../vl-map-draw-point-action';
 import '../../../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import { mapDrawActionArgs, mapDrawActionArgTypes } from '../../stories/vl-map-draw-action.stories-arg';
 import mapDrawPointActionDoc from './vl-map-draw-point-action.stories-doc.mdx';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
+import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/draw-action/draw-point-action',
-    args: mapDrawActionArgs,
-    argTypes: mapDrawActionArgTypes,
+    args: storyArgs(mapDrawActionArgs),
+    argTypes: storyArgTypes(mapDrawActionArgTypes),
     parameters: {
         docs: {
             page: mapDrawPointActionDoc,
@@ -20,54 +21,53 @@ export default {
     },
 } as Meta<typeof mapDrawActionArgs>;
 
-export const MapDrawPointActionDefault: StoryFn<typeof mapDrawActionArgs> = ({ active, defaultActive }) => html`
-    <vl-map>
-        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-        <vl-map-features-layer>
-            <vl-map-draw-point-action
-                .active=${active}
-                data-vl-default-active=${defaultActive}
-            ></vl-map-draw-point-action>
-            <vl-map-layer-circle-style data-vl-border-size="2"></vl-map-layer-circle-style>
-        </vl-map-features-layer>
-    </vl-map>
-`;
+export const MapDrawPointActionDefault = story(
+    mapDrawActionArgs,
+    ({ active, defaultActive }) => html`
+        <vl-map>
+            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+            <vl-map-features-layer>
+                <vl-map-draw-point-action
+                    .active=${active}
+                    data-vl-default-active=${defaultActive}
+                ></vl-map-draw-point-action>
+                <vl-map-layer-circle-style data-vl-border-size="2"></vl-map-layer-circle-style>
+            </vl-map-features-layer>
+        </vl-map>
+    `
+);
 MapDrawPointActionDefault.storyName = 'vl-map-draw-point-action - default';
 MapDrawPointActionDefault.args = {
-    ...mapDrawActionArgs,
     active: true,
 };
 
-export const MapDrawPointActionSnapping: StoryFn<typeof mapDrawActionArgs> = ({
-    active,
-    defaultActive,
-    snapping,
-    snappingPixelTolerance,
-}) => html`
-    <vl-map>
-        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-        <vl-map-features-layer>
-            <vl-map-draw-point-action
-                .active=${active}
-                ?data-vl-default-active=${defaultActive}
-                ?data-vl-snapping=${snapping}
-                data-vl-snapping-pixel-tolerance=${snappingPixelTolerance}
-            >
-                <vl-map-wfs-layer
-                    data-vl-name="Stromend waterlichamen"
-                    data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
-                    data-vl-layers="owl_l"
-                    data-vl-max-resolution="4"
+export const MapDrawPointActionSnapping = story(
+    mapDrawActionArgs,
+    ({ active, defaultActive, snapping, snappingPixelTolerance }) => html`
+        <vl-map>
+            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+            <vl-map-features-layer>
+                <vl-map-draw-point-action
+                    .active=${active}
+                    ?data-vl-default-active=${defaultActive}
+                    ?data-vl-snapping=${snapping}
+                    data-vl-snapping-pixel-tolerance=${snappingPixelTolerance}
                 >
-                </vl-map-wfs-layer>
-            </vl-map-draw-point-action>
-            <vl-map-layer-circle-style data-vl-border-size="2"></vl-map-layer-circle-style>
-        </vl-map-features-layer>
-    </vl-map>
-`;
+                    <vl-map-wfs-layer
+                        data-vl-name="Stromend waterlichamen"
+                        data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
+                        data-vl-layers="owl_l"
+                        data-vl-max-resolution="4"
+                    >
+                    </vl-map-wfs-layer>
+                </vl-map-draw-point-action>
+                <vl-map-layer-circle-style data-vl-border-size="2"></vl-map-layer-circle-style>
+            </vl-map-features-layer>
+        </vl-map>
+    `
+);
 MapDrawPointActionSnapping.storyName = 'vl-map-draw-point-action - snapping';
 MapDrawPointActionSnapping.args = {
-    ...mapDrawActionArgs,
     active: true,
     snapping: true,
     snappingPixelTolerance: 1000,

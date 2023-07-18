@@ -58,6 +58,8 @@ export class VlSearchComponent extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         if (!this._isInline && !this._isBlock) {
             this.setAttribute('data-vl-block', ''); // default to block if none set
         }

@@ -2,12 +2,14 @@ import { html } from 'lit-html';
 import '../vl-description-data.component';
 import '../vl-description-data-item.component';
 import { descriptionDataArgs, descriptionDataArgTypes } from './vl-description-data.stories-arg';
+import { Meta } from '@storybook/web-components';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/description-data',
-    args: descriptionDataArgs,
-    argTypes: descriptionDataArgTypes,
-};
+    args: storyArgs(descriptionDataArgs),
+    argTypes: storyArgTypes(descriptionDataArgTypes),
+} as Meta<typeof descriptionDataArgs>;
 
 export const descriptionDataDefault = ({
     size,

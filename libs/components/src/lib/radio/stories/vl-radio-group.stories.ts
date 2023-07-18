@@ -1,12 +1,18 @@
 import { html } from 'lit-html';
 import '../vl-radio-group.component';
+import { storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/radio',
+    args: storyArgs({}),
+    argTypes: storyArgTypes({}),
     parameters: {
-        controls: { hideNoControlsWarning: true },
+        controls: {
+            hideNoControlsWarning: true,
+        },
     },
-};
+} as Meta;
 
 export const radioGroupDefault = () => html`
     <vl-radio-group id="radio-group-1" data-cy="radio-button-group">

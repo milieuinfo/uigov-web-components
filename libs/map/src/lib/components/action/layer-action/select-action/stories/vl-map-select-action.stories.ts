@@ -7,11 +7,12 @@ import '../vl-map-select-action';
 import '../../../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import { Meta, StoryFn } from '@storybook/web-components';
 import mapSelectActionDoc from './vl-map-select-action.stories-doc.mdx';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/layer-action/select-action',
-    args: mapSelectActionArgs,
-    argTypes: mapSelectActionArgTypes,
+    args: storyArgs(mapSelectActionArgs),
+    argTypes: storyArgTypes(mapSelectActionArgTypes),
     parameters: {
         docs: {
             page: mapSelectActionDoc,

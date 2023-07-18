@@ -33,6 +33,8 @@ export class VlAlert extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this.__processActionsElementVisibility();
         this.__processTitleElementVisibility();
         this._actionsSlotElement.addEventListener('slotchange', () => this.__processButtons());

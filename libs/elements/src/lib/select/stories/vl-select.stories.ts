@@ -1,24 +1,24 @@
 import { html } from 'lit-html';
 import '../vl-select.element';
 import { selectArgs, selectArgTypes } from './vl-select.stories-arg';
-import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-storybook';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import selectDoc from './vl-select.stories-doc.mdx';
+import { story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Elements/select',
+    args: selectArgs,
+    argTypes: selectArgTypes,
     parameters: {
         docs: {
             page: selectDoc,
-            transformSource: (input: string) => formatHTML(filterOutClasses(input)),
         },
     },
-    args: selectArgs,
-    argTypes: selectArgTypes,
 } as Meta<typeof selectArgs>;
 
-const Template: StoryFn<typeof selectArgs> = (args) => {
-    const {
+const Template = story(
+    selectArgs,
+    ({
         block,
         error,
         success,
@@ -32,9 +32,7 @@ const Template: StoryFn<typeof selectArgs> = (args) => {
         searchPlaceholder,
         searchNoResultsText,
         noMoreOptions,
-    } = setDefaultArgsToNothing(args, selectArgs);
-
-    return html`
+    }) => html`
         <select
             is="vl-select"
             ?data-vl-block=${block}
@@ -62,13 +60,13 @@ const Template: StoryFn<typeof selectArgs> = (args) => {
                 <option value="Gent">Gent</option>
             </optgroup>
         </select>
-    `;
-};
+    `
+);
 
-export const SelectDefault: StoryFn<typeof selectArgs> = Template.bind({});
+export const SelectDefault = Template.bind({});
 SelectDefault.storyName = 'vl-select - default';
 
-export const SelectExtended: StoryFn<typeof selectArgs> = Template.bind({});
+export const SelectExtended = Template.bind({});
 SelectExtended.storyName = 'vl-select - extended';
 SelectExtended.args = {
     select: true,

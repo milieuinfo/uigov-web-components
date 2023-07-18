@@ -82,6 +82,8 @@ export class VlCheckboxComponent extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this._inputElement.onchange = this._toggle;
         this._inputElement.oninput = (event: any) => event.stopPropagation();
         this._registerChangeEvent();

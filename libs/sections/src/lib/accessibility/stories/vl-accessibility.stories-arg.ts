@@ -4,27 +4,14 @@ import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 
 export const accessibilityArgs = {
-    application: '"deze applicatie"',
+    application: 'deze applicatie',
     compliance: `${COMPLIANCE_STATUS.PARTIALLY_COMPLIANT}`,
     date: '20 juli 2021',
     dateModified: '20 juli 2021',
     disableBackLink: false,
     evaluation: `${EVALUATION_STATUS.NOT_EVALUATED}`,
     version: '1.0.0',
-    limitations: {
-        withTiming: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        ],
-        withoutTiming: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        ],
-        outsideApplicableLaw: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        ],
-    },
+    limitations: null as unknown as object,
     onClickBack: action('vl-click-back'),
     headerSlot: '',
 };

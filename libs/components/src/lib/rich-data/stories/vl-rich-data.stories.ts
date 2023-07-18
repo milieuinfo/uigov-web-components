@@ -2,12 +2,14 @@ import { html } from 'lit-html';
 import '../vl-rich-data.component';
 import '../../rich-data-table/vl-rich-data-field.component';
 import { richDataArgs, richDataArgTypes } from './vl-rich-data.stories-arg';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'components/rich-data',
-    args: richDataArgs,
-    argTypes: richDataArgTypes,
-};
+    args: storyArgs(richDataArgs),
+    argTypes: storyArgTypes(richDataArgTypes),
+} as Meta<typeof richDataArgs>;
 
 export const richDataDefault = ({ filterCloseable, filterClosed }: typeof richDataArgs) => {
     return html` <vl-rich-data ?data-vl-filter-closable=${filterCloseable} ?data-vl-filter-closed=${filterClosed}>

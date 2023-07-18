@@ -15,6 +15,8 @@ export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
 
     //*
     connectedCallback() {
+        super.connectedCallback();
+
         // we willen wachten tot cookie-consent element is gerenderd om te zien of matomo uitdrukkelijk is geconfigureerd,
         // voor we het matomo script opbouwen
         if (!this.initialized) {
@@ -56,6 +58,7 @@ export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
       </vl-modal>
     `);
 
+        this.allowCustomCSS = false;
         this._optIns = {};
         this._cookieConsentCookieName = 'cookie-consent';
         this._cookieConsentDateCookieName = 'cookie-consent-date';

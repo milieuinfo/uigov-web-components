@@ -5,8 +5,8 @@ import '../../form-grid/vl-form-grid.element';
 import '../../input-field/vl-input-field.element';
 import '../../form-message/vl-form-validation-message.element';
 import { formArgs, formArgTypes } from './vl-form.stories-arg';
-import { Meta, StoryFn } from '@storybook/web-components';
-import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
+import { story } from '@domg-wc/common-storybook';
 import formValidationDoc from './vl-form-validation.stories-doc.mdx';
 
 export default {
@@ -14,13 +14,15 @@ export default {
     args: formArgs,
     argTypes: formArgTypes,
     parameters: {
-        docs: { page: formValidationDoc },
+        docs: {
+            page: formValidationDoc,
+        },
     },
 } as Meta<typeof formArgs>;
 
-export const formGroup: StoryFn<typeof formArgs> = (formParameters) => {
-    const { validate, nativeValidation } = setDefaultArgsToNothing(formParameters, formArgs);
-    return html`
+export const formGroup = story(
+    formArgs,
+    ({ validate, nativeValidation }) => html`
         <div style="max-width: 800px">
             <form is="vl-form" ?data-vl-validate=${validate} ?data-vl-native-validation=${nativeValidation}>
                 <div is="vl-form-group" data-cy="form-group">
@@ -121,8 +123,8 @@ export const formGroup: StoryFn<typeof formArgs> = (formParameters) => {
                 </div>
             </form>
         </div>
-    `;
-};
+    `
+);
 formGroup.storyName = 'vl-form - group';
 formGroup.args = {
     validate: true,

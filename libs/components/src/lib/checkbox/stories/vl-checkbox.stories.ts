@@ -3,13 +3,16 @@ import '../vl-checkbox.component';
 import { checkboxArgs, checkboxArgTypes } from './vl-checkbox.stories-arg';
 import { Meta, StoryFn } from '@storybook/web-components';
 import checkboxDoc from './vl-checkbox.stories-doc.mdx';
+import { storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/checkbox',
-    args: checkboxArgs,
-    argTypes: checkboxArgTypes,
+    args: storyArgs(checkboxArgs),
+    argTypes: storyArgTypes(checkboxArgTypes),
     parameters: {
-        docs: { page: checkboxDoc },
+        docs: {
+            page: checkboxDoc,
+        },
     },
 } as Meta<typeof checkboxArgs>;
 

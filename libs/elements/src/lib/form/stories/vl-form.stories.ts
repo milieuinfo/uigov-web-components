@@ -4,9 +4,9 @@ import '../../button/vl-button.element';
 import '../../form-grid/vl-form-grid.element';
 import '../../form-message/vl-form-annotation.element';
 import { formArgs, formArgTypes } from './vl-form.stories-arg';
-import { Meta, StoryFn } from '@storybook/web-components';
-import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import formValidationDoc from './vl-form-validation.stories-doc.mdx';
+import { story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Elements/form',
@@ -17,9 +17,9 @@ export default {
     },
 } as Meta<typeof formArgs>;
 
-export const formDefault: StoryFn<typeof formArgs> = (formParameters: typeof formArgs) => {
-    const { validate, nativeValidation } = setDefaultArgsToNothing(formParameters, formArgs);
-    return html`
+export const formDefault = story(
+    formArgs,
+    ({ validate, nativeValidation }) => html`
         <div style="max-width: 800px">
             <form is="vl-form" ?data-vl-validate=${validate} ?data-vl-native-validation=${nativeValidation}>
                 <div is="vl-form-grid" data-vl-is-stacked>
@@ -55,7 +55,7 @@ export const formDefault: StoryFn<typeof formArgs> = (formParameters: typeof for
                 </div>
             </form>
         </div>
-    `;
-};
+    `
+);
 formDefault.storyName = 'vl-form - default';
 formDefault.args = { validate: false };

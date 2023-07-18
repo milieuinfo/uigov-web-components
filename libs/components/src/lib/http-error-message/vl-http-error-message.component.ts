@@ -56,6 +56,8 @@ export class VlHttpErrorMessage extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this.__processAttributes();
     }
 

@@ -52,6 +52,8 @@ export class VlUploadComponent extends vlFormValidationElement(BaseHTMLElement) 
     }
 
     connectedCallback(): void {
+        super.connectedCallback();
+
         this._appendTemplates();
         this.dress();
         this._processSlots();

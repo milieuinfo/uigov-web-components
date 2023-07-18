@@ -1,11 +1,12 @@
-import { html, LitElement, TemplateResult } from 'lit';
+import { html, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { CSSResult } from 'lit/development';
 import { VlMapActionControl } from './action-control/vl-map-action-control';
 import styles from './vl-map-controls.uig-css';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-map-action-controls')
-export class VlMapActionControls extends LitElement {
+export class VlMapActionControls extends BaseLitElement {
     static get styles(): CSSResult[] {
         return [styles];
     }

@@ -4,5 +4,7 @@ export {
     filterOutClasses,
     formatHTML,
     logStorybookEvent,
-    setDefaultArgsToNothing,
+    story,
+    storyArgs,
+    storyArgTypes,
 } from './lib/stories.helper';

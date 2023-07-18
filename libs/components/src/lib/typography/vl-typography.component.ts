@@ -36,6 +36,8 @@ export class VlTypography extends BaseElementOfType(HTMLElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         this.__processSlotElements();
     }
 
