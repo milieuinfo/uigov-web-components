@@ -87,7 +87,7 @@ export class VlMapWmtsLayer extends VlMapLayer {
     }
 
     get __prefixMatrix(): boolean {
-        return this.getAttribute('matrix-prefix') != undefined;
+        return this.getAttribute('matrix-prefix') !== undefined;
     }
 
     get __grbTileLimits() {
