@@ -83,7 +83,7 @@ export class VlMapWmtsLayer extends VlMapLayer {
     }
 
     get __grbMatrixSet(): string {
-        return this.getAttribute('matrix-set') || "BPL72VL";
+        return this.getAttribute('matrix-set') || 'BPL72VL';
     }
 
     get __prefixMatrix(): boolean {
@@ -94,7 +94,6 @@ export class VlMapWmtsLayer extends VlMapLayer {
         const size = OlExtent.getWidth(this._projection.getExtent()) / 256;
         const resolutions = new Array(16);
         const matrixIds = new Array(16);
-        console.log(this.__prefixMatrix);
         for (let z = 0; z < 16; ++z) {
             resolutions[z] = size / Math.pow(2, z);
             matrixIds[z] = this.__prefixMatrix
