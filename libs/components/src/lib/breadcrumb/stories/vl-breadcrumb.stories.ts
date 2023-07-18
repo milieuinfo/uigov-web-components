@@ -4,7 +4,7 @@ import '../vl-breadcrumb-item.component';
 import { breadcrumbItemArgs, breadcrumbItemArgTypes } from './vl-breadcrumb.stories-arg';
 import { Meta, StoryFn } from '@storybook/web-components';
 import breadcrumbDoc from './vl-breadcrumb.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/breadcrumb',

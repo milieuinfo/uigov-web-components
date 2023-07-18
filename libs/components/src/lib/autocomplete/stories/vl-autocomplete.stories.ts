@@ -4,7 +4,7 @@ import { CAPTION_FORMAT, GROUP_BY } from '../vl-autocomplete.model';
 import { fetchDataFromMockedApiCall } from './vl-autocomplete-mocked-api.stories-util';
 import { fetchDataFromApiCall } from './vl-autocomplete-api.stories-util';
 import '../vl-autocomplete.component';
-import { filterOutClasses, formatHTML } from '@domg-wc/common-utilities';
+import { filterOutClasses, formatHTML } from '@domg-wc/common-storybook';
 import autocompleteDoc from './vl-autocomplete.stories-doc.mdx';
 import { StoryFn } from '@storybook/web-components';
 

@@ -6,7 +6,7 @@ import '../../input-field/vl-input-field.element';
 import '../../form-message/vl-form-validation-message.element';
 import { formArgs, formArgTypes } from './vl-form.stories-arg';
 import { Meta, StoryFn } from '@storybook/web-components';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 import formValidationDoc from './vl-form-validation.stories-doc.mdx';
 
 export default {

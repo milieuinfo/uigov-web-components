@@ -5,7 +5,7 @@ import '../vl-map-features-layer';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { mapFeaturesLayerArgs, mapFeaturesLayerArgTypes } from './vl-map-features-layer.stories-arg';
 import mapFeaturesLayerDoc from './vl-map-features-layer.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/vector-layer/features-layer',

@@ -4,7 +4,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { accordionArgs, accordionArgTypes } from './vl-accordion.stories-arg';
 import accordionDoc from './vl-accordion.stories-doc.mdx';
-import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/accordion',

@@ -1,6 +1,6 @@
 import { ArgTypes } from '@storybook/web-components';
 import { richDataArgs, richDataArgTypes } from '../../rich-data/stories/vl-rich-data.stories-arg';
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 
 export const richDataTableArgs = {
     ...richDataArgs,
@@ -13,8 +13,7 @@ export const richDataTableArgTypes: ArgTypes<typeof richDataTableArgs> = {
     ...richDataArgTypes,
     collapsedM: {
         name: 'data-vl-collapsed-m',
-        description:
-            'Vanaf medium schermgrootte, cellen per rij onder elkaar ipv naast elkaar',
+        description: 'Vanaf medium schermgrootte, cellen per rij onder elkaar ipv naast elkaar',
         table: {
             category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN },
@@ -23,8 +22,7 @@ export const richDataTableArgTypes: ArgTypes<typeof richDataTableArgs> = {
     },
     collapsedS: {
         name: 'data-vl-collapsed-s',
-        description:
-            'Vanaf een small schermgrootte, cellen per rij onder elkaar ipv naast elkaar',
+        description: 'Vanaf een small schermgrootte, cellen per rij onder elkaar ipv naast elkaar',
         table: {
             category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN },
@@ -33,8 +31,7 @@ export const richDataTableArgTypes: ArgTypes<typeof richDataTableArgs> = {
     },
     collapsedXS: {
         name: 'data-vl-collapsed-xs',
-        description:
-            'Vanaf een extra small schermgrootte, cellen per rij onder elkaar ipv naast elkaar',
+        description: 'Vanaf een extra small schermgrootte, cellen per rij onder elkaar ipv naast elkaar',
         table: {
             category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN },

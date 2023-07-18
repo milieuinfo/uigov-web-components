@@ -5,7 +5,7 @@ import '../vl-map-tiled-wms-layer';
 import { mapWmsLayerArgs, mapWmsLayerArgTypes } from '../../stories/vl-map-wms-layer.stories-arg';
 import { Meta, StoryFn } from '@storybook/web-components';
 import mapTiledWmsLayerDoc from './vl-map-tiled-wms-layer.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/wms-layer/tiled-wms-layer',

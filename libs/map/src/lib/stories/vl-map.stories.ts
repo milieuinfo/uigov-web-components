@@ -2,7 +2,7 @@ import { mapArgs, mapArgTypes } from './vl-map.stories-arg';
 import { html } from 'lit';
 import { Meta, StoryFn } from '@storybook/web-components';
 import mapDoc from './vl-map.stories-doc.mdx';
-import { filterOutClasses, formatHTML } from '@domg-wc/common-utilities';
+import { filterOutClasses, formatHTML } from '@domg-wc/common-storybook';
 import {
     getActionElement,
     getToggleButton,

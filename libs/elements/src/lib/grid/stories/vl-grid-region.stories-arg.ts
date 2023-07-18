@@ -1,5 +1,5 @@
 import '../vl-grid.element';
-import { CATEGORIES } from '@domg-wc/common-utilities';
+import { CATEGORIES } from '@domg-wc/common-storybook';
 
 export const gridRegionArgs = {
     content:

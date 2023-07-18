@@ -1,4 +1,4 @@
-import { TYPES } from '@domg-wc/common-utilities';
+import { TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { defaultTinyMceToolbar } from '../vl-textarea.element';
 

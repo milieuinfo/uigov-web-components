@@ -1,4 +1,4 @@
-import { TYPES } from '@domg-wc/common-utilities';
+import { TYPES } from '@domg-wc/common-storybook';
 import { Args, ArgTypes } from '@storybook/web-components';
 
 export const toasterArgs: Args = {
@@ -23,7 +23,8 @@ export const toasterArgTypes: ArgTypes = {
     },
     topRight: {
         name: 'data-vl-top-right',
-        description: 'Positioneert de toaster op rechterbovenhoek. Standaard gaat de toaster altijd in de rechterbovenhoek getoond worden.',
+        description:
+            'Positioneert de toaster op rechterbovenhoek. Standaard gaat de toaster altijd in de rechterbovenhoek getoond worden.',
         table: {
             type: {
                 summary: TYPES.BOOLEAN,

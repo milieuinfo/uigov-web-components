@@ -8,7 +8,7 @@ import mapSelectActionsDoc from './vl-map-select-actions.stories-doc.mdx';
 import { mapSelectActionsArgs, mapSelectActionsArgTypes } from './vl-map-select-actions.stories-arg';
 import { component as defaultComponent } from './vl-map-select-actions.stories-default';
 import { component as clusteringComponent } from './vl-map-select-actions.stories-clustering';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/layer-action/select-action/select-actions',

@@ -1,4 +1,4 @@
-import { TYPES } from '@domg-wc/common-utilities';
+import { TYPES } from '@domg-wc/common-storybook';
 
 export const descriptionDataItemArgs = {
     label: 'Uitgever',

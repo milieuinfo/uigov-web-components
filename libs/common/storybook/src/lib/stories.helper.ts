@@ -1,6 +1,7 @@
 import { nothing } from 'lit';
 import * as prettier from 'prettier/standalone';
 import * as prettierBabel from 'prettier/parser-babel';
+import { action } from '@storybook/addon-actions';
 
 export const CATEGORIES = {
     ATTRIBUTES: 'Attributes',
@@ -45,6 +46,17 @@ export const formatHTML = (input: string) => {
         // Geeft de originele input terug als het formatteren mislukt is.
         return input;
     }
+};
+
+// Logt het event in zowel in Storybook als in de developer console.
+// Logt het event in de developer console omdat in Storybook custom event properties soms niet gelogd worden.
+export const logStorybookEvent = <T extends Event>(eventName: string) => {
+    return (event: T) => {
+        if (!event) return;
+
+        console.log(event);
+        action(eventName)(event);
+    };
 };
 
 // Gebruik deze functie om de args van een story die overeen komen met de default args van een component

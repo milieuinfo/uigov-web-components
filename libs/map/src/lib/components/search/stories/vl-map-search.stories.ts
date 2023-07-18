@@ -4,7 +4,7 @@ import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../vl-map-search';
 import { mapSearchArgs, mapSearchArgTypes } from './vl-map-search.stories-arg';
-import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { filterOutClasses, formatHTML, setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 import mapSearchDoc from './vl-map-search.stories-doc.mdx';
 
 export default {

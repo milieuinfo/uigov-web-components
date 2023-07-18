@@ -5,7 +5,7 @@ import '../vl-map-wmts-layer';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { mapWmtsLayerArgTypes, mapWmtsLayerArgs } from './vl-map-wmts-layer.stories-arg';
 import mapWmtsLayerDoc from './vl-map-wmts-layer.stories-doc.mdx';
-import { setDefaultArgsToNothing } from '@domg-wc/common-utilities';
+import { setDefaultArgsToNothing } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/wmts-layer',
