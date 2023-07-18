@@ -1,3 +1,5 @@
+import { VlAlertClosedEvent } from '@domg-wc/components';
+
 const alertUrl = 'http://localhost:8080/iframe.html?id=components-alert--alert-default&viewMode=story';
 
 describe('story vl-alert', () => {
@@ -29,9 +31,11 @@ describe('story vl-alert', () => {
         cy.getDataCy('alert').shadow().find('#close').should('have.class', 'vl-alert__close');
     });
 
-    it('should be removed after clicking the close button', () => {
+    it('should be removed after clicking the close button and send a VlAlertClosedEvent', () => {
         cy.visit(`${alertUrl}&args=type:error;closable:true`);
+        cy.createStubForEvent('vl-alert', VlAlertClosedEvent.eventType);
         cy.getDataCy('alert').shadow().find('#close').click();
         cy.getDataCy('alert').should('not.exist');
+        cy.get('@' + VlAlertClosedEvent.eventType).should('have.been.calledOnce');
     });
 });

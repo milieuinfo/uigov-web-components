@@ -1,6 +1,6 @@
 export { VlAccordionComponent } from './lib/accordion';
 export { VlAccordionListComponent } from './lib/accordion-list';
-export { VlAlert, ALERT_ICON, ALERT_SIZE, ALERT_TYPE } from './lib/alert';
+export { VlAlert, VlAlertClosedEvent, ALERT_ICON, ALERT_SIZE, ALERT_TYPE } from './lib/alert';
 export { VlAnnotation } from './lib/annotation';
 export { VlAutocomplete } from './lib/autocomplete';
 export { VlBreadcrumbComponent, VlBreadcrumbItemComponent } from './lib/breadcrumb';

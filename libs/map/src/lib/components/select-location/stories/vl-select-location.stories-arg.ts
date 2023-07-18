@@ -1,6 +1,5 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-utilities';
+import { CATEGORIES, logStorybookEvent, TYPES } from '@domg-wc/common-utilities';
 import { ArgTypes } from '@storybook/web-components';
-import { logStorybookEvent } from '../../../utils/util';
 
 export const selectLocationArg = {
     placeholder: 'Zoeken op kaart',
