@@ -18,6 +18,22 @@ const wmtsLayerFixture = async () =>
         </vl-map>
     `);
 
+const wmtsLayerWithDifferentMatrixSetFixture = async () =>
+    fixture(html`
+        <vl-map>
+            <vl-map-wmts-layer
+                data-vl-url="https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
+                data-vl-layer="grb_sel"
+                data-vl-name="GRB Wegenkaart"
+                data-vl-min-resolution="2"
+                data-vl-max-resolution="4"
+                data-vl-matrix-set="MOCKMATRIX"
+                data-vl-matrix-prefix
+            >
+            </vl-map-wmts-layer>
+        </vl-map>
+    `);
+
 const wmtsLayerHiddenFixture = async () =>
     fixture(html`
         <vl-map>
@@ -71,6 +87,48 @@ describe('vl-map-wmts-layer', () => {
         );
         assert.deepEqual(tileGrid.getMatrixIds(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
     });
+
+    it('de matrix configuratie wordt gerespecteerd', async() => {
+        const map: any = await wmtsLayerWithDifferentMatrixSetFixture();
+        await map.ready;
+        const layers = map.map.getOverlayLayers();
+        assert.lengthOf(layers, 1);
+        const layer = layers[0];
+        const source = layer.getSource();
+        assert.isTrue(source instanceof OlWMTSSource);
+        assert.equal(source.getMatrixSet(), 'MOCKMATRIX');
+    });
+
+    it('de matrixset wordt geprefixed indien meegegeven' , async () => {
+        const map: any = await wmtsLayerWithDifferentMatrixSetFixture();
+        await map.ready;
+
+        const layers = map.map.getOverlayLayers();
+        assert.lengthOf(layers, 1);
+        const layer = layers[0];
+
+        const source = layer.getSource();
+        const tileGrid = source.getTileGrid();
+        assert.deepEqual(tileGrid.getMatrixIds(), [
+            'MOCKMATRIX:0',
+            'MOCKMATRIX:1',
+            'MOCKMATRIX:2',
+            'MOCKMATRIX:3',
+            'MOCKMATRIX:4',
+            'MOCKMATRIX:5',
+            'MOCKMATRIX:6',
+            'MOCKMATRIX:7',
+            'MOCKMATRIX:8',
+            'MOCKMATRIX:9',
+            'MOCKMATRIX:10',
+            'MOCKMATRIX:11',
+            'MOCKMATRIX:12',
+            'MOCKMATRIX:13',
+            'MOCKMATRIX:14',
+            'MOCKMATRIX:15'
+        ]);
+    });
+
 
     it('de kaartlaag zal pas angemaakt worden na constructie zodat op moment van constructie nog niet al de attributen gekend moeten zijn', async () => {
         const map: any = await mapFixture();
