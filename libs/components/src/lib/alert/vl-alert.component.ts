@@ -1,6 +1,7 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { alertStyle, iconStyle } from '@domg/govflanders-style/component';
 import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
+import { VlAlertClosedEvent } from './vl-alert-closed-event';
 
 @webComponent('vl-alert')
 export class VlAlert extends BaseElementOfType(HTMLElement) {
@@ -160,6 +161,7 @@ export class VlAlert extends BaseElementOfType(HTMLElement) {
 
     __removeAlert() {
         this.getRootNode().host.remove();
+        this.getRootNode().host.dispatchEvent(new VlAlertClosedEvent());
     }
 }
 
