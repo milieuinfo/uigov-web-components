@@ -1,5 +1,7 @@
 import { ArgTypes } from '@storybook/web-components';
 import { ALERT_ICON, ALERT_SIZE, ALERT_TYPE } from '../vl-alert.model';
+import { VlAlertClosedEvent } from '../vl-alert-closed-event';
+import { CATEGORIES, logStorybookEvent } from '@domg-wc/common-storybook';
 
 export const alertArgs = {
     title: 'Lorem ipsum',
@@ -7,6 +9,7 @@ export const alertArgs = {
     size: '',
     type: '',
     closable: false,
+    alertClosed: logStorybookEvent(VlAlertClosedEvent.eventType),
     buttonSlotText: 'Button',
     titleSlotText: 'Title via slot',
     content:
@@ -73,6 +76,14 @@ export const alertArgTypes: ArgTypes<typeof alertArgs> = {
             type: { summary: 'Boolean' },
             defaultValue: { summary: 'false' },
             category: 'Attributes',
+        },
+    },
+    alertClosed: {
+        name: VlAlertClosedEvent.eventType,
+        description: 'Afgevuurd wanneer de alert wordt gesloten.',
+        table: {
+            type: { summary: '-' },
+            category: CATEGORIES.EVENTS,
         },
     },
     titleSlotText: {
