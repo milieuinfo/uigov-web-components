@@ -4111,12 +4111,9 @@
             this.dropzoneInstances = [];
         }
 
-        // UIG-2520 - lijst van fileHashes
-        const fileHashes = [];
-
         // UIG-2520 - functie om te zien of hash al bestaat in lijst van fileHashes,
         // indien niet, wordt die in lijst van fileHashes toegevoegd
-        const checkIfFileHasDuplicateHash = (fileToCheck) => {
+        const areFileHashesEqual = async (fileA, fileB) => {
             /**
              * this function will use digest method from native Crypto API to calculate unique hex string
              * it'll return the same hex string regardless of file meta-data but based on the blob data itself
@@ -4126,54 +4123,40 @@
             async function getDigestHexString(arrayBuffer) {
                 const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer); // hash the message
                 const hashArray = Array.from(new Uint8Array(hashBuffer)); // convert buffer to byte array
-                const hexString = hashArray.map((b) => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
-                return hexString;
+                return hashArray.map((b) => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
             }
 
             /**
-             * returns true if hex string is found in previously added files
+             * returns file hash
              * @param file
-             * @returns {Promise<boolean>}
+             * @returns {Promise<string>}
              */
-            async function detectDuplicate(file) {
+            async function getFileHash(file) {
                 const arrayBuffer = await file.arrayBuffer();
-
-                const digestHex = await getDigestHexString(arrayBuffer);
-                const hexStringFound = fileHashes.indexOf(digestHex) !== -1;
-
-                if (!hexStringFound) {
-                    // no duplicate was found, so we add the generated hex string in to the list of current hashes
-                    // if a duplicate was found, we'll remove it from the list of files,
-                    // so in that case we don't need to add it again to the list of hashes
-                    fileHashes.push(digestHex);
-                }
-
-                return hexStringFound;
+                return await getDigestHexString(arrayBuffer);
             }
 
-            if (fileToCheck instanceof File) {
-                return detectDuplicate(fileToCheck);
-            }
-            return false;
+            const fileHashA = await getFileHash(fileA);
+            const fileHashB = await getFileHash(fileB);
+
+            return fileHashA === fileHashB;
         };
 
         _createClass(Upload, [
             {
                 key: 'removeDuplicate',
-                value: function removeDuplicate(dz, file) {
+                value: async function removeDuplicate(dz, file) {
                     const { files } = dz;
-                    if (files) {
-                        let i = 0;
-                        // we reverse the file list so that last file added
-                        // will be the first duplicate found to be removed
-                        const reversedFilesList = files.reverse();
-                        const filesLength = reversedFilesList.length;
-                        const ref = reversedFilesList.slice();
-                        for (; i < filesLength - 1; i++) {
+                    if (files && file) {
+                        const filesLength = files.length;
+                        const ref = files.slice();
+                        for (let i = 0; i < filesLength - 1; i++) {
                             if (ref[i] && file) {
-                                const isDuplicate = checkIfFileHasDuplicateHash(file);
-                                if ((ref[i].name === file.name && ref[i].size === file.size) || isDuplicate) {
-                                    dz.removeFile(ref[i], { isDuplicate: true });
+                                // UIG-2567 bestandsinhoud vergelijken van toegevoegd en aanwezig bestand
+                                const hasSameFileContent = await areFileHashesEqual(ref[i], file);
+                                if ((ref[i].name === file.name && ref[i].size === file.size) || hasSameFileContent) {
+                                    // UIG-2567 ipv het oude bestand te verwijderen, verwijderen we het nieuwste
+                                    dz.removeFile(file, { isDuplicate: true });
                                 }
                             }
                         }

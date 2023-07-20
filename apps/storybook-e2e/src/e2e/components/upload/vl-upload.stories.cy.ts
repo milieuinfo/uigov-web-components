@@ -151,11 +151,12 @@ describe('story vl-upload - default', () => {
     });
 
     it('when adding duplicate files, only one will be added & duplicateRemoved event will be thrown', () => {
-        cy.visit(uploadUrl.concat(`&args=maxFiles:2;disallowDuplicates:true`));
+        cy.visit(uploadUrl.concat(`&args=maxFiles:4;disallowDuplicates:true`));
 
-        shouldAddPdfFiles(2);
-        shouldHaveUploadFiles(1);
         cy.createStubForEvent('vl-upload', 'duplicateRemoved');
+        shouldAddPdfFiles(2);
+        shouldAddTxtFiles(2);
+        shouldHaveUploadFiles(2);
         cy.get('@duplicateRemoved').should('have.been.called');
     });
 
