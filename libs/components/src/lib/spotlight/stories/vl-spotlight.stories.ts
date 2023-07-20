@@ -100,6 +100,7 @@ export const spotlightWithImage = () => html`
         data-vl-img-alt="spotlight image"
     >
         <span slot="title"> Premies voor renovatie </span>
+        <span slot="subtitle">Er zijn er verschillende...</span>
         <span slot="text"
             >Gaat u bouwen of verbouwen? Investeer in energiebesparende maatregelen en bespaar heel wat op uw
             energiefactuur.</span

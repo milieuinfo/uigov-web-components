@@ -57,12 +57,10 @@ export class VlSpotlight extends BaseLitElement {
     }
 
     __processSlotTitle() {
-        if (this.imgSrc) return html``;
         return this._getTitleTemplateWithValue(this.__getSlot('title'));
     }
 
     __processSlotSubTitle() {
-        if (this.imgSrc) return html``;
         return this._getSubTitleTemplateWithValue(this.__getSlot('subtitle'));
     }
 
