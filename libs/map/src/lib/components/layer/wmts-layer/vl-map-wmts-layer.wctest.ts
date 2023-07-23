@@ -8,7 +8,7 @@ const wmtsLayerFixture = async () =>
     fixture(html`
         <vl-map>
             <vl-map-wmts-layer
-                data-vl-url="https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
+                data-vl-url="https://geo.api.vlaanderen.be/GRB/wmts"
                 data-vl-layer="grb_sel"
                 data-vl-name="GRB Wegenkaart"
                 data-vl-min-resolution="2"
@@ -22,7 +22,7 @@ const wmtsLayerWithDifferentMatrixSetFixture = async () =>
     fixture(html`
         <vl-map>
             <vl-map-wmts-layer
-                data-vl-url="https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
+                data-vl-url="https://geo.api.vlaanderen.be/GRB/wmts"
                 data-vl-layer="grb_sel"
                 data-vl-name="GRB Wegenkaart"
                 data-vl-min-resolution="2"
@@ -38,7 +38,7 @@ const wmtsLayerHiddenFixture = async () =>
     fixture(html`
         <vl-map>
             <vl-map-wmts-layer
-                data-vl-url="https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
+                data-vl-url="https://geo.api.vlaanderen.be/GRB/wmts"
                 data-vl-layer="grb_sel"
                 data-vl-name="GRB Wegenkaart"
                 data-vl-min-resolution="2"
@@ -71,7 +71,7 @@ describe('vl-map-wmts-layer', () => {
         assert.isTrue(source instanceof OlWMTSSource);
 
         assert.lengthOf(source.urls, 1);
-        assert.equal(source.urls[0], 'https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts');
+        assert.equal(source.urls[0], 'https://geo.api.vlaanderen.be/GRB/wmts');
         assert.equal(source.getLayer(), 'grb_sel');
         assert.equal(source.getMatrixSet(), 'BPL72VL');
         assert.equal(source.getFormat(), 'image/png');
@@ -133,7 +133,7 @@ describe('vl-map-wmts-layer', () => {
     it('de kaartlaag zal pas angemaakt worden na constructie zodat op moment van constructie nog niet al de attributen gekend moeten zijn', async () => {
         const map: any = await mapFixture();
         const layer = document.createElement('vl-map-wmts-layer');
-        layer.setAttribute('data-vl-url', 'https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts');
+        layer.setAttribute('data-vl-url', 'https://geo.api.vlaanderen.be/GRB/wmts');
         layer.setAttribute('data-vl-layer', 'grb_sel');
         layer.setAttribute('data-vl-name', 'GRB Wegenkaart');
         layer.setAttribute('data-vl-min-resolution', '2');

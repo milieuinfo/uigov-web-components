@@ -42,5 +42,5 @@ MapTiledWmsLayerDefault.storyName = 'vl-map-tiled-wms-layer - default';
 MapTiledWmsLayerDefault.args = {
     layers: 'GEM_GRENS',
     name: 'Gemeentegrenzen',
-    url: 'https://geoservices.informatievlaanderen.be/raadpleegdiensten/GRB/wms',
+    url: 'https://geo.api.vlaanderen.be/GRB/wms',
 };

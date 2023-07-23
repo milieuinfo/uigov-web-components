@@ -41,5 +41,5 @@ MapWmtsLayerDefault.storyName = 'vl-map-wmts-layer - default';
 MapWmtsLayerDefault.args = {
     name: 'GRB Wegenkaart',
     layer: 'grb_sel',
-    url: 'https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts',
+    url: 'https://geo.api.vlaanderen.be/GRB/wmts',
 };

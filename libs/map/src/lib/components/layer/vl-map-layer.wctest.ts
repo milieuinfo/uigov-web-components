@@ -73,7 +73,7 @@ const wmtsLayerFixture = async () =>
     fixture(html`
         <vl-map>
             <vl-map-wmts-layer
-                data-vl-url="https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
+                data-vl-url="http://dummy/wmts"
                 data-vl-layer="grb_sel"
                 data-vl-name="GRB Wegenkaart"
                 data-vl-min-resolution="2"
@@ -131,11 +131,11 @@ const wmtsLayersFixture = async () =>
     fixture(html`
         <vl-map>
             <vl-map-wmts-layer
-                data-vl-url="https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
+                data-vl-url="http://dummy/wmts"
                 data-vl-layer="grb_sel"
             ></vl-map-wmts-layer>
             <vl-map-wmts-layer
-                data-vl-url="https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
+                data-vl-url="http://dummy/wmts"
                 data-vl-layer="grb_sel"
             ></vl-map-wmts-layer>
         </vl-map>
