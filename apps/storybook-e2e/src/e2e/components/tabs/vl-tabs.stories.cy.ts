@@ -1,4 +1,5 @@
 const tabsUrl = 'http://localhost:8080/iframe.html?id=components-tabs--tabs-default&viewMode=story';
+const tabsWithoutActiveUrl = 'http://localhost:8080/iframe.html?id=components-tabs--tabs-without-active-tab&viewMode=story';
 const tabsDynamicUrl = 'http://localhost:8080/iframe.html?id=components-tabs--tabs-dynamic&viewMode=story';
 
 const shouldHaveTabWithTitle = (selector: string, title: string) => {
@@ -20,6 +21,26 @@ const shouldBeHidden = (selector: string) => {
         .should('have.attr', 'data-vl-show', 'false')
         .should('have.css', 'display', 'none');
 };
+
+describe('story vl-tabs no active tab', () => {
+   it('No active tab should be selected', () => {
+       cy.visit(tabsWithoutActiveUrl);
+       cy.get('vl-tabs')
+        .shadow()
+        .find('a[aria-selected="true"]')
+       .should('not.exist');
+   });
+
+    it('The responsive label should be visible', () => {
+        cy.viewport(749, 660);
+        cy.visit(tabsWithoutActiveUrl);
+        cy.get('vl-tabs')
+        .shadow()
+        .find('#data-vl-tabs-responsive-label')
+        .should('have.text', 'Navigatie/menu')
+        .should('be.visible');
+    });
+});
 
 describe('story vl-tabs default', () => {
     it('should contain three tabs with titles', () => {

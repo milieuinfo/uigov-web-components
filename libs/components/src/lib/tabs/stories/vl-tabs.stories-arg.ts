@@ -6,7 +6,7 @@ export const tabsArgs = {
     activeTab: '',
     alt: false,
     disableLinks: false,
-    responsiveLabel: false,
+    responsiveLabel: '',
     id: '',
     title: '',
     observeTitle: false,
@@ -48,7 +48,7 @@ export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {
         description:
             'Wordt afgebeeld op mobile wanneer de tabs samengevoegd worden tot een uitklapbaar menu. Wordt enkel afgebeeld wanneer er geen tab geselecteerd is.',
         table: {
-            type: { summary: TYPES.BOOLEAN },
+            type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: tabsArgs.responsiveLabel },
         },
