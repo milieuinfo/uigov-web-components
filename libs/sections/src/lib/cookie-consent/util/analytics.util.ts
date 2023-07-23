@@ -292,7 +292,7 @@ class AnalyticsUtil {
                     "_paq.push(['setCustomUrl', currentUrl]);" +
                     "_paq.push(['setDocumentTitle', document.title]);" +
                     "_paq.push(['deleteCustomVariables', 'page']);" +
-                    "_paq.push(['setGenerationTimeMs', 0]);" +
+                    "_paq.push(['setPagePerformanceTiming', 0]);" +
                     "_paq.push(['trackPageView']);" +
                     "var content = document.getElementById('content');" +
                     "_paq.push(['MediaAnalytics::scanForMedia', content]);" +
