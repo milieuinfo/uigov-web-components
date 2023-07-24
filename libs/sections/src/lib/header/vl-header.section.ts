@@ -1,3 +1,4 @@
+import { PropertyDeclarations } from 'lit';
 import { BaseLitElement, awaitScript, webComponentCustom } from '@domg-wc/common-utilities';
 
 const customRegistration = () =>
@@ -19,58 +20,31 @@ const customRegistration = () =>
 
 @webComponentCustom(customRegistration)
 export class VlHeader extends BaseLitElement {
+    // Attributen
     private authenticatedUserUrl = '/sso/ingelogde_gebruiker';
     private development = false;
     private identifier = '';
     private loginRedirectUrl = '/';
     private loginUrl = '/sso/aanmelden';
     private logoutUrl = '/sso/afgemeld';
-    private switchCapacityUrl = '/sso/wissel_organisatie';
     private simple = false;
-    private observer: MutationObserver | null = null;
+    private switchCapacityUrl = '/sso/wissel_organisatie';
 
-    static get properties() {
+    // Private properties
+    private observer: MutationObserver | null = null;
+    private session: any = null;
+    private authenticated = false;
+
+    static get properties(): PropertyDeclarations {
         return {
-            authenticatedUserUrl: {
-                type: String,
-                attribute: 'data-vl-authenticated-user-url',
-                reflect: true,
-            },
-            development: {
-                type: Boolean,
-                attribute: 'data-vl-development',
-                reflect: true,
-            },
-            identifier: {
-                type: String,
-                attribute: 'data-vl-identifier',
-                reflect: true,
-            },
-            loginRedirectUrl: {
-                type: String,
-                attribute: 'data-vl-login-redirect-url',
-                reflect: true,
-            },
-            loginUrl: {
-                type: String,
-                attribute: 'data-vl-login-url',
-                reflect: true,
-            },
-            logoutUrl: {
-                type: String,
-                attribute: 'data-vl-logout-url',
-                reflect: true,
-            },
-            simple: {
-                type: Boolean,
-                attribute: 'data-vl-simple',
-                reflect: true,
-            },
-            switchCapacityUrl: {
-                type: String,
-                attribute: 'data-vl-switch-capacity-url',
-                reflect: true,
-            },
+            authenticatedUserUrl: { type: String, attribute: 'data-vl-authenticated-user-url', reflect: true },
+            development: { type: Boolean, attribute: 'data-vl-development', reflect: true },
+            identifier: { type: String, attribute: 'data-vl-identifier', reflect: true },
+            loginRedirectUrl: { type: String, attribute: 'data-vl-login-redirect-url', reflect: true },
+            loginUrl: { type: String, attribute: 'data-vl-login-url', reflect: true },
+            logoutUrl: { type: String, attribute: 'data-vl-logout-url', reflect: true },
+            simple: { type: Boolean, attribute: 'data-vl-simple', reflect: true },
+            switchCapacityUrl: { type: String, attribute: 'data-vl-switch-capacity-url', reflect: true },
         };
     }
 
@@ -80,19 +54,47 @@ export class VlHeader extends BaseLitElement {
         this.allowCustomCSS = false;
     }
 
-    private get headerContainer() {
+    connectedCallback(): void {
+        super.connectedCallback();
+
+        this.injectHeaderContainer();
+        this.observeWidgetIsAdded();
+        this.loadWidget();
+    }
+
+    disconnectedCallback(): void {
+        super.disconnectedCallback();
+
+        this.headerContainer?.remove();
+        this.observer?.disconnect();
+    }
+
+    protected willUpdate(changedProperties: Map<string, unknown>): void {
+        const sessionProperties = ['loginUrl', 'loginRedirectUrl', 'logoutUrl', 'switchCapacityUrl'];
+
+        if (sessionProperties.some((property) => changedProperties.has(property))) {
+            this.configureSession();
+        }
+    }
+
+    protected createRenderRoot(): Element {
+        return this;
+    }
+
+    private get headerContainer(): Element | null {
         return document.querySelector('#header__container');
     }
 
-    private injectHeaderContainer() {
+    private injectHeaderContainer(): void {
         const vlBody = document.querySelector('[is="vl-body"]');
+
         (vlBody || document.body).insertAdjacentHTML(
             'afterbegin',
             '<div id="header__container"><div id="header"></div></div>'
         );
     }
 
-    private observeWidgetIsAdded() {
+    private observeWidgetIsAdded(): void {
         const isHeader = (node: Node) => {
             return (
                 (node as HTMLElement).tagName === 'HEADER' || (node.childNodes && [...node.childNodes].some(isHeader))
@@ -111,12 +113,13 @@ export class VlHeader extends BaseLitElement {
         this.headerContainer && this.observer.observe(this.headerContainer, { childList: true });
     }
 
-    private async isUserAuthenticated() {
+    private async isUserAuthenticated(): Promise<boolean> {
         const response = await fetch(this.authenticatedUserUrl);
+
         return response.status === 200;
     }
 
-    private loadWidget() {
+    private loadWidget(): void {
         const widgetUrl = this.development
             ? `https://tni.widgets.burgerprofiel.dev-vlaanderen.be/api/v1/widget/${this.identifier}`
             : `https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/widget/${this.identifier}`;
@@ -135,15 +138,9 @@ export class VlHeader extends BaseLitElement {
                 }
 
                 widget.getExtension('citizen_profile.session').then(async (session: any) => {
-                    session.configure({
-                        active: await this.isUserAuthenticated(),
-                        endpoints: {
-                            loginUrl: this.loginUrl,
-                            loginRedirectUrl: this.loginRedirectUrl,
-                            logoutUrl: this.logoutUrl,
-                            switchCapacityUrl: this.switchCapacityUrl,
-                        },
-                    });
+                    this.session = session;
+                    this.authenticated = await this.isUserAuthenticated();
+                    this.configureSession();
                 });
             })
             .catch((e: any) => {
@@ -151,20 +148,18 @@ export class VlHeader extends BaseLitElement {
             });
     }
 
-    render() {
-        this.headerContainer?.remove();
-        this.injectHeaderContainer();
-        this.observer?.disconnect();
-        this.observeWidgetIsAdded();
-        this.loadWidget();
-    }
+    private async configureSession(): Promise<void> {
+        const config = {
+            active: this.authenticated,
+            endpoints: {
+                loginUrl: this.loginUrl,
+                loginRedirectUrl: this.loginRedirectUrl,
+                logoutUrl: this.logoutUrl,
+                switchCapacityUrl: this.switchCapacityUrl,
+            },
+        };
 
-    createRenderRoot() {
-        return this;
-    }
-
-    disconnectedCallback() {
-        this.observer?.disconnect();
+        this.session?.configure(config);
     }
 
     /**

@@ -2,7 +2,7 @@ import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
 
 # Header
 
-Injecteert de header widget van Digitaal Vlaanderen.
+Injecteert de global header widget van Digitaal Vlaanderen.  
 Default wordt de header geïnjecteerd in de body, bij het gebruik van het vl-body element wordt de header geïnjecteerd in de vl-body.
 
 ## Voorbeeld
@@ -20,6 +20,18 @@ import { VlHeader } from '@domg-wc/sections';
 ## Configuratie
 
 <ArgsTable story={PRIMARY_STORY} />
+
+## Extra info
+
+Bij het aanpassen van volgende attributen wordt achterliggend de session.configure() methode van DV opnieuw aangeroepen:
+
+-   `data-vl-login-url`
+-   `data-vl-login-redirect-url`
+-   `data-vl-logout-url`
+-   `data-vl-switch-capacity-url`
+
+Zie ook:<br/>
+https://vlaamseoverheid.atlassian.net/wiki/spaces/IKPubliek/pages/6336119448/Aanmelden+met+eenvoudig+of+gekoppeld+toegangsbeheer#De-endpoints-overschrijven
 
 ## Referenties
 
