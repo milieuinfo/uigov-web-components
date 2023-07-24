@@ -1,3 +1,28 @@
+# [1.13.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.12.0...v1.13.0) (2023-07-24)
+
+
+### Bug Fixes
+
+* stories in de build verwijderen (stories excluden in tsconfig.lib.json geeft IDE problemen) ([245a74b](https://github.com/milieuinfo/uigov-web-components/commit/245a74b37e0287d90877635dd630a6ef7f54ea80))
+* UIG-2543 - vl-cookie-consent - Matomo compatibility ([30db0b8](https://github.com/milieuinfo/uigov-web-components/commit/30db0b896467fb4119898565d423f35bed6cb4d9))
+* UIG-2560 - vl-map - storybook tests voor GRB lagen ([a1383d9](https://github.com/milieuinfo/uigov-web-components/commit/a1383d91535b0cfd75fecf8d771c48883070a627))
+* UIG-2597 - vl-upload - file hashes vergelijking vereenvoudigd ([516ec2b](https://github.com/milieuinfo/uigov-web-components/commit/516ec2b21e7d9cba4de0de92efa993ff90cb120e))
+* UIG-2604 - vl-tabs - storybook documentatie ([bdc50cc](https://github.com/milieuinfo/uigov-web-components/commit/bdc50cce2c753d016b5080a1fb0c1d5940bbd5a6))
+
+
+### Features
+
+* HLPD-64265 - wijziging van de Legacy Storybook referenties ([4f6cd37](https://github.com/milieuinfo/uigov-web-components/commit/4f6cd3720f5b0d47def1a271139352b4a3898b6c))
+* KBOMG-259 - vl-spotlight - uitgebreid met subtitles in combinatie met images ([d4f61f1](https://github.com/milieuinfo/uigov-web-components/commit/d4f61f1091ababab692628015a75d35adc0891b2))
+* KBOMG-261 - vl-alert-closed event ([2ef08b5](https://github.com/milieuinfo/uigov-web-components/commit/2ef08b5a45760506922404610ee996ff344daad5))
+* UIG-2521 - vl-header - configureer sessie bij aanpassing endpoint ([456a9e6](https://github.com/milieuinfo/uigov-web-components/commit/456a9e6c29707f11ad7dda225010ba8c34396d9b))
+* UIG-2539 - customCSS property voor components en map ([cf52a10](https://github.com/milieuinfo/uigov-web-components/commit/cf52a106a189db37220cd09bb5437c0ae55edba8))
+* UIG-2557 - vl-map-wmts-layer - WMTS request gecorrigeerd voor GeoServers ([2f44acd](https://github.com/milieuinfo/uigov-web-components/commit/2f44acd4f16a67d4fe434ef53ee0b1b98f6f3f63))
+* UIG-2577 - nx common-storybook module ([b93791b](https://github.com/milieuinfo/uigov-web-components/commit/b93791bd15288edeeef620526de9d58f2b7551c7))
+* UIG-2582 - storybook build in release-and-publish ([dc14bc6](https://github.com/milieuinfo/uigov-web-components/commit/dc14bc6df44a13fcc288aad8fa04ca6d113f5505))
+* UIG-2589 - vl-map-vector-layer - pas als layer ingesteld, styles instellen ([30fc455](https://github.com/milieuinfo/uigov-web-components/commit/30fc45555eb31cbdcc7b018b45238621e007510b))
+* UIG-2592 - CODEOWNERS toegevoegd ([988aeaf](https://github.com/milieuinfo/uigov-web-components/commit/988aeaf4a837384c56b7249bf7261dc3b566c89b))
+
 # [1.12.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.11.0...v1.12.0) (2023-07-14)
 
 
