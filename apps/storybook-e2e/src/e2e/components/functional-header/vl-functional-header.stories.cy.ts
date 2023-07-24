@@ -4,6 +4,8 @@ const functionalHeaderActionsUrl =
     'http://localhost:8080/iframe.html?id=components-functional-header--functional-header-actions&viewMode=story';
 const functionalHeaderTabsUrl =
     'http://localhost:8080/iframe.html?id=components-functional-header--functional-header-tabs&viewMode=story';
+const functionalHeaderBreadcrumbUrl =
+    'http://localhost:8080/iframe.html?id=components-functional-header--functional-header-breadcrumb&viewMode=story';
 const functionalHeaderSlotsUrl =
     'http://localhost:8080/iframe.html?id=components-functional-header--functional-header-slots&viewMode=story';
 
@@ -226,6 +228,54 @@ describe('story vl-functional-header tabs', () => {
         cy.get('vl-tabs').shadow().find('ul#tab-list').should('have.attr', 'data-vl-show', 'true');
         cy.get('vl-tabs').shadow().find('a#trein').click();
         cy.get('vl-tabs').shadow().find('ul#tab-list').should('have.attr', 'data-vl-show', 'false');
+    });
+});
+
+describe('story vl-functional-header breadcrumb', () => {
+    it('should set title link', () => {
+        cy.visit(`${functionalHeaderBreadcrumbUrl}&args=link:test`);
+
+        shouldSetTitleLink();
+    });
+
+    it('should set title text', () => {
+        cy.visit(`${functionalHeaderBreadcrumbUrl}&args=title:School+en+studietoelagen`);
+
+        shouldSetTitleText();
+    });
+
+    it('should contain 4 breadcrumb items', () => {
+        cy.visit(functionalHeaderBreadcrumbUrl);
+
+        cy.get('vl-breadcrumb')
+            .shadow()
+            .find('.vl-breadcrumb__list')
+            .children('.vl-breadcrumb__list__item')
+            .should('have.length', 4);
+    });
+
+    it('should contain correct breadcrumb items', () => {
+        cy.visit(functionalHeaderBreadcrumbUrl);
+
+        cy.get('vl-breadcrumb')
+            .find('vl-breadcrumb-item')
+            .first()
+            .contains('Vlaanderen Intern')
+            .next()
+            .contains('Regelgeving')
+            .next()
+            .contains('Webuniversum')
+            .next()
+            .contains('Componenten');
+    });
+
+    it('should set correct links for breadcrumb items', () => {
+        cy.visit(functionalHeaderBreadcrumbUrl);
+
+        cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(0).shadow().find('a').should('have.attr', 'href', '1');
+        cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(1).shadow().find('a').should('have.attr', 'href', '2');
+        cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(2).shadow().find('a').should('have.attr', 'href', '3');
+        cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(3).shadow().find('span');
     });
 });
 

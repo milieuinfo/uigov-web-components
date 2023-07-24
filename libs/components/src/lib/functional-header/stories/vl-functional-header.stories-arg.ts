@@ -8,6 +8,7 @@ export const functionalHeaderArgs = {
     backLink: 'document.referrer',
     disableBackLink: false,
     fullWidth: false,
+    hideBackLink: false,
     link: '',
     marginBottom: 'large',
     subTitle: '',
@@ -58,6 +59,15 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: functionalHeaderArgs.fullWidth },
+        },
+    },
+    hideBackLink: {
+        name: 'data-vl-hide-back-link',
+        description: 'Verbergt de terug link.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: functionalHeaderArgs.hideBackLink },
         },
     },
     link: {
