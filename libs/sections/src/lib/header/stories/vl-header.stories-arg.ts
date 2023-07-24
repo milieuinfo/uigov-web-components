@@ -3,14 +3,14 @@ import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const headerArgs = {
-    authenticatedUserUrl: '',
-    development: true,
-    identifier: '59188ff6-662b-45b9-b23a-964ad48c2bfb',
-    loginRedirectUrl: '',
-    loginUrl: '',
-    logoutUrl: '',
+    authenticatedUserUrl: '/sso/ingelogde_gebruiker',
+    development: false,
+    identifier: '',
+    loginRedirectUrl: '/',
+    loginUrl: '/sso/aanmelden',
+    logoutUrl: '/sso/afgemeld',
     simple: false,
-    switchCapacityUrl: '',
+    switchCapacityUrl: '/sso/wissel_organisatie',
     onReady: action('ready'),
 };
 
@@ -21,7 +21,7 @@ export const headerArgTypes: ArgTypes<typeof headerArgs> = {
         table: {
             type: { summary: TYPES.URL },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '/sso/ingelogde_gebruiker' },
+            defaultValue: { summary: headerArgs.authenticatedUserUrl },
         },
     },
     development: {
@@ -30,7 +30,7 @@ export const headerArgTypes: ArgTypes<typeof headerArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: headerArgs.development },
         },
     },
     identifier: {
@@ -39,34 +39,37 @@ export const headerArgTypes: ArgTypes<typeof headerArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: headerArgs.identifier },
         },
     },
     loginRedirectUrl: {
         name: 'data-vl-login-redirect-url',
-        description: 'De redirect url die gebruikt wordt bij het aanmelden.',
+        description:
+            'De redirect url die gebruikt wordt bij het aanmelden.<br>Bij het aanpassen van dit attribuut wordt achterliggend de session.configure() methode van DV opnieuw aangeroepen.',
         table: {
             type: { summary: TYPES.URL },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '/' },
+            defaultValue: { summary: headerArgs.loginRedirectUrl },
         },
     },
     loginUrl: {
         name: 'data-vl-login-url',
-        description: 'De url die gebruikt wordt bij het aanmelden.',
+        description:
+            'De url die gebruikt wordt bij het aanmelden.<br>Bij het aanpassen van dit attribuut wordt achterliggend de session.configure() methode van DV opnieuw aangeroepen.',
         table: {
             type: { summary: TYPES.URL },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '/sso/aanmelden' },
+            defaultValue: { summary: headerArgs.loginUrl },
         },
     },
     logoutUrl: {
         name: 'data-vl-logout-url',
-        description: 'De url die wordt opgeroepen wanneer men zich wil afmelden.',
+        description:
+            'De url die wordt opgeroepen wanneer men zich wil afmelden.<br>Bij het aanpassen van dit attribuut wordt achterliggend de session.configure() methode van DV opnieuw aangeroepen.',
         table: {
             type: { summary: TYPES.URL },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '/sso/afgemeld' },
+            defaultValue: { summary: headerArgs.logoutUrl },
         },
     },
     simple: {
@@ -75,16 +78,17 @@ export const headerArgTypes: ArgTypes<typeof headerArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: headerArgs.simple },
         },
     },
     switchCapacityUrl: {
         name: 'data-vl-switch-capacity-url',
-        description: 'De url die wordt opgeroepen wanneer men van organisatie wil wisselen.',
+        description:
+            'De url die wordt opgeroepen wanneer men van organisatie wil wisselen.<br>Bij het aanpassen van dit attribuut wordt achterliggend de session.configure() methode van DV opnieuw aangeroepen.',
         table: {
             type: { summary: TYPES.URL },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '/sso/wissel_organisatie' },
+            defaultValue: { summary: headerArgs.switchCapacityUrl },
         },
     },
     onReady: {
