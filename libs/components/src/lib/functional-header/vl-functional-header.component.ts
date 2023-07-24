@@ -21,7 +21,16 @@ import { baseStyle, elementStyle, layoutStyle, resetStyle } from '@domg/govfland
 @webComponent('vl-functional-header')
 export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
-        return ['back', 'back-link', 'disable-back-link', 'link', 'margin-bottom', 'sub-title', 'title'];
+        return [
+            'back',
+            'back-link',
+            'disable-back-link',
+            'hide-back-link',
+            'link',
+            'margin-bottom',
+            'sub-title',
+            'title',
+        ];
     }
 
     static get _observedClassAttributes() {
@@ -67,7 +76,7 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
           <div class="vl-functional-header__sub" id="sub-header">
             <slot name="sub-header">
               <ul class="vl-functional-header__sub__actions">
-                  <li class="vl-functional-header__sub__action">
+                  <li id="back-link-container" class="vl-functional-header__sub__action">
                       <slot name="back-link">
                           <a id="back-link" is="vl-link" tabindex="0" href="${document.referrer}">
                               <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span>
@@ -91,7 +100,10 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
 
         this._observer = this.__observeSlotElements(() => this.__processSlotElements());
         this.__processSlotElements();
-        this._backLinkElement.onclick = (event: Event) => this._handleClickBackLink(event);
+
+        if (this._backLinkElement) {
+            this._backLinkElement.onclick = (event: Event) => this._handleClickBackLink(event);
+        }
     }
 
     disconnectedCallback() {
@@ -104,6 +116,10 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
 
     get _subTitleElement() {
         return this._shadow.querySelector('#sub-title');
+    }
+
+    get _backLinkContainer() {
+        return this._shadow.querySelector('#back-link-container');
     }
 
     get _backLinkElement() {
@@ -182,6 +198,12 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
             header.style.marginBottom = margin;
         } else {
             header.style.removeProperty('margin-bottom');
+        }
+    }
+
+    _hideBackLinkChangedCallback(oldValue: string, newValue: string) {
+        if (newValue != undefined) {
+            this._backLinkContainer?.remove();
         }
     }
 

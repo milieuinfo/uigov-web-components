@@ -25,6 +25,7 @@ const Template = story(
         backLink,
         disableBackLink,
         fullWidth,
+        hideBackLink,
         link,
         marginBottom,
         subTitle,
@@ -44,6 +45,7 @@ const Template = story(
             data-vl-back-link=${backLink}
             ?data-vl-disable-back-link=${disableBackLink}
             ?data-vl-full-width=${fullWidth}
+            ?data-vl-hide-back-link=${hideBackLink}
             data-vl-link=${link}
             data-vl-margin-bottom=${marginBottom}
             data-vl-sub-title=${subTitle}
@@ -111,5 +113,29 @@ export const FunctionalHeaderTabs = story(
 );
 FunctionalHeaderTabs.storyName = 'vl-functional-header - tabs';
 FunctionalHeaderTabs.args = {
+    title: 'School- en studietoelagen',
+};
+
+export const FunctionalHeaderBreadcrumb = story(
+    functionalHeaderArgs,
+    ({ fullWidth, marginBottom, title, link }) => html`
+        <vl-functional-header
+            ?data-vl-full-width=${fullWidth}
+            data-vl-link=${link}
+            data-vl-margin-bottom=${marginBottom}
+            data-vl-title=${title}
+            data-vl-hide-back-link
+        >
+            <vl-breadcrumb slot="sub-title">
+                <vl-breadcrumb-item data-vl-href=${'1'}>Vlaanderen Intern</vl-breadcrumb-item>
+                <vl-breadcrumb-item data-vl-href=${'2'}>Regelgeving</vl-breadcrumb-item>
+                <vl-breadcrumb-item data-vl-href=${'3'}>Webuniversum</vl-breadcrumb-item>
+                <vl-breadcrumb-item>Componenten</vl-breadcrumb-item>
+            </vl-breadcrumb>
+        </vl-functional-header>
+    `
+);
+FunctionalHeaderBreadcrumb.storyName = 'vl-functional-header - breadcrumb';
+FunctionalHeaderBreadcrumb.args = {
     title: 'School- en studietoelagen',
 };

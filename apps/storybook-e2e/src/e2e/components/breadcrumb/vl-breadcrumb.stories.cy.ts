@@ -11,7 +11,7 @@ describe('story vl-breadcrumb', () => {
             .should('have.attr', 'aria-label', 'U bent hier: ');
     });
 
-    it('should contain 4 items', () => {
+    it('should contain 4 breadcrumb items', () => {
         cy.visit(breadcrumbUrl);
 
         cy.get('vl-breadcrumb')
@@ -21,7 +21,7 @@ describe('story vl-breadcrumb', () => {
             .should('have.length', 4);
     });
 
-    it('should contain valid items', () => {
+    it('should contain correct breadcrumb items', () => {
         cy.visit(breadcrumbUrl);
 
         cy.get('vl-breadcrumb')
@@ -36,7 +36,7 @@ describe('story vl-breadcrumb', () => {
             .contains('Componenten');
     });
 
-    it('should set correct links', () => {
+    it('should set correct links for breadcrumb items', () => {
         cy.visit(`${breadcrumbUrl}&args=href1:1;href2:2;href3:3`);
 
         cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(0).shadow().find('a').should('have.attr', 'href', '1');
