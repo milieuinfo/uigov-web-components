@@ -18,6 +18,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
         return ['disabled', 'block', 'error', 'success', 'focus', 'rich', 'readonly'];
     }
 
+    private initialised = false;
     _editor: Editor | undefined;
 
     connectedCallback() {
@@ -93,6 +94,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
                     this.__disableActiveEditor(this.isDisabled);
                     this.__toggleEditorToolbar(this.isReadonly);
                     this.__toggleEditorReadonly(this.isReadonly || this.isDisabled);
+                    this.initialised = true;
                 });
             },
         };
@@ -165,7 +167,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
 
     _disabledChangedCallback(oldValue: string, newValue: string) {
         const disabled = newValue !== null;
-        if (this.isRich) {
+        if (this.isRich && this.initialised) {
             this.__toggleEditorReadonly(disabled);
             this.__disableActiveEditor(disabled);
         }
