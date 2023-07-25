@@ -58,28 +58,41 @@ export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
      * if it detects that a form validation element has been added, it'll undress & dress the form again
      */
     _observeAddedElements(): void {
-        const node = this as unknown as Node;
-        const vlFormElement = node as unknown as VlFormElement;
-        const observer = new MutationObserver((mutations) => {
+        const vlFormElement = this as unknown as VlFormElement & Node;
+        this.observer = new MutationObserver((mutations) => {
+            const formElementSelector = 'input, textarea, select, [data-vl-error-placeholder]';
+            const matchesSelector = (element: HTMLElement) =>
+                element.matches(formElementSelector) || element.querySelector(formElementSelector);
+
             for (const mutation of mutations) {
-                const { addedNodes } = mutation;
-                for (const node of addedNodes) {
-                    const isElementNode = node.nodeType === Node.ELEMENT_NODE;
-                    if (!isElementNode) continue; // not an element so we exit loop here
-                    const element = node as HTMLElement;
-                    // we look if the added element matches or contains a form element for which validation can happen
-                    const formElementSelector = 'input, textarea, select, [data-vl-error-placeholder]';
-                    if (element.matches(formElementSelector) || element.querySelector(formElementSelector)) {
-                        // in case a new formElement was added, we need to undress the form to avoid duplicate event listeners
+                const { addedNodes, attributeName, target } = mutation;
+                if (attributeName === 'name') {
+                    if (target instanceof HTMLElement && matchesSelector(target)) {
+                        // as every form element is identified with its name
+                        // when we change it, we need to redress
                         vl.formValidation.undress(vlFormElement);
-                        // then dress the form again
                         vl.formValidation.dress(vlFormElement);
+                    }
+                } else {
+                    for (const node of addedNodes) {
+                        if (!(node instanceof HTMLElement)) continue; // not an element so we exit loop here
+                        // we look if the added element matches or contains a form element for which validation can happen
+                        if (matchesSelector(node)) {
+                            // in case a new formElement was added, we need to undress the form to avoid duplicate event listeners
+                            // then dress the form again
+                            vl.formValidation.undress(vlFormElement);
+                            vl.formValidation.dress(vlFormElement);
+                        }
                     }
                 }
             }
         });
-        observer.observe(node, { attributes: false, childList: true, characterData: false, subtree: true });
-        this.observer = observer;
+        this.observer.observe(vlFormElement, {
+            attributes: true,
+            childList: true,
+            characterData: false,
+            subtree: true,
+        });
     }
 
     _addTargetElement() {
