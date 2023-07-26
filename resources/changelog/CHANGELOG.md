@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.13.0...v1.13.1) (2023-07-26)
+
+
+### Bug Fixes
+
+* UIG-2610 - vl-textarea - pas disabled instellen wanneer opzet klaar is ([204489f](https://github.com/milieuinfo/uigov-web-components/commit/204489f485622b46a886db5d3c6e28d8549c4b81))
+
 # [1.13.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.12.0...v1.13.0) (2023-07-24)
 
 
