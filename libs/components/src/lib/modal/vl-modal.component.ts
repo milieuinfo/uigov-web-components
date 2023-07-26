@@ -75,8 +75,8 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
         this.dress();
     }
 
-    get _dialogElement() {
-        return this._element.querySelector('dialog');
+    get _dialogElement(): HTMLDialogElement {
+        return this._element?.querySelector('dialog');
     }
 
     get _titleElement() {
@@ -116,6 +116,7 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
         if (!this._dialogElement.hasAttribute('open')) {
             awaitUntil(() => this._dialogElement.isConnected).then(() => {
                 vl.modal.toggle(this._dialogElement);
+                this._dialogElement?.focus();
             });
         }
     }
@@ -134,8 +135,8 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
      * @param {String} event
      * @param {Function} callback
      */
-    on(event: Event, callback: any) {
-        this._dialogElement.addEventListener(event, callback);
+    on(event: string, callback: any) {
+        this._dialogElement?.addEventListener(event, callback);
     }
 
     _getCloseButtonTemplate() {
@@ -184,7 +185,7 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
     }
 
     _openChangedCallback(oldValue: string, newValue: string) {
-        this._dialogElement.setAttribute('open', newValue);
+        this.open();
     }
 
     _closableChangedCallback(oldValue: string, newValue: string) {
