@@ -115,7 +115,7 @@ alertWithTitleSlot.argTypes = {
     },
 };
 
-export const alertCloseable = ({ icon, title, size, type, alertClosed }: typeof alertArgs) => html`
+export const alertCloseable = ({ icon, title, size, type, alertClosed, content }: typeof alertArgs) => html`
     <vl-alert
         data-vl-icon=${icon}
         data-vl-title=${title}
@@ -125,6 +125,7 @@ export const alertCloseable = ({ icon, title, size, type, alertClosed }: typeof 
         @vl-alert-closed="${alertClosed}"
         data-cy="alert"
     >
+        <p>${content}</p>
     </vl-alert>
 `;
 alertCloseable.storyName = 'vl-alert - closeable';
