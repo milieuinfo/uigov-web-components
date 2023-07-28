@@ -243,7 +243,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseHTMLElement) 
             this._dropzone.on('removedfile', (file: File) => {
                 const customAction = () => {
                     if (this.hasAttribute('reset-form-on-clear')) {
-                        this.form.reset();
+                        this.form?.reset();
                     }
                 };
                 this.__triggerChange(file, customAction);
@@ -289,8 +289,7 @@ export class VlUploadComponent extends vlFormValidationElement(BaseHTMLElement) 
      */
     clear(): void {
         this._dropzone.removeAllFiles();
-        this.resetValidity();
-        this._dropzone.reset();
+        if (this.form) this.resetValidity();
     }
 
     /**
