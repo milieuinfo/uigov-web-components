@@ -7,6 +7,7 @@ import '../../../../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle
 import mapSelectActionsDoc from './vl-map-select-actions.stories-doc.mdx';
 import { mapSelectActionsArgs, mapSelectActionsArgTypes } from './vl-map-select-actions.stories-arg';
 import { component as defaultComponent } from './vl-map-select-actions.stories-default';
+import { component as customStyleComponent } from './vl-map-select-actions.stories-custom-style';
 import { component as clusteringComponent } from './vl-map-select-actions.stories-clustering';
 import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
@@ -26,6 +27,14 @@ export const MapSelectActionsDefault = story(mapSelectActionsArgs, ({ active, de
 });
 MapSelectActionsDefault.storyName = 'vl-map-select-actions - default';
 MapSelectActionsDefault.args = {
+    active: true,
+};
+
+export const MapSelectActionsCustomStyle = story(mapSelectActionsArgs, ({ active, defaultActive }) => {
+    return customStyleComponent(active, defaultActive);
+});
+MapSelectActionsCustomStyle.storyName = 'vl-map-select-actions - custom style';
+MapSelectActionsCustomStyle.args = {
     active: true,
 };
 

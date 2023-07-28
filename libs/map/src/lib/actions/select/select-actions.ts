@@ -26,11 +26,13 @@ export class VlSelectActions extends VlSelectAction {
 
     private getLayerByFeature(layers: OlVectorLayerType[], feature: OlFeature): OlVectorLayerType {
         return layers.find((layer) => {
-            const features = layer.getSource().getFeatures();
+            const features = layer?.getSource()?.getFeatures() || [];
             const clusteredFeature = feature?.get('features')?.[0];
+
             if (features.indexOf(feature) !== -1) {
                 return true;
             }
+
             return features.some((cluster) => {
                 return cluster.get('features')?.some((feature: OlFeature) => {
                     return feature?.getId() === clusteredFeature?.getId();

@@ -44,28 +44,16 @@ export const component = (active: boolean, defaultActive: boolean) => html`
         <vl-map-features-layer .features=${featuresLayer1} data-vl-name="layer-1">
             <vl-map-layer-circle-style data-vl-border-color="#000000"></vl-map-layer-circle-style>
         </vl-map-features-layer>
-        <vl-map-features-layer
-            .features=${featuresLayer2}
-            data-vl-name="layer-2"
-            data-vl-cluster
-            data-vl-cluster-distance="100"
-        >
+        <vl-map-features-layer .features=${featuresLayer2} data-vl-name="layer-2">
             <vl-map-layer-circle-style
                 data-vl-color="rgba(255, 230, 21, 1)"
                 data-vl-border-color="#000000"
-                data-vl-text-color="#000000"
             ></vl-map-layer-circle-style>
         </vl-map-features-layer>
-        <vl-map-select-actions
-            .active=${active}
-            .layers=${layers}
-            ?data-vl-default-active=${defaultActive}
-            data-vl-cluster
-        >
+        <vl-map-select-actions .active=${active} .layers=${layers} ?data-vl-default-active=${defaultActive}>
             <vl-map-layer-circle-style
-                data-vl-color="#0099ff"
-                data-vl-text-color="#ffffff"
-                data-vl-border-color="#ffffff"
+                data-vl-color="#ff0000"
+                data-vl-border-color="#000000"
             ></vl-map-layer-circle-style>
         </vl-map-select-actions>
     </vl-map>
