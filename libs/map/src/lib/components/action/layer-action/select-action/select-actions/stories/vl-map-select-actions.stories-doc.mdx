@@ -1,5 +1,6 @@
 import { ArgsTable, Story, PRIMARY_STORY, Source, Canvas } from '@storybook/addon-docs';
 import defaultStorySource from '!raw-loader!./vl-map-select-actions.stories-default';
+import customStyleStorySource from '!raw-loader!./vl-map-select-actions.stories-custom-style';
 import clusteringStorySource from '!raw-loader!./vl-map-select-actions.stories-clustering';
 
 # Map Select Actions
@@ -32,7 +33,21 @@ import { VlMapSelectActions } from '@domg-wc/map';
 
 ## Varianten
 
+### Custom Style
+
+<Canvas withSource="none">
+    <Story id="map-action-layer-action-select-action-select-actions--map-select-actions-custom-style" />
+</Canvas>
+
+<details>
+    <summary>Toon code</summary>
+    <Source code={customStyleStorySource} language="ts" dark={true} />
+</details>
+
 ### Clustering
+
+Bij clustering kan best een [map-layer-circle-style](/docs/map-layer-style-layer-circle-style--map-layer-circle-style-default) component gebruikt worden binnen de `vl-map-select-actions` tag.<br/>
+Dit zorgt ervoor dat de grootte van de select-actie zich aanpast aan het aantal geclusterde features, en dat de stijl-tekst getoond wordt.
 
 <Canvas withSource="none">
     <Story id="map-action-layer-action-select-action-select-actions--map-select-actions-clustering" />

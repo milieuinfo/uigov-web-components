@@ -8,7 +8,7 @@ const featuresLayer1 = {
             id: 1,
             geometry: {
                 type: 'Point',
-                coordinates: [147055.0, 197908.0],
+                coordinates: [146055.0, 196908.0],
             },
         },
     ],
@@ -22,7 +22,7 @@ const featuresLayer2 = {
             id: 2,
             geometry: {
                 type: 'Point',
-                coordinates: [158755.0, 197208.0],
+                coordinates: [149055.0, 199908.0],
             },
         },
         {
@@ -30,7 +30,7 @@ const featuresLayer2 = {
             id: 3,
             geometry: {
                 type: 'Point',
-                coordinates: [158755.0, 187208.0],
+                coordinates: [152055.0, 202908.0],
             },
         },
     ],
@@ -42,12 +42,12 @@ export const component = (active: boolean, defaultActive: boolean) => html`
     <vl-map>
         <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
         <vl-map-features-layer .features=${featuresLayer1} data-vl-name="layer-1">
-            <vl-map-layer-circle-style data-vl-border-size="2"></vl-map-layer-circle-style>
+            <vl-map-layer-circle-style data-vl-border-color="#000000"></vl-map-layer-circle-style>
         </vl-map-features-layer>
         <vl-map-features-layer .features=${featuresLayer2} data-vl-name="layer-2">
             <vl-map-layer-circle-style
                 data-vl-color="rgba(255, 230, 21, 1)"
-                data-vl-border-color="rgba(0, 0, 0, 1)"
+                data-vl-border-color="#000000"
             ></vl-map-layer-circle-style>
         </vl-map-features-layer>
         <vl-map-select-actions .active=${active} .layers=${layers} ?data-vl-default-active=${defaultActive}>

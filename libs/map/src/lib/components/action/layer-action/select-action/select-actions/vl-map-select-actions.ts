@@ -36,6 +36,8 @@ export class VlMapSelectActions extends VlMapSelectAction {
         } else {
             this._style = style;
         }
+
+        this._processAction(this.olLayers);
     }
 
     connectedCallback(): void {
@@ -44,8 +46,9 @@ export class VlMapSelectActions extends VlMapSelectAction {
         const olLayers: OlVectorLayerType[] = this.layerNames?.map((name) => {
             return this._mapElement.querySelector(`[data-vl-is-layer][data-vl-name="${name}"]`)?._layer;
         });
+
         this.olLayers = olLayers;
-        super._processAction(this.olLayers);
+        this._processAction(this.olLayers);
     }
 
     _createAction(layers?: OlVectorLayerType | OlVectorLayerType[]): VlSelectActions {

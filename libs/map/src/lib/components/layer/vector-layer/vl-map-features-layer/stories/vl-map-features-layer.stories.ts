@@ -49,7 +49,7 @@ export const MapFeaturesLayerDefault = story(
                 data-vl-opacity=${opacity}
             >
                 <vl-map-layer-style data-vl-border-size="2"></vl-map-layer-style>
-                <vl-map-layer-circle-style data-vl-border-size="2"></vl-map-layer-circle-style>
+                <vl-map-layer-circle-style></vl-map-layer-circle-style>
             </vl-map-features-layer>
         </vl-map>
     `
