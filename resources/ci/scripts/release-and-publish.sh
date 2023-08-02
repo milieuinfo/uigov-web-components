@@ -118,31 +118,37 @@ rm -rf ./elements/**/stories
 rm -rf ./map/**/stories
 rm -rf ./sections/**/stories
 
+# in de package.json bestanden - daar waar nodig - de juiste versie zetten
+toReplace=DOMG-WC-VERSION
+# de OSX versie is als volgt: sed -i '' "s,$toReplace,$nextRelease_version," **/package.json
+# maar die '' geeft natuurlijk een probleem in de build - vandaar
+sed -i "s,$toReplace,$nextRelease_version," **/package.json
+
 # de feitelijke release actie is afhankelijk van de branch
 
 if [[ ${release_branch} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG repository"
-    cd ./common/utilities && npm version $nextRelease_version && npm publish
-    cd ../../common/storybook && npm version $nextRelease_version && npm publish
-    cd ../../elements && npm version $nextRelease_version && npm publish
-    cd ../components && npm version $nextRelease_version && npm publish
-    cd ../sections && npm version $nextRelease_version && npm publish
-    cd ../map && npm version $nextRelease_version && npm publish
-    cd ../support/test-support && npm version $nextRelease_version && npm publish
+    cd ./common/utilities && npm publish
+    cd ../../common/storybook && npm publish
+    cd ../../elements && npm publish
+    cd ../components && npm publish
+    cd ../sections && npm publish
+    cd ../map  && npm publish
+    cd ../support/test-support && npm publish
     cd ../../..
 fi
 
 if [[ ${develop_branch} == true ]];
   then
     echo "pack van de npm packages - beschikbaar via artifact"
-    cd ./common/utilities && npm version $nextRelease_version && npm pack
-    cd ../../common/storybook && npm version $nextRelease_version && npm pack
-    cd ../../elements && npm version $nextRelease_version && npm pack
-    cd ../components && npm version $nextRelease_version && npm pack
-    cd ../sections && npm version $nextRelease_version && npm pack
-    cd ../map && npm version $nextRelease_version && npm pack
-    cd ../support/test-support && npm version $nextRelease_version && npm pack
+    cd ./common/utilities && npm pack
+    cd ../../common/storybook && npm pack
+    cd ../../elements && npm pack
+    cd ../components && npm pack
+    cd ../sections && npm pack
+    cd ../map && npm pack
+    cd ../support/test-support && npm pack
     cd ../../..
 fi
 

@@ -1,6 +1,6 @@
 {
     "name": "@domg-wc/components",
-    "version": "",
+    "version": "DOMG-WC-VERSION",
     "publishConfig": {
         "registry": "https://repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/"
     }
