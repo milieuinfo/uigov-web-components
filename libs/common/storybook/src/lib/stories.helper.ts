@@ -78,12 +78,13 @@ export const storyArgTypes = (argTypes: ArgTypes) => {
     return {
         ...argTypes,
         customCSS: {
-            name: 'customCSS',
-            description: 'Custom CSSStylesheet object.<br>Wordt toegevoegd aan de adoptedStyles van de shadow DOM.',
+            name: 'data-vl-custom-css',
+            description:
+                'Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyles van de shadow DOM van het component.',
             control: false,
             table: {
-                type: { summary: 'CSSStylesheet' },
-                category: CATEGORIES.PROPERTIES,
+                type: { summary: TYPES.STRING },
+                category: CATEGORIES.ATTRIBUTES,
                 defaultValue: { summary: null },
             },
         },

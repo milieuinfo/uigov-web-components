@@ -3,7 +3,6 @@ declare const vl: any;
 export class BaseHTMLElement extends HTMLElement {
     protected allowCustomCSS = true;
     private _shadow: any;
-    private customCSS: CSSStyleSheet | null = null;
 
     /**
      * VlElement constructor die een shadow DOM voorziet op basis van de HTML {Literal} parameter.
@@ -315,18 +314,23 @@ export class BaseHTMLElement extends HTMLElement {
     }
 
     private addCustomCSS(): void {
-        if (this.customCSS && !this.allowCustomCSS) {
+        const customCSS = this.getAttribute('custom-css');
+
+        if (customCSS && !this.allowCustomCSS) {
             console.warn('Custom CSS is niet toegelaten voor dit component.');
             return;
         }
 
-        if (this.customCSS && !this._shadow) {
+        if (customCSS && !this._shadow) {
             console.warn('Dit component heeft geen shadow DOM om custom CSS aan toe te voegen.');
             return;
         }
 
-        if (this.customCSS && this._shadow) {
-            this._shadow.adoptedStyleSheets = [...this._shadow.adoptedStyleSheets, this.customCSS];
+        if (customCSS && this._shadow) {
+            const customStyleSheet = new CSSStyleSheet();
+
+            customStyleSheet.replaceSync(customCSS);
+            this._shadow.adoptedStyleSheets = [...this._shadow.adoptedStyleSheets, customStyleSheet];
         }
     }
 }
