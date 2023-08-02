@@ -2,11 +2,11 @@ import { LitElement, PropertyDeclarations } from 'lit';
 
 export abstract class BaseLitElement extends LitElement {
     protected allowCustomCSS = true;
-    private customCSS: CSSStyleSheet | null = null;
+    private customCSS: string | null = null;
 
     static get properties(): PropertyDeclarations {
         return {
-            customCSS: { type: Object },
+            customCSS: { type: String, attribute: 'data-vl-custom-css', reflect: true },
         };
     }
 
@@ -22,8 +22,16 @@ export abstract class BaseLitElement extends LitElement {
             return;
         }
 
+        if (this.customCSS && !this.shadowRoot) {
+            console.warn('Dit component heeft geen shadow DOM om custom CSS aan toe te voegen.');
+            return;
+        }
+
         if (this.customCSS && this.shadowRoot) {
-            this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, this.customCSS];
+            const customStyleSheet = new CSSStyleSheet();
+
+            customStyleSheet.replaceSync(this.customCSS);
+            this.shadowRoot.adoptedStyleSheets = [...this.shadowRoot.adoptedStyleSheets, customStyleSheet];
         }
     }
 }
