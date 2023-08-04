@@ -1,3 +1,23 @@
+# [1.14.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.13.0...v1.14.0) (2023-08-04)
+
+
+### Bug Fixes
+
+* UIG-2539 - custom styles in React ([abdd349](https://github.com/milieuinfo/uigov-web-components/commit/abdd3490473134bcb9e8143f0c625dd840d508a0))
+* UIG-2551 - vl-modal - werking open attribuut verbeterd ([5e29402](https://github.com/milieuinfo/uigov-web-components/commit/5e29402daac4ffb2ff5a5f62574dc48aaf43d235))
+* UIG-2556 - vl-map-select-actions - custom style ([1e26d36](https://github.com/milieuinfo/uigov-web-components/commit/1e26d36306dd05d1593937248f18ceaf68f326c7))
+* UIG-2610 - vl-textarea - disabled activeren na initialisatie ([9f0e3e0](https://github.com/milieuinfo/uigov-web-components/commit/9f0e3e099e618f1563822469456f3bf1cbd1e642))
+* UIG-2612 - vl-alert - in storybook tonen van de closeable content ([6151b27](https://github.com/milieuinfo/uigov-web-components/commit/6151b279ab6172f1b29322684c10bf80ace7f602))
+* UIG-2615 - vl-upload - verbetering van de geldigheid reset ([0830dc5](https://github.com/milieuinfo/uigov-web-components/commit/0830dc56b6d07c3c44b4851b780846548f112166))
+* UIG-2627 - de artifacts die in een extra folder zitten kregen niet de juiste versie ([6c0cfa7](https://github.com/milieuinfo/uigov-web-components/commit/6c0cfa7b1fa420539000539e359324b75e0b1b8d))
+
+
+### Features
+
+* UIG-2529 - herwerking en uitbreiding van de Storybook documentatie ([d980c5b](https://github.com/milieuinfo/uigov-web-components/commit/d980c5b59c9afa8da2c7bddac93b8a6f647ee677))
+* UIG-2540 - vl-functional-header - breadcrumb ([78c8d08](https://github.com/milieuinfo/uigov-web-components/commit/78c8d0858fb1a7a15433364eb69f964c78f2bcab))
+* UIG-2627 - de monorepo peerDependencies in de [@dom-wc](https://github.com/dom-wc) artifacts het juiste versie nummer geven ([37ca514](https://github.com/milieuinfo/uigov-web-components/commit/37ca514cee26b3227fc751a1dd8e38451c4a805b))
+
 # [1.13.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.12.0...v1.13.0) (2023-07-24)
 
 
