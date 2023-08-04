@@ -122,7 +122,8 @@ rm -rf ./sections/**/stories
 toReplace=DOMG-WC-VERSION
 # de OSX versie is als volgt: sed -i '' "s,$toReplace,$nextRelease_version," **/package.json
 # maar die '' geeft natuurlijk een probleem in de build - vandaar
-sed -i "s,$toReplace,$nextRelease_version," **/package.json
+sed -i "s,$toReplace,$nextRelease_version," ./*/package.json
+sed -i "s,$toReplace,$nextRelease_version," ./*/*/package.json
 
 # de feitelijke release actie is afhankelijk van de branch
 
