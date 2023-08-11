@@ -1,4 +1,4 @@
-import { awaitUntil } from '@domg-wc/common-utilities';
+import { VL, awaitUntil } from '@domg-wc/common-utilities';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import '@govflanders/vl-ui-core/dist/js/core.js';
 import './vl-form-validation.lib.js';
@@ -7,7 +7,7 @@ import './vl-form-validation.lib.js';
 //  - er een vlFormValidation en een vlFormValidationElement is -> vooral of vlFormValidation dan wel een goede naam is ?
 //  - waarom VlFormValidation en vlFormValidation bestaat
 
-declare const vl: any;
+declare const vl: VL;
 declare const window: any;
 
 /**
@@ -41,13 +41,13 @@ export const vlFormValidation = {
      *
      * @param {HTMLElement} element
      */
-    dress(element: any) {
+    dress(element: any, escapeFieldNames: boolean) {
         if (
             element &&
             element.hasAttribute('data-vl-validate') &&
             !element.hasAttribute('data-vl-formvalidation-dressed')
         ) {
-            vl.formValidation.dress(element);
+            vl.formValidation.dress(element, escapeFieldNames);
         }
     },
 

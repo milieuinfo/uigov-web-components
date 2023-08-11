@@ -6747,6 +6747,7 @@
      * @param       {[object]}   config [description]
      */
 
+    // feat: UIG-2550 - vl-form - validatie voor input fields met een dot (.) in het name attribuut
     var _prepareFormvalidationConfig = function _prepareFormvalidationConfig(field, config) {
         var fieldObj = {},
             randomName,
@@ -6775,6 +6776,8 @@
             field.setAttribute('id', randomId);
             fieldObj.id = randomId;
         }
+
+        if (config.escapeFieldNames) fieldObj.name = fieldObj.name.replace(/\./g, '\\\\\\\\\\.');
 
         config.constraints[fieldObj.name] = _buildFormvalidationConfig(field, fieldObj);
     };
@@ -6889,15 +6892,17 @@
      * @param       {[object]}    errors [errors]
      */
 
-    var _showErrors = function _showErrors(form, errors) {
+    // feat: UIG-2550 - vl-form - validatie voor input fields met een dot (.) in het name attribuut
+    var _showErrors = function _showErrors(form, errors, config) {
         vl.util.each(form.querySelectorAll('input, textarea, select, [data-vl-error-placeholder]'), function (input) {
             if (
                 input.hasAttribute(fvErrorPlchAtt) &&
                 input.name.length &&
                 form.querySelector('['.concat(fvErrorIDAtt, '="').concat(input.getAttribute(fvErrorPlchAtt), '"]'))
             ) {
+                const name = config.escapeFieldNames ? input.name.replace(/\./g, '\\\\\\\\\\.') : input.name;
                 _showSuccessForInput(input, errors);
-                _showErrorsForInput(input, errors && errors[input.name]);
+                _showErrorsForInput(input, errors && errors[name]);
             }
         });
     };
@@ -6959,13 +6964,14 @@
      * @param       {Boolean}     isCollection [if true, an entire form gets validated]
      */
 
-    var _handleErrors = function _handleErrors(el, errors, isCollection) {
+    // feat: UIG-2550 - vl-form - validatie voor input fields met een dot (.) in het name attribuut
+    var _handleErrors = function _handleErrors(el, errors, isCollection, config) {
         if (isCollection) {
             _resetAllError(el);
 
             _showSuccess(el, errors);
 
-            _showErrors(el, errors);
+            _showErrors(el, errors, config);
         } else {
             _resetInput(el);
 
@@ -6981,12 +6987,13 @@
      * @param       {[object]}      config [the config file to validate against]
      */
 
+    // feat: UIG-2550 - vl-form - validatie voor input fields met een dot (.) in het name attribuut
     var _validateForm = function _validateForm(form, config) {
         var errors,
             constraints = config.constraints;
         errors = validate(form, constraints, fvValidatorOptions);
 
-        _handleErrors(form, errors || {}, true);
+        _handleErrors(form, errors || {}, true, config);
 
         if (!errors) {
             _formSubmit(form);
@@ -6999,15 +7006,17 @@
      * @param       {[object]}       config [the config file to validate against]
      */
 
+    // feat: UIG-2550 - vl-form - validatie voor input fields met een dot (.) in het name attribuut
     var _validateField = function _validateField(el, config) {
+        const name = config.escapeFieldNames ? el.name.replace(/\./g, '\\\\\\\\\\.') : el.name;
         var errors,
             constraints = config.constraints,
             fieldConstraints;
         fieldConstraints = {};
-        fieldConstraints[el.name] = constraints[el.name];
+        fieldConstraints[name] = constraints[name];
         errors = validate(el.form, fieldConstraints, fvValidatorOptions) || {};
 
-        _handleErrors(el, errors[el.name], false);
+        _handleErrors(el, errors[name], false);
     };
 
     var FormValidation = /*#__PURE__*/ (function () {
@@ -7018,12 +7027,14 @@
         _createClass(FormValidation, [
             {
                 key: 'dress',
-                value: function dress(form) {
+                // feat: UIG-2550 - vl-form - validatie voor input fields met een dot (.) in het name attribuut
+                value: function dress(form, escapeFieldNames) {
                     var fields,
                         validationConfig = {},
                         validationFormType = form.getAttribute(fvFormValidationType),
                         eventTargetSelect;
                     validationConfig.constraints = {};
+                    validationConfig.escapeFieldNames = escapeFieldNames;
                     form.setAttribute(fvDressedAtt, true); // if the form does not have an ID, create one in JS
 
                     if (!form.id) {

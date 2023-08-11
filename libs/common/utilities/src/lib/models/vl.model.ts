@@ -24,7 +24,7 @@ interface Datepicker {
 }
 
 interface FormValidation {
-    dress(form: any): void;
+    dress(form: any, escapeFieldNames: boolean): void;
     undress(form: any): void;
     dressAll(): void;
     reset(form: any): void;

@@ -19,9 +19,14 @@ export default {
 
 export const formDefault = story(
     formArgs,
-    ({ validate, nativeValidation }) => html`
+    ({ validate, nativeValidation, escapeFieldNames }) => html`
         <div style="max-width: 800px">
-            <form is="vl-form" ?data-vl-validate=${validate} ?data-vl-native-validation=${nativeValidation}>
+            <form
+                is="vl-form"
+                ?data-vl-validate=${validate}
+                ?data-vl-native-validation=${nativeValidation}
+                ?data-vl-escape-field-names=${escapeFieldNames}
+            >
                 <div is="vl-form-grid" data-vl-is-stacked>
                     <div is="vl-form-column" data-vl-size="3">
                         <label is="vl-form-label" for="name" data-vl-block> Naam </label>
