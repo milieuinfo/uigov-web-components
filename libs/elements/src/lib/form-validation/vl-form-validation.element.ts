@@ -80,10 +80,12 @@ export const vlFormValidationElement = (SuperClass: Class): Class => {
 
         _dressFormValidation(): void {
             if (this.form && this.form.hasAttribute('data-vl-validate')) {
+                const escapeFieldNames = this.form.hasAttribute('data-vl-escape-field-names');
+
                 this._setClassAttributes();
                 this._observer = this._observeFormValidationClasses();
                 Object.assign(this, vlFormValidation);
-                this.dress(this.form);
+                this.dress(this.form, escapeFieldNames);
                 this.addEventListener('focus', () => this.focus());
             }
         }

@@ -21,6 +21,7 @@ import { VlFormValidation, VlFormElement } from '@domg-wc/elements';
 <ArgsTable story={PRIMARY_STORY} />
 
 ## Info
+
 > `vl-form-validation` element gebruikt achterliggend `validate.js` 0.12 ([http://validatejs.org/](http://validatejs.org/)).
 
 Het attribuut `[data-validate-form]` is vereist voor het formulierelement.
@@ -49,6 +50,13 @@ Je vindt een voorbeeld hieronder; naam is verplicht en voornaam is niet verplich
 
 <DocsStory id="elements-form--form-validation-optional" />
 
+### Escape naam attributen
+
+Indien er een `.` in het naam attribuut van een input veld staat en de validatie niet correct werkt moet dit naam attribuut ge-escaped worden.<br/>
+Zet hiervoor het attribuut `data-vl-escape-field-names` op true op het form element.
+
+<DocsStory id="elements-form--form-validation" />
+
 ### Group
 
 Met `vl-form-group` wordt styling toegevoegd om makkelijker te onderscheiden tussen verschillende form controls.
@@ -56,7 +64,6 @@ Met `vl-form-group` wordt styling toegevoegd om makkelijker te onderscheiden tus
 Zie voorbeeld hieronder:
 
 <DocsStory id="elements-form--form-group" />
-
 
 ## Referenties
 

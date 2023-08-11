@@ -11,6 +11,7 @@ declare const vl: VL;
  * @extends HTMLElement
  *
  * @property {boolean} data-vl-validate - Attribuut wordt gebruikt om aan te geven dat de input velden validatie geactiveerd moet worden.
+ * @property {boolean} data-vl-escape-field-names - Geeft aan dat het name attribuut van de input velden ge-escaped moet worden. Kan gebruikt worden als er een '.' in het name attribuut staat en de validatie niet correct werkt.
  */
 @webComponent('vl-form', { extends: 'form' })
 export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
@@ -61,6 +62,8 @@ export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
         const node = this as unknown as Node;
         const vlFormElement = node as unknown as VlFormElement;
         const observer = new MutationObserver((mutations) => {
+            const escapeFieldNames = this.form.hasAttribute('data-vl-escape-field-names');
+
             for (const mutation of mutations) {
                 const { addedNodes } = mutation;
                 for (const node of addedNodes) {
@@ -73,7 +76,7 @@ export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
                         // in case a new formElement was added, we need to undress the form to avoid duplicate event listeners
                         vl.formValidation.undress(vlFormElement);
                         // then dress the form again
-                        vl.formValidation.dress(vlFormElement);
+                        vl.formValidation.dress(vlFormElement, escapeFieldNames);
                     }
                 }
             }
