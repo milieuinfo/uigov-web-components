@@ -1,6 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { documentStyle, iconStyle } from '@domg/govflanders-style/component';
-import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { baseStyle, elementStyle, resetStyle } from '@domg/govflanders-style/common';
 
 /**
  * VlDocument
@@ -23,6 +23,7 @@ export class VlDocumentComponent extends BaseElementOfType(HTMLElement) {
       <style>
         ${resetStyle}
         ${baseStyle}
+        ${elementStyle}
         ${documentStyle}
         ${iconStyle}
       </style>

@@ -3,14 +3,14 @@ const documentUrl = 'http://localhost:8080/iframe.html?id=components-document--d
 describe('story vl-document', () => {
     it('should contain a document type and icon', () => {
         cy.visit(`${documentUrl}`);
-        cy.getDataCy('document')
+        cy.get('vl-document')
             .shadow()
             .find('.vl-document__type')
             .find('i')
             .should('have.class', 'vl-vi')
             .should('have.class', 'vl-vi-document');
 
-        cy.getDataCy('document')
+        cy.get('vl-document')
             .shadow()
             .find('.vl-document__type')
             .find('span')
@@ -19,11 +19,16 @@ describe('story vl-document', () => {
 
     it('should contain a document title', () => {
         cy.visit(`${documentUrl}`);
-        cy.getDataCy('document').find('span[slot="title"]').contains('Hubert en Jan van Eyck, Vlaamse Primitieven');
+        cy.get('vl-document').find('span[slot="title"]').contains('Hubert en Jan van Eyck, Vlaamse Primitieven');
     });
 
     it('should contain a document metadata', () => {
         cy.visit(`${documentUrl}`);
-        cy.getDataCy('document').find('span[slot="metadata"]').contains('PDF - 580 kB');
+        cy.get('vl-document').find('span[slot="metadata"]').contains('PDF - 580 kB');
+    });
+
+    it('should contain a document metadata', () => {
+        cy.visit(`${documentUrl}`);
+        cy.get('vl-document').find('span[slot="title"]').shouldHaveStyle('color', 'rgb(0, 85, 204)');
     });
 });
