@@ -7,8 +7,10 @@
             "executor": "@nrwl/js:tsc",
             "outputs": ["{options.outputPath}"],
             "options": {
+                "clean": true,
+                "rootDir": "libs/map/src",
                 "outputPath": "dist/libs/map",
-                "main": "libs/map/src/index.ts",
+                "main": "libs/map/index.ts",
                 "tsConfig": "libs/map/tsconfig.lib.json",
                 "assets": ["libs/map/*.md"]
             }

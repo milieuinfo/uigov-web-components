@@ -7,4 +7,4 @@ export {
     story,
     storyArgs,
     storyArgTypes,
-} from './lib/stories.helper';
+} from './stories.helper';

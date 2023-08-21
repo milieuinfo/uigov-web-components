@@ -8,7 +8,7 @@ import {
     VlHeader,
     VlPrivacy,
 } from '@domg-wc/sections';
-import { default as vlElementsStyle } from '../../elements/src/lib/vl-elements.uig-css';
+import { default as vlElementsStyle } from '../../elements/src/vl-elements.uig-css';
 
 registerWebComponents([
     VlAccessibility,

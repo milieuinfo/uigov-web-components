@@ -1,6 +1,6 @@
 import { formatHTML, filterOutClasses } from '@domg-wc/common-storybook';
 import './docs-styling.css';
-import vlElementsStyle from '../../../libs/elements/src/lib/vl-elements.uig-css';
+import vlElementsStyle from '../../../libs/elements/src/vl-elements.uig-css';
 
 document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
 

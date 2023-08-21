@@ -9,7 +9,7 @@
     },
     "include": [
         "**/*.ts",
-        "../../components/src/types"
+        "../../components/src/external-types.d.ts"
     ],
     "exclude": [
         "jest.config.ts",
