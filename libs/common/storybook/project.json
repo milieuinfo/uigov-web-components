@@ -9,8 +9,9 @@
             "outputs": ["{options.outputPath}"],
             "options": {
                 "clean": true,
+                "rootDir": "libs/common/storybook/src",
                 "outputPath": "dist/libs/common/storybook",
-                "main": "libs/common/storybook/src/index.ts",
+                "main": "libs/common/storybook/index.ts",
                 "tsConfig": "libs/common/storybook/tsconfig.lib.json",
                 "assets": ["libs/common/storybook/*.md"]
             }

@@ -7,8 +7,10 @@
             "executor": "@nrwl/js:tsc",
             "outputs": ["{options.outputPath}"],
             "options": {
+                "clean": true,
+                "rootDir": "libs/support/test-support/src",
                 "outputPath": "dist/libs/support/test-support",
-                "main": "libs/support/test-support/src/index.ts",
+                "main": "libs/support/test-support/index.ts",
                 "tsConfig": "libs/support/test-support/tsconfig.lib.json",
                 "assets": ["libs/support/test-support/*.md"]
             }
