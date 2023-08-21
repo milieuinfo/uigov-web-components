@@ -10,7 +10,7 @@ module.exports = composePlugins(withNx(), (config, { options, context }) => {
         mode: 'production',
         output: {
             ...config.output,
-            path: resolve('./dist/fat-libs/sections/lib'),
+            path: resolve('./dist/fat-libs/sections'),
             filename: 'domg-wc-sections.min.js',
         },
         // externals: [/^tinymce/, /^prettier/],

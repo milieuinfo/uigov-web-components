@@ -3,7 +3,7 @@
 // import Polygon from 'ol/geom/Polygon';
 // import LineString from 'ol/geom/LineString';
 // import Feature from 'ol/Feature';
-// import { VlSplitAction } from '../../../../../../lib/components/map/actions';
+// import { VlSplitAction } from '../../../../../../components/map/actions';
 
 describe('split action', () => {
     // TODO: fix testen en uncomment

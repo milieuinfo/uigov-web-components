@@ -8,8 +8,9 @@
             "outputs": ["{options.outputPath}"],
             "options": {
                 "clean": true,
+                "rootDir": "libs/components/src",
                 "outputPath": "dist/libs/components",
-                "main": "libs/components/src/index.ts",
+                "main": "libs/components/index.ts",
                 "tsConfig": "libs/components/tsconfig.lib.json",
                 "assets": ["libs/components/*.md"]
             }

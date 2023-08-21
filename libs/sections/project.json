@@ -8,8 +8,9 @@
             "outputs": ["{options.outputPath}"],
             "options": {
                 "clean": true,
+                "rootDir": "libs/sections/src",
                 "outputPath": "dist/libs/sections",
-                "main": "libs/sections/src/index.ts",
+                "main": "libs/sections/index.ts",
                 "tsConfig": "libs/sections/tsconfig.lib.json",
                 "assets": ["libs/sections/*.md"]
             }

@@ -1,15 +1,15 @@
-export { BaseElementOfType } from './lib/base/base.element';
-export { BaseHTMLElement } from './lib/base/base.html.element';
-export { BaseLitElement } from './lib/base/base.lit.element';
-export { MARGINS, PADDINGS } from './lib/constants/constants';
+export { BaseElementOfType } from './base/base.element';
+export { BaseHTMLElement } from './base/base.html.element';
+export { BaseLitElement } from './base/base.lit.element';
+export { MARGINS, PADDINGS } from './constants/constants';
 export {
     webComponent,
     webComponentCustom,
     webComponentPromised,
     webComponentConditional,
-} from './lib/decorator/decorators';
-export { VL } from './lib/models/vl.model';
-export { Class } from './lib/type/types';
+} from './decorator/decorators';
+export { VL } from './models/vl.model';
+export { Class } from './type/types';
 export {
     registerWebComponents,
     define,
@@ -24,4 +24,4 @@ export {
     ifDefinedString,
     ifDefinedNumber,
     findDeepestElementThroughShadowRoot,
-} from './lib/util/utils';
+} from './util/utils';
