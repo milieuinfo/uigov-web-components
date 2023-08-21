@@ -88,7 +88,7 @@ class AnalyticsUtil {
                 id: 38,
                 url: this._matomoOntwikkelUrl,
             },
-            'kruispuntbank-ontwikkel.omgeving.vlaanderen.be': {
+            'informatie-ontwikkel.omgeving.vlaanderen.be': {
                 id: 39,
                 url: this._matomoOntwikkelUrl,
             },
@@ -156,7 +156,7 @@ class AnalyticsUtil {
                     id: 28,
                     url: this._matomoOefenUrl,
                 },
-                'kruispuntbank-oefen.omgeving.vlaanderen.be': {
+                'informatie-oefen.omgeving.vlaanderen.be': {
                     id: 29,
                     url: this._matomoOefenUrl,
                 },
@@ -225,7 +225,7 @@ class AnalyticsUtil {
                     id: 62,
                     url: this._matomoProdUrl,
                 },
-                'kruispuntbank.omgeving.vlaanderen.be': {
+                'informatie.omgeving.vlaanderen.be': {
                     id: 64,
                     url: this._matomoProdUrl,
                 },
