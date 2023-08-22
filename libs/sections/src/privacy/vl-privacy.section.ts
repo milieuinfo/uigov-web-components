@@ -1,10 +1,33 @@
-import '@domg-wc/components';
-import '@domg-wc/elements';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { VlContactCardComponent, VlDocumentComponent, VlInfoblockComponent, VlTypography } from '@domg-wc/components';
+import {
+    VlColumnElement,
+    vlElementsStyle,
+    VlGridElement,
+    VlH1Element,
+    VlH2Element,
+    VlH3Element,
+    VlH4Element,
+    VlIconElement,
+    VlIntroductionElement,
+    VlLayoutElement,
+    VlLinkElement,
+    VlPropertiesComponent,
+    VlPropertiesListElement,
+    VlPropertyTermElement,
+    VlPropertyValueElement,
+    VlRegionElement,
+    VlSideNavigation,
+    VlSideNavigationContentElement,
+    VlSideNavigationGroupElement,
+    VlSideNavigationH1,
+    VlSideNavigationItemElement,
+    VlSideNavigationReferenceElement,
+    VlSideNavigationToggleElement,
+} from '@domg-wc/elements';
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { vlElementsStyle } from '@domg-wc/elements';
 import { header } from './child/header.section';
-import { BaseLitElement } from '@domg-wc/common-utilities';
 
 export const privacyProps = {
     date: 'data-vl-date',
@@ -26,7 +49,36 @@ export class VlPrivacy extends BaseLitElement {
 
     constructor() {
         super();
-
+        registerWebComponents([
+            // elements
+            VlColumnElement,
+            VlGridElement,
+            VlH1Element,
+            VlH2Element,
+            VlH3Element,
+            VlH4Element,
+            VlIconElement,
+            VlIntroductionElement,
+            VlLayoutElement,
+            VlLinkElement,
+            VlPropertiesComponent,
+            VlPropertiesListElement,
+            VlPropertyTermElement,
+            VlPropertyValueElement,
+            VlRegionElement,
+            VlSideNavigation,
+            VlSideNavigationContentElement,
+            VlSideNavigationGroupElement,
+            VlSideNavigationH1,
+            VlSideNavigationItemElement,
+            VlSideNavigationReferenceElement,
+            VlSideNavigationToggleElement,
+            // components
+            VlContactCardComponent,
+            VlDocumentComponent,
+            VlInfoblockComponent,
+            VlTypography,
+        ]);
         this.allowCustomCSS = false;
         (this as any)[date] = '3 maart 2021';
         (this as any)[disableBackLink] = false;

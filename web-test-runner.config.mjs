@@ -10,14 +10,14 @@ export default {
     plugins: [
         alias({
             entries: [
-                { find: '@domg-wc/common-utilities', replacement: `${dirname}dist/libs/common/utilities/src` },
-                { find: '@domg-wc/components', replacement: `${dirname}dist/libs/components/src` },
-                { find: '@domg-wc/elements', replacement: `${dirname}dist/libs/elements/src` },
-            ]
+                { find: '@domg-wc/common-utilities', replacement: `${dirname}dist/libs/common/utilities` },
+                { find: '@domg-wc/components', replacement: `${dirname}dist/libs/components` },
+                { find: '@domg-wc/elements', replacement: `${dirname}dist/libs/elements` },
+            ],
         }),
         esbuildPlugin({
             target: 'es2020',
-            ts: true
-        })
+            ts: true,
+        }),
     ],
 };

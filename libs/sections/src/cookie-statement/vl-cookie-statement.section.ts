@@ -1,6 +1,27 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '@domg-wc/components';
-import '@domg-wc/elements';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlContactCardComponent, VlInfoblockComponent, VlTypography } from '@domg-wc/components';
+import {
+    VlColumnElement,
+    VlGridElement,
+    VlH1Element,
+    VlH2Element,
+    VlIntroductionElement,
+    VlLayoutElement,
+    VlLinkElement,
+    VlPropertiesComponent,
+    VlPropertiesListElement,
+    VlPropertyTermElement,
+    VlPropertyValueElement,
+    VlRegionElement,
+    VlSideNavigation,
+    VlSideNavigationContentElement,
+    VlSideNavigationGroupElement,
+    VlSideNavigationH2,
+    VlSideNavigationItemElement,
+    VlSideNavigationReferenceElement,
+    VlSideNavigationToggleElement,
+} from '@domg-wc/elements';
+import { header } from './child/header.section';
 import './cookie/vl-authentication-cookie.section';
 import './cookie/vl-cookie.section';
 import './cookie/vl-header-authentication-cookie.section';
@@ -8,7 +29,6 @@ import './cookie/vl-header-cookie.section';
 import './cookie/vl-jsessionid-cookie.section';
 import './cookie/vl-sticky-session-cookie.section';
 import styles from './vl-cookie-statement.uig-css';
-import { header } from './child/header.section';
 
 @webComponent('vl-cookie-statement')
 export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
@@ -23,7 +43,32 @@ export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
             </style>
             <slot name="header">${header()}</slot>
         `);
-
+        registerWebComponents([
+            // elements
+            VlColumnElement,
+            VlGridElement,
+            VlH1Element,
+            VlH2Element,
+            VlIntroductionElement,
+            VlLayoutElement,
+            VlLinkElement,
+            VlPropertiesComponent,
+            VlPropertiesListElement,
+            VlPropertyTermElement,
+            VlPropertyValueElement,
+            VlRegionElement,
+            VlSideNavigation,
+            VlSideNavigationContentElement,
+            VlSideNavigationGroupElement,
+            VlSideNavigationH2,
+            VlSideNavigationItemElement,
+            VlSideNavigationReferenceElement,
+            VlSideNavigationToggleElement,
+            // components
+            VlContactCardComponent,
+            VlInfoblockComponent,
+            VlTypography,
+        ]);
         this.allowCustomCSS = false;
         this._element.insertAdjacentHTML(
             'afterend',

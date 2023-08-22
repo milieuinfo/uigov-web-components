@@ -1,5 +1,5 @@
-import '@domg-wc/elements';
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlIconElement } from '@domg-wc/elements';
 import styles from './vl-rich-data-table.uig-css';
 
 @webComponent('vl-rich-data-sorter')
@@ -21,27 +21,28 @@ export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
 
     constructor() {
         super(`
-      <style>
-        ${styles}
+          <style>
+            ${styles}
 
-        div {
-          display: inline;
-        }
+            div {
+              display: inline;
+            }
 
-        #direction {
-          vertical-align: middle;
-        }
+            #direction {
+              vertical-align: middle;
+            }
 
-        #priority {
-          font-size: x-small;
-          vertical-align: super;
-        }
-      </style>
-      <div id="container" class="vl-u-visually-hidden">
-        <span id="direction" is="vl-icon"></span>
-        <label id="priority"></label>
-      </div>
-    `);
+            #priority {
+              font-size: x-small;
+              vertical-align: super;
+            }
+          </style>
+          <div id="container" class="vl-u-visually-hidden">
+            <span id="direction" is="vl-icon"></span>
+            <label id="priority"></label>
+          </div>
+        `);
+        registerWebComponents([VlIconElement]);
     }
 
     get for(): string {

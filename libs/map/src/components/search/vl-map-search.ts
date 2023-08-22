@@ -1,8 +1,8 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '@domg-wc/components';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { vlElementsStyle, VlSelect } from '@domg-wc/elements';
+import { VlSearchComponent } from '@domg-wc/components';
 import OlOverlay from 'ol/Overlay';
-import '../select-location/vl-select-location';
-import { vlElementsStyle } from '@domg-wc/elements';
+import { VlSelectLocation } from '../select-location/vl-select-location';
 
 /**
  * VlMapSearch
@@ -37,16 +37,17 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
 
     constructor() {
         super(`
-      <style>
-        ${vlElementsStyle}
-        :host {
-          display: block;
-        }
-      </style>
-      <vl-search id="search" data-vl-inline>
-        <select is="vl-select-location" slot="input"></select>
-      </vl-search>
-    `);
+          <style>
+            ${vlElementsStyle}
+            :host {
+              display: block;
+            }
+          </style>
+          <vl-search id="search" data-vl-inline>
+            <select is="vl-select-location" slot="input"></select>
+          </vl-search>
+        `);
+        registerWebComponents([VlSelect, VlSelectLocation, VlSearchComponent]);
         this._configure();
         this._addSelectChangeListener();
     }
