@@ -250,14 +250,13 @@ class AnalyticsUtil {
     }
 
     get id(): { id: number; url: string } | undefined {
-        let urlIdResult = this.getUrlIdMatch();
         if (this.matomoParameters) {
             const { matomoId, matomoUrl } = this.matomoParameters;
             if (matomoId && matomoUrl) {
-                urlIdResult = { id: matomoId, url: matomoUrl };
+                return { id: matomoId, url: matomoUrl };
             }
         }
-        return urlIdResult;
+        return this.getUrlIdMatch();
     }
 
     get script(): HTMLScriptElement {
