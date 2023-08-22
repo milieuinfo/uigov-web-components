@@ -1,3 +1,5 @@
+// deze imports van alle elements werkt IN de monorepo
+// -> buiten de monorepo werkt dat niet omdat sideEffects disabled worden voor de root-barrel file in de artifacts
 import '@domg-wc/elements';
 import { Meta, StoryFn } from '@storybook/web-components';
 import { html } from 'lit-html';

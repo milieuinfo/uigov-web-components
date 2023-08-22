@@ -1,5 +1,3 @@
-import '@domg-wc/components';
-import '@domg-wc/elements';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { CSSResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';

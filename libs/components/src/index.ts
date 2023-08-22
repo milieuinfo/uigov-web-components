@@ -34,15 +34,15 @@ export {
     VlHttp506Message,
     VlHttpErrorMessage,
 } from './http-error-message';
-export { VlInfoblockComponent } from './infoblock';
 export { VlInfoTile } from './info-tile';
+export { VlInfoblockComponent } from './infoblock';
 export { VlInputSliderComponent } from './input-slider';
-export { VlModalComponent } from './modal';
 export { VlLoaderComponent } from './loader';
+export { VlModalComponent } from './modal';
 export { VlPagerComponent, Pagination } from './pager';
 export { VlButtonPillComponent, VlPillComponent, TYPE } from './pill';
-export { VlProzaMessage, VlProzaMessagePreloader } from './proza-message';
 export { VlProgressBarComponent } from './progress-bar';
+export { VlProzaMessage, VlProzaMessagePreloader } from './proza-message';
 export { VlRadio, VlRadioGroup, vlRadioGroupComponent } from './radio';
 export { VlRichData } from './rich-data';
 export { VlRichDataField, VlRichDataSorter, VlRichDataTable } from './rich-data-table';

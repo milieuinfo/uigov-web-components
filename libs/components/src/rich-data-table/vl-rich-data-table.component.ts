@@ -1,10 +1,10 @@
-import '@domg-wc/elements';
+import { registerWebComponents, webComponentPromised } from '@domg-wc/common-utilities';
+import { VlDataTable } from '@domg-wc/elements';
+import { RichData, VlRichData } from '../rich-data/vl-rich-data.component';
 import { VlRichDataField } from './vl-rich-data-field.component';
 import { VlRichDataSorter } from './vl-rich-data-sorter.component';
-import { RichData, VlRichData } from '../rich-data/vl-rich-data.component';
 
 import styles from './vl-rich-data-table.uig-css';
-import { webComponentPromised } from '@domg-wc/common-utilities';
 
 type ForEachNodeFn = (value: Node, key: number, parent: NodeList) => void;
 type Sorter = Pick<VlRichDataSorter, 'name' | 'direction' | 'priority'>;
@@ -29,19 +29,19 @@ export class VlRichDataTable extends VlRichData {
     constructor() {
         super(
             `
-      <style>
-        ${styles}
-      </style>`,
+          <style>
+            ${styles}
+          </style>`,
             `
-      <table is="vl-data-table" slot="content">
-        <thead>
-          <tr></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    `
+          <table is="vl-data-table" slot="content">
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        `
         );
-
+        registerWebComponents([VlDataTable]);
         this.__observeSorters();
     }
 
@@ -333,6 +333,7 @@ export class VlRichDataTable extends VlRichData {
         }
     }
 }
+
 // Promise.all([customElements.whenDefined(VlRichDataField.is), customElements.whenDefined(VlRichDataSorter.is)]).then(
 //     () => define(VlRichDataTable.is, VlRichDataTable)
 // );

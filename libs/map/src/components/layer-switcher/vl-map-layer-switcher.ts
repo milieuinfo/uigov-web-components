@@ -1,12 +1,11 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
+import { awaitUntil, BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { VlCheckboxComponent } from '@domg-wc/components';
+import { vlElementsStyle, VlFormLabel } from '@domg-wc/elements';
+import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { BaseLitElement, awaitUntil } from '@domg-wc/common-utilities';
-import mapLayerSwitcherUigStyle from './vl-map-layer-switcher.uig-css';
-import { VlMapLayer } from '../layer/vl-map-layer';
-import '@domg-wc/components';
-import '@domg-wc/elements';
-import { vlElementsStyle } from '@domg-wc/elements';
 import { VlMap } from '../../vl-map';
+import { VlMapLayer } from '../layer/vl-map-layer';
+import mapLayerSwitcherUigStyle from './vl-map-layer-switcher.uig-css';
 
 @customElement('vl-map-layer-switcher')
 export class VlMapLayerSwitcher extends BaseLitElement {
@@ -40,6 +39,11 @@ export class VlMapLayerSwitcher extends BaseLitElement {
                 attribute: false,
             },
         };
+    }
+
+    constructor() {
+        super();
+        registerWebComponents([VlFormLabel, VlCheckboxComponent]);
     }
 
     async connectedCallback(): Promise<void> {

@@ -1,5 +1,6 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '@domg-wc/elements';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlToggleButtonComponent } from '@domg-wc/components';
+import { VlLayoutElement, VlRegionElement, VlText } from '@domg-wc/elements';
 import swipeDetect from 'swipe-detect/dist/';
 import styles from './vl-side-sheet.uig-css';
 
@@ -57,27 +58,28 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
 
     constructor(style = '') {
         super(`
-      <style>
-        ${styles}
-      </style>
-      <div>
-          <vl-toggle-button
-              data-vl-icon="nav-left"
-              data-vl-icon-placement="before"
-              class="vl-side-sheet__toggle"
-          >
-            <span id="vl-side-sheet-toggle-text" is="vl-text"></span>
-          </vl-toggle-button>
-          <div id="vl-side-sheet-backdrop"></div>
-          <div id="vl-side-sheet">
-            <section is="vl-region">
-              <div is="vl-layout">
-                <slot></slot>
+          <style>
+            ${styles}
+          </style>
+          <div>
+              <vl-toggle-button
+                  data-vl-icon="nav-left"
+                  data-vl-icon-placement="before"
+                  class="vl-side-sheet__toggle"
+              >
+                <span id="vl-side-sheet-toggle-text" is="vl-text"></span>
+              </vl-toggle-button>
+              <div id="vl-side-sheet-backdrop"></div>
+              <div id="vl-side-sheet">
+                <section is="vl-region">
+                  <div is="vl-layout">
+                    <slot></slot>
+                  </div>
+                </section>
               </div>
-            </section>
           </div>
-      </div>
-    `);
+        `);
+        registerWebComponents([VlLayoutElement, VlRegionElement, VlText, VlToggleButtonComponent]);
     }
 
     connectedCallback() {
