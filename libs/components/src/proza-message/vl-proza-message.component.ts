@@ -1,8 +1,8 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '@domg-wc/elements';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlButtonElement, VlIconElement, VlText } from '@domg-wc/elements';
 import { VlTypography } from '../typography/vl-typography.component';
-import elementStyles from './vl-proza-message.uig-css';
 import { VlProzaMessagePreloader } from './vl-proza-message-preloader.component';
+import elementStyles from './vl-proza-message.uig-css';
 import { ProzaRestClient } from './vl-proza-rest-client.util';
 
 /**
@@ -32,14 +32,15 @@ export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
 
     constructor() {
         super();
+        registerWebComponents([VlButtonElement, VlIconElement, VlText, VlTypography]);
         this.shadow(`
-      <style>
-        ${elementStyles}
-      </style>
-      <div>
-        <vl-typography></vl-typography>
-      </div>
-    `);
+          <style>
+            ${elementStyles}
+          </style>
+          <div>
+            <vl-typography></vl-typography>
+          </div>
+        `);
     }
 
     async connectedCallback() {

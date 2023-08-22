@@ -125,6 +125,26 @@ toReplace=DOMG-WC-VERSION
 sed -i "s,$toReplace,$nextRelease_version," ./*/package.json
 sed -i "s,$toReplace,$nextRelease_version," ./*/*/package.json
 
+# om tree-shaking correct te laten werken moeten sideEffects in de root-barrel-file uitgeschakeld worden
+#  -> het lijkt niet mogelijk om dit via een exclude te doen - dit werkt niet: ["!(./index.js)"]
+#  -> dus expliciet specifieren van alle files in minimum 1 subfolder + eventueel de 'andere' root-files
+echo "sideEffects zetten in de package.json bestanden"
+cd ./common/utilities
+npm pkg set sideEffects='["./*/**"]' --json
+cd ../../common/storybook
+npm pkg set sideEffects='["./*/**", "./stories.helper.*"]' --json
+cd ../../elements
+npm pkg set sideEffects='["./*/**"]' --json
+cd ../components
+npm pkg set sideEffects='["./*/**"]' --json
+cd ../sections
+npm pkg set sideEffects='["./*/**"]' --json
+cd ../map
+npm pkg set sideEffects='["./*/**", "./vl-map.*"]' --json
+cd ../support/test-support
+npm pkg set sideEffects='["./*/**"]' --json
+cd ../..
+
 # de feitelijke release actie is afhankelijk van de branch
 
 if [[ ${release_branch} == true ]];
@@ -137,7 +157,7 @@ if [[ ${release_branch} == true ]];
     cd ../sections && npm publish
     cd ../map  && npm publish
     cd ../support/test-support && npm publish
-    cd ../../..
+    cd ../..
 fi
 
 if [[ ${develop_branch} == true ]];
@@ -150,18 +170,20 @@ if [[ ${develop_branch} == true ]];
     cd ../sections && npm pack
     cd ../map && npm pack
     cd ../support/test-support && npm pack
-    cd ../../..
+    cd ../..
 fi
+
+cd ..
 
 echo "update domg-wc-sections met versie nummer en maak er een tgz van"
 # het versie nummer toevoegen aan de 'fat-js'
-cd ./fat-libs/sections/lib
+cd ./fat-libs/sections
 mv domg-wc-sections.js domg-wc-sections-${nextRelease_version}.js
 mv domg-wc-sections.js.map domg-wc-sections-${nextRelease_version}.js.map
 mv domg-wc-sections.min.js domg-wc-sections-${nextRelease_version}.min.js
 # een tar maken om via artifactory op de cdn te krijgen
 tar cfz ../domg-wc-sections-${nextRelease_version}.tgz .
-cd ../../../..
+cd ../../..
 
 # builden van storybook
 echo "build storybook en maak er een tgz van"

@@ -10,6 +10,8 @@ export default {
     argTypes: storyArgTypes(templateArgTypes),
 } as Meta<typeof templateArgs>;
 
+const version = '1.2.3'; // TODO uit de package.json halen, om een json te kunnen importeren moet je echter wat config wijzigen
+
 const mainHtml = html`
     <vl-content-header>
         <img
@@ -29,6 +31,7 @@ const mainHtml = html`
             "
         />
         <a slot="context-link" href="https://webcomponenten.omgeving.vlaanderen.be/storybook/">uig-webcomponents</a>
+        <a slot="title-link" href="https://webcomponenten.omgeving.vlaanderen.be/storybook/">${version}</a>
     </vl-content-header>
     <section data-cy="template-content" is="vl-region">
         <div is="vl-layout">

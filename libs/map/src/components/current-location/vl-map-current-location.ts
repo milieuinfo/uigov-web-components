@@ -1,9 +1,9 @@
-import '@domg-wc/elements';
+import { VlIconElement } from '@domg-wc/elements';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
 import { css, html, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import proj4 from 'proj4';
 import styles from './vl-map-current-location.uig-css';
-import { BaseLitElement } from '@domg-wc/common-utilities';
 
 export const DEFAULT_ZOOM = 10;
 export const DEFAULT_TOOLTIP = 'Huidige locatie';
@@ -13,6 +13,7 @@ export class VlMapCurrentLocation extends BaseLitElement {
     private zoom: number;
     private tooltip: string;
     private _mapElement: any;
+
     static get styles() {
         return [
             css`
@@ -38,7 +39,7 @@ export class VlMapCurrentLocation extends BaseLitElement {
 
     constructor() {
         super();
-
+        registerWebComponents([VlIconElement]);
         this.zoom = DEFAULT_ZOOM;
         this.tooltip = DEFAULT_TOOLTIP;
     }
@@ -62,7 +63,7 @@ export class VlMapCurrentLocation extends BaseLitElement {
     }
 
     render() {
-        return html`<div class="uig-map-current-location">
+        return html` <div class="uig-map-current-location">
             <button @click=${() => this._currentLocation()} type="button" title="${this.tooltip}">
                 <span is="vl-icon" data-vl-icon="location-gps"></span>
             </button>

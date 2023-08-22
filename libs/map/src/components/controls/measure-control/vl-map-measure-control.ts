@@ -1,5 +1,5 @@
-import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
-import '@domg-wc/components';
+import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlToggleButtonComponent } from '@domg-wc/components';
 import { unByKey } from 'ol/Observable';
 import { CONTROL_TYPE, IDENTIFIER } from '../../../vl-map.model';
 import { VlMapControl } from '../vl-map-control.mixin';
@@ -8,6 +8,7 @@ import { VlMapControl } from '../vl-map-control.mixin';
 export class VlMapMeasureControl extends VlMapControl(BaseLitElement) {
     constructor() {
         super();
+        registerWebComponents([VlToggleButtonComponent]);
         this.controlElement = document.createElement('vl-toggle-button');
         // TODO: When upgrading component versions; replace text by icon
         // this.controlElement.icon = 'ruler';

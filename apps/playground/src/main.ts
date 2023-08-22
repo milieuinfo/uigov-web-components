@@ -1,5 +1,6 @@
-// @uig imports
 import 'reflect-metadata';
+// deze imports van alle elements, components en map werken IN de monorepo
+// -> buiten de monorepo werkt dat niet omdat sideEffects disabled worden voor de root-barrel file in de artifacts
 import '@domg-wc/elements';
 import '@domg-wc/components';
 import '@domg-wc/map';
