@@ -1,4 +1,5 @@
 import { webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 import { BaseButtonOfType } from './base/base-button.element';
 
 /**
@@ -19,6 +20,7 @@ import { BaseButtonOfType } from './base/base-button.element';
  * @property {boolean} data-vl-tertiary - Attribuut wordt gebruikt in combinatie met gewone en secondary knoppen om alternatieve acties te voorzien.
  */
 
+@elementStyles()
 @webComponent('vl-button', { extends: 'button' })
 export class VlButtonElement extends BaseButtonOfType(HTMLButtonElement) {}
 

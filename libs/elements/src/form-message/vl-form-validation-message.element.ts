@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlFormValidationMessage
@@ -12,6 +13,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @property {boolean} data-vl-success - Attribuut wordt gebruikt om boodschap te tonen bij een succesvolle validatie.
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om het label in block vorm te tonen zodat het de breedte van het parent element aanneemt.
  */
+@elementStyles()
 @webComponent('vl-form-validation-message', { extends: 'p' })
 export class VlFormValidationMessage extends BaseElementOfType(HTMLParagraphElement) {
     constructor() {

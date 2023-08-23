@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlProperties
@@ -11,6 +12,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @property {boolean} data-vl-full-width - Attribuut wordt gebruikt om de maximale breedte van het label te benutten.
  * @property {boolean} data-vl-collapsed - Zorgt ervoor dat labels en waarden op aparte lijnen afgebeeld worden.
  */
+@elementStyles()
 @webComponent('vl-properties')
 export class VlPropertiesComponent extends BaseElementOfType(HTMLElement) {
     static get _observedClassAttributes() {

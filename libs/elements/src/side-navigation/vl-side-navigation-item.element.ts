@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlSideNavigationItem
@@ -10,6 +11,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  *
  * @property {boolean} data-vl-parent - Attribuut wordt gebruikt op de navigatie menu list elementen.
  */
+@elementStyles()
 @webComponent('vl-side-navigation-item', { extends: 'li' })
 export class VlSideNavigationItemElement extends BaseElementOfType(HTMLLIElement) {
     static get _observedAttributes() {

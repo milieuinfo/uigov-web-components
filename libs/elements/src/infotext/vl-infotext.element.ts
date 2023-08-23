@@ -1,11 +1,11 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders/vl-ui-infotext/dist/js/infotext.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
+import { elementStyles } from '../vl-elements.uig-css';
 
 declare const vl: any;
 
-// TODO gertjame: Change any types to the correct type.
-
+@elementStyles()
 @webComponent('vl-infotext', { extends: 'div' })
 export class VlInfotextElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedAttributes() {

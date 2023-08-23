@@ -6,6 +6,7 @@ import './vl-side-navigation-reference.element';
 import './vl-side-navigation-title.element';
 import './vl-side-navigation-toggle.element';
 import './vl-side-navigation.lib.js';
+import { elementStyles } from '../vl-elements.uig-css';
 
 declare const vl: VL;
 
@@ -17,6 +18,7 @@ declare const vl: VL;
  * @extends HTMLElement
  * @mixes nativeVlElement
  */
+@elementStyles()
 @webComponent('vl-side-navigation', { extends: 'nav' })
 export class VlSideNavigation extends BaseElementOfType(HTMLElement) {
     constructor() {

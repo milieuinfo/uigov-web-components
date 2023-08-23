@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlBody
@@ -8,6 +9,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @extends HTMLBodyElement
  * @mixes nativeVlElement
  */
+@elementStyles()
 @webComponent('vl-body', { extends: 'body' })
 export class VlBodyElement extends BaseElementOfType(HTMLBodyElement) {
     connectedCallback() {

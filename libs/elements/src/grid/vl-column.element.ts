@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlColumn
@@ -18,7 +19,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @property {number} [12] data-vl-extra-small-max-size - Het maximum (noemer) waartegen zal geevalueerd worden bij zeer kleine schermen.
  * @property {number} data-vl-push - aantal partities te verschuiven.
  */
-
+@elementStyles()
 @webComponent('vl-column', { extends: 'div' })
 export class VlColumnElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedAttributes() {

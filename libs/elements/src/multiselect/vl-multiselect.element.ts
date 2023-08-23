@@ -1,6 +1,8 @@
 import { webComponentConditional } from '@domg-wc/common-utilities';
 import { VlSelect } from '../select/vl-select.element';
+import { elementStyles } from '../vl-elements.uig-css';
 
+@elementStyles()
 @webComponentConditional('vl-select', 'vl-multiselect', { extends: 'select' })
 export class VlMultiSelect extends VlSelect {
     static get readyEvent() {

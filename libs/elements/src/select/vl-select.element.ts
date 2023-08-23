@@ -2,6 +2,7 @@ import { awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/co
 import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
 import './vl-select.lib.js';
+import { elementStyles } from '../vl-elements.uig-css';
 
 declare const vl: any;
 
@@ -28,6 +29,7 @@ declare const vl: any;
  * @property {string} data-vl-search-placeholder - De placeholder van het zoekveld.
  * @property {string} data-vl-no-more-options - De tekst die getoond wordt wanneer er geen keuzes meer zijn.
  */
+@elementStyles()
 @webComponentPromised([vlFormValidation.ready()], 'vl-select', { extends: 'select' })
 export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSelectElement)) {
     /**

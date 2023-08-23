@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlDataTable
@@ -17,6 +18,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @property {boolean} data-vl-collapsed-s - Vanaf een small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
  * @property {boolean} data-vl-collapsed-xs - Vanaf een extra small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
  */
+@elementStyles()
 @webComponent('vl-data-table', { extends: 'table' })
 export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
     static get _observedClassAttributes() {

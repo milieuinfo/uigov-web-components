@@ -1,5 +1,7 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
+@elementStyles()
 @webComponent('vl-text', { extends: 'span' })
 export class VlText extends BaseElementOfType(HTMLSpanElement) {
     static get _observedClassAttributes() {

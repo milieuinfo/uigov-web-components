@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlLayout
@@ -8,6 +9,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @extends HTMLDivElement
  * @mixes nativeVlElement
  */
+@elementStyles()
 @webComponent('vl-layout', { extends: 'div' })
 export class VlLayoutElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedClassAttributes() {

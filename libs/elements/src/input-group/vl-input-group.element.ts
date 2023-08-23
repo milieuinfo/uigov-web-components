@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlInputGroup
@@ -8,6 +9,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @extends HTMLDivElement
  * @mixes nativeVlElement
  */
+@elementStyles()
 @webComponent('vl-input-group', { extends: 'div' })
 export class VlInputGroupElement extends BaseElementOfType(HTMLDivElement) {
     connectedCallback() {
