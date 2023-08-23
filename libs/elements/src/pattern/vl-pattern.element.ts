@@ -2,7 +2,6 @@ import { awaitUntil } from '@domg-wc/common-utilities';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import './lib/pattern.lib.js';
 
-// TODO: gertjame refactor this.
 declare const vl: any;
 declare const window: any;
 

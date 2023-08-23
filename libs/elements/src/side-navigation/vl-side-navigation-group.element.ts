@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlSideNavigationGroup
@@ -8,6 +9,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @extends HTMLUListElement
  * @mixes nativeVlElement
  */
+@elementStyles()
 @webComponent('vl-side-navigation-group', { extends: 'ul' })
 export class VlSideNavigationGroupElement extends BaseElementOfType(HTMLUListElement) {
     constructor() {

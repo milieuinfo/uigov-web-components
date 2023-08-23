@@ -117,4 +117,28 @@ const elementUigStyles: CSSResult[] = [
     sideNavigationUigStyle,
 ];
 
-export default [...commonStyles, ...componentStyles, ...elementUigStyles] as CSSResult[];
+export const allElementStyles = [...commonStyles, ...componentStyles, ...elementUigStyles] as CSSResult[];
+
+export default allElementStyles;
+
+class RegisterStyles {
+    static elementStylesRegistered = false;
+
+    static registerElementsStyles() {
+        if (!RegisterStyles.elementStylesRegistered) {
+            document.adoptedStyleSheets = [
+                ...document.adoptedStyleSheets,
+                ...(allElementStyles.map((style) => style.styleSheet) as CSSStyleSheet[]),
+            ];
+            RegisterStyles.elementStylesRegistered = true;
+            console.log('alle element styling toegevoegd aan de document style-sheets');
+        }
+    }
+}
+
+export const elementStyles =
+    () =>
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    (constructor: Function): any => {
+        RegisterStyles.registerElementsStyles();
+    };

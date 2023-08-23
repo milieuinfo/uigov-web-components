@@ -1,8 +1,8 @@
 import { awaitUntil } from '@domg-wc/common-utilities';
 import { assert, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import './vl-select-location';
 import LambertCoordinaat from '../../utils/lambert-coordinaat';
+import './vl-select-location';
 
 const selectLocationFixture = async () => fixture(html` <select is="vl-select-location"></select> `);
 
@@ -99,7 +99,8 @@ describe('vl-select-location', () => {
         },
     };
 
-    const choicesAreLoaded = (element) => [...element._choices.choiceList.children][0].innerText != 'Zoeken op kaart';
+    const choicesAreLoaded = (element) =>
+        ![...element._choices.choiceList.children][0].innerText.includes('Zoeken op kaart');
 
     afterEach(() => {
         sandbox.restore();
@@ -163,7 +164,7 @@ describe('vl-select-location', () => {
         );
         await awaitUntil(() => choicesAreLoaded(select));
         assert.deepEqual(
-            [...select._choices.choiceList.children].map((suggestion) => suggestion.innerText),
+            [...select._choices.choiceList.children].map((suggestion) => suggestion.innerText.trim()),
             suggestions
         );
 
@@ -205,7 +206,7 @@ describe('vl-select-location', () => {
 
         await awaitUntil(() => choicesAreLoaded(select));
         assert.deepEqual(
-            [...select._choices.choiceList.children].map((suggestion) => suggestion.innerText),
+            [...select._choices.choiceList.children].map((suggestion) => suggestion.innerText.trim()),
             [suggestions[0].FormattedAddress, suggestions[1].FormattedAddress, `Lambert-coördinaat: ${coordinate}`]
         );
 

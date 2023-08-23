@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlIntroduction
@@ -8,6 +9,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @extends HTMLParagraphElement
  * @mixes BaseElementOfType
  */
+@elementStyles()
 @webComponent('vl-introduction', { extends: 'p' })
 export class VlIntroductionElement extends BaseElementOfType(HTMLParagraphElement) {
     connectedCallback() {

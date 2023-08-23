@@ -1,5 +1,6 @@
 import { BaseElementOfType, VL, webComponent } from '@domg-wc/common-utilities';
 import './vl-form-group.element';
+import { elementStyles } from '../vl-elements.uig-css';
 
 declare const vl: VL;
 
@@ -13,6 +14,7 @@ declare const vl: VL;
  * @property {boolean} data-vl-validate - Attribuut wordt gebruikt om aan te geven dat de input velden validatie geactiveerd moet worden.
  * @property {boolean} data-vl-escape-field-names - Geeft aan dat het name attribuut van de input velden ge-escaped moet worden. Kan gebruikt worden als er een '.' in het name attribuut staat en de validatie niet correct werkt.
  */
+@elementStyles()
 @webComponent('vl-form', { extends: 'form' })
 export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
     private observer: MutationObserver | undefined;

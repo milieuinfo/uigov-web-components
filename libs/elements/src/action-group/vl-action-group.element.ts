@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VLActionGroup
@@ -16,6 +17,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @property {boolean} data-vl-collapse-s - Attribuut wordt gebruikt om de button bij small schermen als block element te tonen.
  * @property {boolean} data-vl-collapse-xs - Attribuut wordt gebruikt om de button bij extra small schermen als block element te tonen.
  */
+@elementStyles()
 @webComponent('vl-action-group', { extends: 'div' })
 export class VlActionGroup extends BaseElementOfType(HTMLDivElement) {
     static get _observedClassAttributes() {

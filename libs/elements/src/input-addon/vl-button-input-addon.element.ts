@@ -1,4 +1,5 @@
 import { webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 import { InputAddonBaseElementOfType } from './base/input-addon-base.element';
 
 /**
@@ -10,6 +11,7 @@ import { InputAddonBaseElementOfType } from './base/input-addon-base.element';
  * @extends HTMLButtonElement
  * @mixes vlInputAddonElement
  */
+@elementStyles()
 @webComponent('vl-button-input-addon', { extends: 'button' })
 export class VlButtonInputAddon extends InputAddonBaseElementOfType(HTMLButtonElement) {}
 

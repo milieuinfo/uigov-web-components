@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlSideNavigationTitle
@@ -19,21 +20,27 @@ class VlSideNavigationTitleElement extends BaseElementOfType(HTMLHeadingElement)
     }
 }
 
+@elementStyles()
 @webComponent('vl-side-navigation-h1', { extends: 'h1' })
 export class VlSideNavigationH1 extends VlSideNavigationTitleElement {}
 
+@elementStyles()
 @webComponent('vl-side-navigation-h2', { extends: 'h2' })
 export class VlSideNavigationH2 extends VlSideNavigationTitleElement {}
 
+@elementStyles()
 @webComponent('vl-side-navigation-h3', { extends: 'h3' })
 export class VlSideNavigationH3 extends VlSideNavigationTitleElement {}
 
+@elementStyles()
 @webComponent('vl-side-navigation-h4', { extends: 'h4' })
 export class VlSideNavigationH4 extends VlSideNavigationTitleElement {}
 
+@elementStyles()
 @webComponent('vl-side-navigation-h5', { extends: 'h5' })
 export class VlSideNavigationH5 extends VlSideNavigationTitleElement {}
 
+@elementStyles()
 @webComponent('vl-side-navigation-h6', { extends: 'h6' })
 export class VlSideNavigationH6 extends VlSideNavigationTitleElement {}
 

@@ -1,5 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import './vl-link-list-item.element';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlLinkList
@@ -9,6 +10,7 @@ import './vl-link-list-item.element';
  * @extends HTMLUListElement
  * @mixes nativeVlElement
  */
+@elementStyles()
 @webComponent('vl-link-list', { extends: 'ul' })
 export class VlLinkListElement extends BaseElementOfType(HTMLUListElement) {
     connectedCallback() {

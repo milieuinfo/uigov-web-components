@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlRegion
@@ -16,6 +17,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @property {boolean} data-vl-medium - Gebruik middelgrote marges.
  * @property {boolean} data-vl-bordered - Teken een rand.
  */
+@elementStyles()
 @webComponent('vl-region', { extends: 'section' })
 export class VlRegionElement extends BaseElementOfType(HTMLElement) {
     static get _observedClassAttributes() {

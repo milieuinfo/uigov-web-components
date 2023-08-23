@@ -1,5 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '../title/vl-h2.element';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlSearchFilter
@@ -14,6 +15,7 @@ import '../title/vl-h2.element';
  * @property {string} [data-vl-mobile-modal-title=Filter] - De titel van deze search filter op mobiele toestellen indien niet gedeclareerd wordt het data-vl-title attribuut of de default genomen.
  * @property {string} data-vl-title - De titel van deze search filter.
  */
+@elementStyles()
 @webComponent('vl-search-filter', { extends: 'div' })
 export class VlSearchFilterElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedAttributes() {

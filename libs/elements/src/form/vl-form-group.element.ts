@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlFormGroup
@@ -7,6 +8,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  *
  * @extends HTMLElement
  */
+@elementStyles()
 @webComponent('vl-form-group', { extends: 'div' })
 export class VlFormGroup extends BaseElementOfType(HTMLDivElement) {
     connectedCallback() {
