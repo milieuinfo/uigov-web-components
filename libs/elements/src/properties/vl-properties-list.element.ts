@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlPropertiesList
@@ -8,6 +9,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @extends HTMLDListElement
  * @mixes nativeVlElement
  */
+@elementStyles()
 @webComponent('vl-properties-list', { extends: 'dl' })
 export class VlPropertiesListElement extends BaseElementOfType(HTMLDListElement) {
     connectedCallback() {

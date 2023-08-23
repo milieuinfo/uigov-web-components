@@ -2,6 +2,7 @@ import { BaseElementOfType, webComponentPromised } from '@domg-wc/common-utiliti
 import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
 import { vlPattern } from '../pattern/vl-pattern.element';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlInputField
@@ -17,8 +18,7 @@ import { vlPattern } from '../pattern/vl-pattern.element';
  * @property {boolean} data-vl-small - Kleine variant van het input-field
  * @property {boolean} data-vl-success - Zorgt ervoor dat er een groene rand rond het input-veld verschijnt
  */
-
-// TODO gertjame: Fix validation.
+@elementStyles()
 @webComponentPromised([vlFormValidation.ready(), vlPattern.ready()], 'vl-input-field', { extends: 'input' })
 export class VlInputFieldElement extends vlFormValidationElement(BaseElementOfType(HTMLInputElement)) {
     static get _observedAttributes() {

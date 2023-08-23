@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlSearchResult
@@ -8,6 +9,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @extends HTMLElement
  * @mixes BaseElementOfType
  */
+@elementStyles()
 @webComponent('vl-search-result', { extends: 'li' })
 export class VlSearchResult extends BaseElementOfType(HTMLLIElement) {
     get _classPrefix() {

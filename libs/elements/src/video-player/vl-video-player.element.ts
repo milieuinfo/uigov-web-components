@@ -1,8 +1,10 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import './vl-video-player.lib.js';
+import { elementStyles } from '../vl-elements.uig-css';
 
 declare const window: any;
 
+@elementStyles()
 @webComponent('vl-video-player', { extends: 'video' })
 export class VlVideoPlayerElement extends BaseElementOfType(HTMLVideoElement) {
     connectedCallback() {

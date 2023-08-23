@@ -4,7 +4,9 @@ import './child/vl-doormat-graphic-wrapper.element';
 import './child/vl-doormat-image.element';
 import './child/vl-doormat-text.element';
 import './child/vl-doormat-title.element';
+import { elementStyles } from '../vl-elements.uig-css';
 
+@elementStyles()
 @webComponent('vl-doormat', { extends: 'a' })
 export class VlDoormatElement extends BaseElementOfType(HTMLAnchorElement) {
     static get _observedClassAttributes() {

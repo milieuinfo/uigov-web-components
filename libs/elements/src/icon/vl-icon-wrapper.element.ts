@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlIconWrapper
@@ -8,6 +9,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @extends HTMLParagraphElement
  * @mixes nativeVlElement
  */
+@elementStyles()
 @webComponent('vl-icon-wrapper', { extends: 'p' })
 export class VlIconWrapperElement extends BaseElementOfType(HTMLParagraphElement) {
     connectedCallback() {

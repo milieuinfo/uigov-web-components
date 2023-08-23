@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlPropertiesColumn
@@ -10,6 +11,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  *
  * @property {boolean} data-vl-full - Attribuut wordt gebruikt om de kolom de volledige breedte te laten innemen.
  */
+@elementStyles()
 @webComponent('vl-properties-column', { extends: 'div' })
 export class VlPropertiesColumnElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedClassAttributes() {

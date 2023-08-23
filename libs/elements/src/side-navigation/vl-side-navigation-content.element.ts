@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlSideNavigationContent
@@ -8,6 +9,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @extends HTMLDivElement
  * @mixes nativeVlElement
  */
+@elementStyles()
 @webComponent('vl-side-navigation-content', { extends: 'div' })
 export class VlSideNavigationContentElement extends BaseElementOfType(HTMLDivElement) {
     constructor() {

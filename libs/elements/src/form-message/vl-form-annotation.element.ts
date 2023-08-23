@@ -1,4 +1,5 @@
 import { BaseElementOfType, Class, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * Gebruik de form-annotation mixin in combinatie met HTML elementen.
@@ -33,6 +34,7 @@ const baseFormAnnotationElement = (SuperClass: Class): Class => {
  *
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om het label in block vorm te tonen zodat het de breedte van het parent element aanneemt.
  */
+@elementStyles()
 @webComponent('vl-form-annotation', { extends: 'p' })
 export class VlFormAnnotation extends baseFormAnnotationElement(HTMLParagraphElement) {}
 
@@ -52,6 +54,7 @@ declare global {
  *
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om het label in block vorm te tonen zodat het de breedte van het parent element aanneemt.
  */
+@elementStyles()
 @webComponent('vl-form-annotation-span', { extends: 'span' })
 export class VlFormAnnotationSpan extends baseFormAnnotationElement(HTMLSpanElement) {}
 

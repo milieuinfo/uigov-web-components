@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlFormLabel
@@ -11,6 +12,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @property {boolean} data-vl-light - Attribuut wordt gebruikt om het label in een lichte kleur te tonen.
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om het label in block vorm te tonen zodat het de breedte van het parent element aanneemt.
  */
+@elementStyles()
 @webComponent('vl-form-label', { extends: 'label' })
 export class VlFormLabel extends BaseElementOfType(HTMLLabelElement) {
     static get _observedClassAttributes() {

@@ -2,6 +2,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import './vl-column.element';
 import './vl-layout.element';
 import './vl-region.element';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlGrid
@@ -24,7 +25,7 @@ import './vl-region.element';
  * @property {boolean} data-vl-v-bottom - Aligneer een of meerdere kolommen onderaan.
  * @property {boolean} data-vl-v-stretch - Rek de kolommen tot aan hun maximum hoogte.
  */
-
+@elementStyles()
 @webComponent('vl-grid', { extends: 'div' })
 export class VlGridElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedClassAttributes() {

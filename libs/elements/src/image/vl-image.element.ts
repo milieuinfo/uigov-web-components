@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlImage
@@ -8,6 +9,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @extends HTMLImageElement
  * @mixes nativeVlElement
  */
+@elementStyles()
 @webComponent('vl-image', { extends: 'img' })
 export class VlImageElement extends BaseElementOfType(HTMLImageElement) {
     connectedCallback() {

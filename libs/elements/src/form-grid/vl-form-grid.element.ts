@@ -1,6 +1,7 @@
 import { webComponent } from '@domg-wc/common-utilities';
 import { VlGridElement } from '../grid/vl-grid.element';
 import './vl-form-column.element';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlFormGrid
@@ -9,6 +10,7 @@ import './vl-form-column.element';
  *
  * @extends VlGridElement
  */
+@elementStyles()
 @webComponent('vl-form-grid', { extends: 'div' })
 export class VlFormGridElement extends VlGridElement {
     connectedCallback() {

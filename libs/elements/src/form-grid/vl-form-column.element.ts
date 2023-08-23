@@ -1,5 +1,6 @@
 import { webComponent } from '@domg-wc/common-utilities';
 import { VlColumnElement } from '../grid/vl-column.element';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlFormColumn
@@ -8,6 +9,7 @@ import { VlColumnElement } from '../grid/vl-column.element';
  *
  * @extends VlColumn
  */
+@elementStyles()
 @webComponent('vl-form-column', { extends: 'div' })
 export class VlFormColumn extends VlColumnElement {
     connectedCallback() {

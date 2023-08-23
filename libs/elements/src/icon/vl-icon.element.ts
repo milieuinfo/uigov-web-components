@@ -1,4 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { elementStyles } from '../vl-elements.uig-css';
 
 /**
  * VlIcon
@@ -17,6 +18,7 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
  * @property {boolean} data-vl-180deg - Attribuut wordt gebruikt om het icoon 180 graden te roteren.
  * @property {boolean} data-vl-link - Attribuut moet gebruikt worden wanneer het icoon binnen een a tag gebruikt wordt zodat de stijl goed is.
  */
+@elementStyles()
 @webComponent('vl-icon', { extends: 'span' })
 export class VlIconElement extends BaseElementOfType(HTMLSpanElement) {
     static get _observedAttributes() {
