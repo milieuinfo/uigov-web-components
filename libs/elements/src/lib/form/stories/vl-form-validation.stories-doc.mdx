@@ -1,4 +1,4 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgsTable, DocsStory, Source, PRIMARY_STORY } from '@storybook/addon-docs';
 
 # Form Validatie
 
@@ -64,6 +64,31 @@ Met `vl-form-group` wordt styling toegevoegd om makkelijker te onderscheiden tus
 Zie voorbeeld hieronder:
 
 <DocsStory id="elements-form--form-group" />
+
+### Valideren zonder submit
+
+Voor validatie in de context van een single page application, willen we typisch ook geen submit uitvoeren maar enkel de inputs van de form valideren.
+Om dit te doen kan je de functie `requestValidation()` aanroepen op de `vl-form`-instantie.
+
+Dit zal de achterliggende `validate.js`-validatie uitvoeren zonder de form te submitten.
+
+Hieronder zie je een voorbeeld hoe je dit zou kunnen gebruiken:
+
+<details>
+<summary>voorbeeld code</summary>
+<Source
+    language="js"
+    format={true}
+    dark
+    code={`
+    // form instantie ophalen
+    const vlForm = document.querySelector('form[is="vl-form"]#eerste-form');
+    // valideren zonder submit
+    vlForm.requestValidation();
+    // native "checkValidity()" methode geeft validiteit de form terug
+    console.log('vlForm.checkValidity', vlForm.checkValidity());`}
+></Source>
+</details>
 
 ## Referenties
 

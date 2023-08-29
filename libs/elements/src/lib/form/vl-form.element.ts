@@ -35,6 +35,13 @@ export class VlFormElement extends BaseElementOfType(HTMLFormElement) {
         this.observer?.disconnect();
     }
 
+    /**
+     * will process validation for all inputs in the form without submitting
+     */
+    requestValidation(): void {
+        this.dispatchEvent(new Event('vl-validate'));
+    }
+
     get _targetElement() {
         return this.querySelector(`iframe[name="${VlFormElement._targetElementName}"]`);
     }

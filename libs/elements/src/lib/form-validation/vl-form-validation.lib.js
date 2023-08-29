@@ -7100,6 +7100,17 @@
                         // feat: UIG-2504 - vl-form - validatie voor dynamische toegevoegde form-elementen
                         { signal: form.abortController.signal }
                     );
+                    // UIG-2649 - valideer methode toegevoegd die kan gebruikt worden zonder submit
+                    form.addEventListener(
+                        'vl-validate',
+                        function validateForm() {
+                            const constraints = validationConfig.constraints;
+                            const errors = validate(form, constraints, fvValidatorOptions);
+                            _handleErrors(form, errors || {}, true);
+                            return errors;
+                        },
+                        { signal: form.abortController.signal }
+                    );
                 },
             },
             {
