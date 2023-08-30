@@ -26,6 +26,7 @@ const Template = story(
         borderSize,
         clusterColor,
         clusterTextColor,
+        clusterMultiplier,
         color,
         name,
         size,
@@ -81,6 +82,7 @@ const Template = story(
                     data-vl-border-color=${borderColor}
                     data-vl-border-size=${borderSize}
                     data-vl-cluster-color=${clusterColor}
+                    data-vl-cluster-multiplier=${clusterMultiplier}
                     data-vl-cluster-text-color=${clusterTextColor}
                     data-vl-color=${color}
                     data-vl-name=${name}
@@ -124,6 +126,7 @@ export const MapLayerCircleStyleClustered = story(
         borderSize,
         clusterColor,
         clusterTextColor,
+        clusterMultiplier,
         color,
         name,
         size,
@@ -169,6 +172,116 @@ export const MapLayerCircleStyleClustered = story(
                         label: 'C',
                     },
                 },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [159755.0, 187208.0],
+                    },
+                    properties: {
+                        label: 'D',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [158955.0, 187208.0],
+                    },
+                    properties: {
+                        label: 'D1',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [160855.0, 187208.0],
+                    },
+                    properties: {
+                        label: 'D2',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [161855.0, 187208.0],
+                    },
+                    properties: {
+                        label: 'D3',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [158955.0, 188208.0],
+                    },
+                    properties: {
+                        label: 'D4',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [160855.0, 188208.0],
+                    },
+                    properties: {
+                        label: 'D5',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [161855.0, 188208.0],
+                    },
+                    properties: {
+                        label: 'D6',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [162855.0, 188208.0],
+                    },
+                    properties: {
+                        label: 'D6',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [159755.0, 177208.0],
+                    },
+                    properties: {
+                        label: 'E3',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [158755.0, 177208.0],
+                    },
+                    properties: {
+                        label: 'E2',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [158755.0, 186208.0],
+                    },
+                    properties: {
+                        label: 'E1',
+                    },
+                },
             ],
         };
 
@@ -180,6 +293,7 @@ export const MapLayerCircleStyleClustered = story(
                     data-vl-border-size=${borderSize}
                     data-vl-cluster-color=${clusterColor}
                     data-vl-cluster-text-color=${clusterTextColor}
+                    data-vl-cluster-multiplier=${clusterMultiplier}
                     data-vl-color=${color}
                     data-vl-name=${name}
                     data-vl-size=${size}

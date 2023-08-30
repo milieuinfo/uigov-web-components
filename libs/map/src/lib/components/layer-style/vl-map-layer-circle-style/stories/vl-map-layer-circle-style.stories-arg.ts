@@ -7,6 +7,7 @@ export const mapLayerCircleStyleArg = {
     borderColor: 'rgba(0, 0, 0, 0)',
     clusterColor: 'rgba(2, 85, 204, 1)',
     clusterTextColor: '#FFF',
+    clusterMultiplier: 1,
     size: 5,
 };
 
@@ -28,6 +29,16 @@ export const mapLayerCircleStyleArgTypes: ArgTypes<typeof mapLayerCircleStyleArg
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: mapLayerCircleStyleArg.clusterColor },
+        },
+    },
+    clusterMultiplier: {
+        name: 'data-vl-cluster-multiplier',
+        description: 'Bepaalt de verhouding van de vergroting voor clusters tegenover ingestelde `data-vl-size`.',
+        control: { type: 'number', step: 0.1 },
+        table: {
+            type: { summary: TYPES.NUMBER },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapLayerCircleStyleArg.clusterMultiplier },
         },
     },
     clusterTextColor: {
