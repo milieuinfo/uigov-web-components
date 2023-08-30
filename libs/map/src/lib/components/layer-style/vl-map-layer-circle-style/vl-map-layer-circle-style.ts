@@ -17,6 +17,7 @@ import { VlMapLayerStyle } from '../vl-map-layer-style';
  * @property {number} data-vl-border-size - Attribuut wordt gebruikt om aan te geven wat de grootte is van de randen van de cirkels.
  * @property {string} data-vl-cluster-text-color - Attribuut wordt gebruikt om aan te geven wat de kleur van de tekst is bij het clusteren van features.
  * @property {string} data-vl-cluster-color - Attribuut wordt gebruikt om aan te geven wat de kleur is bij het clusteren van features.
+ * @property {string} data-vl-cluster-multiplier - Attribuut wordt gebruikt om aan te geven wat het coëfficient is bij het clusteren van features.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
@@ -70,16 +71,24 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
         return this.getAttribute('cluster-color') || 'rgba(2, 85, 204, 1)';
     }
 
+    /**
+     * Bepaalt met welke coëfficient een cluster wordt vergroot
+     *
+     * @Return {number}
+     */
+    get clusterMultiplier(): number {
+        const clusterMultiplier = Number(this.getAttribute('cluster-multiplier'));
+        return isNaN(clusterMultiplier) || clusterMultiplier === 0 ? 1 : clusterMultiplier;
+    }
+
     get _styleFunction() {
         return (feature, resolution) => {
             const features = feature && feature.get ? feature.get('features') || [] : [];
-            const size = features.length || 1;
-            const clusterMultiplier = size == 1 ? 1 : Math.max(1.5, size.toString().length);
-            let { textColor } = this;
-            let { color } = this;
-            let { borderColor } = this;
-            let { borderSize } = this;
-            let radius = size > 1 ? this.size * clusterMultiplier : this.size;
+            let { textColor, color, borderColor, borderSize } = this;
+            const numberOfFeatures = features.length || 1;
+            const rangeMultiplier = Math.max(1.5, numberOfFeatures.toString().length);
+            const clusterMultiplierResult = numberOfFeatures === 1 ? 1 : this.clusterMultiplier * rangeMultiplier;
+            let radius = this.size * clusterMultiplierResult;
 
             if (this.parentElement && this.parentElement['cluster']) {
                 if (this._hasUniqueStyles(features)) {
@@ -91,7 +100,10 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
                     color = styleImage.getFill().getColor();
                     borderColor = styleImage.getStroke().getColor();
                     borderSize = styleImage.getStroke().getWidth();
-                    radius = size > 1 ? styleImage.getRadius() * clusterMultiplier : styleImage.getRadius();
+                    radius =
+                        numberOfFeatures > 1
+                            ? styleImage.getRadius() * clusterMultiplierResult
+                            : styleImage.getRadius();
                 } else if (this._containsStyle(features)) {
                     color = this.clusterColor;
                     textColor = this.clusterTextColor;
