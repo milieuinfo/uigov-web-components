@@ -1,3 +1,18 @@
+# [1.15.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.14.0...v1.15.0) (2023-08-30)
+
+
+### Bug Fixes
+
+* UIG-2538 - vl-document - ontbrekende styling voor title toegevoegd ([1047885](https://github.com/milieuinfo/uigov-web-components/commit/1047885a4b6c4518883ec6df34550591e02e97fe))
+* UIG-2550 - vl-form-validation - dot in name attribute ([c421c16](https://github.com/milieuinfo/uigov-web-components/commit/c421c1644e5f4fa3ba6c96e6a2bdbf73db1084f5))
+* UIG-2636 - vl-cookie-consent - waarschuwing wordt nu enkel getoond zonder de matomo parameters ([8c6ef66](https://github.com/milieuinfo/uigov-web-components/commit/8c6ef66061254f84af455c0d646905ccbb6882f3))
+
+
+### Features
+
+* UIG-2635 - vl-cookie-consent - analytics: naamswijziging KBOMG ([09fe6a4](https://github.com/milieuinfo/uigov-web-components/commit/09fe6a4a40dd7a90d7e003a133261a564495a66c))
+* UIG-2649 - vl-form - requestValidation methode toegevoegd die kan gebruikt worden zonder submit ([5fc9643](https://github.com/milieuinfo/uigov-web-components/commit/5fc964334d842ec996c1a5c01e8f94797dfcfa0b))
+
 # [1.14.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.13.0...v1.14.0) (2023-08-04)
 
 
