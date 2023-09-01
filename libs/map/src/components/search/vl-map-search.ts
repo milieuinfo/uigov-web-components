@@ -23,6 +23,10 @@ import { VlSelectLocation } from '../select-location/vl-select-location';
  */
 @webComponent('vl-map-search')
 export class VlMapSearch extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlSelect, VlSelectLocation, VlSearchComponent]);
+    }
+
     static get _observedAttributes() {
         return ['placeholder', 'search-placeholder', 'search-empty-text', 'search-no-results-text'];
     }
@@ -47,7 +51,6 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
             <select is="vl-select-location" slot="input"></select>
           </vl-search>
         `);
-        registerWebComponents([VlSelect, VlSelectLocation, VlSearchComponent]);
         this._configure();
         this._addSelectChangeListener();
     }

@@ -4,6 +4,10 @@ import styles from './vl-rich-data-table.uig-css';
 
 @webComponent('vl-rich-data-sorter')
 export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlIconElement]);
+    }
+
     static get DIRECTIONS() {
         return {
             descending: 'desc',
@@ -42,7 +46,6 @@ export class VlRichDataSorter extends BaseElementOfType(HTMLElement) {
             <label id="priority"></label>
           </div>
         `);
-        registerWebComponents([VlIconElement]);
     }
 
     get for(): string {

@@ -14,6 +14,10 @@ type Sorter = Pick<VlRichDataSorter, 'name' | 'direction' | 'priority'>;
     'vl-rich-data-table'
 )
 export class VlRichDataTable extends VlRichData {
+    static {
+        registerWebComponents([VlDataTable]);
+    }
+
     static get _observedAttributes() {
         return super._observedAttributes.concat(['data', 'collapsed-m', 'collapsed-s', 'collapsed-xs']);
     }
@@ -41,7 +45,6 @@ export class VlRichDataTable extends VlRichData {
           </table>
         `
         );
-        registerWebComponents([VlDataTable]);
         this.__observeSorters();
     }
 

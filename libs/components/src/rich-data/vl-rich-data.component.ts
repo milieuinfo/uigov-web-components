@@ -36,6 +36,10 @@ export type RichData = { data: unknown[] } & RichDataMeta;
  */
 @webComponent('vl-rich-data')
 export class VlRichData extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlButtonElement, VlColumnElement, VlFormLabel, VlGridElement, VlIconElement]);
+    }
+
     static get _observedAttributes(): string[] {
         return ['data', 'collapsed-m', 'collapsed-s', 'collapsed-xs', 'filter-closable', 'filter-closed'];
     }
@@ -91,7 +95,6 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
             </div>
           </div>
         `);
-        registerWebComponents([VlButtonElement, VlColumnElement, VlFormLabel, VlGridElement, VlIconElement]);
     }
 
     connectedCallback(): void {

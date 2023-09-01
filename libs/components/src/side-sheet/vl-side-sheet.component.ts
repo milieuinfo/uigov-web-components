@@ -40,6 +40,10 @@ import styles from './vl-side-sheet.uig-css';
  */
 @webComponent('vl-side-sheet')
 export class VlSideSheet extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlLayoutElement, VlRegionElement, VlText, VlToggleButtonComponent]);
+    }
+
     static get _observedAttributes() {
         return [
             'enable-swipe',
@@ -79,7 +83,6 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
               </div>
           </div>
         `);
-        registerWebComponents([VlLayoutElement, VlRegionElement, VlText, VlToggleButtonComponent]);
     }
 
     connectedCallback() {
