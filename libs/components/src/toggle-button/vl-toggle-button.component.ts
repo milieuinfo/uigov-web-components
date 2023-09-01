@@ -1,11 +1,12 @@
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { VlButtonElement, VlIconElement, VlText } from '@domg-wc/elements';
+import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
+import { buttonStyle, iconStyle } from '@domg/govflanders-style/component';
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ICON_PLACEMENT } from './vl-toggle-button.model';
-import { buttonStyle, iconStyle } from '@domg/govflanders-style/component';
-import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
 import buttonUigStyle from './vl-toggle-button.uig-css';
-import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-toggle-button')
 export class VlToggleButtonComponent extends BaseLitElement {
@@ -28,6 +29,10 @@ export class VlToggleButtonComponent extends BaseLitElement {
     */
     private _active: boolean | undefined = false;
     public active: boolean | undefined = undefined;
+
+    static {
+        registerWebComponents([VlButtonElement, VlIconElement, VlText]);
+    }
 
     static get properties() {
         return {

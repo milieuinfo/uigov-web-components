@@ -1,32 +1,52 @@
 import { BaseElementOfType, registerWebComponents, webComponentConditional } from '@domg-wc/common-utilities';
+import {
+    VlButtonElement,
+    VlFormColumn,
+    VlFormElement,
+    VlFormGridElement,
+    VlFormLabel,
+    VlFormValidationMessage,
+    VlInputFieldElement,
+} from '@domg-wc/elements';
 import { VlModalComponent } from '../modal/vl-modal.component';
 
 @webComponentConditional('vl-modal', 'vl-textarea-modal')
 export class VlTextareaModal extends BaseElementOfType(HTMLElement) {
     static {
-        registerWebComponents([VlModalComponent]);
+        registerWebComponents([
+            // elements
+            VlButtonElement,
+            VlFormColumn,
+            VlFormElement,
+            VlFormGridElement,
+            VlFormLabel,
+            VlFormValidationMessage,
+            VlInputFieldElement,
+            // components
+            VlModalComponent,
+        ]);
     }
 
     constructor() {
         super(`
-      <vl-modal id="modal-cl" data-vl-title="Link toevoegen">
-        <form is="vl-form" id="link-form" slot="content" data-vl-validate>
-          <div is="vl-form-grid" is-stacked>
-            <div is="vl-form-column" size="12">
-              <label is="vl-form-label" for="text" data-vl-block>Tekst</label>
-              <input id="text" is="vl-input-field" placeholder="Link" data-vl-block data-required="true" data-vl-error-message="Gelieve een tekst in te vullen" data-vl-error-placeholder="text-error" name="link">
-              <p is="vl-form-validation-message" data-vl-error data-vl-error-id="text-error"></p>
-            </div>
-            <div is="vl-form-column" data-vl-size="12">
-              <label is="vl-form-label" for="url" data-vl-block>URL</label>
-              <input id="url" is="vl-input-field" placeholder="https://vlaanderen.be" data-vl-block data-required="true" data-vl-error-message="Gelieve een URL in te vullen" data-vl-error-placeholder="url-error" name="url">
-              <p is="vl-form-validation-message" data-vl-error data-vl-error-id="url-error"></p>
-            </div>
-          </div>
-        </form>
-        <button is="vl-button" slot="button" type="submit" form="link-form">Bewaar</button>
-      </vl-modal>
-    `);
+          <vl-modal id="modal-cl" data-vl-title="Link toevoegen">
+            <form is="vl-form" id="link-form" slot="content" data-vl-validate>
+              <div is="vl-form-grid" is-stacked>
+                <div is="vl-form-column" size="12">
+                  <label is="vl-form-label" for="text" data-vl-block>Tekst</label>
+                  <input id="text" is="vl-input-field" placeholder="Link" data-vl-block data-required="true" data-vl-error-message="Gelieve een tekst in te vullen" data-vl-error-placeholder="text-error" name="link">
+                  <p is="vl-form-validation-message" data-vl-error data-vl-error-id="text-error"></p>
+                </div>
+                <div is="vl-form-column" data-vl-size="12">
+                  <label is="vl-form-label" for="url" data-vl-block>URL</label>
+                  <input id="url" is="vl-input-field" placeholder="https://vlaanderen.be" data-vl-block data-required="true" data-vl-error-message="Gelieve een URL in te vullen" data-vl-error-placeholder="url-error" name="url">
+                  <p is="vl-form-validation-message" data-vl-error data-vl-error-id="url-error"></p>
+                </div>
+              </div>
+            </form>
+            <button is="vl-button" slot="button" type="submit" form="link-form">Bewaar</button>
+          </vl-modal>
+        `);
     }
 
     connectedCallback() {
