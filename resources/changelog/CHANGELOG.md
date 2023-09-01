@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.15.0...v1.15.1) (2023-09-01)
+
+
+### Bug Fixes
+
+* UIG-2649 - vl-form - requestValidation - config wordt nu correct doorgegeven ([7fdc393](https://github.com/milieuinfo/uigov-web-components/commit/7fdc393d9a5ba90508e16e8ae7b5e0926c1165ba))
+
 # [1.15.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.14.0...v1.15.0) (2023-08-30)
 
 
