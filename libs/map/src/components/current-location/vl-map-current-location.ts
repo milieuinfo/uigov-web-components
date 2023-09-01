@@ -14,6 +14,10 @@ export class VlMapCurrentLocation extends BaseLitElement {
     private tooltip: string;
     private _mapElement: any;
 
+    static {
+        registerWebComponents([VlIconElement]);
+    }
+
     static get styles() {
         return [
             css`
@@ -39,7 +43,6 @@ export class VlMapCurrentLocation extends BaseLitElement {
 
     constructor() {
         super();
-        registerWebComponents([VlIconElement]);
         this.zoom = DEFAULT_ZOOM;
         this.tooltip = DEFAULT_TOOLTIP;
     }

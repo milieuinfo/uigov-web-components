@@ -1,24 +1,30 @@
-import { VlCustomMap } from './custom-map';
-import {Vector, Tile, Group} from 'ol/layer';
-import {Vector as VectorSource} from 'ol/source';
+import { Group, Tile, Vector } from 'ol/layer';
 import Projection from 'ol/proj/Projection';
+import { Vector as VectorSource } from 'ol/source';
+import { VlCustomMap } from './custom-map';
 
 describe('custom map', () => {
     let map;
 
-    const layers = [new Tile({
-        visible: true,
-    }), new Tile({
-        visible: false,
-    })];
+    const layers = [
+        new Tile({
+            visible: true,
+        }),
+        new Tile({
+            visible: false,
+        }),
+    ];
 
-    const overviewMapLayers = [new Tile({
-        visible: false,
-    }), new Tile({
-        visible: true,
-    })];
+    const overviewMapLayers = [
+        new Tile({
+            visible: false,
+        }),
+        new Tile({
+            visible: true,
+        }),
+    ];
 
-    const overlayLayer = new Vector({source: new VectorSource()});
+    const overlayLayer = new Vector({ source: new VectorSource() });
 
     const merge = (a, b) => {
         for (const element in b) {
@@ -42,7 +48,7 @@ describe('custom map', () => {
             },
             projection: new Projection({
                 code: 'EPSG:31370',
-                extent: [9928.000000, 66928.000000, 272072.000000, 329072.000000],
+                extent: [9928.0, 66928.0, 272072.0, 329072.0],
             }),
         };
 
@@ -72,7 +78,7 @@ describe('custom map', () => {
             },
             projection: new Projection({
                 code: 'EPSG:31370',
-                extent: [9928.000000, 66928.000000, 272072.000000, 329072.000000],
+                extent: [9928.0, 66928.0, 272072.0, 329072.0],
             }),
         };
 
@@ -122,18 +128,18 @@ describe('custom map', () => {
     it('kan zoomen naar een geometrie tot maximaal aan het gedefinieerde zoom niveau via de map declaratie optie of de methode argumenten', () => {
         const max = 10;
 
-        map.zoomToGeometry({type: 'Point', coordinates: [100000, 100000]});
+        map.zoomToGeometry({ type: 'Point', coordinates: [100000, 100000] });
         expect(map.getView().getZoom()).toBe(16);
 
-        map.zoomToGeometry({type: 'Point', coordinates: [100000, 100000]}, max);
+        map.zoomToGeometry({ type: 'Point', coordinates: [100000, 100000] }, max);
         expect(map.getView().getZoom()).toBe(max);
 
-        map = createMap({maxZoomViewToExtent: 5});
-        map.zoomToGeometry({type: 'Point', coordinates: [100000, 100000]}, max);
+        map = createMap({ maxZoomViewToExtent: 5 });
+        map.zoomToGeometry({ type: 'Point', coordinates: [100000, 100000] }, max);
         expect(map.getView().getZoom()).toBe(max);
 
-        map = createMap({maxZoomViewToExtent: 5});
-        map.zoomToGeometry({type: 'Point', coordinates: [100000, 100000]});
+        map = createMap({ maxZoomViewToExtent: 5 });
+        map.zoomToGeometry({ type: 'Point', coordinates: [100000, 100000] });
         expect(map.getView().getZoom()).toBe(5);
     });
 
@@ -146,7 +152,8 @@ describe('custom map', () => {
         expect(array.length).toBe(1);
 
         const overlay = array[0];
-        const element = '<div class="info-tooltip"><span class="content">Test</span><div class="arrow"></div><div class="close"></div></div>';
+        const element =
+            '<div class="info-tooltip"><span class="content">Test</span><div class="arrow"></div><div class="close"></div></div>';
         expect(overlay?.getElement()?.outerHTML).toBe(element);
     });
 

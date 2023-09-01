@@ -1,5 +1,5 @@
 import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
-import { VlToggleButtonComponent } from '@domg-wc/components';
+import { VlToggleButtonComponent } from '../toggle-button';
 import { VlLayoutElement, VlRegionElement, VlText } from '@domg-wc/elements';
 import swipeDetect from 'swipe-detect/dist/';
 import styles from './vl-side-sheet.uig-css';
@@ -40,6 +40,10 @@ import styles from './vl-side-sheet.uig-css';
  */
 @webComponent('vl-side-sheet')
 export class VlSideSheet extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlLayoutElement, VlRegionElement, VlText, VlToggleButtonComponent]);
+    }
+
     static get _observedAttributes() {
         return [
             'enable-swipe',
@@ -79,7 +83,6 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
               </div>
           </div>
         `);
-        registerWebComponents([VlLayoutElement, VlRegionElement, VlText, VlToggleButtonComponent]);
     }
 
     connectedCallback() {

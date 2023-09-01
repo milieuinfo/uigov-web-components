@@ -1,58 +1,44 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import { vlElementsStyle } from '@domg-wc/elements';
-import './vl-http-400-message.component';
-import './vl-http-401-message.component';
-import './vl-http-403-message.component';
-import './vl-http-404-message.component';
-import './vl-http-405-message.component';
-import './vl-http-408-message.component';
-import './vl-http-410-message.component';
-import './vl-http-411-message.component';
-import './vl-http-412-message.component';
-import './vl-http-413-message.component';
-import './vl-http-414-message.component';
-import './vl-http-415-message.component';
-import './vl-http-500-message.component';
-import './vl-http-501-message.component';
-import './vl-http-502-message.component';
-import './vl-http-503-message.component';
-import './vl-http-504-message.component';
-import './vl-http-505-message.component';
-import './vl-http-506-message.component';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlColumnElement, vlElementsStyle, VlGridElement, VlH2Element } from '@domg-wc/elements';
+import { VlTypography } from '../typography/vl-typography.component';
 
 @webComponent('vl-http-error-message')
 export class VlHttpErrorMessage extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlColumnElement, VlGridElement, VlH2Element, VlTypography]);
+    }
+
     static get _observedAttributes() {
         return ['title', 'image', 'image-alt'];
     }
 
     constructor() {
         super(`
-      <style>
-        ${vlElementsStyle}
-      </style>
-      <div is="vl-grid" data-vl-is-stacked data-vl-align-center data-vl-v-center>
-        <div is="vl-column" data-vl-size="6" data-vl-medium-size="6" data-vl-small-size="6" data-vl-extra-small-size="6" class="vl-u-hidden vl-u-visible--s">
-          <div class="vl-u-display-flex vl-u-flex-align-center vl-u-flex-v-center">
-            <img id="image-small"/>
-          </div>
-        </div>
-        <div is="vl-column" data-vl-size="6" data-vl-medium-size="6" data-vl-small-size="8">
-          <div is="vl-grid" data-vl-is-stacked>
-            <div is="vl-column" data-vl-size="12">
-              <h2 id="title" is="vl-h2"></h2>
-              <vl-typography id="text"><slot slot="text" name="text"></slot></vl-typography>
+          <style>
+            ${vlElementsStyle}
+          </style>
+          <div is="vl-grid" data-vl-is-stacked data-vl-align-center data-vl-v-center>
+            <div is="vl-column" data-vl-size="6" data-vl-medium-size="6" data-vl-small-size="6" data-vl-extra-small-size="6" class="vl-u-hidden vl-u-visible--s">
+              <div class="vl-u-display-flex vl-u-flex-align-center vl-u-flex-v-center">
+                <img id="image-small"/>
+              </div>
             </div>
-            <div id="actions" is="vl-column" data-vl-size="12"><slot name="actions"></slot></div>
+            <div is="vl-column" data-vl-size="6" data-vl-medium-size="6" data-vl-small-size="8">
+              <div is="vl-grid" data-vl-is-stacked>
+                <div is="vl-column" data-vl-size="12">
+                  <h2 id="title" is="vl-h2"></h2>
+                  <vl-typography id="text"><slot slot="text" name="text"></slot></vl-typography>
+                </div>
+                <div id="actions" is="vl-column" data-vl-size="12"><slot name="actions"></slot></div>
+              </div>
+            </div>
+            <div is="vl-column" data-vl-size="6" data-vl-medium-size="6" data-vl-small-size="6" class="vl-u-hidden--s">
+              <div class="vl-u-display-flex vl-u-flex-align-center vl-u-flex-v-center">
+                <img id="image-normal"/>
+              </div>
+            </div>
           </div>
-        </div>
-        <div is="vl-column" data-vl-size="6" data-vl-medium-size="6" data-vl-small-size="6" class="vl-u-hidden--s">
-          <div class="vl-u-display-flex vl-u-flex-align-center vl-u-flex-v-center">
-            <img id="image-normal"/>
-          </div>
-        </div>
-      </div>
-    `);
+        `);
     }
 
     connectedCallback() {

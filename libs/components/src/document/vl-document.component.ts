@@ -1,6 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import { documentStyle, iconStyle } from '@domg/govflanders-style/component';
 import { baseStyle, elementStyle, resetStyle } from '@domg/govflanders-style/common';
+import { documentStyle, iconStyle } from '@domg/govflanders-style/component';
 
 /**
  * VlDocument
@@ -20,30 +20,30 @@ export class VlDocumentComponent extends BaseElementOfType(HTMLElement) {
 
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${baseStyle}
-        ${elementStyle}
-        ${documentStyle}
-        ${iconStyle}
-      </style>
-      <a class="vl-document" href="#" download>
-        <div class="vl-document__type">
-          <i class="vl-vi vl-vi-document" aria-hidden="true"></i>
-          <span class="vl-document__type__text">
-            <slot name="type"></slot>
-          </span>
-        </div>
-        <div class="vl-document__content">
-          <div class="vl-document__title vl-link">
-            <slot name="title"></slot>
-          </div>
-          <div class="vl-document__metadata">
-            <slot name="metadata"></slot>
-          </div>
-        </div>
-      </a>
-    `);
+          <style>
+            ${resetStyle}
+            ${baseStyle}
+            ${elementStyle}
+            ${documentStyle}
+            ${iconStyle}
+          </style>
+          <a class="vl-document" href="#" download>
+            <div class="vl-document__type">
+              <i class="vl-vi vl-vi-document" aria-hidden="true"></i>
+              <span class="vl-document__type__text">
+                <slot name="type"></slot>
+              </span>
+            </div>
+            <div class="vl-document__content">
+              <div class="vl-document__title vl-link">
+                <slot name="title"></slot>
+              </div>
+              <div class="vl-document__metadata">
+                <slot name="metadata"></slot>
+              </div>
+            </div>
+          </a>
+        `);
     }
 
     _hrefChangedCallback(oldValue: string, newValue: string) {

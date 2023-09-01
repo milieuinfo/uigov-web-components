@@ -1,6 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import { codePreviewStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
+import { codePreviewStyle } from '@domg/govflanders-style/component';
 import '@govflanders/vl-ui-code-preview/dist/js/code-preview.js';
 import '@govflanders/vl-ui-core/dist/js/core.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
@@ -19,16 +19,16 @@ declare const vl: any;
 export class VlCodePreviewComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${codePreviewStyle}
-      </style>
-      <div class="vl-code-preview" data-vl-code-preview data-vl-code-preview-no-copy-button>
-        <pre class="line-numbers">
-          <code class="language-markup auto-indent" tabindex="0"></code>
-        </pre>
-      </div>
-    `);
+          <style>
+            ${resetStyle}
+            ${codePreviewStyle}
+          </style>
+          <div class="vl-code-preview" data-vl-code-preview data-vl-code-preview-no-copy-button>
+            <pre class="line-numbers">
+              <code class="language-markup auto-indent" tabindex="0"></code>
+            </pre>
+          </div>
+        `);
 
         this._dress();
     }

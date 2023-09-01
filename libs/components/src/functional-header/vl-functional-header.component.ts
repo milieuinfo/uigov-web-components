@@ -1,7 +1,8 @@
-import { BaseElementOfType, MARGINS, webComponent } from '@domg-wc/common-utilities';
-import functionalHeaderUigStyle from './vl-functional-header.uig-css';
-import { functionalHeaderStyle } from '@domg/govflanders-style/component';
+import { BaseElementOfType, MARGINS, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlIconElement, VlLinkElement } from '@domg-wc/elements';
 import { baseStyle, elementStyle, layoutStyle, resetStyle } from '@domg/govflanders-style/common';
+import { functionalHeaderStyle } from '@domg/govflanders-style/component';
+import functionalHeaderUigStyle from './vl-functional-header.uig-css';
 
 /**
  * VlFunctionalHeader
@@ -20,6 +21,10 @@ import { baseStyle, elementStyle, layoutStyle, resetStyle } from '@domg/govfland
  */
 @webComponent('vl-functional-header')
 export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlIconElement, VlLinkElement]);
+    }
+
     static get _observedAttributes() {
         return [
             'back',
@@ -43,56 +48,56 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
 
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${baseStyle}
-        ${layoutStyle}
-        ${elementStyle}
-        ${functionalHeaderStyle}
-        ${functionalHeaderUigStyle}
-      </style>
-      <header class="vl-functional-header">
-        <div class="vl-layout">
-          <div class="vl-functional-header__row uig-functional-header__row">
-            <div class="uig-functional-header__content">
-                <div class="vl-functional-header__content">
-                    <slot name="top-left"></slot>
-                </div>
-                <div class="vl-functional-header__content">
-                    <div class="vl-title">
-                        <a id="title" class="vl-functional-header__title" tabindex="0">
-                            <slot name="title"></slot>
-                        </a>
+          <style>
+            ${resetStyle}
+            ${baseStyle}
+            ${layoutStyle}
+            ${elementStyle}
+            ${functionalHeaderStyle}
+            ${functionalHeaderUigStyle}
+          </style>
+          <header class="vl-functional-header">
+            <div class="vl-layout">
+              <div class="vl-functional-header__row uig-functional-header__row">
+                <div class="uig-functional-header__content">
+                    <div class="vl-functional-header__content">
+                        <slot name="top-left"></slot>
+                    </div>
+                    <div class="vl-functional-header__content">
+                        <div class="vl-title">
+                            <a id="title" class="vl-functional-header__title" tabindex="0">
+                                <slot name="title"></slot>
+                            </a>
+                        </div>
                     </div>
                 </div>
+                <div class="uig-functional-header__top-right">
+                    <slot name="top-right"></slot>
+                </div>
+                <div id="actions" class="vl-functional-header__actions">
+                    <ul></ul>
+                </div>
+              </div>
+              <div class="vl-functional-header__sub" id="sub-header">
+                <slot name="sub-header">
+                  <ul class="vl-functional-header__sub__actions">
+                      <li id="back-link-container" class="vl-functional-header__sub__action">
+                          <slot name="back-link">
+                              <a id="back-link" is="vl-link" tabindex="0" href="${document.referrer}">
+                                  <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span>
+                                  <slot id="back-link-text" name="back"><span>Terug</span></slot>
+                              </a>
+                          </slot>
+                      </li>
+                      <li id="sub-title" class="vl-functional-header__sub__action">
+                          <slot name="sub-title"></slot>
+                      </li>
+                  </ul>
+                </slot>
+              </div>
             </div>
-            <div class="uig-functional-header__top-right">
-                <slot name="top-right"></slot>
-            </div>
-            <div id="actions" class="vl-functional-header__actions">
-                <ul></ul>
-            </div>
-          </div>
-          <div class="vl-functional-header__sub" id="sub-header">
-            <slot name="sub-header">
-              <ul class="vl-functional-header__sub__actions">
-                  <li id="back-link-container" class="vl-functional-header__sub__action">
-                      <slot name="back-link">
-                          <a id="back-link" is="vl-link" tabindex="0" href="${document.referrer}">
-                              <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span>
-                              <slot id="back-link-text" name="back"><span>Terug</span></slot>
-                          </a>
-                      </slot>
-                  </li>
-                  <li id="sub-title" class="vl-functional-header__sub__action">
-                      <slot name="sub-title"></slot>
-                  </li>
-              </ul>
-            </slot>
-          </div>
-        </div>
-      </header>
-    `);
+          </header>
+        `);
     }
 
     connectedCallback() {

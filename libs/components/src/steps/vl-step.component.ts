@@ -1,5 +1,4 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '../accordion/vl-accordion.component';
 
 declare const vl: any;
 

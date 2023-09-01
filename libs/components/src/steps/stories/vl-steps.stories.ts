@@ -1,5 +1,7 @@
 import { html } from 'lit-html';
+import '../vl-step.component';
 import '../vl-steps.component';
+import '../vl-duration-step.component';
 import { stepsArgs, stepsArgTypes } from './vl-steps.stories-arg';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import {
@@ -13,6 +15,7 @@ import {
 } from '@domg-wc/elements';
 import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+
 registerWebComponents([
     VlSideNavigation,
     VlSideNavigationToggleElement,

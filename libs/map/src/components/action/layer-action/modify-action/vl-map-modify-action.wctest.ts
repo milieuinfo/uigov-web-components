@@ -1,5 +1,6 @@
 import { awaitUntil } from '@domg-wc/common-utilities';
-import { VlCompositeVectorLayer, VlCompositeVectorSource } from '../../../../actions';
+import { VlCompositeVectorLayer } from '../../../../actions/layer/composite-vector-layer';
+import { VlCompositeVectorSource } from '../../../../actions/source/composite-vector-source';
 import { assert, expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import '../../../../vl-map';

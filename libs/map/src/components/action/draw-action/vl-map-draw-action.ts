@@ -1,4 +1,4 @@
-import { VlCompositeVectorLayer } from '../../../actions';
+import { VlCompositeVectorLayer } from '../../../actions/layer/composite-vector-layer';
 import { VlMapVectorLayer } from '../../layer/vector-layer/vl-map-vector-layer';
 import { VlMapLayerAction } from '../layer-action/vl-map-layer-action';
 

@@ -1,9 +1,9 @@
 import { webComponent } from '@domg-wc/common-utilities';
-import { VlSelectActions } from '../../../../../actions';
-import { ActionOptions, OlVectorLayerType } from '../../../../../vl-map.model';
-import { VlMapSelectAction } from '../vl-map-select-action';
-import { VlMapLayerStyle } from '../../../../layer-style/vl-map-layer-style';
 import { StyleLike as OlStyleLike } from 'ol/style/Style';
+import { VlSelectActions } from '../../../../../actions/select/select-actions';
+import { ActionOptions, OlVectorLayerType } from '../../../../../vl-map.model';
+import { VlMapLayerStyle } from '../../../../layer-style/vl-map-layer-style';
+import { VlMapSelectAction } from '../vl-map-select-action';
 
 /**
  * VlMapSelectActions

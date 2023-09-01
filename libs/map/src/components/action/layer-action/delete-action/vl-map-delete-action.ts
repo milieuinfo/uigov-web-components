@@ -1,5 +1,5 @@
 import { webComponent } from '@domg-wc/common-utilities';
-import { VlDeleteAction } from '../../../../actions';
+import { VlDeleteAction } from '../../../../actions/delete/delete-action';
 import { VlMapLayerStyle } from '../../../layer-style/vl-map-layer-style';
 import { VlMapLayerAction } from '../vl-map-layer-action';
 import { StyleLike as OlStyleLike } from 'ol/style/Style';

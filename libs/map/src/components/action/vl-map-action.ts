@@ -3,7 +3,7 @@ import { BaseHTMLElement } from '@domg-wc/common-utilities';
 import { VlMap } from '../../vl-map';
 import { VlMapLayer } from '../layer/vl-map-layer';
 import { OlVectorLayerType } from '../../vl-map.model';
-import { VlBaseMapAction } from '../../actions';
+import { VlBaseMapAction } from '../../actions/mapaction';
 
 @webComponent('vl-map-action')
 export class VlMapAction extends BaseHTMLElement {

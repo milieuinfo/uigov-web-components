@@ -3,7 +3,6 @@ import { VlDataTable } from '@domg-wc/elements';
 import { RichData, VlRichData } from '../rich-data/vl-rich-data.component';
 import { VlRichDataField } from './vl-rich-data-field.component';
 import { VlRichDataSorter } from './vl-rich-data-sorter.component';
-
 import styles from './vl-rich-data-table.uig-css';
 
 type ForEachNodeFn = (value: Node, key: number, parent: NodeList) => void;
@@ -14,6 +13,10 @@ type Sorter = Pick<VlRichDataSorter, 'name' | 'direction' | 'priority'>;
     'vl-rich-data-table'
 )
 export class VlRichDataTable extends VlRichData {
+    static {
+        registerWebComponents([VlDataTable]);
+    }
+
     static get _observedAttributes() {
         return super._observedAttributes.concat(['data', 'collapsed-m', 'collapsed-s', 'collapsed-xs']);
     }
@@ -41,7 +44,6 @@ export class VlRichDataTable extends VlRichData {
           </table>
         `
         );
-        registerWebComponents([VlDataTable]);
         this.__observeSorters();
     }
 
