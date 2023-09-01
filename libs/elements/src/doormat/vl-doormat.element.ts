@@ -1,14 +1,24 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import './child/vl-doormat-content.element';
-import './child/vl-doormat-graphic-wrapper.element';
-import './child/vl-doormat-image.element';
-import './child/vl-doormat-text.element';
-import './child/vl-doormat-title.element';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
+import { VlDoormatContentElement } from './child/vl-doormat-content.element';
+import { VlDoormatGraphicWrapperElement } from './child/vl-doormat-graphic-wrapper.element';
+import { VlDoormatImageElement } from './child/vl-doormat-image.element';
+import { VlDoormatTextElement } from './child/vl-doormat-text.element';
+import { VlDoormatTitleElement } from './child/vl-doormat-title.element';
 
 @elementStyles()
 @webComponent('vl-doormat', { extends: 'a' })
 export class VlDoormatElement extends BaseElementOfType(HTMLAnchorElement) {
+    static {
+        registerWebComponents([
+            VlDoormatContentElement,
+            VlDoormatGraphicWrapperElement,
+            VlDoormatImageElement,
+            VlDoormatTextElement,
+            VlDoormatTitleElement,
+        ]);
+    }
+
     static get _observedClassAttributes() {
         return ['alt', 'graphic'];
     }

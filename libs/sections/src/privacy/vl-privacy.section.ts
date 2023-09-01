@@ -39,16 +39,7 @@ const { date, disableBackLink, version } = privacyProps;
 
 @customElement('vl-privacy')
 export class VlPrivacy extends BaseLitElement {
-    static get properties() {
-        return {
-            [date]: { type: String },
-            [disableBackLink]: { type: Boolean },
-            [version]: { type: String },
-        };
-    }
-
-    constructor() {
-        super();
+    static {
         registerWebComponents([
             // elements
             VlColumnElement,
@@ -79,6 +70,18 @@ export class VlPrivacy extends BaseLitElement {
             VlInfoblockComponent,
             VlTypography,
         ]);
+    }
+
+    static get properties() {
+        return {
+            [date]: { type: String },
+            [disableBackLink]: { type: Boolean },
+            [version]: { type: String },
+        };
+    }
+
+    constructor() {
+        super();
         this.allowCustomCSS = false;
         (this as any)[date] = '3 maart 2021';
         (this as any)[disableBackLink] = false;

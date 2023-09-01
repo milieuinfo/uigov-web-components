@@ -11,26 +11,26 @@ export class VlAlert extends BaseElementOfType(HTMLElement) {
 
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${iconStyle}
-        ${alertStyle}
-        ${accessibilityStyle}
-      </style>
-      <div id="alert" class="vl-alert" role="alert">
-        <div id="content" class="vl-alert__content">
-          <p id="title" class="vl-alert__title">
-            <slot name='title'></slot>
-          </p>
-          <div id="message" class="vl-alert__message">
-            <slot id="messages-slot"></slot>
+          <style>
+            ${resetStyle}
+            ${iconStyle}
+            ${alertStyle}
+            ${accessibilityStyle}
+          </style>
+          <div id="alert" class="vl-alert" role="alert">
+            <div id="content" class="vl-alert__content">
+              <p id="title" class="vl-alert__title">
+                <slot name='title'></slot>
+              </p>
+              <div id="message" class="vl-alert__message">
+                <slot id="messages-slot"></slot>
+              </div>
+              <div id="actions" class="vl-alert__actions">
+                <slot id="actions-slot" name="actions"></slot>
+              </div>
+            </div>
           </div>
-          <div id="actions" class="vl-alert__actions">
-            <slot id="actions-slot" name="actions"></slot>
-          </div>
-        </div>
-      </div>
-    `);
+        `);
     }
 
     connectedCallback() {

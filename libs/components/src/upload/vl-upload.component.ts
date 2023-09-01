@@ -40,15 +40,15 @@ export class VlUploadComponent extends vlFormValidationElement(BaseHTMLElement) 
 
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${linkStyle}
-        ${uploadStyle}
-        ${uploadUigStyle}
-        ${iconStyle}
-      </style>
-      <div class="vl-upload" data-vl-upload data-vl-upload-url="http://www.example.com"></div>
-    `);
+          <style>
+            ${resetStyle}
+            ${linkStyle}
+            ${uploadStyle}
+            ${uploadUigStyle}
+            ${iconStyle}
+          </style>
+          <div class="vl-upload" data-vl-upload data-vl-upload-url="http://www.example.com"></div>
+        `);
     }
 
     connectedCallback(): void {

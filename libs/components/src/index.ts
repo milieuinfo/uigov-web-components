@@ -50,7 +50,7 @@ export { VlSearchComponent } from './search';
 export { VlShareButton, MEDIA, MEDIA_NAMES, VlShareButtonsComponent } from './share-buttons';
 export { VlSideSheet } from './side-sheet';
 export { VlSpotlight } from './spotlight';
-export { VlStepsComponent } from './steps';
+export { VlDurationStepComponent, VlStepComponent, VlStepsComponent } from './steps';
 export { VlTabsComponent } from './tabs';
 export { VlTemplate } from './template';
 export { VlTextarea, VlTextareaModal } from './textarea';

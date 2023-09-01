@@ -1,6 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import { titlesStyle, typographyStyle } from '@domg/govflanders-style/component';
 import { baseStyle, elementStyle, resetStyle } from '@domg/govflanders-style/common';
+import { titlesStyle, typographyStyle } from '@domg/govflanders-style/component';
 import typographyUigStyle from './vl-typography.uig-css';
 
 /**
@@ -22,16 +22,16 @@ export class VlTypography extends BaseElementOfType(HTMLElement) {
 
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${baseStyle}
-        ${elementStyle}
-        ${typographyStyle}
-        ${typographyUigStyle}
-        ${titlesStyle}
-      </style>
-      <div id="content" class="vl-typography"></div>
-    `);
+          <style>
+            ${resetStyle}
+            ${baseStyle}
+            ${elementStyle}
+            ${typographyStyle}
+            ${typographyUigStyle}
+            ${titlesStyle}
+          </style>
+          <div id="content" class="vl-typography"></div>
+        `);
         this._observer = this.__observeSlotElements(() => this.__processSlotElements());
     }
 

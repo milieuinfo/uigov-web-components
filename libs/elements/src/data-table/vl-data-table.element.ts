@@ -1,5 +1,7 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
+import { VlButtonElement } from '../button/vl-button.element';
+import { VlIconElement } from '../icon/vl-icon.element';
 
 /**
  * VlDataTable
@@ -21,6 +23,10 @@ import { elementStyles } from '../vl-elements.uig-css';
 @elementStyles()
 @webComponent('vl-data-table', { extends: 'table' })
 export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
+    static {
+        registerWebComponents([VlButtonElement, VlIconElement]);
+    }
+
     static get _observedClassAttributes() {
         return ['hover', 'matrix', 'grid', 'zebra', 'uig-zebra', 'collapsed-m', 'collapsed-s', 'collapsed-xs'];
     }
@@ -77,7 +83,9 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
 
     _expandCollapseTemplate(id: string): DocumentFragment {
         const template = this._template(
-            `<button id="details-toggle-${id}" type="button" is="vl-button" class="vl-button vl-button--icon-after" data-vl-narrow data-vl-secondary><span is="vl-icon" data-vl-icon="arrow-down-fat" ></span></button>`
+            `<button id="details-toggle-${id}" type="button" is="vl-button" class="vl-button vl-button--icon-after" data-vl-narrow data-vl-secondary>
+                <span is="vl-icon" data-vl-icon="arrow-down-fat" ></span>
+             </button>`
         );
 
         template.firstElementChild.addEventListener('click', (e: Event) => {

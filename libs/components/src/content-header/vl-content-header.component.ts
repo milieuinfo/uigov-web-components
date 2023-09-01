@@ -14,24 +14,24 @@ import { baseStyle, layoutStyle, resetStyle } from '@domg/govflanders-style/comm
 export class VlContentHeaderComponent extends BaseElementOfType(HTMLElement) {
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${baseStyle}
-        ${layoutStyle}
-        ${contentHeaderStyle}
-      </style>
-      <header class="vl-content-header vl-content-header--large vl-content-header--show-mobile vl-content-header--has-context">
-        <div class="vl-content-header__wrapper">
-          <picture id="picture" class="vl-content-header__bg"></picture>
-          <div class="vl-layout">
-            <div class="vl-content-header__content">
-            <div id="context" class="vl-content-header__context vl-content-header__context--has-link"></div>
-              <h2 id="title" class="vl-content-header__title vl-content-header__title--has-link"></h2>
+          <style>
+            ${resetStyle}
+            ${baseStyle}
+            ${layoutStyle}
+            ${contentHeaderStyle}
+          </style>
+          <header class="vl-content-header vl-content-header--large vl-content-header--show-mobile vl-content-header--has-context">
+            <div class="vl-content-header__wrapper">
+              <picture id="picture" class="vl-content-header__bg"></picture>
+              <div class="vl-layout">
+                <div class="vl-content-header__content">
+                <div id="context" class="vl-content-header__context vl-content-header__context--has-link"></div>
+                  <h2 id="title" class="vl-content-header__title vl-content-header__title--has-link"></h2>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </header>
-    `);
+          </header>
+        `);
     }
 
     connectedCallback() {

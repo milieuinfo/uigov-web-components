@@ -1,5 +1,5 @@
 import { webComponent } from '@domg-wc/common-utilities';
-import { VlDrawAction } from '../../../../actions';
+import { VlDrawAction } from '../../../../actions/draw/draw-action';
 import { VlMapDrawAction } from '../vl-map-draw-action';
 
 /**

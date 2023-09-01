@@ -26,13 +26,16 @@ import { ProzaRestClient } from './vl-proza-rest-client.util';
  */
 @webComponent('vl-proza-message')
 export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlButtonElement, VlIconElement, VlText, VlTypography]);
+    }
+
     static get _observedAttributes() {
         return ['domain', 'code', 'block', 'parameters'];
     }
 
     constructor() {
         super();
-        registerWebComponents([VlButtonElement, VlIconElement, VlText, VlTypography]);
         this.shadow(`
           <style>
             ${elementStyles}

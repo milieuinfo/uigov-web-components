@@ -4,7 +4,7 @@ import OlFullScreenControl from 'ol/control/FullScreen';
 import OlLayerGroup from 'ol/layer/Group';
 import OlProjection from 'ol/proj/Projection';
 import proj4 from 'proj4';
-import { VlCustomMap } from './actions';
+import { VlCustomMap } from './actions/map/custom-map';
 import { VlMapLayer } from './components/layer/vl-map-layer';
 import { EVENT } from './vl-map.model';
 import vlMapStyles from './vl-map.uig-css';
@@ -22,13 +22,13 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
 
     constructor() {
         super(`
-      <style>
-       ${vlMapStyles}
-      </style>
-      <div id='map'>
-        <slot></slot>
-      </div>
-    `);
+          <style>
+           ${vlMapStyles}
+          </style>
+          <div id='map'>
+            <slot></slot>
+          </div>
+        `);
 
         this.__prepareReadyPromises();
     }

@@ -2,7 +2,8 @@ import { descriptionDataStyle } from '@domg/govflanders-style/component';
 import { gridStyle, resetStyle } from '@domg/govflanders-style/common';
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { VlColumnElement, VlGridElement } from '@domg-wc/elements';
 
 @customElement('vl-description-data')
 export class VlDescriptionData extends BaseLitElement {
@@ -14,6 +15,10 @@ export class VlDescriptionData extends BaseLitElement {
     private smallMaxSize = 0;
     private extraSmallSize = 0;
     private extraSmallMaxSize = 0;
+
+    static {
+        registerWebComponents([VlColumnElement, VlGridElement]);
+    }
 
     static get styles() {
         return [resetStyle, gridStyle, descriptionDataStyle];

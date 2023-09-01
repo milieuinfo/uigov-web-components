@@ -18,6 +18,10 @@ export class VlMapLayerSwitcher extends BaseLitElement {
     private mapElement: VlMap | null = null;
     private layerObserver: MutationObserver | null = null;
 
+    static {
+        registerWebComponents([VlFormLabel, VlCheckboxComponent]);
+    }
+
     static get styles(): (CSSResult | CSSResult[])[] {
         return [vlElementsStyle, mapLayerSwitcherUigStyle];
     }
@@ -43,7 +47,6 @@ export class VlMapLayerSwitcher extends BaseLitElement {
 
     constructor() {
         super();
-        registerWebComponents([VlFormLabel, VlCheckboxComponent]);
     }
 
     async connectedCallback(): Promise<void> {

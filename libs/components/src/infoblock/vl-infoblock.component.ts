@@ -1,6 +1,7 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import { infoblockStyle } from '@domg/govflanders-style/component';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlH2Element, VlIconElement } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
+import { infoblockStyle } from '@domg/govflanders-style/component';
 
 /**
  * VlInfoblock
@@ -16,26 +17,30 @@ import { resetStyle } from '@domg/govflanders-style/common';
  */
 @webComponent('vl-infoblock')
 export class VlInfoblockComponent extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlH2Element, VlIconElement]);
+    }
+
     static get _observedAttributes() {
         return ['title', 'icon', 'type'];
     }
 
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${infoblockStyle}
-      </style>
-      <section id="infoblock-element" class="vl-infoblock">
-        <header class="vl-infoblock__header" role="presentation">
-          <span is="vl-icon" id="infoblock_icon" class="vl-infoblock__header__icon"></span>
-          <slot name="title" class="vl-infoblock__title">Testa</slot>
-        </header>
-        <div class="vl-infoblock__content" id="infoblock_content">
-          <slot></slot>
-        </div>
-      </section>
-    `);
+          <style>
+            ${resetStyle}
+            ${infoblockStyle}
+          </style>
+          <section id="infoblock-element" class="vl-infoblock">
+            <header class="vl-infoblock__header" role="presentation">
+              <span is="vl-icon" id="infoblock_icon" class="vl-infoblock__header__icon"></span>
+              <slot name="title" class="vl-infoblock__title">Testa</slot>
+            </header>
+            <div class="vl-infoblock__content" id="infoblock_content">
+              <slot></slot>
+            </div>
+          </section>
+        `);
     }
 
     connectedCallback() {

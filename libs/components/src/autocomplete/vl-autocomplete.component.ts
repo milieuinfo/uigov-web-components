@@ -1,3 +1,5 @@
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { VlIconElement } from '@domg-wc/elements';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { autocompleteStyle, inputFieldStyle } from '@domg/govflanders-style/component';
 import { html, PropertyValues } from 'lit';
@@ -5,7 +7,6 @@ import { customElement } from 'lit/decorators.js';
 import 'reflect-metadata';
 import { CAPTION_FORMAT } from './vl-autocomplete.model';
 import autocompleteUigStyle from './vl-autocomplete.uig-css';
-import { BaseLitElement } from '@domg-wc/common-utilities';
 
 export const DEFAULT_MAX_MATCHES = 15;
 export const DEFAULT_MIN_CHARS = 3;
@@ -15,6 +16,10 @@ export const DEFAULT_CAPTION_FORMAT = CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL;
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 export class VlAutocomplete extends BaseLitElement {
+    static {
+        registerWebComponents([VlIconElement]);
+    }
+
     static get styles() {
         return [resetStyle, baseStyle, autocompleteStyle, inputFieldStyle, autocompleteUigStyle];
     }

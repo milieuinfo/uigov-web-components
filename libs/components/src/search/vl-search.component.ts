@@ -1,7 +1,7 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import { VlSelect } from '@domg-wc/elements';
-import { buttonStyle, inputFieldStyle, searchStyle, selectStyle } from '@domg/govflanders-style/component';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlButtonElement, VlIconElement, VlInputFieldElement, VlSelect } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
+import { buttonStyle, inputFieldStyle, searchStyle, selectStyle } from '@domg/govflanders-style/component';
 import searchUigStyle from './vl-search.uig-css';
 
 /**
@@ -32,6 +32,10 @@ import searchUigStyle from './vl-search.uig-css';
  */
 @webComponent('vl-search')
 export class VlSearchComponent extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlButtonElement, VlIconElement, VlInputFieldElement]);
+    }
+
     static get _observedAttributes() {
         return ['label', 'submit-label'];
     }
@@ -185,13 +189,13 @@ export class VlSearchComponent extends BaseElementOfType(HTMLElement) {
     __getButtonTemplate() {
         const content = this._isInline ? this.__iconTemplate() : ``;
         return this._template(`
-      <button is="vl-button" id="search-button" class="vl-search__submit" type="submit">
-        ${content}
-        <slot name="submit-label">
-          ${this.dataset.vlSubmitLabel || 'Zoeken'}
-        </slot>
-      </button>
-    `);
+          <button is="vl-button" id="search-button" class="vl-search__submit" type="submit">
+            ${content}
+            <slot name="submit-label">
+              ${this.dataset.vlSubmitLabel || 'Zoeken'}
+            </slot>
+          </button>
+        `);
     }
 
     __processInputSlot() {

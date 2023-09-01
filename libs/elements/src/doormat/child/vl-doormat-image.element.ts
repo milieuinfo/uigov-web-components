@@ -1,6 +1,11 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, define, registerWebComponents } from '@domg-wc/common-utilities';
+import { VlDoormatGraphicWrapperElement } from './vl-doormat-graphic-wrapper.element';
 
 export class VlDoormatImageElement extends BaseElementOfType(HTMLImageElement) {
+    static {
+        registerWebComponents([VlDoormatGraphicWrapperElement]);
+    }
+
     static get _observedClassAttributes() {
         return ['image', 'graphic'];
     }

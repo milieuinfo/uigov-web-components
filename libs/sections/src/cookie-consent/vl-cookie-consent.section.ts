@@ -8,6 +8,10 @@ import './vl-cookie-consent-opt-in.section';
 export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
     private initialized = false;
 
+    static {
+        registerWebComponents([VlButtonElement, VlFormColumn, VlFormGridElement, VlModalComponent]);
+    }
+
     static get _observedAttributes() {
         return ['owner', 'link', 'matomo-id', 'matomo-url', 'analytics'];
     }
@@ -61,7 +65,6 @@ export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
             </div>
           </vl-modal>
         `);
-        registerWebComponents([VlButtonElement, VlFormColumn, VlFormGridElement, VlModalComponent]);
 
         this.allowCustomCSS = false;
         this._optIns = {};

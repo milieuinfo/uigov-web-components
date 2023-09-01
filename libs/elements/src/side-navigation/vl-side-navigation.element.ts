@@ -1,10 +1,4 @@
 import { BaseElementOfType, debounce, unwrap, VL, webComponent } from '@domg-wc/common-utilities';
-import './vl-side-navigation-content.element';
-import './vl-side-navigation-group.element';
-import './vl-side-navigation-item.element';
-import './vl-side-navigation-reference.element';
-import './vl-side-navigation-title.element';
-import './vl-side-navigation-toggle.element';
 import './vl-side-navigation.lib.js';
 import { elementStyles } from '../vl-elements.uig-css';
 
@@ -13,7 +7,8 @@ declare const vl: VL;
 /**
  * VlSideNavigation
  * @class
- * @classdesc Een compact navigatie element dat je aan een pagina kan toevoegen. Het vat de inhoud van lange pagina's samen, leidt de gebruiker door de pagina inhoud en kan ook naar externe pagina's verwijzen.
+ * @classdesc Een compact navigatie element dat je aan een pagina kan toevoegen. Het vat de inhoud van lange pagina's
+ * samen, leidt de gebruiker door de pagina inhoud en kan ook naar externe pagina's verwijzen.
  *
  * @extends HTMLElement
  * @mixes nativeVlElement

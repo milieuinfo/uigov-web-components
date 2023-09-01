@@ -6,9 +6,12 @@ import { VlMapControl } from '../vl-map-control.mixin';
 
 @webComponent('vl-map-measure-control')
 export class VlMapMeasureControl extends VlMapControl(BaseLitElement) {
+    static {
+        registerWebComponents([VlToggleButtonComponent]);
+    }
+
     constructor() {
         super();
-        registerWebComponents([VlToggleButtonComponent]);
         this.controlElement = document.createElement('vl-toggle-button');
         // TODO: When upgrading component versions; replace text by icon
         // this.controlElement.icon = 'ruler';

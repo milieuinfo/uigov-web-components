@@ -1,14 +1,14 @@
-import { progressBarStyle } from '@domg/govflanders-style/component';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
 import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
+import { progressBarStyle } from '@domg/govflanders-style/component';
 import ProgressBar from '@govflanders/vl-ui-progress-bar/src/js/progress-bar.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import 'reflect-metadata';
-import '../tooltip/vl-tooltip.component';
+import { VlTooltipComponent } from '../tooltip/vl-tooltip.component';
 import progressBarUigStyle from './vl-progress-bar.uig-css';
-import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-progress-bar')
 export class VlProgressBarComponent extends BaseLitElement {
@@ -17,6 +17,10 @@ export class VlProgressBarComponent extends BaseLitElement {
     private activeStep = 1;
     private progressBar = new ProgressBar();
     private steps = [];
+
+    static {
+        registerWebComponents([VlTooltipComponent]);
+    }
 
     static get styles() {
         return [resetStyle, progressBarStyle, progressBarUigStyle, accessibilityStyle];

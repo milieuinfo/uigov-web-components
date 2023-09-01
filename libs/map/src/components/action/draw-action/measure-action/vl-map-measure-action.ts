@@ -1,5 +1,5 @@
 import { webComponent } from '@domg-wc/common-utilities';
-import { VlMeasureAction } from '../../../../actions';
+import { VlMeasureAction } from '../../../../actions/measure/measure-action';
 import { IDENTIFIER } from '../../../../vl-map.model';
 import { VlMapDrawAction } from '../vl-map-draw-action';
 

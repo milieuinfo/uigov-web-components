@@ -32,17 +32,7 @@ import styles from './vl-cookie-statement.uig-css';
 
 @webComponent('vl-cookie-statement')
 export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
-    static get _observedAttributes() {
-        return ['date', 'disable-back-link', 'version'];
-    }
-
-    constructor() {
-        super(`
-            <style>
-                ${styles}
-            </style>
-            <slot name="header">${header()}</slot>
-        `);
+    static {
         registerWebComponents([
             // elements
             VlColumnElement,
@@ -69,6 +59,19 @@ export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
             VlInfoblockComponent,
             VlTypography,
         ]);
+    }
+
+    static get _observedAttributes() {
+        return ['date', 'disable-back-link', 'version'];
+    }
+
+    constructor() {
+        super(`
+            <style>
+                ${styles}
+            </style>
+            <slot name="header">${header()}</slot>
+        `);
         this.allowCustomCSS = false;
         this._element.insertAdjacentHTML(
             'afterend',

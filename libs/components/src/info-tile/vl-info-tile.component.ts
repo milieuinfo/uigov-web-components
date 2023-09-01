@@ -1,5 +1,4 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import '../accordion/vl-accordion.component';
 import { accordionStyle, iconStyle, infoTileStyle, linkStyle, toggleStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
 import infoTileUigStyle from './vl-info-tile.uig-css';
@@ -14,36 +13,36 @@ export class VlInfoTile extends BaseElementOfType(HTMLElement) {
 
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${infoTileStyle}
-        ${infoTileUigStyle}
-        ${linkStyle}
-        ${toggleStyle}
-        ${accordionStyle}
-        ${iconStyle}
-      </style>
-      <div class="vl-info-tile">
-        <header class="vl-info-tile__header" role="presentation">
-          <div id="wrapper" class="vl-info-tile__header__wrapper">
-            <h3 id="title" class="vl-info-tile__header__title">
-              <slot name="title"></slot><slot name="title-label"></slot>
-            </h3>
-            <p class="vl-info-tile__header__subtitle">
-              <slot name="subtitle"></slot>
-            </p>
+          <style>
+            ${resetStyle}
+            ${infoTileStyle}
+            ${infoTileUigStyle}
+            ${linkStyle}
+            ${toggleStyle}
+            ${accordionStyle}
+            ${iconStyle}
+          </style>
+          <div class="vl-info-tile">
+            <header class="vl-info-tile__header" role="presentation">
+              <div id="wrapper" class="vl-info-tile__header__wrapper">
+                <h3 id="title" class="vl-info-tile__header__title">
+                  <slot name="title"></slot><slot name="title-label"></slot>
+                </h3>
+                <p class="vl-info-tile__header__subtitle">
+                  <slot name="subtitle"></slot>
+                </p>
+              </div>
+            </header>
+
+            <div class="vl-info-tile__content">
+              <slot name="content"></slot>
+            </div>
+
+            <footer class="vl-info-tile__footer">
+              <slot name="footer"></slot>
+            </footer>
           </div>
-        </header>
-
-        <div class="vl-info-tile__content">
-          <slot name="content"></slot>
-        </div>
-
-        <footer class="vl-info-tile__footer">
-          <slot name="footer"></slot>
-        </footer>
-      </div>
-    `);
+        `);
     }
 
     connectedCallback() {
@@ -128,10 +127,10 @@ export class VlInfoTile extends BaseElementOfType(HTMLElement) {
     __prepareAccordionElements() {
         this._element.classList.add('js-vl-accordion');
         const button = this._template(`
-      <button class="vl-toggle vl-link vl-link--bold js-vl-accordion__toggle">
-        <i class="vl-link__icon vl-link__icon--before vl-toggle__icon vl-vi vl-vi-arrow-right-fat" aria-hidden="true"></i>
-      </button>
-    `).firstElementChild;
+          <button class="vl-toggle vl-link vl-link--bold js-vl-accordion__toggle">
+            <i class="vl-link__icon vl-link__icon--before vl-toggle__icon vl-vi vl-vi-arrow-right-fat" aria-hidden="true"></i>
+          </button>
+        `).firstElementChild;
         button.appendChild(this._titleElement);
         this._headerWrapperElement.prepend(button);
     }
