@@ -7106,7 +7106,7 @@
                         function validateForm() {
                             const constraints = validationConfig.constraints;
                             const errors = validate(form, constraints, fvValidatorOptions);
-                            _handleErrors(form, errors || {}, true);
+                            _handleErrors(form, errors || {}, true, validationConfig);
                             return errors;
                         },
                         { signal: form.abortController.signal }
