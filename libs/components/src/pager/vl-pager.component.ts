@@ -46,32 +46,32 @@ export class VlPagerComponent extends BaseElementOfType(HTMLElement) implements 
     constructor() {
         super();
         this.shadow(`
-      <style>
-        ${resetStyle}
-        ${pagerStyle}
-        ${pagerUigStyle}
-        ${iconStyle}
-        ${linkStyle}
-        ${accessibilityStyle}
-      </style>
-      <div class="vl-pager">
-        <ul id="pager-list" class="vl-pager__list">
-          <li id="bounds" class="vl-pager__element"></li>
-          <li id="page-back-list-item" class="vl-pager__element">
-            <a id="page-back-link" class="vl-pager__element__cta vl-link vl-link--bold" href="#" tabindex="0">
-              <i class="vl-link__icon vl-link__icon--before vl-vi vl-vi-arrow-left-fat" aria-hidden="true"></i>
-              Vorige <span id="previous-items-per-page" class="vl-u-visually-hidden"></span>
-            </a>
-          </li>
-          <li id="page-forward-list-item" class="vl-pager__element">
-            <a id="page-forward-link" class="vl-pager__element__cta vl-link vl-link--bold" href="#" tabindex="0">
-              Volgende <span id="next-items-per-page" class="vl-u-visually-hidden"></span>
-              <i class="vl-link__icon vl-link__icon--after vl-vi vl-vi-arrow-right-fat" aria-hidden="true"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    `);
+          <style>
+            ${resetStyle}
+            ${pagerStyle}
+            ${pagerUigStyle}
+            ${iconStyle}
+            ${linkStyle}
+            ${accessibilityStyle}
+          </style>
+          <div class="vl-pager">
+            <ul id="pager-list" class="vl-pager__list">
+              <li id="bounds" class="vl-pager__element"></li>
+              <li id="page-back-list-item" class="vl-pager__element">
+                <a id="page-back-link" class="vl-pager__element__cta vl-link vl-link--bold" href="#" tabindex="0">
+                  <i class="vl-link__icon vl-link__icon--before vl-vi vl-vi-arrow-left-fat" aria-hidden="true"></i>
+                  Vorige <span id="previous-items-per-page" class="vl-u-visually-hidden"></span>
+                </a>
+              </li>
+              <li id="page-forward-list-item" class="vl-pager__element">
+                <a id="page-forward-link" class="vl-pager__element__cta vl-link vl-link--bold" href="#" tabindex="0">
+                  Volgende <span id="next-items-per-page" class="vl-u-visually-hidden"></span>
+                  <i class="vl-link__icon vl-link__icon--after vl-vi vl-vi-arrow-right-fat" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        `);
 
         this.__addPageBackLinkListener();
         this.__addPageForwardLinkListener();

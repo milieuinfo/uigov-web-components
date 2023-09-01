@@ -1,7 +1,12 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlRichDataSorter } from './vl-rich-data-sorter.component';
 
 @webComponent('vl-rich-data-field')
 export class VlRichDataField extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlRichDataSorter]);
+    }
+
     static get headerAttributes(): string[] {
         return ['name', 'label', 'sortable', 'sorting-direction', 'sorting-priority'];
     }

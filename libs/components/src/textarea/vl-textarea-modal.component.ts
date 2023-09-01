@@ -1,8 +1,12 @@
-import { BaseElementOfType, webComponentConditional } from '@domg-wc/common-utilities';
-import '../modal/vl-modal.component';
+import { BaseElementOfType, registerWebComponents, webComponentConditional } from '@domg-wc/common-utilities';
+import { VlModalComponent } from '../modal/vl-modal.component';
 
 @webComponentConditional('vl-modal', 'vl-textarea-modal')
 export class VlTextareaModal extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlModalComponent]);
+    }
+
     constructor() {
         super(`
       <vl-modal id="modal-cl" data-vl-title="Link toevoegen">

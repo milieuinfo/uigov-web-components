@@ -1,7 +1,7 @@
-import { awaitUntil, BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { awaitUntil, BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import './vl-tabs.lib.js';
-import './vl-tab-section.component';
-import './vl-tab.component';
+import { VlTabComponent } from './vl-tab.component';
+import { VlTabSectionComponent } from './vl-tab-section.component';
 import { VlTabsPaneComponent } from './vl-tabs-pane.component';
 import { tabsStyle } from '@domg/govflanders-style/component';
 import { baseStyle, elementStyle, resetStyle } from '@domg/govflanders-style/common';
@@ -12,6 +12,10 @@ declare const window: any;
 
 @webComponent('vl-tabs')
 export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlTabComponent, VlTabSectionComponent, VlTabsPaneComponent]);
+    }
+
     static get is() {
         return 'vl-tabs';
     }

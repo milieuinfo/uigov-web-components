@@ -1,6 +1,11 @@
-import './vl-textarea-modal.component';
+import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlTextareaModal } from './vl-textarea-modal.component';
 
 export class VlLinkToolbarFactory {
+    static {
+        registerWebComponents([VlTextareaModal]);
+    }
+
     create(editor: any) {
         return {
             icon: 'link',

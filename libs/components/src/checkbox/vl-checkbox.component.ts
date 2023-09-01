@@ -45,32 +45,32 @@ export class VlCheckboxComponent extends BaseElementOfType(HTMLElement) {
         if (this.dataset.vlSwitch !== undefined) {
             this._shadow.append(
                 this._template(`
-        <div class="vl-checkbox--switch__wrapper">
-          <input class="vl-checkbox--switch" type="checkbox" id="checkbox" name="checkbox" value="1" />
-          <label class="vl-checkbox__label" for="checkbox">
-            <span class="vl-checkbox--switch__label">
-              <span aria-hidden="true"></span>
-            </span>
-            <span>
-              <slot></slot>
-            </span>
-          </label>
-        </div>
-      `)
+                <div class="vl-checkbox--switch__wrapper">
+                  <input class="vl-checkbox--switch" type="checkbox" id="checkbox" name="checkbox" value="1" />
+                  <label class="vl-checkbox__label" for="checkbox">
+                    <span class="vl-checkbox--switch__label">
+                      <span aria-hidden="true"></span>
+                    </span>
+                    <span>
+                      <slot></slot>
+                    </span>
+                  </label>
+                </div>
+              `)
             );
         } else {
             this._shadow.append(
                 this._template(`
-        <label id="label" class="vl-checkbox" for="checkbox">
-          <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
-          <div class="vl-checkbox__label">
-            <i class="vl-checkbox__box" aria-hidden="true"></i>
-            <span>
-              <slot></slot>
-            </span>
-          </div>
-        </label>
-      `)
+                <label id="label" class="vl-checkbox" for="checkbox">
+                  <input class="vl-checkbox__toggle" type="checkbox" id="checkbox" name="checkbox"/>
+                  <div class="vl-checkbox__label">
+                    <i class="vl-checkbox__box" aria-hidden="true"></i>
+                    <span>
+                      <slot></slot>
+                    </span>
+                  </div>
+                </label>
+              `)
             );
         }
 

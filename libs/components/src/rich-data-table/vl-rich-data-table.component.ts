@@ -3,7 +3,6 @@ import { VlDataTable } from '@domg-wc/elements';
 import { RichData, VlRichData } from '../rich-data/vl-rich-data.component';
 import { VlRichDataField } from './vl-rich-data-field.component';
 import { VlRichDataSorter } from './vl-rich-data-sorter.component';
-
 import styles from './vl-rich-data-table.uig-css';
 
 type ForEachNodeFn = (value: Node, key: number, parent: NodeList) => void;

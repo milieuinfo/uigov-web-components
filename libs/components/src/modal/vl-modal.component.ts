@@ -1,9 +1,10 @@
-import { awaitUntil, BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { awaitUntil, BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlActionGroup, VlButtonLinkElement, VlColumnElement, VlGridElement, VlIconElement } from '@domg-wc/elements';
+import { accessibilityStyle, gridStyle, resetStyle } from '@domg/govflanders-style/common';
+import { actionGroupStyle, iconStyle, linkStyle, modalStyle } from '@domg/govflanders-style/component';
 import '@govflanders/vl-ui-core/dist/js/core.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import './vl-modal.lib.js';
-import { actionGroupStyle, iconStyle, linkStyle, modalStyle } from '@domg/govflanders-style/component';
-import { accessibilityStyle, gridStyle, resetStyle } from '@domg/govflanders-style/common';
 import modalUigStyle from './vl-modal.uig-css';
 
 declare const vl: any;
@@ -25,6 +26,10 @@ declare const vl: any;
  */
 @webComponent('vl-modal')
 export class VlModalComponent extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlActionGroup, VlButtonLinkElement, VlColumnElement, VlGridElement, VlIconElement]);
+    }
+
     static get _observedAttributes() {
         return ['id', 'title', 'closable', 'not-cancellable', 'open', 'not-auto-closable', 'allow-overflow'];
     }
@@ -39,34 +44,34 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
 
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${modalStyle}
-        ${modalUigStyle}
-        ${accessibilityStyle}
-        ${actionGroupStyle}
-        ${iconStyle}
-        ${linkStyle}
-        ${gridStyle}
-      </style>
-      <div class="vl-modal">
-        <dialog class="vl-modal-dialog" data-vl-modal tabindex="-1" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-toggle-title" aria-describedby="modal-toggle-description">
-          <div is="vl-grid" data-vl-is-stacked>
-            <div id="modal-toggle-description" is="vl-column" data-vl-size="12" data-vl-medium-size="12" class="vl-modal-dialog__content">
-              <slot name="content">Modal content</slot>
-            </div>
-            <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
-              <div id="modal-action-group" is="vl-action-group">
-                <slot name="button" data-vl-modal-close></slot>
-                <button is="vl-button-link" id="modal-toggle-cancellable" data-vl-modal-close>
-                  <span is="vl-icon" icon="cross" before></span>Annuleer
-                </button>
+          <style>
+            ${resetStyle}
+            ${modalStyle}
+            ${modalUigStyle}
+            ${accessibilityStyle}
+            ${actionGroupStyle}
+            ${iconStyle}
+            ${linkStyle}
+            ${gridStyle}
+          </style>
+          <div class="vl-modal">
+            <dialog class="vl-modal-dialog" data-vl-modal tabindex="-1" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-toggle-title" aria-describedby="modal-toggle-description">
+              <div is="vl-grid" data-vl-is-stacked>
+                <div id="modal-toggle-description" is="vl-column" data-vl-size="12" data-vl-medium-size="12" class="vl-modal-dialog__content">
+                  <slot name="content">Modal content</slot>
+                </div>
+                <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
+                  <div id="modal-action-group" is="vl-action-group">
+                    <slot name="button" data-vl-modal-close></slot>
+                    <button is="vl-button-link" id="modal-toggle-cancellable" data-vl-modal-close>
+                      <span is="vl-icon" icon="cross" before></span>Annuleer
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
+            </dialog>
           </div>
-        </dialog>
-      </div>
-    `);
+        `);
     }
 
     connectedCallback() {

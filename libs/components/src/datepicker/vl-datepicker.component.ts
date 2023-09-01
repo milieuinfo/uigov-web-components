@@ -1,6 +1,14 @@
-import { awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
-import { vlFormValidation, vlFormValidationElement, vlPattern } from '@domg-wc/elements';
-import './vl-datepicker.lib.js';
+import { awaitUntil, BaseElementOfType, registerWebComponents, webComponentPromised } from '@domg-wc/common-utilities';
+import {
+    VlButtonInputAddon,
+    vlFormValidation,
+    vlFormValidationElement,
+    VlIconElement,
+    VlInputFieldElement,
+    VlInputGroupElement,
+    vlPattern,
+} from '@domg-wc/elements';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import {
     datepickerStyle,
     iconStyle,
@@ -9,7 +17,7 @@ import {
     inputGroupStyle,
     tooltipStyle,
 } from '@domg/govflanders-style/component';
-import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import './vl-datepicker.lib.js';
 import datepickerUigStyle from './vl-datepicker.uig-css';
 
 declare const vl: any;
@@ -39,6 +47,10 @@ declare const vl: any;
  */
 @webComponentPromised([vlFormValidation.ready(), vlPattern.ready()], 'vl-datepicker')
 export class VlDatepickerComponent extends vlFormValidationElement(BaseElementOfType(HTMLElement)) {
+    static {
+        registerWebComponents([VlButtonInputAddon, VlIconElement, VlInputFieldElement, VlInputGroupElement]);
+    }
+
     static get _observedAttributes() {
         return vlFormValidation
             ._observedAttributes()
@@ -58,6 +70,7 @@ export class VlDatepickerComponent extends vlFormValidationElement(BaseElementOf
                 'pattern',
             ]);
     }
+
     /*
     static get properties() {
         return {
@@ -138,24 +151,24 @@ export class VlDatepickerComponent extends vlFormValidationElement(BaseElementOf
 
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${baseStyle}
-        ${iconStyle}
-        ${inputFieldStyle}
-        ${inputAddonStyle}
-        ${inputGroupStyle}
-        ${tooltipStyle}
-        ${datepickerStyle}
-        ${datepickerUigStyle}
-      </style>
-      <div is="vl-input-group" id="wrapper" data-vl-datepicker>
-        <input id="input" is="vl-input-field" data-vl-block type="text" class="js-vl-datepicker-input"/>
-        <button id="button" is="vl-button-input-addon" type="button" class="js-vl-datepicker-toggle">
-          <span id="icon" is="vl-icon" data-vl-icon="calendar"></span>
-        </button>
-      </div>
-    `);
+          <style>
+            ${resetStyle}
+            ${baseStyle}
+            ${iconStyle}
+            ${inputFieldStyle}
+            ${inputAddonStyle}
+            ${inputGroupStyle}
+            ${tooltipStyle}
+            ${datepickerStyle}
+            ${datepickerUigStyle}
+          </style>
+          <div is="vl-input-group" id="wrapper" data-vl-datepicker>
+            <input id="input" is="vl-input-field" data-vl-block type="text" class="js-vl-datepicker-input"/>
+            <button id="button" is="vl-button-input-addon" type="button" class="js-vl-datepicker-toggle">
+              <span id="icon" is="vl-icon" data-vl-icon="calendar"></span>
+            </button>
+          </div>
+        `);
     }
 
     connectedCallback() {

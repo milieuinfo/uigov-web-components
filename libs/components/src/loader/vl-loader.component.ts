@@ -22,21 +22,21 @@ export class VlLoaderComponent extends BaseElementOfType(HTMLElement) {
 
     constructor() {
         super(`
-      <style>
-        ${resetStyle}
-        ${loaderStyle}
-        ${alignStyle}
-        ${accessibilityStyle}
-      </style>
-      <div class="vl-u-align-center">
-        <div class="vl-loader" role="alert" aria-busy="true"></div>
-        <p id="text">
-          <slot>
-            Pagina is aan het laden
-          </slot>
-        </p>
-      </div>
-    `);
+          <style>
+            ${resetStyle}
+            ${loaderStyle}
+            ${alignStyle}
+            ${accessibilityStyle}
+          </style>
+          <div class="vl-u-align-center">
+            <div class="vl-loader" role="alert" aria-busy="true"></div>
+            <p id="text">
+              <slot>
+                Pagina is aan het laden
+              </slot>
+            </p>
+          </div>
+        `);
     }
 
     get _loader() {
