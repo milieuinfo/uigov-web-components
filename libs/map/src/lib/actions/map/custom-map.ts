@@ -6,6 +6,7 @@ import View from 'ol/View';
 import Overlay from 'ol/Overlay';
 import { Zoom, Rotate, ScaleLine, OverviewMap } from 'ol/control';
 import { VlMapWithActions } from './map-with-actions';
+import { MapOptions } from '../../vl-map.model';
 
 /**
  * Dit is een versie van de VlMapWithActions die nog enkele extra functies bevat zoals het zoomen naar een bepaalde extent (of bounding box), het togglen van de layers, en alle functionaliteit omtrent een overzichtskaartje (ol.control.OverviewMap).
@@ -22,15 +23,18 @@ export class VlCustomMap extends VlMapWithActions {
     private maxZoomViewToExtent: any;
     private overviewMapLayers: any;
 
-    constructor(options) {
+    constructor(options: MapOptions) {
+        const { disableRotation } = options;
+
         options.layers = [options.customLayers.baseLayerGroup, options.customLayers.overlayGroup];
 
         options.controls = [
+            ...(options.controls || []),
             new Rotate(),
             new ScaleLine({
                 minWidth: 128,
             }),
-        ].concat(options.controls || []);
+        ];
 
         options.view = new View({
             // default
@@ -40,6 +44,7 @@ export class VlCustomMap extends VlMapWithActions {
             minZoom: 2,
             center: [140860.69299028325, 190532.7165957574],
             zoom: 2,
+            enableRotation: !disableRotation,
             // overwrite default
             ...options.view,
         });

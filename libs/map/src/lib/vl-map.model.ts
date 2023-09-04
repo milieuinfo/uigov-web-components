@@ -3,6 +3,13 @@ import OlVectorLayer from 'ol/layer/Vector';
 import OlClusterSource from 'ol/source/Cluster';
 import { FilterFunction as OlFilterFunction } from 'ol/interaction/Select';
 import { StyleLike as OlStyleLike } from 'ol/style/Style';
+import LayerGroup from 'ol/layer/Group';
+import Projection from 'ol/proj/Projection';
+import Control from 'ol/control/Control';
+import View from 'ol/View';
+import Interaction from 'ol/interaction/Interaction';
+import Collection from 'ol/Collection';
+import { VlBaseMapAction } from './actions/mapaction';
 
 export const EVENT = {
     ACTIVE_ACTION_CHANGED: 'vl-active-action-changed',
@@ -38,4 +45,26 @@ export interface MapActionPayload {
     layer?: OlVectorLayerType;
     callback?: (...args: any[]) => void;
     options?: ActionOptions;
+}
+
+export interface MapOptions {
+    actions?: VlBaseMapAction[];
+    custom?: any;
+    defaultZoom?: boolean;
+    disableEscapeKey?: boolean;
+    disableRotation?: boolean;
+    disableMouseWheelZoom?: boolean;
+    disableKeyboard?: boolean;
+    maxZoomViewToExtent?: number;
+    controls?: Control[];
+    customLayers?: {
+        baseLayerGroup: LayerGroup;
+        overviewMapLayers: any;
+        overlayGroup: LayerGroup;
+    };
+    interactions?: Collection<Interaction>;
+    layers?: LayerGroup[];
+    projection?: Projection;
+    target?: any;
+    view?: View;
 }
