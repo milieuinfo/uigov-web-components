@@ -1,11 +1,11 @@
-import { BaseLitElement, registerWebComponents, webComponentPromised } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlLinkButtonElement } from '@domg-wc/elements';
 import { baseStyle } from '@domg/govflanders-style/common';
 import { buttonStyle } from '@domg/govflanders-style/component';
 import { CSSResult, html } from 'lit';
-import { VlLinkButtonElement } from '@domg-wc/elements';
 import { VlHttpErrorMessage } from './vl-http-error-message.component';
 
-@webComponentPromised([customElements.whenDefined('vl-http-error-message')], 'vl-http-401-message')
+@webComponent('vl-http-401-message')
 export class VlHttp401Message extends BaseLitElement {
     static {
         registerWebComponents([VlHttpErrorMessage, VlLinkButtonElement]);

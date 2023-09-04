@@ -1,5 +1,5 @@
 import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
-import { VlToggleButtonComponent } from '@domg-wc/components';
+import { VlToggleButtonComponent } from '../toggle-button';
 import { VlLayoutElement, VlRegionElement, VlText } from '@domg-wc/elements';
 import swipeDetect from 'swipe-detect/dist/';
 import styles from './vl-side-sheet.uig-css';
