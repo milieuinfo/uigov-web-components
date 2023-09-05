@@ -129,7 +129,7 @@ sed -i "s,$toReplace,$nextRelease_version," ./*/*/package.json
 
 if [[ ${release_branch} == true ]];
   then
-    echo "publiceren van de npm packages naar de DOMG repository"
+    echo "publiceren van de npm packages naar de DOMG 'local-npm' repository"
     cd ./common/utilities && npm publish
     cd ../../common/storybook && npm publish
     cd ../../elements && npm publish
@@ -142,14 +142,28 @@ fi
 
 if [[ ${develop_branch} == true ]];
   then
-    echo "pack van de npm packages - beschikbaar via artifact"
-    cd ./common/utilities && npm pack
-    cd ../../common/storybook && npm pack
-    cd ../../elements && npm pack
-    cd ../components && npm pack
-    cd ../sections && npm pack
-    cd ../map && npm pack
-    cd ../support/test-support && npm pack
+    echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository"
+    cd ./common/utilities
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
+    npm publish
+    cd ../../common/storybook
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
+    npm publish
+    cd ../../elements
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
+    npm publish
+    cd ../components
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
+    npm publish
+    cd ../sections
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
+    npm publish
+    cd ../map
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
+    npm publish
+    cd ../support/test-support
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
+    npm publish
     cd ../../..
 fi
 
