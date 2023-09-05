@@ -8,7 +8,7 @@ import { stepsStyle } from '@domg/govflanders-style/component';
 import { VlStepComponent } from './vl-step.component';
 import { VlDurationStepComponent } from './vl-duration-step.component';
 
-@customElement('vl-steps-next')
+@customElement('vl-steps')
 export class VlStepsComponent extends BaseLitElement {
     // Attributen
     private line = false;
@@ -248,6 +248,6 @@ export class VlStepsComponent extends BaseLitElement {
 
 declare global {
     interface HTMLElementTagNameMap {
-        'vl-steps-next': VlStepsComponent;
+        'vl-steps': VlStepsComponent;
     }
 }

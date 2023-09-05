@@ -5,7 +5,7 @@ import { CSSResult, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { stepsStyle } from '@domg/govflanders-style/component';
 
-@customElement('vl-duration-step-next')
+@customElement('vl-duration-step')
 export class VlDurationStepComponent extends BaseLitElement {
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, vlElementsStyle, stepsStyle];
@@ -22,6 +22,6 @@ export class VlDurationStepComponent extends BaseLitElement {
 
 declare global {
     interface HTMLElementTagNameMap {
-        'vl-duration-step-next': VlDurationStepComponent;
+        'vl-duration-step': VlDurationStepComponent;
     }
 }

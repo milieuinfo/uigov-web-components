@@ -129,6 +129,7 @@
         "@govflanders/vl-ui-progress-bar": "14.0.2",
         "@govflanders/vl-ui-util": "14.0.2",
         "@ungap/custom-elements": "1.2.0",
+        "@webcomponents/scoped-custom-element-registry": "^0.0.9",
         "bootstrap-sass": "3.4.3",
         "core-js": "3.29.1",
         "jsts": "2.9.0",

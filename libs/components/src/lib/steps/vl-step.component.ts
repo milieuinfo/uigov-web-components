@@ -199,8 +199,8 @@ export class VlStepComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-declare global {
-    interface HTMLElementTagNameMap {
-        'vl-step': VlStepComponent;
-    }
-}
+// declare global {
+//     interface HTMLElementTagNameMap {
+//         'vl-step': VlStepComponent;
+//     }
+// }

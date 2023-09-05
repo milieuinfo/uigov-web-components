@@ -31,8 +31,8 @@ export class VlDurationStepComponent extends BaseElementOfType(HTMLElement) {
     }
 }
 
-declare global {
-    interface HTMLElementTagNameMap {
-        'vl-duration-step': VlDurationStepComponent;
-    }
-}
+// declare global {
+//     interface HTMLElementTagNameMap {
+//         'vl-duration-step': VlDurationStepComponent;
+//     }
+// }

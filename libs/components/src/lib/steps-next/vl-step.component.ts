@@ -9,7 +9,7 @@ import stepUigStyle from './vl-step.uig-css';
 
 declare const vl: VL;
 
-@customElement('vl-step-next')
+@customElement('vl-step')
 export class VlStepComponent extends BaseLitElement {
     // Attributen
     private type: string | null = null;
@@ -141,6 +141,6 @@ export class VlStepComponent extends BaseLitElement {
 
 declare global {
     interface HTMLElementTagNameMap {
-        'vl-step-next': VlStepComponent;
+        'vl-step': VlStepComponent;
     }
 }
