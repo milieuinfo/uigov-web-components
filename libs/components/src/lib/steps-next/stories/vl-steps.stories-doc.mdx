@@ -1,0 +1,67 @@
+import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Steps Next
+
+Gebruik het `steps-next` component om een verticale lijst van stappen af te beelden om de gebruiker door een procedure te begeleiden.<br/>
+Dit component is een volledige nieuwe versie van het [vl-steps](?path=/docs/components-steps--steps-default) component, we raden aan deze nieuwe versie te gebruiken.<br />
+Het oude [vl-steps](?path=/docs/components-steps--steps-default) component is behouden voor backwards-compatibility, op termijn gaat dit verdwijnen.<br/><br/>
+
+## Voorbeeld
+
+```js
+import { VlStepsNextComponent } from '@domg-wc/components';
+```
+
+```html
+<vl-steps-next></vl-steps-next>
+```
+
+<DocsStory id="components-steps-next--steps-default" />
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Varianten
+
+### Iconen
+
+<DocsStory id="components-steps-next--steps-icons" />
+
+### Toestanden
+
+Voeg altijd een tekst toe als een stap disabled is zodat de disabled toestand niet enkel met de grijze kleur overgebracht wordt, bv. "geannuleerd".
+
+<DocsStory id="components-steps-next--steps-states" />
+
+### Accordions
+
+<DocsStory id="components-steps-next--steps-accordions" />
+
+### Lijn
+
+<DocsStory id="components-steps-next--steps-line" />
+
+### Tijdlijn
+
+<DocsStory id="components-steps-next--steps-timeline" />
+
+### Simpele tijdlijn
+
+Gebruik het `icon slot` of `sub-icon slot` niet in combinatie met de simpele tijdlijn.
+
+<DocsStory id="components-steps-next--steps-simple-timeline" />
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-steps/
+
+### Legacy Documentatie
+
+**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-steps--default
+
+**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlSteps.html
+
+**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-steps.html

@@ -51,6 +51,7 @@ export { VlShareButton, MEDIA, MEDIA_NAMES, VlShareButtonsComponent } from './li
 export { VlSideSheet } from './lib/side-sheet';
 export { VlSpotlight } from './lib/spotlight';
 export { VlStepsComponent } from './lib/steps';
+export { VlStepsComponent as VlStepsNextComponent } from './lib/steps-next';
 export { VlTabsComponent } from './lib/tabs';
 export { VlTemplate } from './lib/template';
 export { VlTextarea, VlTextareaModal } from './lib/textarea';
