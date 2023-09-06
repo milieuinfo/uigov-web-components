@@ -1,5 +1,5 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
-import { vlElementsStyle } from '@domg-wc/elements';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { vlElementsStyle, VlIconElement, VlLinkElement } from '@domg-wc/elements';
 
 /**
  * VlMapSideSheetMenuItem
@@ -18,6 +18,10 @@ import { vlElementsStyle } from '@domg-wc/elements';
  */
 @webComponent('vl-map-side-sheet-menu-item')
 export class VlMapSideSheetMenuItem extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlIconElement, VlLinkElement]);
+    }
+
     static get _observedAttributes() {
         return ['title', 'href'];
     }
