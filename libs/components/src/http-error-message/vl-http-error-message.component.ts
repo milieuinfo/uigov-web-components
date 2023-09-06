@@ -1,6 +1,6 @@
 import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import { VlColumnElement, vlElementsStyle, VlGridElement, VlH2Element } from '@domg-wc/elements';
-import { VlTypography } from '@domg-wc/components';
+import { VlTypography } from '../typography/vl-typography.component';
 
 @webComponent('vl-http-error-message')
 export class VlHttpErrorMessage extends BaseElementOfType(HTMLElement) {
