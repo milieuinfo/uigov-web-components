@@ -18,11 +18,10 @@ export default {
 
 export const cookieConsentDefault = story(
     cookieConsentArgs,
-    ({ analytics, autoOptInFunctionalDisabled, owner, link, matomoId, matomoUrl }) =>
+    ({ analytics, autoOptInFunctionalDisabled, owner, link, matomoId, matomoUrl, onClose }) =>
         html`
             <div>
                 <vl-cookie-consent
-                    data-cy="cookie-consent"
                     id="cookie-consent"
                     data-vl-analytics=${analytics}
                     data-vl-matomo-id=${matomoId}
@@ -31,9 +30,9 @@ export const cookieConsentDefault = story(
                     ?data-vl-auto-opt-in-functional-disabled=${autoOptInFunctionalDisabled}
                     data-vl-owner=${owner}
                     data-vl-link=${link}
+                    @vl-close=${onClose}
                 ></vl-cookie-consent>
                 <button
-                    data-cy="button-open-cookie-consent"
                     id="button-open-cookie-consent"
                     is="vl-button"
                     onClick="document.querySelector('#cookie-consent').open();"
