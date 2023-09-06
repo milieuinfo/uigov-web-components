@@ -113,7 +113,7 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
      */
     open() {
         vl.modal.lastClickedToggle = this._dialogElement;
-        if (!this._dialogElement.hasAttribute('open')) {
+        if (!this.isOpen()) {
             awaitUntil(() => this._dialogElement.isConnected).then(() => {
                 vl.modal.toggle(this._dialogElement);
                 this._dialogElement?.focus();
@@ -125,7 +125,7 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
      * Handmatig sluiten van modal.
      */
     close() {
-        if (this._dialogElement.hasAttribute('open')) {
+        if (this.isOpen()) {
             vl.modal.toggle(this._dialogElement);
         }
     }
@@ -137,6 +137,24 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
      */
     on(event: string, callback: any) {
         this._dialogElement?.addEventListener(event, callback);
+    }
+
+    /**
+     * Mogelijkheid om event listeners die op de dialog geplaatst zijn te verwijderen.
+     * Zie dat je dezelfde referentie voor de callback meegeeft als bij het toevoegen van de event listener.
+     * @param {String} event
+     * @param {Function} callback
+     */
+    off(event: string, callback: any) {
+        this._dialogElement?.removeEventListener(event, callback);
+    }
+
+    /**
+     * Geeft terug of de modal geopend is.
+     * @return {boolean}
+     */
+    isOpen() {
+        return this._dialogElement?.hasAttribute('open');
     }
 
     _getCloseButtonTemplate() {

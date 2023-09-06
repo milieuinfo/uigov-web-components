@@ -1,5 +1,6 @@
 import { ArgTypes } from '@storybook/web-components';
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { action } from '@storybook/addon-actions';
 
 export const cookieConsentArgs = {
     analytics: false,
@@ -9,6 +10,7 @@ export const cookieConsentArgs = {
     link: '',
     matomoId: '',
     matomoUrl: '',
+    onClose: action('vl-close'),
 };
 
 export const cookieConsentArgTypes: ArgTypes<typeof cookieConsentArgs> = {
@@ -78,6 +80,13 @@ export const cookieConsentArgTypes: ArgTypes<typeof cookieConsentArgs> = {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: cookieConsentArgs.matomoUrl },
+        },
+    },
+    onClose: {
+        name: 'vl-close',
+        description: 'Afgevuurd nadat het cookie-consent modal gesloten wordt.',
+        table: {
+            category: CATEGORIES.EVENTS,
         },
     },
 };

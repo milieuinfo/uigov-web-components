@@ -13,7 +13,6 @@ export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
         return ['owner', 'link', 'matomo-id', 'matomo-url', 'analytics'];
     }
 
-    //*
     connectedCallback() {
         super.connectedCallback();
 
@@ -28,6 +27,12 @@ export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
             }
             this.__addAnalyticsIfOptedIn();
         }
+
+        this._modalElement?.on('close', this._dispatchCloseEvent);
+    }
+
+    disconnectedCallback() {
+        this._modalElement?.off('close', this._dispatchCloseEvent);
     }
 
     constructor() {
@@ -155,6 +160,14 @@ export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
      */
     isOptInActive(name: string) {
         return this._optIns[name] ? this._optIns[name].value : false;
+    }
+
+    /**
+     * Geeft terug of de cookie-consent modal geopend is.
+     * @return {boolean}
+     */
+    isOpen() {
+        return this._modalElement?.isOpen();
     }
 
     get _isAutoOpenDisabled() {
@@ -385,6 +398,12 @@ export class VlCookieConsent extends BaseElementOfType(HTMLElement) {
         this._linkElement.innerText = newValue;
         this._linkElement.href = newValue;
     }
+
+    // Deze methode bewust apart gedefiniëerd als een arrow-functie
+    // zodat dezelfde referentie meegegeven kan worden bij het verwijderen van de event listener.
+    _dispatchCloseEvent = () => {
+        this.dispatchEvent(new CustomEvent('vl-close'));
+    };
 }
 
 declare global {
