@@ -1,6 +1,6 @@
 import { webComponent } from '@domg-wc/common-utilities';
 import GeometryType from 'ol/geom/GeometryType';
-import { VlDrawAction } from '../../../../actions';
+import { VlDrawAction } from '../../../../actions/draw/draw-action';
 import { VlMapDrawAction } from '../vl-map-draw-action';
 
 /**

@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import { VlMapWithActions } from '../../../actions';
+import { VlMapWithActions } from '../../../actions/map/map-with-actions';
 import '../../../vl-map';
 import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import { VlMapLayerAction } from './vl-map-layer-action';

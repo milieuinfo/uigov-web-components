@@ -5,7 +5,7 @@ import proj4 from 'proj4';
 import { OpenLayersUtil } from './utils/ol-util.js';
 import OlLayerGroup from 'ol/layer/Group';
 import OlFullScreenControl from 'ol/control/FullScreen';
-import { VlSelectAction } from './actions';
+import { VlSelectAction } from './actions/select/select-action';
 import { VlMapMeasureControl } from './components/controls/measure-control/vl-map-measure-control';
 import './vl-map';
 import './components/controls/vl-map-action-controls';
