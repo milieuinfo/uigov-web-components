@@ -64,8 +64,14 @@ bevat de kaart functionaliteit en zal dus niet in alle gevallen nodig zijn.
 
 ## Registratie van een web-component
 
-Alvorens je een web-component kan gebruiken in je html dient hij geregistreerd te worden in de browser. De aanbevolen
-manier is dit als volgt te doen:
+Alvorens je een web-component kan gebruiken in je html dient hij geregistreerd te worden in de browser. Er zijn 2
+manieren om dat te doen:
+
+```
+import '@domg-wc/sections/header';
+```
+
+of
 
 ```
 import { registerWebComponents } from '@domg-wc/common-utilities';
@@ -81,15 +87,9 @@ in dit geval.
 
 ## Styling
 
-Een deel van de aangeboden web-componenten heeft een [shadow-dom](https://web.dev/shadowdom-v1/), die componenten
-bevatten hun eigen styling. De componenten uit `@domg-wc/elements` hebben geen shadow-dom, daardoor dient die styling op
-applicatie niveau voorzien te worden. Dit doe je door op root niveau de `vlElementsStyle` te injecteren:
-
-```
-import { vlElementsStyle } from '@domg-wc/elements';
-// en dan bvb. in de constructor van je component op root niveau
-document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
-```
+Als afnemer dien je niets te doen m.b.t. styling. Componenten met een shadow DOM injecteren hun eigen styling in de
+shadow DOM. Elementen zonder shadow DOM vereisen dat hun css geïnjecteerd wordt in het document, sinds v1.17.0
+zorgen de elementen er zelf voor dat dit gebeurd.
 
 
 ## Documentatie
