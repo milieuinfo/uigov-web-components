@@ -26,8 +26,7 @@ volgt dit concept in grote lijnen maar niet volledig. Afwijkingen komen voor!
 
 ## @domg-wc/common-utilities
 
-__common-utilities__ is een technische bibliotheek met basis code en utilities. Afnemers kunnen het gebruik beperken tot de
-`registerWebComponents` methode.
+__common-utilities__ is een technische bibliotheek met basis code en utilities.
 
 
 ## @domg-wc/elements
@@ -37,10 +36,8 @@ Een __element__ is geïmplementeerd als een native html-element en heeft technis
 - extends steeds van een sub-klasse van HTMLElement (bvb. HTMLButtonElement)
 - dus steeds te gebruiken met 'is='; bvb. `<button is="vl-button"></button>`
 - heeft __geen__ shadow DOM
-- de styling wordt globaal gedefinieerd
+- styling wordt globaal gedefinieerd, dit gebeurd eenmalig en automatisch
 - de bulk van de styling komt van DV (Digitaal Vlaanderen)
-- afnemers dienen expliciet deze css eenmalig te refereren - zie [Styling](/story/afnemen-aan-de-slag--page#styling)
-  onder `Aan De Slag`
 
 
 ## @domg-wc/components
@@ -54,11 +51,9 @@ Een __component__ heeft technisch volgende eigenschappen:
 
 - extends van BaseElement of van LitElement
 - dus steeds te gebruiken als custom tag; bvb. `<vl-breadcrumb></vl-breadcrumb>`
-- heeft __steeds een__ shadow DOM
-- de styling komt mee met de component (geïnjecteerd in de shadow DOM)
-- ook de element styling is (waar nodig) voorzien in de shadow DOM
-- geneste elementen worden dus steeds correct gestyled
-- afnemers moeten niets doen m.b.t. styling
+- heeft __steeds__ een shadow DOM
+- de styling komt mee met de component (wordt geïnjecteerd in de shadow DOM)
+- element styling wordt waar nodig voorzien in de shadow DOM
 
 
 ## @domg-wc/sections
