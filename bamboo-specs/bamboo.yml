@@ -28,8 +28,10 @@ checkout-install-and-cache:
     - clean
     - script: |
         # export variables
-        export secret_github_token=${bamboo.secret_github_token}
         export test_token=${bamboo.test_token}
+        export secret_github_token=${bamboo.secret_github_token}
+        export acd_repository_debian_login=${bamboo.acd_repository_debian_login}
+        export acd_repository_debian_password=${bamboo.acd_repository_debian_password}
         bash ./resources/ci/scripts/checkout-install-and-cache-docker.sh
     - script: |
         # move the folder './node_modules' to './node-modules-cache/node_modules'

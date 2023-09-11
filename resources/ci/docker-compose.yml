@@ -8,5 +8,7 @@ services:
       - ${HOME:-.}/.npmrc:/root/.npmrc:ro
       - ./../..:/uigov-web-components
     environment:
-      - secret_github_token=${secret_github_token}
       - test_token=${test_token}
+      - secret_github_token=${secret_github_token}
+      - acd_repository_debian_login=${acd_repository_debian_login}
+      - acd_repository_debian_password=${acd_repository_debian_password}
