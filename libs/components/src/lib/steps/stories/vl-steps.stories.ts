@@ -13,6 +13,8 @@ import {
 } from '@domg-wc/elements';
 import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+import stepsDoc from './vl-steps.stories-doc.mdx';
+
 registerWebComponents([
     VlSideNavigation,
     VlSideNavigationToggleElement,
@@ -30,6 +32,9 @@ export default {
     parameters: {
         controls: {
             hideNoControlsWarning: true,
+        },
+        docs: {
+            page: stepsDoc,
         },
     },
 } as Meta<typeof stepsArgs>;
