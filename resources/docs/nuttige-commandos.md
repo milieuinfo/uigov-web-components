@@ -33,6 +33,17 @@ git gc --prune=now
 du -sh .git 
 ```
 
+### Semantic Release
+
+notes fetchen
+```
+git fetch origin refs/notes/semantic-release:refs/notes/semantic-release
+```
+notes tonen
+```
+git notes --ref semantic-release show 2231b72
+```
+
 ## Bash
 
 <sub>Welk process draait op welke poort, inclusief details.</sub>
