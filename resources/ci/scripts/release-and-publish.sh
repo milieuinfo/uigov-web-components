@@ -69,7 +69,7 @@ git pull origin ${gitRefName}
 echo 'delete all local git tags'
 git tag -d $(git tag -l)
 echo 'fetch all remote git tags'
-git fetch --tags
+git fetch --all --tags --force
 
 GITHUB_USER=kspeltix
 GITHUB_EMAIL=kris.speltincx@vlaanderen.be
@@ -195,9 +195,26 @@ cd ./fat-libs/sections
 mv domg-wc-sections.js domg-wc-sections-${nextRelease_version}.js
 mv domg-wc-sections.js.map domg-wc-sections-${nextRelease_version}.js.map
 mv domg-wc-sections.min.js domg-wc-sections-${nextRelease_version}.min.js
-# een tar maken om via artifactory op de cdn te krijgen
+# een tar maken
 tar cfz ../domg-wc-sections-${nextRelease_version}.tgz .
-cd ../../..
+cd ..
+# curl -u username:password -T <PATH_TO_FILE> "https://<ARTIFACTORY_SERVER>/<REPOSITORY_PATH>/<TARGET_FILE>"
+# https://stackoverflow.com/questions/20060553/how-do-i-deploy-a-file-to-artifactory-using-the-command-line
+# de tar uploaden naar artifactory (om het op de cdn te krijgen) - via curl omdat er geen package.json is
+
+#curl -u${acd_repository_debian_login}:${acd_repository_bamboo_password} \
+#  -v -X PUT \
+#  --upload-file domg-wc-sections-${nextRelease_version}.tgz \
+#  https://repo.omgeving.vlaanderen.be/ui/repos/tree/General/local-generic/domg/domg-wc-sections-${nextRelease_version}.tgz
+echo "upload-file domg-wc-sections-${nextRelease_version}.tgz"
+echo "using ${acd_repository_debian_login} as acd_repository_debian_login"
+echo "using ${acd_repository_url} as acd_repository_url"
+
+curl --user "${acd_repository_debian_login}:${acd_repository_bamboo_password}" \
+ --upload-file domg-wc-sections-${nextRelease_version}.tgz \
+ -v -X PUT "${acd_repository_url}/local-generic/domg/domg-wc-sections-${nextRelease_version}.tgz"
+
+cd ../..
 
 # builden van storybook
 echo "build storybook en maak er een tgz van"

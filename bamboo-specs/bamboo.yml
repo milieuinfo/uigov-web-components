@@ -28,8 +28,8 @@ checkout-install-and-cache:
     - clean
     - script: |
         # export variables
-        export secret_github_token=${bamboo.secret_github_token}
         export test_token=${bamboo.test_token}
+        export secret_github_token=${bamboo.secret_github_token}
         bash ./resources/ci/scripts/checkout-install-and-cache-docker.sh
     - script: |
         # move the folder './node_modules' to './node-modules-cache/node_modules'
@@ -99,8 +99,11 @@ release-and-publish:
     - clean
     - script: |
         # export variables
-        export secret_github_token=${bamboo.secret_github_token}
         export test_token=${bamboo.test_token}
+        export secret_github_token=${bamboo.secret_github_token}
+        export acd_repository_debian_login=${bamboo.acd_repository_debian_login}
+        export acd_repository_bamboo_password=${bamboo.acd_repository_bamboo_password}
+        export acd_repository_url=${bamboo.acd_repository_url}
         # boot the specific docker container
         bash ./resources/ci/scripts/release-and-publish-docker.sh
   artifacts:
