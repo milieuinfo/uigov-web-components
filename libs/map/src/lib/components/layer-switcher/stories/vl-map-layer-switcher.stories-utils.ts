@@ -7,7 +7,7 @@ import { VlMapLayer } from '../../layer/vl-map-layer';
  * @param vlMapSelector - geef de selector mee om het element te kunnen bepalen waarop de layer moet toegevoegd worden
  */
 const addMapLayer = (layerSelector: string, vlMapSelector: string): void => {
-    const newLayer = document.querySelector(layerSelector) as unknown as VlMapLayer;
+    const newLayer = document.querySelector(layerSelector) as unknown as VlMapLayer & Element;
     const vlMap = document.querySelector(vlMapSelector) as unknown as VlMap;
     vlMap.appendChild(newLayer);
 };
@@ -17,7 +17,7 @@ const addMapLayer = (layerSelector: string, vlMapSelector: string): void => {
  * @param layerSelector - geef de selector mee om de layer te kunnen bepalen die verwijderd moet worden
  */
 const removeMapLayer = (layerSelector: string, vlMapSelector: string): void => {
-    const layerToRemove = document.querySelector(layerSelector) as unknown as VlMapLayer;
+    const layerToRemove = document.querySelector(layerSelector) as unknown as VlMapLayer & Element;
     const vlMap = document.querySelector(vlMapSelector) as unknown as VlMap;
     vlMap.removeChild(layerToRemove);
 };

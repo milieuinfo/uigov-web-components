@@ -2,7 +2,7 @@ declare const vl: any;
 
 export class BaseHTMLElement extends HTMLElement {
     protected allowCustomCSS = true;
-    private _shadow: any;
+    protected _shadow: any;
 
     /**
      * VlElement constructor die een shadow DOM voorziet op basis van de HTML {Literal} parameter.
@@ -171,7 +171,7 @@ export class BaseHTMLElement extends HTMLElement {
      * @protected
      * @return {void}
      */
-    get _classPrefix() {
+    get _classPrefix(): null | string {
         console.error('class prefix is undefined');
         return null;
     }

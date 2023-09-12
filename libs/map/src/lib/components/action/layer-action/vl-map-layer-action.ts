@@ -41,7 +41,7 @@ export class VlMapLayerAction extends VlMapAction {
 
     get _layerElement(): VlMapVectorLayer {
         return (
-            this._mapElement.querySelector(`[data-vl-is-layer][data-vl-name="${this.dataset.vlLayer}"]`) ||
+            this._mapElement.querySelector<any>(`[data-vl-is-layer][data-vl-name="${this.dataset.vlLayer}"]`) ||
             this.closest('[data-vl-is-layer]')
         );
     }

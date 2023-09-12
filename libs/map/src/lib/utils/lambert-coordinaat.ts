@@ -54,8 +54,8 @@ export class LambertCoordinaat {
      * @param {string} value
      * @return {LambertCoordinaat|undefined}
      */
-    static of(value) {
-        if (!value && !(value instanceof String)) {
+    static of(value: string | undefined | null) {
+        if (!value && typeof value !== 'string') {
             return undefined;
         }
         const REGEX = /^\s*\(?(?<x>\d{1,6}\.\d{1,2}|\d{1,6})\d*[,;]\u0020*(?<y>\d{1,6}\.\d{1,2}|\d{1,6})\d*\)?/;
@@ -74,7 +74,7 @@ export class LambertCoordinaat {
      * @param {*} value
      * @return {boolean}
      */
-    static isLambertCoordinaat(value) {
+    static isLambertCoordinaat(value: unknown) {
         return value instanceof LambertCoordinaat;
     }
 }

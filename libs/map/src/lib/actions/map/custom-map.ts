@@ -6,31 +6,37 @@ import View from 'ol/View';
 import Overlay from 'ol/Overlay';
 import { Zoom, Rotate, ScaleLine, OverviewMap } from 'ol/control';
 import { VlMapWithActions } from './map-with-actions';
+import { MapOptions } from '../../vl-map.model';
+import { Projection } from 'ol/proj';
+import { Layer } from 'ol/layer';
 
 /**
  * Dit is een versie van de VlMapWithActions die nog enkele extra functies bevat zoals het zoomen naar een bepaalde extent (of bounding box), het togglen van de layers, en alle functionaliteit omtrent een overzichtskaartje (ol.control.OverviewMap).
  * De view kan in het map opties object bij constructie worden meegegeven of een default view wordt aangemaakt op basis van de projectie.
  */
 export class VlCustomMap extends VlMapWithActions {
-    overviewMapControl: any;
+    overviewMapControl: OverviewMap;
 
-    private projection: any;
-    private view: any;
-    private custom: any;
+    private projection: Projection;
+    private view: View;
+    private custom: { toggleBaseLayer: (baseLayer?: BaseLayer) => void };
     private geoJSONFormat: GeoJSON;
-    private baseLayers: any;
-    private maxZoomViewToExtent: any;
-    private overviewMapLayers: any;
+    private baseLayers: BaseLayer[];
+    private maxZoomViewToExtent: number;
+    private overviewMapLayers: Layer[];
 
-    constructor(options) {
+    constructor(options: MapOptions) {
+        const { disableRotation } = options;
+
         options.layers = [options.customLayers.baseLayerGroup, options.customLayers.overlayGroup];
 
         options.controls = [
+            ...(options.controls || []),
             new Rotate(),
             new ScaleLine({
                 minWidth: 128,
             }),
-        ].concat(options.controls || []);
+        ];
 
         options.view = new View({
             // default
@@ -40,6 +46,7 @@ export class VlCustomMap extends VlMapWithActions {
             minZoom: 2,
             center: [140860.69299028325, 190532.7165957574],
             zoom: 2,
+            enableRotation: !disableRotation,
             // overwrite default
             ...options.view,
         });
@@ -69,7 +76,8 @@ export class VlCustomMap extends VlMapWithActions {
     }
 
     createOverviewMapControl(options) {
-        const self = this;
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
+        const self = this as VlCustomMap;
 
         const toggleBaseLayer = (baseLayer?) => {
             const getNextLayerAfterVisibleLayer = (layers) => {
@@ -102,6 +110,7 @@ export class VlCustomMap extends VlMapWithActions {
             }),
         });
 
+        // @ts-ignore: normaal gezien is element protected dus mag niet extern opgehaald worden
         this.overviewMapControl.element.addEventListener('click', () => toggleBaseLayer(), false);
 
         this.custom.toggleBaseLayer = toggleBaseLayer;
@@ -126,6 +135,7 @@ export class VlCustomMap extends VlMapWithActions {
     getBaseLayers() {
         const layerCollection: Collection<BaseLayer> = this.getLayerGroup().getLayers();
         const firstLayer: BaseLayer = layerCollection.getArray()[0];
+        // TODO check console.log
         return (<any>firstLayer).getLayers().getArray();
     }
 
@@ -147,7 +157,7 @@ export class VlCustomMap extends VlMapWithActions {
         this._getOverlayLayersCollection().remove(layer);
     }
 
-    initializeView(boundingBox, maxZoom) {
+    initializeView(boundingBox?, maxZoom?): void {
         this.zoomViewToExtent(this.getView(), boundingBox, maxZoom);
     }
 

@@ -4,6 +4,7 @@ import { VlMapLayerCircleStyle } from '../layer-style/vl-map-layer-circle-style/
 import { VlMapVectorLayer } from '../layer/vector-layer/vl-map-vector-layer';
 import styles from './vl-map-legend.uig-css';
 import { BaseLitElement } from '@domg-wc/common-utilities';
+import { VlMap } from '../../vl-map';
 
 export const LEGEND_PLACEMENT = {
     TOP_LEFT: 'top_left',
@@ -26,8 +27,8 @@ export class VlMapLegend extends BaseLitElement {
     right: string;
     bottom: string;
     private placement: string;
-    private _mapElement: any;
-    private items: any[];
+    private _mapElement: VlMap;
+    private items: { style: string; name: string }[];
     static get styles() {
         return [
             css`
@@ -139,7 +140,7 @@ export class VlMapLegend extends BaseLitElement {
         this.requestUpdate();
     }
 
-    __createItem(style, name) {
+    __createItem(style: string, name: string) {
         return { style, name };
     }
 
@@ -161,7 +162,7 @@ export class VlMapLegend extends BaseLitElement {
         </div>`;
     }
 
-    __generateItemStyle() {
+    __generateItemStyle(): string {
         const position = this.__getPosition();
         return (
             (position.left ? `;left:${position.left}` : '') +
@@ -171,7 +172,7 @@ export class VlMapLegend extends BaseLitElement {
         );
     }
 
-    __generateIconStyle(item) {
+    __generateIconStyle(item): string {
         let borderRadius = ``;
         if (item instanceof VlMapLayerCircleStyle) {
             borderRadius = 'border-radius: 50%;';

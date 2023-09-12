@@ -1,17 +1,27 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseHTMLElement, webComponent } from '@domg-wc/common-utilities';
 import { Zoom } from 'ol/control.js';
 import OlFullScreenControl from 'ol/control/FullScreen';
 import OlLayerGroup from 'ol/layer/Group';
 import OlProjection from 'ol/proj/Projection';
 import proj4 from 'proj4';
-import { VlCustomMap } from './actions';
+import { VlBaseMapAction, VlCustomMap } from './actions';
 import { VlMapLayer } from './components/layer/vl-map-layer';
 import { EVENT } from './vl-map.model';
 import vlMapStyles from './vl-map.uig-css';
+import { VlMapWfsLayer } from './components/layer/vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
+import { VlMapFeaturesLayer } from './components/layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
+import BaseLayer from 'ol/layer/Base';
+import Collection from 'ol/Collection';
 
 @webComponent('vl-map')
-export class VlMap extends BaseElementOfType(HTMLElement) {
+export class VlMap extends BaseHTMLElement {
     private observer: MutationObserver;
+    private __ready: Promise<Awaited<unknown>[]>;
+    private __mapReady: Promise<unknown>;
+    private __mapReadyResolver: (value?: PromiseLike<unknown> | unknown) => void;
+    private __overviewMapReady: Promise<unknown>;
+    private __overviewMapReadyResolver: (value?) => void;
+    private _map: VlCustomMap;
     static get _observedClassAttributes() {
         return ['no-border', 'full-height'];
     }
@@ -53,7 +63,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
      *
      * @return {VlCustomMap}
      */
-    get map() {
+    get map(): VlCustomMap {
         return this._map;
     }
 
@@ -72,7 +82,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
      * @return {Object[]}
      */
     get nonBaseLayers(): VlMapLayer[] {
-        return [...this.querySelectorAll(':scope > [data-vl-is-layer]')];
+        return [...this.querySelectorAll(':scope > [data-vl-is-layer]')] as VlMapLayer[] & Element[];
     }
 
     get disableEscapeKey() {
@@ -108,7 +118,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
     }
 
     get _mapElement() {
-        return this._shadow.querySelector('#map');
+        return this._shadow.querySelector('#map') as HTMLDivElement;
     }
 
     get _controls() {
@@ -235,13 +245,16 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
                     if (!this.activeAction && action === this.defaultAction) {
                         action.element.activate();
                     }
+                    // @ts-ignore: TODO TS2445: Property '_active' is protected and only accessible within class 'VlMapAction' and its subclasses.
                 } else if (action.element._active) {
                     // Deactivate active action on layer
                     action.element.deactivate();
                 }
 
                 // Handle visibility changes specific to the action if these are defined
+                // @ts-ignore: TODO only exists on VlMeasureAction
                 if (action.handleLayerVisibilityChange) {
+                    // @ts-ignore: TODO only exists on VlMeasureAction
                     action.handleLayerVisibilityChange();
                 }
 
@@ -265,13 +278,14 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         );
     }
 
-    changeActiveAction(newActiveAction) {
+    changeActiveAction(newActiveAction: VlBaseMapAction) {
         const previousActiveAction = this.activeAction;
         const currentActiveAction = newActiveAction || undefined;
 
         if (previousActiveAction) {
             this.map.deactivateCurrentAction();
 
+            // @ts-ignore: TODO TS2445: Property '_active' is protected and only accessible within class 'VlMapAction' and its subclasses.
             previousActiveAction.element._active = false;
             if (previousActiveAction.getControl()) {
                 previousActiveAction.getControl().get('element').setActive(false);
@@ -281,6 +295,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         if (currentActiveAction) {
             this.map.activateAction(currentActiveAction);
 
+            // @ts-ignore: TODO TS2445: Property '_active' is protected and only accessible within class 'VlMapAction' and its subclasses.
             currentActiveAction.element._active = true;
             if (currentActiveAction.getControl()) {
                 currentActiveAction.getControl().get('element').setActive(true);
@@ -298,7 +313,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    deactivateAction(action) {
+    deactivateAction(action: VlBaseMapAction) {
         if (action) {
             action.element.deactivate();
         }
@@ -310,7 +325,7 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
      * @param {(ol/geom/Geometry|Number[])} geometryOrBoundingbox
      * @param {Number} max
      */
-    zoomTo(geometryOrBoundingbox, max) {
+    zoomTo(geometryOrBoundingbox: number[] | object, max: number) {
         if (Array.isArray(geometryOrBoundingbox)) {
             this.map.zoomToExtent(geometryOrBoundingbox, max);
         } else if (geometryOrBoundingbox instanceof Object) {
@@ -341,11 +356,11 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
     /**
      * Render the map again.
      */
-    rerender() {
+    rerender(): void {
         this.map.render();
     }
 
-    __updateMapSize() {
+    __updateMapSize(): void {
         this.style.display = 'block';
         if (this.map) {
             this.map.updateSize();
@@ -353,38 +368,38 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         this.__mapReadyResolver();
     }
 
-    __updateOverviewMapSize() {
+    __updateOverviewMapSize(): void {
         if (this.map.overviewMapControl) {
             this.map.overviewMapControl.getOverviewMap().updateSize();
         }
         this.__overviewMapReadyResolver();
     }
 
-    __updateOverviewMapSizeOnLoad() {
+    __updateOverviewMapSizeOnLoad(): void {
         VlMap.__callOnceOnLoad(this.__updateOverviewMapSize.bind(this));
     }
 
-    __updateMapSizeOnLoad() {
+    __updateMapSizeOnLoad(): void {
         VlMap.__callOnceOnLoad(this.__updateMapSize.bind(this));
     }
 
-    __createLayerGroup(title, layers) {
+    __createLayerGroup(title: string, layers: BaseLayer[] | Collection<BaseLayer> | undefined): OlLayerGroup {
         // title is not a valid option property, also can not find it in html DOM when setting it
         // ref.: https://openlayers.org/en/v6.15.1/apidoc/module-ol_layer_Group-LayerGroup.html
-        return new OlLayerGroup(<any>{
+        return new OlLayerGroup(<never>{
             title,
             layers,
         });
     }
 
-    __initializeCoordinateSystem() {
+    __initializeCoordinateSystem(): void {
         proj4.defs(
             'EPSG:31370',
             '+proj=lcc +lat_1=51.16666723333333 +lat_2=49.8333339 +lat_0=90 +lon_0=4.367486666666666 +x_0=150000.013 +y_0=5400088.438 +ellps=intl +towgs84=-106.869,52.2978,-103.724,0.3366,-0.457,1.8422,-1.2747 +units=m +no_defs'
         );
     }
 
-    static __callOnceOnLoad(callback) {
+    static __callOnceOnLoad(callback): void {
         if (document.readyState === 'complete') {
             callback();
         } else {
@@ -392,11 +407,11 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    get featuresLayers() {
+    get featuresLayers(): VlMapFeaturesLayer[] {
         return Array.from(this.querySelectorAll('vl-map-features-layer'));
     }
 
-    get wfsLayers() {
+    get wfsLayers(): VlMapWfsLayer[] {
         return Array.from(this.querySelectorAll('vl-map-wfs-layer'));
     }
 }

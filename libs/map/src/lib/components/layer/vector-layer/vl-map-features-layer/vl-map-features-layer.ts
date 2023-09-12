@@ -55,11 +55,6 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
         return this.__featuresSource ? this.__featuresSource.getFeatures() : this._featuresFromAttribute;
     }
 
-    get _featuresFromAttribute() {
-        const features = this.getAttribute('features');
-        return features ? this.__readGeoJsonFeatures(features) : [];
-    }
-
     /**
      * Zet de OpenLayers features collectie op de kaartlaag.
      *
@@ -67,6 +62,11 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
      */
     set features(features) {
         this.setAttribute('features', JSON.stringify(features));
+    }
+
+    get _featuresFromAttribute() {
+        const features = this.getAttribute('features');
+        return features ? this.__readGeoJsonFeatures(features) : [];
     }
 
     get _autoExtent() {
