@@ -15,7 +15,7 @@ export const infoblockArgTypes: ArgTypes<typeof infoblockArgs> = {
         control: 'select',
         table: {
             type: { summary: 'string' },
-            defaultValue: { summary: '' },
+            defaultValue: { summary: infoblockArgs.type },
         },
     },
     title: {
@@ -23,7 +23,7 @@ export const infoblockArgTypes: ArgTypes<typeof infoblockArgs> = {
         description: 'Attribuut dat wordt gebruikt om de titel van de infoblock te zetten.',
         table: {
             type: { summary: 'string' },
-            defaultValue: { summary: '' },
+            defaultValue: { summary: infoblockArgs.title },
         },
     },
     icon: {
@@ -38,7 +38,7 @@ export const infoblockArgTypes: ArgTypes<typeof infoblockArgs> = {
         },
         table: {
             type: { summary: 'string' },
-            defaultValue: { summary: '' },
+            defaultValue: { summary: infoblockArgs.icon },
         },
     },
     content: {

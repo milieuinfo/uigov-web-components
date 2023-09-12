@@ -2,7 +2,7 @@ import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { Args, ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 
-export const uploadArgs: Args = {
+export const uploadArgs = {
     acceptedFiles: '',
     autoProcess: false,
     disabled: false,
@@ -12,12 +12,13 @@ export const uploadArgs: Args = {
     errorMessageFilesize: '',
     errorMessageMaxFiles: '',
     fullBodyDrop: false,
-    inputName: 'file',
+    inputName: '',
     maxFiles: 1,
     maxSize: 2000000,
-    subTitle: '',
+    subTitle: 'Sleep de bijlage naar hier om toe te voegen',
     success: false,
     title: '',
+    resetFormOnClear: false,
     url: 'http://httpbin.org/post',
     onChange: action('change'),
     onDuplicateRemoved: action('duplicateRemoved'),
@@ -33,7 +34,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.STRING,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: [] },
+            defaultValue: { summary: uploadArgs.acceptedFiles },
         },
     },
     autoProcess: {
@@ -45,7 +46,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.BOOLEAN,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: uploadArgs.autoProcess },
         },
     },
     disabled: {
@@ -56,7 +57,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.BOOLEAN,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: uploadArgs.disabled },
         },
     },
     disallowDuplicates: {
@@ -68,7 +69,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.BOOLEAN,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: uploadArgs.disallowDuplicates },
         },
     },
     error: {
@@ -79,7 +80,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.BOOLEAN,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: uploadArgs.error },
         },
     },
     errorMessageAcceptedFiles: {
@@ -90,7 +91,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.STRING,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: uploadArgs.errorMessageAcceptedFiles },
         },
     },
     errorMessageFilesize: {
@@ -101,7 +102,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.STRING,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: uploadArgs.errorMessageFilesize },
         },
     },
     errorMessageMaxFiles: {
@@ -112,7 +113,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.STRING,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: uploadArgs.errorMessageMaxFiles },
         },
     },
     fullBodyDrop: {
@@ -123,7 +124,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.BOOLEAN,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: uploadArgs.fullBodyDrop },
         },
     },
     inputName: {
@@ -134,7 +135,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.STRING,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: uploadArgs.inputName },
         },
     },
     maxFiles: {
@@ -145,7 +146,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: 'number',
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 1 },
+            defaultValue: { summary: uploadArgs.maxFiles },
         },
     },
     maxSize: {
@@ -156,7 +157,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: 'number',
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 2000000 },
+            defaultValue: { summary: uploadArgs.maxSize },
         },
     },
     subTitle: {
@@ -167,7 +168,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.STRING,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: uploadArgs.subTitle },
         },
     },
     success: {
@@ -178,7 +179,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.BOOLEAN,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: uploadArgs.success },
         },
     },
     title: {
@@ -189,7 +190,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.STRING,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: uploadArgs.title },
         },
     },
     url: {
@@ -201,7 +202,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.STRING,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: '' },
+            defaultValue: { summary: uploadArgs.url },
         },
     },
     resetFormOnClear: {
@@ -214,7 +215,7 @@ export const uploadArgTypes: ArgTypes = {
                 summary: TYPES.BOOLEAN,
             },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: uploadArgs.resetFormOnClear },
         },
     },
     onChange: {

@@ -19,7 +19,7 @@ export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
         description: 'Attribute wordt gebruikt om aan te duiden dat swipe functie toegelaten is.',
         table: {
             type: { summary: TYPES.BOOLEAN },
-            defaultValue: { summary: false },
+            defaultValue: { summary: sideSheetArgs.enableSwipe },
         },
     },
     left: {
@@ -27,7 +27,7 @@ export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
         description: 'Attribute om de side-sheet aan de linkerrand te positioneren.',
         table: {
             type: { summary: TYPES.BOOLEAN },
-            defaultValue: { summary: false },
+            defaultValue: { summary: sideSheetArgs.left },
         },
     },
     right: {
@@ -35,7 +35,7 @@ export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
         description: 'Attribute om de side-sheet aan de rechterrand te positioneren. Dit is de standaard instelling.',
         table: {
             type: { summary: TYPES.BOOLEAN },
-            defaultValue: { summary: false },
+            defaultValue: { summary: sideSheetArgs.right },
         },
     },
     absolute: {
@@ -43,7 +43,7 @@ export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
         description: 'Attribute wordt gebruikt om aan te duiden dat de side-sheet absoluut gepositioneerd wordt.',
         table: {
             type: { summary: TYPES.BOOLEAN },
-            defaultValue: { summary: false },
+            defaultValue: { summary: sideSheetArgs.absolute },
         },
     },
     toggleText: {
@@ -51,7 +51,7 @@ export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
         description: 'Attribute wordt gebruikt om de toggle knop tekst te wijzigen.',
         table: {
             type: { summary: TYPES.STRING },
-            defaultValue: { summary: '' },
+            defaultValue: { summary: sideSheetArgs.toggleText },
         },
     },
     tooltipText: {
@@ -59,6 +59,7 @@ export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
         description: 'Attribute wordt gebruikt om de native tooltip te bepalen.',
         table: {
             type: { summary: TYPES.STRING },
+            defaultValue: { summary: sideSheetArgs.tooltipText },
         },
     },
     customIcon: {
@@ -67,9 +68,7 @@ export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
             'Dit vervangt zowel open & close icon door 1 custom icon. \n Standaard wordt afhankelijk van de positie van de side-sheet een pijltje getoond dat aanduidt of de side-sheet open of dicht is.',
         table: {
             type: { summary: TYPES.STRING },
-            defaultValue: {
-                summary: '',
-            },
+            defaultValue: { summary: sideSheetArgs.customIcon },
         },
     },
     iconPlacement: {
@@ -81,7 +80,7 @@ export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
         },
         table: {
             type: { summary: TYPES.STRING },
-            defaultValue: { summary: 'before' },
+            defaultValue: { summary: sideSheetArgs.iconPlacement },
         },
     },
     hideToggleButton: {
@@ -89,7 +88,7 @@ export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
         description: 'Toggle knop verbergen.',
         table: {
             type: { summary: TYPES.BOOLEAN },
-            defaultValue: { summary: false },
+            defaultValue: { summary: sideSheetArgs.hideToggleButton },
         },
     },
 };

@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../vl-textarea.element';
 import { textareaArgs, textareaArgTypes } from './vl-textarea.stories-arg';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { Meta } from '@storybook/web-components';
 import textAreaDoc from './vl-textarea.stories-doc.mdx';
 import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
@@ -16,7 +16,7 @@ export default {
     },
 } as Meta<typeof textareaArgs>;
 
-const Template: StoryFn<typeof textareaArgs> = story(
+const Template = story(
     textareaArgs,
     ({ rich, block, error, success, disabled, focus, toolbar, readonly }) => html`
         <textarea

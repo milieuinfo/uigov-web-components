@@ -1,7 +1,7 @@
-import { TYPES } from '@domg-wc/common-storybook';
-import { Args, ArgTypes } from '@storybook/web-components';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { ArgTypes } from '@storybook/web-components';
 
-export const datepickerArgs: Args = {
+export const datepickerArgs = {
     type: '',
     format: 'd.m.Y',
     visualFormat: '',
@@ -27,11 +27,9 @@ export const datepickerArgTypes: ArgTypes = {
             options: ['range', 'time', 'date-time', ''],
         },
         table: {
-            type: {
-                summary: TYPES.STRING,
-            },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.type },
         },
     },
     format: {
@@ -42,19 +40,17 @@ export const datepickerArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
-            defaultValue: { summary: 'd.m.Y' }, // dateFormat is 'Y-m-d' in vl-datepicker.lib.js
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.format }, // dateFormat is 'Y-m-d' in vl-datepicker.lib.js
         },
     },
     visualFormat: {
         name: 'data-vl-visual-format',
         description: 'Attribuut bepaalt het visueel formaat van de datum/tijd waarde.',
         table: {
-            type: {
-                summary: TYPES.STRING,
-            },
-            category: 'Attributes',
-            defaultValue: { summary: 'd.m.Y' },
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.visualFormat },
         },
     },
     selectedDate: {
@@ -62,11 +58,9 @@ export const datepickerArgTypes: ArgTypes = {
         description:
             "Attribuut voor een vooringestelde datum conform het ingestelde formaat (bv. '03-10-2019') of 'today' voor vandaag.",
         table: {
-            type: {
-                summary: TYPES.STRING,
-            },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.selectedDate },
         },
     },
     minDate: {
@@ -77,8 +71,8 @@ export const datepickerArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.minDate },
         },
     },
     maxDate: {
@@ -89,8 +83,8 @@ export const datepickerArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.maxDate },
         },
     },
     minTime: {
@@ -100,8 +94,8 @@ export const datepickerArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.minTime },
         },
     },
     maxTime: {
@@ -111,8 +105,8 @@ export const datepickerArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.maxTime },
         },
     },
     amPm: {
@@ -122,8 +116,8 @@ export const datepickerArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.amPm },
         },
     },
     error: {
@@ -133,8 +127,8 @@ export const datepickerArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.BOOLEAN,
             },
-            category: 'Attributes',
-            defaultValue: { summary: false },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.error },
         },
     },
     success: {
@@ -144,8 +138,8 @@ export const datepickerArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.BOOLEAN,
             },
-            category: 'Attributes',
-            defaultValue: { summary: false },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.success },
         },
     },
     value: {
@@ -155,8 +149,8 @@ export const datepickerArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.BOOLEAN,
             },
-            category: 'Attributes',
-            defaultValue: { summary: false },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.value },
         },
     },
     pattern: {
@@ -166,8 +160,8 @@ export const datepickerArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.pattern },
         },
     },
     name: {
@@ -177,8 +171,8 @@ export const datepickerArgTypes: ArgTypes = {
             type: {
                 summary: TYPES.STRING,
             },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.name },
         },
     },
 };

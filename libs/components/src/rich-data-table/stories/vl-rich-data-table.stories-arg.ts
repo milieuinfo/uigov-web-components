@@ -17,7 +17,7 @@ export const richDataTableArgTypes: ArgTypes<typeof richDataTableArgs> = {
         table: {
             category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN },
-            defaultValue: { summary: false },
+            defaultValue: { summary: richDataTableArgs.collapsedM },
         },
     },
     collapsedS: {
@@ -26,7 +26,7 @@ export const richDataTableArgTypes: ArgTypes<typeof richDataTableArgs> = {
         table: {
             category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN },
-            defaultValue: { summary: false },
+            defaultValue: { summary: richDataTableArgs.collapsedS },
         },
     },
     collapsedXS: {
@@ -35,7 +35,7 @@ export const richDataTableArgTypes: ArgTypes<typeof richDataTableArgs> = {
         table: {
             category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN },
-            defaultValue: { summary: false },
+            defaultValue: { summary: richDataTableArgs.collapsedXS },
         },
     },
 };

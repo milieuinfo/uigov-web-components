@@ -14,7 +14,7 @@ export const richDataArgTypes: ArgTypes<typeof richDataArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: richDataArgs.filterCloseable },
         },
     },
     filterClosed: {
@@ -23,7 +23,7 @@ export const richDataArgTypes: ArgTypes<typeof richDataArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: richDataArgs.filterClosed },
         },
     },
 };

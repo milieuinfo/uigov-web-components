@@ -15,7 +15,7 @@ export const propertiesArgTypes: ArgTypes<typeof propertiesArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: propertiesArgs.collapsed },
         },
     },
     full: {
@@ -25,7 +25,7 @@ export const propertiesArgTypes: ArgTypes<typeof propertiesArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: propertiesArgs.full },
         },
     },
     fullWidth: {
@@ -35,7 +35,7 @@ export const propertiesArgTypes: ArgTypes<typeof propertiesArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: propertiesArgs.fullWidth },
         },
     },
 };

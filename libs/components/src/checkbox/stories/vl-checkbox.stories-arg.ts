@@ -6,12 +6,12 @@ export const checkboxArgs = {
     checked: false,
     disabled: false,
     error: false,
-    label: 'Optie 1',
-    name: 'options',
+    label: '',
+    name: 'checkbox',
     single: false,
     // Suffix met 'Attr' omdat 'switch' een reserved keyword is.
     switchAttr: true,
-    value: 'Optie 1',
+    value: '',
 };
 
 export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
@@ -21,7 +21,7 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: checkboxArgs.block },
         },
     },
     checked: {
@@ -30,7 +30,7 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: checkboxArgs.checked },
         },
     },
     disabled: {
@@ -39,7 +39,7 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: checkboxArgs.disabled },
         },
     },
     error: {
@@ -48,7 +48,7 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: checkboxArgs.error },
         },
     },
     label: {
@@ -57,6 +57,7 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: checkboxArgs.label },
         },
     },
     name: {
@@ -65,6 +66,7 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: checkboxArgs.name },
         },
     },
     single: {
@@ -73,7 +75,7 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: checkboxArgs.single },
         },
     },
     switchAttr: {
@@ -83,7 +85,7 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: checkboxArgs.switchAttr },
         },
     },
     value: {
@@ -92,6 +94,7 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: checkboxArgs.value },
         },
     },
 };

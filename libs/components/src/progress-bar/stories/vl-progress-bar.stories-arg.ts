@@ -6,7 +6,7 @@ export const progressBarArgs = {
     activeStep: 1,
     focusOnChange: false,
     numeric: false,
-    steps: ['Stap 1/3: Aanvraag', 'Stap 2/3: Gegevens', 'Stap 3/3: Bevestigen'],
+    steps: [''],
     onClickStep: action('vl-click-step'),
 };
 
@@ -18,7 +18,7 @@ export const progressBarArgTypes: ArgTypes<typeof progressBarArgs> = {
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: 1 },
+            defaultValue: { summary: progressBarArgs.activeStep },
         },
     },
     focusOnChange: {
@@ -27,7 +27,7 @@ export const progressBarArgTypes: ArgTypes<typeof progressBarArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: progressBarArgs.focusOnChange },
         },
     },
     numeric: {
@@ -36,15 +36,16 @@ export const progressBarArgTypes: ArgTypes<typeof progressBarArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: false },
+            defaultValue: { summary: progressBarArgs.numeric },
         },
     },
     steps: {
         description: 'Lijst met omschrijvingen per stap.',
+        control: { type: 'object', required: true },
         table: {
-            type: { summary: `${TYPES.STRING}[]` },
+            type: { summary: TYPES.ARRAY },
             category: CATEGORIES.PROPERTIES,
-            defaultValue: { summary: '[]' },
+            defaultValue: { summary: progressBarArgs.steps },
         },
     },
     onClickStep: {
@@ -54,6 +55,7 @@ export const progressBarArgTypes: ArgTypes<typeof progressBarArgs> = {
         table: {
             type: { summary: '{ step: string, number: number }' },
             category: CATEGORIES.EVENTS,
+            defaultValue: { summary: progressBarArgs.onClickStep },
         },
     },
 };

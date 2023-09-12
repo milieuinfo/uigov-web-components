@@ -19,8 +19,8 @@ export const inputFieldArgTypes = {
         name: 'data-vl-block',
         description: 'Laat het input veld de breedte van zijn parent innemen.',
         table: {
-            category: 'Attributes',
             type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldArgs.block },
         },
     },
@@ -28,17 +28,17 @@ export const inputFieldArgTypes = {
         name: 'data-vl-error',
         description: 'Plaatst een rode rand rond het input veld.',
         table: {
-            category: 'Attributes',
             type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldArgs.error },
         },
     },
     small: {
         name: 'data-vl-small',
         description: 'Smalle variant van het input veld.',
-        table: {
-            category: 'Attributes',
-            type: { summary: TYPES.BOOLEAN },
+        tabltype: { summary: TYPES.BOOLEAN },
+        e: {
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldArgs.small },
         },
     },
@@ -46,8 +46,8 @@ export const inputFieldArgTypes = {
         name: 'data-vl-success',
         description: 'Plaatst een groene rand rond het input veld.',
         table: {
-            category: 'Attributes',
             type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldArgs.success },
         },
     },
@@ -55,8 +55,8 @@ export const inputFieldArgTypes = {
         name: 'data-vl-disabled',
         description: 'Stelt disabled styling in & voorkomt gebruiker input in te geven.',
         table: {
-            category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldArgs.disabled },
         },
     },

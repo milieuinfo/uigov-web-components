@@ -1,8 +1,8 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 
 export const contentHeaderArgs = {
-    contextLink: 'Context',
-    titleLink: 'Vlaanderen',
+    contextLink: '',
+    titleLink: '',
 };
 
 export const contentHeaderArgTypes = {
