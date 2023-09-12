@@ -1,102 +1,270 @@
-import {Meta} from '@storybook/addon-docs';
+import { Meta, Source } from '@storybook/addon-docs';
+import storybookVoorbeeld from '!raw-loader!../../resources/bijdragen/storybook-voorbeeld.ts';
 
 <Meta title="Bijdragen/Storybook"/>
 
-# Storybook (WIP)
-
-TODO - aan te vullen / te evalueren - Kristof S. of Karim
+# Storybook
 
 ## Inhoudstafel
 
-TODO
+- [Referenties](#referenties)
+- [Bestanden](#bestanden)
+- [Story Opbouw](#story-opbouw)
+- [Args](#args)
+- [ArgTypes](#argtypes)
+- [Docs](#docs)
 
 
-## Storybook - legacy
+## Referenties
 
-Vroeger:
-Er zijn al conventies m.b.t. Storybook en Cypress (testen t.o.v. Storybook), maar deze zijn nog niet gedocumenteerd. De
-conventies zijn doorgevoerd in de __accordion__ en __progress-bar__ componenten, deze kunnen dus als voorbeeld dienen.
-We zullen stelselmatig de web-componenten stroomlijnen zodat ze uniform gedocumenteerd en getest worden. Op korte
-termijn (streefdoel hier is eind maart 2023) wordt documentatie voorzien m.b.t. die richtlijnen.
+Deze pagina bevat de conventies die gehanteerd worden bij het schrijven van Storybook documentatie.<br/>
+Je kan bijv. kijken naar de volgende componenten die de conventies al correct volgen: **VlAccordion**,
+**VlProgressBar**, **VlFunctionalHeader**, **VlAccessibility** of **VlHeader**.
 
 
-## Doel
+## Bestanden
 
-Deze pagina bevat de richtlijnen die gehanteerd worden bij het schrijven van de Storybook documentatie.
+Om een story op te bouwen, splitsen we ze op in 3 bestanden:
 
-Voor voorbeelden van deze richtlijnen zie volgende componenten:
+- **[component].stories.ts**: de [story opbouw](#story-opbouw) waarin het gebruik van de component getoond wordt
+- **[component].stories-args.ts**: de [Args](#args) en [ArgTypes](#argtypes) gebruikt in de stories - die de
+                                   parameters definiëren
+- **[component].stories-doc.mdx**: de 'Docs-tab' - de [Docs](#docs) pagina in `.mdx`-formaat (markdown + jsx)
+                                   waarin de algemene informatie over de component beschreven wordt
 
-VlAccordion
-VlProgressBar
-VlFunctionalHeader
-VlAccessibility
-VlHeader
+
+## Story opbouw
+
+Een `.stories.ts` bestand bestaat uit 3 delen: de [default export](#default-export), de
+[story template(s)](#story-template) en de [stories](#stories) zelf.
+
+### Default Export
+
+Hierin wordt de basis configuratie van een Story bepaald, deze volgt het door Storybook gespecifieerde
+[Component Story Format (CSF)](https://storybook.js.org/docs/6.5/web-components/api/csf). Dit heeft typisch
+volgende structuur:
+
+- __title__: de titel van de Storybook entry, bv. `Components/accordion`
+Het deel voor de `/` (hier `Components`) bepaalt de hoofd-positie in het zij-menu
+- __args__ (optioneel): de argumenten gespecifieerd in het `[component].stories-arg.ts` bestand - dit wordt niet
+                        gespecifieerd indien de args in de stories gezet worden (zie [stories](#stories))
+- __argTypes__: de argument-types gespecifieerd in het `[component].stories-arg.ts` bestand
+- __parameters__:
+  * docs > page: import van het `[component].stories-doc.mdx` bestand
+  * layout (optioneel): `fullscreen` voor componenten die de volledige breedte in beslag nemen / `centered` voor
+                        componenten die je wil centreren
+
+```ts
+import { Meta } from '@storybook/web-components';
+import { accordionArgs, accordionArgTypes } from './vl-accordion.stories-arg';
+import accordionDoc from './vl-accordion.stories-doc.mdx';
+import { storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
+
+export default {
+    title: 'Components/accordion',
+    args: storyArgs(accordionArgs),
+    argTypes: storyArgTypes(accordionArgTypes),
+    parameters: {
+        docs: {
+            page: accordionDoc,
+        },
+        layout: 'centered',
+    },
+} as Meta<typeof accordionArgs>;
+```
+
+### Story Template
+
+Hiervoor hanteren we volgende richtlijnen:
+
+- elke story heeft **op zijn minst 1 template**
+- een **zinvolle naamgeving** - als er maar 1 template is kan je die `Template` noemen, indien er meerdere zijn
+  geef je ze best allemaal een concrete naam
+- Storybook zelf **gebruikt achterliggend [Lit](https://lit.dev)**
+- args sorteren we **bij voorkeur alfabetisch**, indien zinvol kan je hier van afwijken
+- het is belangrijk om gebruik te maken van de **`story()` helper functie** - deze methode zet 'de args die
+  overeenkomen met de default args' om naar `nothing` (van Lit), hierdoor worden deze niet meer getoond in de
+  source code op de docs pagina van de story
+- **properties worden geprefixed met `.`** - bv. `.steps=${steps}`
+- **events worden geprefixed met `@`** - bv. `@vl-click-step=${(event: CustomEvent) => onClickStep(event.detail)}`
+- **slots gebruiken het unsafeHTML directive** van Lit zodat de HTML niet ge-escaped wordt - bv.
+  `${unsafeHTML(titleSlot)}`
+
+```ts
+const Template = story(
+    progressBarArgs,
+    ({ activeStep, focusOnChange, numeric, steps, onClickStep }) => html`
+        <vl-progress-bar
+            data-vl-active-step=${activeStep}
+            ?data-vl-focus-on-change=${focusOnChange}
+            ?data-vl-numeric=${numeric}
+            .steps=${steps}
+            @vl-click-step=${(event: CustomEvent) => onClickStep(event.detail)}
+        >
+        </vl-progress-bar>
+    `
+);
+```
+
+
+### Stories
+
+Voor het schrijven van de Stories zelf hanteren we volgende richtlijnen:
+
+- elk component heeft **minstens 1 story**
+- een template meerdere malen **hergebruiken doe je m.b.v. `Template.bind({})`**, zie het voorbeeld hieronder
+- de naamgeving volgt de conventie: **`[Component]+[Variant]`**, bv. `ProgressBarDefault`
+- indien de component meerdere 'logische varianten' heeft schrijven we een **aparte story per variant**; in dit geval
+  geven of overschrijven we de args op story niveau
+
+> opmerking: pas nooit de argTypes van een story aan, hierdoor is de controls-sectie van Storybook niet meer
+             hetzelfde voor alle stories
+
+```ts
+export const ProgressBarDefault = Template.bind({}); // template om te gebruiken voor deze story
+ProgressBarDefault.storyName = 'vl-progress-bar - default';
+ProgressBarDefault.args = {
+    steps: ['Stap 1/3: Aanvraag', 'Stap 2/3: Gegevens', 'Stap 3/3: Bevestigen'],
+};
+```
+
+<details>
+    <summary>een story voorbeeld met verschillende templates </summary>
+    <Source code={storybookVoorbeeld} language="ts" dark={true} format={true} />
+</details>
 
 
 ## Args
--> uit - https://www.milieuinfo.be/confluence/display/FEO/Args+en+ArgTypes
 
-Het bestand dat de args specifiëert heeft een naam conform: `vl-component.stories-arg.ts`
+Storybook definiëert de [args specificatie](https://storybook.js.org/docs/6.1/web-components/writing-stories/args).
+Het bestand heeft een naam conform: `[component].stories-arg.ts` en volgt volgende richtlijnen:
 
-De conventies m.b.t. het args bestand zijn:
+- bij voorkeur **alfabetisch gesorteerd**, indien zinvol kan hier van afgeweken worden
+- args met een default waarde in de component krijgen de **default waarde van het type** (lege string `''`, `false`, `0`,
+  ..) - hierdoor kan de default waarde afgetest worden; args zonder default waarde in de component krijgen een lege
+  waarde
+- **slots suffixen** we met het woord `slot` - bv. `titleSlot` of `defaultSlot`
+- voor events gebruiken we de [action addon](https://storybook.js.org/addons/@storybook/addon-actions) van Storybook
+  zodat het event getoond wordt in de actions sectie
 
-- bij voorkeur alfabetisch gesorteerd, er kan van afgeweken worden mits een geldige reden
-- maak geen gebruik van de Args-interface uit @storybook/web-component omdat anders de types verloren geraken
-- waarde:
-    * args met een default waarde in het component krijgen de default waarde van het type (lege string, false, 0, ..).
-      <br/>Dit zorgt ervoor dat de default waarde in het component afgetest kan worden.
-    * args zonder default waarde in het component krijgen een willekeurige waarde
-- slots:
-    * naamgeving eindigt op "slot", bv. "titleSlot"
-    * default slot gebruikt de naamgeving "defaultSlot"
-- events maken gebruik van de action addon van Storybook zodat het event getoond wordt in de actions sectie
+> opgelet: maak geen gebruik van de Args-interface uit @storybook/web-component omdat daardoor de types verloren gaan
+
+```ts
+export const progressBarArgs = {
+    activeStep: 1,
+    focusOnChange: false,
+    numeric: false,
+    steps: [''],
+    onClickStep: action('vl-click-step'),
+};
+```
 
 
 ## ArgTypes
 
-- alfabetisch gesorteerd, kan van afgeweken worden mits geldige reden
-- maak gebruik van de ArgTypes-interface uit @storybook/web-components
+Storybook definiëert de [arg-types specificatie](https://storybook.js.org/docs/6.5/web-components/api/argtypes).
+De arg-types worden bij in het `[component].stories-arg.ts` bestand gezet en volgen volgende richtlijnen:
 
-### samenstelling object
+- bij voorkeur **alfabetisch gesorteerd**, indien zinvol kan hier van afgeweken worden
+- maak gebruik van de **ArgTypes-interface** uit @storybook/web-components
+- voor `categories` en `types` zijn er `CATEGORIES` en `TYPES` constanten voorzien
+- de defaultValue van de `argType` moet gelijkgesteld worden aan de waarde in de equivalente `args`-waarde; conform
+  `defaultValue: { summary: progressBarArgs.activeStep }`
 
-* __name__: naam die in het component gebruikt wordt<br/>Slots gebruiken de waarde van het name attribuut
-            van het slot of de waarde "[default]" indien het een default slot is
-* __description__: korte omschrijving, vermeldt de argumenten die niet in combinatie gebruikt kunnen worden
-* __table__
-    * __type__
-        * __summary__: het type (string, number, boolean, html, ...), maakt gebruik van constante<br/>
-                       Voor een enum worden alle mogelijke waarden genoteerd, bv. "&lt;waarde 1&gt; | &lt;waarde 2&gt; | &lt;waarde 3&gt;"
-    * __category__: de categorie, bepaalt de groepering in de controls sectie van Storybook, maakt gebruik van constante
-    * __defaultValue__ (optioneel)
-        * __summary__: de default waarde in het component, laat heel de property defaultValue weg indien er geen default waarde is
-* __control__ (optioneel), wordt gebruikt bij oa een enum om een dropdown control te tonen
-    * __type__: type van control (select, ...)
-    * __options__: de opties van de control
+Het ArgType volgt een vaste structuur:
 
+- **name**: de naam die in de component gebruikt wordt<br/>
+            slots gebruiken de waarde van het name-attribuut of de waarde '[default]' indien het een default slot is
+- **description**: korte omschrijving, vermeldt de argumenten die niet in combinatie gebruikt kunnen worden
+- **table**
+    - **type** > **summary**: het type (string, number, boolean, html, ...) - maakt gebruik van de constante `TYPES`<br/>
+                              voor een enum worden alle mogelijke waarden genoteerd, bv.
+                              '[waarde 1] | [waarde 2] | [waarde 3]'
+    - **category**: de categorie, bepaalt de groepering in de controls sectie van Storybook, maakt gebruik van de
+                    constante `CATEGORIES`
+    - **defaultValue** (optioneel) > **summary**: de default waarde in de component
+- **control** (optioneel): wordt gebruikt bij o.a. een enum om een dropdown control te tonen
+                           zie [controls](https://storybook.js.org/docs/6.5/web-components/essentials/controls) in
+                           Storybook
+    - **type**: het type van de control (select, ...)
+    - **options**: de opties van de control
+
+```ts
+activeStep: {
+    name: 'data-vl-active-step',
+    description: 'Markeert een stap als de actieve.',
+    control: { type: 'range', min: 1, max: 3, step: 1 },
+    table: {
+        type: { summary: TYPES.NUMBER },
+        category: CATEGORIES.ATTRIBUTES,
+        defaultValue: { summary: progressBarArgs.activeStep },
+    }
+}
+```
+
+<details>
+    <summary>een volledig voorbeeld van ArgTypes</summary>
+    <Source language="ts" dark={true} format={true}
+            code={
+            `
+            export const progressBarArgTypes: ArgTypes<typeof progressBarArgs> = {
+                activeStep: {
+                    name: 'data-vl-active-step',
+                    description: 'Markeert een stap als de actieve.',
+                    control: { type: 'range', min: 1, max: 3, step: 1 },
+                    table: {
+                        type: { summary: TYPES.NUMBER },
+                        category: CATEGORIES.ATTRIBUTES,
+                        defaultValue: { summary: progressBarArgs.activeStep },
+                    },
+                },
+                focusOnChange: {
+                    name: 'data-vl-focus-on-change',
+                    description: 'Bepaalt of een stap de focus krijgt na een wijziging.',
+                    table: {
+                        type: { summary: TYPES.BOOLEAN },
+                        category: CATEGORIES.ATTRIBUTES,
+                        defaultValue: { summary: progressBarArgs.focusOnChange },
+                    },
+                },
+                numeric: {
+                    name: 'data-vl-numeric',
+                    description: 'Voorziet numerieke indicatoren bij de stappen.',
+                    table: {
+                        type: { summary: TYPES.BOOLEAN },
+                        category: CATEGORIES.ATTRIBUTES,
+                        defaultValue: { summary: progressBarArgs.numeric },
+                    },
+                },
+                steps: {
+                    description: 'Lijst met omschrijvingen per stap.',
+                    control: { type: 'object', required: true },
+                    table: {
+                        type: { summary: TYPES.ARRAY },
+                        category: CATEGORIES.PROPERTIES,
+                        defaultValue: { summary: progressBarArgs.steps },
+                    },
+                },
+                onClickStep: {
+                    name: 'vl-click-step',
+                    description:
+                        'Afgevuurd na het klikken op een stap.<br>Het event bevat de omschrijving en het nummer van de stap.',
+                    table: {
+                        type: { summary: '{ step: string, number: number }' },
+                        category: CATEGORIES.EVENTS,
+                        defaultValue: { summary: progressBarArgs.onClickStep },
+                    },
+                },
+            };
+            `}>
+    </Source>
+</details>
 
 ## Docs
 
-De docs voor Storybook worden geschreven in MDX (https://mdxjs.com/).
+De docs voor Storybook worden geschreven in [MDX](https://mdxjs.com) formaat.
+Het bestand heeft een naam conform: `[component].stories-doc.mdx` en volgt onderstaande template:
 
-Naamgeving bestand: component.stories-doc.mdx
-
-Opbouw pagina
-
-- Naam en omschrijving
-- Voorbeeld
-    * Import statement
-    * Custom tag
-    * Default story + source
-- Configuratie: de argsTable van de default story
-- Varianten + source
-- Referenties
-    * Digitaal Vlaanderen documentatie
-    * Legacy Storybook
-    * Legacy documentatie
-    * Legacy dmeo
-
-
-TEMPLATE
 ```
 import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
 
@@ -106,13 +274,13 @@ import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
 
 ## Voorbeeld
 
-\`\`\`js
+```js
 <import statement>
-\`\`\`
+`` `
 
-\`\`\`html
+```html
 <custom tag>
-\`\`\`
+`` `
 
 <DocsStory id="<default story id>" />
 
@@ -122,66 +290,25 @@ import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
 
 ## Varianten
 
-### <variant 1 naam>
+### Naam Variant 1
 
-<DocsStory id="<variant 1 id>" />
+<DocsStory id="id-variant-1" />
 
-### <variant 2 naam>
+### Naam Variant 2
 
-<DocsStory id="<variant 2 id>" />
+<DocsStory id="id-variant-2" />
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** <url documentatie Digitaal Vlaanderen>
+**Documentatie Digitaal Vlaanderen:** [url-documentatie-digitaal-vlaanderen]
 
 ### Legacy Documentatie
 
-**Legacy Storybook:**  <url legacy Storybook>
+**Legacy Storybook:**  [url-legacy-storybook]
 
-**Legacy Documentatie:** <url legacy documentatie>
+**Legacy Documentatie:** [url-legacy-documentatie]
 
 **Legacy Demo:**  <url legacy demo>
 ```
-
-## Stories
-
-__Naamgeving bestand__: &lt;component&gt;.stories.ts
-
-Een story bestand bestaat uit 3 delen:
-
-- Default export
-- Story template
-- Stories
-
-
-### Default export
-
-- __title__: de titel van de Storybook entry, bv. "Components/accordion"
-    Het deel voor de "/" bepaalt de positie in het linker zijmenu
-- __args__ (optioneel): args uit het component.stories-arg.ts bestand
-    Laat dit weg indien je de args zet in de stories zelf, zie sectie Stories
-- __argTypes__: argTypes uit het component.stories-arg.ts bestand
-- __parameters__:
-    * layout (optioneel): "fullscreen" voor componenten die de volledige breedte in beslag nemen
-    * docs:
-        * page: import component.stories-doc.mdx bestand
-
-### Story template
-
-- Opgebouwd met Lit
-- Bevat alle args
-- Args zijn alfabetisch gesorteerd, kan van afgeweken worden mits geldige reden
-- Attributen zonder waarde worden weggelaten door de nothing operator van Lit te gebruiken, bv. "data-vl-toggle-text=${toggleText ?? nothing}"
-- Properties worden geprefixed met ".", bv. ".steps=${steps}"
-- Events worden geprefixed met "@", bv. "@vl-click-step=${(event: CustomEvent) => onClickStep(event.detail)}"
-- Slots gebruiken het unsafeHTML directive van Lit zodat de HTML niet ge-escaped wordt, bv. "${unsafeHTML(titleSlot)}"
-
-### Stories
-
-- Elk component heeft minstens 1 story
-- Component met logische varianten
-    * Story per variant
-    * Args meegeven/overschrijven op story niveau
-- !! Pas nooit de argTypes van een story aan, dit zorgt ervoor dat de controls sectie van Storybook niet hetzelfde is voor alle stories

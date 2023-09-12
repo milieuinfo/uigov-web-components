@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import '../vl-rich-data.component';
 import '../../rich-data-table/vl-rich-data-field.component';
 import { richDataArgs, richDataArgTypes } from './vl-rich-data.stories-arg';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 
 export default {
@@ -18,7 +18,7 @@ export const richDataDefault = ({ filterCloseable, filterClosed }: typeof richDa
 };
 richDataDefault.storyName = 'vl-rich-data - default';
 
-export const richDataPager = ({ filterCloseable, filterClosed }: typeof richDataArgs) => {
+export const richDataPager = story(richDataArgs, ({ filterCloseable, filterClosed }: typeof richDataArgs) => {
     return html`
         <vl-rich-data
             data-vl-filter-title="title"
@@ -43,10 +43,10 @@ export const richDataPager = ({ filterCloseable, filterClosed }: typeof richData
             <span slot="no-content">Geen resultaten gevonden</span>
         </vl-rich-data>
     `;
-};
+});
 richDataPager.storyName = 'vl-rich-data - pager';
 
-export const richDataClosableFilter = ({ filterCloseable, filterClosed }: typeof richDataArgs) => {
+export const richDataClosableFilter = story(richDataArgs, ({ filterCloseable, filterClosed }: typeof richDataArgs) => {
     return html`
         <vl-rich-data
             data-vl-filter-title="title"
@@ -84,5 +84,5 @@ export const richDataClosableFilter = ({ filterCloseable, filterClosed }: typeof
             <span slot="close-filter-button-text">Sluit</span>
         </vl-rich-data>
     `;
-};
+});
 richDataClosableFilter.storyName = 'vl-rich-data - closable filter';

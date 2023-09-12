@@ -14,7 +14,7 @@ export const complexItems = [
 ];
 
 export const autocompleteArgs = {
-    placeholder: 'Hint: typ Gent',
+    placeholder: '',
     initialValue: '',
     label: '',
     labelSmall: false,
@@ -26,7 +26,7 @@ export const autocompleteArgs = {
     disableLoading: false,
     clearTooltip: 'Wissen',
     noMatchesText: 'Geen resultaat',
-    items: complexItems,
+    items: [],
     search: action('search'),
 };
 
@@ -35,36 +35,36 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
         name: 'placeholder',
         description: 'Attribuut wordt gebruikt om de placeholder te bepalen.',
         table: {
-            defaultValue: { summary: autocompleteArgs.placeholder },
-            category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.STRING, required: false },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: autocompleteArgs.placeholder },
         },
     },
     initialValue: {
         name: 'data-vl-initial-value',
         description: 'Attribuut wordt gebruikt om de initiële waarde te bepalen.',
         table: {
-            defaultValue: { summary: autocompleteArgs.initialValue },
-            category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.STRING, required: false },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: autocompleteArgs.initialValue },
         },
     },
     label: {
         name: 'data-vl-label',
         description: 'Attribuut wordt gebruikt om de label te bepalen.',
         table: {
-            defaultValue: { summary: autocompleteArgs.label },
-            category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.STRING, required: false },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: autocompleteArgs.label },
         },
     },
     labelSmall: {
         name: 'data-vl-label-small',
         description: 'Attribuut wordt gebruikt om de label kleiner te maken.',
         table: {
-            defaultValue: { summary: autocompleteArgs.labelSmall },
-            category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN, required: false },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: autocompleteArgs.labelSmall },
         },
     },
     minChars: {
@@ -74,8 +74,8 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
         control: { type: 'range', min: 1, max: 10, step: 1 },
         table: {
             type: { summary: TYPES.NUMBER, required: false },
-            defaultValue: { summary: autocompleteArgs.minChars },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: autocompleteArgs.minChars },
         },
     },
     maxSuggestions: {
@@ -83,9 +83,9 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
         description: 'Attribuut wordt gebruikt om het maximum aantal suggesties dat moet getoond worden te bepalen.',
         control: { type: 'range', min: 1, max: 20, step: 1 },
         table: {
-            defaultValue: { summary: autocompleteArgs.maxSuggestions },
             type: { summary: TYPES.NUMBER, required: false },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: autocompleteArgs.maxSuggestions },
         },
     },
     captionFormat: {
@@ -103,9 +103,9 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
             ],
         },
         table: {
-            defaultValue: { summary: DEFAULT_CAPTION_FORMAT },
             category: CATEGORIES.ATTRIBUTES,
             type: {
+                defaultValue: { summary: DEFAULT_CAPTION_FORMAT },
                 summary: `${CAPTION_FORMAT.TITLE} | ${CAPTION_FORMAT.SUBTITLE} | ${CAPTION_FORMAT.VALUE}
         | ${CAPTION_FORMAT.TITLE_SUBTITLE_HORIZONTAL} | ${CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL}
         | ${CAPTION_FORMAT.SUBTITLE_TITLE_HORIZONTAL}`,
@@ -115,46 +115,45 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
     },
     groupBy: {
         name: 'data-vl-group-by',
-
         description: 'Attribuut bepaalt hoe de items in de lijst gegroepeerd moeten worden.',
         control: {
             type: 'select',
             options: [GROUP_BY.TITLE, GROUP_BY.SUBTITLE],
         },
         table: {
-            defaultValue: { summary: autocompleteArgs.groupBy },
-            category: CATEGORIES.ATTRIBUTES,
             type: {
                 summary: `${GROUP_BY.TITLE} | ${GROUP_BY.SUBTITLE}`,
                 required: false,
             },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: autocompleteArgs.groupBy },
         },
     },
     showClear: {
         name: 'data-vl-show-clear',
         description: 'Attribuut wordt gebruikt te bepalen of het clear icoon moet tevoorschijn komen.',
         table: {
-            defaultValue: { summary: autocompleteArgs.showClear },
-            category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN, required: false },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: autocompleteArgs.showClear },
         },
     },
     disableLoading: {
         name: 'data-vl-disable-loading',
         description: 'Bepaalt of loading animatie getoond wordt.',
         table: {
-            defaultValue: { summary: autocompleteArgs.disableLoading },
-            category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN, required: false },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: autocompleteArgs.disableLoading },
         },
     },
     clearTooltip: {
         name: 'data-vl-clear-tooltip',
         description: 'Attribuut wordt gebruikt de tekst te bepalen die getoond moet worden bij hover van clear icon.',
         table: {
-            defaultValue: { summary: autocompleteArgs.clearTooltip },
-            category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.STRING, required: false },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: autocompleteArgs.clearTooltip },
         },
     },
     noMatchesText: {
@@ -162,17 +161,18 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
         description:
             'Attribuut wordt gebruikt de tekst te bepalen die getoond moet worden als er geen suggesties zijn.',
         table: {
-            defaultValue: { summary: autocompleteArgs.noMatchesText },
             type: { summary: TYPES.STRING, required: false },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: autocompleteArgs.noMatchesText },
         },
     },
     items: {
         description: 'Use this property when you want to use a static list of items.',
+        control: { type: 'object' },
         table: {
             category: CATEGORIES.PROPERTIES,
-            defaultValue: { summary: autocompleteArgs.items },
             type: { summary: TYPES.ARRAY },
+            defaultValue: { summary: autocompleteArgs.items },
         },
     },
     search: {

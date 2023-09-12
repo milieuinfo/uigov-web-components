@@ -1,8 +1,8 @@
 import { html } from 'lit-html';
 import '../vl-infoblock.component';
 import { infoblockArgs, infoblockArgTypes } from './vl-infoblock.stories-arg';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta, StoryFn } from '@storybook/web-components';
+import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/infoblock',
@@ -10,12 +10,20 @@ export default {
     argTypes: storyArgTypes(infoblockArgTypes),
 } as Meta<typeof infoblockArgs>;
 
-const infoblockTemplate: StoryFn<typeof infoblockArgs> = ({ title, content, type, icon }: typeof infoblockArgs) =>
-    html`
-        <vl-infoblock slot="info" data-vl-title=${title} data-vl-type=${type} data-vl-icon=${icon} data-cy="infoblock"
-            >${content}
-        </vl-infoblock>
-    `;
+const infoblockTemplate = story(
+    infoblockArgs,
+    ({ title, content, type, icon }) =>
+        html`
+            <vl-infoblock
+                slot="info"
+                data-vl-title=${title}
+                data-vl-type=${type}
+                data-vl-icon=${icon}
+                data-cy="infoblock"
+                >${content}
+            </vl-infoblock>
+        `
+);
 
 export const infoblockContact = infoblockTemplate.bind({});
 infoblockContact.args = {
@@ -80,12 +88,15 @@ infoblockCustomIcon.argTypes = {
     },
 };
 
-export const infoblockWithSlotElements: StoryFn<typeof infoblockArgs> = ({ title, content, type }) => html`
-    <vl-infoblock data-vl-type=${type} data-cy="infoblock-with-slot-elements">
-        <h2 is="vl-h2" slot="title">${title}</h2>
-        ${content}
-    </vl-infoblock>
-`;
+export const infoblockWithSlotElements = story(
+    infoblockArgs,
+    ({ title, content, type }) => html`
+        <vl-infoblock data-vl-type=${type} data-cy="infoblock-with-slot-elements">
+            <h2 is="vl-h2" slot="title">${title}</h2>
+            ${content}
+        </vl-infoblock>
+    `
+);
 infoblockWithSlotElements.storyName = 'vl-infoblock - with slot elements';
 infoblockWithSlotElements.args = {
     title: 'Titel via slot',
