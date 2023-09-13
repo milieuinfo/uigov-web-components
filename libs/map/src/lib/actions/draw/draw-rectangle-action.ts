@@ -1,5 +1,4 @@
 import { Polygon } from 'ol/geom';
-import GeometryType from 'ol/geom/GeometryType';
 import { VlDrawAction } from './draw-action';
 
 export class VlDrawRectangleAction extends VlDrawAction {
@@ -18,6 +17,6 @@ export class VlDrawRectangleAction extends VlDrawAction {
             maxPoints: 2,
             geometryFunction,
         };
-        super(layer, GeometryType.LINE_STRING, onDraw, options);
+        super(layer, 'LineString', onDraw, options);
     }
 }

@@ -1,5 +1,4 @@
 import { webComponent } from '@domg-wc/common-utilities';
-import GeometryType from 'ol/geom/GeometryType';
 import { VlDrawAction } from '../../../../actions';
 import { VlMapDrawAction } from '../vl-map-draw-action';
 
@@ -17,7 +16,7 @@ import { VlMapDrawAction } from '../vl-map-draw-action';
 @webComponent('vl-map-draw-point-action')
 export class VlMapDrawPointAction extends VlMapDrawAction {
     _createAction(layer?): any {
-        return new VlDrawAction(layer, GeometryType.POINT, this._callback, this.__drawOptions);
+        return new VlDrawAction(layer, 'Point', this._callback, this.__drawOptions);
     }
 }
 
