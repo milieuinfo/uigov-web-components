@@ -1,7 +1,6 @@
 import { EventsKey } from 'ol/events';
 import Overlay from 'ol/Overlay';
 import { unByKey } from 'ol/Observable';
-import GeometryType from 'ol/geom/GeometryType';
 import { VlDrawAction } from '../draw/draw-action';
 
 export class VlMeasureAction extends VlDrawAction {
@@ -13,7 +12,7 @@ export class VlMeasureAction extends VlDrawAction {
   constructor(layer, options?) {
     super(
       layer,
-      GeometryType.LINE_STRING,
+      'LineString',
       () => {
         unByKey(this.measurePointermoveHandler);
       },

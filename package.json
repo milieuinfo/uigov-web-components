@@ -108,7 +108,7 @@
         "mochawesome-report-generator": "6.2.0",
         "node-fetch": "3.3.1",
         "nx": "15.8.6",
-        "ol": "6.14.1",
+        "ol": "6.15.1",
         "react": "17.0.2",
         "react-dom": "17.0.2",
         "semantic-release": "20.1.1",
