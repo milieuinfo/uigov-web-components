@@ -6,6 +6,12 @@ import { elementStyles } from '../vl-elements.uig-css';
 
 declare const vl: any;
 
+export const SELECT_POSITION = {
+    AUTO: 'auto',
+    TOP: 'top',
+    BOTTOM: 'bottom',
+};
+
 /**
  * VlSelect
  * @class
@@ -18,6 +24,7 @@ declare const vl: any;
  * @property {boolean} data-vl-error - Duidt aan dat het select element niet correct werd ingevuld.
  * @property {boolean} data-vl-success - Duidt aan dat het select element correct werd ingevuld.
  * @property {boolean} data-vl-disabled - Schakelt het select element uit.
+ * @property {string} data-vl-position - De positie naar waar de uitgebreide select geopend wordt: 'auto', 'top', 'bottom'. De default waarde is 'auto'.
  * @property {boolean} data-vl-select - Activeert de uitgebreide select functionaliteit. Maakt achterliggend gebruik van Choices.js.
  * @property {boolean} data-vl-select-search - [DEPRECATED] Gebruik in de plaats het 'data-vl-select-disable-search' attribuut. Activeert of deactiveert de zoek functionaliteit.
  * @property {boolean} data-vl-select-disable-search - Deactiveert de zoek functionaliteit.
@@ -273,7 +280,8 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
             this._setTranslations();
 
             if (!this._dressed) {
-                vl.select.dress(this, params);
+                const position: string = this.getAttribute('position') || SELECT_POSITION.AUTO;
+                vl.select.dress(this, params, { position });
 
                 (async () => {
                     await this.ready();

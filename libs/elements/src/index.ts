@@ -47,3 +47,4 @@ export { VlText } from './text';
 export { VlH1Element, VlH2Element, VlH3Element, VlH4Element, VlH5Element, VlH6Element } from './title';
 export { VlVideoPlayerElement } from './video-player';
 export { default as vlElementsStyle, elementStyles } from './vl-elements.uig-css';
+export { SELECT_POSITION } from './select';
