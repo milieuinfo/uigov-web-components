@@ -1,1 +1,1 @@
-export { VlSelect } from './vl-select.element';
+export { VlSelect, SELECT_POSITION } from './vl-select.element';

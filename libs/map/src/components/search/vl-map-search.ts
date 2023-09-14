@@ -1,5 +1,5 @@
 import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
-import { vlElementsStyle, VlSelect } from '@domg-wc/elements';
+import { vlElementsStyle, VlSelect, SELECT_POSITION } from '@domg-wc/elements';
 import { VlSearchComponent } from '@domg-wc/components';
 import OlOverlay from 'ol/Overlay';
 import { VlSelectLocation } from '../select-location/vl-select-location';
@@ -48,7 +48,7 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
             }
           </style>
           <vl-search id="search" data-vl-inline>
-            <select is="vl-select-location" slot="input"></select>
+            <select is="vl-select-location" slot="input" data-vl-position=${SELECT_POSITION.BOTTOM}></select>
           </vl-search>
         `);
         this._configure();

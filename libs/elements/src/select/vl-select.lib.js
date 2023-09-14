@@ -1,3 +1,4 @@
+// Deze file is aangepast door het UIG team, alle aanpassingen zijn aangeduid met een comment geprefixed door het UIG- ticket nummer.
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined'
         ? (module.exports = factory())
@@ -4461,12 +4462,11 @@
                 },
                 {
                     key: 'dress',
-                    value: function dress(select) {
-                        var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-                        var config = {},
-                            originalOptions = select.querySelectorAll('option');
+                    // UIG-2665: optioneel config object toegevoegd
+                    value: function dress(select, params = {}, config = {}) {
+                        const originalOptions = select.querySelectorAll('option');
 
-                        config = _prepareChoisesConfig(select);
+                        config = Object.assign(_prepareChoisesConfig(select), config);
                         config = Object.assign(this.globalConfig, config);
 
                         this._buildSelect(select, config, params, originalOptions);

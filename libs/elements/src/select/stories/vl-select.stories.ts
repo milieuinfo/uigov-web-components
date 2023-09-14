@@ -23,6 +23,8 @@ const Template = story(
         error,
         success,
         disabled,
+        noMoreOptions,
+        position,
         select,
         selectDisableSearch,
         selectSearchEmptyText,
@@ -31,7 +33,6 @@ const Template = story(
         selectDeletable,
         searchPlaceholder,
         searchNoResultsText,
-        noMoreOptions,
     }) => html`
         <select
             is="vl-select"
@@ -39,6 +40,8 @@ const Template = story(
             ?data-vl-error=${error}
             ?data-vl-success=${success}
             ?data-vl-disabled=${disabled}
+            data-vl-no-more-options=${noMoreOptions}
+            data-vl-position=${position}
             ?data-vl-select=${select}
             ?data-vl-select-disable-search=${selectDisableSearch}
             ?data-vl-select-deletable=${selectDeletable}
@@ -47,7 +50,6 @@ const Template = story(
             data-vl-select-search-empty-text=${selectSearchEmptyText}
             data-vl-search-no-results-text=${searchNoResultsText}
             data-vl-search-placeholder=${searchPlaceholder}
-            data-vl-no-more-options=${noMoreOptions}
         >
             <optgroup label="Landen">
                 <option value="België">België</option>
