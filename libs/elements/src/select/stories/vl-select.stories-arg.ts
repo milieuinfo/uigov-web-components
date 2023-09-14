@@ -1,11 +1,13 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
+import { SELECT_POSITION } from '../vl-select.element';
 
 export const selectArgs = {
     block: false,
     disabled: false,
     error: false,
     noMoreOptions: 'Geen resterende opties gevonden',
+    position: SELECT_POSITION.AUTO,
     searchNoResultsText: 'Geen resultaten gevonden',
     searchPlaceholder: 'Zoek item',
     select: false,
@@ -54,6 +56,19 @@ export const selectArgTypes: ArgTypes<typeof selectArgs> = {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: selectArgs.noMoreOptions },
+        },
+    },
+    position: {
+        name: 'data-vl-position',
+        description: 'De positie naar waar de uitgebreide select geopend wordt.<br>Dit attribuut is niet reactief.',
+        control: {
+            type: 'select',
+            options: Object.values(SELECT_POSITION),
+        },
+        table: {
+            type: { summary: Object.values(SELECT_POSITION) },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: selectArgs.position },
         },
     },
     searchNoResultsText: {

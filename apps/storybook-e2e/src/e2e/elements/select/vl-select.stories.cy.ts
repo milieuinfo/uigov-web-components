@@ -62,4 +62,18 @@ describe('story vl-select', () => {
 
         cy.get('[is="vl-select"]').parent().parent().find('input.vl-input-field').should('not.exist');
     });
+
+    it('should position options for extended functionality above select element', () => {
+        cy.visit(`${selectUrl}&args=select:true;position:top`);
+
+        cy.get('[is="vl-select"]').parent().parent().click();
+        cy.get('[is="vl-select"]').parent().parent().should('have.class', 'is-flipped');
+    });
+
+    it('should position options for extended functionality below select element', () => {
+        cy.visit(`${selectUrl}&args=select:true;position:bottom`);
+
+        cy.get('[is="vl-select"]').parent().parent().click();
+        cy.get('[is="vl-select"]').parent().parent().should('not.have.class', 'is-flipped');
+    });
 });
