@@ -1,3 +1,21 @@
+# [1.16.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.15.0...v1.16.0) (2023-09-14)
+
+
+### Bug Fixes
+
+* UIG-2649 - vl-form - requestValidation - config wordt nu correct doorgegeven ([c8e2691](https://github.com/milieuinfo/uigov-web-components/commit/c8e26919d9ebc52921e029f8a209d134760c8dd1))
+
+
+### Features
+
+* UIG-2549 - vl-map - OpenLayers bijgewerkt tot v6.15.1 ([0a48632](https://github.com/milieuinfo/uigov-web-components/commit/0a48632ceb81bb649ae4bc69ffe21f0d1ad8d5e0))
+* UIG-2553 - vl-map-circle-style - cluster-multiplier toegevoegd zodat verhouding tegenover single feature kan bepaald worden ([f1c220c](https://github.com/milieuinfo/uigov-web-components/commit/f1c220c3708fe846aa390db28334db4a7113d622))
+* UIG-2590 - vl-steps-next - introductie component ([2231b72](https://github.com/milieuinfo/uigov-web-components/commit/2231b72b40d0249bd352fce250988dffac0cce15))
+* UIG-2601 - vl-cookie-consent - close event ([4295437](https://github.com/milieuinfo/uigov-web-components/commit/4295437181fea4b525b8d9c7c60a60911e655bf8))
+* UIG-2603 - vl-column - push attributen per size ([b6d8c57](https://github.com/milieuinfo/uigov-web-components/commit/b6d8c57de176abc2c72b7c067b157d54eba0f6ec))
+* UIG-2614 - beta artifacts naar snapshot-npm publiceren ([c5c11d1](https://github.com/milieuinfo/uigov-web-components/commit/c5c11d1362db2459e94b371ee2a3a335da4713b2))
+* UIG-2676 - snapshot releases bouwen vanuit 'develop-*' branches ([533247f](https://github.com/milieuinfo/uigov-web-components/commit/533247fb329243c51bec02518405ddd78bd49f3c))
+
 # [1.15.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.14.0...v1.15.0) (2023-08-30)
 
 
