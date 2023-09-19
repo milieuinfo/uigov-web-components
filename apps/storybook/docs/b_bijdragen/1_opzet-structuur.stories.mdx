@@ -1,14 +1,13 @@
-import {Meta} from '@storybook/addon-docs';
+import { Meta } from '@storybook/addon-docs';
 
-<Meta title="Bijdragen/Opzet & Structuur"/>
+<Meta title="Bijdragen/Opzet & Structuur" />
 
 # Opzet & Structuur
 
 ## Inhoudstafel
 
-- [Opzet](#opzet)
-- [Structuur](#structuur)
-
+-   [Opzet](#opzet)
+-   [Structuur](#structuur)
 
 ## Opzet
 
@@ -22,15 +21,15 @@ Ontwikkeling gebeurd [branch-based](/story/bijdragen-git-branching-strategie--pa
 
 Naast de web-componenten bibliotheek zijn er nog [andere repositories](/story/beheren-repositories--page).
 
-
 ## Structuur
 
 Hieronder staat de projectstructuur van de [uigov-web-components](https://github.com/milieuinfo/uigov-web-components)
 repo beschreven, achter de pijltjes staan de artifacts gespecifieerd die uit de sub-projecten komen.
 
-Er zitten 2 applicaties in de repo: __Storybook__ en __Playground__, Storybook (deze documentatie) streeft naar het
-aanbieden van zo correct mogelijke informatie en documentatie. Playground heeft momenteel eerder een experimentele
-insteek.
+Er zitten 4 applicaties in de repo: **Storybook** en **3 Playgrounds**.
+Storybook (deze documentatie) streeft naar het aanbieden van zo correct mogelijke informatie en documentatie.
+De Playground applicaties zijn bedoeld om tijdens development een component in verschillende frameworks te testen.
+De playground-legacy applicatie is de oude versie van behouden
 
 De feitelijke componenten zitten opgesplitst in een aantal bibliotheken onder de libs folder. Ze worden aangeboden
 als [npm packages](/story/afnemen-artifacts--page).
@@ -38,8 +37,10 @@ als [npm packages](/story/afnemen-artifacts--page).
 ```
 ─ uigov-web-components/
   ├─ apps/
-  │  ├─ playground/
-  │  ├─ playground-e2e/ (Cypress testen tov playground)
+  │  ├─ playground-legacy/
+  │  ├─ playground-lit/
+  │  ├─ playground-native/
+  │  ├─ playground-react/
   │  ├─ storybook/
   │  ├─ storybook-e2e/ (Cypress testen tov storybook)
   │   -> worden niet als artifact gepubliceerd

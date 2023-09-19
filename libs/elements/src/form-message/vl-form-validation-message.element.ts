@@ -1,5 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
+import 'reflect-metadata';
 
 /**
  * VlFormValidationMessage

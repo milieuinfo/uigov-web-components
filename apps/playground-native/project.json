@@ -1,0 +1,75 @@
+{
+    "name": "playground-native",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/playground-native/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nrwl/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "outputPath": "dist/apps/playground-native",
+                "compiler": "babel",
+                "main": "apps/playground-native/src/main.ts",
+                "tsConfig": "apps/playground-native/tsconfig.app.json",
+                "webpackConfig": "apps/playground-native/webpack.config.js",
+                "assets": ["apps/playground-native/src/favicon.ico", "apps/playground-native/src/assets"],
+                "index": "apps/playground-native/src/index.html",
+                "baseHref": "/",
+                "styles": ["apps/playground-native/src/styles.scss"],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "extractLicenses": true,
+                    "vendorChunk": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/playground-native/src/environments/environment.ts",
+                            "with": "apps/playground-native/src/environments/environment.prod.ts"
+                        }
+                    ]
+                }
+            }
+        },
+        "serve": {
+            "executor": "@nrwl/webpack:dev-server",
+            "options": {
+                "buildTarget": "playground-native:build",
+                "port": 4203
+            },
+            "configurations": {
+                "production": {
+                    "buildTarget": "playground-native:build:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/playground-native/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/playground-native/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        }
+    }
+}
