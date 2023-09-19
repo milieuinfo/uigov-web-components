@@ -125,7 +125,6 @@ const styles: CSSResult = css`
         display: block;
         width: 100%;
         text-align: left;
-        padding-right: 5rem;
     }
     .vl-search--inline .vl-search__input:focus,
     .vl-search--inline slot[name='input']:focus {
@@ -218,11 +217,15 @@ const styles: CSSResult = css`
     :host([data-vl-inline]) slot[name='input'] {
         box-sizing: content-box;
     }
+    :host([data-vl-inline]) slot[name='input'] + .vl-search__submit {
+        display: none;
+    }
     :host([data-vl-inline]) slot[name='input'].is-open + .vl-search__submit {
         transition: opacity 0.2s, transform 0.2s;
         z-index: 1000;
         opacity: 1;
         transform: translateX(0%);
+        display: block;
     }
     :host([data-vl-inline]) ::slotted(.js-vl-select) {
         background: white !important;

@@ -46,6 +46,11 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
             :host {
               display: block;
             }
+
+            vl-search {
+                display: block;
+                height: 3.5rem;
+            }
           </style>
           <vl-search id="search" data-vl-inline>
             <select is="vl-select-location" slot="input" data-vl-position=${SELECT_POSITION.BOTTOM}></select>
