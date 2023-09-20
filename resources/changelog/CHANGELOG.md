@@ -1,3 +1,14 @@
+# [1.17.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.16.0...v1.17.0) (2023-09-20)
+
+
+### Features
+
+* UIG-2628 - simpeler import path; /src/lib tussenpath verwijderen ([8a30dfa](https://github.com/milieuinfo/uigov-web-components/commit/8a30dfa58d01474bf68d6660b8ae7fc4adfc9186))
+* UIG-2629 - side-effects voor alles behalve voor de root barrel file ([fbcbd65](https://github.com/milieuinfo/uigov-web-components/commit/fbcbd65447a045871e55074565eebf82bd0964da))
+* UIG-2634 - element styling automatisch registreren in het document ([e94d1cb](https://github.com/milieuinfo/uigov-web-components/commit/e94d1cbb7b21533103d136a7984ac234ae41b002))
+* UIG-2655 - storybook documentatie mbt imports en tree-shaking ([b4e6081](https://github.com/milieuinfo/uigov-web-components/commit/b4e60815f28732c4d6782d3dbdb7b50e564c8797))
+* UIG-2669 - registerWebComponents in static blok ([2c76bb6](https://github.com/milieuinfo/uigov-web-components/commit/2c76bb6ef5fe0dda02319febadaa3d23f8644842))
+
 # [1.16.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.15.0...v1.16.0) (2023-09-14)
 
 
