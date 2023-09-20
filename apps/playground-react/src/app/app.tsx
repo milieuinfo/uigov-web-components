@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { vlElementsStyle } from '@domg-wc/elements';
 import { VlStepsComponent } from '@domg-wc/components/next/steps';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import './app.module.css';
 
-document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
 registerWebComponents([VlStepsComponent]);
 
 export function App() {

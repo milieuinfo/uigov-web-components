@@ -5,8 +5,6 @@ import { VlStepsComponent } from '@domg-wc/components/next/steps';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import appElementStyle from './app.element.css';
 
-document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
-
 @customElement('app-element')
 export class AppElement extends LitElement {
     private showStep2 = false;

@@ -1,9 +1,6 @@
-import { vlElementsStyle } from '@domg-wc/elements';
 import { VlStepsComponent } from '@domg-wc/components/next/steps';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import './app.element.scss';
-
-document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
 
 export class AppElement extends HTMLElement {
     static {
