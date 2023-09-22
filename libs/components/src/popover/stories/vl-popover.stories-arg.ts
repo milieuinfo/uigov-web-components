@@ -1,0 +1,73 @@
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { ArgTypes } from '@storybook/web-components';
+
+export const popoverDefaultArgs = {
+    for: '',
+    trigger: 'click',
+    arrow: false,
+    open: false,
+    placement: 'bottom',
+    distance: 0,
+};
+
+export const popoverArgTypes: ArgTypes = {
+    for: {
+        name: 'data-vl-for',
+        description:
+            'HTML id van het element die de popover zal triggeren en waar tegenover de popover zich zal oriënteren.',
+        type: { name: TYPES.STRING, required: true },
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.PROPERTIES,
+            defaultValue: { summary: popoverDefaultArgs.for },
+        },
+    },
+    open: {
+        name: 'data-vl-open',
+        description: 'Bepaalt of de popover open is.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.PROPERTIES,
+            defaultValue: { summary: popoverDefaultArgs.open },
+        },
+    },
+    arrow: {
+        name: 'data-vl-hide-arrow',
+        description: 'Verbergt de pijl die wijst naar het element die de popover triggert.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: popoverDefaultArgs.arrow },
+        },
+    },
+    distance: {
+        name: 'data-vl-distance',
+        description: 'Afstand van popover tegenover trigger element. Ingesteld op "10px" als de pijl getoond wordt.',
+        control: { type: 'range', min: 0, max: 100, step: 1 },
+        table: {
+            type: { summary: TYPES.NUMBER },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: popoverDefaultArgs.distance },
+        },
+    },
+    placement: {
+        name: 'data-vl-placement',
+        description:
+            'Voorkeursoriëntatie van de popover als de ruimte het toelaat. Je kan ook `-start` of `-end` suffix toevoegen zodat oriëntatie start of eindigt aan respectievelijk begin of einde van het trigger element.',
+        table: {
+            type: { summary: ['top', 'right', 'bottom', 'left'] },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: popoverDefaultArgs.placement },
+        },
+    },
+    trigger: {
+        name: 'data-vl-trigger',
+        description:
+            'Gebruiker interacties die popover zal triggeren. Je kan verschillende combineren door ze met een spatie naast mekaar te zetten. Bv. met `focus hover` zal de popover zowel verschijnen bij focus als bij hover.',
+        table: {
+            type: { summary: ['click', 'focus', 'hover'] },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: popoverDefaultArgs.trigger },
+        },
+    },
+};

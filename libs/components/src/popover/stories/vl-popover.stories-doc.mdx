@@ -1,0 +1,62 @@
+import { ArgsTable, DocsStory, Canvas, Story, PRIMARY_STORY } from '@storybook/addon-docs';
+
+# Popover
+
+Een popover is een nieuw, meestal kleiner venster / popup dat boven andere inhoud op het scherm verschijnt.
+Gebruik een popover om aanvullende informatie aan de gebruiker te geven of om gebruikersinteractie te vragen.
+
+## Voorbeeld
+
+```js
+import { VlPopoverComponent } from '@domg-wc/components';
+```
+
+```html
+<vl-popover></vl-popover>
+```
+
+<Canvas>
+    <Story id="components-popover--popover-default" />
+</Canvas>
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Extra informatie
+
+### Oriëntatie
+
+Je kan de oriëntatie bepalen van de popover als daarvoor plaats is met `placement`. Anders zal `floating-ui` achterliggend zoeken naar de volgende geschikt oriëntatie; standaard zal dit dan de tegenovergestelde oriëntatie zijn van de initieel ingestelde.
+Meer info kan je [hier](https://floating-ui.com/docs/tutorial#placements) vinden.
+
+Je kan ook `-start` of `-end` suffix toevoegen zodat oriëntatie start of eindigt aan respectievelijk begin of einde van het referentie-element.
+
+### Afstand tot referentie-element
+
+Wanneer de pijl getoond wordt, zal er een minimale afstand ingesteld worden zodat de pijl nooit over het referentie-element geplaatst wordt.
+Je kan de pijl ook verbergen door middel van `data-vl-hide-arrow` in te stellen. In dat geval kan je de afstand tot het referentie-element volledig zelf bepalen.
+
+## Varianten
+
+### Hover
+
+Je kan de standaard `click` waarde voor `data-vl-trigger` ook instellen op bv. combinatie van `hover` & `focus` interacties.
+
+<Canvas>
+    <Story id="components-popover--popover-hover" />
+</Canvas>
+
+## Referenties
+
+### floating-ui
+
+De popover-component gebruikt achterliggend [floating-ui](https://floating-ui.com/), de opvolger van Popper
+
+### Digitaal Vlaanderen
+
+**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/js-components/vl-ui-popover/
+
+### Legacy Documentatie
+
+Dit is een nieuwe component; hiervoor is geen legacy documentatie.
