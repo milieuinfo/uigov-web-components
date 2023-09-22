@@ -41,6 +41,7 @@ export { VlLoaderComponent } from './loader';
 export { VlModalComponent } from './modal';
 export { VlPagerComponent, Pagination } from './pager';
 export { VlButtonPillComponent, VlPillComponent, TYPE } from './pill';
+export { VlPopoverComponent, VlPopoverActionComponent, VlPopoverActionListComponent } from './popover';
 export { VlProgressBarComponent } from './progress-bar';
 export { VlProzaMessage, VlProzaMessagePreloader } from './proza-message';
 export { VlRadio, VlRadioGroup, vlRadioGroupComponent } from './radio';

@@ -25,3 +25,9 @@ details > summary {
     padding: 8px 12px;
     width: max-content;
 }
+
+/* story-specific styling */
+div#story--components-popover--popover-default,
+div#story--components-popover--popover-hover {
+    padding: 100px 100px 100px 300px;
+}
