@@ -23,6 +23,8 @@ import { VlIconElement } from '../icon/vl-icon.element';
 @elementStyles()
 @webComponent('vl-data-table', { extends: 'table' })
 export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
+    private _observer: MutationObserver | undefined;
+
     static {
         registerWebComponents([VlButtonElement, VlIconElement]);
     }
@@ -38,30 +40,34 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
         this._observer = this._observeHeaderElements(() => this._processScopeAttributes());
     }
 
-    disconnectedcallback() {
+    disconnectedCallback() {
         if (this._observer) {
             this._observer.disconnect();
         }
     }
 
     get _headHeaderElements(): HTMLTableCellElement[] {
-        return [...this.querySelectorAll('thead tr th')];
+        return [...(this as unknown as HTMLTableElement).querySelectorAll<HTMLTableCellElement>('thead tr th')];
     }
 
     get _bodyHeaderElements(): HTMLTableCellElement[] {
-        return [...this.querySelectorAll('tbody tr th')];
+        return [...(this as unknown as HTMLTableElement).querySelectorAll<HTMLTableCellElement>('tbody tr th')];
     }
 
     get _bodyRowElements(): HTMLTableRowElement[] {
-        return [...this.querySelectorAll('tbody tr')];
+        return [...(this as unknown as HTMLTableElement).querySelectorAll<HTMLTableRowElement>('tbody tr')];
     }
 
-    _detailsToggleButtonElement(id: string): HTMLButtonElement {
-        return this.querySelector(`tbody tr td button[id="details-toggle-${id}"]`);
+    _detailsToggleButtonElement(id: string): HTMLButtonElement | null {
+        return (this as unknown as HTMLTableElement).querySelector<HTMLButtonElement>(
+            `tbody tr td button[id="details-toggle-${id}"]`
+        );
     }
 
-    _detailsTableRowElement(id: string): HTMLTableRowElement {
-        return this.querySelector(`tbody tr[data-details-id="${id}"]`);
+    _detailsTableRowElement(id: string): HTMLTableRowElement | null {
+        return (this as unknown as HTMLTableElement).querySelector<HTMLTableRowElement>(
+            `tbody tr[data-details-id="${id}"]`
+        );
     }
 
     get _classPrefix() {
@@ -109,17 +115,17 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
         const details = this._detailsTableRowElement(id);
         const button = this._detailsToggleButtonElement(id);
         if (show) {
-            details.style.display = 'table-row';
+            if (details) details.style.removeProperty('display');
             if (button)
                 button.innerHTML = '<span is="vl-icon" data-vl-icon="arrow-up-fat" class="vl-button__icon"></span>';
         } else {
-            details.style.display = 'none';
+            if (details) details.style.display = 'none';
             if (button)
                 button.innerHTML = '<span is="vl-icon" data-vl-icon="arrow-down-fat" class="vl-button__icon"></span>';
         }
     }
 
-    _processRowElements() {
+    _processRowElements(): void {
         const rows = this._bodyRowElements;
         let dataRowIndex = 0;
         for (let i = 0; i < rows.length; i += 1) {
@@ -129,12 +135,12 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
             if (isDataRow) {
                 dataRowIndex += 1;
             } else {
-                const id: any = row.getAttribute('data-details-id');
+                const id = row.getAttribute('data-details-id');
 
                 row.style.display = 'none';
 
                 const dataRow = rows[i - 1];
-                if (dataRow.querySelectorAll('td[with-expand-details]').length === 0) {
+                if (dataRow.querySelectorAll('td[with-expand-details]').length === 0 && id) {
                     const cell = document.createElement('td');
                     const button = this._expandCollapseTemplate(id);
                     cell.append(button);
@@ -160,7 +166,7 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
 
     toggleDetails(id: string) {
         const details = this._detailsTableRowElement(id);
-        const detailsVisible = details.style.display !== 'none';
+        const detailsVisible = details?.style.display !== 'none';
         this._showDetails(id, !detailsVisible);
     }
 }

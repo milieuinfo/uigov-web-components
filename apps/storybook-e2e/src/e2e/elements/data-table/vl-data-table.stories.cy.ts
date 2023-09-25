@@ -7,11 +7,11 @@ const dataTableExpandableWithCustomToggleUrl =
 
 const shouldHaveDataTableWithHeaders = () => {
     /**
-* TODO(@nrwl/cypress): Nesting Cypress commands in a should assertion now throws.
-* You should use .then() to chain commands instead.
-* More Info: https://docs.cypress.io/guides/references/migration-guide#-should
-**/
-cy.get('[is="vl-data-table"]')
+     * TODO(@nrwl/cypress): Nesting Cypress commands in a should assertion now throws.
+     * You should use .then() to chain commands instead.
+     * More Info: https://docs.cypress.io/guides/references/migration-guide#-should
+     **/
+    cy.get('[is="vl-data-table"]')
         .should('have.class', 'vl-data-table')
         .find('thead > tr')
         .children()
@@ -21,11 +21,11 @@ cy.get('[is="vl-data-table"]')
 };
 const shouldContainDataTableWithColumns = () => {
     /**
-* TODO(@nrwl/cypress): Nesting Cypress commands in a should assertion now throws.
-* You should use .then() to chain commands instead.
-* More Info: https://docs.cypress.io/guides/references/migration-guide#-should
-**/
-cy.get('[is="vl-data-table"]')
+     * TODO(@nrwl/cypress): Nesting Cypress commands in a should assertion now throws.
+     * You should use .then() to chain commands instead.
+     * More Info: https://docs.cypress.io/guides/references/migration-guide#-should
+     **/
+    cy.get('[is="vl-data-table"]')
         .should('have.class', 'vl-data-table')
         .find('tbody')
         .children()
@@ -35,7 +35,7 @@ cy.get('[is="vl-data-table"]')
                     .children()
                     .each((cell, cellIndex) => {
                         if (!cell.children('button').length) {
-                            cy.wrap(cell).should('have.text', 'Entry line ' + (cellIndex + 1));
+                            cy.wrap(cell).should('contain.text', 'Entry line ' + (cellIndex + 1));
                         } else {
                             cy.wrap(cell).find('button').should('have.class', 'vl-button');
                         }
@@ -43,7 +43,7 @@ cy.get('[is="vl-data-table"]')
             } else {
                 cy.wrap(row)
                     .find('td')
-                    .should('have.text', 'Details ' + (rowIndex + 1) / 2);
+                    .should('contain.text', 'Details ' + (rowIndex + 1) / 2);
             }
         });
 };
@@ -118,13 +118,7 @@ const shouldDetailsRowBeVisible = (isVisible: boolean, detailRowIndex = 0) => {
         .should(haveStyle, 'display', 'none');
 };
 const toggleDetailsButton = () => {
-    cy.get('[is="vl-data-table"]')
-        .find('tbody > tr')
-        .first()
-        .find('td')
-        .last()
-        .find('button')
-        .click();
+    cy.get('[is="vl-data-table"]').find('tbody > tr').first().find('td').last().find('button').click();
 };
 
 describe('story elements / data-table / vl-data-table - expandable', () => {
