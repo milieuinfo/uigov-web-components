@@ -22,6 +22,10 @@ const styles: CSSResult = css`
         color: var(--vl-theme-fg-color-70);
     }
 
+    tr[data-details-id] {
+        display: table-row;
+    }
+
     @media screen and (max-width: 500px) {
         .vl-data-table--collapsed-m td,
         .vl-data-table--collapsed-s td,
@@ -34,6 +38,20 @@ const styles: CSSResult = css`
         .vl-data-table--collapsed-xs td::before {
             width: 90%;
             padding-right: 0;
+        }
+
+        .vl-data-table--collapsed-xs tr[data-details-id] {
+            display: block;
+        }
+    }
+    @media screen and (max-width: 767px) {
+        .vl-data-table--collapsed-s tr[data-details-id] {
+            display: block;
+        }
+    }
+    @media screen and (max-width: 1023px) {
+        .vl-data-table--collapsed-m tr[data-details-id] {
+            display: block;
         }
     }
 `;

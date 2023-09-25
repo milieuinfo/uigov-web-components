@@ -27,7 +27,7 @@ export class BaseHTMLElement extends HTMLElement {
     }
 
     static get observedAttributes(): string[][] {
-        const spacer = [`${BaseHTMLElement.attributePrefix}spacer-none`];
+        const spacer = [`${this.attributePrefix}spacer-none`];
         const observedAttributes = [spacer].concat(this._observedAttributes.concat(this._observedPrefixAttributes));
         const observedClassAttributes = this._observedClassAttributes.concat(this._observedPrefixClassAttributes);
         const observedChildClassAttributes = this._observedChildClassAttributes.concat(
@@ -171,7 +171,7 @@ export class BaseHTMLElement extends HTMLElement {
      * @protected
      * @return {void}
      */
-    get _classPrefix() {
+    get _classPrefix(): null | string {
         console.error('class prefix is undefined');
         return null;
     }
