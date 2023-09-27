@@ -1,87 +1,87 @@
-import { TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 
 export const radioArgs = {
     block: false,
     checked: false,
     disabled: false,
     error: false,
-    label: 'Ja',
-    name: 'options',
+    label: '',
+    name: '',
     single: false,
-    value: 'Ja',
+    value: '',
 };
 
 export const radioArgTypes = {
     block: {
         name: 'data-vl-block',
-        description: 'Attribute to show the checkbox as a block element',
+        description: 'Beeldt de checkbox af als een block element.',
         table: {
             type: { summary: TYPES.BOOLEAN },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: radioArgs.block },
         },
     },
     checked: {
         name: 'data-vl-checked',
-        description: 'Attribute to check the radio by default',
+        description: 'Vinkt de radio standaard aan.',
         table: {
             type: { summary: TYPES.BOOLEAN },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: radioArgs.checked },
         },
     },
     disabled: {
         name: 'data-vl-disabled',
-        description: 'Attribute to disable the checkbox',
+        description: 'Schakelt de radio uit.',
         table: {
             type: { summary: TYPES.BOOLEAN },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: radioArgs.disabled },
         },
     },
     error: {
         name: 'data-vl-error',
-        description: 'Attribute to show an error state on the checkbox',
+        description: 'Beeldt de radio af in een error state.',
         table: {
             type: { summary: TYPES.BOOLEAN },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: radioArgs.error },
         },
     },
     label: {
         name: 'data-vl-label',
-        description: 'Attribute to set a label for the checkbox',
+        description: 'Het label van de radio.',
         table: {
             type: { summary: TYPES.STRING },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: radioArgs.label },
         },
     },
     name: {
         name: 'data-vl-name',
-        description: 'Attribute to the name of the checkbox',
+        description: 'De naam van de radio.',
         table: {
             type: { summary: TYPES.STRING },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: radioArgs.name },
         },
     },
     single: {
         name: 'data-vl-single',
-        description: 'Attribute to show a checkbox without label',
+        description: 'Beeldt de radio af zonder label.',
         table: {
             type: { summary: TYPES.BOOLEAN },
-            category: 'Attributes',
-            defaultValue: { summary: 'false' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: radioArgs.single },
         },
     },
     value: {
         name: 'data-vl-value',
-        description: 'Attribute to determine the value of the checkbox',
+        description: 'Bepaalt waarde van de radio.',
         table: {
             type: { summary: TYPES.STRING },
-            category: 'Attributes',
-            defaultValue: { summary: '' },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: radioArgs.value },
         },
     },
 };
