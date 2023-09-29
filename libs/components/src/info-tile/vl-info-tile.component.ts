@@ -77,7 +77,7 @@ export class VlInfoTile extends BaseElementOfType(HTMLElement) {
     }
 
     get _titleLabelSlotElement() {
-        return this._titleElement.querySelector('[name="title-label"]');
+        return this._titleElement?.querySelector('[name="title-label"]');
     }
 
     get _buttonElement() {
@@ -162,7 +162,7 @@ export class VlInfoTile extends BaseElementOfType(HTMLElement) {
 
     __processSlots() {
         if (!this._titleLabelSlot) {
-            this._titleLabelSlotElement.remove();
+            this._titleLabelSlotElement?.remove();
         }
         this._titleElement.addEventListener('click', (event: Event) => {
             event.stopPropagation();
