@@ -4,6 +4,7 @@ export { VlAlert, VlAlertClosedEvent, ALERT_ICON, ALERT_SIZE, ALERT_TYPE } from 
 export { VlAnnotation } from './annotation';
 export { VlAutocomplete } from './autocomplete';
 export { VlBreadcrumbComponent, VlBreadcrumbItemComponent } from './breadcrumb';
+export { VlCascaderComponent, VlCascaderItemComponent, TemplateFn, NarrowDownFn, CascaderItem } from './next/cascader';
 export { VlCheckboxComponent } from './checkbox';
 export { VlCodePreviewComponent } from './code-preview';
 export { VlContactCardComponent } from './contact-card';

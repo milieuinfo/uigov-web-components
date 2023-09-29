@@ -4,6 +4,7 @@
     "license": "MIT",
     "scripts": {
         "test": "npm run test:unit && npm run test:wct",
+        "test:component": "npx cypress open --component",
         "test-parallel": "npm run test:unit:parallel && npm run test:wct",
         "test:unit": "npx nx run-many --all --target=test --skip-nx-cache",
         "test:unit:parallel": "npx nx run-many --all --target=test --parallel --maxParallel=4 --skip-nx-cache",
@@ -146,6 +147,7 @@
         "@govflanders/vl-ui-infotext": "14.0.2",
         "@govflanders/vl-ui-progress-bar": "14.0.2",
         "@govflanders/vl-ui-util": "14.0.2",
+        "@lit-labs/react": "2.1.1",
         "@ungap/custom-elements": "1.3.0",
         "bootstrap-sass": "3.4.3",
         "construct-style-sheets-polyfill": "3.1.0",
