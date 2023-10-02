@@ -1,3 +1,4 @@
+import '@govflanders/vl-ui-util/src/js/breakpoint';
 import ScrollSpy from './vl-side-navigation.scrollspy.lib';
 
 // UIG-2278: vl lijkt niet in alle gevallen defined te zijn, terwijl deze lib daar precies wel op steunt
@@ -245,20 +246,19 @@ class Sticky {
 
                     // Force _stickyPosition, calc all dimensions, check breakpoint
                     case 'resize': {
-                        // if breakpoint has changed compared to previous one; reset sticky
-                        if (this.previousBreakPointValue !== vl.breakpoint.value) {
-                            this.destroy();
-                            this.updateStyleWhenSmall();
+                        if (vl.util.exists(vl.breakpoint)) {
+                            // if breakpoint has changed compared to previous one; reset sticky
+                            if (this.previousBreakPointValue !== vl.breakpoint.value) {
+                                this.previousBreakPointValue = vl.breakpoint.value;
+                                this.destroy();
+                            }
                         }
-                        this.previousBreakPointValue = vl.breakpoint.value;
                     }
                     // eslint-disable-next-line no-fallthrough
                     default:
                         this._widthBreakpoint();
-                        // if (this.container) {
                         this._calcDimensions();
                         this._stickyPosition(true);
-                        // }
                         break;
                 }
                 this._running = false;
