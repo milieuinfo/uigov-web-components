@@ -12,13 +12,15 @@ import {Meta} from '@storybook/addon-docs';
 - [@domg-wc/components](#domg-wccomponents)
 - [@domg-wc/sections](#domg-wcsections)
 - [@domg-wc/map](#domg-wcmap)
+- [fat-js: domg-wc](#fat-js-domg-wc)
 
 
 ## Overzicht
 
-Alle web-componenten van Departement Omgeving zitten in artifacts onder de npm scope `@domg-wc`; __common-utilities__
-bevat technische code, de overige 4 artifacts: __elements__, __components__, __map__ en __sections__ bevatten
-web-componenten.
+Alle web-componenten van Departement Omgeving zijn beschikbaar via npm artifacts onder de npm scope `@domg-wc`;
+__common-utilities__ bevat technische code, de overige 4 artifacts: __elements__, __components__, __map__ en
+__sections__ bevatten de web-componenten. Alle web-componenten zijn ook beschikbaar via de CDN, zie
+['fat-js: domg-wc'](#fat-js-domg-wc).
 
 > ** ⚠ Waarschuwing**: er is een elements / components concept gedefinieerd, dit is een streefdoel, de huidige code
 volgt dit concept in grote lijnen maar niet volledig. Afwijkingen komen voor!
@@ -62,9 +64,6 @@ Onder __sections__ zitten web-componenten specifiek voor Departement Omgeving. H
 zoals de andere __componenten__ of __elementen__. Het __sections__ artifact bevat: __vl-header__, __vl-footer__,
 __vl-accessibility__, __vl-cookie-consent__, __vl-cookie-consent-opt-in__, __vl-cookie-statement__ en __vl-privacy__.
 
-> ** ! Opmerking**: voor legacy toepassingen is er specifiek van de __sections__ een fat-js variant; zie
-[FatJs](/story/afnemen-cookbook--page#fatjs) onder `Cookbook`
-
 
 ## @domg-wc/map
 
@@ -72,3 +71,10 @@ De __map__ is de grootste en uitgebreidste component. Het is een kaart component
 [OpenLayers v6.14.1](https://openlayers.org/en/v6.14.1/doc/) gebruikt. De functionaliteit zit in sub-componenten
 die een plugin opzet volgen.
 
+
+## fat-js: domg-wc
+
+Specifiek voor legacy toepassingen is er een 'fat-js' variant beschikbaar. Via de CDN van Departement Omgeving kan
+je daar geversioneerd naar refereren conform: `https://cdn.omgeving.vlaanderen.be/domg/wc/domg-wc-1.18.0.min.js`. Bij
+de import worden alle web-componenten (elements, components, sections en map) geregistreerd. Zie
+[CDN Bundel - fat-js](/story/afnemen-cookbook--page#cdn-bundel---fat-js) onder `Cookbook` voor meer informatie.

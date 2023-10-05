@@ -75,9 +75,34 @@ module.exports = {
 ```
 
 
-### FatJs
+### CDN Bundel - fat-js
 
-TODO - Kris S.
+Voor gewone websites of legacy toepassingen (die geen bundler gebruiken) worden alle web-componenten ook beschikbaar
+gesteld via een statische bundel op de CDN. Doordat er dan geen bundler gebruikt wordt kan er geen tree-shaking
+plaatsvinden, om die rede bieden we het script enkel geversioneerd aan en niet onder een 'latest' variant. Op die
+manier moet je expliciet een versie specifiëren (om bewust te upgraden) en mag het bestand ge-cached worden - bij een
+nieuwe versie wijzigt de naam.
+
+De `fat-js` bestanden zijn beschikbaar onder `https://cdn.omgeving.vlaanderen.be/domg/wc`, daar staan per versie 3
+bestanden:
+
+- **domg-wc-1.18.0.js** - de leesbare variant [7,3 MB]
+- **domg-wc-1.18.0.js.map** - de map file om de leesbare variant te debuggen [11,3 MB]
+- **domg-wc-1.18.0.min.js** - de productie versie [3,4 MB]
+
+```
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <title>UIG Demo</title>
+  <script type="module"
+          src="https://cdn.omgeving.vlaanderen.be/domg/wc/domg-wc-1.18.0.min.js"></script>
+</head>
+<body>
+  <div is="vl-layout">...</div>
+</body>
+</html>
+```
 
 
 ## Imports
@@ -198,7 +223,7 @@ class RegisterStyles {
                 ...(allElementStyles.map((style) => style.styleSheet) as CSSStyleSheet[]),
             ];
             RegisterStyles.elementStylesRegistered = true;
-            console.log('alle element styling toegevoegd aan de document style-sheets');
+            console.log('element-styling toegevoegd aan het document');
         }
     }
 }

@@ -12,5 +12,5 @@ echo "build apps"
 npx nx build
 echo "build libraries"
 npm run build:all
-echo "build fat sections"
-npm run build-fat-libs:sections
+echo "build fat-lib"
+npm run build-fat-lib

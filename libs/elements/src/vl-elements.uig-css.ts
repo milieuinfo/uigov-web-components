@@ -131,7 +131,7 @@ class RegisterStyles {
                 ...(allElementStyles.map((style) => style.styleSheet) as CSSStyleSheet[]),
             ];
             RegisterStyles.elementStylesRegistered = true;
-            console.log('alle element styling toegevoegd aan de document style-sheets');
+            console.log('element-styling toegevoegd aan het document');
         }
     }
 }
