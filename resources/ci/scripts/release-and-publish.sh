@@ -189,26 +189,26 @@ fi
 
 cd ..
 
-echo "update domg-wc-sections met versie nummer en maak er een tgz van"
+echo "update domg-wc met versie nummer en maak er een tgz van"
 # het versie nummer toevoegen aan de 'fat-js'
-cd ./fat-libs/sections
-mv domg-wc-sections.js domg-wc-sections-${nextRelease_version}.js
-mv domg-wc-sections.js.map domg-wc-sections-${nextRelease_version}.js.map
-mv domg-wc-sections.min.js domg-wc-sections-${nextRelease_version}.min.js
+cd ./fat-lib
+mv domg-wc.js domg-wc-${nextRelease_version}.js
+mv domg-wc.js.map domg-wc-${nextRelease_version}.js.map
+mv domg-wc.min.js domg-wc-${nextRelease_version}.min.js
 # een tar maken
-tar cfz ../domg-wc-sections-${nextRelease_version}.tgz .
+tar cfz ../domg-wc-${nextRelease_version}.tgz .
 cd ..
 
 if [[ ${release_branch} == true ]];
   then
     # de tar uploaden naar artifactory (om het op de cdn te krijgen) - via curl omdat er geen package.json is
-    echo "upload-file 'domg-wc-sections-${nextRelease_version}.tgz' naar artifactory"
+    echo "upload-file 'domg-wc-${nextRelease_version}.tgz' naar artifactory"
     curl --user "${acd_repository_debian_login}:${acd_repository_bamboo_password}" \
-     --upload-file domg-wc-sections-${nextRelease_version}.tgz \
-     -v -X PUT "${acd_repository_url}/local-generic/domg/domg-wc-sections-${nextRelease_version}.tgz"
+     --upload-file domg-wc-${nextRelease_version}.tgz \
+     -v -X PUT "${acd_repository_url}/local-generic/domg/domg-wc-${nextRelease_version}.tgz"
 fi
 
-cd ../..
+cd ..
 
 # builden van storybook
 echo "build storybook en maak er een tgz van"

@@ -1,0 +1,38 @@
+{
+    "name": "support-fat-lib",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/support/fat-lib/src",
+    "projectType": "library",
+    "targets": {
+        "build-fat-lib-min": {
+            "executor": "@nrwl/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "clean": true,
+                "outputPath": "dist/explicit-wrong-path",
+                "main": "",
+                "tsConfig": "libs/support/fat-lib/tsconfig.fat-lib-min.json",
+                "assets": [],
+                "webpackConfig": "libs/support/fat-lib/fat-lib-webpack-min.config.js",
+                "isolatedConfig": true,
+                "sourceMap": false
+            }
+        },
+        "build-fat-lib": {
+            "executor": "@nrwl/webpack:webpack",
+            "dependsOn": ["build-fat-lib-min"],
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "clean": false,
+                "outputPath": "dist/explicit-wrong-path",
+                "main": "",
+                "tsConfig": "libs/support/fat-lib/tsconfig.fat-lib.json",
+                "assets": [],
+                "webpackConfig": "libs/support/fat-lib/fat-lib-webpack.config.js",
+                "isolatedConfig": true,
+                "sourceMap": true
+            }
+        }
+    },
+    "tags": []
+}

@@ -3,9 +3,9 @@ export const webComponent =
     // eslint-disable-next-line @typescript-eslint/ban-types
     (constructor: Function): any => {
         if (customElements.get(tagName)) {
-            console.warn(`${tagName} werd reeds gedefinieerd als custom element`);
+            console.debug(`${tagName} werd reeds geregistreerd`);
         } else {
-            console.debug('registratie van custom element', tagName);
+            console.debug('registratie', tagName);
             window.customElements.define(tagName, constructor as CustomElementConstructor, options);
         }
     };
@@ -26,9 +26,9 @@ export const webComponentPromised =
     // eslint-disable-next-line @typescript-eslint/ban-types
     (constructor: Function): any => {
         if (customElements.get(tagName)) {
-            console.warn(`${tagName} werd reeds gedefinieerd als custom element`);
+            console.debug(`${tagName} werd reeds geregistreerd`);
         } else {
-            console.debug('registratie van custom element', tagName);
+            console.debug('registratie', tagName);
             Promise.all(promises).then(() =>
                 window.customElements.define(tagName, constructor as CustomElementConstructor, options)
             );
@@ -43,9 +43,9 @@ export const webComponentConditional =
     // eslint-disable-next-line @typescript-eslint/ban-types
     (constructor: Function): any => {
         if (customElements.get(tagName)) {
-            console.warn(`${tagName} werd reeds gedefinieerd als custom element`);
+            console.debug(`${tagName} werd reeds geregistreerd`);
         } else {
-            console.debug('registratie van custom element', tagName);
+            console.debug('registratie', tagName);
             window.customElements
                 .whenDefined(defined)
                 .then(() => window.customElements.define(tagName, constructor as CustomElementConstructor, options));
