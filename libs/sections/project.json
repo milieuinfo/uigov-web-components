@@ -15,35 +15,6 @@
                 "assets": ["libs/sections/*.md"]
             }
         },
-        "build-fat-libs-min": {
-            "executor": "@nrwl/webpack:webpack",
-            "outputs": ["{options.outputPath}"],
-            "options": {
-                "clean": true,
-                "outputPath": "dist/explicit-wrong-path",
-                "main": "libs/sections/src/index.ts",
-                "tsConfig": "libs/sections/fat-libs/tsconfig.fat-libs-min.json",
-                "assets": [],
-                "webpackConfig": "libs/sections/fat-libs/fat-libs-webpack-min.config.js",
-                "isolatedConfig": true,
-                "sourceMap": false
-            }
-        },
-        "build-fat-libs": {
-            "executor": "@nrwl/webpack:webpack",
-            "dependsOn": ["build-fat-libs-min"],
-            "outputs": ["{options.outputPath}"],
-            "options": {
-                "clean": false,
-                "outputPath": "dist/explicit-wrong-path",
-                "main": "libs/sections/src/index.ts",
-                "tsConfig": "libs/sections/fat-libs/tsconfig.fat-libs.json",
-                "assets": [],
-                "webpackConfig": "libs/sections/fat-libs/fat-libs-webpack.config.js",
-                "isolatedConfig": true,
-                "sourceMap": true
-            }
-        },
         "build-with-js": {
             "executor": "nx:run-commands",
             "dependsOn": ["build"],

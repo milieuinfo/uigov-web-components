@@ -11,9 +11,7 @@ declare const vl: VL;
  *
  * @param webComponents
  */
-export const registerWebComponents = (webComponents: any[]) => {
-    console.log('registeren van de web-componenten');
-};
+export const registerWebComponents = (webComponents: any[]) => {};
 
 /**
  * Definieert een class als custom element enkel wanneer deze nog niet gedefinieerd werd.

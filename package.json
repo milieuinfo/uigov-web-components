@@ -37,7 +37,7 @@
         "build:sections": "npx nx build-with-js sections",
         "build:test-support": "npx nx build-with-js support-test-support",
         "build:all": "npm run build:common-storybook && npm run build:common-utilities && npm run build:elements && npm run build:components && npm run build:map && npm run build:sections && npm run build:test-support",
-        "build-fat-libs:sections": "npx nx build-fat-libs sections",
+        "build-fat-lib": "npx nx build-fat-lib support-fat-lib",
         "pack:common-storybook": "cd ./dist/libs/common/storybook && npm version $npm_package_version && npm pack",
         "pack:common-utilities": "cd ./dist/libs/common/utilities && npm version $npm_package_version && npm pack",
         "pack:elements": "cd ./dist/libs/elements && npm version $npm_package_version && npm pack",

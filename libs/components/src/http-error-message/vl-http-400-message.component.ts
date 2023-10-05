@@ -8,7 +8,6 @@ import { VlHttpErrorMessage } from './vl-http-error-message.component';
 @webComponent('vl-http-400-message')
 export class VlHttp400Message extends BaseLitElement {
     static {
-        console.log('VlHttp400Message - registerWebComponents');
         registerWebComponents([VlHttpErrorMessage, VlLinkButtonElement]);
     }
 

@@ -3,17 +3,16 @@ const { resolve } = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = composePlugins(withNx(), (config, { options, context }) => {
-    // console.log('fat-libs-webpack-min.config.js - config', config);
+    // console.log('fat-lib-webpack-min.config.js - config', config);
     return {
         ...config,
-        entry: 'libs/sections/fat-libs/fat-libs-index.ts',
+        entry: 'libs/support/fat-lib/fat-lib-index.ts',
         mode: 'production',
         output: {
             ...config.output,
-            path: resolve('./dist/fat-libs/sections'),
-            filename: 'domg-wc-sections.min.js',
+            path: resolve('./dist/fat-lib'),
+            filename: 'domg-wc.min.js',
         },
-        // externals: [/^tinymce/, /^prettier/],
         optimization: {
             ...config.optimization,
             minimize: true,
