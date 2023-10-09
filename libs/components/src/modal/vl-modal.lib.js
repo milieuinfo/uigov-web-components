@@ -54,7 +54,7 @@
     }
 
     function activeElement(element) {
-        return element.shadowRoot ? activeElement(element.shadowRoot.activeElement) : element;
+        return element?.shadowRoot ? activeElement(element.shadowRoot.activeElement) : element;
     }
 
     const dialogPolyfill = createCommonjsModule((module) => {
