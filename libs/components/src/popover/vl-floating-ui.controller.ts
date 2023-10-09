@@ -69,6 +69,10 @@ export default class FloatingController implements ReactiveController {
     }
 
     async updatePosition(): Promise<void> {
+        if (!this.getReferenceElement) {
+            return;
+        }
+
         const { x, y, strategy, placement, middlewareData } = await computePosition(
             this.getReferenceElement()!,
             this.host,

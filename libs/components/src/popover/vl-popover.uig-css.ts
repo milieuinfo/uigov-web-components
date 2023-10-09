@@ -6,6 +6,7 @@ const styles: CSSResult = css`
         width: max-content;
         top: 0;
         left: 0;
+        z-index: 10010;
     }
 
     i#popover-arrow {
@@ -26,6 +27,7 @@ const styles: CSSResult = css`
         */
         filter: drop-shadow(rgba(0, 0, 0, 0.1) 0px 0px 2.1rem) drop-shadow(rgb(207, 213, 221) -1px -1px 1px)
             drop-shadow(rgb(207, 213, 221) 1px 1px 1px);
+        will-change: filter;
         background-color: #fff;
         padding: 1rem;
     }
