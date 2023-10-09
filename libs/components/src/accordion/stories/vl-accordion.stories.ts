@@ -24,6 +24,7 @@ const Template = story(
         closeToggleText,
         contentPadding,
         disabled,
+        defaultOpen,
         icon,
         openToggleText,
         toggleText,
@@ -37,6 +38,7 @@ const Template = story(
             data-vl-close-toggle-text=${closeToggleText}
             data-vl-icon=${icon}
             ?data-vl-disabled=${disabled}
+            ?data-vl-default-open=${defaultOpen}
             data-vl-open-toggle-text=${openToggleText}
             data-vl-toggle-text=${toggleText}
             @vl-on-toggle=${(event: CustomEvent) => onToggle(event.detail)}
