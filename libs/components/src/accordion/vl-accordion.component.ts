@@ -23,6 +23,7 @@ declare const vl: any;
  * @property {PADDINGS} data-vl-content-padding - De grootte van de padding van de content. Deze padding wordt toegepast op zowel desktop als mobile.
  * @property {boolean} data-vl-bold - Beeldt de toggle-text van de accordion af in bold.
  * @property {boolean} data-vl-disabled - Schakelt het openen en het sluiten van de accordion uit.
+ * @property {boolean} data-vl-default-open - Indien gezet is de accordion standaard geopend.
  * @property {string} data-vl-icon - Icoon dat getoond wordt voor de tekst van de toggle.
  * @event vl-on-toggle - Afgevuurd bij het openen en sluiten van de accordion. Het event bevat of de accordion geopend of gesloten is.
  */
@@ -80,6 +81,10 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
         if (this.hasAttribute('icon')) {
             this._addIconElement();
             this._accordionElement.classList.add('vl-accordion--has-icon');
+        }
+
+        if (this.hasAttribute('default-open')) {
+            this.open();
         }
 
         /*

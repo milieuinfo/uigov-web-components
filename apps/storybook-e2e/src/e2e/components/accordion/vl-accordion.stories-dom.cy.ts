@@ -33,9 +33,7 @@ const shouldSetTitle = (title: string) => {
 };
 
 const shouldDisableAccordion = () => {
-    shouldBeClosed();
-    toggleAccordion();
-    shouldBeClosed();
+    cy.get('vl-accordion').shadow().find('button.vl-toggle').should('be.disabled');
 };
 
 const shouldSetBold = () => {
@@ -93,6 +91,12 @@ describe('story vl-accordion default', () => {
         cy.visit(accordionUrl);
 
         shouldEmitEventOnToggle();
+    });
+
+    it('should be open by default', () => {
+        cy.visit(`${accordionUrl}&args=defaultOpen:true`);
+
+        shouldBeOpen();
     });
 });
 

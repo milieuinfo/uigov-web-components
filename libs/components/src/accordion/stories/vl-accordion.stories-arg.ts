@@ -8,6 +8,7 @@ export const accordionArgs = {
     closeToggleText: '',
     contentPadding: null,
     disabled: false,
+    defaultOpen: false,
     icon: '',
     openToggleText: '',
     toggleText: '',
@@ -57,6 +58,15 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: accordionArgs.disabled },
+        },
+    },
+    defaultOpen: {
+        name: 'data-vl-default-open',
+        description: 'Indien gezet zal de accordion standaard geopend zijn.<br>Dit attribuut is niet reactief.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: accordionArgs.defaultOpen },
         },
     },
     icon: {
