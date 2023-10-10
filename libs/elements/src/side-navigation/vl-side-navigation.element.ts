@@ -1,4 +1,5 @@
 import { BaseElementOfType, debounce, unwrap, VL, webComponent } from '@domg-wc/common-utilities';
+import '@govflanders/vl-ui-util/dist/js/util.js';
 import './vl-side-navigation.lib.js';
 import { elementStyles } from '../vl-elements.uig-css';
 
