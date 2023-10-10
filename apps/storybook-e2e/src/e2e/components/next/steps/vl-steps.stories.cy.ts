@@ -9,6 +9,8 @@ const stepsNextTimelineUrl =
     'http://localhost:8080/iframe.html?id=components-next-steps-next--steps-timeline&viewMode=story';
 const stepsNextSimpleTimelineUrl =
     'http://localhost:8080/iframe.html?id=components-next-steps-next--steps-simple-timeline&viewMode=story';
+const stepsSideNavigationUrl =
+    'http://localhost:8080/iframe.html?id=components-next-steps-next--steps-side-navigation&viewMode=story';
 
 describe('story vl-steps-next default', () => {
     it('should be accessible', () => {
@@ -381,5 +383,21 @@ describe('story vl-steps-next simple-timeline', () => {
         cy.visit(stepsNextSimpleTimelineUrl);
 
         cy.get('vl-steps-next').shadow().find('.vl-steps.vl-steps--timeline-simple');
+    });
+});
+
+describe('story vl-steps-next side-navigation', () => {
+    it('should show child links on scroll', () => {
+        cy.visit(stepsSideNavigationUrl);
+
+        cy.get('vl-steps-next')
+            .find('vl-step-next')
+            .find('#vl-steps-vl-step-2-abstract')
+            .scrollIntoView({ duration: 1000 })
+            .should('be.visible');
+
+        cy.get('nav[is="vl-side-navigation"]')
+            .find('a[is="vl-side-navigation-toggle"][href="#vl-steps-vl-step-2"]')
+            .should('have.attr', 'aria-expanded', 'true');
     });
 });

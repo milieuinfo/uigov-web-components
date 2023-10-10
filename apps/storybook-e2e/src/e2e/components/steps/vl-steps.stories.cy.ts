@@ -3,6 +3,8 @@ const stepsWithAccordionsUrl =
     'http://localhost:8080/iframe.html?id=components-steps--steps-with-accordions&viewMode=story';
 const stepsWithTimelineUrl =
     'http://localhost:8080/iframe.html?id=components-steps--steps-with-timeline&viewMode=story';
+const stepsWithSideNavigationUrl =
+    'http://localhost:8080/iframe.html?id=components-steps--steps-with-side-navigation&viewMode=story';
 
 describe('story vl-steps', () => {
     it('should contain steps', () => {
@@ -157,5 +159,21 @@ describe('story vl-steps', () => {
         cy.visit(stepsWithTimelineUrl);
         cy.get('vl-steps').shadow().find('div.vl-steps > ul.vl-steps__list').should('exist');
         cy.get('vl-steps').shadow().find('li.vl-step > div.vl-step__container').should('exist');
+    });
+});
+
+describe('story vl-steps with side-navigation', () => {
+    it('should show child links on scroll', () => {
+        cy.visit(stepsWithSideNavigationUrl);
+
+        cy.get('vl-steps')
+            .shadow()
+            .find('#vl-steps-4-step-2-abstract')
+            .scrollIntoView({ duration: 1000 })
+            .should('be.visible');
+
+        cy.get('nav[is="vl-side-navigation"]')
+            .find('a[is="vl-side-navigation-toggle"][href="#vl-steps-4-step-2"]')
+            .should('have.attr', 'aria-expanded', 'true');
     });
 });
