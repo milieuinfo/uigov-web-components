@@ -1,3 +1,27 @@
+# [1.18.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.17.0...v1.18.0) (2023-10-11)
+
+
+### Bug Fixes
+
+* UIG-2663 - vl-map-search - features niet klikbaar dichtbij search ([b5c6a3b](https://github.com/milieuinfo/uigov-web-components/commit/b5c6a3b5dd1b2314293e4d6ccffe3daf57a69065))
+* UIG-2685 - vl-side-navigation - mobile werkt niet correct ([48f694b](https://github.com/milieuinfo/uigov-web-components/commit/48f694b2e7846a84e513d28704ed102f48a5337e))
+* UIG-2695 - vl-modal, vl-select - nullchecks toegevoegd ([67538e1](https://github.com/milieuinfo/uigov-web-components/commit/67538e1000352211bf80cb909b945b68ce3106e1))
+* UIG-2699 - vl-popover - verbeteringen ([62f7192](https://github.com/milieuinfo/uigov-web-components/commit/62f71929078aaca4f5046864af49971ca56b3f13))
+
+
+### Features
+
+* UIG-2591 - aanpassingen en verbeteringen aan de Storybook documentatie en stories ([67dd676](https://github.com/milieuinfo/uigov-web-components/commit/67dd676f8ea578d5bf7baa7426d0479b4a3ece18))
+* UIG-2607 - alle domg-wc web-componenten (elements, components, sections en map) aanbieden via fat-js ([aaa814d](https://github.com/milieuinfo/uigov-web-components/commit/aaa814d2df5077ce37ee57600c4f62a948f682a7))
+* UIG-2607 - de fat-js publiceren op artifactory ([cbe08c4](https://github.com/milieuinfo/uigov-web-components/commit/cbe08c4ec20ed2c843b1cd2fcbe6bbef461ed60b))
+* UIG-2625 - vl-data-table - responsiveness for expanded rows verbeterd ([0dee02f](https://github.com/milieuinfo/uigov-web-components/commit/0dee02f29e755a3154b4c8a2dc9a27191d9b1d6d))
+* UIG-2632 - playground applicaties ([eda63a2](https://github.com/milieuinfo/uigov-web-components/commit/eda63a27042d574f4b9a904bd30f7c2b19ad07ce))
+* UIG-2640 - vl-popover - introductie component ([4bead6a](https://github.com/milieuinfo/uigov-web-components/commit/4bead6aac9d20ffca9fa5126daa7b97893fc260d))
+* UIG-2643 - vl-radio - radio met afbeelding voorbeeld toegevoegd ([d4d3bf9](https://github.com/milieuinfo/uigov-web-components/commit/d4d3bf9da9bc0dfc8bbfd0a8387511bfd17eeb78))
+* UIG-2665 - vl-map-search - select position bottom ([b7b87fe](https://github.com/milieuinfo/uigov-web-components/commit/b7b87fe071e86c2ac1932f6444727e3af52a2f69))
+* UIG-2689 - cypress component testing ([e8f1c83](https://github.com/milieuinfo/uigov-web-components/commit/e8f1c832d4d3338ebb147c71e2dead3611eb2d06))
+* UIG-2698 - vl-accordion - attribuut om default te openen ([1923f12](https://github.com/milieuinfo/uigov-web-components/commit/1923f12d49283e29056c5f5dcdca54d7119744a7))
+
 # [1.17.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.16.0...v1.17.0) (2023-09-20)
 
 
