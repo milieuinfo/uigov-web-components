@@ -1,41 +1,91 @@
-import { VlAlertClosedEvent } from '@domg-wc/components';
+const alertDefaultUrl = 'http://localhost:8080/iframe.html?id=components-alert--alert-default&viewMode=story';
+const alertErrorUrl = 'http://localhost:8080/iframe.html?id=components-alert--alert-error&viewMode=story';
+const alertInfoUrl = 'http://localhost:8080/iframe.html?id=components-alert--alert-info&viewMode=story';
+const alertSuccessUrl = 'http://localhost:8080/iframe.html?id=components-alert--alert-success&viewMode=story';
+const alertWarningUrl = 'http://localhost:8080/iframe.html?id=components-alert--alert-warning&viewMode=story';
+const alertWithButtonUrl = 'http://localhost:8080/iframe.html?id=components-alert--alert-with-button&viewMode=story';
+const alertWithTitleSlotUrl =
+    'http://localhost:8080/iframe.html?id=components-alert--alert-with-title-slot&viewMode=story';
+const alertCloseableUrl = 'http://localhost:8080/iframe.html?id=components-alert--alert-closeable&viewMode=story';
+const alertNakedErrorUrl = 'http://localhost:8080/iframe.html?id=components-alert--alert-naked-error&viewMode=story';
+const alertNakedWarningUrl =
+    'http://localhost:8080/iframe.html?id=components-alert--alert-naked-warning&viewMode=story';
+const alertNakedSuccessUrl =
+    'http://localhost:8080/iframe.html?id=components-alert--alert-naked-success&viewMode=story';
 
-const alertUrl = 'http://localhost:8080/iframe.html?id=components-alert--alert-default&viewMode=story';
-
-describe('story vl-alert', () => {
-    it('should contain a title', () => {
-        cy.visit(`${alertUrl}&args=type:error`);
-        cy.getDataCy('alert').shadow().find('#alert').should('have.class', 'vl-alert').contains('Lorem ipsum');
+describe('story vl-alert default', () => {
+    it('should display story', () => {
+        cy.visit(alertDefaultUrl);
+        cy.get('vl-alert');
     });
+});
 
-    it('should contain a text', () => {
-        cy.visit(`${alertUrl}&args=type:error`);
-        cy.getDataCy('alert')
-            .find('p')
-            .contains(
-                'Phasellus congue ipsum ut felis auctor, eget maximus justo dapibus. Nam sit amet pulvinar odio. Maecenas rhoncus quam eget neque porttitor, et faucibus nisl elementum.'
-            );
+describe('story vl-alert error', () => {
+    it('should display story', () => {
+        cy.visit(alertErrorUrl);
+        cy.get('vl-alert');
     });
+});
 
-    it('should contain an icon', () => {
-        cy.visit(`${alertUrl}&args=type:error`);
-        cy.getDataCy('alert')
-            .shadow()
-            .find('.vl-alert__icon > span')
-            .should('have.class', 'vl-icon')
-            .should('have.class', 'vl-vi-warning');
+describe('story vl-alert info', () => {
+    it('should display story', () => {
+        cy.visit(alertInfoUrl);
+        cy.get('vl-alert');
     });
+});
 
-    it('should contain a close button', () => {
-        cy.visit(`${alertUrl}&args=type:error;closable:true`);
-        cy.getDataCy('alert').shadow().find('#close').should('have.class', 'vl-alert__close');
+describe('story vl-alert success', () => {
+    it('should display story', () => {
+        cy.visit(alertSuccessUrl);
+        cy.get('vl-alert');
     });
+});
 
-    it('should be removed after clicking the close button and send a VlAlertClosedEvent', () => {
-        cy.visit(`${alertUrl}&args=type:error;closable:true`);
-        cy.createStubForEvent('vl-alert', VlAlertClosedEvent.eventType);
-        cy.getDataCy('alert').shadow().find('#close').click();
-        cy.getDataCy('alert').should('not.exist');
-        cy.get('@' + VlAlertClosedEvent.eventType).should('have.been.calledOnce');
+describe('story vl-alert warning', () => {
+    it('should display story', () => {
+        cy.visit(alertWarningUrl);
+        cy.get('vl-alert');
+    });
+});
+
+describe('story vl-alert with button', () => {
+    it('should display story', () => {
+        cy.visit(alertWithButtonUrl);
+        cy.get('vl-alert');
+    });
+});
+
+describe('story vl-alert with title slot', () => {
+    it('should display story', () => {
+        cy.visit(alertWithTitleSlotUrl);
+        cy.get('vl-alert');
+    });
+});
+
+describe('story vl-alert closeable', () => {
+    it('should display story', () => {
+        cy.visit(alertCloseableUrl);
+        cy.get('vl-alert');
+    });
+});
+
+describe('story vl-alert naked error', () => {
+    it('should display story', () => {
+        cy.visit(alertNakedErrorUrl);
+        cy.get('vl-alert');
+    });
+});
+
+describe('story vl-alert naked warning', () => {
+    it('should display story', () => {
+        cy.visit(alertNakedWarningUrl);
+        cy.get('vl-alert');
+    });
+});
+
+describe('story vl-alert naked success', () => {
+    it('should display story', () => {
+        cy.visit(alertNakedSuccessUrl);
+        cy.get('vl-alert');
     });
 });

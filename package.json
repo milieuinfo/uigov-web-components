@@ -140,7 +140,7 @@
         "url-loader": "4.1.1"
     },
     "dependencies": {
-        "@domg/govflanders-style": "14.1.0",
+        "@domg/govflanders-style": "14.2.0",
         "@floating-ui/dom": "1.5.3",
         "@govflanders/vl-ui-accordion": "14.0.2",
         "@govflanders/vl-ui-code-preview": "14.0.2",

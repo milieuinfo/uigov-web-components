@@ -20,3 +20,11 @@ export const ALERT_SIZE = {
 } as const;
 
 export type ALERT_SIZE = typeof ALERT_SIZE[keyof typeof ALERT_SIZE];
+
+export class VlAlertClosedEvent extends Event {
+    static eventType = 'vl-alert-closed';
+
+    constructor() {
+        super(VlAlertClosedEvent.eventType, { bubbles: true });
+    }
+}
