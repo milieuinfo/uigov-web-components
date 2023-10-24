@@ -1,167 +1,94 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { html, PropertyDeclarations, TemplateResult, CSSResult } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 import { alertStyle, iconStyle } from '@domg/govflanders-style/component';
-import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
-import { VlAlertClosedEvent } from './vl-alert-closed-event';
+import { accessibilityStyle, resetStyle, markStyle } from '@domg/govflanders-style/common';
+import { VlAlertClosedEvent } from './vl-alert.model';
+import { classMap } from 'lit/directives/class-map.js';
 
-@webComponent('vl-alert')
-export class VlAlert extends BaseElementOfType(HTMLElement) {
-    static get _observedAttributes() {
-        return ['icon', 'title', 'closable', 'type', 'size'];
+@customElement('vl-alert')
+export class VlAlert extends BaseLitElement {
+    icon = '';
+    title = '';
+    type = '';
+    size = '';
+    message = '';
+    naked = false;
+    closable = false;
+
+    static get styles(): CSSResult[] {
+        return [resetStyle, alertStyle, iconStyle, accessibilityStyle, markStyle];
     }
 
-    constructor() {
-        super(`
-          <style>
-            ${resetStyle}
-            ${iconStyle}
-            ${alertStyle}
-            ${accessibilityStyle}
-          </style>
-          <div id="alert" class="vl-alert" role="alert">
-            <div id="content" class="vl-alert__content">
-              <p id="title" class="vl-alert__title">
-                <slot name='title'></slot>
-              </p>
-              <div id="message" class="vl-alert__message">
-                <slot id="messages-slot"></slot>
-              </div>
-              <div id="actions" class="vl-alert__actions">
-                <slot id="actions-slot" name="actions"></slot>
-              </div>
+    static get properties(): PropertyDeclarations {
+        return {
+            icon: { type: String, attribute: 'data-vl-icon', reflect: true },
+            title: { type: String, attribute: 'data-vl-title', reflect: true },
+            closable: { type: Boolean, attribute: 'data-vl-closable', reflect: true },
+            type: { type: String, attribute: 'data-vl-type', reflect: true },
+            size: { type: String, attribute: 'data-vl-size', reflect: true },
+            naked: { type: Boolean, attribute: 'data-vl-naked', reflect: true },
+            message: { type: String, attribute: 'data-vl-message', reflect: true },
+        };
+    }
+
+    protected updated(changedProperties: Map<string, unknown>): void {
+        super.updated(changedProperties);
+        this.processButtons();
+    }
+
+    protected render(): TemplateResult {
+        const classes = {
+            'vl-alert': true,
+            [`vl-alert--${this.type}`]: Boolean(this.type),
+            'vl-alert--small': this.size === 'small',
+            'vl-alert--naked': this.naked,
+        };
+
+        const markClass = this.naked ? `vl-u-mark--${this.type}` : '';
+
+        return html`
+            <div id="alert" class=${classMap(classes)} role="alert">
+                ${this.icon &&
+                html` <div class="vl-alert__icon">
+                    <span is="vl-icon" data-vl-icon="${this.icon}"></span>
+                </div>`}
+                <div id="content" class="vl-alert__content">
+                    <p id="title" class="vl-alert__title">
+                        <slot class=${markClass} name="title">${this.title}</slot>
+                    </p>
+                    <div id="message" class="vl-alert__message">
+                        <p class=${markClass}>${this.message}</p>
+                        <slot id="message-slot"></slot>
+                    </div>
+                    <div id="actions" class="vl-alert__actions">
+                        <slot id="actions-slot" name="actions"></slot>
+                    </div>
+                </div>
+                ${this.closable
+                    ? html`
+                          <button id="close" class="vl-alert__close" type="button" @click=${this.removeAlert}>
+                              <i class="vl-vi vl-vi-cross" aria-hidden="true"></i>
+                              <span class="vl-u-visually-hidden">Melding sluiten</span>
+                          </button>
+                      `
+                    : ''}
             </div>
-          </div>
-        `);
+        `;
     }
 
-    connectedCallback() {
-        super.connectedCallback();
-
-        this.__processActionsElementVisibility();
-        this.__processTitleElementVisibility();
-        this._actionsSlotElement.addEventListener('slotchange', () => this.__processButtons());
-        this._titleSlotElement.addEventListener('slotchange', () => this.__processTitleElementVisibility());
+    private removeAlert() {
+        this.parentElement?.removeChild(this);
+        this.dispatchEvent(new VlAlertClosedEvent());
     }
 
-    get _classPrefix() {
-        return 'vl-alert--';
-    }
+    private processButtons() {
+        const actionsSlotElement = this.renderRoot.querySelector('slot[name="actions"]') as HTMLSlotElement;
+        const buttonNodes = actionsSlotElement
+            ?.assignedNodes()
+            .filter((element) => element instanceof HTMLButtonElement);
 
-    get _iconElement() {
-        return this._element.querySelector('.vl-alert__icon');
-    }
-
-    get _closeButtonElement() {
-        return this._element.querySelector('.vl-alert__close');
-    }
-
-    get _actionsElement() {
-        return this._element.querySelector('.vl-alert__actions');
-    }
-
-    get _titleElement() {
-        return this._element.querySelector('.vl-alert__title');
-    }
-
-    get _actionsSlotElement() {
-        return this._element.querySelector('slot[name="actions"]');
-    }
-
-    get _titleSlotElement() {
-        return this._element.querySelector('slot[name="title"]');
-    }
-
-    _getIconTemplate(newValue: string) {
-        return this._template(`
-      <div class="vl-alert__icon">
-        <span is="vl-icon" data-vl-icon="${newValue}"></span>
-      </div>
-    `);
-    }
-
-    _getCloseButtonTemplate() {
-        return this._template(`
-      <button id="close" class="vl-alert__close" type="button">
-        <i class="vl-vi vl-vi-cross" aria-hidden="true"></i>
-        <span class="vl-u-visually-hidden">Melding sluiten</span>
-      </button>
-    `);
-    }
-
-    _getActionsTemplate() {
-        return this._template(`
-      <div class="vl-alert__actions"></div>
-    `);
-    }
-
-    _iconChangedCallback(oldValue: string, newValue: string) {
-        if (this._iconElement) {
-            this._iconElement.remove();
-        }
-
-        if (newValue != undefined) {
-            this._element.prepend(this._getIconTemplate(newValue));
-        }
-    }
-
-    _titleChangedCallback(oldValue: string, newValue: string) {
-        this._titleSlotElement.textContent = newValue;
-        this.__processTitleElementVisibility();
-    }
-
-    _closableChangedCallback(oldValue: string, newValue: string) {
-        if (this._closeButtonElement) {
-            this._closeButtonElement.remove();
-        }
-
-        if (newValue != undefined) {
-            const closeButtonTemplate = this._getCloseButtonTemplate();
-            closeButtonTemplate.querySelector('button').addEventListener('click', this.__removeAlert);
-            this._element.appendChild(closeButtonTemplate);
-        }
-    }
-
-    _typeChangedCallback(oldValue: string, newValue: string) {
-        if (['success', 'warning', 'error', 'info'].indexOf(newValue) >= 0) {
-            this._changeClass(this._element, oldValue, newValue);
-        } else {
-            this._element.classList.remove(this._classPrefix + oldValue);
-        }
-    }
-
-    _sizeChangedCallback(oldValue: string, newValue: string) {
-        if (['small'].indexOf(newValue) >= 0) {
-            this._changeClass(this._element, oldValue, newValue);
-        } else {
-            this._element.classList.remove(this._classPrefix + oldValue);
-        }
-    }
-
-    __processTitleElementVisibility() {
-        this._titleElement.hidden =
-            this._titleSlotElement &&
-            this._titleSlotElement.assignedElements().length == 0 &&
-            this._titleSlotElement.textContent.trim() === '';
-    }
-
-    __processActionsElementVisibility() {
-        this._actionsElement.hidden =
-            this._actionsSlotElement && this._actionsSlotElement.assignedElements().length == 0;
-    }
-
-    __processButtons() {
-        if (this._actionsSlotElement) {
-            this._actionsSlotElement.assignedNodes().forEach((element: Element) => {
-                if (element instanceof HTMLButtonElement) {
-                    element.setAttribute('data-vl-narrow', '');
-                }
-            });
-        }
-        this.__processActionsElementVisibility();
-    }
-
-    __removeAlert() {
-        this.getRootNode().host.remove();
-        this.getRootNode().host.dispatchEvent(new VlAlertClosedEvent());
+        buttonNodes.forEach((node) => (node as HTMLButtonElement).setAttribute('data-vl-narrow', ''));
     }
 }
 

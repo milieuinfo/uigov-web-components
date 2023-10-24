@@ -35,3 +35,9 @@ Cypress.Commands.add('mount', (template: TemplateResult) => {
             });
     });
 });
+
+Cypress.Commands.add('createStubForEvent', (selector: string, event: string) => {
+    cy.get(selector).then(($el: JQuery<HTMLElement>) => {
+        $el.get(0).addEventListener(event, cy.stub().as(event));
+    });
+});

@@ -31,7 +31,7 @@ export class VlAlertTester extends VlElementTester {
     }
 
     async getMessagesSlotElements() {
-        const slot = await this.shadowRoot.findElement(By.css('#messages-slot'));
+        const slot = await this.shadowRoot.findElement(By.css('#message-slot'));
         return this.getAssignedElements(slot);
     }
 

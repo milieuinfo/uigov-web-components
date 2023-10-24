@@ -1,61 +1,91 @@
 import { ArgTypes } from '@storybook/web-components';
+import { VlAlertClosedEvent } from '../vl-alert.model';
 import { ALERT_ICON, ALERT_SIZE, ALERT_TYPE } from '../vl-alert.model';
-import { VlAlertClosedEvent } from '../vl-alert-closed-event';
-import { CATEGORIES, logStorybookEvent } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES, logStorybookEvent } from '@domg-wc/common-storybook';
 
 export const alertArgs = {
-    title: 'Lorem ipsum',
-    icon: ALERT_ICON.WARNING,
+    closable: false,
+    naked: false,
+    title: '',
+    icon: '',
     size: '',
     type: '',
-    closable: false,
+    message: '',
+    defaultSlot: '',
+    titleSlot: '',
+    actionsSlot: '',
     alertClosed: logStorybookEvent(VlAlertClosedEvent.eventType),
-    buttonSlotText: 'Button',
-    titleSlotText: 'Title via slot',
-    content:
-        'Phasellus congue ipsum ut felis auctor, eget maximus justo dapibus. Nam sit amet pulvinar odio. Maecenas rhoncus quam eget neque porttitor, et faucibus nisl elementum.',
 };
 
 export const alertArgTypes: ArgTypes<typeof alertArgs> = {
+    closable: {
+        name: 'data-vl-closable',
+        description: 'Sluitknop voor de waarschuwing',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: alertArgs.closable },
+        },
+    },
+    naked: {
+        name: 'data-vl-naked',
+        description: 'Naked variant van de waarschuwing.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: alertArgs.naked },
+        },
+    },
     title: {
         name: 'data-vl-title',
-        description: 'Attribuut wordt gebruikt om de titel te bepalen.',
+        description:
+            'Titel van de waarschuwing.<br>Bij de naked variant mag de titel alleen met dit attribuut meegegeven worden.',
         table: {
-            type: { summary: 'String' },
-            defaultValue: { summary: '' },
-            category: 'Attributes',
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: alertArgs.title },
         },
     },
     icon: {
         name: 'data-vl-icon',
         description:
-            'Attribuut wordt gebruikt om het icoon type te bepalen. Het icoon kan gekozen worden uit de lijst op https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon.',
+            'Icon van de waarschuwing.<br>Het icoon kan gekozen worden uit de lijst op https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon.',
         control: {
             type: 'select',
             options: [ALERT_ICON.WARNING, ALERT_ICON.CHECK, ALERT_ICON.INFO_CIRCLE],
         },
         table: {
-            type: { summary: 'String' },
-            defaultValue: { summary: '' },
-            category: 'Attributes',
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: alertArgs.icon },
+        },
+    },
+    message: {
+        name: 'data-vl-message',
+        description:
+            'De message van de waarschuwing.<br>Bij de naked variant mag de message alleen met dit attribuut meegegeven worden.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: alertArgs.message },
         },
     },
     size: {
         name: 'data-vl-size',
-        description: 'Attribuut activeert een variant van de waarschuwing maar kleiner.',
+        description: 'Kleine variant van de waarschuwing.',
         control: {
             type: 'select',
             options: [ALERT_SIZE.SMALL],
         },
         table: {
             type: { summary: `${ALERT_SIZE.SMALL}` },
-            defaultValue: { summary: `` },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: alertArgs.size },
         },
     },
     type: {
         name: 'data-vl-type',
-        description: 'Attribuut bepaalt de soort van waarschuwing, foutmelding, probleemmelding of succesmelding.',
+        description: 'Soort van de waarschuwing, foutmelding, probleemmelding of succesmelding.',
         control: {
             type: 'select',
             options: [ALERT_TYPE.INFO, ALERT_TYPE.SUCCESS, ALERT_TYPE.WARNING, ALERT_TYPE.ERROR],
@@ -64,18 +94,35 @@ export const alertArgTypes: ArgTypes<typeof alertArgs> = {
             type: {
                 summary: `${ALERT_TYPE.INFO} | ${ALERT_TYPE.SUCCESS} | ${ALERT_TYPE.WARNING} | ${ALERT_TYPE.ERROR}`,
             },
-            defaultValue: { summary: '' },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: alertArgs.type },
         },
     },
-    closable: {
-        name: 'data-vl-closable',
-        description:
-            'Attribuut wordt gebruikt om de optie toe te voegen om de waarschuwing te sluiten door op het sluit icoon te klikken in de rechterbovenhoek.',
+    titleSlot: {
+        name: 'title',
+        description: 'Element dat als titel van het alert getoond wordt.',
         table: {
-            type: { summary: 'Boolean' },
-            defaultValue: { summary: 'false' },
-            category: 'Attributes',
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+            defaultValue: { summary: alertArgs.titleSlot },
+        },
+    },
+    actionsSlot: {
+        name: 'actions',
+        description: 'Slot voor actieknoppen',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+            defaultValue: { summary: alertArgs.actionsSlot },
+        },
+    },
+    defaultSlot: {
+        name: '[default]',
+        description: 'Element dat als message van het alert getoond wordt.',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+            defaultValue: { summary: alertArgs.defaultSlot },
         },
     },
     alertClosed: {
@@ -85,29 +132,5 @@ export const alertArgTypes: ArgTypes<typeof alertArgs> = {
             type: { summary: '-' },
             category: CATEGORIES.EVENTS,
         },
-    },
-    titleSlotText: {
-        name: 'title',
-        description: '',
-        table: {
-            category: 'Slots',
-        },
-        control: {
-            disable: true,
-        },
-    },
-    buttonSlotText: {
-        name: 'actions',
-        description: '',
-        table: {
-            category: 'Slots',
-        },
-        control: {
-            disable: true,
-        },
-    },
-    content: {
-        name: 'content (for demo purposes)',
-        description: '',
     },
 };
