@@ -1,4 +1,4 @@
-const { composePlugins, withNx } = require('@nrwl/webpack');
+const { composePlugins, withNx } = require('@nx/webpack');
 const { resolve } = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 

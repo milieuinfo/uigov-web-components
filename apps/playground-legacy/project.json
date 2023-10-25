@@ -6,7 +6,7 @@
     "tags": [],
     "targets": {
         "build": {
-            "executor": "@nrwl/webpack:webpack",
+            "executor": "@nx/webpack:webpack",
             "outputs": ["{options.outputPath}"],
             "defaultConfiguration": "production",
             "options": {
@@ -41,7 +41,7 @@
             }
         },
         "serve": {
-            "executor": "@nrwl/webpack:dev-server",
+            "executor": "@nx/webpack:dev-server",
             "options": {
                 "buildTarget": "playground-legacy:build"
             },
@@ -52,14 +52,14 @@
             }
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": ["apps/playground-legacy/**/*.ts"]
             }
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/apps/playground-legacy"],
             "options": {
                 "jestConfig": "apps/playground-legacy/jest.config.ts",

@@ -1,4 +1,4 @@
-const { composePlugins, withNx } = require('@nrwl/webpack');
+const { composePlugins, withNx } = require('@nx/webpack');
 const { resolve } = require('path');
 
 module.exports = composePlugins(withNx(), (config, { options, context }) => {

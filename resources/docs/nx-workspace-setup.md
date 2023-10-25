@@ -10,35 +10,35 @@ Dit document beschrijft (in grote lijnen) de stappen utgevoerd om de UIG repo op
 
 ## Setup - applications
 
--   npm install -D @nrwl/web
--   npx nx g @nrwl/web:application alliance
+-   npm install -D @nx/web
+-   npx nx g @nx/web:application alliance
 
 ## Setup - web-components
 
 -   npx create-nx-workspace@latest
     -   [applications | web-components] / apps [an empty workspace with no plugins with a layout that works best for building apps]
     -   no distributed caching
--   npm install -D @nrwl/web
--   npx nx g @nrwl/web:lib common/utilities --buildable --importPath=@domg-wc/common-utilities
--   npx nx g @nrwl/web:lib common/storybook --buildable --importPath=@domg-wc/common-storybook
--   npx nx g @nrwl/web:lib elements --buildable --publishable --importPath=@domg-wc/elements
--   npx nx g @nrwl/web:lib components --buildable --publishable --importPath=@domg-wc/components
--   npx nx g @nrwl/web:lib sections --buildable --publishable --importPath=@domg-wc/sections
--   npx nx g @nrwl/web:lib support/test-support --buildable --publishable --importPath=@domg-wc/test-support
--   npx nx g @nrwl/web:lib support/fat-lib --buildable --publishable --importPath=@domg-wc/fat-lib
--   npx nx g @nrwl/web:lib map --buildable --publishable --importPath=@domg-wc/map
--   npx nx g @nrwl/web:application playground
--   npx nx g @nrwl/web:application playground-lit --e2eTestRunner=none
--   npx nx g @nrwl/web:application playground-native --e2eTestRunner=none
--   npx nx g @nrwl/react:application playground-react --e2eTestRunner=none
--   npx nx g @nrwl/web:application storybook
+-   npm install -D @nx/web
+-   npx nx g @nx/web:lib common/utilities --buildable --importPath=@domg-wc/common-utilities
+-   npx nx g @nx/web:lib common/storybook --buildable --importPath=@domg-wc/common-storybook
+-   npx nx g @nx/web:lib elements --buildable --publishable --importPath=@domg-wc/elements
+-   npx nx g @nx/web:lib components --buildable --publishable --importPath=@domg-wc/components
+-   npx nx g @nx/web:lib sections --buildable --publishable --importPath=@domg-wc/sections
+-   npx nx g @nx/web:lib support/test-support --buildable --publishable --importPath=@domg-wc/test-support
+-   npx nx g @nx/web:lib support/fat-lib --buildable --publishable --importPath=@domg-wc/fat-lib
+-   npx nx g @nx/web:lib map --buildable --publishable --importPath=@domg-wc/map
+-   npx nx g @nx/web:application playground
+-   npx nx g @nx/web:application playground-lit --e2eTestRunner=none
+-   npx nx g @nx/web:application playground-native --e2eTestRunner=none
+-   npx nx g @nx/react:application playground-react --e2eTestRunner=none
+-   npx nx g @nx/web:application storybook
 
 ## Storybook
 
 Nx ondersteund Storybook maar niet voor Web Componenten, enkel voor Angular of React.
 De volgende stappen zijn gedaan om Storybook te installeren:
 
--   npx nx g @nrwl/web:application storybook\
+-   npx nx g @nx/web:application storybook\
     -> dit maakt een default web app 'storybook' en 'storybook-e2e'
 -   npx storybook init\
     -> in de apps/storybook folder\

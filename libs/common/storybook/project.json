@@ -5,7 +5,7 @@
     "projectType": "library",
     "targets": {
         "build": {
-            "executor": "@nrwl/js:tsc",
+            "executor": "@nx/js:tsc",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "clean": true,
@@ -13,7 +13,8 @@
                 "outputPath": "dist/libs/common/storybook",
                 "main": "libs/common/storybook/index.ts",
                 "tsConfig": "libs/common/storybook/tsconfig.lib.json",
-                "assets": ["libs/common/storybook/*.md"]
+                "assets": ["libs/common/storybook/*.md"],
+                "updateBuildableProjectDepsInPackageJson": true
             }
         },
         "build-with-js": {
@@ -24,14 +25,14 @@
             }
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": ["libs/common/storybook/**/*.ts"]
             }
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/libs/common/storybook"],
             "options": {
                 "jestConfig": "libs/common/storybook/jest.config.ts",

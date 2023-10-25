@@ -1,10 +1,11 @@
 {
+    "name": "map",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/map/src",
     "projectType": "library",
     "targets": {
         "build": {
-            "executor": "@nrwl/js:tsc",
+            "executor": "@nx/js:tsc",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "clean": true,
@@ -12,7 +13,8 @@
                 "outputPath": "dist/libs/map",
                 "main": "libs/map/index.ts",
                 "tsConfig": "libs/map/tsconfig.lib.json",
-                "assets": ["libs/map/*.md"]
+                "assets": ["libs/map/*.md"],
+                "updateBuildableProjectDepsInPackageJson": true
             }
         },
         "build-with-js": {
@@ -23,14 +25,14 @@
             }
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": ["libs/map/**/*.ts"]
             }
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/libs/map"],
             "options": {
                 "jestConfig": "libs/map/jest.config.ts",
@@ -50,6 +52,5 @@
             }
         }
     },
-    "tags": [],
-    "name": "map"
+    "tags": []
 }
