@@ -1,3 +1,4 @@
+import 'construct-style-sheets-polyfill';
 import { CSSResult } from 'lit';
 
 // @govflanders common styles
