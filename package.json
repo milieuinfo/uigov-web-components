@@ -150,6 +150,7 @@
         "@govflanders/vl-ui-util": "14.0.2",
         "@ungap/custom-elements": "1.2.0",
         "bootstrap-sass": "3.4.3",
+        "construct-style-sheets-polyfill": "3.1.0",
         "core-js": "3.29.1",
         "jsts": "2.9.0",
         "lit": "2.6.1",
