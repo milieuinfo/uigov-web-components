@@ -1,4 +1,5 @@
 {
+    "name": "storybook",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
     "sourceRoot": "apps/storybook/src",
@@ -17,12 +18,11 @@
             }
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": ["apps/storybook/**/*.ts"]
             }
         }
-    },
-    "name": "storybook"
+    }
 }

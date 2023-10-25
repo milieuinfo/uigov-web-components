@@ -1,10 +1,11 @@
 {
+    "name": "storybook-e2e",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/storybook-e2e/src",
     "projectType": "application",
     "targets": {
         "e2e": {
-            "executor": "@nrwl/cypress:cypress",
+            "executor": "@nx/cypress:cypress",
             "options": {
                 "browser": "chrome",
                 "testingType": "e2e",
@@ -12,7 +13,7 @@
             }
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": ["apps/storybook-e2e/**/*.{js,ts}"]
@@ -20,6 +21,5 @@
         }
     },
     "tags": [],
-    "implicitDependencies": ["storybook"],
-    "name": "storybook-e2e"
+    "implicitDependencies": ["storybook"]
 }

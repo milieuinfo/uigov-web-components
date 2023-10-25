@@ -1,10 +1,11 @@
 {
+    "name": "components",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/components/src",
     "projectType": "library",
     "targets": {
         "build": {
-            "executor": "@nrwl/js:tsc",
+            "executor": "@nx/js:tsc",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "clean": true,
@@ -12,7 +13,8 @@
                 "outputPath": "dist/libs/components",
                 "main": "libs/components/index.ts",
                 "tsConfig": "libs/components/tsconfig.lib.json",
-                "assets": ["libs/components/*.md"]
+                "assets": ["libs/components/*.md"],
+                "updateBuildableProjectDepsInPackageJson": true
             }
         },
         "build-with-js": {
@@ -23,14 +25,14 @@
             }
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": ["libs/components/**/*.ts"]
             }
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/libs/components"],
             "options": {
                 "jestConfig": "libs/components/jest.config.ts",
@@ -38,6 +40,5 @@
             }
         }
     },
-    "tags": [],
-    "name": "components"
+    "tags": []
 }

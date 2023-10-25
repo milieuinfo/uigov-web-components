@@ -1,10 +1,11 @@
 {
+    "name": "support-test-support",
     "$schema": "../../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/support/test-support/src",
     "projectType": "library",
     "targets": {
         "build": {
-            "executor": "@nrwl/js:tsc",
+            "executor": "@nx/js:tsc",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "clean": true,
@@ -12,7 +13,8 @@
                 "outputPath": "dist/libs/support/test-support",
                 "main": "libs/support/test-support/index.ts",
                 "tsConfig": "libs/support/test-support/tsconfig.lib.json",
-                "assets": ["libs/support/test-support/*.md"]
+                "assets": ["libs/support/test-support/*.md"],
+                "updateBuildableProjectDepsInPackageJson": true
             }
         },
         "build-with-js": {
@@ -23,14 +25,14 @@
             }
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": ["libs/support/test-support/**/*.ts"]
             }
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/libs/support/test-support"],
             "options": {
                 "jestConfig": "libs/support/test-support/jest.config.ts",
@@ -38,6 +40,5 @@
             }
         }
     },
-    "tags": [],
-    "name": "support-test-support"
+    "tags": []
 }

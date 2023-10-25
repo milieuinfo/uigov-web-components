@@ -17,9 +17,9 @@ and build projects as well.
 Below are our core plugins:
 
 -   [React](https://reactjs.org)
-    -   `npm install --save-dev @nrwl/react`
+    -   `npm install --save-dev @nx/react`
 -   Web (no framework frontends)
-    -   `npm install --save-dev @nrwl/web`
+    -   `npm install --save-dev @nx/web`
 -   [Angular](https://angular.io)
     -   `npm install --save-dev @nrwl/angular`
 -   [Nest](https://nestjs.com)
@@ -33,7 +33,7 @@ There are also many [community plugins](https://nx.dev/community) you could add.
 
 ## Generate an application
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+Run `nx g @nx/react:app my-app` to generate an application.
 
 > You can use any of the plugins above to generate applications as well.
 
@@ -41,7 +41,7 @@ When using Nx, you can create multiple applications and libraries in the same wo
 
 ## Generate a library
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+Run `nx g @nx/react:lib my-lib` to generate a library.
 
 > You can also use any of the plugins above to generate libraries as well.
 
@@ -54,7 +54,7 @@ automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+Run `nx g @nx/react:component my-component --project=my-app` to generate a new component.
 
 ## Build
 

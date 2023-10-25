@@ -5,7 +5,7 @@
     "projectType": "library",
     "targets": {
         "build-fat-lib-min": {
-            "executor": "@nrwl/webpack:webpack",
+            "executor": "@nx/webpack:webpack",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "clean": true,
@@ -19,7 +19,7 @@
             }
         },
         "build-fat-lib": {
-            "executor": "@nrwl/webpack:webpack",
+            "executor": "@nx/webpack:webpack",
             "dependsOn": ["build-fat-lib-min"],
             "outputs": ["{options.outputPath}"],
             "options": {
