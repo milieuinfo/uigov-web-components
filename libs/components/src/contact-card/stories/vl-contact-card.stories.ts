@@ -15,7 +15,7 @@ export default {
 
 export const contactCardDefault = story(
     {},
-    () => html` <vl-contact-card data-cy="contact-card">
+    () => html` <vl-contact-card>
         <vl-infoblock
             slot="info"
             data-vl-title="Departement Onderwijs en Vorming"
