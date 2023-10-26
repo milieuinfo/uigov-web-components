@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseHTMLElement, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import { VlH2Element, VlIconElement } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { infoblockStyle } from '@domg/govflanders-style/component';
@@ -16,7 +16,7 @@ import { infoblockStyle } from '@domg/govflanders-style/component';
  * @property {string} data-vl-type - Er kan een vast icoon gekozen worden (contact, publications, faq, news, timeline, question)
  */
 @webComponent('vl-infoblock')
-export class VlInfoblockComponent extends BaseElementOfType(HTMLElement) {
+export class VlInfoblockComponent extends BaseHTMLElement {
     static {
         registerWebComponents([VlH2Element, VlIconElement]);
     }
@@ -34,7 +34,9 @@ export class VlInfoblockComponent extends BaseElementOfType(HTMLElement) {
           <section id="infoblock-element" class="vl-infoblock">
             <header class="vl-infoblock__header" role="presentation">
               <span is="vl-icon" id="infoblock_icon" class="vl-infoblock__header__icon"></span>
-              <slot name="title" class="vl-infoblock__title">Testa</slot>
+              <slot name="title">
+                    <h2 id="title_content" is="vl-h2" class="vl-infoblock__title"></h2>
+              </slot>
             </header>
             <div class="vl-infoblock__content" id="infoblock_content">
               <slot></slot>
@@ -48,16 +50,15 @@ export class VlInfoblockComponent extends BaseElementOfType(HTMLElement) {
 
         const title = this.getAttribute('title');
         if (title) {
-            this._titleChangedCallback('', this.getAttribute('title'));
+            this._titleChangedCallback('', title);
         }
     }
 
     _titleChangedCallback(oldValue: string, newValue: string) {
-        const currentSlot = this.querySelector('[slot="title"]');
+        const currentSlot = this.shadowRoot?.querySelector('#title_content');
         if (currentSlot) {
-            currentSlot.remove();
+            (currentSlot as HTMLElement).innerText = newValue;
         }
-        this.appendChild(this._template(`<h2 is="vl-h2" slot='title'>${newValue}</h2>`));
     }
 
     _iconChangedCallback(oldValue: string, newValue: string) {

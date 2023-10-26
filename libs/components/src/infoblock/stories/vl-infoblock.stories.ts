@@ -14,12 +14,7 @@ const infoblockTemplate = story(
     infoblockArgs,
     ({ title, content, type, icon }) =>
         html`
-            <vl-infoblock
-                slot="info"
-                data-vl-title=${title}
-                data-vl-type=${type}
-                data-vl-icon=${icon}
-                data-cy="infoblock"
+            <vl-infoblock slot="info" data-vl-title=${title} data-vl-type=${type} data-vl-icon=${icon}
                 >${content}
             </vl-infoblock>
         `
@@ -91,7 +86,7 @@ infoblockCustomIcon.argTypes = {
 export const infoblockWithSlotElements = story(
     infoblockArgs,
     ({ title, content, type }) => html`
-        <vl-infoblock data-vl-type=${type} data-cy="infoblock-with-slot-elements">
+        <vl-infoblock data-vl-type=${type}>
             <h2 is="vl-h2" slot="title">${title}</h2>
             ${content}
         </vl-infoblock>
