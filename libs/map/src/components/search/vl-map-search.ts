@@ -56,8 +56,9 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
             <select is="vl-select-location" slot="input" data-vl-position=${SELECT_POSITION.BOTTOM}></select>
           </vl-search>
         `);
-        this._configure();
-        this._addSelectChangeListener();
+        this.configure();
+        this.addSelectChangeListener();
+        this.preventKeypressPropagation();
     }
 
     get _selectElement() {
@@ -77,11 +78,11 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
         this._onSelect = callback;
     }
 
-    _zoomTo(boundingBox) {
+    private zoomTo(boundingBox) {
         this._map.zoomTo(boundingBox, 14);
     }
 
-    _configure() {
+    private configure() {
         customElements.whenDefined('vl-map').then(() => {
             if (this.parentNode && this.parentNode.map) {
                 this._map = this.parentNode._shadow.host;
@@ -95,17 +96,23 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
         });
     }
 
-    _addSelectChangeListener() {
+    private addSelectChangeListener() {
         this._selectElement.addEventListener('change', (e) => {
             if (e.target.location) {
                 e.target.location.then((location) => {
                     if (this._onSelect) {
                         this._onSelect(location);
                     } else {
-                        this._zoomTo(location);
+                        this.zoomTo(location);
                     }
                 });
             }
+        });
+    }
+
+    private preventKeypressPropagation() {
+        this.addEventListener('keypress', (e) => {
+            e.stopPropagation();
         });
     }
 
