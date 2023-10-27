@@ -56,8 +56,12 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
             <select is="vl-select-location" slot="input" data-vl-position=${SELECT_POSITION.BOTTOM}></select>
           </vl-search>
         `);
-        this._configure();
-        this._addSelectChangeListener();
+        this.configure();
+    }
+
+    connectedCallback() {
+        this._selectElement.addEventListener('change', this.changeLocation);
+        this.addEventListener('keypress', this.stopPropagation);
     }
 
     get _selectElement() {
@@ -77,11 +81,11 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
         this._onSelect = callback;
     }
 
-    _zoomTo(boundingBox) {
+    private zoomTo(boundingBox) {
         this._map.zoomTo(boundingBox, 14);
     }
 
-    _configure() {
+    private configure() {
         customElements.whenDefined('vl-map').then(() => {
             if (this.parentNode && this.parentNode.map) {
                 this._map = this.parentNode._shadow.host;
@@ -95,19 +99,21 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
         });
     }
 
-    _addSelectChangeListener() {
-        this._selectElement.addEventListener('change', (e) => {
-            if (e.target.location) {
-                e.target.location.then((location) => {
-                    if (this._onSelect) {
-                        this._onSelect(location);
-                    } else {
-                        this._zoomTo(location);
-                    }
-                });
-            }
-        });
-    }
+    private changeLocation = (e) => {
+        if (e.target.location) {
+            e.target.location.then((location) => {
+                if (this._onSelect) {
+                    this._onSelect(location);
+                } else {
+                    this.zoomTo(location);
+                }
+            });
+        }
+    };
+
+    private stopPropagation = (e) => {
+        e.stopPropagation();
+    };
 
     _placeholderChangedCallback(oldValue, newValue) {
         this._dispatchSelectAttribute('placeholder', newValue);
@@ -131,6 +137,11 @@ export class VlMapSearch extends BaseElementOfType(HTMLElement) {
         } else {
             this._selectElement.removeAttribute(`${VlMapSearch.attributePrefix}${attribute}`);
         }
+    }
+
+    disconnectedCallback() {
+        this.removeEventListener('keypress', this.stopPropagation);
+        this._selectElement?.removeEventListener('change', this.changeLocation);
     }
 }
 
