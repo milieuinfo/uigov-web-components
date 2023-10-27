@@ -1,28 +1,15 @@
+import { story } from '@domg-wc/common-storybook';
 import { html } from 'lit';
 import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
-import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import '../../layer-style/vl-map-layer-style';
+import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../vl-map-legend';
-import { mapLegendArgTypes, mapLegendArgs } from './vl-map-legend.stories-arg';
-import mapLegendDoc from './vl-map-legend.stories-doc.mdx';
-import { Meta } from '@storybook/web-components';
+import { mapLegendArgs } from './vl-map-legend.stories-arg';
 import { linkStylesToFeatures } from './vl-map-legend.stories-util';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
-export default {
-    title: 'map/legend',
-    args: storyArgs(mapLegendArgs),
-    argTypes: storyArgTypes(mapLegendArgTypes),
-    parameters: {
-        docs: {
-            page: mapLegendDoc,
-        },
-    },
-} as Meta<typeof mapLegendArgs>;
-
-export const MapLegendFeaturesLayerMultipleStyles = story(mapLegendArgs, ({ bottom, left, placement, right, top }) => {
+export default story(mapLegendArgs, ({ bottom, left, placement, right, top }) => {
     const features = {
         type: 'FeatureCollection',
         features: [
@@ -113,4 +100,3 @@ export const MapLegendFeaturesLayerMultipleStyles = story(mapLegendArgs, ({ bott
         ></vl-map-legend>
     </vl-map>`;
 });
-MapLegendFeaturesLayerMultipleStyles.storyName = 'vl-map-legend - features-layer multiple styles';

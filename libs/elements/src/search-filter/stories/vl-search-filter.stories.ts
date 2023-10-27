@@ -9,6 +9,7 @@ import { searchFilterArgs, searchFilterArgTypes } from './vl-search-filter.stori
 
 export default {
     title: 'Elements/search-filter',
+    tags: ['autodocs'],
     args: searchFilterArgs,
     argTypes: searchFilterArgTypes,
 };

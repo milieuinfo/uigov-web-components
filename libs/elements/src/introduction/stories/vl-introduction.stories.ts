@@ -3,6 +3,7 @@ import '../vl-introduction.element';
 
 export default {
     title: 'Elements/introduction',
+    tags: ['autodocs'],
     parameters: {
         controls: { hideNoControlsWarning: true },
     },

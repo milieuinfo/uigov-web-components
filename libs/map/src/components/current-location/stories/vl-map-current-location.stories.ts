@@ -9,6 +9,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/current-location',
+    tags: ['autodocs'],
     args: storyArgs(mapCurrentLocationArgs),
     argTypes: storyArgTypes(mapCurrentLocationArgTypes),
     parameters: {

@@ -1,3 +1,4 @@
+import { registerWebComponents } from '@domg-wc/common-utilities';
 import { html } from 'lit-html';
 import { autocompleteArgs, autocompleteArgTypes, complexItems } from './vl-autocomplete.stories-arg';
 import { CAPTION_FORMAT, GROUP_BY } from '../vl-autocomplete.model';
@@ -7,9 +8,13 @@ import '../vl-autocomplete.component';
 import autocompleteDoc from './vl-autocomplete.stories-doc.mdx';
 import { Meta } from '@storybook/web-components';
 import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { VlSideSheet } from '@domg-wc/components';
+
+registerWebComponents([VlSideSheet]);
 
 export default {
     title: 'Components/autocomplete',
+    tags: ['autodocs'],
     args: storyArgs(autocompleteArgs),
     argTypes: storyArgTypes(autocompleteArgTypes),
     parameters: {

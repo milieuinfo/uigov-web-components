@@ -7,6 +7,7 @@ import '../vl-steps.component';
 
 export default {
     title: 'Components-next/steps-next',
+    tags: ['autodocs'],
     args: storyArgs(stepsArgs),
     argTypes: storyArgTypes(stepsArgTypes),
     parameters: {

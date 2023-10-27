@@ -8,6 +8,7 @@ import '../../text/vl-text.element';
 
 export default {
     title: 'Elements/input-group',
+    tags: ['autodocs'],
     parameters: {
         controls: { hideNoControlsWarning: true },
     },

@@ -3,7 +3,8 @@ import '../vl-link-button.element';
 import { buttonArgs, buttonArgTypes } from './vl-button.stories-arg';
 
 export default {
-    title: 'Elements/button',
+    title: 'Elements/button/link-button',
+    tags: ['autodocs'],
     args: { ...buttonArgs, content: 'Link button' },
     argTypes: buttonArgTypes,
 };

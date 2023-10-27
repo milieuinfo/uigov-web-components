@@ -2,7 +2,8 @@ import { html } from 'lit-html';
 import '../vl-form-annotation.element';
 
 export default {
-    title: 'Elements/form-message',
+    title: 'Elements/form-message/form-annotation',
+    tags: ['autodocs'],
 };
 
 export const formAnnotationDefault = () => html`

@@ -1,8 +1,10 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapWmsStyleStories from './vl-map-wms-style.stories';
 
 # Map WMS Style
 
-Gebruik het `map-wms-style` component om een WMS kaartlaag server side te stijlen.<br/>
+Gebruik de `map-wms-style` component om een WMS kaartlaag server side te stijlen.<br/>
+
 
 ## Voorbeeld
 
@@ -14,16 +16,18 @@ import { VlMapWmsStyle } from '@domg-wc/map';
 <vl-map-wms-style></vl-map-wms-style>
 ```
 
-<DocsStory id="map-layer-wms-layer-wms-style--map-wms-style-default" />
+<Canvas of={VlMapWmsStyleStories.MapWmsStyleDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapWmsStyleStories.MapWmsStyleDefault} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-wms-style--default
+[Legacy Storybook - Map Wms Style](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-wms-style--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapWmsStyle.html
+[Legacy Documentatie - Map Wms Style](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapWmsStyle.html)

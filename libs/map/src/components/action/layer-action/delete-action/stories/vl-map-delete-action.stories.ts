@@ -12,6 +12,7 @@ import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/layer-action/delete-action',
+    tags: ['autodocs'],
     args: storyArgs(mapActionArgs),
     argTypes: storyArgTypes(mapActionArgTypes),
     parameters: {

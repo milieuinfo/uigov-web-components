@@ -5,6 +5,7 @@ import { multiselectArgs, multiselectArgTypes } from './vl-multiselect.stories-a
 
 export default {
     title: 'Elements/multiselect',
+    tags: ['autodocs'],
     args: multiselectArgs,
     argTypes: multiselectArgTypes,
     parameters: {

@@ -5,6 +5,7 @@ import { linkListArgs, linkListArgTypes } from './vl-link-list.stories-arg';
 
 export default {
     title: 'Elements/link-list',
+    tags: ['autodocs'],
     args: linkListArgs,
     argTypes: linkListArgTypes,
 };

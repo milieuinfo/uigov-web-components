@@ -14,6 +14,7 @@ import { storyArgTypes, storyArgs, story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/rich-data-table',
+    tags: ['autodocs'],
     args: storyArgs(richDataTableArgs),
     argTypes: storyArgTypes(richDataTableArgTypes),
     parameters: {

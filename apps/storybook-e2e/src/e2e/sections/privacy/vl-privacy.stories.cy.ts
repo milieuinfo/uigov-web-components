@@ -5,6 +5,8 @@ const privacyHeaderSlotUrl =
 describe('story vl-privacy', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(privacyUrl);
+
+        cy.get('vl-privacy');
         cy.checkA11y('vl-privacy');
     });
 

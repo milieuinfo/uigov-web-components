@@ -6,6 +6,7 @@ import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/annotation',
+    tags: ['autodocs'],
     args: storyArgs(annotationArgs),
     argTypes: storyArgTypes(annotationArgTypes),
 } as Meta<typeof annotationArgs>;

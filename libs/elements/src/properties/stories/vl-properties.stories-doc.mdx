@@ -1,4 +1,5 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlPropertiesStories from './vl-properties.stories';
 
 # Properties
 
@@ -15,28 +16,31 @@ import { VlPropertiesComponent } from '@domg-wc/elements';
 <vl-properties></vl-properties>
 ```
 
-<DocsStory id="elements-properties--properties-default" />
+<Canvas of={VlPropertiesStories.PropertiesDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlPropertiesStories.PropertiesDefault} />
+
 
 ## Varianten
 
 ### Kolommen
 
-<DocsStory id="elements-properties--properties-column" />
+<Canvas of={VlPropertiesStories.PropertiesColumn} />
+
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-properties/
+[Documentatie Digitaal Vlaanderen - Properties](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-properties)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-properties--default
+[Legacy Storybook - Properties](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-properties--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlProperties.html
+[Legacy Documentatie - Properties](https://webcomponenten.omgeving.vlaanderen.be/doc/VlProperties.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-properties.html
+[Legacy Demo - Properties](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-properties.html)

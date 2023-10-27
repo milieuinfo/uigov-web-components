@@ -1,9 +1,11 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlAccordionListStories from './vl-accordion-list.stories';
 
 # Accordion List
 
-Een lijst component dat kan gebruikt worden als je meerdere accordions wilt afbeelden.  
-Voor meer informatie over accordions zie het [accordion](/story/components-accordion--accordion-default) component.
+Een lijst component die kan gebruikt worden als je meerdere accordions wilt afbeelden.
+Voor meer informatie over accordions zie de [accordion](/story/components-accordion--accordion-default) component.
+
 
 ## Voorbeeld
 
@@ -15,20 +17,23 @@ import { VlAccordionListComponent } from '@domg-wc/components';
 <vl-accordion-list></vl-accordion-list>
 ```
 
-<DocsStory id="components-accordion-list--accordion-list-default" />
+<Canvas of={VlAccordionListStories.AccordionListDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlAccordionListStories.AccordionListDefault} />
+
 
 ## Varianten
 
 ### Nested
 
-<DocsStory id="components-accordion-list--accordion-list-nested" />
+<Canvas of={VlAccordionListStories.AccordionListNested} />
+
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/js-components/vl-ui-accordion/
+[Documentatie Digitaal Vlaanderen - Accordion List](https://overheid.vlaanderen.be/webuniversum/v3/documentation/js-components/vl-ui-accordion)

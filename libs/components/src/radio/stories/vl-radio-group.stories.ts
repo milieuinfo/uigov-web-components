@@ -1,11 +1,16 @@
-import { html } from 'lit-html';
-import '../vl-radio-group.component';
-import { storyArgTypes, storyArgs, story } from '@domg-wc/common-storybook';
+import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { registerWebComponents } from '@domg-wc/common-utilities';
 import { Meta } from '@storybook/web-components';
+import { html } from 'lit-html';
+import { VlRadioGroup } from '../vl-radio-group.component';
+import { VlRadio } from '../vl-radio.component';
 import radioDoc from './vl-radio.stories-doc.mdx';
+
+registerWebComponents([VlRadio, VlRadioGroup]);
 
 export default {
     title: 'Components/radio',
+    tags: ['autodocs'],
     args: storyArgs({}),
     argTypes: storyArgTypes({}),
     parameters: {

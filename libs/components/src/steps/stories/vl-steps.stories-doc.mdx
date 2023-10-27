@@ -1,9 +1,13 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlStepsStories from './vl-steps.stories';
 
 # Steps
 
-❗**DEPRECATED: gebruik het [vl-steps-next](?path=/docs/components-next-steps-next--steps-default) component**❗<br/><br/>
-Gebruik het `steps` component om een verticale lijst van stappen af te beelden om de gebruiker door een procedure te begeleiden.<br/>
+❗**DEPRECATED: gebruik de [vl-steps-next](?path=/docs/components-next-steps-next--steps-default) component**❗<br/>
+<br/>
+Gebruik de `steps` component om een verticale lijst van stappen af te beelden om de gebruiker door een procedure te
+begeleiden.
+
 
 ## Voorbeeld
 
@@ -15,32 +19,38 @@ import { VlStepsComponent } from '@domg-wc/components';
 <vl-steps></vl-steps>
 ```
 
-<DocsStory id="components-steps--steps-default" />
+
+## Default
+
+<Canvas of={VlStepsStories.StepsDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlStepsStories.StepsDefault} />
+
 
 ## Varianten
 
 ### Accordions
 
-<DocsStory id="components-steps--steps-with-accordions" />
+<Canvas of={VlStepsStories.StepsWithAccordions} />
 
 ### Tijdlijn
 
-<DocsStory id="components-steps--steps-with-timeline" />
+<Canvas of={VlStepsStories.StepsWithTimeline} />
+
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-steps/
+[Documentatie Digitaal Vlaanderen - Steps](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-steps)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-steps--default
+[Legacy Storybook - Steps](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-steps--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlSteps.html
+[Legacy Documentatie - Steps](https://webcomponenten.omgeving.vlaanderen.be/doc/VlSteps.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-steps.html
+[Legacy Demo - Steps](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-steps.html)

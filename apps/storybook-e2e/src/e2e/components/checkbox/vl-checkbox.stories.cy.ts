@@ -5,6 +5,7 @@ describe('story vl-checkbox default', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(checkboxUrl);
 
+        cy.get('vl-checkbox');
         cy.checkA11y('vl-checkbox');
         cy.get('vl-checkbox').shadow().find('.vl-checkbox__toggle').click({ force: true });
         cy.checkA11y('vl-checkbox');
@@ -55,6 +56,7 @@ describe('story vl-checkbox switch', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(checkboxSwitchUrl);
 
+        cy.get('vl-checkbox');
         cy.checkA11y('vl-checkbox');
         cy.get('vl-checkbox').shadow().find('.vl-checkbox--switch').click({ force: true });
         cy.checkA11y('vl-checkbox');

@@ -6,6 +6,8 @@ const accessibilityHeaderSlotUrl =
 describe('story vl-accessibility', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(accessibilityUrl);
+
+        cy.get('vl-accessibility');
         cy.checkA11y('vl-accessibility');
     });
 

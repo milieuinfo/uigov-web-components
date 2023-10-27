@@ -1,25 +1,30 @@
+import { story } from '@domg-wc/common-storybook';
 import { html } from 'lit-html';
-import '../vl-input-field.element';
 import '../../action-group/vl-action-group.element';
 import '../../button/vl-button.element';
-import '../../form/vl-form.element';
-import '../../form/vl-form-group.element';
-import '../../form-grid/vl-form-grid.element';
 import '../../form-grid/vl-form-column.element';
-import '../../link/vl-link.element';
-import '../../form-message/vl-form-validation-message.element';
-import '../../form-message/vl-form-label.element';
+import '../../form-grid/vl-form-grid.element';
 import '../../form-message/vl-form-annotation.element';
-import '../../icon/vl-icon.element';
-import { VALIDATION_TYPE } from '../../form-validation/vl-form-validation.model';
-import { inputFieldArgs, inputFieldArgTypes } from './vl-input-field.stories-arg';
+import '../../form-message/vl-form-label.element';
+import '../../form-message/vl-form-validation-message.element';
 import { formValidationArgsDisabled } from '../../form-validation/stories/form-validation.stories-arg';
-import { story } from '@domg-wc/common-storybook';
+import { VALIDATION_TYPE } from '../../form-validation/vl-form-validation.model';
+import '../../form/vl-form-group.element';
+import '../../form/vl-form.element';
+import '../../icon/vl-icon.element';
+import '../../link/vl-link.element';
+import '../vl-input-field.element';
+import { inputFieldArgs, inputFieldArgTypes } from './vl-input-field.stories-arg';
+import inputFieldDoc from './vl-input-field.stories-doc.mdx';
 
 export default {
     title: 'Elements/input-field',
+    tags: ['autodocs'],
     args: inputFieldArgs,
     argTypes: inputFieldArgTypes,
+    parameters: {
+        docs: { page: inputFieldDoc },
+    },
 };
 
 export const InputFieldDefault = story(
@@ -114,9 +119,9 @@ InputFieldFormWithValidation.args = {
     errorPlaceholder: 'name-error-id',
 };
 
-export const inputFieldFormWithNumericalValidation = InputFieldFormWithValidationTemplate.bind({});
-inputFieldFormWithNumericalValidation.storyName = 'vl-input-field - form with numerical validation';
-inputFieldFormWithNumericalValidation.args = {
+export const InputFieldFormWithNumericalValidation = InputFieldFormWithValidationTemplate.bind({});
+InputFieldFormWithNumericalValidation.storyName = 'vl-input-field - form with numerical validation';
+InputFieldFormWithNumericalValidation.args = {
     validationType: VALIDATION_TYPE.NUMERICAL,
     errorMessage: 'Getal voldoet niet aan de voorwaarden.',
     errorPlaceholder: 'numerical-error-id',

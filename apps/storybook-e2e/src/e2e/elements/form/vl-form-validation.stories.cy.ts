@@ -10,6 +10,7 @@ const formValidationWithoutSubmitUrl =
 describe('story vl-form - validation', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(formValidationDefaultUrl);
+        cy.get('[is="vl-form"]');
         cy.checkA11y('[is="vl-form"]');
     });
 
@@ -27,6 +28,7 @@ describe('story vl-form - validation', () => {
 describe('story vl-form - validation optional', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(formValidationOptionalUrl);
+        cy.get('[is="vl-form"]');
         cy.checkA11y('[is="vl-form"]');
     });
 
@@ -76,6 +78,7 @@ describe('story vl-form - validation optional', () => {
 describe('story vl-form - validation escape field names', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(formValidationEscapeFieldNamesUrl);
+        cy.get('[is="vl-form"]');
         cy.checkA11y('[is="vl-form"]');
     });
 
@@ -147,6 +150,7 @@ describe('story vl-form - validation escape field names', () => {
 describe('story vl-form - validation without submit', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(formValidationWithoutSubmitUrl);
+        cy.get('[is="vl-form"]');
         cy.checkA11y('[is="vl-form"]');
     });
 

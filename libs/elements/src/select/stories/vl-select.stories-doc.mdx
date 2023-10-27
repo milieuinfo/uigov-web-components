@@ -1,9 +1,12 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY, Story, Canvas } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlSelectStories from './vl-select.stories';
 
 # Select
 
-Gebruik het `select` component om gebruikers toe te laten een selectie te maken uit een lijst met voorgedefinieerde opties.<br/>
-Het is aangeraden om enkel deze component te gebruiken als er 5 of meer opties zijn. Bij minder opties, kan er gebruik gemaakt worden van de radio component.
+Gebruik het `select` component om gebruikers toe te laten een selectie te maken uit een lijst met voorgedefinieerde
+opties.<br/>
+Het is aangeraden om enkel deze component te gebruiken als er 5 of meer opties zijn. Bij minder opties, kan er gebruik
+gemaakt worden van de radio component.
 
 ## Voorbeeld
 
@@ -15,31 +18,33 @@ import { VlSelect } from '@domg-wc/elements';
 <vl-select></vl-select>
 ```
 
-<DocsStory id="elements-select--select-default" />
+<Canvas of={VlSelectStories.SelectDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlSelectStories.SelectDefault} />
+
 
 ## Varianten
 
 ### Uitgebreid
 
-Je kan de uitgebreide select-functionaliteit inclusief zoeken activeren door het `data-vl-select` attribuut mee te geven.<br/>
+Je kan de uitgebreide select-functionaliteit inclusief zoeken activeren door het `data-vl-select` attribuut mee te
+geven.<br/>
 In deze modus wordt er achterliggend gebruik gemaakt van [Choices.js](https://github.com/Choices-js/Choices).
 
-<Canvas>
-    <Story id="elements-select--select-extended" inline={false} height={300} />
-</Canvas>
+<Canvas of={VlSelectStories.SelectExtended} />
+
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-select/
+[Documentatie Digitaal Vlaanderen - Select](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-select)
 
 ### Legacy Documentatie
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlSelect.html
+[Legacy Documentatie - Select](https://webcomponenten.omgeving.vlaanderen.be/doc/VlSelect.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-select.html
+[Legacy Demo - Select](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-select.html)

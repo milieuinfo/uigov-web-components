@@ -37,7 +37,14 @@ export type RichData = { data: unknown[] } & RichDataMeta;
 @webComponent('vl-rich-data')
 export class VlRichData extends BaseElementOfType(HTMLElement) {
     static {
-        registerWebComponents([VlButtonElement, VlColumnElement, VlFormLabel, VlGridElement, VlIconElement]);
+        registerWebComponents([
+            VlButtonElement,
+            VlColumnElement,
+            VlFormLabel,
+            VlGridElement,
+            VlIconElement,
+            VlPagerComponent,
+        ]);
     }
 
     static get _observedAttributes(): string[] {

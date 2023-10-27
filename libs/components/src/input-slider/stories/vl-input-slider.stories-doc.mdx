@@ -1,9 +1,10 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlIputSliderStories from './vl-input-slider.stories';
 
 # Input Slider
 
-Gebruik een `input-slider` om een waarde te selecteren tussen een minimum en maximum waarde aan de hand van een slider.  
-**Let op**: dit component is niet hetzelfde component als het `vl-ui-range` component van Digitaal Vlaanderen.
+Gebruik de `input-slider` om een waarde te selecteren tussen een minimum en maximum waarde.
+**Let op**: deze component is niet dezelfde als de `vl-ui-range` component van Digitaal Vlaanderen.
 
 ## Voorbeeld
 
@@ -15,16 +16,16 @@ import { VlInputSliderComponent } from '@domg-wc/components';
 <vl-input-slider></vl-input-slider>
 ```
 
-<DocsStory id="components-input-slider--input-slider-default" />
+<Canvas of={VlIputSliderStories.InputSliderDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlIputSliderStories.InputSliderDefault} />
+
 
 ## Referenties
 
-Dit is een nieuw component binnen onze bibliotheek en is gebaseerd op de standaard HTML5 input range slider:  
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range
+Dit is een nieuwe component binnen onze bibliotheek die gebaseerd is op de standaard [HTML5 input range slider](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range).
 
-De stijl van dit component is gebaseerd op het `vl-ui-range` component van Digitaal Vlaanderen:
-https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-range
+De stijl van deze component is gebaseerd op de `vl-ui-range` [component van Digitaal Vlaanderen](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-range).

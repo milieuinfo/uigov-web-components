@@ -3,6 +3,7 @@ const inputFieldUrl = 'http://localhost:8080/iframe.html?id=elements-input-field
 describe('story vl-input-field - default', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(`${inputFieldUrl}`);
+        cy.get('[is="vl-input-field"]');
         cy.checkA11y('[is="vl-input-field"]');
         cy.get('[is="vl-input-field"]').should('have.class', 'vl-input-field');
     });

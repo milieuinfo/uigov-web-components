@@ -6,6 +6,7 @@ import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/tooltip',
+    tags: ['autodocs'],
     args: storyArgs(tooltipArgs),
     argTypes: storyArgTypes(tooltipArgTypes),
 };

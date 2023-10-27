@@ -1,9 +1,11 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapWfsLayerStories from './vl-map-wfs-layer.stories';
 
 # Map WFS Layer
 
-Gebruik het `map-wfs-layer` component om een WFS kaartlaag af te beelden.<br/>
-Dit component erft over van de `VlMapVectorLayer` klasse, die op zijn beurt overerft van de `VlMapLayer` klasse.
+Gebruik de `map-wfs-layer` component om een WFS kaartlaag af te beelden.<br/>
+Deze component erft over van de `VlMapVectorLayer` klasse, die op zijn beurt overerft van de `VlMapLayer` klasse.
+
 
 ## Voorbeeld
 
@@ -15,16 +17,18 @@ import { VlMapWfsLayer } from '@domg-wc/map';
 <vl-map-wfs-layer></vl-map-wfs-layer>
 ```
 
-<DocsStory id="map-layer-vector-layer-wfs-layer--map-wfs-layer-default" />
+<Canvas of={VlMapWfsLayerStories.MapWfsLayerDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapWfsLayerStories.MapWfsLayerDefault} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-wfs-layer--default
+[Legacy Storybook - Map Wfs Layer](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-wfs-layer--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapWfsLayer.html
+[Legacy Documentatie - Map Wfs Layer](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapWfsLayer.html)

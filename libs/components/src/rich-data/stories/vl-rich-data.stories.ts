@@ -7,6 +7,7 @@ import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'components/rich-data',
+    tags: ['autodocs'],
     args: storyArgs(richDataArgs),
     argTypes: storyArgTypes(richDataArgTypes),
 } as Meta<typeof richDataArgs>;

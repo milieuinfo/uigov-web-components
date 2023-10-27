@@ -6,22 +6,34 @@
     "tags": [],
     "targets": {
         "storybook": {
-            "executor": "nx:run-commands",
+            "executor": "@nx/storybook:storybook",
             "options": {
-                "command": "start-storybook -p 8080 -c apps/storybook/.storybook --quiet"
+                "port": 8080,
+                "configDir": "apps/storybook/.storybook"
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": false
+                }
             }
         },
         "build-storybook": {
-            "executor": "nx:run-commands",
+            "executor": "@nx/storybook:build",
+            "outputs": ["{options.outputDir}"],
             "options": {
-                "command": "build-storybook -c apps/storybook/.storybook --output-dir dist/apps/storybook --quiet"
+                "outputDir": "dist/apps/storybook",
+                "configDir": "apps/storybook/.storybook"
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
             }
         },
-        "lint": {
-            "executor": "@nx/eslint:lint",
-            "outputs": ["{options.outputFile}"],
+        "test-storybook": {
+            "executor": "nx:run-commands",
             "options": {
-                "lintFilePatterns": ["apps/storybook/**/*.ts"]
+                "command": "test-storybook -c apps/storybook/.storybook --url=http://localhost:4400"
             }
         }
     }

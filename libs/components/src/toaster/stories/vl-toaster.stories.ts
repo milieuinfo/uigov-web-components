@@ -1,9 +1,15 @@
+import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlButtonElement } from '@domg-wc/elements';
 import { html } from 'lit-html';
-import '../vl-toaster.element';
+import { VlAlert } from '../../alert/vl-alert.component';
+import { VlToasterElement } from '../vl-toaster.element';
 import { toasterArgs, toasterArgTypes } from './vl-toaster.stories-arg';
+
+registerWebComponents([VlAlert, VlButtonElement, VlToasterElement]);
 
 export default {
     title: 'Components/toaster',
+    tags: ['autodocs'],
     args: toasterArgs,
     argTypes: toasterArgTypes,
     parameters: {

@@ -3,7 +3,8 @@ import { html } from 'lit-html';
 import { buttonArgs, buttonArgTypes } from './vl-button.stories-arg';
 
 export default {
-    title: 'Elements/button',
+    title: 'Elements/button/button',
+    tags: ['autodocs'],
     args: buttonArgs,
     argTypes: buttonArgTypes,
 };

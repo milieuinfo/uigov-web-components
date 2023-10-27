@@ -5,6 +5,7 @@ import { storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'components/http-error-message',
+    tags: ['autodocs'],
     args: storyArgs(httpErrorMessageArgs),
     argTypes: storyArgTypes(httpErrorMessageArgTypes),
 };

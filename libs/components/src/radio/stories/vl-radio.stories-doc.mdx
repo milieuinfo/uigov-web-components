@@ -1,8 +1,11 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlRadioStories from './vl-radio.stories';
+import * as VlRadioGroupStories from './vl-radio-group.stories';
 
 # Radio
 
-De `radio` laat de gebruiker toe om een enkele optie te selecteren uit een lijst. Gebruik de `radio` in formulieren. Vermijd een voorgedefinieerde keuze vast te leggen om de gebruiker een bewuste keuze te laten maken.
+De `radio` laat de gebruiker toe om een enkele optie te selecteren uit een lijst. Gebruik de `radio` in formulieren.
+Vermijd een voorgedefinieerde keuze vast te leggen zodat de gebruiker een bewuste keuze dient te maken.
 
 ## Voorbeeld
 
@@ -14,30 +17,33 @@ import { VlRadio } from '@domg-wc/components';
 <vl-radio></vl-radio>
 ```
 
-<DocsStory id="components-radio--radio-default" />
+<Canvas of={VlRadioStories.RadioDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlRadioStories.RadioDefault} />
+
 
 ## Varianten
 
 ### Radio met afbeelding
 
-<DocsStory id="components-radio--radio-image" />
+<Canvas of={VlRadioStories.RadioImage} />
 
 ### Radio Group
 
-<DocsStory id="components-radio--radio-group-default" />
+<Canvas of={VlRadioGroupStories.RadioGroupDefault} />
+
 
 ## Referenties
 
-**Documentatie Digitaal Vlaanderen:**  https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-radio/
+[Documentatie Digitaal Vlaanderen - Radio](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-radio)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-radio--default
+[Legacy Storybook - Radio](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-radio--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlRadio.html
+[Legacy Documentatie - Radio](https://webcomponenten.omgeving.vlaanderen.be/doc/VlRadio.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-radio.html
+[Legacy Demo - Radio](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-radio.html)

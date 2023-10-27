@@ -8,6 +8,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/accordion',
+    tags: ['autodocs'],
     args: storyArgs(accordionArgs),
     argTypes: storyArgTypes(accordionArgTypes),
     parameters: {

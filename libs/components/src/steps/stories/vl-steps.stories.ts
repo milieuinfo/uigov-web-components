@@ -1,21 +1,24 @@
-import { html } from 'lit-html';
-import '../vl-steps.component';
-import { stepsArgs, stepsArgTypes } from './vl-steps.stories-arg';
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import {
     VlSideNavigation,
-    VlSideNavigationToggleElement,
     VlSideNavigationContentElement,
+    VlSideNavigationGroupElement,
     VlSideNavigationH5,
     VlSideNavigationItemElement,
-    VlSideNavigationGroupElement,
     VlSideNavigationReferenceElement,
+    VlSideNavigationToggleElement,
 } from '@domg-wc/elements';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+import { html } from 'lit-html';
+import { VlDurationStepComponent } from '../vl-duration-step.component';
+import { VlStepComponent } from '../vl-step.component';
+import { VlStepsComponent } from '../vl-steps.component';
+import { stepsArgs, stepsArgTypes } from './vl-steps.stories-arg';
 import stepsDoc from './vl-steps.stories-doc.mdx';
 
 registerWebComponents([
+    VlDurationStepComponent,
     VlSideNavigation,
     VlSideNavigationToggleElement,
     VlSideNavigationContentElement,
@@ -23,10 +26,13 @@ registerWebComponents([
     VlSideNavigationItemElement,
     VlSideNavigationGroupElement,
     VlSideNavigationReferenceElement,
+    VlStepComponent,
+    VlStepsComponent,
 ]);
 
 export default {
     title: 'Components/steps',
+    tags: ['autodocs'],
     args: storyArgs(stepsArgs),
     argTypes: storyArgTypes(stepsArgTypes),
     parameters: {
@@ -39,7 +45,7 @@ export default {
     },
 } as Meta<typeof stepsArgs>;
 
-export const stepsDefault = ({ timeline }: typeof stepsArgs) => html`
+export const StepsDefault = ({ timeline }: typeof stepsArgs) => html`
     <vl-steps id="vl-steps-1" ?data-vl-timeline=${timeline} data-cy="steps">
         <vl-step data-cy="step-1">
             <span slot="identifier">1</span>
@@ -68,9 +74,9 @@ export const stepsDefault = ({ timeline }: typeof stepsArgs) => html`
         </vl-step>
     </vl-steps>
 `;
-stepsDefault.storyName = 'vl-steps - default';
+StepsDefault.storyName = 'vl-steps - default';
 
-export const stepsWithAccordions = ({ timeline }: typeof stepsArgs) => html`
+export const StepsWithAccordions = ({ timeline }: typeof stepsArgs) => html`
     <vl-steps id="vl-steps-2" ?data-vl-timeline=${timeline} data-cy="steps-with-accordions">
         <vl-step data-vl-disabled="">
             <span slot="identifier">0</span>
@@ -105,9 +111,9 @@ export const stepsWithAccordions = ({ timeline }: typeof stepsArgs) => html`
         </vl-step>
     </vl-steps>
 `;
-stepsWithAccordions.storyName = 'vl-steps - with accordions';
+StepsWithAccordions.storyName = 'vl-steps - with accordions';
 
-export const stepsWithTimeline = () => html`
+export const StepsWithTimeline = () => html`
     <vl-steps id="vl-steps-3" data-vl-timeline data-cy="steps-with-timeline">
         <vl-step data-cy="timeline-step-1">
             <span slot="identifier">2</span>
@@ -170,9 +176,9 @@ export const stepsWithTimeline = () => html`
         </vl-step>
     </vl-steps>
 `;
-stepsWithTimeline.storyName = 'vl-steps - with timeline';
+StepsWithTimeline.storyName = 'vl-steps - with timeline';
 
-export const stepsWithSideNavigation = ({ timeline }: typeof stepsArgs) => html`
+export const StepsWithSideNavigation = ({ timeline }: typeof stepsArgs) => html`
     <section is="vl-region">
         <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
@@ -577,4 +583,4 @@ export const stepsWithSideNavigation = ({ timeline }: typeof stepsArgs) => html`
         </div>
     </section>
 `;
-stepsWithSideNavigation.storyName = 'vl-steps - with vl-side-navigation';
+StepsWithSideNavigation.storyName = 'vl-steps - with vl-side-navigation';

@@ -5,6 +5,7 @@ import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/code-preview',
+    tags: ['autodocs'],
     args: storyArgs({}),
     argTypes: storyArgTypes({}),
     parameters: {

@@ -22,6 +22,7 @@ import { story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'sections/accessibility',
+    tags: ['autodocs'],
     args: accessibilityArgs,
     argTypes: accessibilityArgTypes,
     parameters: {

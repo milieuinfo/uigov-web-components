@@ -4,7 +4,8 @@ import '../vl-button-link.element';
 import '../../icon/vl-icon.element';
 
 export default {
-    title: 'Elements/link',
+    title: 'Elements/link/button-link',
+    tags: ['autodocs'],
     args: linkBaseArgs,
     argTypes: linkBaseArgTypes,
 };

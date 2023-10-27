@@ -7,6 +7,7 @@ describe('story vl-form', () => {
 
     it('should be accessible', () => {
         cy.visitWithA11y(formDefaultUrl);
+        cy.get('[is="vl-form"]');
         cy.checkA11y('[is="vl-form"]');
     });
 });

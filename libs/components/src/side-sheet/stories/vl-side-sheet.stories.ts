@@ -1,24 +1,25 @@
+import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-side-sheet.component';
 import { sideSheetArgs, sideSheetArgTypes } from './vl-side-sheet.stories-arg';
 import sideSheetDoc from './vl-side-sheet.stories-doc.mdx';
-import { Meta } from '@storybook/web-components';
 import sideSheetToggleImplementation from './vl-side-sheet.stories-utils';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/side-sheet',
+    tags: ['autodocs'],
     args: storyArgs(sideSheetArgs),
     argTypes: storyArgTypes(sideSheetArgTypes),
     parameters: {
         docs: {
             page: sideSheetDoc,
-            inlineStories: false,
         },
     },
+    decorators: [(story: () => unknown) => html` <div style="height: 150px;">${story()}</div>`],
 } as Meta<typeof sideSheetArgs>;
 
-export const sideSheetDefault = story(
+export const SideSheetDefault = story(
     sideSheetArgs,
     ({
         enableSwipe,
@@ -89,9 +90,9 @@ export const sideSheetDefault = story(
         </vl-side-sheet>
     `
 );
-sideSheetDefault.storyName = 'vl-side-sheet - default';
+SideSheetDefault.storyName = 'vl-side-sheet - default';
 
-export const sideSheetToggle = story(
+export const SideSheetToggle = story(
     sideSheetArgs,
     ({ enableSwipe, absolute, left, toggleText, tooltipText, right, customIcon, hideToggleButton, iconPlacement }) => {
         const { toggleSideSheet, openSideSheet, closeSideSheet } = sideSheetToggleImplementation();
@@ -101,6 +102,7 @@ export const sideSheetToggle = story(
                     --vl-side-sheet-width-mobile: 100%;
                     --vl-side-sheet-width: 480px;
                 }
+
                 #vl-side-sheet-close-button {
                     position: fixed;
                     top: 1rem;
@@ -212,4 +214,4 @@ export const sideSheetToggle = story(
         `;
     }
 );
-sideSheetToggle.storyName = 'vl-side-sheet - toggle';
+SideSheetToggle.storyName = 'vl-side-sheet - toggle';

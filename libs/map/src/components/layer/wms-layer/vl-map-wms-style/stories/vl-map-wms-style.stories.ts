@@ -10,6 +10,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/wms-layer/wms-style',
+    tags: ['autodocs'],
     args: storyArgs(mapWmsStyleArgs),
     argTypes: storyArgTypes(mapWmsStyleArgTypes),
     parameters: {

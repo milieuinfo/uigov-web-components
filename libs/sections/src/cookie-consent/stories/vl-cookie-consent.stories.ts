@@ -6,6 +6,7 @@ import cookieConsentDoc from './vl-cookie-consent.stories-doc.mdx';
 
 export default {
     title: 'sections/cookie-consent',
+    tags: ['autodocs'],
     args: cookieConsentArgs,
     argTypes: cookieConsentArgTypes,
     parameters: {
@@ -16,7 +17,7 @@ export default {
     },
 };
 
-export const cookieConsentDefault = story(
+export const CookieConsentDefault = story(
     cookieConsentArgs,
     ({ analytics, autoOptInFunctionalDisabled, owner, link, matomoId, matomoUrl, onClose }) =>
         html`
@@ -42,4 +43,4 @@ export const cookieConsentDefault = story(
             </div>
         `
 );
-cookieConsentDefault.storyName = 'vl-cookie-consent - default';
+CookieConsentDefault.storyName = 'vl-cookie-consent - default';

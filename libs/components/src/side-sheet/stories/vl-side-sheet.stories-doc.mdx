@@ -1,9 +1,12 @@
-import {ArgsTable, Source, Story, Canvas, PRIMARY_STORY} from '@storybook/addon-docs';
-import sideSheetToggleImplementation from '!raw-loader!./vl-side-sheet.stories-utils';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlSideSheetStories from './vl-side-sheet.stories';
+import sideSheetToggleImplementation from './vl-side-sheet.stories-utils?raw';
 
 # Side sheet
 
-De `side-sheet`-component heeft containers die aan de linker- of rechterrand van het scherm zijn verankerd. Die kunnen open of dicht aan de hand van een knop.
+De `side-sheet`-component heeft containers die aan de linker- of rechterrand van het scherm zijn verankerd. Deze kunnen
+geopend of gesloten worden aan de hand van een knop.
+
 
 ## Voorbeeld
 
@@ -18,21 +21,24 @@ import { VlSideSheet } from '@domg-wc/components';
 </vl-side-sheet>
 ```
 
+
 ## Default
 
-<Canvas>
-    <Story id="components-side-sheet--side-sheet-default" height={300}/>
-</Canvas>
+<Canvas of={VlSideSheetStories.SideSheetDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY}/>
+<ArgTypes of={VlSideSheetStories.SideSheetDefault} />
+
 
 ## Varianten
 
 ### Custom icon
 
-Standaard is er een pijltje dat aanduidt of de `side-sheet` open of gesloten is. Je kan dit vervangen door een custom icon in te stellen. [Hier](https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon/) vind je een overzicht van alle beschikbare icons.
+Standaard is er een pijltje dat aanduidt of de `side-sheet` open of gesloten is. Je kan dit vervangen door een custom
+icon in te stellen. [Hier](https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon/) vind je een
+overzicht van alle beschikbare icons.
 
 Deze blijft dan dezelfde in de 2 richtingen.
 
@@ -40,8 +46,9 @@ Deze blijft dan dezelfde in de 2 richtingen.
 
 Het is ook mogelijk de breedte zelf in te stellen.
 
-Dan kan je voor mobile en/of desktop de width instellen door de respectievelijke css variabelen in te stellen. Dit stelt de `width` in voor het component.
-- Breekpunt voor desktop naar mobile is vanaf `767px`
+Dan kan je voor mobile en/of desktop de width instellen door de respectievelijke css variabelen in te stellen. Dit
+stelt de `width` in voor het component.
+- breekpunt voor desktop naar mobile is vanaf `767px`
 - voor desktop gebruik je `--vl-side-sheet-width`
 - voor mobile gebruik je `--vl-side-sheet-width-mobile`
 - hier kan je ook gelijk welke andere waardes meegeven die geldig zijn voor `width`
@@ -53,9 +60,7 @@ Dan kan je voor mobile en/of desktop de width instellen door de respectievelijke
 }
 ```
 
-In de stories
-
-### Openen & sluiten zonder knop
+### Openen en sluiten zonder knop
 
 Je kan de `side-sheet` openen zonder de toggle knop;
 - stel `hide-toggle-button` in op `true`
@@ -66,14 +71,13 @@ Hieronder volgt een voorbeeld met broncode:
 
 ### Voorbeeld van buitenaf openen & sluiten
 
-<Canvas>
-    <Story id="components-side-sheet--side-sheet-toggle" height={300}/>
-</Canvas>
+<Canvas of={VlSideSheetStories.SideSheetToggle} />
 
 <details>
     <summary>voorbeeld code om side-sheet te openen en te sluiten van buitenaf</summary>
     <Source code={sideSheetToggleImplementation} language="ts" dark={true}/>
 </details>
+
 
 ## Referenties
 
@@ -81,12 +85,13 @@ Hieronder volgt een voorbeeld met broncode:
 
 Er is geen `side-sheet`-component bij Digitaal Vlaanderen.
 
-In de Vue Component library van Digitaal Vlaanderen is er echter wel een component die er dicht tegen aanleunt: `vl-side-bar`-component (link [side-bar-component](https://overheid.vlaanderen.be/webuniversum/v3/vue-documentation/?path=/story/components-vl-sidebar--sidebar-collapsible)).
+In de Vue Component library van Digitaal Vlaanderen is er echter wel een component die er dicht tegen aanleunt:
+`vl-side-bar`-component (link [side-bar-component](https://overheid.vlaanderen.be/webuniversum/v3/vue-documentation/?path=/story/components-vl-sidebar--sidebar-collapsible)).
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-side-sheet--default
+[Legacy Storybook - Side Sheet](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-side-sheet--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlSideSheet.html
+[Legacy Documentatie - Side Sheet](https://webcomponenten.omgeving.vlaanderen.be/doc/VlSideSheet.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-side-sheet.html
+[Legacy Demo - Side Sheet](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-side-sheet.html)

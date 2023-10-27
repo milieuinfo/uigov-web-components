@@ -1,14 +1,21 @@
-import { html } from 'lit-html';
-import '../vl-functional-header.component';
-import { Meta } from '@storybook/web-components';
+import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { registerWebComponents } from '@domg-wc/common-utilities';
 import { action } from '@storybook/addon-actions';
+import { Meta } from '@storybook/web-components';
+import { html } from 'lit-html';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import functionalHeaderDoc from './vl-functional-header.stories-doc.mdx';
+import { VlBreadcrumbItemComponent } from '../../breadcrumb/vl-breadcrumb-item.component';
+import { VlBreadcrumbComponent } from '../../breadcrumb/vl-breadcrumb.component';
+import { VlTabsComponent } from '../../tabs/vl-tabs.component';
+import { VlFunctionalHeaderComponent } from '../vl-functional-header.component';
 import { functionalHeaderArgs, functionalHeaderArgTypes } from './vl-functional-header.stories-arg';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
+import functionalHeaderDoc from './vl-functional-header.stories-doc.mdx';
+
+registerWebComponents([VlBreadcrumbComponent, VlBreadcrumbItemComponent, VlFunctionalHeaderComponent, VlTabsComponent]);
 
 export default {
     title: 'Components/functional-header',
+    tags: ['autodocs'],
     args: storyArgs(functionalHeaderArgs),
     argTypes: storyArgTypes(functionalHeaderArgTypes),
     parameters: {

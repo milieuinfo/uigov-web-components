@@ -6,6 +6,8 @@ const cookieStatementHeaderSlotUrl =
 describe('story vl-cookie-statement - default', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(cookieStatementUrl);
+
+        cy.get('vl-cookie-statement');
         cy.checkA11y('vl-cookie-statement');
     });
 

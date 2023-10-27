@@ -10,6 +10,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer-style/layer-circle-style',
+    tags: ['autodocs'],
     args: storyArgs(mapLayerCircleStyleArg),
     argTypes: storyArgTypes(mapLayerCircleStyleArgTypes),
     parameters: {

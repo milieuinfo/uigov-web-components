@@ -1,7 +1,8 @@
+import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlToggleButtonComponent } from '@domg-wc/components';
 import { PropertyDeclarations } from 'lit';
-import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
-import { VlMapControl } from '../vl-map-control.mixin';
 import { VlMapAction } from '../../action/vl-map-action';
+import { VlMapControl } from '../vl-map-control.mixin';
 
 @webComponent('vl-map-action-control')
 export class VlMapActionControl extends VlMapControl(BaseLitElement) {
@@ -9,6 +10,10 @@ export class VlMapActionControl extends VlMapControl(BaseLitElement) {
     private icon = '';
     private label = '';
     public active = false;
+
+    static {
+        registerWebComponents([VlToggleButtonComponent]);
+    }
 
     static get properties(): PropertyDeclarations {
         return {

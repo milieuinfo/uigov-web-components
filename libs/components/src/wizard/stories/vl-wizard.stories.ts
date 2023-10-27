@@ -1,13 +1,14 @@
+import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
-import '../vl-wizard.component';
 import '../vl-wizard-pane.component';
+import '../vl-wizard.component';
 import { wizardArgs, wizardArgTypes } from './vl-wizard.stories-arg';
 import { getWizard } from './vl-wizard.stories-util';
-import { Meta } from '@storybook/web-components';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
-    title: 'Components/wizard',
+    title: 'Components/wizard/wizard',
+    tags: ['autodocs'],
     args: storyArgs(wizardArgs),
     argTypes: storyArgTypes(wizardArgTypes),
 } as Meta<typeof wizardArgs>;

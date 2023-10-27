@@ -1,9 +1,11 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapTiledWmsLayerStories from './vl-map-tiled-wms-layer.stories';
 
 # Map Tiled WMS Layer
 
-Gebruik het `map-tiled-wms-layer` component om een WMS kaartlaag af te beelden.<br/>
-Dit component erft over van de `VlMapWmsLayer` klasse, die op zijn beurt overerft van de `VlMapLayer` klasse.
+Gebruik de `map-tiled-wms-layer` component om een WMS kaartlaag af te beelden.<br/>
+Deze component erft over van de `VlMapWmsLayer` klasse, die op zijn beurt overerft van de `VlMapLayer` klasse.
+
 
 ## Voorbeeld
 
@@ -15,16 +17,18 @@ import { VlMapTiledWmsLayer } from '@domg-wc/map';
 <vl-map-tiled-wms-layer></vl-map-tiled-wms-layer>
 ```
 
-<DocsStory id="map-layer-wms-layer-tiled-wms-layer--map-tiled-wms-layer-default" />
+<Canvas of={VlMapTiledWmsLayerStories.MapTiledWmsLayerDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapTiledWmsLayerStories.MapTiledWmsLayerDefault} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-tiled-wms-layer--default
+[Legacy Storybook - Map Tiled Wms Layer](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-tiled-wms-layer--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapTiledWmsLayer.html
+[Legacy Documentatie - Map Tiled Wms Layer](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapTiledWmsLayer.html)

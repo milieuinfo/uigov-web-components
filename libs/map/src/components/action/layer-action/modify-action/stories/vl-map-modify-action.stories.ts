@@ -13,6 +13,7 @@ import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/layer-action/modify-action',
+    tags: ['autodocs'],
     args: storyArgs(mapModifyActionArgs),
     argTypes: storyArgTypes(mapModifyActionArgTypes),
     parameters: {

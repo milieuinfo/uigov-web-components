@@ -1,13 +1,14 @@
+import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-tabs.component';
-import { Meta } from '@storybook/web-components';
 import { tabsArgs, tabsArgTypes } from './vl-tabs.stories-arg';
 import tabsDoc from './vl-tabs.stories-doc.mdx';
 import { addPane } from './vl-tabs.stories-util';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/tabs',
+    tags: ['autodocs'],
     args: storyArgs(tabsArgs),
     argTypes: storyArgTypes(tabsArgTypes),
     parameters: {
@@ -17,7 +18,7 @@ export default {
     },
 } as Meta<typeof tabsArgs>;
 
-export const tabsDefault = story(
+export const TabsDefault = story(
     tabsArgs,
     ({ activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab, observeTitle }) => html`
         <vl-tabs
@@ -45,16 +46,15 @@ export const tabsDefault = story(
         </vl-tabs>
     `
 );
-tabsDefault.storyName = 'vl-tabs - default';
-tabsDefault.args = {
+TabsDefault.storyName = 'vl-tabs - default';
+TabsDefault.args = {
     activeTab: 'trein',
     disableLinks: true,
 };
 
-
-export const tabsWithoutActiveTab = story(
+export const TabsWithoutActiveTab = story(
     tabsArgs,
-    ({alt, disableLinks, responsiveLabel, onChangeActiveTab, observeTitle }) => html`
+    ({ alt, disableLinks, responsiveLabel, onChangeActiveTab, observeTitle }) => html`
         <vl-tabs
             ?data-vl-alt=${alt}
             data-vl-responsive-label=${responsiveLabel}
@@ -79,12 +79,12 @@ export const tabsWithoutActiveTab = story(
         </vl-tabs>
     `
 );
-tabsWithoutActiveTab.storyName = 'vl-tabs - without active tab';
-tabsWithoutActiveTab.args = {
-    responsiveLabel: 'Navigatie/menu'
+TabsWithoutActiveTab.storyName = 'vl-tabs - without active tab';
+TabsWithoutActiveTab.args = {
+    responsiveLabel: 'Navigatie/menu',
 };
 
-export const tabsDynamic = story(
+export const TabsDynamic = story(
     tabsArgs,
     ({ activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab }) => html`
         <div>
@@ -111,8 +111,8 @@ export const tabsDynamic = story(
         </div>
     `
 );
-tabsDynamic.storyName = 'vl-tabs - dynamic';
-tabsDynamic.args = {
+TabsDynamic.storyName = 'vl-tabs - dynamic';
+TabsDynamic.args = {
     activeTab: 'trein',
     disableLinks: true,
 };

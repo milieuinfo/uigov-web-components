@@ -6,6 +6,7 @@ import { story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/datepicker',
+    tags: ['autodocs'],
     args: datepickerArgs,
     argTypes: datepickerArgTypes,
 } as Meta<typeof datepickerArgs>;

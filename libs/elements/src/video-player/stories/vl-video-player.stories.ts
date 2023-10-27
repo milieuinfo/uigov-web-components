@@ -3,6 +3,7 @@ import '../vl-video-player.element';
 
 export default {
     title: 'Elements/video-player',
+    tags: ['autodocs'],
     parameters: {
         controls: { hideNoControlsWarning: true },
     },

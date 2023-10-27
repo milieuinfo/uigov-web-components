@@ -6,6 +6,7 @@ import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/infoblock',
+    tags: ['autodocs'],
     args: storyArgs(infoblockArgs),
     argTypes: storyArgTypes(infoblockArgTypes),
 } as Meta<typeof infoblockArgs>;

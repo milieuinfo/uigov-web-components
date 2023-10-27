@@ -1,9 +1,11 @@
-import { Canvas, DocsStory, Story, Source, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import dynamicLayerSwitcherImplementation from '!raw-loader!./vl-map-layer-switcher.stories-utils';
+import { ArgTypes, Canvas,Source } from '@storybook/blocks';
+import * as VlMapLayerSwitcherStories from './vl-map-layer-switcher.stories';
+import dynamicLayerSwitcherImplementation from './vl-map-layer-switcher.stories-utils?raw';
 
 # Map Layer Switcher
 
-Gebruik het `map-layer-switcher` component om kaartlagen zichtbaar of onzichtbaar te maken.
+Gebruik de `map-layer-switcher` component om kaartlagen zichtbaar of onzichtbaar te maken.
+
 
 ## Voorbeeld
 
@@ -15,18 +17,21 @@ import { VlMapLayerSwitcher } from '@domg-wc/map';
 <vl-map-layer-switcher></vl-map-layer-switcher>
 ```
 
-<DocsStory id="map-layer-switcher--map-layer-switcher-default" />
+<Canvas of={VlMapLayerSwitcherStories.MapLayerSwitcherDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapLayerSwitcherStories.MapLayerSwitcherDefault} />
+
 
 ## Gebruik
 
--   Het is belangrijk dat de kaartlagen zich binnen de [vl-map](?path=/docs/map-map--map-default) bevinden
--   Het is belangrijk dat de `vl-map-layer-switcher` zich binnen de [vl-map](?path=/docs/map-map--map-default) bevindt
--   Het `data-vl-name` attribuut van de kaartlaag wordt gebruikt als label voor de checkbox
--   Dit component wordt typisch in de [vl-map-side-sheet](?path=/docs/map-side-sheet--map-side-sheet-default) gebruikt
+- het is belangrijk dat de kaartlagen zich binnen de [vl-map](?path=/docs/map-map--map-default) bevinden
+- het is belangrijk dat de `vl-map-layer-switcher` zich binnen de [vl-map](?path=/docs/map-map--map-default) bevindt
+- het `data-vl-name` attribuut van de kaartlaag wordt gebruikt als label voor de checkbox
+- deze component wordt typisch in de [vl-map-side-sheet](?path=/docs/map-side-sheet--map-side-sheet-default) gebruikt
+
 
 ## Varianten
 
@@ -35,32 +40,31 @@ import { VlMapLayerSwitcher } from '@domg-wc/map';
 Kan gebruikt worden om een subselectie van kaartlagen te tonen.<br/>
 Kaartlagen worden niet langer automatisch toegevoegd of verwijderd in de layer-switcher.
 
-<DocsStory id="map-layer-switcher--map-layer-switcher-subselection" />
+<Canvas of={VlMapLayerSwitcherStories.MapLayerSwitcherSubselection} />
 
 ### Kaartlagen met resoluties
 
-<DocsStory id="map-layer-switcher--map-layer-switcher-resolutions" />
+<Canvas of={VlMapLayerSwitcherStories.MapLayerSwitcherResolutions} />
 
 ### Dynamische kaartlagen
 
 Voorbeeld hoe dynamisch lagen toegevoegd en verwijderd kunnen worden.<br/>
 Zie onder de story voor het volledige code voorbeeld.
 
-<Canvas>
-    <Story id="map-layer-switcher--map-layer-switcher-dynamic" inline={false} height={650} />
-</Canvas>
+<Canvas of={VlMapLayerSwitcherStories.MapLayerSwitcherDynamic} />
 
 <details>
     <summary>volledig code voorbeeld van bovenstaande implementatie</summary>
     <Source code={dynamicLayerSwitcherImplementation} language="ts" dark={true} />
 </details>
 
+
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-layer-switcher--default
+[Legacy Storybook - Map Layer Switcher](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-layer-switcher--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapLayerSwitcher.html
+[Legacy Documentatie - Map Layer Switcher](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapLayerSwitcher.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-layer-switcher.html
+[Legacy Demo - Map Layer Switcher](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-layer-switcher.html)

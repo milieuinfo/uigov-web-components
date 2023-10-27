@@ -1,9 +1,14 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapLayerStyleStories from './vl-map-layer-style.stories';
 
 # Map Layer Style
 
-Gebruik het `map-layer-style` component om een [features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default) of een [wfs-layer](/docs/map-layer-vector-layer-wfs-layer--map-wfs-layer-default) te stylen.<br/>
-**Let op**: Bij gebruik van de [map-legend](/docs/map-legend--map-legend-features-layer-multiple-styles) worden de attributen niet reactief toegepast op de legende.
+Gebruik de `map-layer-style` component om een
+[features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default) of een
+[wfs-layer](/docs/map-layer-vector-layer-wfs-layer--map-wfs-layer-default) te stylen.<br/>
+**Let op**: Bij gebruik van de [map-legend](/docs/map-legend--map-legend-features-layer-multiple-styles) worden de
+attributen niet reactief toegepast op de legende.
+
 
 ## Voorbeeld
 
@@ -15,28 +20,31 @@ import { VlMapLayerStyle } from '@domg-wc/map';
 <vl-map-layer-style></vl-map-layer-style>
 ```
 
-<DocsStory id="map-layer-style--map-layer-style-default" />
+<Canvas of={VlMapLayerStyleStories.MapLayerStyleDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapLayerStyleStories.MapLayerStyleDefault} />
+
 
 ## Varianten
 
 ### Met tekst
 
-<DocsStory id="map-layer-style--map-layer-style-text" />
+<Canvas of={VlMapLayerStyleStories.MapLayerStyleText} />
 
 ### Met legende
 
-<DocsStory id="map-layer-style--map-layer-style-legend" />
+<Canvas of={VlMapLayerStyleStories.MapLayerStyleLegend} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-layer-style--default
+[Legacy Storybook - Map Layer Style](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-layer-style--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapLayerStyle.html
+[Legacy Documentatie - Map Layer Style](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapLayerStyle.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-layer-style.html
+[Legacy Demo - Map Layer Style](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-layer-style.html)

@@ -1,8 +1,10 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY, Source } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlContentHeaderStories from './vl-content-header.stories';
 
 # Content Header
 
-Gebruik het `content-header` component bovenaan informerende pagina's. Het biedt de gebruikers alle informatie over de website die ze bezoeken.
+Gebruik de `content-header` component bovenaan informerende pagina's. Hij biedt gebruikers alle informatie over de
+website die ze bezoeken.
 
 ## Voorbeeld
 
@@ -14,22 +16,24 @@ import { VlContentHeaderComponent } from '@domg-lib/components';
 <vl-content-header></vl-content-header>
 ```
 
-<DocsStory id="components-content-header--content-header-default" />
+<Canvas of={VlContentHeaderStories.ContentHeaderDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlContentHeaderStories.ContentHeaderDefault} />
+
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-content-header/
+[Documentatie Digitaal Vlaanderen - Content Header](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-content-header)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-content-header--default
+[Legacy Storybook - Content Header](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-content-header--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlContentHeader.html
+[Legacy Documentatie - Content Header](https://webcomponenten.omgeving.vlaanderen.be/doc/VlContentHeader.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-content-header.html
+[Legacy Demo - Content Header](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-content-header.html)

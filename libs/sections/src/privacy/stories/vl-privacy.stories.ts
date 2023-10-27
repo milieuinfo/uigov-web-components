@@ -8,6 +8,7 @@ import { story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'sections/privacy',
+    tags: ['autodocs'],
     args: privacyArgs,
     argTypes: privacyArgTypes,
     parameters: {

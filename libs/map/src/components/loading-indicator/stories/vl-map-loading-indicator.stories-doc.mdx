@@ -1,9 +1,12 @@
-import { Canvas, Story } from '@storybook/addon-docs';
+import { Canvas } from '@storybook/blocks';
+import * as VlMapLoadingIndicatorStories from './vl-map-loading-indicator.stories';
 
 # Map Loading Indicator
 
-Gebruik het `map-loading-indicator` component om op te vangen wanneer de [vl-map](/docs/map-map--map-default) aan het laden is.<br/>
+Gebruik de `map-loading-indicator` component om op te vangen wanneer de [vl-map](/docs/map-map--map-default) aan het
+laden is.<br/>
 Toont een 'loading' bar bovenaan de map.
+
 
 ## Voorbeeld
 
@@ -15,6 +18,4 @@ import { VlMapLoadingIndicator } from '@domg-lib/map';
 <vl-map-loading-indicator></vl-map-loading-indicator>
 ```
 
-<Canvas>
-    <Story id="map-loading-indicator--map-loading-indicator-default" height={560} inline={false} />
-</Canvas>
+<Canvas of={VlMapLoadingIndicatorStories.MapLoadingIndicatorDefault}/>

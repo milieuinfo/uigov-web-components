@@ -7,6 +7,7 @@ import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'components/spotlight',
+    tags: ['autodocs'],
     args: storyArgs(spotlightArgs),
     argTypes: storyArgTypes(spotlightArgTypes),
     parameters: {

@@ -6,6 +6,7 @@ import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/contact-card',
+    tags: ['autodocs'],
     args: storyArgs({}),
     argTypes: storyArgTypes({}),
     parameters: {

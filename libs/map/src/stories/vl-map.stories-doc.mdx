@@ -1,9 +1,10 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY, Canvas, Story, Source } from '@storybook/addon-docs';
-import mapStoryUtils from '!raw-loader!./vl-map.stories-util';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlMapStories from './vl-map.stories';
+import mapStoryUtils from './vl-map.stories-util?raw';
 
 # Map
 
-Gebruik het `map` component om een kaart af te beelden met verschillende lagen en acties.
+Gebruik de `map` component om een kaart af te beelden met verschillende lagen en acties.
 
 ## Voorbeeld
 
@@ -15,48 +16,48 @@ import { VlMap } from '@domg-wc/map';
 <vl-map></vl-map>
 ```
 
-<DocsStory id="map-map--map-default" />
+<Canvas of={VlMapStories.MapDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapStories.MapDefault} />
+
 
 ## Varianten
 
 ### Volledige hoogte
 
 De map de volledige beschikbare hoogte in laten nemen kan op de volgende manier:
+    - plaats op de parent een `height` of een `min-height`
+    - plaats op de parent `display: flex` en `flex-direction: column`
+    - plaats op de vl-map het attribuut `data-vl-full-height`
+    - zorg dat de parent **geen elementen** heeft met `position: fixed` die deel uit moeten maken van de hoogte
 
--   Plaats op de parent een `height` of een `min-height`
--   Plaats op de parent `display: flex` en `flex-direction: column`
--   Plaats op de vl-map het attribuut `data-vl-full-height`
--   Zorg dat de parent **geen elementen** heeft met `position: fixed` die deel uit moeten maken van de hoogte
-
-<Canvas>
-    <Story id="map-map--map-full-height" inline={false} height={850} />
-</Canvas>
+<Canvas of={VlMapStories.MapFullHeight} />
 
 ### Playground
 
 Zie de code onder de story voor het volledige voorbeeld.
 
-<DocsStory id="map-map--map-playground" />
+<Canvas of={VlMapStories.MapPlayground} />
 
 <details>
     <summary>TypeScript code</summary>
     <Source code={mapStoryUtils} language="ts" dark={true} />
 </details>
 
+
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-Het `map` component is een component van Departement Omgeving en heeft geen Digitaal Vlaanderen documentatie.
+De `map` component is een component van Departement Omgeving en heeft geen Digitaal Vlaanderen documentatie.
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map--default
+[Legacy Storybook - Map](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMap.html
+[Legacy Documentatie - Map](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMap.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map.html
+[Legacy Demo - Map](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map.html)

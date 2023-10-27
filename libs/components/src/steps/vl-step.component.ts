@@ -1,4 +1,5 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlAccordionComponent } from '../accordion/vl-accordion.component';
 
 declare const vl: any;
 
@@ -21,6 +22,10 @@ declare const vl: any;
  */
 @webComponent('vl-step')
 export class VlStepComponent extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlAccordionComponent]);
+    }
+
     static get _observedAttributes() {
         return ['type', 'toggleable'];
     }

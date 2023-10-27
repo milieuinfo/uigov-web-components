@@ -1,9 +1,13 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapDrawLineActionStories from './vl-map-draw-line-action.stories';
 
 # Map Draw Line Action
 
-Gebruik het `map-draw-line-action` component om een lijn te tekenen op een [map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default).<br/>
-Dit component erft over van de `VlMapDrawAction` klasse, die op zijn beurt overerft van de `VlMapLayerAction` klasse, die op zijn beurt overerft van de `VlMapAction` klasse.
+Gebruik de `map-draw-line-action` component om een lijn te tekenen op een
+[map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default).<br/>
+Deze component erft over van de `VlMapDrawAction` klasse, die op zijn beurt overerft van de `VlMapLayerAction` klasse,
+die op zijn beurt overerft van de `VlMapAction` klasse.
+
 
 ## Voorbeeld
 
@@ -15,24 +19,27 @@ import { VlMapDrawLineAction } from '@domg-wc/map';
 <vl-map-draw-line-action></vl-map-draw-line-action>
 ```
 
-<DocsStory id="map-action-draw-action-draw-line-action--map-draw-line-action-default" />
+<Canvas of={VlMapDrawLineActionStories.MapDrawLineActionDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapDrawLineActionStories.MapDrawLineActionDefault} />
+
 
 ## Varianten
 
 ### Snapping
 
-<DocsStory id="map-action-draw-action-draw-line-action--map-draw-line-action-snapping" />
+<Canvas of={VlMapDrawLineActionStories.MapDrawLineActionSnapping} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-draw-line-action--default
+[Legacy Storybook - Map Draw Line Action](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-draw-line-action--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapDrawLineAction.html
+[Legacy Documentatie - Map Draw Line Action](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapDrawLineAction.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html
+[Legacy Demo - Map Draw Line Action](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html)

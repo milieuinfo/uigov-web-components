@@ -1,5 +1,6 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY, Source } from '@storybook/addon-docs';
-import header from '!raw-loader!../child/header.section';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlPrivacyStories from './vl-privacy.stories';
+import header from '../child/header.section?raw';
 
 # Privacy
 
@@ -15,11 +16,13 @@ import { VlPrivacy } from '@domg-lib/sections';
 <vl-privacy></vl-privacy>
 ```
 
-<DocsStory id="sections-privacy--privacy-default" />
+<Canvas of={VlPrivacyStories.PrivacyDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlPrivacyStories.PrivacyDefault} />
+
 
 ## Header Slot
 
@@ -27,22 +30,25 @@ Standaard wordt deze template gebruikt om de `functional-header` te bepalen in d
 
 <Source code={header} language="ts" dark={true} />
 
-Als je wijzigingen wil aanbrengen in de functional header, kan je de standaard `vl-functional-header` vervangen door een ander, eventueel aangepaste header element.
+Als je wijzigingen wil aanbrengen in de functional header, kan je de standaard `vl-functional-header` vervangen door
+een ander, eventueel aangepaste header element.
 
 Je kan dit bijvoorbeeld vervangen door:
 - een [vl-content-header](/docs/components-content-header--content-header-default)
 - of een [vl-functional-header](/docs/components-functional-header--functional-header-default) met andere opties dan de standaard `functional-header` van dit component.
 
-In het voorbeeld hieronder kan je zien hoe je voor de `vl-functional-header` bij de teruglink (`data-vl-back`) "Start" als label kan geven in plaats van "Terug".
+In het voorbeeld hieronder kan je zien hoe je voor de `vl-functional-header` bij de teruglink (`data-vl-back`) "Start"
+als label kan geven in plaats van "Terug".
 
-<DocsStory id="sections-privacy--privacy-header-slot" />
+<Canvas of={VlPrivacyStories.PrivacyHeaderSlot} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-privacy--default
+[Legacy Storybook - Privacy](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-privacy--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlPrivacy.html
+[Legacy Documentatie - Privacy](https://webcomponenten.omgeving.vlaanderen.be/doc/VlPrivacy.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-privacy.html
+[Legacy Demo - Privacy](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-privacy.html)

@@ -1,12 +1,16 @@
-import { ArgsTable, Story, PRIMARY_STORY, Source, Canvas } from '@storybook/addon-docs';
-import defaultStorySource from '!raw-loader!./vl-map-select-actions.stories-default';
-import customStyleStorySource from '!raw-loader!./vl-map-select-actions.stories-custom-style';
-import clusteringStorySource from '!raw-loader!./vl-map-select-actions.stories-clustering';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlMapSelectActionsStories from './vl-map-select-actions.stories';
+import defaultStorySource from './vl-map-select-actions.stories-default?raw';
+import customStyleStorySource from './vl-map-select-actions.stories-custom-style?raw';
+import clusteringStorySource from './vl-map-select-actions.stories-clustering?raw';
 
 # Map Select Actions
 
-Gebruik het `map-select-actions` component om features op meerdere [map-features-layers](/docs/map-layer-vector-layer-features-layer--map-features-layer-default) te selecteren.<br/>
-Dit component erft over van het [map-select-action](/docs/map-action-layer-action-select-action--map-select-action-default) component.
+Gebruik het `map-select-actions` component om features op meerdere
+[map-features-layers](/docs/map-layer-vector-layer-features-layer--map-features-layer-default) te selecteren.<br/>
+Deze component erft over van de
+[map-select-action](/docs/map-action-layer-action-select-action--map-select-action-default) component.
+
 
 ## Voorbeeld
 
@@ -18,26 +22,25 @@ import { VlMapSelectActions } from '@domg-wc/map';
 <vl-map-select-actions></vl-map-select-actions>
 ```
 
-<Canvas withSource="none">
-    <Story id="map-action-layer-action-select-action-select-actions--map-select-actions-default" />
-</Canvas>
+<Canvas of={VlMapSelectActionsStories.MapSelectActionsDefault} />
+
 
 <details>
     <summary>Toon code</summary>
     <Source code={defaultStorySource} language="ts" dark={true} />
 </details>
 
+
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapSelectActionsStories.MapSelectActionsDefault} />
+
 
 ## Varianten
 
 ### Custom Style
 
-<Canvas withSource="none">
-    <Story id="map-action-layer-action-select-action-select-actions--map-select-actions-custom-style" />
-</Canvas>
+<Canvas of={VlMapSelectActionsStories.MapSelectActionsCustomStyle} />
 
 <details>
     <summary>Toon code</summary>
@@ -49,17 +52,9 @@ import { VlMapSelectActions } from '@domg-wc/map';
 Bij clustering kan best een [map-layer-circle-style](/docs/map-layer-style-layer-circle-style--map-layer-circle-style-default) component gebruikt worden binnen de `vl-map-select-actions` tag.<br/>
 Dit zorgt ervoor dat de grootte van de select-actie zich aanpast aan het aantal geclusterde features, en dat de stijl-tekst getoond wordt.
 
-<Canvas withSource="none">
-    <Story id="map-action-layer-action-select-action-select-actions--map-select-actions-clustering" />
-</Canvas>
+<Canvas of={VlMapSelectActionsStories.MapSelectActionsClustering} />
 
 <details>
     <summary>Toon code</summary>
     <Source code={clusteringStorySource} language="ts" dark={true} />
 </details>
-
-## Referenties
-
-### Legacy Documentatie
-
-Dit is een nieuw component en heeft geen legacy documentatie.

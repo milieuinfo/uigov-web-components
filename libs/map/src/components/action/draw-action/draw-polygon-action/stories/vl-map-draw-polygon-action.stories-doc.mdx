@@ -1,9 +1,13 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapDrawPolygonActionStories from './vl-map-draw-polygon-action.stories';
 
 # Map Draw Polygon Action
 
-Gebruik het `map-draw-polygon-action` component om een polygon te tekenen op een [map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default).<br/>
-Dit component erft over van de `VlMapDrawAction` klasse, die op zijn beurt overerft van de `VlMapLayerAction` klasse, die op zijn beurt overerft van de `VlMapAction` klasse.
+Gebruik het `map-draw-polygon-action` component om een polygon te tekenen op een
+[map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default).<br/>
+Dit component erft over van de `VlMapDrawAction` klasse, die op zijn beurt overerft van de `VlMapLayerAction` klasse,
+die op zijn beurt overerft van de `VlMapAction` klasse.
+
 
 ## Voorbeeld
 
@@ -15,24 +19,27 @@ import { VlMapDrawPolygonAction } from '@domg-wc/map';
 <vl-map-draw-polygon-action></vl-map-draw-polygon-action>
 ```
 
-<DocsStory id="map-action-draw-action-draw-polygon-action--map-draw-polygon-action-default" />
+<Canvas of={VlMapDrawPolygonActionStories.MapDrawPolygonActionDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapDrawPolygonActionStories.MapDrawPolygonActionDefault} />
+
 
 ## Varianten
 
 ### Snapping
 
-<DocsStory id="map-action-draw-action-draw-polygon-action--map-draw-polygon-action-snapping" />
+<Canvas of={VlMapDrawPolygonActionStories.MapDrawPolygonActionSnapping} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-draw-polygon-action--default
+[Legacy Storybook - Map Draw Polygon Action](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-draw-polygon-action--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapDrawPolygonAction.html
+[Legacy Documentatie - Map Draw Polygon Action](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapDrawPolygonAction.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html
+[Legacy Demo - Map Draw Polygon Action](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html)

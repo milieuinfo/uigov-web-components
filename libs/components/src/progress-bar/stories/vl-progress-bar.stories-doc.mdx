@@ -1,8 +1,10 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlProgressBarStories from './vl-progress-bar.stories';
 
 # Progress Bar
 
 Gebruik een progress-bar om de vooruitgang te tonen van een proces dat uit verschillende stappen bestaat.
+
 
 ## Voorbeeld
 
@@ -14,32 +16,35 @@ import { VlProgressBarComponent } from '@domg-wc/components';
 <vl-progress-bar></vl-progress-bar>
 ```
 
-<DocsStory id="components-progress-bar--progress-bar-default" />
+<Canvas of={VlProgressBarStories.ProgressBarDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlProgressBarStories.ProgressBarDefault} />
+
 
 ## Varianten
 
 ### Numerieke indicators
 
-<DocsStory id="components-progress-bar--progress-bar-numeric" />
+<Canvas of={VlProgressBarStories.ProgressBarNumeric} />
 
 ### Focus op de actieve stap
 
-<DocsStory id="components-progress-bar--progress-bar-focused" />
+<Canvas of={VlProgressBarStories.ProgressBarFocused} />
+
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-progress-bar/
+[Documentatie Digitaal Vlaanderen - Progress Bar](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-progress-bar)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-progress-bar--default
+[Legacy Storybook - Progress Bar](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-progress-bar--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlProgressBar.html
+[Legacy Documentatie - Progress Bar](https://webcomponenten.omgeving.vlaanderen.be/doc/VlProgressBar.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-progress-bar.html
+[Legacy Demo - Progress Bar](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-progress-bar.html)

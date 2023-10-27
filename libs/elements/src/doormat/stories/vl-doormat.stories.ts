@@ -2,7 +2,8 @@ import { html } from 'lit-html';
 import '../vl-doormat.element';
 
 export default {
-    title: 'Elements/doormat',
+    title: 'Elements/doormat/doormat',
+    tags: ['autodocs'],
     args: {
         alt: false,
     },

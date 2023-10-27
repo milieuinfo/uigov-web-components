@@ -1,4 +1,4 @@
-const pillUrl = 'http://localhost:8080/iframe.html?id=components-pill--pill-default&viewMode=story';
+const pillUrl = 'http://localhost:8080/iframe.html?id=components-pill-pill--pill-default&viewMode=story';
 
 describe('story vl-pill', () => {
     it('should contain a text', () => {
@@ -58,9 +58,9 @@ describe('story vl-pill', () => {
             .should('have.class', 'vl-pill--checkable')
             .find('input.vl-pill--checkable__checkbox')
             .should(($input) => {
-                expect($input).to.have.attr('disabled')
-                expect($input).to.not.have.attr('checked')
-            })
+                expect($input).to.have.attr('disabled');
+                expect($input).to.not.have.attr('checked');
+            });
 
         cy.getDataCy('pill').shadow().find('.vl-pill').click({ force: true });
 
@@ -75,8 +75,8 @@ describe('story vl-pill', () => {
             .should('have.class', 'vl-pill--checkable')
             .find('input.vl-pill--checkable__checkbox')
             .should(($input) => {
-                expect($input).to.have.attr('disabled')
-                expect($input).to.have.attr('checked')
+                expect($input).to.have.attr('disabled');
+                expect($input).to.have.attr('checked');
             });
     });
 });

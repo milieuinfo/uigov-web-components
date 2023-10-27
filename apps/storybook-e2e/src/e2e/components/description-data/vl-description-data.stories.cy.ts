@@ -1,5 +1,5 @@
 const descriptionDataUrl =
-    'http://localhost:8080/iframe.html?id=components-description-data--description-data-default&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-description-data-description-data--description-data-default&viewMode=story';
 
 describe('story vl-description-data', () => {
     it('should contain a valid value and label of each description data item', () => {

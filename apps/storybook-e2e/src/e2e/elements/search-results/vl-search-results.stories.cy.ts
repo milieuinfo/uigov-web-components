@@ -1,5 +1,5 @@
 const searchResultsDefaultUrl =
-    'http://localhost:8080/iframe.html?id=elements-search-results--search-results-default&viewMode=story';
+    'http://localhost:8080/iframe.html?id=elements-search-results-search-results--search-results-default&viewMode=story';
 
 describe('story vl-search-results', () => {
     it('should contain a title', () => {

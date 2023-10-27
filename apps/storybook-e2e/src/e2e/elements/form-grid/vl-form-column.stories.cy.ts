@@ -1,4 +1,5 @@
-const formGridDefaultUrl = 'http://localhost:8080/iframe.html?id=elements-form-grid--form-grid-column&viewMode=story';
+const formGridDefaultUrl =
+    'http://localhost:8080/iframe.html?id=elements-form-grid-form-column--form-grid-column&viewMode=story';
 
 describe('story vl-form-column', () => {
     it('should contain form with a 8/12 form column in it', () => {

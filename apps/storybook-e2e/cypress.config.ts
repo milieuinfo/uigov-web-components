@@ -1,6 +1,7 @@
-const { defineConfig } = require('cypress');
+import { nxE2EPreset } from '@nx/cypress/plugins/cypress-preset';
+import { defineConfig } from 'cypress';
 
-module.exports = defineConfig({
+export default defineConfig({
     fileServerFolder: '.',
     fixturesFolder: './src/fixtures',
     modifyObstructiveCode: false,
@@ -13,9 +14,5 @@ module.exports = defineConfig({
         configFile: 'reporter-config.json',
     },
     retries: 3,
-    e2e: {
-        setupNodeEvents(on, config) {},
-        specPattern: './src/e2e/**/*.cy.{js,jsx,ts,tsx}',
-        supportFile: './src/support/e2e.ts',
-    },
+    e2e: nxE2EPreset(__filename, { cypressDir: 'src' }),
 });

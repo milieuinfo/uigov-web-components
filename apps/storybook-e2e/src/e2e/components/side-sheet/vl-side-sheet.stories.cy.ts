@@ -30,6 +30,7 @@ describe('story - vl-side-sheet default', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(sideSheetUrl);
 
+        cy.get('vl-side-sheet');
         cy.checkA11y('vl-side-sheet');
     });
 

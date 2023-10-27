@@ -1,9 +1,11 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY, Source } from '@storybook/addon-docs';
-import mapLegendUtils from '!raw-loader!./vl-map-legend.stories-util';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlMapLegendStories from './vl-map-legend.stories';
+import mapLegendUtils from './vl-map-legend.stories-util?raw';
 
 # Map Legend
 
-Gebruik het `map-legend` component om een legende af te beelden op de kaart.
+Gebruik de `map-legend` component om een legende af te beelden op de kaart.
+
 
 ## Voorbeeld
 
@@ -15,9 +17,11 @@ import { VlMapLegend } from '@domg-wc/map';
 <vl-map-legend></vl-map-legend>
 ```
 
+
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapLegendStories.MapLegendFeaturesLayerMultipleStyles} />
+
 
 ## Voorbeelden
 
@@ -25,7 +29,7 @@ import { VlMapLegend } from '@domg-wc/map';
 
 Zie onder de story voor de TypeScript code.
 
-<DocsStory id="map-legend--map-legend-features-layer-multiple-styles" />
+<Canvas of={VlMapLegendStories.MapLegendFeaturesLayerMultipleStyles} />
 
 <details>
     <summary>TypeScript code</summary>
@@ -34,26 +38,27 @@ Zie onder de story voor de TypeScript code.
 
 ### Features Layer
 
-<DocsStory id="map-legend--map-legend-features-layer" />
+<Canvas of={VlMapLegendStories.MapLegendFeaturesLayer} />
 
 ### Multiple Features Layers
 
-<DocsStory id="map-legend--map-legend-multiple-features-layers" />
+<Canvas of={VlMapLegendStories.MapLegendMultipleFeaturesLayers} />
 
 ### WFS Layer
 
-<DocsStory id="map-legend--map-legend-wfs-layer" />
+<Canvas of={VlMapLegendStories.MapLegendWfsLayer} />
 
 ### WMS Layer
 
-<DocsStory id="map-legend--map-legend-wms-layer" />
+<Canvas of={VlMapLegendStories.MapLegendWmsLayer} />
 
 ### WMS WFS Layer Combination
 
-<DocsStory id="map-legend--map-legend-wms-wfs-layer" />
+<Canvas of={VlMapLegendStories.MapLegendWmsWfsLayer} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-legend-vl-map-legend-wfs-layer--default
+[Legacy Storybook - Map Legend Wfs Layer](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-legend-vl-map-legend-wfs-layer--default)

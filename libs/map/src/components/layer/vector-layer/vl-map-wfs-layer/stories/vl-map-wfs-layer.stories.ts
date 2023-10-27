@@ -9,6 +9,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/vector-layer/wfs-layer',
+    tags: ['autodocs'],
     args: storyArgs(mapWfsLayerArgs),
     argTypes: storyArgTypes(mapWfsLayerArgTypes),
     parameters: {

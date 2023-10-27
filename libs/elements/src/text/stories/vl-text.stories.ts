@@ -4,6 +4,7 @@ import { textArgs, textArgTypes } from './vl-text.stories-arg';
 
 export default {
     title: 'Elements/text',
+    tags: ['autodocs'],
     args: textArgs,
     argTypes: textArgTypes,
 };

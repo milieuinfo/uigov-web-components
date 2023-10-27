@@ -1,9 +1,11 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlCookieConsentStories from './vl-cookie-consent.stories';
 
 # Cookie Consent
 
 De cookie consent kan gebruikt worden om de gebruiker te informeren over al de cookies die gebruikt worden.
 Daarnaast kunnen er mits toestemming van de gebruiker analytics worden toegepast.
+
 
 ## Voorbeeld
 
@@ -15,18 +17,20 @@ import { VlCookieConsent } from '@domg-lib/sections';
 <vl-cookie-consent></vl-cookie-consent>
 ```
 
-<DocsStory id="sections-cookie-consent--cookie-consent-default" />
+<Canvas of={VlCookieConsentStories.CookieConsentDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlCookieConsentStories.CookieConsentDefault} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/story/legacy-vl-cookie-consent--default
+[Legacy Storybook - Cookie Consent](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/story/legacy-vl-cookie-consent--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlCookieConsent.html
+[Legacy Documentatie - Cookie Consent](https://webcomponenten.omgeving.vlaanderen.be/doc/VlCookieConsent.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-cookie-consent.html
+[Legacy Demo - Cookie Consent](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-cookie-consent.html)

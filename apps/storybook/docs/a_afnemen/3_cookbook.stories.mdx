@@ -1,4 +1,4 @@
-import {Meta} from '@storybook/addon-docs';
+import {Meta} from '@storybook/blocks';
 import autocompletePng from '../../resources/afnemen/autocomplete.png';
 
 <Meta title="Afnemen/Cookbook"/>
@@ -188,7 +188,7 @@ gespecifieerd in de package.json's (zowel van de applicatie als van de bibliothe
 Belangrijk hierbij is dat de default (indien er niets gespecifieerd wordt) `sideEffects=true` is. Dit heeft tot
 gevolg dat als je eender welke named import doet via een barrel file ook alle andere vermelde exports geïmporteerd
 worden. Om die rede worden in de `@domg-wc` artifacts de root-barrel files ge-exclude uit de sideEffects. Vroeger
-(<v1.17.0) werd de default gebruikt waardoor er niet ge-tree-shaked werd als je op die manier imports deed en via
+(< v1.17.0) werd de default gebruikt waardoor er niet ge-tree-shaked werd als je op die manier imports deed en via
 webpack de bundel maakte.
 
 Opmerking 1: webpack werkt eigenlijk niet conform de import specificatie, een named import zou eigenlijk geen
