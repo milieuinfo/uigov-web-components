@@ -3,10 +3,12 @@ import { LitElement, PropertyDeclarations } from 'lit';
 export abstract class BaseLitElement extends LitElement {
     protected allowCustomCSS = true;
     private customCSS: string | null = null;
+    private customCSSPrefix: string | null = null;
 
     static get properties(): PropertyDeclarations {
         return {
-            customCSS: { type: String, attribute: 'data-vl-custom-css', reflect: true },
+            customCSS: { type: String, attribute: 'custom-css', reflect: true },
+            customCSSPrefix: { type: String, attribute: 'data-vl-custom-css', reflect: true },
         };
     }
 
@@ -17,6 +19,8 @@ export abstract class BaseLitElement extends LitElement {
     }
 
     private addCustomCSS(): void {
+        this.customCSS = this.customCSSPrefix ? this.customCSSPrefix : this.customCSS;
+
         if (this.customCSS && !this.allowCustomCSS) {
             console.warn('Custom CSS is niet toegelaten voor dit component.');
             return;

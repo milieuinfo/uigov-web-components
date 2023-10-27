@@ -15,7 +15,7 @@ export const getTemplateFunctionForType = (
         return;
     }
     const { templates } = cascader;
-    if (templateType && templates && templates instanceof Map<string, TemplateFn>) {
+    if (templateType && templates && templates instanceof Map) {
         const getCustomTemplateResult = templates.get(templateType);
         return getCustomTemplateResult && getCustomTemplateResult(item, cascader.processNarrowDown);
     }
