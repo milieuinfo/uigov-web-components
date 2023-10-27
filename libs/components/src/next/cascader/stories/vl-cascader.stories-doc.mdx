@@ -1,11 +1,13 @@
-import { ArgsTable, Canvas, Source, Story, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
-import cascaderTemplates from '!raw-loader!./vl-cascader.stories-util.templates.ts';
-import cascaderSampleData from '!raw-loader!./vl-cascader.stories-util.data.ts';
-import getItemList from '!raw-loader!./vl-cascader.stories-util.item-list-function.ts';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlCascaderStories from './vl-cascader.stories';
+import cascaderTemplates from './vl-cascader.stories-util.templates.ts?raw';
+import cascaderSampleData from './vl-cascader.stories-util.data.ts?raw';
+import getItemList from './vl-cascader.stories-util.item-list-function.ts?raw';
 
 # Cascader
 
 Gebruik de `cascader` component om hiërarchische data weer te geven als een drilldown van lijsten.
+
 
 ## Voorbeeld
 
@@ -32,13 +34,13 @@ import { VlCascaderComponent } from '@domg-wc/components';
 </vl-cascader>
 ```
 
-<Canvas>
-    <Story id="components-next-cascader--cascader-default" />
-</Canvas>
+<Canvas of={VlCascaderStories.CascaderDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlCascaderStories.CascaderDefault} />
+
 
 ## Standaard gedrag
 
@@ -48,10 +50,12 @@ nog verder geselecteerd kan worden.
 De `vl-cascader-item` vereist een `label` attribuut, ook wanneer `label` slot wordt gebruikt. Deze label wordt gebruikt
 om de breadcrumb op te bouwen.
 
+
 ## Standaard gebruik
 
 Standaard kan je `cascader` component structuur opbouwen door geneste `cascader-item` componenten te definiëren. Zie
 bovenstaand voorbeeld.
+
 
 ## Cascader met property binding
 
@@ -81,9 +85,8 @@ Het is ook mogelijk de data-structuur op te bouwen met een array van type `Casca
     <Source code={cascaderSampleData} language="ts" dark={true} format={true} />
 </details>
 
-<Canvas>
-    <Story id="components-next-cascader--cascader-property-binding" />
-</Canvas>
+<Canvas of={VlCascaderStories.CascaderPropertyBinding} />
+
 
 ## Inhoud van de nodes aanpassen
 
@@ -95,9 +98,8 @@ Dit kan op verschillende manieren:
 
 Bij een `vl-cascader-item`, kan je de slots invullen voor `content` en/of `label`
 
-<Canvas>
-    <Story id="components-next-cascader--cascader-item-slots" />
-</Canvas>
+<Canvas of={VlCascaderStories.CascaderItemSlots} />
+
 
 ### Cascader met dynamisch ophalen van kind-elementen
 
@@ -138,9 +140,8 @@ Vervolgens kan je een `Map<string, TemplateFn>` meegeven aan de `templates`-prop
 
 Hieronder vind je een uitgewerkt voorbeeld van bovenstaande methodes waarin templates & slots worden gebruikt:
 
-<Canvas>
-    <Story id="components-next-cascader--cascader-dynamic-templating" />
-</Canvas>
+<Canvas of={VlCascaderStories.CascaderDynamicTemplating} />
+
 
 ## Variaties
 
@@ -148,17 +149,11 @@ Hieronder vind je een uitgewerkt voorbeeld van bovenstaande methodes waarin temp
 
 Hieronder een voorbeeld van de cascader binnen een `vl-side-sheet` component.
 
-<Canvas>
-    <Story id="components-next-cascader--cascader-side-sheet"  inline={false} height={500} />
-</Canvas>
+<Canvas of={VlCascaderStories.CascaderSideSheet} />
+
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/vue-documentation/?path=/story/components-vl-sidebar--sidebar-advanced
-
-### Legacy Documentatie
-
-Dit is een nieuw component; hiervoor is geen legacy documentatie.
-
+[Documentatie Digitaal Vlaanderen - Cascader](https://overheid.vlaanderen.be/webuniversum/v3/vue-documentation/?path=/story/components-vl-sidebar--sidebar-advanced)

@@ -14,6 +14,7 @@ import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/draw-action/measure-action',
+    tags: ['autodocs'],
     args: storyArgs(mapDrawActionArgs),
     argTypes: storyArgTypes(mapDrawActionArgTypes),
     parameters: {

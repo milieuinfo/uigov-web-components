@@ -7,6 +7,7 @@ import documentDoc from './vl-document.stories-doc.mdx';
 
 export default {
     title: 'Components/document',
+    tags: ['autodocs'],
     args: storyArgs(documentArgs),
     argTypes: storyArgTypes(documentArgTypes),
     parameters: {

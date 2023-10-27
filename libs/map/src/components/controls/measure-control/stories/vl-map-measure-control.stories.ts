@@ -11,6 +11,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/controls/measure-control',
+    tags: ['autodocs'],
     args: storyArgs({}),
     argTypes: storyArgTypes({}),
     parameters: {

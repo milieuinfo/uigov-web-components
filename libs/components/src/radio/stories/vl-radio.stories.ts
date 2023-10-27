@@ -1,18 +1,15 @@
+import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-radio.component';
 import { radioArgs, radioArgTypes } from './vl-radio.stories-arg';
-import { Meta } from '@storybook/web-components';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import radioDoc from './vl-radio.stories-doc.mdx';
 
 export default {
     title: 'Components/radio',
+    tags: ['autodocs'],
     args: storyArgs(radioArgs),
     argTypes: storyArgTypes(radioArgTypes),
     parameters: {
-        docs: {
-            page: radioDoc,
-        },
         controls: {
             hideNoControlsWarning: true,
         },
@@ -40,6 +37,7 @@ RadioDefault.args = {
     name: 'options',
     value: 'Ja',
 };
+
 export const RadioImage = story(
     radioArgs,
     ({ block, checked, disabled, error, label, name, single, value }) => html`

@@ -1,10 +1,12 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY, Story, Canvas, Source } from '@storybook/addon-docs';
-import tabsStoryUtils from '!raw-loader!./vl-tabs.stories-util';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlTabsStories from './vl-tabs.stories';
+import tabsStoryUtils from './vl-tabs.stories-util?raw';
 
 # Tabs
 
-Gebruik het `tabs` component om gerelateerde informatie op te splitsen in kleinere stukken content.
+Gebruik de `tabs` component om gerelateerde informatie op te splitsen in kleinere stukken content.
 Op mobiel wordt de tab navigatie omgevormd tot een uitklapbaar menu.
+
 
 ## Voorbeeld
 
@@ -16,11 +18,13 @@ import { VlTabsComponent } from '@domg-wc/components';
 <vl-tabs></vl-tabs>
 ```
 
-<DocsStory id="components-tabs--tabs-default" />
+<Canvas of={VlTabsStories.TabsDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlTabsStories.TabsDefault} />
+
 
 ## Varianten
 
@@ -28,25 +32,24 @@ import { VlTabsComponent } from '@domg-wc/components';
 
 Zie de code onder de story voor het volledige voorbeeld.
 
-<Canvas>
-    <Story id="components-tabs--tabs-dynamic" inline={false} height={200} />
-</Canvas>
+<Canvas of={VlTabsStories.TabsDynamic} />
 
 <details>
     <summary>TypeScript code</summary>
     <Source code={tabsStoryUtils} language="ts" dark={true} />
 </details>
 
+
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-tabs/
+[Documentatie Digitaal Vlaanderen - Tabs](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-tabs)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-tabs--uig-2115
+[Legacy Storybook - Tabs](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-tabs--uig-2115)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlTabs.html
+[Legacy Documentatie - Tabs](https://webcomponenten.omgeving.vlaanderen.be/doc/VlTabs.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-tabs.html
+[Legacy Demo - Tabs](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-tabs.html)

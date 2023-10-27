@@ -1,4 +1,4 @@
-const titleH4Url = 'http://localhost:8080/iframe.html?id=elements-title--title-h-4&viewMode=story';
+const titleH4Url = 'http://localhost:8080/iframe.html?id=elements-title-h4--title-h-4&viewMode=story';
 
 describe('story vl-titles', () => {
     it('should contain a h4', () => {

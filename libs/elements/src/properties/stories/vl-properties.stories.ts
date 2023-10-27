@@ -11,6 +11,7 @@ import { story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Elements/properties',
+    tags: ['autodocs'],
     argTypes: propertiesArgTypes,
     parameters: {
         docs: { page: propertiesDoc },

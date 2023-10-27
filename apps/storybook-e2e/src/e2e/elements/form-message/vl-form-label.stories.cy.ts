@@ -1,5 +1,5 @@
 const formLabelDefaultUrl =
-    'http://localhost:8080/iframe.html?id=elements-form-message--form-label-default&viewMode=story';
+    'http://localhost:8080/iframe.html?id=elements-form-message-form-label--form-label-default&viewMode=story';
 
 describe('story vl-form-label', () => {
     it('should contain a title', () => {

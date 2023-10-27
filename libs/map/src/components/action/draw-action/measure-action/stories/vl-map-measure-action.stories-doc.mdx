@@ -1,9 +1,12 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapMeasureActionStories from './vl-map-measure-action.stories';
 
 # Map Measure Action
 
-Gebruik het `map-measure-action` component om de afstand tussen 2 punten te meten op een [map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default).<br/>
-Dit component erft over van de `VlMapDrawAction` klasse, die op zijn beurt overerft van de `VlMapLayerAction` klasse, die op zijn beurt overerft van de `VlMapAction` klasse.
+Gebruik het `map-measure-action` component om de afstand tussen 2 punten te meten op een
+[map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default).<br/>
+Dit component erft over van de `VlMapDrawAction` klasse, die op zijn beurt overerft van de `VlMapLayerAction` klasse,
+die op zijn beurt overerft van de `VlMapAction` klasse.
 
 ## Voorbeeld
 
@@ -15,24 +18,27 @@ import { VlMapMeasureAction } from '@domg-wc/map';
 <vl-map-measure-action></vl-map-measure-action>
 ```
 
-<DocsStory id="map-action-draw-action-measure-action--map-measure-action-default" />
+<Canvas of={VlMapMeasureActionStories.MapMeasureActionDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapMeasureActionStories.MapMeasureActionDefault} />
+
 
 ## Varianten
 
 ### Snapping
 
-<DocsStory id="map-action-draw-action-measure-action--map-measure-action-snapping" />
+<Canvas of={VlMapMeasureActionStories.MapMeasureActionSnapping} />
 
 ### Control
 
-<DocsStory id="map-action-draw-action-measure-action--map-measure-action-control" />
+<Canvas of={VlMapMeasureActionStories.MapMeasureActionControl} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-measure-action--default
+[Legacy Storybook - Map Measure Action](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-measure-action--default)

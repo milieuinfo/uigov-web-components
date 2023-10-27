@@ -7,6 +7,7 @@ import { storyArgTypes, storyArgs, story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/checkbox',
+    tags: ['autodocs'],
     args: storyArgs(checkboxArgs),
     argTypes: storyArgTypes(checkboxArgTypes),
     parameters: {

@@ -9,6 +9,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/loading-indicator',
+    tags: ['autodocs'],
     args: storyArgs({}),
     argTypes: storyArgTypes({}),
     parameters: {

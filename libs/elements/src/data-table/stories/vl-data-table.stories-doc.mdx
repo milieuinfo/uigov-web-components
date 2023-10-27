@@ -1,8 +1,10 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY, Source } from '@storybook/addon-docs';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlDataTableStories from './vl-data-table.stories';
 
 # Data Table
 
 Gebruik het `data-table` component om op een gestructureerde manier (grote hoeveelheden) relationele data te tonen.
+
 
 ## Voorbeeld
 
@@ -34,34 +36,43 @@ import { VlDataTable } from '@domg-wc/components';
 </table>
 ```
 
+
 ## Default
 
-<DocsStory id="elements-data-table--data-table-default" />
+<Canvas of={VlDataTableStories.DataTableDefault} layout="padded" />
+
 
 ## Functionaliteit
 
-Standaard is er geen sorteer, filtering of paginatie functionaliteit beschikbaar voor de `data-table`. Hiervoor is de [rich-data-table](?path=/docs/components-rich-data-table--rich-data-table-default) beschikbaar.<br/>
-Wat dit component wel méér heeft dan die van Digitaal Vlaanderen zijn expandable/collapsible rows. Zie de specifieke stories hieronder.<br/>
+Standaard is er geen sorteer, filtering of paginatie functionaliteit beschikbaar voor de `data-table`. Hiervoor is de
+[rich-data-table](?path=/docs/components-rich-data-table--rich-data-table-default) beschikbaar.<br/>
+Wat dit component wel méér heeft dan die van Digitaal Vlaanderen zijn expandable/collapsible rows. Zie de specifieke
+stories hieronder.<br/>
 De visuele mark-up volgt standaard die van Digitaal Vlaanderen, inclusief responsiveness.
+
 
 ## Lege cellen
 
-Het is aan te raden om in lege cellen de waarde `&nbsp;` te plaatsen, dit zorgt ervoor dat rijen hun hoogte behouden indien elke cel van een rij leeg is.
+Het is aan te raden om in lege cellen de waarde `&nbsp;` te plaatsen, dit zorgt ervoor dat rijen hun hoogte behouden
+indien elke cel van een rij leeg is.
+
 
 ## Joined row titles
 
-Gebruik de matrixvariant om gegevens met 2 dimensies weer te geven. Zowel de rijen als de kolommen krijgen een titel. De titels zijn gescheiden van de inhoud met een vetgedrukte lijn.<br/>
+Gebruik de matrix-variant om gegevens met 2 dimensies weer te geven. Zowel de rijen als de kolommen krijgen een titel.
+De titels zijn gescheiden van de inhoud met een vetgedrukte lijn.<br/>
 Om dit toe passen maak je zelf gebruik van native html-attribuut `rowspan`.
 
-<DocsStory id="elements-data-table--data-table-joined-row-titles" />
+<Canvas of={VlDataTableStories.DataTableJoinedRowTitles} layout="padded" />
+
 
 ## Expandable
 
 Om een rijen te laten uitklappen ("expanden") moet je het volgende doen:<br/>
 Als je 2 rijen hebt, en je wil rij A altijd zichtbaar zetten en rij B verborgen tot die word opengeklapt:
 
--   maak een nieuwe rij B direct na rij A
--   zet je het attribuut `data-details-id` op de rij B
+- maak een nieuwe rij B direct na rij A
+- zet je het attribuut `data-details-id` op de rij B
 
 <details>
     <summary>voorbeeld expandable row</summary>
@@ -82,9 +93,11 @@ Als je 2 rijen hebt, en je wil rij A altijd zichtbaar zetten en rij B verborgen 
     ></Source>
 </details>
 
-Dan zal er automatisch een `button` toegevoegd worden die de gebruiker toelaat de rij B te zien wanneer op de desbetreffende knop bij rij A word gedrukt.
+Dan zal er automatisch een `button` toegevoegd worden die de gebruiker toelaat de rij B te zien wanneer op de
+desbetreffende knop bij rij A word gedrukt.
 
-<DocsStory id="elements-data-table--data-table-expandable" />
+<Canvas of={VlDataTableStories.DataTableExpandable} layout="padded" />
+
 
 ## Expandable with custom toggle
 
@@ -92,7 +105,7 @@ Je kan ook de knop die de rij open en dicht klapt zelf kiezen.<br/>
 Als je 2 rijen hebt, en je wil rij A altijd zichtbaar zetten en rij B verborgen tot die word opengeklapt:<br/>
 Om dit te doen, doe het volgende:<br/>
 
--   op de rij die meer details geeft op de voorgaande rij, moet de juiste id worden toegekend
+- op de rij die meer details geeft op de voorgaande rij, moet de juiste id worden toegekend
 
 <Source
     language="html"
@@ -104,10 +117,10 @@ Om dit te doen, doe het volgende:<br/>
           `}
 ></Source>
 
--   op rij die meer details heeft, een cel toevoegen die:
-    -   `with-expand-details` heeft als attribuut
-    -   een element naar keuze heeft, die `toggleDetails([id])` gaat aanroepen met de juiste id voor de openklapbare rij
-        bv.:
+- op rij die meer details heeft, een cel toevoegen die:
+    - `with-expand-details` heeft als attribuut
+    - een element naar keuze heeft, die `toggleDetails([id])` gaat aanroepen met de juiste id voor de openklapbare rij
+      bv.:
 
 <Source
     language="html"
@@ -119,13 +132,16 @@ Om dit te doen, doe het volgende:<br/>
           `}
 ></Source>
 
-**_In dit voorbeeld vind je bij `Show code` broncode in `lit-html`-syntax. Voor code voorbeelden in HTML/JavaScript verwijzen we naar hierboven._**
+**_In dit voorbeeld vind je bij `Show code` broncode in `lit-html`-syntax. Voor code voorbeelden in HTML/JavaScript
+verwijzen we naar hierboven._**
 
-<DocsStory id="elements-data-table--data-table-expandable-custom-toggle-details-column"></DocsStory>
+<Canvas of={VlDataTableStories.DataTableExpandableCustomToggleDetailsColumn} layout="padded" />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlDataTableStories.DataTableDefault} />
+
 
 ## Referenties
 
@@ -133,12 +149,12 @@ Om dit te doen, doe het volgende:<br/>
 
 We nemen de functionaliteit & styling over van het equivalente component van Digitaal Vlaanderen.
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-data-table/
+[Documentatie Digitaal Vlaanderen - Data Table](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-data-table)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/native-elements-vl-data-table--default
+[Legacy Storybook - Data Table](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/native-elements-vl-data-table--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlDataTable.html
+[Legacy Documentatie - Data Table](https://webcomponenten.omgeving.vlaanderen.be/doc/VlDataTable.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-data-table.html
+[Legacy Demo - Data Table](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-data-table.html)

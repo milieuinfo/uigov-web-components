@@ -1,8 +1,11 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Canvas } from '@storybook/blocks';
+import * as VlMapMeasureControlStories from './vl-map-measure-control.stories';
 
 # Map Measure Control
 
-Gebruik het `map-measure-control` component om de meet-actie aan of uit te zetten door behulp van een [toggle-button](/docs/components-toggle-button--toggle-button-default).
+Gebruik de `map-measure-control` component om de meet-actie aan of uit te zetten door behulp van een
+[toggle-button](/docs/components-toggle-button--toggle-button-default).
+
 
 ## Voorbeeld
 
@@ -14,14 +17,16 @@ import { VlMapMeasureControl } from '@domg-wc/map';
 <vl-map-measure-control></vl-map-measure-control>
 ```
 
-<DocsStory id="map-controls-measure-control--map-measure-control-default" />
+<Canvas of={VlMapMeasureControlStories.MapMeasureControlDefault} />
+
 
 ## Configuratie
 
-Dit component heeft geen configuratie.
+Deze component heeft geen configuratie.
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-action-controls-vl-measure-control--default
+[Legacy Storybook - Map Measure Control](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-action-controls-vl-measure-control--default)

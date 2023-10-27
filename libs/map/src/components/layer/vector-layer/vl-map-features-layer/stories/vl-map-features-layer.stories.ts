@@ -9,6 +9,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/vector-layer/features-layer',
+    tags: ['autodocs'],
     args: storyArgs(mapFeaturesLayerArgs),
     argTypes: storyArgTypes(mapFeaturesLayerArgTypes),
     parameters: {

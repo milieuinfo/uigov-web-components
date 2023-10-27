@@ -8,6 +8,7 @@ import { story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'sections/cookie-statement',
+    tags: ['autodocs'],
     args: cookieStatementArgs,
     argTypes: cookieStatementArgTypes,
     parameters: {

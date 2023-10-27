@@ -14,6 +14,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/controls/action-control',
+    tags: ['autodocs'],
     args: storyArgs(mapActionControlArgs),
     argTypes: storyArgTypes(mapActionControlArgTypes),
     parameters: {

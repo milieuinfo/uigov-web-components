@@ -1,20 +1,14 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, PropertyValues } from 'lit';
 import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { vlElementsStyle } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
-import {
-    VlButtonInputAddon,
-    vlElementsStyle,
-    VlIconElement,
-    VlInputFieldElement,
-    VlInputGroupElement,
-} from '@domg-wc/elements';
-import { customElement } from 'lit/decorators.js';
-import FloatingController from './vl-floating-ui.controller';
-import popoverUigStyle from './vl-popover.uig-css';
 import type { Placement } from '@floating-ui/dom';
+import { CSSResult, html, PropertyDeclarations, PropertyValues, TemplateResult } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { VlPopoverActionComponent } from './vl-popover-action.component';
+import FloatingController from './vl-floating-ui.controller';
 import { VlPopoverActionListComponent } from './vl-popover-action-list.component';
+import { VlPopoverActionComponent } from './vl-popover-action.component';
+import popoverUigStyle from './vl-popover.uig-css';
 
 @customElement('vl-popover')
 export class VlPopoverComponent extends BaseLitElement {

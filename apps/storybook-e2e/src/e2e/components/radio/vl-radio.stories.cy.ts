@@ -6,6 +6,7 @@ describe('story vl-radio', () => {
     it('should be accessible by default', () => {
         cy.visitWithA11y(radioUrl);
 
+        cy.get('vl-radio');
         cy.checkA11y('vl-radio');
         cy.get('vl-radio').shadow().find('.vl-radio__toggle').click({ force: true });
         cy.checkA11y('vl-radio');
@@ -14,6 +15,7 @@ describe('story vl-radio', () => {
     it('should be accessible with an image', () => {
         cy.visitWithA11y(radioImageUrl);
 
+        cy.get('vl-radio');
         cy.checkA11y('vl-radio');
         cy.get('vl-radio').shadow().find('.vl-radio__toggle').click({ force: true });
         cy.checkA11y('vl-radio');

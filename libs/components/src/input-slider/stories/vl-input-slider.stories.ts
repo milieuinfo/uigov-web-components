@@ -7,6 +7,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/input-slider',
+    tags: ['autodocs'],
     args: storyArgs(inputSliderArgs),
     argTypes: storyArgTypes(inputSliderArgTypes),
     parameters: {

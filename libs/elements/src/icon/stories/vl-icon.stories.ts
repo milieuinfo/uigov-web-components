@@ -4,7 +4,8 @@ import '../vl-icon-wrapper.element';
 import { iconArgs, iconArgTypes } from './vl-icon.stories-arg';
 
 export default {
-    title: 'Elements/icon',
+    title: 'Elements/icon/icon',
+    tags: ['autodocs'],
     args: iconArgs,
     argTypes: iconArgTypes,
 };

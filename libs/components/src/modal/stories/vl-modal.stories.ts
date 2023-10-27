@@ -6,6 +6,7 @@ import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/modal',
+    tags: ['autodocs'],
     args: storyArgs(modalArgs),
     argTypes: storyArgTypes(modalArgTypes),
 } as Meta<typeof modalArgs>;

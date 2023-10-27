@@ -1,9 +1,12 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlAccordionStories from './vl-accordion.stories';
 
 # Accordion
 
-Gebruik het `accordion` component om informatie te tonen of te verbergen aan de hand van een toggle.
-Voor meer informatie over het afbeelden van meerdere accordions zie het [accordion-list](/story/components-accordion-list--accordion-list-default) component.
+Gebruik de `accordion` component om informatie te tonen of te verbergen aan de hand van een toggle.
+Voor meer informatie over het afbeelden van meerdere accordions zie de
+[accordion-list](/story/components-accordion-list--accordion-list-default) component.
+
 
 ## Voorbeeld
 
@@ -15,37 +18,39 @@ import { VlAccordionComponent } from '@domg-wc/components';
 <vl-accordion></vl-accordion>
 ```
 
-<DocsStory id="components-accordion--accordion-default" />
+<Canvas of={VlAccordionStories.AccordionDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlAccordionStories.AccordionDefault} />
+
 
 ## Varianten
 
 ### Dynamische toggle
 
-<DocsStory id="components-accordion--accordion-dynamic-toggle" />
+<Canvas of={VlAccordionStories.AccordionDynamicToggle} />
 
 ### Icoon
 
-<DocsStory id="components-accordion--accordion-icon" />
+<Canvas of={VlAccordionStories.AccordionIcon} />
 
 ### Titel slot
 
-<DocsStory id="components-accordion--accordion-title-slot" />
+<Canvas of={VlAccordionStories.AccordionTitleSlot} />
 
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/js-components/vl-ui-accordion/
+[Documentatie Digitaal Vlaanderen - Accordion](https://overheid.vlaanderen.be/webuniversum/v3/documentation/js-components/vl-ui-accordion)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-accordion--default
+[Legacy Storybook - Accordion](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-accordion--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlAccordion.html
+[Legacy Documentatie - Accordion](https://webcomponenten.omgeving.vlaanderen.be/doc/VlAccordion.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-accordion.html
+[Legacy Demo - Accordion](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-accordion.html)

@@ -1,4 +1,5 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapModifyActionStories from './vl-map-modify-action.stories';
 
 # Map Modify Action
 
@@ -15,24 +16,27 @@ import { VlMapModifyAction } from '@domg-wc/map';
 <vl-map-modify-action></vl-map-modify-action>
 ```
 
-<DocsStory id="map-action-layer-action-modify-action--map-modify-action-default" />
+<Canvas of={VlMapModifyActionStories.MapModifyActionDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapModifyActionStories.MapModifyActionDefault} />
+
 
 ## Varianten
 
 ### Snapping
 
-<DocsStory id="map-action-layer-action-modify-action--map-modify-action-snapping" />
+<Canvas of={VlMapModifyActionStories.MapModifyActionSnapping} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-modify-action--default
+[Legacy Storybook - Map Modify Action](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-modify-action--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapModifyAction.html
+[Legacy Documentatie - Map Modify Action](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapModifyAction.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html
+[Legacy Demo - Map Modify Action](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html)

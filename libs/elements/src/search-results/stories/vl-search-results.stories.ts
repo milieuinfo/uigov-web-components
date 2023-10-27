@@ -2,7 +2,8 @@ import { html } from 'lit-html';
 import '../vl-search-results.element';
 
 export default {
-    title: 'Elements/search-results',
+    title: 'Elements/search-results/search-results',
+    tags: ['autodocs'],
     parameters: {
         controls: { hideNoControlsWarning: true },
     },

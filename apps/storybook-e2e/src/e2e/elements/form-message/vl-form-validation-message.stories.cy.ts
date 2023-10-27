@@ -1,5 +1,5 @@
 const formValidationMessageDefaultUrl =
-    'http://localhost:8080/iframe.html?id=elements-form-message--form-validation-message-default&viewMode=story';
+    'http://localhost:8080/iframe.html?id=elements-form-message-form-validation-message--form-validation-message-default&viewMode=story';
 
 describe('story vl-form-validation-message', () => {
     it('should contain a message', () => {

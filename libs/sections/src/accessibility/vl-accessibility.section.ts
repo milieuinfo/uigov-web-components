@@ -1,3 +1,5 @@
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { VlFunctionalHeaderComponent } from '@domg-wc/components';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { CSSResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
@@ -5,10 +7,14 @@ import { content } from './child/content.section';
 import { header } from './child/header.section';
 import { title } from './child/title.section';
 import { AccessibilityProperties, COMPLIANCE_STATUS, EVALUATION_STATUS, Limitations } from './vl-accessibility.model';
-import { BaseLitElement } from '@domg-wc/common-utilities';
 
 @customElement('vl-accessibility')
 export class VlAccessibility extends BaseLitElement {
+    static {
+        // TODO verbeteren ihkv UIG-2740
+        registerWebComponents([VlFunctionalHeaderComponent]);
+    }
+
     static get styles(): CSSResult[] {
         return vlElementsStyle;
     }

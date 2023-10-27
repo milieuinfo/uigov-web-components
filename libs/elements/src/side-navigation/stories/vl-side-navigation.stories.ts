@@ -5,10 +5,12 @@ import sideNavigationDoc from './vl-side-navigation.stories-doc.mdx';
 
 export default {
     title: 'Elements/side-navigation',
+    tags: ['autodocs'],
     parameters: {
         controls: { hideNoControlsWarning: true },
         docs: { page: sideNavigationDoc },
     },
+    decorators: [(story: () => unknown) => html` <div style="height: 400px;">${story()}</div>`],
 };
 
 export const SideNavigationDefault = () => html`${unsafeHTML(sideNavigationHTML)}`;

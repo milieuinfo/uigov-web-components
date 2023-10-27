@@ -1,24 +1,33 @@
-import { html, TemplateResult, PropertyDeclarations, CSSResult } from 'lit';
-import { customElement } from 'lit/decorators.js';
+// import '@webcomponents/custom-elements/src/native-shim.js';
+import { html, TemplateResult, CSSResult, PropertyDeclarations } from 'lit';
 import { accordionStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
 import 'reflect-metadata';
-import { BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
+import { property } from 'lit/decorators.js';
 
-@customElement('vl-accordion-list')
+@webComponent('vl-accordion-list')
 export class VlAccordionListComponent extends BaseLitElement {
-    private bordered = false;
+    // private bordered;
     private observer: MutationObserver | null = null;
 
-    static get properties(): PropertyDeclarations {
-        return {
-            bordered: {
-                type: Boolean,
-                attribute: 'data-vl-bordered',
-                reflect: true,
-            },
-        };
+    constructor() {
+        super();
+        this.bordered = false;
     }
+
+    // static get properties(): PropertyDeclarations {
+    //     return {
+    //         bordered: {
+    //             type: Boolean,
+    //             attribute: 'data-vl-bordered',
+    //             reflect: true,
+    //         },
+    //     };
+    // }
+
+    @property({ type: Boolean, attribute: 'data-vl-bordered', reflect: true })
+    bordered: boolean = false;
 
     static get styles(): CSSResult[] {
         return [resetStyle, accordionStyle];

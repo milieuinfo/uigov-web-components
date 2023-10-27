@@ -6,6 +6,7 @@ import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/loader',
+    tags: ['autodocs'],
     args: storyArgs(loaderArgs),
     argTypes: storyArgTypes(loaderArgTypes),
 } as Meta<typeof storyArgs>;

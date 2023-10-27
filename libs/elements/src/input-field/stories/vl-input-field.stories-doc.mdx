@@ -1,4 +1,5 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlInputFieldStories from './vl-input-field.stories';
 
 # Input Field
 
@@ -14,39 +15,31 @@ import { VlInputFieldElement } from '@domg-wc/elements';
  <input is="vl-input-field" />
 ```
 
-<DocsStory id="components-input-field--input-field-default" />
+<Canvas of={VlInputFieldStories.InputFieldDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlInputFieldStories.InputFieldDefault} />
+
 
 ## Form Validatie
 
-De `input-field`-component ook `vl-form-validation` element, die achterliggend op zijn beurt gebruik maakt van `validate.js` 0.12 ([http://validatejs.org/](http://validatejs.org/)).
+De `input-field`-component ook `vl-form-validation` element, die achterliggend op zijn beurt gebruik maakt van
+`validate.js` 0.12 ([http://validatejs.org/](http://validatejs.org/)).
 
 [Link naar `vl-form-validation`-component](/docs/elements-form--form-validation) documentatie in Storybook.
+
 
 ## Varianten
 
 ### Binnen een form
 
-Gelijkaardig aan de andere controls die overerven van de [`vl-form-validation`](/docs/elements-form--form-validation) kan je de `vl-form-validation-message` gebruiken om een foutboodschap te tonen.
+Gelijkaardig aan de andere controls die overerven van de [`vl-form-validation`](/docs/elements-form--form-validation)
+kan je de `vl-form-validation-message` gebruiken om een foutboodschap te tonen.
 
-<DocsStory id="components-input-field--input-field-with-validation" />
+<Canvas of={VlInputFieldStories.InputFieldFormWithValidation} />
 
 ### Binnen een form met numerieke validatie
 
-<DocsStory id="components-input-field--input-field-with-numerical-validation" />
-
-
-### Digitaal Vlaanderen
-
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-upload
-
-### Legacy Documentatie
-
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-upload--uig-2120
-
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlUpload.html
-
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-upload.html
+<Canvas of={VlInputFieldStories.InputFieldFormWithNumericalValidation} />

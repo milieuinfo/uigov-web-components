@@ -1,4 +1,6 @@
-import { BaseLitElement, awaitScript, webComponentCustom } from '@domg-wc/common-utilities';
+import { awaitScript, BaseLitElement, webComponentCustom } from '@domg-wc/common-utilities'; // import '@govflanders/vl-ui-util/dist/js/util.js';
+// import '@govflanders/vl-ui-util/dist/js/util.js';
+// import '@govflanders/vl-ui-accordion/dist/js/accordion.js';
 
 const customRegistration = () =>
     awaitScript(
@@ -10,10 +12,12 @@ const customRegistration = () =>
                 'vl-footer-client',
                 'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-client/dist/index.js'
             ).finally(() => {
+                console.log("define('vl-footer', VlFooter) - vl-footer-client");
                 customElements.define('vl-footer', VlFooter);
             });
         })
         .catch(() => {
+            console.log("define('vl-footer', VlFooter) - vl-footer-polyfill");
             customElements.define('vl-footer', VlFooter);
         });
 
@@ -40,7 +44,7 @@ export class VlFooter extends BaseLitElement {
 
     constructor() {
         super();
-
+        console.log('VlFooter - constructor');
         this.allowCustomCSS = false;
     }
 
@@ -54,6 +58,7 @@ export class VlFooter extends BaseLitElement {
             'beforeend',
             '<div id="footer__container"><div id="footer"></div></div>'
         );
+        console.log('VlFooter - injectFooterContainer');
     }
 
     private observeWidgetIsAdded() {
@@ -80,13 +85,21 @@ export class VlFooter extends BaseLitElement {
             ? `https://tni.widgets.burgerprofiel.dev-vlaanderen.be/api/v1/widget/${this.identifier}`
             : `https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/widget/${this.identifier}`;
 
-        (window as any).vl.widget.client
-            .bootstrap(widgetUrl)
+        console.log('VlFooter - loadWidget', (window as any).vl.widget.client);
+        const client = (window as any).vl.widget.client as any;
+        const bootstrapResponse = client.bootstrap(widgetUrl);
+        console.log('VlFooter - loadWidget - bootstrap', bootstrapResponse);
+        bootstrapResponse
             .then((widget: any) => {
+                console.log('VlFooter - setMountElement', widget);
                 widget.setMountElement(document.getElementById('footer'));
                 widget.mount().catch((e: any) => console.error(e));
+                console.log('VlFooter - setMountElement - done');
             })
-            .catch((e: any) => console.error(e));
+            .catch((e: any) => {
+                console.error(e);
+                console.log('VlFooter - setMountElement', e);
+            });
     }
 
     render() {
@@ -95,6 +108,9 @@ export class VlFooter extends BaseLitElement {
         this.observer?.disconnect();
         this.observeWidgetIsAdded();
         this.loadWidget();
+        // setTimeout(() => {
+        //     this.loadWidget();
+        // }, 2000);
     }
 
     createRenderRoot() {

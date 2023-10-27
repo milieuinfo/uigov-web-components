@@ -1,8 +1,10 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapBaselayerStories from './vl-map-baselayer.stories';
 
 # Map Baselayer
 
 Gebruik het `map-baselayer` component om een basis kaartlaag af te beelden.
+
 
 ## Voorbeeld
 
@@ -14,20 +16,23 @@ import { VlMapBaseLayer } from '@domg-wc/map';
 <vl-map-baselayer></vl-map-baselayer>
 ```
 
-<DocsStory id="map-baselayer--map-baselayer-default" />
+<Canvas of={VlMapBaselayerStories.MapBaselayerDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapBaselayerStories.MapBaselayerDefault} />
+
 
 ## Varianten
 
 ### Background Layer
 
-<DocsStory id="map-baselayer--map-baselayer-background-layer" />
+<Canvas of={VlMapBaselayerStories.MapBaselayerBackgroundLayer} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapBaseLayer.html
+[Legacy Documentatie - Map Base Layer](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapBaseLayer.html)

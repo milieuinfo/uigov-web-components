@@ -8,6 +8,7 @@ import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/upload',
+    tags: ['autodocs'],
     args: storyArgs(uploadArgs),
     argTypes: storyArgTypes(uploadArgTypes),
     parameters: {

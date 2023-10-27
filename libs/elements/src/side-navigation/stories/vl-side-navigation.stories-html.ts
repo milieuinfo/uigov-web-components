@@ -1,5 +1,8 @@
 // Deze 2 stukken HTML staan in een aparte file zodat ze op de docs-pagina geïmporteerd kunnen worden.
-// De source van de story toont niet de correcte code omdat er een aantal classes en attributen toegevoegd worden in de interne keuken van de elementen.
+import { registerWebComponents } from '@domg-wc/common-utilities';
+// De source van de story toont niet de correcte code omdat er een aantal classes en attributen toegevoegd worden in de
+// interne keuken van de elementen.
+import '../index';
 
 export const sideNavigationHTML = `
 <section is="vl-region">

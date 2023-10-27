@@ -7,6 +7,7 @@ import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/progress-bar',
+    tags: ['autodocs'],
     args: storyArgs(progressBarArgs),
     argTypes: storyArgTypes(progressBarArgTypes),
     parameters: {

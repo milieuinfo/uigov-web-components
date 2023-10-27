@@ -9,6 +9,7 @@ import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/wms-layer/tiled-wms-layer',
+    tags: ['autodocs'],
     args: storyArgs(mapWmsLayerArgs),
     argTypes: storyArgTypes(mapWmsLayerArgTypes),
     parameters: {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { html } from 'lit-html';
 import { VlProzaMessage } from '../vl-proza-message.component';
 import { prozaMessageMockDomainData, prozaMessageMockDomainEditableData } from './vl-proza-message.stories-data';

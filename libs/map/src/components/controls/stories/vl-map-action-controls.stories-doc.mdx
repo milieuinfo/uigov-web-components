@@ -1,10 +1,13 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Canvas } from '@storybook/blocks';
+import * as VlMapActionControlsStories from './vl-map-action-controls.stories';
 
 # Map Action Controls
 
-Gebruik het `map-action-controls` component als wrapper rond [map-action-control](/docs/map-controls-action-control--map-action-control-default) componenten.<br/>
+Gebruik de `map-action-controls` component als wrapper rond
+[map-action-control](/docs/map-controls-action-control--map-action-control-default) componenten.<br/>
 De `map-action-controls` zorgt ervoor dat de map-acties in de rechterbovenhoek van de `map` afgebeeld worden.<br/>
 Verder zorgt deze ervoor dat er altijd maar 1 actieve `map-action-control` is.
+
 
 ## Voorbeeld
 
@@ -16,14 +19,16 @@ import { VlMapActionControls } from '@domg-wc/map';
 <vl-map-action-controls></vl-map-action-controls>
 ```
 
-<DocsStory id="map-controls-action-controls--map-action-controls-default" />
+<Canvas of={VlMapActionControlsStories.MapActionControlsDefault} />
+
 
 ## Configuratie
 
-Dit component heeft geen configuratie.
+Deze component heeft geen configuratie.
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-action-controls--default
+[Legacy Storybook - Map Action Controls](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-action-controls--default)

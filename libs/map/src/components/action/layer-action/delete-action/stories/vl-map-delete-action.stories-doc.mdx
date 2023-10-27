@@ -1,9 +1,12 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapDeleteActionStories from './vl-map-delete-action.stories';
 
 # Map Delete Action
 
-Gebruik het `map-delete-action` component om een feature op een [map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default) te verwijderen.<br/>
+Gebruik het `map-delete-action` component om een feature op een
+[map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default) te verwijderen.<br/>
 Dit component erft over van de `VlMapLayerAction` klasse, die op zijn beurt overerft van de `VlMapAction` klasse.
+
 
 ## Voorbeeld
 
@@ -15,24 +18,27 @@ import { VlMapDeleteAction } from '@domg-wc/map';
 <vl-map-delete-action></vl-map-delete-action>
 ```
 
-<DocsStory id="map-action-layer-action-delete-action--map-delete-action-default" />
+<Canvas of={VlMapDeleteActionStories.MapDeleteActionDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapDeleteActionStories.MapDeleteActionDefault} />
+
 
 ## Varianten
 
 ### Custom style
 
-<DocsStory id="map-action-layer-action-delete-action--map-delete-action-custom-style" />
+<Canvas of={VlMapDeleteActionStories.MapDeleteActionCustomStyle} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-delete-action--default
+[Legacy Storybook - Map Delete Action](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-delete-action--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapDeleteAction.html
+[Legacy Documentatie - Map Delete Action](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapDeleteAction.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-delete-action.html
+[Legacy Demo - Map Delete Action](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-delete-action.html)

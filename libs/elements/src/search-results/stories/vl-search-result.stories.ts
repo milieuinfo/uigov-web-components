@@ -3,7 +3,8 @@ import '../vl-search-results.element';
 import '../vl-search-result.element';
 
 export default {
-    title: 'Elements/search-results',
+    title: 'Elements/search-results/search-result',
+    tags: ['autodocs'],
     parameters: {
         controls: { hideNoControlsWarning: true },
     },

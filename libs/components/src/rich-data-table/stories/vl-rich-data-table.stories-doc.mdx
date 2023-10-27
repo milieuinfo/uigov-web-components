@@ -1,20 +1,22 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY, Meta, Canvas, Source, Description, Props } from '@storybook/addon-docs';
-import sortingRichTableImplementation from '!raw-loader!./vl-rich-data-table-sorting.stories-util.ts';
-import filterRichTableImplementation from '!raw-loader!./vl-rich-data-table-filter.stories-util.ts';
-import richDataFilterData from '!raw-loader!./vl-rich-data-table-filter.stories-mock';
-import paginationRichTableImplementation from '!raw-loader!./vl-rich-data-table-pagination.stories-util.ts';
-import richDataFilterPagerData from '!raw-loader!./vl-rich-data-table-pagination.stories-mock';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlRichDataTableStories from './vl-rich-data-table.stories';
+import sortingRichTableImplementation from './vl-rich-data-table-sorting.stories-util.ts?raw';
+import filterRichTableImplementation from './vl-rich-data-table-filter.stories-util.ts?raw';
+import richDataFilterData from './vl-rich-data-table-filter.stories-mock?raw';
+import paginationRichTableImplementation from './vl-rich-data-table-pagination.stories-util.ts?raw';
+import richDataFilterPagerData from './vl-rich-data-table-pagination.stories-mock?raw';
 
 import { VlRichDataTable } from '@domg-wc/components';
 
 # Rich Data Table
 
-Een tabel op basis van een dynamische lijst van data die uitgebreid kan worden met functionaliteiten die het consumeren van de data door een gebruiker kunnen verbeteren.
+Een tabel op basis van een dynamische lijst van data die uitgebreid kan worden met functionaliteiten om het consumeren
+van data door de gebruiker te verbeteren.
 
 De code voorbeelden bij elke story is dezelfde code die gebruikt wordt om de stories te laten werken.
+- combineert de functionaliteiten van het [rich-data](?path=/docs/components-rich-data--rich-data-default)-component en [data-table](?path=/docs/elements-data-table--data-table-default)-component.
+- om de velden te configureren kan je gebruik maken van `rich-data-field`
 
--   combineert de functionaliteiten van het [rich-data](?path=/docs/components-rich-data--rich-data-default)-component en [data-table](?path=/docs/elements-data-table--data-table-default)-component.
--   om de velden te configureren kan je gebruik maken van `rich-data-field`
 
 ## Voorbeeld
 
@@ -31,25 +33,24 @@ import { RichDataTableComponent } from '@domg-wc/components';
 
 ## Default
 
-<DocsStory id="components-rich-data-table--rich-data-table-default" />
+<Canvas of={VlRichDataTableStories.RichDataTableDefault} />
+
 
 ## Data instellen
 
 Om table `data` in te stellen / bij te werken:
 
-Werk je met statische data (die client side niet gaan wijzigen), kan je de data meegeven als string attribuut:
-
--   als je data wil meegeven als attribuut doe je dit in stringified JSON formaat, bv.:
+Werk je met statische data (die client side niet gaan wijzigen), dan kan je de data meegeven als string attribuut:
+- als je data wil meegeven als attribuut doe je dit in stringified JSON formaat, bv.:
 
 ```js
 '{"data": [{ "id" : 0, "name" : "Project #1" }, { "id" : 1, "name" : "Project #2"}]}';
 ```
 
-Wil je client side mogelijkheden aanbieden om te filteren / pagineren, is het belangrijk dat de data dynamisch zelf update:
-
--   voor filtering & paginatie (zie ook code voorbeelden verder) moet je `.data` dynamisch bijwerken
-    -   refereer `rich-data-table` en stel in: `richDataTable.data = ...`
-    -   geef data door als JavaScript object, bv.:
+Wil je client-side mogelijkheden aanbieden om te filteren / pagineren, is het belangrijk dat de data dynamisch zelf update:
+- voor filtering & paginatie (zie ook code voorbeelden verder) moet je `.data` dynamisch bijwerken
+- refereer `rich-data-table` en stel in: `richDataTable.data = ...`
+- geef data door als JavaScript object, bv.:
 
 ```json
 {
@@ -61,27 +62,24 @@ Wil je client side mogelijkheden aanbieden om te filteren / pagineren, is het be
 }
 ```
 
-<Meta title="components/rich-data-table" component={VlRichDataTable} />
 
 ## Sorting
 
-Om sorting te laten werken:
-
-Je moet zelf je eigen sorting algoritme implementeren:
+Om sorting te laten werken moet je zelf een sorting algoritme implementeren:
 
 <details>
     <summary>code voorbeeld hoe sorting toe te passen</summary>
     <Source code={sortingRichTableImplementation} language="ts" dark={true} />
 </details>
 
-Template voorbeeld vind je hieronder. Klik `Show code` de html te zien.
+Een template voorbeeld vind je hieronder. Klik `Show code` de html te zien.
 
 Belangrijk:
+- `data-vl-sortable` toevoegen op de `vl-rich-data-field`-velden waarop gesorteerd moet worden
+- om de data te sorteren kan je gebruik maken van `rich-data-sorter`
 
--   `data-vl-sortable` toevoegen op de `vl-rich-data-field`-velden waarop gesorteerd moet worden
--   om de data te sorteren kan je gebruik maken van `rich-data-sorter`
+<Canvas of={VlRichDataTableStories.RichDataTableSorting} layout="padded" />
 
-<DocsStory id="components-rich-data-table--rich-data-table-sorting" />
 
 ## Filter
 
@@ -102,7 +100,8 @@ Daarnaast moet je ook de filtering & change detection zelf implementeren.
 
 Template voorbeeld vind je hieronder. Klik `Show code` de html te zien.
 
-<DocsStory id="components-rich-data-table--rich-data-table-filter" />
+<Canvas of={VlRichDataTableStories.RichDataTableFilter} layout="padded" />
+
 
 ## Paginatie
 
@@ -126,30 +125,33 @@ Template voorbeeld vind je hieronder. Klik `Show code` de html te zien.
 
 ### Instellen van VlPager component
 
--   op de `vl-pager` component kan je naar keuze:
-    -   de begin pagina instellen (`current-page`, in vb. hieronder op `1`)
-    -   het aantal records per pagina instellen (`items-per-page`, in vb. hieronder op `10`)
--   echter het is belangrijk dat `total-items` dynamisch update met het aantal records naargelang de huidige staat van je data
+- op de `vl-pager` component kan je naar keuze:
+    - de begin pagina instellen (`current-page`, in vb. hieronder op `1`)
+    - het aantal records per pagina instellen (`items-per-page`, in vb. hieronder op `10`)
+- het is echter belangrijk dat `total-items` dynamisch update met het aantal records naargelang de huidige staat van je
+  data
 
-<DocsStory id="components-rich-data-table--rich-data-table-filter-and-pagination" />
+<Canvas of={VlRichDataTableStories.RichDataTableFilterAndPagination} layout="padded" />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlRichDataTableStories.RichDataTableDefault} />
+
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-Digitaal Vlaanderen bied geen component aan voor de Rich Data Table maar wel beperkte functionaliteit voor de Data table.
-Die nemen we over & daarnaast volgen we ook de styling van de Data Table.
+Digitaal Vlaanderen bied geen component aan voor de Rich Data Table maar wel beperkte functionaliteit voor de Data
+table. Die nemen we over, daarnaast volgen we ook de styling van de Data Table.
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-data-table
+[Documentatie Digitaal Vlaanderen - Rich Data Table](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-data-table)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-rich-data-table--default
+[Legacy Storybook - Rich Data Table](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-rich-data-table--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlRichDataTable.html
+[Legacy Documentatie - Rich Data Table](https://webcomponenten.omgeving.vlaanderen.be/doc/VlRichDataTable.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-rich-data-table.html
+[Legacy Demo - Rich Data Table](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-rich-data-table.html)

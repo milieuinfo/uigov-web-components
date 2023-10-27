@@ -2,7 +2,8 @@ import { html } from 'lit-html';
 import '../vl-grid.element';
 
 export default {
-    title: 'Elements/grid',
+    title: 'Elements/grid/grid-layout',
+    tags: ['autodocs'],
     args: {
         content:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est eveniet fugiat illo illum impedit, libero nam, omnis optio praesentium qui quod ratione vel voluptas voluptatibus?',

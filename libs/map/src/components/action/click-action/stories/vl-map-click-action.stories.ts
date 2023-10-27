@@ -10,6 +10,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/click-action',
+    tags: ['autodocs'],
     args: storyArgs(mapClickActionArg),
     argTypes: storyArgTypes(mapClickActionArgTypes),
     parameters: {

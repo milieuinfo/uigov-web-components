@@ -1,10 +1,11 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
-import { BaseLitElement, VL } from '@domg-wc/common-utilities';
-import { resetStyle } from '@domg/govflanders-style/common';
+import { BaseLitElement, registerWebComponents, VL } from '@domg-wc/common-utilities';
 import { vlElementsStyle } from '@domg-wc/elements';
+import { resetStyle } from '@domg/govflanders-style/common';
+import { stepsStyle } from '@domg/govflanders-style/component';
+import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { stepsStyle } from '@domg/govflanders-style/component';
+import { VlAccordionComponent } from '../../accordion/vl-accordion.component';
 import stepUigStyle from './vl-step.uig-css';
 
 declare const vl: VL;
@@ -18,6 +19,10 @@ export class VlStepComponent extends BaseLitElement {
     // Private properties
     private isTitleAnnotationSlotAssigned = true;
     private customCSSStyleSheet = new CSSStyleSheet();
+
+    static {
+        registerWebComponents([VlAccordionComponent]);
+    }
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, vlElementsStyle, stepsStyle, stepUigStyle];
@@ -98,7 +103,7 @@ export class VlStepComponent extends BaseLitElement {
     private getStepHeaderTemplate(): TemplateResult {
         const stepHeaderTitleTemplate = this.getStepHeaderTitleTemplate();
 
-        return html`<div class="vl-step__header">${stepHeaderTitleTemplate}</div>`;
+        return html` <div class="vl-step__header">${stepHeaderTitleTemplate}</div>`;
     }
 
     private getAccordionStepHeaderTemplate(): TemplateResult {

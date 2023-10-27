@@ -1,9 +1,12 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlHeaderStories from './vl-header.stories';
 
 # Header
 
-Injecteert de global header widget van Digitaal Vlaanderen.  
-Default wordt de header geïnjecteerd in de body, bij het gebruik van het vl-body element wordt de header geïnjecteerd in de vl-body.
+Injecteert de global header widget van Digitaal Vlaanderen.
+Default wordt de header geïnjecteerd in de body, bij het gebruik van het vl-body element wordt de header geïnjecteerd in
+de vl-body.
+
 
 ## Voorbeeld
 
@@ -15,11 +18,13 @@ import { VlHeader } from '@domg-wc/sections';
 <vl-header></vl-header>
 ```
 
-<DocsStory id="sections-header--header-default" />
+<Canvas of={VlHeaderStories.HeaderDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlHeaderStories.HeaderDefault} />
+
 
 ## Extra info
 
@@ -33,16 +38,17 @@ Bij het aanpassen van volgende attributen wordt achterliggend de session.configu
 Zie ook:<br/>
 https://vlaamseoverheid.atlassian.net/wiki/spaces/IKPubliek/pages/6336119448/Aanmelden+met+eenvoudig+of+gekoppeld+toegangsbeheer#De-endpoints-overschrijven
 
+
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/mijn-burgerprofiel/koppelen-met-mijn-burgerprofiel-als-dienstenleverancier/technische-toolkit-voor-aansluitingen-door-dienstenleveranciers
+[Documentatie Digitaal Vlaanderen - Header](https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/mijn-burgerprofiel/koppelen-met-mijn-burgerprofiel-als-dienstenleverancier/technische-toolkit-voor-aansluitingen-door-dienstenleveranciers)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-header--default
+[Legacy Storybook - Header](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-header--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlHeader.html
+[Legacy Documentatie - Header](https://webcomponenten.omgeving.vlaanderen.be/doc/VlHeader.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-header.html
+[Legacy Demo - Header](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-header.html)

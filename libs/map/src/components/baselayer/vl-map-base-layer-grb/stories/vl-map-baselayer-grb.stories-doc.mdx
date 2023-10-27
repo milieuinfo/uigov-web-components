@@ -1,9 +1,11 @@
-import { DocsStory } from '@storybook/addon-docs';
+import { Canvas } from '@storybook/blocks';
+import * as VlMapBaselayerGrbStories from './vl-map-baselayer-grb.stories';
 
 # Map Baselayer GRB
 
 Gebruik het `map-baselayer-grb` component om een basis GRB kaartlaag af te beelden.<br/>
 Dit component erft over van het [map-baselayer](/docs/map-baselayer--map-baselayer-default) component.
+
 
 ## Voorbeeld
 
@@ -15,22 +17,25 @@ import { VlMapBaseLayerGRB } from '@domg-wc/map';
 <vl-map-baselayer-grb></vl-map-baselayer-grb>
 ```
 
-<DocsStory id="map-baselayer-baselayer-grb--map-baselayer-grb-default" />
+<Canvas of={VlMapBaselayerGrbStories.MapBaselayerGrbBackgroundLayer} />
+
 
 ## Configuratie
 
-Dit component heeft geen configuratie.
+Deze component heeft geen configuratie.
+
 
 ## Varianten
 
 ### Background Layer
 
-<DocsStory id="map-baselayer-baselayer-grb--map-baselayer-grb-background-layer" />
+<Canvas of={VlMapBaselayerGrbStories.MapBaselayerGrbBackgroundLayer} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-baselayer-grb--default
+[Legacy Storybook - Map Baselayer Grb](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-baselayer-grb--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapBaseLayerGRB.html
+[Legacy Documentatie - Map Baselayer Grb](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapBaseLayerGRB.html)

@@ -8,6 +8,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'components/proza-message',
+    tags: ['autodocs'],
     args: storyArgs(prozaMessageArgs),
     argTypes: storyArgTypes(prozaMessageArgTypes),
     parameters: {

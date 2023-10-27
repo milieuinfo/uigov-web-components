@@ -8,6 +8,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/baselayer',
+    tags: ['autodocs'],
     args: storyArgs(mapBaselayerArgs),
     argTypes: storyArgTypes(mapBaselayerArgTypes),
     parameters: {

@@ -12,6 +12,7 @@ const getLastElement = (element: any) => {
 
 export default {
     title: 'Components/toggle-button',
+    tags: ['autodocs'],
     args: storyArgs(toggleButtonArgs),
     argTypes: storyArgTypes(toggleButtonArgTypes),
 } as Meta<typeof toggleButtonArgs>;

@@ -1,7 +1,7 @@
 describe('story vl-button-input-addon', () => {
     beforeEach(() =>
         cy.visit(
-            'http://localhost:8080/iframe.html?args=&id=elements-input-addon--button-input-addon-default&viewMode=story'
+            'http://localhost:8080/iframe.html?id=elements-input-addon-button-input-addon--button-input-addon-default&viewMode=story'
         )
     );
 

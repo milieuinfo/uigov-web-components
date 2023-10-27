@@ -3,7 +3,8 @@ import '../vl-form-validation-message.element';
 import { formValidationMessageArgs, formValidationMessageArgTypes } from './vl-form-validation-message.stories-arg';
 
 export default {
-    title: 'Elements/form-message',
+    title: 'Elements/form-message/form-validation-message',
+    tags: ['autodocs'],
     args: formValidationMessageArgs,
     argTypes: formValidationMessageArgTypes,
 };

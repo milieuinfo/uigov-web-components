@@ -1,10 +1,10 @@
 import { html } from 'lit-html';
 import '../vl-h5.element';
 import { titleArgs, titleArgTypes } from './vl-title.stories-arg';
-import { titleH4 } from './vl-h4.stories';
 
 export default {
-    title: 'Elements/title',
+    title: 'Elements/title/h5',
+    tags: ['autodocs'],
     args: titleArgs,
     argTypes: titleArgTypes,
 };

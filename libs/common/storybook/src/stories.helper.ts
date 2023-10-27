@@ -1,7 +1,7 @@
 import { nothing } from 'lit';
 import * as prettier from 'prettier/standalone';
 import * as prettierBabel from 'prettier/parser-babel';
-import { Args, ArgTypes, StoryFn, StoryContext, WebComponentsFramework } from '@storybook/web-components';
+import { Args, ArgTypes, StoryFn, StoryContext } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 
 export const CATEGORIES = {
@@ -63,7 +63,7 @@ export const logStorybookEvent = <T extends Event>(eventName: string) => {
 };
 
 export const story = <T extends object>(defaultArgs: T, storyFn: StoryFn<T>): StoryFn<T> => {
-    return (args: T, context: StoryContext<WebComponentsFramework, T>) => {
+    return (args: T, context: StoryContext<T>) => {
         const newArgs = setDefaultArgsToNothing(args, defaultArgs);
         return storyFn(newArgs, context);
     };

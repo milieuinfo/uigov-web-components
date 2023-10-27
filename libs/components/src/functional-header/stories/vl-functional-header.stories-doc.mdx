@@ -1,8 +1,11 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY, Source } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlFunctionalHeaderStories from './vl-functional-header.stories';
 
 # Functional Header
 
-Gebruik het `functional-header` component om bovenaan de pagina generieke informatie te tonen zoals bijvoorbeeld titel en acties.
+Gebruik de `functional-header` component om bovenaan de pagina generieke informatie te tonen zoals bijvoorbeeld
+een titel en acties.
+
 
 ## Voorbeeld
 
@@ -14,45 +17,48 @@ import { VlFunctionalHeaderComponent } from '@domg-lib/components';
 <vl-functional-header></vl-functional-header>
 ```
 
-<DocsStory id="components-functional-header--functional-header-default" />
+<Canvas of={VlFunctionalHeaderStories.FunctionalHeaderDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlFunctionalHeaderStories.FunctionalHeaderDefault} />
+
 
 ## Varianten
 
 ### Met acties
 
-<DocsStory id="components-functional-header--functional-header-actions" />
+<Canvas of={VlFunctionalHeaderStories.FunctionalHeaderActions} />
 
 ### Met slots
 
-<DocsStory id="components-functional-header--functional-header-slots" />
+<Canvas of={VlFunctionalHeaderStories.FunctionalHeaderSlots} />
 
 ### Met tabs
 
-Gebruik het [vl-tabs](/docs/components-tabs--tabs-default) component in het `sub-header` slot om tabs af te beelden binnen de `functional-header`.
+Gebruik de [vl-tabs](/docs/components-tabs--tabs-default) component in het `sub-header` slot om tabs af te beelden binnen de `functional-header`.
 
-<DocsStory id="components-functional-header--functional-header-tabs" />
+<Canvas of={VlFunctionalHeaderStories.FunctionalHeaderTabs} />
 
 ### Met breadcrumb
 
-Gebruik het [vl-breadcrumb](/docs/components-breadcrumb--breadcrumb-default) component in het `sub-title` slot om een breadcrumb af te beelden binnen de `functional-header`.<br/>
-Plaats het `data-vl-hide-back-link` attribuut om de terug-link te verbergen.
+Gebruik de [vl-breadcrumb](/docs/components-breadcrumb--breadcrumb-default) component in het `sub-title` slot om een breadcrumb af te beelden binnen de
+`functional-header`.<br/> Plaats het `data-vl-hide-back-link` attribuut om de terug-link te verbergen.
 
-<DocsStory id="components-functional-header--functional-header-breadcrumb" />
+<Canvas of={VlFunctionalHeaderStories.FunctionalHeaderBreadcrumb} />
+
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-functional-header/
+[Documentatie Digitaal Vlaanderen - Functional Header](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-functional-header)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-functional-header--default
+[Legacy Storybook - Functional Header](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-functional-header--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlFunctionalHeader.html
+[Legacy Documentatie - Functional Header](https://webcomponenten.omgeving.vlaanderen.be/doc/VlFunctionalHeader.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-functional-header.html
+[Legacy Demo  - Functional Header](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-functional-header.html)

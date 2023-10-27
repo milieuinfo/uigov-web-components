@@ -7,6 +7,7 @@ import { story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'sections/header',
+    tags: ['autodocs'],
     args: headerArgs,
     argTypes: headerArgTypes,
     parameters: {

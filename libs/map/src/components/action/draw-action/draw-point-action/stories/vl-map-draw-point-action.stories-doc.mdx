@@ -1,9 +1,13 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapDrawPointActionStories from './vl-map-draw-point-action.stories';
 
 # Map Draw Point Action
 
-Gebruik het `map-draw-point-action` component om een punt te tekenen op een [map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default).<br/>
-Dit component erft over van de `VlMapDrawAction` klasse, die op zijn beurt overerft van de `VlMapLayerAction` klasse, die op zijn beurt overerft van de `VlMapAction` klasse.
+Gebruik het `map-draw-point-action` component om een punt te tekenen op een
+[map-features-layer](/docs/map-layer-vector-layer-features-layer--map-features-layer-default).<br/>
+Dit component erft over van de `VlMapDrawAction` klasse, die op zijn beurt overerft van de `VlMapLayerAction` klasse,
+die op zijn beurt overerft van de `VlMapAction` klasse.
+
 
 ## Voorbeeld
 
@@ -15,24 +19,27 @@ import { VlMapDrawPointAction } from '@domg-wc/map';
 <vl-map-draw-point-action></vl-map-draw-point-action>
 ```
 
-<DocsStory id="map-action-draw-action-draw-point-action--map-draw-point-action-default" />
+<Canvas of={VlMapDrawPointActionStories.MapDrawPointActionDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapDrawPointActionStories.MapDrawPointActionDefault} />
+
 
 ## Varianten
 
 ### Snapping
 
-<DocsStory id="map-action-draw-action-draw-point-action--map-draw-point-action-snapping" />
+<Canvas of={VlMapDrawPointActionStories.MapDrawPointActionSnapping} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-draw-point-action--default
+[Legacy Storybook - Map Draw Point Action](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-draw-point-action--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapDrawPointAction.html
+[Legacy Documentatie - Map Draw Point Action](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapDrawPointAction.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html
+[Legacy Demo - Map Draw Point Action](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html)

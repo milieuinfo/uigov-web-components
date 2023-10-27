@@ -12,6 +12,7 @@ import { nothing } from 'lit';
 
 export default {
     title: 'Components-next/cascader',
+    tags: ['autodocs'],
     args: storyArgs(cascaderArgs),
     argTypes: storyArgTypes(cascaderArgTypes, true),
     parameters: {

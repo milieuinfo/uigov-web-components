@@ -15,6 +15,7 @@ const stepsSideNavigationUrl =
 describe('story vl-steps-next default', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(stepsNextUrl);
+        cy.get('vl-steps-next');
         cy.checkA11y('vl-steps-next');
     });
 
@@ -56,6 +57,7 @@ describe('story vl-steps-next default', () => {
 describe('story vl-steps-next icons', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(stepsNextIconsUrl);
+        cy.get('vl-steps-next');
         cy.checkA11y('vl-steps-next');
     });
 
@@ -102,6 +104,7 @@ describe('story vl-steps-next icons', () => {
 describe('story vl-steps-next states', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(stepsNextStatesUrl);
+        cy.get('vl-steps-next');
         cy.checkA11y('vl-steps-next', {
             // color-contrast rule bewust uitgezet: foutief kleurenpalet van DV.
             rules: {
@@ -185,6 +188,7 @@ describe('story vl-steps-next states', () => {
 describe('story vl-steps-next accordions', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(stepsNextAccordionsUrl);
+        cy.get('vl-steps-next');
         cy.checkA11y('vl-steps-next');
     });
 
@@ -241,6 +245,7 @@ describe('story vl-steps-next accordions', () => {
 describe('story vl-steps-next line', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(stepsNextLineUrl);
+        cy.get('vl-steps-next');
         cy.checkA11y('vl-steps-next');
     });
 
@@ -288,6 +293,7 @@ describe('story vl-steps-next line', () => {
 describe('story vl-steps-next timeline', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(stepsNextTimelineUrl);
+        cy.get('vl-steps-next');
         cy.checkA11y('vl-steps-next');
     });
 
@@ -345,6 +351,7 @@ describe('story vl-steps-next timeline', () => {
 describe('story vl-steps-next simple-timeline', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(stepsNextSimpleTimelineUrl);
+        cy.get('vl-steps-next');
         cy.checkA11y('vl-steps-next');
     });
 

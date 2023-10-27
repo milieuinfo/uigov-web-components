@@ -1,9 +1,12 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapImageWmsLayerStories from './vl-map-image-wms-layer.stories';
 
 # Map Image WMS Layer
 
-Gebruik het `map-image-wms-layer` component om een WMS kaartlaag af te beelden waarbij de bevraging telkens met één afbeelding gebeurt.<br/>
-Dit component erft over van de `VlMapWmsLayer` klasse, die op zijn beurt overerft van de `VlMapLayer` klasse.
+Gebruik de `map-image-wms-layer` component om een WMS kaartlaag af te beelden waarbij de bevraging telkens met één
+afbeelding gebeurt.<br/>
+Deze component erft over van de `VlMapWmsLayer` klasse, die op zijn beurt overerft van de `VlMapLayer` klasse.
+
 
 ## Voorbeeld
 
@@ -15,16 +18,18 @@ import { VlMapImageWmsLayer } from '@domg-wc/map';
 <vl-map-image-wms-layer></vl-map-image-wms-layer>
 ```
 
-<DocsStory id="map-layer-wms-layer-image-wms-layer--map-image-wms-layer-default" />
+<Canvas of={VlMapImageWmsLayerStories.MapImageWmsLayerDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapImageWmsLayerStories.MapImageWmsLayerDefault} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-image-wms-layer--default
+[Legacy Storybook - Map Image Wms Layer](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-map-vl-map-image-wms-layer--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapImageWmsLayer.html
+[Legacy Documentatie - Map Image Wms Layer](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMapImageWmsLayer.html)

@@ -1,8 +1,9 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlBreadcrumbStories from './vl-breadcrumb.stories';
 
 # Breadcrumb
 
-Gebruik het `breadcrumb` component om de locatie van de huidige pagina af te beelden binnen een navigeerbare hiërarchie.
+Gebruik de `breadcrumb` component om de locatie van de huidige pagina af te beelden binnen een navigeerbare hiërarchie.
 
 ## Voorbeeld
 
@@ -14,18 +15,20 @@ import { VlBreadcrumbComponent } from '@domg-wc/components';
 <vl-breadcrumb></vl-breadcrumb>
 ```
 
-<DocsStory id="components-breadcrumb--breadcrumb-default" />
+<Canvas of={VlBreadcrumbStories.BreadcrumbDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlBreadcrumbStories.BreadcrumbDefault} />
+
 
 ## Referenties
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-breadcrumb--breadcrumb-default
+[Legacy Storybook - Breadcrumb](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-breadcrumb--breadcrumb-default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlBreadcrumb.html
+[Legacy Documentatie - Breadcrumb](https://webcomponenten.omgeving.vlaanderen.be/doc/VlBreadcrumb.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-breadcrumb.html
+[Legacy Demo - Breadcrumb](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-breadcrumb.html)

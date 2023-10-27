@@ -12,6 +12,7 @@ import '../vl-map-side-sheet-menu-item';
 
 export default {
     title: 'map/side-sheet',
+    tags: ['autodocs'],
     args: storyArgs(mapSideSheetArgs),
     argTypes: storyArgTypes(mapSideSheetArgTypes),
     parameters: {
@@ -27,7 +28,7 @@ export const MapSideSheetDefault = story(
         <vl-map>
             <vl-map-baselayer-grb-gray /></vl-map-baselayer-grb-gray>
             <vl-map-side-sheet
-                ?data-vl-right=${right} 
+                ?data-vl-right=${right}
                 ?data-vl-enable-swipe=${enableSwipe}
                 data-vl-toggle-text=${toggleText}
                 data-vl-tooltip-text=${tooltipText}

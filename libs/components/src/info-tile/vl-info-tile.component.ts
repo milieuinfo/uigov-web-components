@@ -1,4 +1,4 @@
-import { BaseHTMLElement, VL, webComponent } from '@domg-wc/common-utilities';
+import { BaseHTMLElement, registerWebComponents, VL, webComponent } from '@domg-wc/common-utilities';
 import { accordionStyle, iconStyle, infoTileStyle, linkStyle, toggleStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import infoTileUigStyle from './vl-info-tile.uig-css';
@@ -6,11 +6,16 @@ import '@govflanders/vl-ui-util/dist/js/util.js';
 import '@govflanders/vl-ui-accordion/dist/js/accordion.js';
 import 'reflect-metadata';
 import { vlElementsStyle } from '@domg-wc/elements';
+import { VlAccordionComponent } from '../accordion/vl-accordion.component';
 
 declare const vl: VL;
 
 @webComponent('vl-info-tile')
 export class VlInfoTile extends BaseHTMLElement {
+    static {
+        registerWebComponents([VlAccordionComponent]);
+    }
+
     static get _observedAttributes() {
         return ['auto-open', 'toggleable', 'center'];
     }

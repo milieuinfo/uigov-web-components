@@ -8,6 +8,7 @@ import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/breadcrumb',
+    tags: ['autodocs'],
     args: storyArgs(breadcrumbItemArgs),
     argTypes: storyArgTypes(breadcrumbItemArgTypes),
     parameters: {

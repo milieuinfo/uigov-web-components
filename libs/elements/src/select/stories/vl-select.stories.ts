@@ -7,6 +7,7 @@ import { story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Elements/select',
+    tags: ['autodocs'],
     args: selectArgs,
     argTypes: selectArgTypes,
     parameters: {
@@ -73,3 +74,4 @@ SelectExtended.storyName = 'vl-select - extended';
 SelectExtended.args = {
     select: true,
 };
+SelectExtended.decorators = [(story: () => unknown) => html` <div style="height: 400px;">${story()}</div>`];

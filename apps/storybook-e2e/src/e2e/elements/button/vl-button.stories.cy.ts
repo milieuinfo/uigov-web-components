@@ -1,4 +1,4 @@
-const buttonDefaultUrl = 'http://localhost:8080/iframe.html?id=elements-button--button-default&viewMode=story';
+const buttonDefaultUrl = 'http://localhost:8080/iframe.html?id=elements-button-button--button-default&viewMode=story';
 
 describe('story elements / button / vl-button - default', () => {
     it('should apply the content', () => {

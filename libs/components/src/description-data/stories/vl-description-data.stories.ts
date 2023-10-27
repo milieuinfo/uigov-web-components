@@ -6,7 +6,8 @@ import { Meta } from '@storybook/web-components';
 import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
-    title: 'Components/description-data',
+    title: 'Components/description-data/description-data',
+    tags: ['autodocs'],
     args: storyArgs(descriptionDataArgs),
     argTypes: storyArgTypes(descriptionDataArgTypes),
 } as Meta<typeof descriptionDataArgs>;

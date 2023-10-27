@@ -7,6 +7,7 @@ import contentHeaderDoc from './vl-content-header.stories-doc.mdx';
 
 export default {
     title: 'Components/content-header',
+    tags: ['autodocs'],
     args: storyArgs(contentHeaderArgs),
     argTypes: storyArgTypes(contentHeaderArgTypes),
     parameters: {

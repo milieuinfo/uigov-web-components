@@ -1,8 +1,10 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlAlertStories from './vl-alert.stories';
 
 # Alert
 
-Gebruik het `alert` component om de gebruiker op de hoogte te houden van belangrijke informatie.
+Gebruik de `alert` component om de gebruiker op de hoogte te houden van belangrijke informatie.
+
 
 ## Voorbeeld
 
@@ -14,65 +16,67 @@ import { VlAlert } from '@domg-wc/components';
 <vl-alert></vl-alert>
 ```
 
-<DocsStory id="components-alert--alert-default" />
+<Canvas of={VlAlertStories.AlertDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlAlertStories.AlertDefault} />
+
 
 ## Varianten
 
 ### Error
 
-<DocsStory id="components-alert--alert-error" />
+<Canvas of={VlAlertStories.AlertError} />
 
 ### Info
 
-<DocsStory id="components-alert--alert-info" />
+<Canvas of={VlAlertStories.AlertInfo} />
 
 ### Success
 
-<DocsStory id="components-alert--alert-success" />
+<Canvas of={VlAlertStories.AlertSuccess} />
 
 ### Warning
 
-<DocsStory id="components-alert--alert-warning" />
+<Canvas of={VlAlertStories.AlertWarning} />
 
 ### With with button
 
-<DocsStory id="components-alert--alert-with-button" />
+<Canvas of={VlAlertStories.AlertWithButton} />
 
 ### With title slot
 
-<DocsStory id="components-alert--alert-with-title-slot" />
+<Canvas of={VlAlertStories.AlertWithTitleSlot} />
 
 ### With close button
 
-<DocsStory id="components-alert--alert-closeable" />
+<Canvas of={VlAlertStories.AlertCloseable} />
 
 ### Naked error
 
-<DocsStory id="components-alert--alert-naked-error" />
+<Canvas of={VlAlertStories.AlertNakedError} />
 
 ### Naked warning
 
-<DocsStory id="components-alert--alert-naked-warning" />
+<Canvas of={VlAlertStories.AlertNakedWarning} />
 
 ### Naked success
 
-<DocsStory id="components-alert--alert-naked-success" />
+<Canvas of={VlAlertStories.AlertNakedSuccess} />
 
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-alert/
+[Documentatie Digitaal Vlaanderen - Alert](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-alert)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-alert--default
+[Legacy Storybook - Alert](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-alert--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlAlert.html
+[Legacy Documentatie - Alert](https://webcomponenten.omgeving.vlaanderen.be/doc/VlAlert.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-alert.html
+[Legacy Demo - Alert](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-alert.html)

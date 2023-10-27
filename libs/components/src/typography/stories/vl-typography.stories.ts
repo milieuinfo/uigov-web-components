@@ -6,6 +6,7 @@ import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/typography',
+    tags: ['autodocs'],
     args: storyArgs(typographyArgs),
     argTypes: storyArgTypes(typographyArgTypes),
     parameters: {

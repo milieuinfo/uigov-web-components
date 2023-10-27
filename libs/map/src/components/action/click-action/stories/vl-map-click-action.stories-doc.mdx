@@ -1,9 +1,11 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Canvas } from '@storybook/blocks';
+import * as VlMapClickActionStories from './vl-map-click-action.stories';
 
 # Map Click Action
 
 Gebruik het `map-click-action` component om een klikactie op de [map](/docs/map-map--map-default) op te vangen.<br/>
 Bij het klikken op de [map](/docs/map-map--map-default) wordt er een `vl-map-click-action-pindrop` op de kaart geplaatst.
+
 
 ## Voorbeeld
 
@@ -15,4 +17,4 @@ import { VlMapClickAction } from '@domg-wc/map';
 <vl-map-click-action></vl-map-click-action>
 ```
 
-<DocsStory id="map-action-click-action--map-click-action-default" />
+<Canvas of={VlMapClickActionStories.MapClickActionDefault} />

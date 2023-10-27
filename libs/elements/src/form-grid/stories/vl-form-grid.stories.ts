@@ -8,7 +8,8 @@ import '../../input-field/vl-input-field.element';
 import { gridBaseArgs, gridBaseArgTypes } from '../../grid/stories/vl-grid.stories-arg';
 
 export default {
-    title: 'Elements/form-grid',
+    title: 'Elements/form-grid/form-grid',
+    tags: ['autodocs'],
     parameters: {},
     args: gridBaseArgs,
     argTypes: gridBaseArgTypes,

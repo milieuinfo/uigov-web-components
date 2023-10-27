@@ -38,6 +38,7 @@ import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/map',
+    tags: ['autodocs'],
     args: storyArgs(mapArgs),
     argTypes: storyArgTypes(mapArgTypes),
     parameters: {

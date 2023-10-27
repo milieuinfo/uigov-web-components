@@ -1,11 +1,17 @@
+import { registerWebComponents } from '@domg-wc/common-utilities';
 import { html } from 'lit-html';
 import '../vl-template.component';
 import { templateArgs, templateArgTypes } from './vl-template.stories-arg';
 import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+import { VlContentHeaderComponent } from '../../content-header/vl-content-header.component';
+import { VlGridElement, VlH1Element, VlLayoutElement } from '@domg-wc/elements';
+
+registerWebComponents([VlContentHeaderComponent, VlGridElement, VlH1Element, VlLayoutElement]);
 
 export default {
     title: 'components/template',
+    tags: ['autodocs'],
     args: storyArgs(templateArgs),
     argTypes: storyArgTypes(templateArgTypes),
 } as Meta<typeof templateArgs>;

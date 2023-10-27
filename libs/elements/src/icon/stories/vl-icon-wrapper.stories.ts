@@ -3,7 +3,8 @@ import '../vl-icon.element';
 import '../vl-icon-wrapper.element';
 
 export default {
-    title: 'Elements/icon',
+    title: 'Elements/icon/icon-wrapper',
+    tags: ['autodocs'],
     args: {
         wrappersAmount: 3,
     },

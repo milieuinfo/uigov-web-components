@@ -7,6 +7,7 @@ import { actionGroupArgs, actionGroupArgTypes } from './vl-action-group.stories-
 
 export default {
     title: 'Elements/action-group',
+    tags: ['autodocs'],
     args: actionGroupArgs,
     argTypes: actionGroupArgTypes,
 };

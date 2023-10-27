@@ -8,6 +8,7 @@ import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/info-tile',
+    tags: ['autodocs'],
     args: storyArgs(infoTileArgs),
     argTypes: storyArgTypes(infoTileArgTypes),
     parameters: {

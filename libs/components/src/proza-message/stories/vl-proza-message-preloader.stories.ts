@@ -9,6 +9,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'components/proza-message-preloader',
+    tags: ['autodocs'],
     args: storyArgs(prozaMessagePreloaderArgs),
     argTypes: storyArgTypes(prozaMessagePreloaderArgTypes),
     parameters: {

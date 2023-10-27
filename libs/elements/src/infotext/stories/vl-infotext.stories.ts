@@ -3,6 +3,7 @@ import '../vl-infotext.element';
 
 export default {
     title: 'Elements/infotext',
+    tags: ['autodocs'],
     args: {
         badge: false,
     },

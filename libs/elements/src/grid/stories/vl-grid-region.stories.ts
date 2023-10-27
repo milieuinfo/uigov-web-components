@@ -3,7 +3,8 @@ import '../vl-grid.element';
 import { gridRegionArgs, gridRegionArgTypes } from './vl-grid-region.stories-arg';
 
 export default {
-    title: 'Elements/grid',
+    title: 'Elements/grid/grid-region',
+    tags: ['autodocs'],
     args: gridRegionArgs,
     argTypes: gridRegionArgTypes,
 };

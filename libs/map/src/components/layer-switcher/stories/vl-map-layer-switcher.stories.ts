@@ -14,6 +14,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer-switcher',
+    tags: ['autodocs'],
     args: storyArgs(mapLayerSwitcherArgs),
     argTypes: storyArgTypes(mapLayerSwitcherArgTypes),
     parameters: {

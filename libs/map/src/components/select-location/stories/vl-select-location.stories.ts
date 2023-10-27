@@ -7,6 +7,7 @@ import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/select-location',
+    tags: ['autodocs'],
     args: storyArgs(selectLocationArg),
     argTypes: storyArgTypes(selectLocationArgTypes),
     parameters: {
@@ -14,6 +15,7 @@ export default {
             page: mapSelectLocationDoc,
         },
     },
+    decorators: [(story: () => unknown) => html` <div style="height: 250px;">${story()}</div>`],
 } as Meta<typeof selectLocationArg>;
 
 export const SelectLocationDefault = story(

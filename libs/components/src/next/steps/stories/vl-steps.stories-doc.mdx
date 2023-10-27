@@ -1,10 +1,15 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlStepsStories from './vl-steps.stories';
 
 # Steps Next
 
-Gebruik het `steps-next` component om een verticale lijst van stappen af te beelden om de gebruiker door een procedure te begeleiden.<br/>
-Dit component is de volgende versie van het [vl-steps](?path=/docs/components-steps--steps-default) component, we raden aan deze versie te gebruiken.<br />
-De oude [vl-steps](?path=/docs/components-steps--steps-default) versie is behouden voor backwards-compatibility, in v2.0.0 gaat dit verdwijnen.<br/><br/>
+Gebruik de `steps-next` component om een verticale lijst van stappen af te beelden om de gebruiker door een procedure
+te begeleiden.<br/>
+Deze component is de nieuwste versie van de [vl-steps](?path=/docs/components-steps--steps-default) component, we raden
+aan deze versie te gebruiken.<br />
+De oude [vl-steps](?path=/docs/components-steps--steps-default) versie blijft behouden voor backwards-compatibility,
+in v2.0.0 zal deze verdwijnen.<br/><br/>
+
 
 ## Voorbeeld
 
@@ -16,52 +21,56 @@ import { VlStepsComponent } from '@domg-wc/components/next/steps';
 <vl-steps-next></vl-steps-next>
 ```
 
-<DocsStory id="components-next-steps-next--steps-default" />
+<Canvas of={VlStepsStories.StepsDefault} />
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlStepsStories.StepsDefault} />
+
 
 ## Varianten
 
 ### Iconen
 
-<DocsStory id="components-next-steps-next--steps-icons" />
+<Canvas of={VlStepsStories.StepsIcons} />
 
 ### Toestanden
 
-Voeg altijd een tekst toe als een stap disabled is zodat de disabled toestand niet enkel met de grijze kleur overgebracht wordt, bv. "geannuleerd".
+Voeg altijd een tekst toe als een stap disabled is zodat de disabled toestand niet enkel met de grijze kleur
+overgebracht wordt, bv. "geannuleerd".
 
-<DocsStory id="components-next-steps-next--steps-states" />
+<Canvas of={VlStepsStories.StepsStates} />
 
 ### Accordions
 
-<DocsStory id="components-next-steps-next--steps-accordions" />
+<Canvas of={VlStepsStories.StepsAccordions} />
 
 ### Lijn
 
-<DocsStory id="components-next-steps-next--steps-line" />
+<Canvas of={VlStepsStories.StepsLine} />
 
 ### Tijdlijn
 
-<DocsStory id="components-next-steps-next--steps-timeline" />
+<Canvas of={VlStepsStories.StepsTimeline} />
 
 ### Simpele tijdlijn
 
 Gebruik het `icon slot` of `sub-icon slot` niet in combinatie met de simpele tijdlijn.
 
-<DocsStory id="components-next-steps-next--steps-simple-timeline" />
+<Canvas of={VlStepsStories.StepsSimpleTimeline} />
+
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-steps/
+[Documentatie Digitaal Vlaanderen - Steps](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-steps)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-steps--default
+[Legacy Storybook - Steps](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-steps--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlSteps.html
+[Legacy Documentatie - Steps](https://webcomponenten.omgeving.vlaanderen.be/doc/VlSteps.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-steps.html
+[Legacy Demo - Steps](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-steps.html)

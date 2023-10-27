@@ -1,4 +1,4 @@
-const gridDefaultUrl = 'http://localhost:8080/iframe.html?id=elements-grid--grid-default&viewMode=story';
+const gridDefaultUrl = 'http://localhost:8080/iframe.html?id=elements-grid-grid--grid-default&viewMode=story';
 
 describe('story vl-grid', () => {
     it('should contain a stacked grid', () => {

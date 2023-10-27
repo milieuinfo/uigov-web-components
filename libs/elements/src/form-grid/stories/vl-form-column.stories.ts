@@ -6,7 +6,8 @@ import '../../input-field/vl-input-field.element';
 import { gridColumnArgs, gridColumnArgTypes } from '../../grid/stories/vl-grid-column.stories-arg';
 
 export default {
-    title: 'Elements/form-grid',
+    title: 'Elements/form-grid/form-column',
+    tags: ['autodocs'],
     args: gridColumnArgs,
     argTypes: gridColumnArgTypes,
 };

@@ -13,6 +13,7 @@ registerWebComponents([VlPopoverComponent, VlPopoverActionComponent, VlPopoverAc
 
 export default {
     title: 'Components/popover',
+    tags: ['autodocs'],
     args: storyArgs(popoverDefaultArgs),
     argTypes: storyArgTypes(popoverArgTypes, true),
     parameters: {

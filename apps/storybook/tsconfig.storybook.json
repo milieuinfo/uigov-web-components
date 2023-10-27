@@ -1,0 +1,20 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "target": "es6",
+        "emitDecoratorMetadata": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "useDefineForClassFields": false
+    },
+    "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+    "include": [
+        "src/**/*.stories.ts",
+        "src/**/*.stories.js",
+        "src/**/*.stories.jsx",
+        "src/**/*.stories.tsx",
+        "src/**/*.stories.mdx",
+        ".storybook/*.js",
+        ".storybook/*.ts"
+    ]
+}

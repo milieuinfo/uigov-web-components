@@ -1,12 +1,13 @@
-import { html } from 'lit-html';
-import '../vl-share-buttons.component';
-import '../vl-share-button.component';
-import { shareButtonArgs, shareButtonArgTypes } from './vl-share-button.stories-arg';
 import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+import { html } from 'lit-html';
+import '../vl-share-button.component';
+import '../vl-share-buttons.component';
+import { shareButtonArgs, shareButtonArgTypes } from './vl-share-button.stories-arg';
 
 export default {
-    title: 'Components/share-buttons',
+    title: 'Components/share-buttons/button',
+    tags: ['autodocs'],
     args: storyArgs(shareButtonArgs),
     argTypes: storyArgTypes(shareButtonArgTypes),
 } as Meta<typeof shareButtonArgs>;

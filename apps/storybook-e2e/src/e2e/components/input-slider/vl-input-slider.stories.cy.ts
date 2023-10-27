@@ -10,6 +10,7 @@ describe('story vl-input-slider default', () => {
     it('should be accessible', () => {
         cy.visitWithA11y(inputSliderUrl);
 
+        cy.get('vl-input-slider');
         cy.checkA11y('vl-input-slider');
     });
 
