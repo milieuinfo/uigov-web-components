@@ -101,17 +101,17 @@ export class VlSearchResult extends BaseElementOfType(HTMLLIElement) {
     }
 
     _setMetaDataClasses() {
-        this._metaDataElement.classList.add(`${this._classPrefix}__meta-data`);
+        this._metaDataElement?.classList.add(`${this._classPrefix}__meta-data`);
     }
 
     _setTitleClasses() {
-        this._titleLinkElement.classList.add(`${this._classPrefix}__title__link`);
+        this._titleLinkElement?.classList.add(`${this._classPrefix}__title__link`);
     }
 
     _setContentClasses(element: Element) {
         const dlClass = `${this._classPrefix}__description-list`;
-        element.classList.add(dlClass);
-        element.querySelectorAll('dt').forEach((dt) => dt.classList.add(`${dlClass}__description`));
+        element?.classList.add(dlClass);
+        element?.querySelectorAll('dt').forEach((dt) => dt.classList.add(`${dlClass}__description`));
     }
 }
 
