@@ -76,11 +76,11 @@ export const storyArgs = (args: Args) => {
     };
 };
 
-export const storyArgTypes = (argTypes: ArgTypes) => {
+export const storyArgTypes = (argTypes: ArgTypes, next = false) => {
     return {
         ...argTypes,
         customCSS: {
-            name: 'data-vl-custom-css',
+            name: !next ? 'data-vl-custom-css' : 'custom-css',
             description:
                 'Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets van de shadow DOM van het component.',
             control: false,

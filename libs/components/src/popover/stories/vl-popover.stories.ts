@@ -10,7 +10,7 @@ import { VlPopoverActionComponent } from '../vl-popover-action.component';
 export default {
     title: 'Components/popover',
     args: storyArgs(popoverDefaultArgs),
-    argTypes: storyArgTypes(popoverArgTypes),
+    argTypes: storyArgTypes(popoverArgTypes, true),
     parameters: {
         docs: {
             page: popoverDoc,

@@ -4,7 +4,8 @@
     "license": "MIT",
     "scripts": {
         "test": "npm run test:unit && npm run test:wct",
-        "test:component": "npx cypress open --component",
+        "test:component": "npx cypress run --component",
+        "test:component-open": "npx cypress open --component",
         "test-parallel": "npm run test:unit:parallel && npm run test:wct",
         "test:unit": "npx nx run-many --all --target=test --skip-nx-cache",
         "test:unit:parallel": "npx nx run-many --all --target=test --parallel --maxParallel=4 --skip-nx-cache",
