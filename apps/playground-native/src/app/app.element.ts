@@ -1,3 +1,4 @@
+import { VlCheckboxComponent } from '@domg-wc/components/next/form/checkbox';
 import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
 import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
 import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
@@ -122,6 +123,25 @@ export class AppElement extends HTMLElement {
                             </vl-error-message-next>
                             <vl-error-message-next input="kinderen" state="rangeUnderflow">
                                 Het minimum aantal kinderen is 0.
+                            </vl-error-message-next>
+                        </div>
+                        <div class="vl-col--3-12">
+                            <label class="vl-form__label vl-form__label--block" for="waarheidsgetrouw">
+                                Waarheidsgetrouw: *
+                            </label>
+                        </div>
+                        <div class="vl-col--9-12">
+                            <vl-checkbox-next
+                                id="waarheidsgetrouw"
+                                name="waarheidsgetrouw"
+                                block
+                                required
+                                value="waarheidsgetrouw"
+                            >
+                                Naar waarheid ingevuld.
+                            </vl-checkbox-next>
+                            <vl-error-message-next input="waarheidsgetrouw" state="valueMissing">
+                                Gelieve te bevestigen dat bovenstaande gegevens naar waarheid zijn ingevuld.
                             </vl-error-message-next>
                         </div>
                         <div id="address-field-placeholder" hidden></div>

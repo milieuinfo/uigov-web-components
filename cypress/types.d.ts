@@ -5,6 +5,18 @@ declare global {
         interface Chainable {
             mount(template: TemplateResult): Chainable;
             createStubForEvent(selector: string, event: string): Chainable<Subject>;
+            visitWithA11y(url: string): void;
+            shouldHaveComputedStyle({
+                style,
+                value,
+                not,
+                pseudo,
+            }: {
+                style: string;
+                value: string;
+                pseudo?: string;
+                not?: boolean;
+            }): Chainable<any>;
         }
     }
 }
