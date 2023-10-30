@@ -8,12 +8,18 @@ const shouldClickToggleButton = () => {
 
 const shouldBeOpen = () => {
     cy.get('vl-side-sheet').should('have.attr', 'data-vl-open');
-    cy.get('vl-side-sheet').shadow().find('div#vl-side-sheet').shouldHaveStyle('display', 'block');
+    cy.get('vl-side-sheet')
+        .shadow()
+        .find('div#vl-side-sheet')
+        .shouldHaveComputedStyle({ style: 'display', value: 'block' });
 };
 
 const shouldBeClosed = () => {
     cy.get('vl-side-sheet').should('not.have.attr', 'data-vl-open');
-    cy.get('vl-side-sheet').shadow().find('div#vl-side-sheet').shouldHaveStyle('display', 'none');
+    cy.get('vl-side-sheet')
+        .shadow()
+        .find('div#vl-side-sheet')
+        .shouldHaveComputedStyle({ style: 'display', value: 'none' });
 };
 
 const shouldHaveIcon = (iconName: string) => {
@@ -80,14 +86,16 @@ describe('story - vl-side-sheet default', () => {
         cy.visit(sideSheetUrl);
 
         cy.get('vl-side-sheet')
-            .shouldHaveStyle('position', 'absolute', true)
+            .shouldHaveComputedStyle({ style: 'position', value: 'absolute', not: true })
             .should('not.have.class', 'vl-side-sheet--absolute');
     });
 
     it('should be absolutely positioned', () => {
         cy.visit(`${sideSheetUrl.concat('&args=absolute:true')}`);
 
-        cy.get('vl-side-sheet').shouldHaveStyle('position', 'absolute').should('have.class', 'vl-side-sheet--absolute');
+        cy.get('vl-side-sheet')
+            .shouldHaveComputedStyle({ style: 'position', value: 'absolute' })
+            .should('have.class', 'vl-side-sheet--absolute');
     });
 
     it('should not contain a tooltip by default', () => {
@@ -106,7 +114,7 @@ describe('story - vl-side-sheet default', () => {
     it('should be right by default & change default icon direction when opening or closing', () => {
         cy.visit(`${sideSheetUrl}`);
 
-        cy.get('vl-side-sheet').shouldHaveStyle('right', '0px');
+        cy.get('vl-side-sheet').shouldHaveComputedStyle({ style: 'right', value: '0px' });
         shouldHaveIcon('nav-left');
         shouldClickToggleButton();
         shouldHaveIcon('nav-right');
@@ -117,7 +125,7 @@ describe('story - vl-side-sheet default', () => {
     it('should be left & change icon direction when opening or closing', () => {
         cy.visit(`${sideSheetUrl.concat(`&args=left:true`)}`);
 
-        cy.get('vl-side-sheet').shouldHaveStyle('left', '0px');
+        cy.get('vl-side-sheet').shouldHaveComputedStyle({ style: 'left', value: '0px' });
         shouldHaveIcon('nav-right');
         shouldClickToggleButton();
         shouldHaveIcon('nav-left');

@@ -1,6 +1,7 @@
 import { CSSResult, html, LitElement, PropertyDeclarations, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { vlElementsStyle } from '@domg-wc/elements';
+import { VlCheckboxComponent } from '@domg-wc/components/next/form/checkbox';
 import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
 import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
 import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
@@ -14,7 +15,12 @@ export class AppElement extends LitElement {
     private addressFieldRequired = false;
 
     static {
-        registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent, VlTextareaComponent]);
+        registerWebComponents([
+            VlCheckboxComponent,
+            VlInputFieldComponent,
+            VlErrorMessageComponent,
+            VlTextareaComponent,
+        ]);
     }
 
     static get styles(): (CSSResult | CSSResult[])[] {
@@ -165,6 +171,25 @@ export class AppElement extends LitElement {
                                   </div>
                               `
                             : ''}
+                        <div class="vl-col--3-12">
+                            <label class="vl-form__label vl-form__label--block" for="waarheidsgetrouw">
+                                Waarheidsgetrouw: *
+                            </label>
+                        </div>
+                        <div class="vl-col--9-12">
+                            <vl-checkbox-next
+                                id="waarheidsgetrouw"
+                                name="waarheidsgetrouw"
+                                block
+                                required
+                                value="waarheidsgetrouw"
+                            >
+                                Naar waarheid ingevuld.
+                            </vl-checkbox-next>
+                            <vl-error-message-next input="waarheidsgetrouw" state="valueMissing">
+                                Gelieve te bevestigen dat bovenstaande gegevens naar waarheid zijn ingevuld.
+                            </vl-error-message-next>
+                        </div>
                         <div class="vl-col--9-12 vl-push--3-12">
                             <div class="vl-action-group">
                                 <button class="vl-button" type="submit">Verstuur</button>

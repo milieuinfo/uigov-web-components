@@ -1,4 +1,5 @@
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import { VlCheckboxComponent } from '@domg-wc/components/next/form/checkbox';
 import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
 import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
 import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
@@ -7,7 +8,7 @@ import { vlElementsStyle } from '@domg-wc/elements';
 import styles from './app.module.css';
 
 document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
-registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent, VlTextareaComponent]);
+registerWebComponents([VlCheckboxComponent, VlInputFieldComponent, VlErrorMessageComponent, VlTextareaComponent]);
 
 export function App() {
     const [firstName, setFirstName] = useState('');
@@ -213,6 +214,25 @@ export function App() {
                             </div>
                         </>
                     )}
+                    <div className="vl-col--3-12">
+                        <label className="vl-form__label vl-form__label--block" htmlFor="waarheidsgetrouw">
+                            Waarheidsgetrouw: *
+                        </label>
+                    </div>
+                    <div className="vl-col--9-12">
+                        <vl-checkbox-next
+                            id="waarheidsgetrouw"
+                            name="waarheidsgetrouw"
+                            block
+                            required
+                            value="waarheidsgetrouw"
+                        >
+                            Naar waarheid ingevuld.
+                        </vl-checkbox-next>
+                        <vl-error-message-next input="waarheidsgetrouw" state="valueMissing">
+                            Gelieve te bevestigen dat bovenstaande gegevens naar waarheid zijn ingevuld.
+                        </vl-error-message-next>
+                    </div>
                     <div className="vl-col--9-12 vl-push--3-12">
                         <div className="vl-action-group">
                             <button className="vl-button" type="submit">
@@ -272,6 +292,7 @@ declare global {
     namespace JSX {
         interface IntrinsicElements {
             'vl-error-message-next': React.DetailedHTMLProps<React.VlErrorMessageAttributes<HTMLElement>, HTMLElement>;
+            'vl-checkbox-next': React.DetailedHTMLProps<React.VlInputFieldAttributes<HTMLElement>, HTMLElement>;
             'vl-input-field-next': React.DetailedHTMLProps<React.VlInputFieldAttributes<HTMLElement>, HTMLElement>;
             'vl-textarea-next': React.DetailedHTMLProps<React.VlTextareaAttributes<HTMLElement>, HTMLElement>;
         }

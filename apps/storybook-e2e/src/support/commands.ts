@@ -7,6 +7,17 @@ declare namespace Cypress {
         createStubForEvent(selector: string, event: string): void;
         visitWithA11y(url: string): void;
         shouldHaveStyle(style: string, value: string, not?: boolean): Chainable<any>;
+        shouldHaveComputedStyle({
+            style,
+            value,
+            not,
+            pseudo,
+        }: {
+            style: string;
+            value: string;
+            pseudo?: string;
+            not?: boolean;
+        }): Chainable<any>;
     }
 }
 
@@ -25,14 +36,20 @@ Cypress.Commands.add('visitWithA11y', (url) => {
     cy.injectAxe();
 });
 
+/**
+ * @param style - style property om af te testen
+ * @param value - waarde van de style property
+ * @param not - optionele boolean om te testen op het omgekeerde
+ *  @param pseudo - optionele string om te testen op een pseudo element
+ */
 Cypress.Commands.add(
-    'shouldHaveStyle',
+    'shouldHaveComputedStyle',
     { prevSubject: true },
-    (prevSubject, style: string, value: string, not = false) => {
+    (prevSubject, { style, value, not, pseudo }: { style: string; value: string; pseudo?: string; not?: boolean }) => {
         cy.wrap(prevSubject)
             .then(($el) => {
                 const htmlElement = $el[0] as unknown as Element;
-                return window.getComputedStyle(htmlElement);
+                return window.getComputedStyle(htmlElement, pseudo);
             })
             .invoke('getPropertyValue', style)
             .should(!not ? 'equal' : 'not.equal', value);

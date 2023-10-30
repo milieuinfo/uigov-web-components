@@ -27,8 +27,10 @@ describe('story vl-document', () => {
         cy.get('vl-document').find('span[slot="metadata"]').contains('PDF - 580 kB');
     });
 
-    it('should contain a document metadata', () => {
+    it('should have expected style', () => {
         cy.visit(`${documentUrl}`);
-        cy.get('vl-document').find('span[slot="title"]').shouldHaveStyle('color', 'rgb(0, 85, 204)');
+        cy.get('vl-document')
+            .find('span[slot="title"]')
+            .shouldHaveComputedStyle({ style: 'color', value: 'rgb(0, 85, 204)' });
     });
 });

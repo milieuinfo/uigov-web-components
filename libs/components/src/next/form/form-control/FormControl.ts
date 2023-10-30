@@ -12,21 +12,32 @@ import { submit } from '@open-wc/form-helpers';
 import { maxValueValidator, minValueValidator } from './validators';
 import { ERROR_MESSAGE_CUSTOM_TAG } from '../error-message/vl-error-message.component';
 import { BaseLitElement } from '@domg-wc/common-utilities';
+import 'reflect-metadata';
+
+export const FormControlDefaults = {
+    name: '',
+    label: '',
+    block: false,
+    required: false,
+    disabled: false,
+    error: false,
+};
 
 export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     // Properties
     id = '';
-    protected name = '';
-    protected label = '';
-    protected block = false;
-    protected required = false;
-    protected disabled = false;
-    protected error = false;
+    protected name = FormControlDefaults.name;
+    protected label = FormControlDefaults.label;
+    protected block = FormControlDefaults.block;
+    protected required = FormControlDefaults.required;
+    protected disabled = FormControlDefaults.disabled;
+    protected error = FormControlDefaults.error;
     protected success = false;
     protected readonly = false;
 
     // State
     protected isInvalid = false;
+    protected touched = false;
 
     static formControlValidators = [
         requiredValidator,
@@ -85,7 +96,9 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     abstract get validationTarget(): HTMLElement | undefined | null;
 
     resetFormControl(): void {
+        this.error = false;
         this.isInvalid = false;
+        this.touched = false;
         this.hideErrorMessages();
         this.dispatchEvent(new Event('reset'));
     }
@@ -107,7 +120,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     };
 
     private focusFirstInvalidInput(): void {
-        const firstInvalidInput = this.form.querySelector(':invalid');
+        const firstInvalidInput = this.form?.querySelector(':invalid');
 
         if (this === firstInvalidInput) {
             (firstInvalidInput as HTMLElement)?.focus();
@@ -126,13 +139,13 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         }
 
         // Zoek de error message die bij de huidige error state hoort
-        let errorMessage = this.form.querySelector(
+        let errorMessage = this.form?.querySelector(
             `${ERROR_MESSAGE_CUSTOM_TAG}[input="${this.id}"][state="${errorState}"]`
         );
 
         // Als er geen error message is voor de huidige error state, zoek dan de algemene error message
         if (!errorMessage) {
-            errorMessage = this.form.querySelector(`${ERROR_MESSAGE_CUSTOM_TAG}[input="${this.id}"]`);
+            errorMessage = this.form?.querySelector(`${ERROR_MESSAGE_CUSTOM_TAG}[input="${this.id}"]`);
         }
 
         errorMessage?.setAttribute('show', 'true');
