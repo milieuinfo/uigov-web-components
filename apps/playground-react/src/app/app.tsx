@@ -9,7 +9,7 @@ import { getItemList } from './vl-cascader.utils';
 import { nodeData } from './vl-cascader.data';
 
 document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
-registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent, VlTextareaComponent]);
+registerWebComponents([VlCheckboxComponent, VlInputFieldComponent, VlErrorMessageComponent, VlTextareaComponent]);
 
 export function App() {
     return (
@@ -71,6 +71,7 @@ declare global {
     namespace JSX {
         interface IntrinsicElements {
             'vl-error-message-next': React.DetailedHTMLProps<React.VlErrorMessageAttributes<HTMLElement>, HTMLElement>;
+            'vl-checkbox-next': React.DetailedHTMLProps<React.VlInputFieldAttributes<HTMLElement>, HTMLElement>;
             'vl-input-field-next': React.DetailedHTMLProps<React.VlInputFieldAttributes<HTMLElement>, HTMLElement>;
             'vl-textarea-next': React.DetailedHTMLProps<React.VlTextareaAttributes<HTMLElement>, HTMLElement>;
         }

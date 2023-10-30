@@ -41,3 +41,24 @@ Cypress.Commands.add('createStubForEvent', (selector: string, event: string) => 
         $el.get(0).addEventListener(event, cy.stub().as(event));
     });
 });
+
+/**
+ * @param style - style property om af te testen
+ * @param value - waarde van de style property
+ * @param not - optionele boolean om te testen op het omgekeerde
+ *  @param pseudo - optionele string om te testen op een pseudo element
+ */
+Cypress.Commands.add(
+    'shouldHaveComputedStyle',
+    { prevSubject: true },
+    (prevSubject, { style, value, not, pseudo }: { style: string; value: string; pseudo?: string; not?: boolean }) => {
+        cy.wrap(prevSubject)
+            .then(($el) => {
+                const htmlElement = $el[0] as unknown as Element;
+                return window.getComputedStyle(htmlElement, pseudo);
+            })
+            .invoke('getPropertyValue', style)
+            .should(!not ? 'equal' : 'not.equal', value);
+        return cy.wrap(prevSubject);
+    }
+);
