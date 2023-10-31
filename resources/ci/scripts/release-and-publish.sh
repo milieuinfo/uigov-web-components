@@ -201,6 +201,8 @@ cd ..
 
 if [[ ${release_branch} == true ]];
   then
+    # curl is niet meer geïnstalleerd in de cypress docker-image
+    apt-get -y update; apt-get -y install curl
     # de tar uploaden naar artifactory (om het op de cdn te krijgen) - via curl omdat er geen package.json is
     echo "upload-file 'domg-wc-${nextRelease_version}.tgz' naar artifactory"
     curl --user "${acd_repository_debian_login}:${acd_repository_bamboo_password}" \
