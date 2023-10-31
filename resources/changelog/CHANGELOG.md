@@ -1,3 +1,22 @@
+# [1.19.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.18.0...v1.19.0) (2023-10-31)
+
+
+### Bug Fixes
+
+* UIG-2672 - curl installeren in de cypress docker-image ([053b872](https://github.com/milieuinfo/uigov-web-components/commit/053b87270177e7527d0198085ab80c699d941152))
+* UIG-2696 - adoptedStyleSheets polyfill toegevoegd ([fa00fdf](https://github.com/milieuinfo/uigov-web-components/commit/fa00fdf3f7a618c0d09036985ae3c28521379bd6))
+* UIG-2712 - vl-side-navigation - window resize ([ea2d5c3](https://github.com/milieuinfo/uigov-web-components/commit/ea2d5c384989a1d9ac24e054eac86dbfcd4199c0))
+* UIG-2724 - vl-search-result - null checks toegevoegd ([ce9b4cf](https://github.com/milieuinfo/uigov-web-components/commit/ce9b4cfb9d171df2cd5f725622bb7ced176b86c3))
+* UIG-2729 - vl-breadcrumb - breadcrumb styling aangepast conform DV ([5785551](https://github.com/milieuinfo/uigov-web-components/commit/5785551f50c92a6e38f1cbe9744a585e37f79b5e))
+
+
+### Features
+
+* UIG-2539 - customCSS - `custom-css`-attribuut toegevoegd ([446796c](https://github.com/milieuinfo/uigov-web-components/commit/446796c3f7895081dbffb2743543807ec9f10aa6))
+* UIG-2639 - vl-cascader - introductie component ([aa23d06](https://github.com/milieuinfo/uigov-web-components/commit/aa23d062b47dcf672c25d7d7793e398a1fcaedfa))
+* UIG-2644 - vl-alert - naked variant ([e48af3f](https://github.com/milieuinfo/uigov-web-components/commit/e48af3f29159be9d96d715b5ee140122197782b0))
+* UIG-2672 - technische upgrades fase 1 ([cd16462](https://github.com/milieuinfo/uigov-web-components/commit/cd16462cc6d5a96d95f17c4dec71e7a1cce3ebf2))
+
 # [1.18.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.17.0...v1.18.0) (2023-10-11)
 
 
