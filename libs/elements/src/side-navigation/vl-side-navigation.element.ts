@@ -45,17 +45,17 @@ export class VlSideNavigation extends BaseElementOfType(HTMLElement) {
         // remove .vl-u-no-overflow
         vl.util.removeClass(document.body, vl.ns + 'u-no-overflow');
         // delete .js-vl-scrollspy__toggle
-        const scrollSpyToggleElements = document.querySelectorAll('.js-vl-scrollspy__toggle');
+        const scrollSpyToggleElements = this.getRootNode().querySelectorAll('.js-vl-scrollspy__toggle');
         if (scrollSpyToggleElements.length) {
             vl.util.each(Array.from(scrollSpyToggleElements), (element: Element) => element.remove());
         }
         // delete .js-vl-scrollspy__close
-        const scrollSpyCloseElements = document.querySelectorAll('.js-vl-scrollspy__close');
+        const scrollSpyCloseElements = this.getRootNode().querySelectorAll('.js-vl-scrollspy__close');
         if (scrollSpyCloseElements.length) {
             vl.util.each(Array.from(scrollSpyCloseElements), (element: Element) => element.remove());
         }
         // unwrap .js-vl-scrollspy-placeholder - remove parent specific for mobile template, keeping child elements
-        const scrollSpyPlaceholderElement = document.querySelector('.js-vl-scrollspy-placeholder');
+        const scrollSpyPlaceholderElement = this.getRootNode().querySelector('.js-vl-scrollspy-placeholder');
         if (scrollSpyPlaceholderElement) unwrap(scrollSpyPlaceholderElement);
     }
 
