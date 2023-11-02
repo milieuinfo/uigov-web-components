@@ -2,7 +2,7 @@ declare const vl: any;
 
 export class BaseHTMLElement extends HTMLElement {
     protected allowCustomCSS = true;
-    private _shadow: any;
+    protected _shadow: ShadowRoot | undefined;
 
     /**
      * VlElement constructor die een shadow DOM voorziet op basis van de HTML {Literal} parameter.
