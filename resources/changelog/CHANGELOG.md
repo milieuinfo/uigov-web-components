@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.19.0...v1.19.1) (2023-11-02)
+
+
+### Bug Fixes
+
+* correctie 'ol' versie - onduidelijk waarom nx niet de juiste versie overneemt ([f062bd0](https://github.com/milieuinfo/uigov-web-components/commit/f062bd024c6de2fd921aeab52d06c458190906e3))
+
 # [1.19.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.18.0...v1.19.0) (2023-10-31)
 
 
