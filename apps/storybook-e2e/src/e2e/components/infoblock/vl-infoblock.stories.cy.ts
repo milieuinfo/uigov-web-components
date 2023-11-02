@@ -3,7 +3,7 @@ const infoblockUrl = 'http://localhost:8080/iframe.html?id=components-infoblock-
 describe('story vl-infoblock', () => {
     it('should contain a title', () => {
         cy.visit(`${infoblockUrl}`);
-        cy.getDataCy('infoblock').find('h2[slot="title"]').contains('Contactenlijst');
+        cy.getDataCy('infoblock').shadow().find('h2').contains('Contactenlijst');
     });
 
     it('should contain content', () => {
