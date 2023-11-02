@@ -2,14 +2,18 @@ const contactCardUrl =
     'http://localhost:8080/iframe.html?id=components-contact-card--contact-card-default&viewMode=story';
 
 describe('story vl-contact-card', () => {
+    it('should be accessible', () => {
+        cy.visitWithA11y(`${contactCardUrl}`);
+    });
+
     it('should contain a title', () => {
         cy.visit(`${contactCardUrl}`);
-        cy.getDataCy('contact-card').find('h2').contains('Departement Onderwijs en Vorming');
+        cy.get('vl-contact-card').find('vl-infoblock').shadow().find('h2').contains('Departement Onderwijs en Vorming');
     });
 
     it('should contain an address', () => {
         cy.visit(`${contactCardUrl}`);
-        cy.getDataCy('contact-card')
+        cy.get('vl-contact-card')
             .get('.vl-properties__list')
             .children()
             .eq(0)

@@ -1,21 +1,25 @@
 const infoblockUrl = 'http://localhost:8080/iframe.html?id=components-infoblock--infoblock-contact&viewMode=story';
 
 describe('story vl-infoblock', () => {
+    it('should be accessible', () => {
+        cy.visitWithA11y(`${infoblockUrl}`);
+    });
+
     it('should contain a title', () => {
         cy.visit(`${infoblockUrl}`);
-        cy.getDataCy('infoblock').shadow().find('h2').contains('Contactenlijst');
+        cy.get('vl-infoblock').shadow().find('h2').contains('Contactenlijst');
     });
 
     it('should contain content', () => {
         cy.visit(`${infoblockUrl}`);
-        cy.getDataCy('infoblock').contains(
+        cy.get('vl-infoblock').contains(
             'Hieronder bevindt zich een overzicht van al uw contacten binnen de Vlaamse Overheid.'
         );
     });
 
     it('should contain contact type infoblock', () => {
         cy.visit(`${infoblockUrl}`);
-        cy.getDataCy('infoblock')
+        cy.get('vl-infoblock')
             .shadow()
             .find('#infoblock-element')
             .should('have.class', 'vl-infoblock')
@@ -24,7 +28,7 @@ describe('story vl-infoblock', () => {
 
     it('should contain publications type infoblock', () => {
         cy.visit('http://localhost:8080/iframe.html?id=components-infoblock--infoblock-publications&viewMode=story');
-        cy.getDataCy('infoblock')
+        cy.get('vl-infoblock')
             .shadow()
             .find('#infoblock-element')
             .should('have.class', 'vl-infoblock')
@@ -33,7 +37,7 @@ describe('story vl-infoblock', () => {
 
     it('should contain FAQ type infoblock', () => {
         cy.visit('http://localhost:8080/iframe.html?id=components-infoblock--infoblock-faq&viewMode=story');
-        cy.getDataCy('infoblock')
+        cy.get('vl-infoblock')
             .shadow()
             .find('#infoblock-element')
             .should('have.class', 'vl-infoblock')
@@ -42,7 +46,7 @@ describe('story vl-infoblock', () => {
 
     it('should contain news type infoblock', () => {
         cy.visit('http://localhost:8080/iframe.html?id=components-infoblock--infoblock-news&viewMode=story');
-        cy.getDataCy('infoblock')
+        cy.get('vl-infoblock')
             .shadow()
             .find('#infoblock-element')
             .should('have.class', 'vl-infoblock')
@@ -51,7 +55,7 @@ describe('story vl-infoblock', () => {
 
     it('should contain timeline type infoblock', () => {
         cy.visit('http://localhost:8080/iframe.html?id=components-infoblock--infoblock-timeline&viewMode=story');
-        cy.getDataCy('infoblock')
+        cy.get('vl-infoblock')
             .shadow()
             .find('#infoblock-element')
             .should('have.class', 'vl-infoblock')
@@ -60,7 +64,7 @@ describe('story vl-infoblock', () => {
 
     it('should contain FAQ type infoblock', () => {
         cy.visit('http://localhost:8080/iframe.html?id=components-infoblock--infoblock-faq&viewMode=story');
-        cy.getDataCy('infoblock')
+        cy.get('vl-infoblock')
             .shadow()
             .find('#infoblock-element')
             .should('have.class', 'vl-infoblock')
@@ -69,7 +73,7 @@ describe('story vl-infoblock', () => {
 
     it('should contain an infoblock with a custom icon', () => {
         cy.visit('http://localhost:8080/iframe.html?id=components-infoblock--infoblock-custom-icon&viewMode=story');
-        cy.getDataCy('infoblock')
+        cy.get('vl-infoblock')
             .shadow()
             .find('#infoblock_icon')
             .should('have.class', 'vl-infoblock__header__icon')
