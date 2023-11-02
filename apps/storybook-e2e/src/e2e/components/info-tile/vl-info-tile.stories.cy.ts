@@ -31,6 +31,12 @@ describe('story vl-info-tile - default', () => {
             .find('div[slot="content"]')
             .contains('De studietoelage voor Broos Deprez werd toegekend.');
     });
+
+    it('should center', () => {
+        cy.visit(`${infoTileUrl}&args=center:true`);
+
+        cy.get('vl-info-tile').shadow().find('.vl-info-tile').should('have.class', 'vl-info-tile--center');
+    });
 });
 
 describe('story vl-info-tile - toggleable', () => {
@@ -84,5 +90,11 @@ describe('story vl-info-tile - toggleable', () => {
 
         cy.get('vl-info-tile').shadow().find('.vl-info-tile').should('have.class', 'js-vl-accordion--open');
         cy.get('vl-info-tile').shadow().find('button.vl-toggle').should('have.attr', 'aria-expanded', 'true');
+    });
+
+    it('should center', () => {
+        cy.visit(`${infoTileToggleableUrl}&args=center:true`);
+
+        cy.get('vl-info-tile').shadow().find('.vl-info-tile').should('have.class', 'vl-info-tile--center');
     });
 });

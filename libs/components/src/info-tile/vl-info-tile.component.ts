@@ -1,14 +1,14 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseHTMLElement, VL, webComponent } from '@domg-wc/common-utilities';
 import { accordionStyle, iconStyle, infoTileStyle, linkStyle, toggleStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
 import infoTileUigStyle from './vl-info-tile.uig-css';
 
-declare const vl: any;
+declare const vl: VL;
 
 @webComponent('vl-info-tile')
-export class VlInfoTile extends BaseElementOfType(HTMLElement) {
+export class VlInfoTile extends BaseHTMLElement {
     static get _observedAttributes() {
-        return ['auto-open', 'toggleable'];
+        return ['auto-open', 'toggleable', 'center'];
     }
 
     constructor() {
@@ -72,6 +72,10 @@ export class VlInfoTile extends BaseElementOfType(HTMLElement) {
         return this._headerWrapperElement.querySelector('#title');
     }
 
+    get _titleSlot(): HTMLSlotElement | undefined | null {
+        return this.querySelector<HTMLSlotElement>(":scope > slot[name='title']");
+    }
+
     get _titleLabelSlot() {
         return this.querySelector("[slot='title-label']");
     }
@@ -85,7 +89,7 @@ export class VlInfoTile extends BaseElementOfType(HTMLElement) {
     }
 
     toggle() {
-        this._toggleElement.click();
+        this._toggleElement?.click();
     }
 
     open() {
@@ -101,15 +105,23 @@ export class VlInfoTile extends BaseElementOfType(HTMLElement) {
     }
 
     get _toggleElement() {
-        return this._shadow.querySelector('.js-vl-accordion__toggle');
+        return this._shadow?.querySelector<HTMLElement>('.js-vl-accordion__toggle');
     }
 
     get _subtitleElement() {
-        return this._shadow.querySelector('slot[name="subtitle"]');
+        return this._shadow?.querySelector('slot[name="subtitle"]');
     }
 
     get _contentElement() {
-        return this._shadow.querySelector('slot[name="content"]');
+        return this._shadow?.querySelector('slot[name="content"]');
+    }
+
+    _centerChangedCallback(oldValue: string, newValue: string) {
+        if (newValue === null) {
+            this._element.classList.remove('vl-info-tile--center');
+        } else {
+            this._element.classList.add('vl-info-tile--center');
+        }
     }
 
     _toggleableChangedCallback(oldValue: string, newValue: string) {
@@ -141,13 +153,17 @@ export class VlInfoTile extends BaseElementOfType(HTMLElement) {
     }
 
     __preventContentClickPropagation() {
-        this._subtitleElement.addEventListener('click', (e: Event) => e.stopPropagation());
-        this._contentElement.addEventListener('click', (e: Event) => e.stopPropagation());
+        this._subtitleElement?.addEventListener('click', (e: Event) => e.stopPropagation());
+        this._contentElement?.addEventListener('click', (e: Event) => e.stopPropagation());
     }
 
     __removePreventContentClickPropagation() {
-        this._subtitleElement.removeEventListener('click', (e: Event) => e.stopPropagation());
-        this._contentElement.removeEventListener('click', (e: Event) => e.stopPropagation());
+        this._subtitleElement?.removeEventListener('click', (e: Event) => e.stopPropagation());
+        this._contentElement?.removeEventListener('click', (e: Event) => e.stopPropagation());
+    }
+
+    _hasTitleSlot() {
+        return this._titleSlot && this._titleSlot.assignedElements()?.length > 0;
     }
 
     __processAutoOpen() {

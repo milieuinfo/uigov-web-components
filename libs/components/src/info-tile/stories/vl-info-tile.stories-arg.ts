@@ -3,6 +3,7 @@ import { ArgTypes } from '@storybook/web-components';
 
 export const infoTileArgs = {
     autoOpen: false,
+    center: false,
     toggleable: false,
     contentSlot: '',
     subtitleSlot: '',
@@ -18,6 +19,15 @@ export const infoTileArgTypes: ArgTypes<typeof infoTileArgs> = {
             category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN },
             defaultValue: { summary: infoTileArgs.autoOpen },
+        },
+    },
+    center: {
+        name: 'data-vl-center',
+        description: 'Centreert de tekst van de info-tile.',
+        table: {
+            category: CATEGORIES.ATTRIBUTES,
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: infoTileArgs.center },
         },
     },
     toggleable: {

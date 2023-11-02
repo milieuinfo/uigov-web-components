@@ -19,8 +19,8 @@ export default {
 
 const Template = story(
     infoTileArgs,
-    ({ autoOpen, toggleable, contentSlot, subtitleSlot, titleSlot }) => html`
-        <vl-info-tile ?data-vl-toggleable=${toggleable} ?data-vl-auto-open=${autoOpen}>
+    ({ autoOpen, toggleable, center, contentSlot, subtitleSlot, titleSlot }) => html`
+        <vl-info-tile ?data-vl-toggleable=${toggleable} ?data-vl-auto-open=${autoOpen} ?data-vl-center=${center}>
             ${unsafeHTML(titleSlot)}${unsafeHTML(subtitleSlot)}${unsafeHTML(contentSlot)}
         </vl-info-tile>
     `
