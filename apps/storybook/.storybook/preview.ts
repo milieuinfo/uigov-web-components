@@ -38,4 +38,4 @@ function clickDocsButtonOnFirstLoad() {
     }
 }
 
-window.addEventListener('load', clickDocsButtonOnFirstLoad);
+// window.addEventListener('load', clickDocsButtonOnFirstLoad);

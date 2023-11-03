@@ -1,6 +1,6 @@
 import { LitElement, PropertyDeclarations } from 'lit';
 
-export abstract class BaseLitElement extends LitElement {
+export class BaseLitElement extends LitElement {
     protected allowCustomCSS = true;
     private customCSS: string | null = null;
     private customCSSPrefix: string | null = null;
