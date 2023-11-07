@@ -7,6 +7,7 @@ import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
 import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import appElementStyle from './app.element.css';
+import { VlDatepickerComponent } from '@domg-wc/components/next/form/datepicker';
 
 @customElement('app-element')
 export class AppElement extends LitElement {
@@ -17,6 +18,7 @@ export class AppElement extends LitElement {
     static {
         registerWebComponents([
             VlCheckboxComponent,
+            VlDatepickerComponent,
             VlInputFieldComponent,
             VlErrorMessageComponent,
             VlTextareaComponent,
@@ -171,6 +173,18 @@ export class AppElement extends LitElement {
                                   </div>
                               `
                             : ''}
+                        <div class="vl-col--3-12">
+                            <label class="vl-form__label vl-form__label--block" for="geboortedatum">
+                                Geboortedatum: *
+                            </label>
+                        </div>
+                        <div class="vl-col--9-12">
+                            <vl-datepicker-next id="geboortedatum" name="geboortedatum" block required>
+                            </vl-datepicker-next>
+                            <vl-error-message-next input="geboortedatum" state="valueMissing">
+                                Gelieve een geboortedatum in te vullen.
+                            </vl-error-message-next>
+                        </div>
                         <div class="vl-col--3-12">
                             <label class="vl-form__label vl-form__label--block" for="waarheidsgetrouw">
                                 Waarheidsgetrouw: *

@@ -53,12 +53,12 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
 
     static get properties(): PropertyDeclarations {
         return {
-            id: { type: String, reflect: true },
-            name: { type: String, reflect: true },
-            label: { type: String, reflect: true },
-            block: { type: Boolean, reflect: true },
-            required: { type: Boolean, reflect: true },
-            disabled: { type: Boolean, reflect: true },
+            id: { type: String, reflect: false },
+            name: { type: String, reflect: false },
+            label: { type: String, reflect: false },
+            block: { type: Boolean, reflect: false },
+            required: { type: Boolean, reflect: false },
+            disabled: { type: Boolean, reflect: false },
             error: { type: Boolean, reflect: true },
             success: { type: Boolean, reflect: true },
             readonly: { type: Boolean, reflect: true },
@@ -84,7 +84,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         this.removeEventListener('invalid', this.onInvalid);
     }
 
-    updated(changedProperties: Map<string, unknown>): void {
+    protected updated(changedProperties: Map<string, unknown>): void {
         super.updated(changedProperties);
 
         if (!changedProperties.has('isInvalid')) {

@@ -44,7 +44,7 @@ export class VlInputFieldComponent extends FormControl {
         }
     }
 
-    updated(changedProperties: Map<string, unknown>): void {
+    protected updated(changedProperties: Map<string, unknown>): void {
         super.updated(changedProperties);
 
         if (changedProperties.has('value')) {

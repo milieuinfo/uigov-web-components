@@ -18,7 +18,7 @@ export default {
 
 export const CheckboxDefault = story(
     checkboxArgs,
-    ({ block, checked, disabled, error, label, name, value, isSwitch }) => html`
+    ({ id, block, checked, disabled, error, label, name, value, isSwitch }) => html`
         <vl-checkbox-next
             ?block=${block}
             ?checked=${checked}
@@ -26,6 +26,7 @@ export const CheckboxDefault = story(
             ?error=${error}
             ?label=${label}
             ?switch=${isSwitch}
+            id=${id}
             name=${name}
             value=${value}
         >
@@ -42,13 +43,14 @@ CheckboxDefault.args = {
 
 export const CheckboxSwitch = story(
     checkboxArgs,
-    ({ block, checked, disabled, error, label, name, value, isSwitch }) => html`
+    ({ id, block, checked, disabled, error, label, name, value, isSwitch }) => html`
         <vl-checkbox-next
             ?block=${block}
             ?checked=${checked}
             ?disabled=${disabled}
             ?error=${error}
             ?label=${label}
+            id=${id}
             name=${name}
             ?switch=${isSwitch}
             value=${value}

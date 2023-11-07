@@ -29,8 +29,8 @@ export class VlCheckboxComponent extends FormControl {
     static get properties(): PropertyDeclarations {
         return {
             checked: { type: Boolean, reflect: true },
-            value: { type: String, reflect: true },
-            isSwitch: { type: Boolean, attribute: 'switch', reflect: true },
+            value: { type: String },
+            isSwitch: { type: Boolean, attribute: 'switch' },
         };
     }
 
@@ -48,7 +48,7 @@ export class VlCheckboxComponent extends FormControl {
         }
     }
 
-    updated(changedProperties: Map<string, unknown>): void {
+    protected updated(changedProperties: Map<string, unknown>): void {
         super.updated(changedProperties);
         if (changedProperties.has('checked')) {
             if (this.checked) {

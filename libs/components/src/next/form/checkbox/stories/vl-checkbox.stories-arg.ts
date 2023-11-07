@@ -1,9 +1,10 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { CheckboxDefaults } from '../index';
-import { formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
 
 export const checkboxArgs = {
+    ...formControlArgs,
     ...CheckboxDefaults,
     contentSlot: '',
 };

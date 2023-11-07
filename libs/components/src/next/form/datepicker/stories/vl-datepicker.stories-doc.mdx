@@ -1,0 +1,51 @@
+import { ArgsTable, Story, DocsStory, PRIMARY_STORY, Source } from '@storybook/addon-docs';
+
+# Datepicker
+
+Gebruik het `datepicker` component om de gebruiker op een gebruiksvriendelijke manier een datum of tijd te laten selecteren.
+
+## Voorbeeld
+
+```js
+import { VlDatepickerComponent } from '@domg-lib/components/next';
+```
+
+```html
+<vl-datepicker-next></vl-datepicker-next>
+```
+
+<Story id="components-next-form-datepicker--datepicker-default" inline={false} height={400} />
+
+## Format
+
+Je kan de `format` attribuut gebruiken om de datumnotatie te wijzigen. Standaard wordt de datumnotatie van de gebruiker gebruikt.
+
+In onderstaand voorbeeld wordt de datumnotatie expliciet ingesteld op `d/m/Y`.
+
+```html
+<vl-datepicker-next format="d/m/Y"></vl-datepicker-next>
+```
+
+Meer informatie over de mogelijke formaten kan je vinden op de [Flatpickr website](https://flatpickr.js.org/formatting/).
+
+## Configuratie
+
+<ArgsTable story={PRIMARY_STORY} />
+
+## Referenties
+
+### Flatpickr
+
+[Documentatie Flatpickr](https://flatpickr.js.org/)
+
+### Digitaal Vlaanderen
+
+[Documentatie Digitaal Vlaanderen](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-datepicker/)
+
+### Legacy Documentatie
+
+[Legacy Storybook](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-datepicker--default)
+
+[Legacy Documentatie](https://webcomponenten.omgeving.vlaanderen.be/doc/VlDatepicker.html)
+
+[Legacy Demo](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html)
