@@ -1,4 +1,4 @@
-import { TemplateFn, CascaderItem, VlCascaderComponent } from './index';
+import { CascaderItem, VlCascaderComponent } from './index';
 import { html, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 
