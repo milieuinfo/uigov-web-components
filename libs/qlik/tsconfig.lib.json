@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.json",
+    "files": ["../../cypress/types.d.ts"],
+    "compilerOptions": {
+        "sourceMap": true,
+        "inlineSources": true,
+        "declaration": true,
+        "types": ["cypress", "cypress-axe"]
+    },
+    "exclude": [
+        "jest.config.ts",
+        "**/*.spec.ts"
+    ]
+}
