@@ -32,11 +32,12 @@ module.exports = {
         '../docs/**/*.stories.mdx',
         '../../../libs/components/src/**/*.stories.@(js|jsx|ts|tsx)',
         '../../../libs/elements/src/**/*.stories.@(js|jsx|ts|tsx)',
-        '../../../libs/map/src/**/*.stories.@(js|jsx|ts|tsx)',
-        '../../../libs/sections/src/**/*.stories.@(js|jsx|ts|tsx)',
+        // '../../../libs/map/src/**/*.stories.@(js|jsx|ts|tsx)',
+        '../../../libs/qlik/src/**/*.stories.@(js|jsx|ts|tsx)',
+        // '../../../libs/sections/src/**/*.stories.@(js|jsx|ts|tsx)'
     ],
     staticDirs: ['../resources/public'],
-    addons: ['@storybook/addon-links', '@storybook/addon-essentials', 'storybook-addon-mock'],
+    addons: ['@storybook/addon-interactions', '@storybook/addon-links', '@storybook/addon-essentials', 'storybook-addon-mock'],
     framework: '@storybook/web-components',
     webpackFinal: async (config) => {
         config.module.rules = fixRulesForLit(config.module.rules);

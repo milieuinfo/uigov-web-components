@@ -116,6 +116,7 @@ rm -rf ./map/**/*.wctest.*
 rm -rf ./components/**/stories
 rm -rf ./elements/**/stories
 rm -rf ./map/**/stories
+rm -rf ./qlik/**/stories
 rm -rf ./sections/**/stories
 
 # in de package.json bestanden - daar waar nodig - de juiste versie zetten
@@ -140,6 +141,8 @@ npm pkg set sideEffects='["./*/**"]' --json
 cd ../sections
 npm pkg set sideEffects='["./*/**"]' --json
 cd ../map
+npm pkg set sideEffects='["./*/**"]' --json
+cd ../qlik
 npm pkg set sideEffects='["./*/**", "./vl-map.*"]' --json
 cd ../support/test-support
 npm pkg set sideEffects='["./*/**"]' --json
@@ -156,6 +159,7 @@ if [[ ${release_branch} == true ]];
     cd ../components && npm publish
     cd ../sections && npm publish
     cd ../map  && npm publish
+    cd ../qlik  && npm publish
     cd ../support/test-support && npm publish
     cd ../..
 fi
@@ -179,6 +183,9 @@ if [[ ${develop_branch} == true ]];
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     npm publish
     cd ../map
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
+    npm publish
+    cd ../qlik
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     npm publish
     cd ../support/test-support

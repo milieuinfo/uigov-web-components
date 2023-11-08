@@ -1,0 +1,24 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "files": [],
+    "include": [
+        "**/*.ts"
+    ],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ],
+    "compilerOptions": {
+        "forceConsistentCasingInFileNames": true,
+        "strict": false,
+        "allowJs": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true
+    }
+}

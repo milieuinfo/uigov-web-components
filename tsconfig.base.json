@@ -7,9 +7,9 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "importHelpers": true,
-        "target": "es2019",
+        "target": "es2021",
         "module": "esnext",
-        "lib": ["es2019", "dom", "dom.iterable"],
+        "lib": ["es2021", "dom", "dom.iterable"],
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
@@ -21,6 +21,7 @@
             "@domg-wc/elements": ["libs/elements/src/index.ts"],
             "@domg-wc/fat-lib": ["libs/support/fat-lib/src/index.ts"],
             "@domg-wc/map": ["libs/map/src/index.ts"],
+            "@domg-wc/qlik": ["libs/qlik/src/index.ts"],
             "@domg-wc/sections": ["libs/sections/src/index.ts"],
             "@domg-wc/test-support": ["libs/support/test-support/src/index.ts"]
         }
