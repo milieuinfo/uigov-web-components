@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/web-components-webpack5';
+// import {} from "@storybook/";
 // import { addons } from '@storybook/manager-api';
 // import { themes } from '@storybook/theming';
 
@@ -20,6 +21,7 @@ const config: StorybookConfig = {
         '../../../libs/elements/src/**/*.stories.@(js|jsx|ts|tsx)',
         '../../../libs/map/src/**/*.stories.@(js|jsx|ts|tsx)',
         '../../../libs/sections/src/**/*.stories.@(js|jsx|ts|tsx)',
+        '../../../libs/qlik/src/**/*.stories.@(js|jsx|ts|tsx)',
     ],
     addons: [
         '@storybook/addon-essentials',
