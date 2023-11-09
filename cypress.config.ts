@@ -29,6 +29,7 @@ export default defineConfig({
                         '@domg-wc/elements': path.resolve(__dirname, 'libs/elements/src/index.ts'),
                         '@domg-wc/map': path.resolve(__dirname, 'libs/map/src/index.ts'),
                         '@domg-wc/sections': path.resolve(__dirname, 'libs/sections/src/index.ts'),
+                        '@domg-wc/qlik': path.resolve(__dirname, 'libs/qlik/src/index.ts'),
                     },
                 },
             },
