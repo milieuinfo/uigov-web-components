@@ -1,12 +1,20 @@
 import { CSSResult, PropertyDeclarations, TemplateResult, html, PropertyValues } from 'lit';
-import { BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
 import { resetStyle } from '@domg/govflanders-style/common';
-import { vlElementsStyle } from '@domg-wc/elements';
+import {
+    VlButtonInputAddon,
+    vlElementsStyle,
+    VlIconElement,
+    VlInputFieldElement,
+    VlInputGroupElement,
+} from '@domg-wc/elements';
 import { customElement } from 'lit/decorators.js';
 import FloatingController from './vl-floating-ui.controller';
 import popoverUigStyle from './vl-popover.uig-css';
 import type { Placement } from '@floating-ui/dom';
 import { classMap } from 'lit/directives/class-map.js';
+import { VlPopoverActionComponent } from './vl-popover-action.component';
+import { VlPopoverActionListComponent } from './vl-popover-action-list.component';
 
 @customElement('vl-popover')
 export class VlPopoverComponent extends BaseLitElement {
@@ -19,6 +27,10 @@ export class VlPopoverComponent extends BaseLitElement {
     private hideArrow = false;
     private contentPadding: 'none' | 'small' | 'medium' | 'large' = 'small';
     private hideOnClick = false;
+
+    static {
+        registerWebComponents([VlPopoverActionComponent, VlPopoverActionListComponent]);
+    }
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, vlElementsStyle, popoverUigStyle];
