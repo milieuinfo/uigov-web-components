@@ -26,7 +26,7 @@ const mountDefault = ({
         </vl-info-tile>
     `);
 
-describe('story vl-info-tile - default', () => {
+describe('component vl-info-tile - default', () => {
     beforeEach(() => {
         mountDefault({
             titleSlot: `<span slot="title">Broos Deprez</span>`,

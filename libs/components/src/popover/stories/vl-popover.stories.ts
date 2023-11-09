@@ -1,11 +1,15 @@
 import { html } from 'lit-html';
-import { popoverDefaultArgs, popoverArgTypes } from './vl-popover.stories-arg';
+import { popoverArgTypes, popoverDefaultArgs } from './vl-popover.stories-arg';
 import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 import popoverDoc from './vl-popover.stories-doc.mdx';
-import '../vl-popover.component';
 import { action } from '@storybook/addon-actions';
+import { VlPopoverComponent } from '../vl-popover.component';
 import { VlPopoverActionComponent } from '../vl-popover-action.component';
+import { VlPopoverActionListComponent } from '../vl-popover-action-list.component';
+import { registerWebComponents } from '@domg-wc/common-utilities';
+
+registerWebComponents([VlPopoverComponent, VlPopoverActionComponent, VlPopoverActionListComponent]);
 
 export default {
     title: 'Components/popover',
@@ -50,7 +54,6 @@ export const PopoverDefault = story(
 PopoverDefault.storyName = 'vl-popover - default';
 PopoverDefault.args = {
     placement: 'bottom-start',
-    // hideOnClick: true,
 };
 
 export const PopoverHover = story(
