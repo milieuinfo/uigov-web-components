@@ -1,5 +1,6 @@
 import { VlAccordionComponent, VlCascaderComponent, VlInfoTile } from '@domg-wc/components';
 import { registerWebComponents } from '@domg-wc/common-utilities';
+import { vlElementsStyle } from '@domg-wc/elements';
 import './app.module.css';
 import React, { DOMAttributes } from 'react';
 import { createComponent } from '@lit-labs/react';
@@ -7,13 +8,8 @@ import { cascaderItemTemplates } from './vl-cascader.templates';
 import { getItemList } from './vl-cascader.utils';
 import { nodeData } from './vl-cascader.data';
 
-registerWebComponents([VlCascaderComponent, VlInfoTile, VlAccordionComponent]);
-
-export const VlCascader = createComponent({
-    tagName: 'vl-cascader',
-    elementClass: VlCascaderComponent,
-    react: React,
-});
+document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
+registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent]);
 
 export function App() {
     return (
@@ -35,12 +31,25 @@ export function App() {
 export default App;
 
 declare module 'react' {
-    interface HTMLAttributes<T> extends DOMAttributes<T> {
-        for?: string;
-        placement?: string;
-        icon?: string;
-        action?: string;
-        onClick?: (event) => void;
+    interface VlInputFieldAttributes<T> extends DOMAttributes<T> {
+        id: string;
+        name: string;
+        type?: string;
+        block?: boolean;
+        required?: boolean;
+        value?: string;
+        pattern?: string;
+        minLength?: number;
+        maxLength?: number;
+        min?: number;
+        max?: number;
+        onInput?: FormEventHandler<T>;
+        onReset?: FormEventHandler<T>;
+    }
+
+    interface VlErrorMessageAttributes<T> extends DOMAttributes<T> {
+        input: string;
+        state: string;
     }
 }
 
@@ -48,11 +57,8 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
         interface IntrinsicElements {
-            'vl-popover': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'vl-popover-action-list': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'vl-popover-action': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'vl-cascader': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'vl-side-sheet': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+            'vl-input-field-next': React.DetailedHTMLProps<React.VlInputFieldAttributes<HTMLElement>, HTMLElement>;
+            'vl-error-message-next': React.DetailedHTMLProps<React.VlErrorMessageAttributes<HTMLElement>, HTMLElement>;
         }
     }
 }
