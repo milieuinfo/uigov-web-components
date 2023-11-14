@@ -1,155 +1,229 @@
-import { VlCascaderComponent, CascaderItem, TemplateFn, VlInfoTile, VlAccordionComponent } from '@domg-wc/components';
+import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
+import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
 import { registerWebComponents } from '@domg-wc/common-utilities';
+import { vlElementsStyle } from '@domg-wc/elements';
 import './app.module.css';
-import React, { DOMAttributes } from 'react';
-import { html } from 'lit-html';
-import { createComponent } from '@lit-labs/react';
 
-registerWebComponents([VlCascaderComponent, VlInfoTile, VlAccordionComponent]);
-
-export const VlCascader = createComponent({
-    tagName: 'vl-cascader',
-    elementClass: VlCascaderComponent,
-    react: React,
-});
+document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
+registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent]);
 
 export function App() {
-    const nodeData: CascaderItem[] = [
-        {
-            label: 'Level 1 - A',
-            children: [
-                {
-                    label: 'Level 2 - A',
-                    templateType: 'stad',
-                    children: [
-                        {
-                            label: 'Level 3 - A',
-                            children: [
-                                {
-                                    label: 'Level 4 - A',
-                                    templateType: 'provincie',
-                                },
-                                {
-                                    label: 'Level 4 - B',
-                                    templateType: 'provincie',
-                                },
-                            ],
-                        },
-                        {
-                            label: 'Level 3 - B',
-                            templateType: 'provincie',
-                        },
-                    ],
-                },
-                {
-                    label: 'Level 2 - B',
-                    templateType: 'provincie',
-                },
-                {
-                    label: 'Level 2 - C',
-                    templateType: 'provincie',
-                },
-            ],
-        },
-        {
-            label: 'Level 1 - B',
-        },
-        {
-            label: 'Level 1 - C',
-            narrowDown: true,
-            data: {
-                requestParams: 'level1C-id',
-            },
-            templateType: 'stad',
-        },
-    ];
+    const [firstName, setFirstName] = useState('');
+    const [showAddressField, setShowAddressField] = useState(false);
+    const [addressFieldRequired, setAddressFieldRequired] = useState(false);
+    const inputKidsRef = useRef<HTMLInputElement>();
 
-    const fetchNodes = async (item: CascaderItem): Promise<CascaderItem[]> => {
-        await new Promise((res) => setTimeout(res, 3000));
-        const id = item.label;
-        return [
-            {
-                label: id + ' ' + new Date().getHours(),
-                children: [
-                    {
-                        label: id + ' ' + new Date().getMinutes(),
-                        children: [
-                            {
-                                label: id + ' ' + new Date().getTime(),
-                                narrowDown: true,
-                                data: {
-                                    requestParams: 'level1C-id',
-                                },
-                            },
-                            {
-                                label: '[- ' + id + ' -]',
-                                templateType: 'provincie',
-                            },
-                        ],
-                    },
-                    {
-                        label: id + ' ' + new Date().getMinutes(),
-                    },
-                ],
-            },
-            {
-                label: id + ' ' + new Date().getMinutes(),
-                children: [
-                    {
-                        label: id + ' ' + new Date().getTime(),
-                        narrowDown: true,
-                        data: {
-                            requestParams: 'level - deeper',
-                        },
-                    },
-                    {
-                        label: '[- ' + id + ' -]',
-                        templateType: 'provincie',
-                    },
-                ],
-            },
-            {
-                label: id + ' ' + new Date().getMinutes(),
-            },
-        ];
+    useEffect(() => {
+        const inputKids = inputKidsRef.current;
+
+        if (inputKids) {
+            inputKids.addEventListener('reset', onResetKids);
+        }
+
+        return () => {
+            inputKids.removeEventListener('reset', onResetKids);
+        };
+    }, []);
+
+    const onSubmit = (e: FormEvent<HTMLElement>): void => {
+        e.preventDefault();
+
+        const data = new FormData(e.target as HTMLFormElement);
+        console.log(Object.fromEntries(data));
     };
 
-    const nodeTemplates = new Map<string, TemplateFn>([
-        [
-            'stad',
-            (item, navigate) => html`
-                <div>inhoud</div>
-                <button
-                    is="vl-button"
-                    @click=${() => {
-                        navigate(item);
-                    }}
-                >
-                    ${item.label + (item.children || item.narrowDown ? ' > there is more ' : '')}
-                </button>
-            `,
-        ],
-    ]);
+    const onInputFirstName = ({ target }: FormEvent<HTMLElement> & { target: HTMLInputElement }): void => {
+        setFirstName(target.value);
+    };
+
+    const onInputKids = ({ target }: FormEvent<HTMLElement> & { target: HTMLInputElement }): void => {
+        const countOfKids = parseInt(target.value);
+
+        if (countOfKids > 0) {
+            setShowAddressField(true);
+        } else {
+            setShowAddressField(false);
+        }
+
+        if (countOfKids > 1) {
+            setAddressFieldRequired(true);
+        } else {
+            setAddressFieldRequired(false);
+        }
+    };
+
+    const onResetKids = (): void => {
+        setShowAddressField(false);
+        setAddressFieldRequired(false);
+    };
+
+    const onInputAge = ({ target }: FormEvent<HTMLElement> & { target: HTMLInputElement }): void => {
+        const age = parseInt(target.value);
+
+        if (age === 32) {
+            setFirstName('Kristof');
+        }
+    };
 
     return (
-        <main>
-            <vl-side-sheet data-vl-left data-vl-custom-css="" data-vl-open>
-                <h4 is="vl-h4">Kies uit kantoren</h4>
-                <VlCascader items={nodeData} itemListFn={fetchNodes} templates={nodeTemplates}></VlCascader>
-            </vl-side-sheet>
-        </main>
+        <div style={{ width: '800px', padding: '50px' }}>
+            <form id="form" className="vl-form" onSubmit={onSubmit}>
+                <div className="vl-form-grid vl-form-grid--is-stacked">
+                    <div className="vl-col--3-12">
+                        <label className="vl-form__label vl-form__label--block" htmlFor="voornaam">
+                            Voornaam *
+                        </label>
+                    </div>
+                    <div className="vl-col--9-12">
+                        <vl-input-field-next
+                            id="voornaam"
+                            name="voornaam"
+                            block
+                            required
+                            min-length="5"
+                            max-length="10"
+                            value={firstName}
+                            onInput={onInputFirstName}
+                        ></vl-input-field-next>
+                        <vl-error-message-next input="voornaam" state="valueMissing">
+                            Gelieve een voornaam in te vullen.
+                        </vl-error-message-next>
+                        <vl-error-message-next input="voornaam" state="tooShort">
+                            Gelieve minimum 5 karakters te gebruiken.
+                        </vl-error-message-next>
+                        <vl-error-message-next input="voornaam" state="tooLong">
+                            Gelieve maximum 10 karakters te gebruiken.
+                        </vl-error-message-next>
+                    </div>
+                    <div className="vl-col--3-12">
+                        <label className="vl-form__label vl-form__label--block" htmlFor="achternaam">
+                            Achternaam *
+                        </label>
+                    </div>
+                    <div className="vl-col--9-12">
+                        <vl-input-field-next
+                            id="achternaam"
+                            name="achternaam"
+                            block
+                            required
+                            pattern="Van(.*)"
+                        ></vl-input-field-next>
+                        <vl-error-message-next input="achternaam" state="valueMissing">
+                            Gelieve een achternaam in te vullen.
+                        </vl-error-message-next>
+                        <vl-error-message-next input="achternaam" state="patternMismatch">
+                            Gelieve een achternaam in te vullen die begint met "Van".
+                        </vl-error-message-next>
+                    </div>
+                    <div className="vl-col--3-12">
+                        <label className="vl-form__label vl-form__label--block" htmlFor="leeftijd">
+                            Leeftijd *
+                        </label>
+                    </div>
+                    <div className="vl-col--9-12">
+                        <vl-input-field-next
+                            id="leeftijd"
+                            name="leeftijd"
+                            block
+                            required
+                            type="number"
+                            min={1}
+                            max={99}
+                            onInput={onInputAge}
+                        ></vl-input-field-next>
+                        <vl-error-message-next input="leeftijd" state="valueMissing">
+                            Gelieve een leeftijd in te vullen.
+                        </vl-error-message-next>
+                        <vl-error-message-next input="leeftijd" state="rangeUnderflow">
+                            De minimum leeftijd is 1 jaar.
+                        </vl-error-message-next>
+                        <vl-error-message-next input="leeftijd" state="rangeOverflow">
+                            De maximum leeftijd is 99 jaar.
+                        </vl-error-message-next>
+                    </div>
+                    <div className="vl-col--3-12">
+                        <label className="vl-form__label vl-form__label--block" htmlFor="kinderen">
+                            Aantal kinderen *
+                        </label>
+                    </div>
+                    <div className="vl-col--9-12">
+                        <vl-input-field-next
+                            ref={inputKidsRef}
+                            id="kinderen"
+                            name="kinderen"
+                            block
+                            type="number"
+                            required
+                            min={0}
+                            onInput={onInputKids}
+                            onReset={onResetKids}
+                        ></vl-input-field-next>
+                        <vl-error-message-next input="kinderen" state="valueMissing">
+                            Gelieve een aantal kinderen in te vullen.
+                        </vl-error-message-next>
+                        <vl-error-message-next input="kinderen" state="rangeUnderflow">
+                            Het minimum aantal kinderen is 0.
+                        </vl-error-message-next>
+                    </div>
+                    {showAddressField && (
+                        <>
+                            <div className="vl-col--3-12">
+                                <label className="vl-form__label vl-form__label--block" htmlFor="adres">
+                                    Adres {addressFieldRequired && '*'}
+                                </label>
+                            </div>
+                            <div className="vl-col--9-12">
+                                <vl-input-field-next
+                                    id="adres"
+                                    name="adres"
+                                    block
+                                    {...(addressFieldRequired && { required: true })}
+                                ></vl-input-field-next>
+                                <vl-error-message-next input="adres" state="valueMissing">
+                                    Gelieve een adres in te vullen.
+                                </vl-error-message-next>
+                            </div>
+                        </>
+                    )}
+                    <div className="vl-col--9-12 vl-push--3-12">
+                        <div className="vl-action-group">
+                            <button className="vl-button" type="submit">
+                                Verstuur
+                            </button>
+                            <button className="vl-button" type="reset">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     );
 }
 
 export default App;
 
 declare module 'react' {
-    interface HTMLAttributes<T> extends DOMAttributes<T> {
-        for?: string;
-        placement?: string;
-        icon?: string;
-        action?: string;
-        onClick?: (event) => void;
+    interface VlInputFieldAttributes<T> extends DOMAttributes<T> {
+        id: string;
+        name: string;
+        type?: string;
+        block?: boolean;
+        required?: boolean;
+        value?: string;
+        pattern?: string;
+        minLength?: number;
+        maxLength?: number;
+        min?: number;
+        max?: number;
+        onInput?: FormEventHandler<T>;
+        onReset?: FormEventHandler<T>;
+    }
+
+    interface VlErrorMessageAttributes<T> extends DOMAttributes<T> {
+        input: string;
+        state: string;
     }
 }
 
@@ -157,11 +231,8 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
         interface IntrinsicElements {
-            'vl-popover': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'vl-popover-action-list': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'vl-popover-action': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'vl-cascader': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-            'vl-side-sheet': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+            'vl-input-field-next': React.DetailedHTMLProps<React.VlInputFieldAttributes<HTMLElement>, HTMLElement>;
+            'vl-error-message-next': React.DetailedHTMLProps<React.VlErrorMessageAttributes<HTMLElement>, HTMLElement>;
         }
     }
 }
