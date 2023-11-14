@@ -1,143 +1,230 @@
-import { CascaderItem, TemplateFn, VlAccordionComponent, VlCascaderComponent, VlInfoTile } from '@domg-wc/components';
+import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
+import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
 import { registerWebComponents } from '@domg-wc/common-utilities';
+import { vlElementsStyle } from '@domg-wc/elements';
 import './app.element.scss';
-import { html } from 'lit-html';
 
 export class AppElement extends HTMLElement {
     static {
-        registerWebComponents([VlCascaderComponent, VlInfoTile, VlAccordionComponent]);
+        document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
+        registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent]);
     }
-
-    nodeData: CascaderItem[] = [
-        {
-            label: 'Level 1 - A',
-            children: [
-                {
-                    label: 'Level 2 - A',
-                    templateType: 'stad',
-                    children: [
-                        {
-                            label: 'Level 3 - A',
-                            children: [
-                                {
-                                    label: 'Level 4 - A',
-                                    templateType: 'provincie',
-                                },
-                                {
-                                    label: 'Level 4 - B',
-                                    templateType: 'provincie',
-                                },
-                            ],
-                        },
-                        {
-                            label: 'Level 3 - B',
-                            templateType: 'provincie',
-                        },
-                    ],
-                },
-                {
-                    label: 'Level 2 - B',
-                    templateType: 'provincie',
-                },
-                {
-                    label: 'Level 2 - C',
-                    templateType: 'provincie',
-                },
-            ],
-        },
-        {
-            label: 'Level 1 - B',
-        },
-        {
-            label: 'Level 1 - C',
-            data: { requestParams: 'level1C-id' },
-            templateType: 'stad',
-        },
-    ];
-
-    fetchNodes = async (item: CascaderItem): Promise<CascaderItem[]> => {
-        await new Promise((res) => setTimeout(res, 3000));
-        const id = item.label;
-        return [
-            {
-                label: id + ' ' + new Date().getHours(),
-                children: [
-                    {
-                        label: id + ' ' + new Date().getMinutes(),
-                        children: [
-                            {
-                                label: id + ' ' + new Date().getTime(),
-                                narrowDown: true,
-                                data: {
-                                    requestParams: 'level1C-id',
-                                },
-                            },
-                            {
-                                label: '[- ' + id + ' -]',
-                                templateType: 'provincie',
-                            },
-                        ],
-                    },
-                    {
-                        label: id + ' ' + new Date().getMinutes(),
-                    },
-                ],
-            },
-            {
-                label: id + ' ' + new Date().getMinutes(),
-                children: [
-                    {
-                        label: id + ' ' + new Date().getTime(),
-                        narrowDown: true,
-                        data: {
-                            requestParams: 'level - deeper',
-                        },
-                    },
-                    {
-                        label: '[- ' + id + ' -]',
-                        templateType: 'provincie',
-                    },
-                ],
-            },
-            {
-                label: id + ' ' + new Date().getMinutes(),
-            },
-        ];
-    };
-
-    nodeTemplates = new Map<string, TemplateFn>([
-        [
-            'stad',
-            (item, navigate) => html`
-                <div>inhoud</div>
-                <button
-                    is="vl-button"
-                    @click=${() => {
-                        navigate(item);
-                    }}
-                >
-                    ${item.label + (item.children || item.narrowDown ? ' > there is more ' : '')}
-                </button>
-            `,
-        ],
-    ]);
 
     constructor() {
         super();
+
         this.innerHTML = `
-                        <main>
-                            <vl-side-sheet data-vl-left data-vl-custom-css="" data-vl-open>
-                                <vl-cascader id="cascader" ></vl-cascader>
-                            </vl-side-sheet>
-                        </main>
+            <div style="width: 800px; padding: 50px;">
+                <form id="form" class="vl-form">
+                    <div class="vl-form-grid vl-form-grid--is-stacked">
+                        <div class="vl-col--3-12">
+                            <label class="vl-form__label vl-form__label--block" for="voornaam">Voornaam *</label>
+                        </div>
+                        <div class="vl-col--9-12">
+                            <vl-input-field-next
+                                id="voornaam"
+                                name="voornaam"
+                                block
+                                required
+                                min-length="5"
+                                max-length="10">
+                            </vl-input-field-next>
+                            <vl-error-message-next input="voornaam" state="valueMissing">
+                                Gelieve een voornaam in te vullen.
+                            </vl-error-message-next>
+                            <vl-error-message-next input="voornaam" state="tooShort">
+                                Gelieve minimum 5 karakters te gebruiken.
+                            </vl-error-message-next>
+                            <vl-error-message-next input="voornaam" state="tooLong">
+                                Gelieve maximum 10 karakters te gebruiken.
+                            </vl-error-message-next>
+                        </div>
+                        <div class="vl-col--3-12">
+                            <label class="vl-form__label vl-form__label--block" for="achternaam">Achternaam *</label>
+                        </div>
+                        <div class="vl-col--9-12">
+                            <vl-input-field-next
+                                id="achternaam"
+                                name="achternaam"
+                                block
+                                required
+                                pattern="Van(.*)">
+                            </vl-input-field-next>
+                            <vl-error-message-next input="achternaam" state="valueMissing">
+                                Gelieve een achternaam in te vullen.
+                            </vl-error-message-next>
+                            <vl-error-message-next input="achternaam" state="patternMismatch">
+                                Gelieve een achternaam in te vullen die begint met "Van".
+                            </vl-error-message-next>
+                        </div>
+                        <div class="vl-col--3-12">
+                            <label class="vl-form__label vl-form__label--block" for="leeftijd">Leeftijd *</label>
+                        </div>
+                        <div class="vl-col--9-12">
+                            <vl-input-field-next
+                                id="leeftijd"
+                                name="leeftijd"
+                                block
+                                required
+                                type="number"
+                                min="1"
+                                max="99">
+                            </vl-input-field-next>
+                            <vl-error-message-next input="leeftijd" state="valueMissing">
+                                Gelieve een leeftijd in te vullen.
+                            </vl-error-message-next>
+                            <vl-error-message-next input="leeftijd" state="rangeUnderflow">
+                                De minimum leeftijd is 1 jaar.
+                            </vl-error-message-next>
+                            <vl-error-message-next input="leeftijd" state="rangeOverflow">
+                                De maximum leeftijd is 99 jaar.
+                            </vl-error-message-next>
+                        </div>
+                        <div class="vl-col--3-12">
+                            <label class="vl-form__label vl-form__label--block" for="kinderen">Aantal kinderen *</label>
+                        </div>
+                        <div class="vl-col--9-12">
+                            <vl-input-field-next
+                                id="kinderen"
+                                name="kinderen"
+                                block
+                                type="number"
+                                required
+                                min="0">
+                            </vl-input-field-next>
+                            <vl-error-message-next input="kinderen" state="valueMissing">
+                                Gelieve een aantal kinderen in te vullen.
+                            </vl-error-message-next>
+                            <vl-error-message-next input="kinderen" state="rangeUnderflow">
+                                Het minimum aantal kinderen is 0.
+                            </vl-error-message-next>
+                        </div>
+                        <div id="address-field-placeholder" hidden></div>
+                        <div class="vl-col--9-12 vl-push--3-12">
+                            <div class="vl-action-group">
+                                <button class="vl-button" type="submit">Verstuur</button>
+                                <button class="vl-button" type="reset">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         `;
+
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onInputKids = this.onInputKids.bind(this);
+        this.onResetKids = this.onResetKids.bind(this);
+        this.onInputAge = this.onInputAge.bind(this);
     }
 
     connectedCallback(): void {
-        const cascader: VlCascaderComponent = this.querySelector('#cascader');
-        cascader.items = this.nodeData;
-        cascader.itemListFn = this.fetchNodes;
-        cascader.templates = this.nodeTemplates;
+        const form = this.querySelector('form');
+        form?.addEventListener('submit', this.onSubmit);
+
+        const inputKids = this.querySelector('vl-input-field-next[name="kinderen"]');
+        inputKids?.addEventListener('input', this.onInputKids);
+        inputKids?.addEventListener('reset', this.onResetKids);
+
+        const inputAge = this.querySelector('vl-input-field-next[name="leeftijd"]');
+        inputAge?.addEventListener('input', this.onInputAge);
+    }
+
+    disconnectedCallback(): void {
+        const form = this.querySelector('form');
+        form?.removeEventListener('submit', this.onSubmit);
+
+        const inputKids = this.querySelector('vl-input-field-next[name="kinderen"]');
+        inputKids?.removeEventListener('input', this.onInputKids);
+        inputKids?.removeEventListener('reset', this.onResetKids);
+
+        const inputAge = this.querySelector('vl-input-field-next[name="leeftijd"]');
+        inputAge?.removeEventListener('input', this.onInputAge);
+    }
+
+    private onSubmit(e: Event): void {
+        e.preventDefault();
+
+        const data = new FormData(e.target as HTMLFormElement);
+        console.log(Object.fromEntries(data));
+    }
+
+    private onInputKids({ target }: Event & { target: HTMLInputElement }): void {
+        const countOfKids = parseInt(target.value);
+
+        if (countOfKids > 0) {
+            this.showAddressField();
+        } else {
+            this.hideAddressField();
+        }
+
+        const addressInput = this.querySelector('vl-input-field-next[name="adres"]');
+        const addressLabel = this.querySelector('label[for="adres"]');
+
+        if (countOfKids > 1) {
+            addressInput?.setAttribute('required', '');
+            addressLabel.innerHTML = 'Adres *';
+        } else {
+            addressInput?.removeAttribute('required');
+
+            if (addressLabel) {
+                addressLabel.innerHTML = 'Adres';
+            }
+        }
+    }
+
+    private onResetKids(): void {
+        this.hideAddressField();
+    }
+
+    private onInputAge({ target }: Event & { target: HTMLInputElement }): void {
+        const age = parseInt(target.value);
+
+        if (age === 32) {
+            const inputFirstname = this.querySelector('vl-input-field-next[name="voornaam"]');
+            inputFirstname?.setAttribute('value', 'Kristof');
+        }
+    }
+
+    private showAddressField(): void {
+        const addressField = this.querySelector('vl-input-field-next[name="adres"]');
+
+        if (addressField) {
+            return;
+        }
+
+        const addressFieldTemplate = document.createElement('template');
+
+        addressFieldTemplate.innerHTML = `
+            <div id="adress-field-label-col" class="vl-col--3-12">
+                <label class="vl-form__label vl-form__label--block" for="adres">
+                    Adres
+                </label>
+            </div>
+            <div id="adress-field-input-col" class="vl-col--9-12">
+                <vl-input-field-next
+                    id="adres"
+                    name="adres"
+                    block>
+                </vl-input-field-next>
+                <vl-error-message-next input="adres" state="valueMissing">
+                    Gelieve een adres in te vullen.
+                </vl-error-message-next>
+            </div>
+        `;
+
+        const addressFieldPlaceholder = this.querySelector('#address-field-placeholder');
+        addressFieldPlaceholder?.replaceWith(addressFieldTemplate.content);
+    }
+
+    private hideAddressField(): void {
+        const addressLabelCol = this.querySelector('#adress-field-label-col');
+        addressLabelCol?.remove();
+
+        const addressFieldPlaceholderTemplate = document.createElement('template');
+        addressFieldPlaceholderTemplate.innerHTML = '<div id="address-field-placeholder" hidden></div>';
+
+        const addressInputCol = this.querySelector('#adress-field-input-col');
+        addressInputCol?.replaceWith(addressFieldPlaceholderTemplate.content);
     }
 }
 customElements.define('app-element', AppElement);
