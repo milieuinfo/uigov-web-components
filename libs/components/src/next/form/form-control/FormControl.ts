@@ -9,16 +9,17 @@ import {
 import { LitElement } from 'lit';
 import { submit } from '@open-wc/form-helpers';
 import { maxValueValidator, minValueValidator } from './validators';
-import { ERROR_MESSAGE_CUSTOM_TAG } from './error-message/vl-error-message.component';
+import { ERROR_MESSAGE_CUSTOM_TAG } from '../error-message/vl-error-message.component';
 import { BaseLitElement } from '@domg-wc/common-utilities';
 
-export abstract class BaseFormControl extends FormControlMixin(BaseLitElement) {
+export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     id = '';
     protected name = '';
     protected label = '';
     protected block = false;
     protected required = false;
     protected disabled = false;
+    protected error = false;
     protected isInvalid = false;
 
     static formControlValidators = [
@@ -40,6 +41,7 @@ export abstract class BaseFormControl extends FormControlMixin(BaseLitElement) {
             block: { type: Boolean, reflect: true },
             required: { type: Boolean, reflect: true },
             disabled: { type: Boolean, reflect: true },
+            error: { type: Boolean, reflect: true },
             isInvalid: { type: Boolean, state: true },
         };
     }
@@ -116,19 +118,19 @@ export abstract class BaseFormControl extends FormControlMixin(BaseLitElement) {
 
         // Zoek de error message die bij de huidige error state hoort
         let errorMessage = this.form.querySelector(
-            `${ERROR_MESSAGE_CUSTOM_TAG}[input-id="${this.id}"][state="${errorState}"]`
+            `${ERROR_MESSAGE_CUSTOM_TAG}[input="${this.id}"][state="${errorState}"]`
         );
 
         // Als er geen error message is voor de huidige error state, zoek dan de algemene error message
         if (!errorMessage) {
-            errorMessage = this.form.querySelector(`${ERROR_MESSAGE_CUSTOM_TAG}[input-id="${this.id}"]`);
+            errorMessage = this.form.querySelector(`${ERROR_MESSAGE_CUSTOM_TAG}[input="${this.id}"]`);
         }
 
         errorMessage?.setAttribute('show', 'true');
     }
 
     private hideErrorMessages(): void {
-        const errorMessages = this.form?.querySelectorAll(`${ERROR_MESSAGE_CUSTOM_TAG}[input-id="${this.id}"]`);
+        const errorMessages = this.form?.querySelectorAll(`${ERROR_MESSAGE_CUSTOM_TAG}[input="${this.id}"]`);
 
         errorMessages?.forEach((errorMessage) => {
             errorMessage.removeAttribute('show');
