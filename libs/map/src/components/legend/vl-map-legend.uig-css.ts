@@ -319,5 +319,10 @@ const mapLegendStyles: CSSResult = css`
         margin-left: 0.5em;
         display: inline-block;
     }
+
+    div.uig-map-legend-image {
+        display: flex;
+        align-items: center;
+    }
 `;
 export default [mapLegendStyles, ...vlElementsStyle, olOlStyles, mapActionsStyle] as CSSResult[];

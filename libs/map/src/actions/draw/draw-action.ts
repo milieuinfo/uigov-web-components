@@ -171,6 +171,5 @@ export class VlDrawAction extends VlBaseMapAction {
         this.drawInteraction.abortDrawing();
     }
 
-    pointermove() {
-    }
+    pointermove() {}
 }

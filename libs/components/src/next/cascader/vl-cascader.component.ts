@@ -19,7 +19,6 @@ import { VlCascaderItemComponent } from './vl-cascader-item.component';
 
 @customElement('vl-cascader')
 export class VlCascaderComponent extends BaseLitElement {
-    items: CascaderItem[] = [];
     itemListFn: ItemListFn | undefined;
     templates: Map<string, TemplateFn> | undefined;
 
@@ -48,7 +47,6 @@ export class VlCascaderComponent extends BaseLitElement {
             itemListFn: { type: Function },
             nodeData: { type: Array, state: true },
             templates: { type: Map },
-            items: { type: Array, attribute: 'items' },
         };
     }
 
@@ -63,13 +61,21 @@ export class VlCascaderComponent extends BaseLitElement {
     }
 
     isDeclarativeMode(): boolean {
-        return this.declarativeMode;
+        return !this.items || !this.items.length;
+    }
+
+    set items(cascaderItems: CascaderItem[]) {
+        this.nodeData = cascaderItems;
+    }
+
+    get items(): CascaderItem[] {
+        return this.nodeData;
     }
 
     private setData(): void {
         const nodeTree = this.traverseTreeAndMapItems(this);
-        this.declarativeMode = !this.items || !this.items.length;
-        if (this.declarativeMode) {
+
+        if (this.isDeclarativeMode() && nodeTree?.length) {
             this.nodeData = nodeTree;
         } else {
             this.nodeData = this.items;

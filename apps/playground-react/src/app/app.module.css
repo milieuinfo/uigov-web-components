@@ -1,3 +1,16 @@
 main {
     padding: 20px;
+    display: flex;
+    /* grid-template-columns: 200px 1fr; */
+    height: 100vh;
+}
+
+section {
+    width: 100%;
+}
+
+.vl-title--h4 {
+    margin-top: 1rem;
+    padding-left: 1.4rem;
+    margin-bottom: 0.7rem !important;
 }

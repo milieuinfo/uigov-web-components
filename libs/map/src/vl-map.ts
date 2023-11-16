@@ -6,6 +6,9 @@ import OlProjection from 'ol/proj/Projection';
 import proj4 from 'proj4';
 import { VlCustomMap } from './actions/map/custom-map';
 import { VlMapLayer } from './components/layer/vl-map-layer';
+import { VlMapWmsLayer } from './components/layer/wms-layer/vl-map-wms-layer';
+import { VlMapWfsLayer } from './components/layer/vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
+import { VlMapFeaturesLayer } from './components/layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import { EVENT } from './vl-map.model';
 import vlMapStyles from './vl-map.uig-css';
 
@@ -392,12 +395,16 @@ export class VlMap extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    get featuresLayers() {
+    get featuresLayers(): VlMapFeaturesLayer[] {
         return Array.from(this.querySelectorAll('vl-map-features-layer'));
     }
 
-    get wfsLayers() {
+    get wfsLayers(): VlMapWfsLayer[] {
         return Array.from(this.querySelectorAll('vl-map-wfs-layer'));
+    }
+
+    get wmsLayers(): VlMapWmsLayer[] {
+        return Array.from(this.querySelectorAll('vl-map-tiled-wms-layer, vl-map-image-wms-layer'));
     }
 }
 

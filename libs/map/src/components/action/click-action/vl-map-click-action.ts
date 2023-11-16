@@ -12,34 +12,51 @@ import { BaseLitElement } from '@domg-wc/common-utilities';
  */
 @customElement('vl-map-click-action')
 export class VlMapClickAction extends BaseLitElement {
-    connectedCallback() {
-        super.connectedCallback();
+    private overlay: Overlay;
+    private mapRef: VlMap | null;
 
-        const overlay = new Overlay({
+    constructor() {
+        super();
+        this.overlay = new Overlay({
             element: new VlMapClickActionPindrop(),
             positioning: 'bottom-center',
-            autoPan: {
-                animation: {
-                    duration: 250,
-                },
-            },
+            autoPan: { animation: { duration: 250 } },
         });
-        this.map.map.addOverlay(overlay);
-        this.map.on('singleclick', (evt: MapBrowserEvent<PointerEvent>) => {
-            overlay.setPosition(evt.coordinate);
-            this.dispatchEvent(
-                new VlMapClickedEvent(
-                    evt.coordinate,
-                    this.map.map.getView().getResolution(),
-                    this.map.map.getView().getProjection()
-                )
-            );
-        });
+
+        this.mapRef = null;
     }
 
-    get map(): VlMap {
-        return this.closest('vl-map');
+    connectedCallback() {
+        super.connectedCallback();
+        this.mapRef = this.closest('vl-map'); // Sla de map referentie op
+        if (this.mapRef?.map) {
+            this.mapRef.map.on('singleclick', this.handleClick);
+        }
     }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        if (this.mapRef?.map) {
+            this.mapRef.map.removeOverlay(this.overlay);
+            this.mapRef.map.un('singleclick', this.handleClick);
+        }
+        this.mapRef = null; // Wis de map referentie
+    }
+
+    private handleClick = (evt: MapBrowserEvent<PointerEvent>): void => {
+        if (!this.mapRef?.map) return;
+
+        this.overlay.setPosition(evt.coordinate);
+        this.mapRef.map.addOverlay(this.overlay);
+
+        this.dispatchEvent(
+            new VlMapClickedEvent(
+                evt.coordinate,
+                this.mapRef.map.getView().getResolution(),
+                this.mapRef.map.getView().getProjection()
+            )
+        );
+    };
 }
 
 declare global {
