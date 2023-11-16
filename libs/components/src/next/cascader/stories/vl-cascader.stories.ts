@@ -9,6 +9,7 @@ import { getItemList } from './vl-cascader.stories-util.item-list-function';
 import { cascaderItemTemplates } from './vl-cascader.stories-util.templates';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { nothing } from 'lit';
+import { until } from 'lit/directives/until.js';
 
 export default {
     title: 'Components-next/cascader',
@@ -24,30 +25,42 @@ export default {
 const mediumWidthDecorator = (story: () => unknown) => {
     return html` <div style="width: 600px;margin: auto auto;">${story()}</div>`;
 };
+const timeOut = async (args: typeof cascaderArgs) => {
+    // doe hier 1 of meerdere API calls
+    await new Promise((res) => setTimeout(res, 2000));
+    const loadingMessage = 'Alternatieve laad boodschap...';
+    // hier kan je dan eventueel opgevraagde data meegeven aan de story
+    return storyTemplate({ ...args, loadingMessage: loadingMessage });
+};
 
+const storyTemplate = ({ level, loadingMessage, loading, hideBreadcrumb }: typeof cascaderArgs) => html`
+    <vl-cascader
+        level="${level}"
+        hide-breadcrumb="${hideBreadcrumb}"
+        loading="${loading}"
+        loading-message="${loadingMessage}"
+    >
+        <vl-cascader-item label="Provincie: West-Vlaanderen">
+            <vl-cascader-item label="Gemeente: Damme">
+                <vl-cascader-item label="Deelgemeente - Moerkerke">
+                    <vl-cascader-item label="Dorp - Moerkerke"></vl-cascader-item>
+                    <vl-cascader-item label="Dorp - Sint-Rita"></vl-cascader-item>
+                </vl-cascader-item>
+                <vl-cascader-item label="Deelgemeente - Sint-Kruis"></vl-cascader-item>
+            </vl-cascader-item>
+            <vl-cascader-item label="Gemeente: Brugge"></vl-cascader-item>
+        </vl-cascader-item>
+        <vl-cascader-item label="Provincie: Oost-Vlaanderen">
+            <vl-cascader-item label="Gemeente: Gent"></vl-cascader-item>
+            <vl-cascader-item label="Gemeente: Lokeren"></vl-cascader-item>
+        </vl-cascader-item>
+    </vl-cascader>
+`;
+
+// await timeOut();
 export const CascaderDefault = story(cascaderArgs, ({ level, loadingMessage, loading, hideBreadcrumb }) => {
     return html`
-        <vl-cascader
-            level="${level}"
-            hide-breadcrumb="${hideBreadcrumb}"
-            loading="${loading}"
-            loading-message="${loadingMessage}"
-        >
-            <vl-cascader-item label="Provincie: West-Vlaanderen">
-                <vl-cascader-item label="Gemeente: Damme">
-                    <vl-cascader-item label="Deelgemeente - Moerkerke">
-                        <vl-cascader-item label="Dorp - Moerkerke"></vl-cascader-item>
-                        <vl-cascader-item label="Dorp - Sint-Rita"></vl-cascader-item>
-                    </vl-cascader-item>
-                    <vl-cascader-item label="Deelgemeente - Sint-Kruis"></vl-cascader-item>
-                </vl-cascader-item>
-                <vl-cascader-item label="Gemeente: Brugge"></vl-cascader-item>
-            </vl-cascader-item>
-            <vl-cascader-item label="Provincie: Oost-Vlaanderen">
-                <vl-cascader-item label="Gemeente: Gent"></vl-cascader-item>
-                <vl-cascader-item label="Gemeente: Lokeren"></vl-cascader-item>
-            </vl-cascader-item>
-        </vl-cascader>
+        ${until(timeOut(<typeof cascaderArgs>{ level, loadingMessage, loading, hideBreadcrumb }), html`Loading...`)}
     `;
 });
 CascaderDefault.storyName = 'vl-cascader - default';
