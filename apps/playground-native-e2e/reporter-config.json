@@ -1,0 +1,14 @@
+{
+    "reporterEnabled": "mocha-junit-reporter, mochawesome",
+    "mochaJunitReporterReporterOptions": {
+        "mochaFile": "../../dist/cypress/apps/playground-native-e2e/test-reports/junit-report-[hash].xml"
+    },
+    "mochawesomeReporterOptions": {
+        "reportFilename": "[status]-[name]-report",
+        "reportPageTitle": "Playground Native e2e tests",
+        "reportDir": "../../dist/cypress/apps/playground-native-e2e/mochawesome-reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+    }
+}
