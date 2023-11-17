@@ -1,8 +1,9 @@
 import { css, CSSResult } from 'lit';
 
 const styles: CSSResult = css`
-    main {
-        padding: 20px;
+    .container {
+        width: 800px;
+        padding: 50px;
     }
 `;
 export default styles;

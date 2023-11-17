@@ -28,8 +28,8 @@ repo beschreven, achter de pijltjes staan de artifacts gespecifieerd die uit de 
 
 Er zitten 4 applicaties in de repo: **Storybook** en **3 Playgrounds**.
 Storybook (deze documentatie) streeft naar het aanbieden van zo correct mogelijke informatie en documentatie.
-De Playground applicaties zijn bedoeld om tijdens development een component in verschillende frameworks te testen.
-De playground-legacy applicatie is de oude versie van behouden
+De Playground applicaties zijn bedoeld om integraties en combinaties van componenten in verschillende frameworks te testen.
+De playground-legacy applicatie is de vorige versie van de playground applicaties en is behouden voor historische redenen.
 
 De feitelijke componenten zitten opgesplitst in een aantal bibliotheken onder de libs folder. Ze worden aangeboden
 als [npm packages](/story/afnemen-artifacts--page).
@@ -39,8 +39,11 @@ als [npm packages](/story/afnemen-artifacts--page).
   ├─ apps/
   │  ├─ playground-legacy/
   │  ├─ playground-lit/
+  │  ├─ playground-lit-e2e/
   │  ├─ playground-native/
+  │  ├─ playground-native-e2e/
   │  ├─ playground-react/
+  │  ├─ playground-react-e2e/
   │  ├─ storybook/
   │  ├─ storybook-e2e/ (Cypress testen tov storybook)
   │   -> worden niet als artifact gepubliceerd

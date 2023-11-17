@@ -14,7 +14,7 @@ export class AppElement extends HTMLElement {
         super();
 
         this.innerHTML = `
-            <div style="width: 800px; padding: 50px;">
+            <div class="container">
                 <form id="form" class="vl-form">
                     <div class="vl-form-grid vl-form-grid--is-stacked">
                         <div class="vl-col--3-12">

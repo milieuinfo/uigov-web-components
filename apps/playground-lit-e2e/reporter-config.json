@@ -1,12 +1,12 @@
 {
     "reporterEnabled": "mocha-junit-reporter, mochawesome",
     "mochaJunitReporterReporterOptions": {
-        "mochaFile": "dist/cypress/test-reports/junit-report-[hash].xml"
+        "mochaFile": "../../dist/cypress/apps/playground-lit-e2e/test-reports/junit-report-[hash].xml"
     },
     "mochawesomeReporterOptions": {
         "reportFilename": "[status]-[name]-report",
-        "reportPageTitle": "Component tests",
-        "reportDir": "dist/cypress/libs/mochawesome-reports",
+        "reportPageTitle": "Playground Lit e2e tests",
+        "reportDir": "../../dist/cypress/apps/playground-lit-e2e/mochawesome-reports",
         "overwrite": false,
         "html": false,
         "json": true
