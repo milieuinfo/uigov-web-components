@@ -3,7 +3,7 @@ import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field
 import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { vlElementsStyle } from '@domg-wc/elements';
-import './app.module.css';
+import styles from './app.module.css';
 
 document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
 registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent]);
@@ -67,7 +67,7 @@ export function App() {
     };
 
     return (
-        <div style={{ width: '800px', padding: '50px' }}>
+        <div className={styles.container}>
             <form id="form" className="vl-form" onSubmit={onSubmit}>
                 <div className="vl-form-grid vl-form-grid--is-stacked">
                     <div className="vl-col--3-12">
