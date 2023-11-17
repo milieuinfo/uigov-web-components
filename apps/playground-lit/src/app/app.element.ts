@@ -33,7 +33,7 @@ export class AppElement extends LitElement {
 
     render(): TemplateResult {
         return html`
-            <div style="width: 800px; padding: 50px;">
+            <div class="container">
                 <form id="form" class="vl-form" @submit=${this.onSubmit}>
                     <div class="vl-form-grid vl-form-grid--is-stacked">
                         <div class="vl-col--3-12">

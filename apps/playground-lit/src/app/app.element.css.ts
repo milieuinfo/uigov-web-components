@@ -1,8 +1,9 @@
 import { css, CSSResult } from 'lit';
 
 const styles: CSSResult = css`
-    main {
-        display: flex;
+    .container {
+        width: 800px;
+        padding: 50px;
     }
 
     .vl-title--h4 {
