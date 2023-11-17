@@ -1,0 +1,25 @@
+{
+    "name": "playground-lit-e2e",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/playground-lit-e2e/src",
+    "projectType": "application",
+    "targets": {
+        "e2e": {
+            "executor": "@nx/cypress:cypress",
+            "options": {
+                "browser": "chrome",
+                "testingType": "e2e",
+                "cypressConfig": "apps/playground-lit-e2e/cypress.config.ts"
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/playground-lit-e2e/**/*.{js,ts}"]
+            }
+        }
+    },
+    "tags": [],
+    "implicitDependencies": ["playground-lit"]
+}
