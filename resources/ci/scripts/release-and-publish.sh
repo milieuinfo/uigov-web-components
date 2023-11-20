@@ -131,20 +131,28 @@ sed -i "s,$toReplace,$nextRelease_version," ./*/*/package.json
 #  -> dus expliciet specifieren van alle files in minimum 1 subfolder + eventueel de 'andere' root-files
 echo "sideEffects zetten in de package.json bestanden"
 cd ./common/utilities
+npm pkg delete type --json
 npm pkg set sideEffects='["./*/**"]' --json
 cd ../../common/storybook
+npm pkg delete type --json
 npm pkg set sideEffects='["./*/**", "./stories.helper.*"]' --json
 cd ../../elements
+npm pkg delete type --json
 npm pkg set sideEffects='["./*/**"]' --json
 cd ../components
+npm pkg delete type --json
 npm pkg set sideEffects='["./*/**"]' --json
 cd ../sections
+npm pkg delete type --json
 npm pkg set sideEffects='["./*/**"]' --json
 cd ../map
+npm pkg delete type --json
 npm pkg set sideEffects='["./*/**"]' --json
 cd ../qlik
+npm pkg delete type --json
 npm pkg set sideEffects='["./*/**", "./vl-map.*"]' --json
 cd ../support/test-support
+npm pkg delete type --json
 npm pkg set sideEffects='["./*/**"]' --json
 cd ../..
 
