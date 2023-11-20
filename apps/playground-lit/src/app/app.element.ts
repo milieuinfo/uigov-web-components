@@ -23,8 +23,6 @@ export class AppElement extends LitElement {
             <main>
                 <vl-side-sheet
                     data-vl-left
-                    data-vl-custom-css=""
-                    data-vl-open
                     data-vl-open
                     data-vl-custom-css=${'.vl-layout {padding:0px} .vl-region{padding:10px} .vl-region:first-child{padding:0} :host #vl-side-sheet {padding:0} :host {--vl-side-sheet-width: 600px;}'}
                 >
