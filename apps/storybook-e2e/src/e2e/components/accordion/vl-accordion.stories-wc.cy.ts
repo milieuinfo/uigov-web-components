@@ -21,11 +21,11 @@ const shouldBeToggleable = async () => {
     });
 };
 
-const shouldBeOpen = async() => {
+const shouldBeOpen = async () => {
     runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
         expect(component._isOpen).to.be.true;
     });
-}
+};
 
 const shouldDisableAccordion = () => {
     runTestFor<VlAccordionComponent>('vl-accordion', (component) => {

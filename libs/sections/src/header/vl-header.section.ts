@@ -1,5 +1,6 @@
-import { PropertyDeclarations } from 'lit';
+import { CSSResult, PropertyDeclarations } from 'lit';
 import { BaseLitElement, awaitScript, webComponentCustom } from '@domg-wc/common-utilities';
+import { headerContainerStyles, headerSkeletonStyles } from './vl-header.section.uig-css';
 
 const customRegistration = () =>
     awaitScript(
@@ -21,6 +22,7 @@ const customRegistration = () =>
 @webComponentCustom(customRegistration)
 export class VlHeader extends BaseLitElement {
     // Attributen
+    private skeleton = false;
     private authenticatedUserUrl = '/sso/ingelogde_gebruiker';
     private development = false;
     private identifier = '';
@@ -37,6 +39,7 @@ export class VlHeader extends BaseLitElement {
 
     static get properties(): PropertyDeclarations {
         return {
+            skeleton: { type: Boolean, attribute: 'data-vl-skeleton', reflect: true },
             authenticatedUserUrl: { type: String, attribute: 'data-vl-authenticated-user-url', reflect: true },
             development: { type: Boolean, attribute: 'data-vl-development', reflect: true },
             identifier: { type: String, attribute: 'data-vl-identifier', reflect: true },
@@ -58,6 +61,11 @@ export class VlHeader extends BaseLitElement {
         super.connectedCallback();
 
         this.injectHeaderContainer();
+
+        if (this.skeleton) {
+            this.injectHeaderContainerSkeleton();
+        }
+
         this.observeWidgetIsAdded();
         this.loadWidget();
     }
@@ -66,6 +74,11 @@ export class VlHeader extends BaseLitElement {
         super.disconnectedCallback();
 
         this.headerContainer?.remove();
+
+        if (this.skeleton) {
+            this.headerContainerSkeleton?.remove();
+        }
+
         this.observer?.disconnect();
     }
 
@@ -85,6 +98,10 @@ export class VlHeader extends BaseLitElement {
         return document.querySelector('#header__container');
     }
 
+    private get headerContainerSkeleton(): Element | null {
+        return document.querySelector('#header__container__skeleton');
+    }
+
     private injectHeaderContainer(): void {
         const vlBody = document.querySelector('[is="vl-body"]');
 
@@ -92,6 +109,26 @@ export class VlHeader extends BaseLitElement {
             'afterbegin',
             '<div id="header__container"><div id="header"></div></div>'
         );
+
+        this.addStylesToInjectedElement('#header__container', headerContainerStyles);
+    }
+
+    private injectHeaderContainerSkeleton(): void {
+        const headerContainer = this.headerContainer;
+
+        if (headerContainer) {
+            headerContainer.insertAdjacentHTML('afterend', '<div id="header__skeleton"></div>');
+        }
+
+        this.addStylesToInjectedElement('#header__skeleton', headerSkeletonStyles);
+    }
+
+    private addStylesToInjectedElement(selector: string, cssContent: CSSResult): void {
+        const style = document.createElement('style');
+        style.textContent = cssContent.cssText;
+
+        const element = document.querySelector(selector);
+        element?.appendChild(style);
     }
 
     private observeWidgetIsAdded(): void {
@@ -128,7 +165,7 @@ export class VlHeader extends BaseLitElement {
             .bootstrap(widgetUrl)
             .then((widget: any) => {
                 widget.setMountElement(document.getElementById('header'));
-                widget.mount().catch((e: any) => console.error(e));
+                widget.mount().catch((e: unknown) => console.error(e));
 
                 return widget;
             })
@@ -143,7 +180,7 @@ export class VlHeader extends BaseLitElement {
                     this.configureSession();
                 });
             })
-            .catch((e: any) => {
+            .catch((e: unknown) => {
                 console.error(e);
             });
     }
