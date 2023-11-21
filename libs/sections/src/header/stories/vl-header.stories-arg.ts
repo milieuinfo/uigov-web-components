@@ -4,6 +4,7 @@ import { ArgTypes } from '@storybook/web-components';
 
 export const headerArgs = {
     authenticatedUserUrl: '/sso/ingelogde_gebruiker',
+    skeleton: false,
     development: false,
     identifier: '',
     loginRedirectUrl: '/',
@@ -15,6 +16,15 @@ export const headerArgs = {
 };
 
 export const headerArgTypes: ArgTypes<typeof headerArgs> = {
+    skeleton: {
+        name: 'data-vl-skeleton',
+        description: 'Geeft aan of de header een skeleton mag tonen voordat het rendert.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: headerArgs.skeleton },
+        },
+    },
     authenticatedUserUrl: {
         name: 'data-vl-authenticated-user-url',
         description: 'De url die wordt opgeroepen om te zien of een gebruiker is ingelogd.',

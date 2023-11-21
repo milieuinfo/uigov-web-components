@@ -22,6 +22,7 @@ export default {
 export const HeaderDefault = story(
     headerArgs,
     ({
+        skeleton,
         authenticatedUserUrl,
         development,
         identifier,
@@ -34,6 +35,7 @@ export const HeaderDefault = story(
     }) => html`
         <div is="vl-body">
             <vl-header
+                data-vl-skeleton=${skeleton}
                 data-vl-authenticated-user-url=${authenticatedUserUrl}
                 ?data-vl-development=${development}
                 data-vl-identifier=${identifier}
@@ -47,6 +49,7 @@ export const HeaderDefault = story(
         </div>
     `
 );
+
 HeaderDefault.storyName = 'vl-header - default';
 HeaderDefault.args = {
     development: true,

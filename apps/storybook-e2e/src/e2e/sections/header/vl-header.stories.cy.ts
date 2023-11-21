@@ -18,4 +18,19 @@ describe('story vl-header', () => {
         cy.createStubForEvent('vl-header', 'ready');
         cy.get('@ready').should('have.been.calledOnce');
     });
+
+    describe('vl-header - container', () => {
+        it('should render', () => {
+            cy.visit(headerUrl);
+
+            cy.get('vl-header');
+            cy.get('#header__container').should('exist');
+        });
+
+        it('should render with fixed height', () => {
+            cy.visit(headerUrl);
+
+            cy.get('#header__container').should('have.css', 'min-height', '43px');
+        });
+    });
 });
