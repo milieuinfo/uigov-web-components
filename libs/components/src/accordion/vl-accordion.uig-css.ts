@@ -25,5 +25,14 @@ const styles: CSSResult = css`
         padding-right: 0;
         padding-left: 0.4rem;
     }
+
+    .vl-accordion__subtitle {
+        margin-left: 22px;
+        padding-left: 0.4rem;
+    }
+
+    .vl-accordion__button-container {
+        display: flex;
+    }
 `;
 export default styles;
