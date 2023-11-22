@@ -4,6 +4,7 @@ import {
     maxLengthValidator,
     minLengthValidator,
     patternValidator,
+    programmaticValidator,
     requiredValidator,
 } from '@open-wc/form-control';
 import { LitElement } from 'lit';
@@ -13,6 +14,7 @@ import { ERROR_MESSAGE_CUSTOM_TAG } from '../error-message/vl-error-message.comp
 import { BaseLitElement } from '@domg-wc/common-utilities';
 
 export abstract class FormControl extends FormControlMixin(BaseLitElement) {
+    // Properties
     id = '';
     protected name = '';
     protected label = '';
@@ -20,6 +22,10 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     protected required = false;
     protected disabled = false;
     protected error = false;
+    protected success = false;
+    protected readonly = false;
+
+    // State
     protected isInvalid = false;
 
     static formControlValidators = [
@@ -29,6 +35,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         minValueValidator,
         maxValueValidator,
         patternValidator,
+        programmaticValidator,
     ];
 
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
@@ -42,6 +49,8 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
             required: { type: Boolean, reflect: true },
             disabled: { type: Boolean, reflect: true },
             error: { type: Boolean, reflect: true },
+            success: { type: Boolean, reflect: true },
+            readonly: { type: Boolean, reflect: true },
             isInvalid: { type: Boolean, state: true },
         };
     }

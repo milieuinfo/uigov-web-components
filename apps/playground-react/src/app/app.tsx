@@ -1,12 +1,13 @@
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
 import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
 import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
+import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { vlElementsStyle } from '@domg-wc/elements';
 import styles from './app.module.css';
 
 document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
-registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent]);
+registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent, VlTextareaComponent]);
 
 export function App() {
     const [firstName, setFirstName] = useState('');
@@ -81,8 +82,8 @@ export function App() {
                             name="voornaam"
                             block
                             required
-                            min-length="5"
-                            max-length="10"
+                            min-length={5}
+                            max-length={10}
                             value={firstName}
                             onInput={onInputFirstName}
                         ></vl-input-field-next>
@@ -114,6 +115,32 @@ export function App() {
                         </vl-error-message-next>
                         <vl-error-message-next input="achternaam" state="patternMismatch">
                             Gelieve een achternaam in te vullen die begint met "Van".
+                        </vl-error-message-next>
+                    </div>
+                    <div className="vl-col--3-12">
+                        <label className="vl-form__label vl-form__label--block" htmlFor="hobby">
+                            Hobby's *
+                        </label>
+                    </div>
+                    <div className="vl-col--9-12">
+                        <vl-textarea-next
+                            id="hobby"
+                            name="hobby"
+                            block
+                            required
+                            min-length={10}
+                            max-length={100}
+                            value="Mijn hobby's zijn ..."
+                            rows={10}
+                        ></vl-textarea-next>
+                        <vl-error-message-next input="hobby" state="valueMissing">
+                            Gelieve je hobby's in te vullen.
+                        </vl-error-message-next>
+                        <vl-error-message-next input="hobby" state="tooShort">
+                            Gelieve minimum 10 karakters te gebruiken.
+                        </vl-error-message-next>
+                        <vl-error-message-next input="hobby" state="tooLong">
+                            Gelieve maximum 100 karakters te gebruiken.
                         </vl-error-message-next>
                     </div>
                     <div className="vl-col--3-12">
@@ -205,6 +232,11 @@ export function App() {
 export default App;
 
 declare module 'react' {
+    interface VlErrorMessageAttributes<T> extends DOMAttributes<T> {
+        input: string;
+        state: string;
+    }
+
     interface VlInputFieldAttributes<T> extends DOMAttributes<T> {
         id: string;
         name: string;
@@ -213,17 +245,25 @@ declare module 'react' {
         required?: boolean;
         value?: string;
         pattern?: string;
-        minLength?: number;
-        maxLength?: number;
+        'min-length'?: number;
+        'max-length'?: number;
         min?: number;
         max?: number;
         onInput?: FormEventHandler<T>;
         onReset?: FormEventHandler<T>;
     }
 
-    interface VlErrorMessageAttributes<T> extends DOMAttributes<T> {
-        input: string;
-        state: string;
+    interface VlTextareaAttributes<T> extends DOMAttributes<T> {
+        id: string;
+        name: string;
+        type?: string;
+        block?: boolean;
+        required?: boolean;
+        value?: string;
+        minLength?: number;
+        maxLength?: number;
+        rows?: number;
+        cols?: number;
     }
 }
 
@@ -231,8 +271,9 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
         interface IntrinsicElements {
-            'vl-input-field-next': React.DetailedHTMLProps<React.VlInputFieldAttributes<HTMLElement>, HTMLElement>;
             'vl-error-message-next': React.DetailedHTMLProps<React.VlErrorMessageAttributes<HTMLElement>, HTMLElement>;
+            'vl-input-field-next': React.DetailedHTMLProps<React.VlInputFieldAttributes<HTMLElement>, HTMLElement>;
+            'vl-textarea-next': React.DetailedHTMLProps<React.VlTextareaAttributes<HTMLElement>, HTMLElement>;
         }
     }
 }
