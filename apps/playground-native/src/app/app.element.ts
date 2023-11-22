@@ -9,7 +9,7 @@ import { nodeData } from './vl-cascader.data';
 export class AppElement extends HTMLElement {
     static {
         document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
-        registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent]);
+        registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent, VlTextareaComponent]);
     }
 
     constructor() {

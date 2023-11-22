@@ -9,7 +9,7 @@ import { getItemList } from './vl-cascader.utils';
 import { nodeData } from './vl-cascader.data';
 
 document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
-registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent]);
+registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent, VlTextareaComponent]);
 
 export function App() {
     return (
@@ -31,6 +31,11 @@ export function App() {
 export default App;
 
 declare module 'react' {
+    interface VlErrorMessageAttributes<T> extends DOMAttributes<T> {
+        input: string;
+        state: string;
+    }
+
     interface VlInputFieldAttributes<T> extends DOMAttributes<T> {
         id: string;
         name: string;
@@ -39,17 +44,25 @@ declare module 'react' {
         required?: boolean;
         value?: string;
         pattern?: string;
-        minLength?: number;
-        maxLength?: number;
+        'min-length'?: number;
+        'max-length'?: number;
         min?: number;
         max?: number;
         onInput?: FormEventHandler<T>;
         onReset?: FormEventHandler<T>;
     }
 
-    interface VlErrorMessageAttributes<T> extends DOMAttributes<T> {
-        input: string;
-        state: string;
+    interface VlTextareaAttributes<T> extends DOMAttributes<T> {
+        id: string;
+        name: string;
+        type?: string;
+        block?: boolean;
+        required?: boolean;
+        value?: string;
+        minLength?: number;
+        maxLength?: number;
+        rows?: number;
+        cols?: number;
     }
 }
 
@@ -57,8 +70,9 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
         interface IntrinsicElements {
-            'vl-input-field-next': React.DetailedHTMLProps<React.VlInputFieldAttributes<HTMLElement>, HTMLElement>;
             'vl-error-message-next': React.DetailedHTMLProps<React.VlErrorMessageAttributes<HTMLElement>, HTMLElement>;
+            'vl-input-field-next': React.DetailedHTMLProps<React.VlInputFieldAttributes<HTMLElement>, HTMLElement>;
+            'vl-textarea-next': React.DetailedHTMLProps<React.VlTextareaAttributes<HTMLElement>, HTMLElement>;
         }
     }
 }

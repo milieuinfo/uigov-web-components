@@ -9,6 +9,8 @@ export const formControlArgs = {
     required: false,
     disabled: false,
     error: false,
+    success: false,
+    readonly: false,
 };
 
 export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
@@ -73,6 +75,24 @@ export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: formControlArgs.error },
+        },
+    },
+    success: {
+        name: 'success',
+        description: 'Beeldt het component in een success state af.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: formControlArgs.success },
+        },
+    },
+    readonly: {
+        name: 'readonly',
+        description: 'Duidt aan dat het veld enkel leesbaar is.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: formControlArgs.readonly },
         },
     },
 };
