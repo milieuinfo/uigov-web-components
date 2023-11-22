@@ -1,23 +1,23 @@
 import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
-import { inputFieldArgTypes, inputFieldArgs } from './vl-input.stories-arg';
+import { textareaArgTypes, textareaArgs } from './vl-textarea.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
-import inputFieldDocs from './vl-input.stories-doc.mdx';
-import '../vl-input-field.component';
+import textareaDocs from './vl-textarea.stories-doc.mdx';
+import '../vl-textarea.component';
 
 export default {
-    title: 'Components-next/form/input-field-next',
-    args: storyArgs(inputFieldArgs),
-    argTypes: storyArgTypes(inputFieldArgTypes, true),
+    title: 'Components-next/form/textarea-next',
+    args: storyArgs(textareaArgs),
+    argTypes: storyArgTypes(textareaArgTypes, true),
     parameters: {
         docs: {
-            page: inputFieldDocs,
+            page: textareaDocs,
         },
     },
-} as Meta<typeof inputFieldArgs>;
+} as Meta<typeof textareaArgs>;
 
-export const InputFieldDefault = story(
-    inputFieldArgs,
+export const TextareaDefault = story(
+    textareaArgs,
     ({
         id,
         name,
@@ -29,14 +29,12 @@ export const InputFieldDefault = story(
         success,
         readonly,
         value,
-        type,
         minLength,
         maxLength,
-        min,
-        max,
-        pattern,
+        rows,
+        cols,
     }) => {
-        return html` <vl-input-field-next
+        return html` <vl-textarea-next
             id=${id}
             name=${name}
             label=${label}
@@ -47,13 +45,11 @@ export const InputFieldDefault = story(
             ?success=${success}
             ?readonly=${readonly}
             value=${value}
-            type=${type}
             min-length=${minLength}
             max-length=${maxLength}
-            min=${min}
-            max=${max}
-            pattern=${pattern}
-        ></vl-input-field-next>`;
+            rows=${rows}
+            cols=${cols}
+        ></vl-textarea-next>`;
     }
 );
-InputFieldDefault.storyName = 'vl-input-field-next - default';
+TextareaDefault.storyName = 'vl-textarea-next - default';
