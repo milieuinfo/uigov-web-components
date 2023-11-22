@@ -16,76 +16,76 @@ const alertNakedSuccessUrl =
 describe('story vl-alert default', () => {
     it('should display story', () => {
         cy.visit(alertDefaultUrl);
-        cy.get('vl-alert');
+        cy.get('vl-alert').shadow();
     });
 });
 
 describe('story vl-alert error', () => {
     it('should display story', () => {
         cy.visit(alertErrorUrl);
-        cy.get('vl-alert');
+        cy.get('vl-alert').shadow();
     });
 });
 
 describe('story vl-alert info', () => {
     it('should display story', () => {
         cy.visit(alertInfoUrl);
-        cy.get('vl-alert');
+        cy.get('vl-alert').shadow();
     });
 });
 
 describe('story vl-alert success', () => {
     it('should display story', () => {
         cy.visit(alertSuccessUrl);
-        cy.get('vl-alert');
+        cy.get('vl-alert').shadow();
     });
 });
 
 describe('story vl-alert warning', () => {
     it('should display story', () => {
         cy.visit(alertWarningUrl);
-        cy.get('vl-alert');
+        cy.get('vl-alert').shadow();
     });
 });
 
 describe('story vl-alert with button', () => {
     it('should display story', () => {
         cy.visit(alertWithButtonUrl);
-        cy.get('vl-alert');
+        cy.get('vl-alert').shadow();
     });
 });
 
 describe('story vl-alert with title slot', () => {
     it('should display story', () => {
         cy.visit(alertWithTitleSlotUrl);
-        cy.get('vl-alert');
+        cy.get('vl-alert').shadow();
     });
 });
 
 describe('story vl-alert closeable', () => {
     it('should display story', () => {
         cy.visit(alertCloseableUrl);
-        cy.get('vl-alert');
+        cy.get('vl-alert').shadow();
     });
 });
 
 describe('story vl-alert naked error', () => {
     it('should display story', () => {
         cy.visit(alertNakedErrorUrl);
-        cy.get('vl-alert');
+        cy.get('vl-alert').shadow();
     });
 });
 
 describe('story vl-alert naked warning', () => {
     it('should display story', () => {
         cy.visit(alertNakedWarningUrl);
-        cy.get('vl-alert');
+        cy.get('vl-alert').shadow();
     });
 });
 
 describe('story vl-alert naked success', () => {
     it('should display story', () => {
         cy.visit(alertNakedSuccessUrl);
-        cy.get('vl-alert');
+        cy.get('vl-alert').shadow();
     });
 });

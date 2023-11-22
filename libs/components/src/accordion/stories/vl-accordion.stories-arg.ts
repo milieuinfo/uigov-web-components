@@ -14,6 +14,8 @@ export const accordionArgs = {
     toggleText: '',
     defaultSlot: '',
     titleSlot: '',
+    subtitleSlot: '',
+    menuSlot: '',
     onToggle: action('vl-on-toggle'),
 };
 
@@ -115,6 +117,26 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
             type: { summary: TYPES.HTML },
             category: CATEGORIES.SLOTS,
             defaultValue: { summary: accordionArgs.titleSlot },
+        },
+    },
+    subtitleSlot: {
+        name: 'subtitle',
+        description:
+            'Subtitel slotelement. Wordt getoond in open en gesloten toestand.',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+            defaultValue: { summary: accordionArgs.subtitleSlot },
+        },
+    },
+    menuSlot: {
+        name: 'menu',
+        description:
+            'Slotelement om menu item toe te voegen in rechterbovenhoek.',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+            defaultValue: { summary: accordionArgs.menuSlot },
         },
     },
     onToggle: {
