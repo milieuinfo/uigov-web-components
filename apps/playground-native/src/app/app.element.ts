@@ -1,5 +1,6 @@
 import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
 import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
+import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { vlElementsStyle } from '@domg-wc/elements';
 import './app.element.scss';
@@ -7,7 +8,7 @@ import './app.element.scss';
 export class AppElement extends HTMLElement {
     static {
         document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
-        registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent]);
+        registerWebComponents([VlInputFieldComponent, VlErrorMessageComponent, VlTextareaComponent]);
     }
 
     constructor() {
@@ -55,6 +56,30 @@ export class AppElement extends HTMLElement {
                             </vl-error-message-next>
                             <vl-error-message-next input="achternaam" state="patternMismatch">
                                 Gelieve een achternaam in te vullen die begint met "Van".
+                            </vl-error-message-next>
+                        </div>
+                        <div class="vl-col--3-12">
+                            <label class="vl-form__label vl-form__label--block" for="hobby">Hobby's *</label>
+                        </div>
+                        <div class="vl-col--9-12">
+                            <vl-textarea-next
+                                id="hobby"
+                                name="hobby"
+                                block
+                                required
+                                min-length="10"
+                                max-length="100"
+                                value="Mijn hobby's zijn ..."
+                                rows="10">
+                            </vl-textarea-next>
+                            <vl-error-message-next input="hobby" state="valueMissing">
+                                Gelieve je hobby's in te vullen.
+                            </vl-error-message-next>
+                            <vl-error-message-next input="hobby" state="tooShort">
+                                Gelieve minimum 10 karakters te gebruiken.
+                            </vl-error-message-next>
+                            <vl-error-message-next input="hobby" state="tooLong">
+                                Gelieve maximum 100 karakters te gebruiken.
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--3-12">

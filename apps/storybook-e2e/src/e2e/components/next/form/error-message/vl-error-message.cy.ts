@@ -5,6 +5,6 @@ describe('story vl-error-message-next default', () => {
     it('should display story', () => {
         cy.visit(errorMessageNextUrl);
 
-        cy.get('vl-error-message-next');
+        cy.get('vl-error-message-next').shadow().find('p');
     });
 });

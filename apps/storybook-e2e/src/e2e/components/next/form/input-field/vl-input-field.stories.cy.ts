@@ -5,6 +5,6 @@ describe('story vl-input-field-next default', () => {
     it('should display story', () => {
         cy.visit(inputFieldNextUrl);
 
-        cy.get('vl-input-field-next');
+        cy.get('vl-input-field-next').shadow().find('input');
     });
 });

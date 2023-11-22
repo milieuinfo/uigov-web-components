@@ -6,9 +6,9 @@ registerWebComponents([VlInputFieldComponent]);
 
 describe('component vl-input-field-next', () => {
     it('should mount', () => {
-        cy.mount(html`<vl-input-field-next label="input-label"></vl-input-field-next>`);
+        cy.mount(html`<vl-input-field-next label="test-label"></vl-input-field-next>`);
 
-        cy.get('vl-input-field-next');
+        cy.get('vl-input-field-next').shadow().find('input');
     });
 
     it('should be accessible', () => {
@@ -67,6 +67,21 @@ describe('component vl-input-field-next', () => {
 
         cy.get('vl-input-field-next').should('have.attr', 'error');
         cy.get('vl-input-field-next').shadow().find('input').should('have.class', 'vl-input-field--error');
+        cy.get('vl-input-field-next').shadow().find('input').should('have.attr', 'error');
+    });
+
+    it('should set success', () => {
+        cy.mount(html`<vl-input-field-next success></vl-input-field-next>`);
+
+        cy.get('vl-input-field-next').should('have.attr', 'success');
+        cy.get('vl-input-field-next').shadow().find('input').should('have.class', 'vl-input-field--success');
+    });
+
+    it('should set readonly', () => {
+        cy.mount(html`<vl-input-field-next readonly></vl-input-field-next>`);
+
+        cy.get('vl-input-field-next').should('have.attr', 'readonly');
+        cy.get('vl-input-field-next').shadow().find('input').should('have.attr', 'readonly');
     });
 
     it('should set value', () => {
