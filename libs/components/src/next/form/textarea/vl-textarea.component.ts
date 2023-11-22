@@ -1,38 +1,34 @@
 import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { inputFieldStyle } from '@domg/govflanders-style/component';
+import { textareaStyle } from '@domg/govflanders-style/component';
 import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { FormControl } from '../form-control/FormControl';
 
-@customElement('vl-input-field-next')
-export class VlInputFieldComponent extends FormControl {
+@customElement('vl-textarea-next')
+export class VlTextareaComponent extends FormControl {
     // Properties
     private value = '';
-    private type = 'text';
     private minLength: number | null = null;
     private maxLength: number | null = null;
-    private min: number | null = null;
-    private max: number | null = null;
-    private pattern: string | null = '';
+    private rows: number | null = null;
+    private cols: number | null = null;
 
     // Variables
     private initialValue = '';
 
     static get styles(): CSSResult[] {
-        return [resetStyle, baseStyle, inputFieldStyle];
+        return [resetStyle, baseStyle, textareaStyle];
     }
 
     static get properties(): PropertyDeclarations {
         return {
-            type: { type: String, reflect: true },
             value: { type: String, reflect: true },
             minLength: { type: Number, reflect: true, attribute: 'min-length' },
             maxLength: { type: Number, reflect: true, attribute: 'max-length' },
-            min: { type: Number, reflect: true },
-            max: { type: Number, reflect: true },
-            pattern: { type: String, reflect: true },
+            rows: { type: Number, reflect: true },
+            cols: { type: Number, reflect: true },
         };
     }
 
@@ -54,19 +50,18 @@ export class VlInputFieldComponent extends FormControl {
 
     render(): TemplateResult {
         const classes = {
-            'vl-input-field': true,
-            'vl-input-field--block': this.block,
-            'vl-input-field--disabled': this.disabled,
-            'vl-input-field--error': this.isInvalid || this.error,
-            'vl-input-field--success': this.success,
+            'vl-textarea': true,
+            'vl-textarea--block': this.block,
+            'vl-textarea--disabled': this.disabled,
+            'vl-textarea--error': this.isInvalid || this.error,
+            'vl-textarea--success': this.success,
         };
 
         return html`
-            <input
+            <textarea
                 id=${this.id}
                 name=${this.name || this.id}
                 class=${classMap(classes)}
-                type=${this.type}
                 .value=${live(this.value)}
                 aria-label=${this.label}
                 @input=${this.onInput}
@@ -76,15 +71,14 @@ export class VlInputFieldComponent extends FormControl {
                 ?error=${this.error}
                 minlength=${this.minLength}
                 maxlength=${this.maxLength}
-                min=${this.min}
-                max=${this.max}
-                pattern=${this.pattern}
+                rows=${this.rows}
+                cols=${this.cols}
             />
         `;
     }
 
-    get validationTarget(): HTMLInputElement | undefined | null {
-        return this.shadowRoot?.querySelector('input');
+    get validationTarget(): HTMLTextAreaElement | undefined | null {
+        return this.shadowRoot?.querySelector('textarea');
     }
 
     protected onInput(event: Event & { target: HTMLInputElement }): void {
@@ -100,6 +94,6 @@ export class VlInputFieldComponent extends FormControl {
 
 declare global {
     interface HTMLElementTagNameMap {
-        'vl-input-field-next': VlInputFieldComponent;
+        'vl-textarea-next': VlTextareaComponent;
     }
 }
