@@ -1,3 +1,22 @@
+# [1.20.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.19.0...v1.20.0) (2023-11-24)
+
+
+### Bug Fixes
+
+* "type"="module" expliciet verwijderd uit de package.json's ([b6b3dff](https://github.com/milieuinfo/uigov-web-components/commit/b6b3dff760a278a6b653d2cdb9fb01ce186ff9bf))
+* correctie 'ol' versie - onduidelijk waarom nx niet de juiste versie overneemt ([3b8d215](https://github.com/milieuinfo/uigov-web-components/commit/3b8d215701cf4077f0e52c5768f9afa3edcd4cd8))
+* UIG-2639 - vl-infoblock - title verwerking verbeterd ([7ed814f](https://github.com/milieuinfo/uigov-web-components/commit/7ed814f8814f82de082ad5cd7eb9dd6c26546cd8))
+* UIG-2732 - vl-cascader - native & react specifieke verbeteringen toegevoegd ([197b43f](https://github.com/milieuinfo/uigov-web-components/commit/197b43f1b8ee1f8d202d0e965e56be2c387b97d9))
+
+
+### Features
+
+* UIG-2659 - vl-map-legend wms ondersteuning ([4071954](https://github.com/milieuinfo/uigov-web-components/commit/407195439752e2ab5561a8db87548d8c80d52444))
+* UIG-2731 - vl-info-tile - center attribuut toegevoegd ([98e89b7](https://github.com/milieuinfo/uigov-web-components/commit/98e89b71536aba013f92bad5190e72b988a59429))
+* UIG-2743 - upgrade naar Storybook v7 ([0393a5c](https://github.com/milieuinfo/uigov-web-components/commit/0393a5cf021092d516bfa698b6cb5159f6f797b9))
+* UIG-2746 - nieuwe 'qlik' module ([3630410](https://github.com/milieuinfo/uigov-web-components/commit/363041008536f575a44539f7fc6b6def00531019))
+* UIG-2748 - vl-popover - testen verbeterd ([2cad525](https://github.com/milieuinfo/uigov-web-components/commit/2cad5251bf51405bbd9206e221306f15c96b1358))
+
 # [1.19.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.18.0...v1.19.0) (2023-10-31)
 
 
