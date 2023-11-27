@@ -89,7 +89,7 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
 
     _expandCollapseTemplate(id: string): DocumentFragment {
         const template = this._template(
-            `<button id="details-toggle-${id}" type="button" is="vl-button" class="vl-button vl-button--icon-after" data-vl-narrow data-vl-secondary>
+            `<button id="details-toggle-${id}" aria-expanded="false" type="button" is="vl-button" class="vl-button vl-button--icon-after" data-vl-narrow data-vl-secondary>
                 <span is="vl-icon" data-vl-icon="arrow-down-fat" ></span>
              </button>`
         );
@@ -116,12 +116,16 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
         const button = this._detailsToggleButtonElement(id);
         if (show) {
             if (details) details.style.removeProperty('display');
-            if (button)
+            if (button) {
+                button.setAttribute('aria-expanded', 'true');
                 button.innerHTML = '<span is="vl-icon" data-vl-icon="arrow-up-fat" class="vl-button__icon"></span>';
+            }
         } else {
             if (details) details.style.display = 'none';
-            if (button)
+            if (button) {
+                button.setAttribute('aria-expanded', 'false');
                 button.innerHTML = '<span is="vl-icon" data-vl-icon="arrow-down-fat" class="vl-button__icon"></span>';
+            }
         }
     }
 
