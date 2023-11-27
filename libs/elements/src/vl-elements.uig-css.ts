@@ -123,16 +123,30 @@ export const allElementStyles = [...commonStyles, ...componentStyles, ...element
 export default allElementStyles;
 
 class RegisterStyles {
+    static initialised = false;
+    static autoRegisterStyles = true;
     static elementStylesRegistered = false;
 
+    static initialise() {
+        if (RegisterStyles.initialised) return;
+        for (const script of document.scripts) {
+            if (script.src.indexOf('domg-wc') >= 0 && script.getAttribute('auto-register-styles') === 'false') {
+                RegisterStyles.autoRegisterStyles = false;
+                console.log('RegisterStyles: element-styling wordt niet toegevoegd aan het document');
+            }
+        }
+        RegisterStyles.initialised = true;
+    }
+
     static registerElementsStyles() {
-        if (!RegisterStyles.elementStylesRegistered) {
+        RegisterStyles.initialise();
+        if (RegisterStyles.autoRegisterStyles && !RegisterStyles.elementStylesRegistered) {
             document.adoptedStyleSheets = [
                 ...document.adoptedStyleSheets,
                 ...(allElementStyles.map((style) => style.styleSheet) as CSSStyleSheet[]),
             ];
             RegisterStyles.elementStylesRegistered = true;
-            console.log('element-styling toegevoegd aan het document');
+            console.log('RegisterStyles: element-styling toegevoegd aan het document');
         }
     }
 }

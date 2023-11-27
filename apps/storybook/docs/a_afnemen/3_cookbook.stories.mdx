@@ -83,12 +83,12 @@ plaatsvinden, om die rede bieden we het script enkel geversioneerd aan en niet o
 manier moet je expliciet een versie specifiëren (om bewust te upgraden) en mag het bestand ge-cached worden - bij een
 nieuwe versie wijzigt de naam.
 
-De `fat-js` bestanden zijn beschikbaar onder `https://cdn.omgeving.vlaanderen.be/domg/wc`, daar staan per versie 3
+De `fat-js` bestanden zijn beschikbaar onder `https://cdn.omgeving.vlaanderen.be/domg/domg-wc/x.y.z/`, daar staan per versie 3
 bestanden:
 
-- **domg-wc-1.18.0.js** - de leesbare variant [7,3 MB]
-- **domg-wc-1.18.0.js.map** - de map file om de leesbare variant te debuggen [11,3 MB]
-- **domg-wc-1.18.0.min.js** - de productie versie [3,4 MB]
+- **domg-wc-1.20.1.js** - de leesbare variant [7,3 MB]
+- **domg-wc-1.20.1.js.map** - de map file om de leesbare variant te debuggen [11,3 MB]
+- **domg-wc-1.20.1.min.js** - de productie versie [3,4 MB]
 
 ```
 <!DOCTYPE html>
@@ -96,7 +96,7 @@ bestanden:
 <head>
   <title>UIG Demo</title>
   <script type="module"
-          src="https://cdn.omgeving.vlaanderen.be/domg/wc/domg-wc-1.18.0.min.js"></script>
+          src="https://cdn.omgeving.vlaanderen.be/domg/domg-wc/1.20.1/domg-wc-1.20.1.min.js"></script>
 </head>
 <body>
   <div is="vl-layout">...</div>
@@ -210,23 +210,61 @@ VlButtonElement;
 
 Alle `@domg-wc elementen`, zijnde de web-componenten die zich in de package `@domg-wc/elements` bevinden, zorgen
 ervoor dat eenmalig alle css op document niveau geregistreerd wordt. Technisch gebeurd dat door de decorator
-`@elementStyles` die de volgende code uitvoert:
+`@elementStyles` die de onderstaande `RegisterStyles.registerElementsStyles()` methode uitvoert:
 
 ```
 class RegisterStyles {
+    static initialised = false;
+    static autoRegisterStyles = true;
     static elementStylesRegistered = false;
 
+    static initialise() {
+        if (RegisterStyles.initialised) return;
+        for (const script of document.scripts) {
+            if (script.src.indexOf('domg-wc') >= 0 && script.getAttribute('auto-register-styles') === 'false') {
+                RegisterStyles.autoRegisterStyles = false;
+                console.log('RegisterStyles: element-styling wordt niet toegevoegd aan het document');
+            }
+        }
+        RegisterStyles.initialised = true;
+    }
+
     static registerElementsStyles() {
-        if (!RegisterStyles.elementStylesRegistered) {
+        RegisterStyles.initialise();
+        if (RegisterStyles.autoRegisterStyles && !RegisterStyles.elementStylesRegistered) {
             document.adoptedStyleSheets = [
                 ...document.adoptedStyleSheets,
                 ...(allElementStyles.map((style) => style.styleSheet) as CSSStyleSheet[]),
             ];
             RegisterStyles.elementStylesRegistered = true;
-            console.log('element-styling toegevoegd aan het document');
+            console.log('RegisterStyles: element-styling toegevoegd aan het document');
         }
     }
 }
+```
+
+### Deactivatie Globale Styling
+
+Indien gewenst kan je de automatische registratie van de globale (document) styling de-activeren:
+
+#### Afname via de 'fat-js'
+
+Zet het attribuut `auto-register-styles` op false.
+
+```
+<script type="module"
+        auto-register-styles="false"
+        src="https://cdn.omgeving.vlaanderen.be/domg/domg-wc/1.20.1/domg-wc-1.20.1.min.js">
+</script>
+```
+
+#### Afname via de npm-package
+
+Wijzig de RegisterStyles properties als volgt; voordat het eerste element geïmporteerd wordt.
+
+```
+RegisterStyles.autoRegisterStyles = false;
+RegisterStyles.initialised = true;
 ```
 
 
