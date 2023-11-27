@@ -67,6 +67,7 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
           </style>
           <div>
               <vl-toggle-button
+                  aria-expanded="false"
                   data-vl-icon="nav-left"
                   data-vl-icon-placement="before"
                   class="vl-side-sheet__toggle"
