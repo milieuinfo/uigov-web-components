@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.20.0...v1.20.1) (2023-11-28)
+
+
+### Bug Fixes
+
+* de sideEffects van de map waren verloren gegaan bij introductie van de qlik module ([f9c050a](https://github.com/milieuinfo/uigov-web-components/commit/f9c050ad5aa6a8d55b0a46bda3ee66895fe5cc48))
+
 # [1.20.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.19.0...v1.20.0) (2023-11-24)
 
 
