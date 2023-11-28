@@ -10,9 +10,6 @@ export default defineConfig({
     screenshotsFolder: '../../dist/cypress/apps/storybook-e2e/screenshots',
     chromeWebSecurity: false,
     reporter: '../../node_modules/cypress-multi-reporters',
-    reporterOptions: {
-        configFile: 'reporter-config.json',
-    },
     retries: 3,
     e2e: nxE2EPreset(__filename, { cypressDir: 'src' }),
 });

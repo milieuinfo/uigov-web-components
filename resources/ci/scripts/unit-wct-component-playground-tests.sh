@@ -3,7 +3,7 @@
 # exit on error
 set -e
 
-echo 'RUNNING SCRIPT: perform-all-unit-and-web-tests.sh'
+echo 'RUNNING SCRIPT: unit-wct-component-playground-tests.sh'
 cd uigov-web-components
 echo "npm install - no 'ci' to avoid the clean"
 npm install --save-exact

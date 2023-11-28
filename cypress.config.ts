@@ -5,9 +5,6 @@ export default defineConfig({
     videosFolder: './dist/cypress/videos',
     screenshotsFolder: './dist/cypress/screenshots',
     reporter: './node_modules/cypress-multi-reporters',
-    reporterOptions: {
-        configFile: 'reporter-config.json',
-    },
     retries: 3,
     component: {
         specPattern: './libs/**/*.cy.{js,jsx,ts,tsx}',
