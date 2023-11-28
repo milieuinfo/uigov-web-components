@@ -496,8 +496,8 @@ export class VlAutocomplete extends BaseLitElement {
                             autocapitalize="off"
                             spellcheck="off"
                             aria-autocomplete="list"
-                            aria-owns="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg"
-                            aria-controls="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg"
+                            aria-owns="suggestions"
+                            aria-controls="suggestions"
                             aria-haspopup="listbox"
                             .value=${this.initialValue}
                             @input=${this._notify}
