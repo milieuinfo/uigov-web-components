@@ -12,12 +12,14 @@ stages:
   - Build and Test Stage:
       jobs:
         - build-apps-and-libs
-        - perform-all-unit-and-web-tests
+        - perform-unit-wct-component-playground-tests
         - e2e-tests-storybook
-  - Report, Release and Publish Stage:
+  - Release and Publish Stage:
       jobs:
-        - report-e2e-tests-storybook
         - release-and-publish
+  - Verify Release Stage:
+      jobs:
+        - verify-release
 
 checkout-install-and-cache:
   requirements: &requirements
@@ -59,15 +61,14 @@ build-apps-and-libs:
       pattern: '**/*.*'
       shared: true
 
-# de unit testen genereren (nog) geen rapport
-perform-all-unit-and-web-tests:
+perform-unit-wct-component-playground-tests:
   requirements: *requirements
   tasks:
     - clean
-    - script: bash ./resources/ci/scripts/perform-all-unit-and-web-tests-docker.sh
+    - script: bash ./resources/ci/scripts/perform-unit-wct-component-playground-tests-docker.sh
     - script: *dist-artifact
   artifacts:
-    - name: dist-perform-all-unit-and-web-tests
+    - name: dist-perform-unit-wct-component-playground-tests
       location: dist-artifact
       pattern: '**/*.*'
 
@@ -82,16 +83,6 @@ e2e-tests-storybook:
       location: dist-artifact
       pattern: '**/*.*'
       shared: true
-
-report-e2e-tests-storybook:
-  requirements: *requirements
-  tasks:
-    - clean
-    - script: bash ./resources/ci/scripts/report-e2e-tests-storybook-docker.sh
-  artifacts:
-    - name: dist-report-e2e-tests-storybook
-      location: dist/cypress
-      pattern: '**/*.*'
 
 release-and-publish:
   requirements: *requirements
@@ -108,6 +99,22 @@ release-and-publish:
         bash ./resources/ci/scripts/release-and-publish-docker.sh
   artifacts:
     - name: dist-release-and-publish
+      location: dist
+      pattern: '**/*.*'
+
+verify-release:
+  requirements: *requirements
+  tasks:
+    - clean
+    - script: |
+        # export variables
+        export acd_repository_debian_login=${bamboo.acd_repository_debian_login}
+        export acd_repository_bamboo_password=${bamboo.acd_repository_bamboo_password}
+        export acd_repository_url=${bamboo.acd_repository_url}
+        # boot the specific docker container
+        bash ./resources/ci/scripts/verify-release.sh
+  artifacts:
+    - name: dist-verify-release
       location: dist
       pattern: '**/*.*'
 
