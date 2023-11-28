@@ -147,10 +147,10 @@ npm pkg delete type --json
 npm pkg set sideEffects='["./*/**"]' --json
 cd ../map
 npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg set sideEffects='["./*/**", "./vl-map.*"]' --json
 cd ../qlik
 npm pkg delete type --json
-npm pkg set sideEffects='["./*/**", "./vl-map.*"]' --json
+npm pkg set sideEffects='["./*/**"]' --json
 cd ../support/test-support
 npm pkg delete type --json
 npm pkg set sideEffects='["./*/**"]' --json
