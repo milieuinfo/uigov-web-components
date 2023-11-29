@@ -1,3 +1,10 @@
+## [1.20.2](https://github.com/milieuinfo/uigov-web-components/compare/v1.20.1...v1.20.2) (2023-11-29)
+
+
+### Bug Fixes
+
+* vl-wizard - het wizard-pane verscheen niet (was al stuk sinds v1.0.0) ([efb5761](https://github.com/milieuinfo/uigov-web-components/commit/efb576174c2fa922f0c9598da62383a458670762))
+
 ## [1.20.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.20.0...v1.20.1) (2023-11-28)
 
 
