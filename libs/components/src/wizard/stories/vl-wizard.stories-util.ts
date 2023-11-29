@@ -1,5 +1,5 @@
 const getLastElement = (element: any) => {
-    const [lastItem] = [...Array(document.querySelectorAll(element))].slice(-1);
+    const [lastItem] = [...document.querySelectorAll(element)].slice(-1);
     return lastItem;
 };
 

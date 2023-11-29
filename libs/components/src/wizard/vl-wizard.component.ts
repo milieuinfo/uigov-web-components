@@ -36,7 +36,7 @@ export class VlWizard extends BaseLitElement {
     }
 
     onSlotChange() {
-        this.panes = [...Array(this.querySelectorAll('vl-wizard-pane'))];
+        this.panes = [...this.querySelectorAll('vl-wizard-pane')];
     }
 
     updated() {
