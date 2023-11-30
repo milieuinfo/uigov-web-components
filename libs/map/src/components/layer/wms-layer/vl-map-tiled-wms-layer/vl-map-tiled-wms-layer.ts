@@ -1,6 +1,9 @@
 import { webComponent } from '@domg-wc/common-utilities';
 import OlTileLayer from 'ol/layer/Tile';
-import OlTileWMSSource from 'ol/source/TileWMS';
+import { Projection } from 'ol/proj';
+import { Options as OlImageWMSSourceOptions } from 'ol/source/ImageWMS';
+import { default as OlTileWMSSource, Options as OlTileWMSSourceOptions } from 'ol/source/TileWMS';
+import { TileCoord } from 'ol/tilecoord';
 import { VlMapWmsLayer } from '../vl-map-wms-layer';
 
 /**
@@ -14,10 +17,41 @@ import { VlMapWmsLayer } from '../vl-map-wms-layer';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wms-layer.html|Demo}
  */
+
+class TileWMSSource extends OlTileWMSSource {
+    private layer: VlMapTiledWmsLayer;
+
+    constructor(layer: VlMapTiledWmsLayer) {
+        super({ ...layer._sourceConfig });
+        this.layer = layer;
+    }
+
+    tileUrlFunction(tileCoord: TileCoord, pixelRatio: number, projection: Projection): string {
+        const extent = this.layer.mapElement.map.getView().calculateExtent(this.layer.mapElement.map.getSize());
+        this.updateParams({ ...this.layer._sourceConfig.params, tilesorigin: `${extent[0]},${extent[3]}` });
+
+        return super.tileUrlFunction(tileCoord, pixelRatio, projection);
+    }
+}
+
 @webComponent('vl-map-tiled-wms-layer')
 export class VlMapTiledWmsLayer extends VlMapWmsLayer {
     constructor() {
         super(OlTileLayer, OlTileWMSSource);
+    }
+
+    get _sourceConfig(): OlImageWMSSourceOptions & OlTileWMSSourceOptions {
+        return {
+            ...super._sourceConfig,
+            params: {
+                ...super._sourceConfig.params,
+                TILED: true,
+            },
+        };
+    }
+
+    __createSource() {
+        return new TileWMSSource(this);
     }
 }
 

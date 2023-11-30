@@ -1,3 +1,5 @@
+import { default as OlImageWMSSource, Options as OlImageWMSSourceOptions } from 'ol/source/ImageWMS';
+import OlTileWMSSource, { Options as OlTileWMSSourceOptions } from 'ol/source/TileWMS';
 import { VlMapLayer } from '../vl-map-layer';
 import './vl-map-wms-style/vl-map-wms-style';
 
@@ -79,7 +81,7 @@ export class VlMapWmsLayer extends VlMapLayer {
         };
     }
 
-    get _sourceConfig() {
+    get _sourceConfig(): OlImageWMSSourceOptions & OlTileWMSSourceOptions {
         return {
             url: this._url,
             params: {
@@ -97,7 +99,7 @@ export class VlMapWmsLayer extends VlMapLayer {
         return layer;
     }
 
-    __createSource(SourceClass) {
+    __createSource(SourceClass: typeof OlImageWMSSource | typeof OlTileWMSSource): OlImageWMSSource | OlTileWMSSource {
         return new SourceClass(this._sourceConfig);
     }
 
