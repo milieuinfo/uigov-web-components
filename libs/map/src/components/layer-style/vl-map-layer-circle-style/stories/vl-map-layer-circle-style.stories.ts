@@ -1,18 +1,18 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../../../vl-map';
 import '../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../vl-map-layer-circle-style';
 import { mapLayerCircleStyleArg, mapLayerCircleStyleArgTypes } from './vl-map-layer-circle-style.stories-arg';
-import { Meta } from '@storybook/web-components';
 import mapLayerCircleStyleDox from './vl-map-layer-circle-style.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer-style/layer-circle-style',
     tags: ['autodocs'],
-    args: storyArgs(mapLayerCircleStyleArg),
-    argTypes: storyArgTypes(mapLayerCircleStyleArgTypes),
+    args: mapLayerCircleStyleArg,
+    argTypes: mapLayerCircleStyleArgTypes,
     parameters: {
         docs: {
             page: mapLayerCircleStyleDox,

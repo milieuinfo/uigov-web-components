@@ -1,10 +1,14 @@
+import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+
 export const loaderArgs = {
+    ...defaultArgs,
     light: false,
     text: 'Pagina is aan het laden',
     single: false,
 };
 
 export const loaderArgTypes = {
+    ...defaultArgTypes(),
     light: {
         name: 'data-vl-light',
         description: 'Attribute is used to obtain an alternative rendering in combination with a dark background. ',

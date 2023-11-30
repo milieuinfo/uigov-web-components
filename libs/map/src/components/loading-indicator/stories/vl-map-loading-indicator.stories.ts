@@ -1,17 +1,17 @@
-import { html } from 'lit';
+import { defaultArgs, defaultArgTypes, story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+import { html } from 'lit';
+import { MapEvent } from 'ol';
 import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../vl-map-loading-indicator';
 import mapLoadingIndicatorDoc from './vl-map-loading-indicator.stories-doc.mdx';
-import { MapEvent } from 'ol';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/loading-indicator',
     tags: ['autodocs'],
-    args: storyArgs({}),
-    argTypes: storyArgTypes({}),
+    args: defaultArgs,
+    argTypes: defaultArgTypes(),
     parameters: {
         docs: {
             page: mapLoadingIndicatorDoc,
@@ -20,7 +20,7 @@ export default {
             hideNoControlsWarning: true,
         },
     },
-} as Meta;
+} as Meta<typeof defaultArgs>;
 
 const fakeLoadMap = async (ttw) => {
     const vlMap = document.querySelector('vl-map');

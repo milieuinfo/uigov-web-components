@@ -44,6 +44,18 @@ notes tonen
 git notes --ref semantic-release show 2231b72
 ```
 
+na een historiek herschrijving een tag opnieuw leggen + de notes toevoegen 
+```
+git push --delete origin v1.21.0-develop.2
+git tag -d v1.21.0-develop.2
+git tag v1.21.0-develop.2 17a0a4e0
+git push origin v1.21.0-develop.2
+
+git notes --ref semantic-release add -f -m '{"channels":["develop"]}' v1.21.0-develop.2
+git push --force origin refs/notes/semantic-release
+```
+
+
 ## Bash
 
 <sub>Welk process draait op welke poort, inclusief details.</sub>
@@ -70,5 +82,6 @@ npx sass ./libs/elements/src/vl-elements.scss > ./dist/libs/elements/src/lib/vl-
 ## Nuttige links
 
 https://www.compart.com/en/unicode/category/So
+
 
 

@@ -1,18 +1,18 @@
+import { defaultArgs, defaultArgTypes, story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../infoblock/vl-infoblock.component';
 import '../vl-contact-card.component';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/contact-card',
     tags: ['autodocs'],
-    args: storyArgs({}),
-    argTypes: storyArgTypes({}),
+    args: defaultArgs,
+    argTypes: defaultArgTypes(),
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
-} as Meta;
+} as Meta<typeof defaultArgs>;
 
 export const contactCardDefault = story(
     {},

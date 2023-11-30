@@ -1,13 +1,15 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
-import { DEFAULT_ZOOM, DEFAULT_TOOLTIP } from '../vl-map-current-location';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
+import { DEFAULT_TOOLTIP, DEFAULT_ZOOM } from '../vl-map-current-location';
 
 export const mapCurrentLocationArgs = {
+    ...defaultArgs,
     tooltip: DEFAULT_TOOLTIP,
     zoom: DEFAULT_ZOOM,
 };
 
 export const mapCurrentLocationArgTypes: ArgTypes<typeof mapCurrentLocationArgs> = {
+    ...defaultArgTypes(),
     tooltip: {
         name: 'data-vl-tooltip',
         description: 'Bepaalt de tekst van de tooltip van de huidige locatie knop.',

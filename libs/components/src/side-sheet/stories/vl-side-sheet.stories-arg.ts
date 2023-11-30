@@ -1,7 +1,8 @@
 import { ArgTypes } from '@storybook/web-components';
-import { TYPES } from '@domg-wc/common-storybook';
+import { defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 
 export const sideSheetArgs = {
+    ...defaultArgs,
     absolute: false,
     customIcon: '',
     enableSwipe: false,
@@ -14,6 +15,7 @@ export const sideSheetArgs = {
 };
 
 export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
+    ...defaultArgTypes(),
     enableSwipe: {
         name: 'data-vl-enable-swipe',
         description: 'Attribute wordt gebruikt om aan te duiden dat swipe functie toegelaten is.',

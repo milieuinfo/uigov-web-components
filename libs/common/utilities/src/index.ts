@@ -12,7 +12,6 @@ export { VL } from './models/vl.model';
 export { Class } from './type/types';
 export {
     registerWebComponents,
-    define,
     awaitScript,
     sleep,
     awaitUntil,

@@ -1,15 +1,15 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-document.component';
 import { documentArgs, documentArgTypes } from './vl-document.stories-arg';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
 import documentDoc from './vl-document.stories-doc.mdx';
 
 export default {
     title: 'Components/document',
     tags: ['autodocs'],
-    args: storyArgs(documentArgs),
-    argTypes: storyArgTypes(documentArgTypes),
+    args: documentArgs,
+    argTypes: documentArgTypes,
     parameters: {
         docs: {
             page: documentDoc,

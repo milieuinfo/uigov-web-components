@@ -1,22 +1,22 @@
+import { story } from '@domg-wc/common-storybook';
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import { html } from 'lit-html';
-import { autocompleteArgs, autocompleteArgTypes, complexItems } from './vl-autocomplete.stories-arg';
-import { CAPTION_FORMAT, GROUP_BY } from '../vl-autocomplete.model';
-import { fetchDataFromMockedApiCall } from './vl-autocomplete-mocked-api.stories-util';
-import { fetchDataFromApiCall } from './vl-autocomplete-api.stories-util';
-import '../vl-autocomplete.component';
-import autocompleteDoc from './vl-autocomplete.stories-doc.mdx';
-import { Meta } from '@storybook/web-components';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { VlSideSheet } from '@domg-wc/components';
+import { Meta } from '@storybook/web-components';
+import { html } from 'lit-html';
+import '../vl-autocomplete.component';
+import { CAPTION_FORMAT, GROUP_BY } from '../vl-autocomplete.model';
+import { fetchDataFromApiCall } from './vl-autocomplete-api.stories-util';
+import { fetchDataFromMockedApiCall } from './vl-autocomplete-mocked-api.stories-util';
+import { autocompleteArgs, autocompleteArgTypes, complexItems } from './vl-autocomplete.stories-arg';
+import autocompleteDoc from './vl-autocomplete.stories-doc.mdx';
 
 registerWebComponents([VlSideSheet]);
 
 export default {
     title: 'Components/autocomplete',
     tags: ['autodocs'],
-    args: storyArgs(autocompleteArgs),
-    argTypes: storyArgTypes(autocompleteArgTypes),
+    args: autocompleteArgs,
+    argTypes: autocompleteArgTypes,
     parameters: {
         docs: {
             page: autocompleteDoc,

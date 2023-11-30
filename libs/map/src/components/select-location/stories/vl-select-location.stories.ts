@@ -1,15 +1,15 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import '../vl-select-location';
-import { Meta } from '@storybook/web-components';
 import { selectLocationArg, selectLocationArgTypes } from './vl-select-location.stories-arg';
 import mapSelectLocationDoc from './vl-select-location.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/select-location',
     tags: ['autodocs'],
-    args: storyArgs(selectLocationArg),
-    argTypes: storyArgTypes(selectLocationArgTypes),
+    args: selectLocationArg,
+    argTypes: selectLocationArgTypes,
     parameters: {
         docs: {
             page: mapSelectLocationDoc,

@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapLayerStyleArg = {
+    ...defaultArgs,
     borderColor: 'rgba(2, 85, 204, 1)',
     borderSize: 1,
     color: 'rgba(2, 85, 204, 0.8)',
@@ -17,6 +18,7 @@ export const mapLayerStyleArg = {
 };
 
 export const mapLayerStyleArgTypes: ArgTypes<typeof mapLayerStyleArg> = {
+    ...defaultArgTypes(),
     borderColor: {
         name: 'data-vl-border-color',
         description: 'De kleur van de rand van de kaartlaagstijl.',

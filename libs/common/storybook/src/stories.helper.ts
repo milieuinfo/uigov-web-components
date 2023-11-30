@@ -1,8 +1,8 @@
-import { nothing } from 'lit';
-import * as prettier from 'prettier/standalone';
-import * as prettierBabel from 'prettier/parser-babel';
-import { Args, ArgTypes, StoryFn, StoryContext } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
+import { StoryContext, StoryFn } from '@storybook/web-components';
+import { nothing } from 'lit';
+import * as prettierHtml from 'prettier/parser-html';
+import * as prettier from 'prettier/standalone';
 
 export const CATEGORIES = {
     ATTRIBUTES: 'Attributes',
@@ -29,24 +29,22 @@ export const filterOutClasses = (input: string) => {
     return input?.replace(/ class=".*?"/, '');
 };
 
+// een upgrade naar Prettier v3 kan niet, v3 geeft een Promise<string> terug bij de format methode en dat wordt niet
+// ondersteund door Storybook - er is ook geen manier in Javascript om van een async-call een sync-call te maken
 export const formatHTML = (input: string) => {
-    // Wordt gewrapped in een try-catch block omdat Lit-Html self-closing tags vertaalt naar void-elements, Prettier kan hier niet mee overweg.
-    // E.g. <input /> wordt door Lit-Html vertaald naar <input>.
+    // de 'html' parser sluit self-closing tags expliciet - <input> wordt <input />, dit is op zich niet
+    // gewenst maar de 'babel' parser geeft een fout - waardoor de ongeformatteerde input terug komt
     try {
-        return (
-            prettier
-                .format(input, {
-                    parser: 'babel',
-                    plugins: [prettierBabel],
-                    semi: false,
-                    printWidth: 120,
-                    tabWidth: 4,
-                })
-                // Door 'semi' hierboven op false te zetten wordt er een ';' toegevoegd aan het begin van de string, verwijder deze.
-                .substring(1)
-        );
+        return prettier.format(input, {
+            parser: 'html',
+            plugins: [prettierHtml],
+            semi: false,
+            printWidth: 120,
+            tabWidth: 4,
+        });
     } catch (error) {
-        // Geeft de originele input terug als het formatteren mislukt is.
+        console.log('formatHTML fout', error);
+        // geeft de originele input terug als het formatteren mislukt is
         return input;
     }
 };
@@ -69,29 +67,23 @@ export const story = <T extends object>(defaultArgs: T, storyFn: StoryFn<T>): St
     };
 };
 
-export const storyArgs = (args: Args) => {
-    return {
-        ...args,
-        customCSS: null,
-    };
-};
+export const defaultArgs = {
+    customCSS: null,
+} as const;
 
-export const storyArgTypes = (argTypes: ArgTypes, next = false) => {
-    return {
-        ...argTypes,
-        customCSS: {
-            name: !next ? 'data-vl-custom-css' : 'custom-css',
-            description:
-                'Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets van de shadow DOM van het component.',
-            control: false,
-            table: {
-                type: { summary: TYPES.STRING },
-                category: CATEGORIES.ATTRIBUTES,
-                defaultValue: { summary: null },
-            },
+export const defaultArgTypes = (next = false) => ({
+    customCSS: {
+        name: !next ? 'data-vl-custom-css' : 'custom-css',
+        description:
+            'Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets van de shadow DOM van het component.',
+        control: false,
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: null },
         },
-    };
-};
+    },
+});
 
 // Gebruik deze functie om de args van een story die overeen komen met de default args van een component
 // om te zetten naar 'nothing' zodat deze args niet getoond worden in de source code op de docs pagina van de story.

@@ -1,17 +1,17 @@
-import { html } from 'lit-html';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+import { html } from 'lit-html';
 import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../vl-map-search';
 import { mapSearchArgs, mapSearchArgTypes } from './vl-map-search.stories-arg';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 import mapSearchDoc from './vl-map-search.stories-doc.mdx';
 
 export default {
     title: 'map/search',
     tags: ['autodocs'],
-    args: storyArgs(mapSearchArgs),
-    argTypes: storyArgTypes(mapSearchArgTypes),
+    args: mapSearchArgs,
+    argTypes: mapSearchArgTypes,
     parameters: {
         docs: {
             page: mapSearchDoc,

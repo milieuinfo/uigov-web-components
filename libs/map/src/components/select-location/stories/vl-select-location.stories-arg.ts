@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES, logStorybookEvent } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, logStorybookEvent, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const selectLocationArg = {
+    ...defaultArgs,
     placeholder: 'Zoeken op kaart',
     searchEmptyText: 'Geen adres gevonden',
     searchNoResultsText: 'Geen adres gevonden',
@@ -13,6 +14,7 @@ export const selectLocationArg = {
 };
 
 export const selectLocationArgTypes: ArgTypes<typeof selectLocationArg> = {
+    ...defaultArgTypes(),
     placeholder: {
         name: 'data-vl-placeholder',
         description: 'De placeholder van het select element.<br>Dit attribuut is niet reactief.',

@@ -1,9 +1,10 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { MARGINS } from '@domg-wc/common-utilities';
-import { ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
+import { ArgTypes } from '@storybook/web-components';
 
 export const functionalHeaderArgs = {
+    ...defaultArgs,
     back: 'Terug',
     backLink: 'document.referrer',
     disableBackLink: false,
@@ -25,6 +26,7 @@ export const functionalHeaderArgs = {
 };
 
 export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
+    ...defaultArgTypes(),
     back: {
         name: 'data-vl-back',
         description: 'Tekst van de terug-link.',

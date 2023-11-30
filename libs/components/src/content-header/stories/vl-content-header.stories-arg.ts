@@ -1,11 +1,13 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 
 export const contentHeaderArgs = {
+    ...defaultArgs,
     contextLink: '',
     titleLink: '',
 };
 
 export const contentHeaderArgTypes = {
+    ...defaultArgTypes(),
     image: {
         name: 'image (slot)',
         description: '',

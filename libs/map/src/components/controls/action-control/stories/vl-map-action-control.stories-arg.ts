@@ -1,13 +1,15 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapActionControlArgs = {
+    ...defaultArgs,
     actionId: '',
     icon: '',
     label: '',
 };
 
 export const mapActionControlArgTypes: ArgTypes<typeof mapActionControlArgs> = {
+    ...defaultArgTypes(),
     actionId: {
         name: 'data-vl-action-id',
         description:

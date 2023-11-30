@@ -1,12 +1,14 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapLayerSwitcherArgs = {
+    ...defaultArgs,
     title: 'Kaartlagen',
     layers: null,
 };
 
 export const mapLayerSwitcherArgTypes: ArgTypes<typeof mapLayerSwitcherArgs> = {
+    ...defaultArgTypes(),
     title: {
         name: 'data-vl-title',
         description: 'De titel bovenaan de layer-switcher.',

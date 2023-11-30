@@ -1,17 +1,17 @@
-import { html } from 'lit-html';
-import '../vl-alert.component';
-import { ALERT_TYPE, ALERT_ICON } from '../vl-alert.model';
-import { alertArgs, alertArgTypes } from './vl-alert.stories-arg';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
+import { html } from 'lit-html';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import '../vl-alert.component';
+import { ALERT_ICON, ALERT_TYPE } from '../vl-alert.model';
+import { alertArgs, alertArgTypes } from './vl-alert.stories-arg';
 import alertDoc from './vl-alert.stories-doc.mdx';
 
 export default {
     title: 'Components/alert',
     tags: ['autodocs'],
-    args: storyArgs(alertArgs),
-    argTypes: storyArgTypes(alertArgTypes),
+    args: alertArgs,
+    argTypes: alertArgTypes,
     parameters: {
         docs: {
             page: alertDoc,

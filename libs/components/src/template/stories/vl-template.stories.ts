@@ -1,19 +1,18 @@
 import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlGridElement, VlH1Element, VlLayoutElement } from '@domg-wc/elements';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
+import { VlContentHeaderComponent } from '../../content-header/vl-content-header.component';
 import '../vl-template.component';
 import { templateArgs, templateArgTypes } from './vl-template.stories-arg';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
-import { VlContentHeaderComponent } from '../../content-header/vl-content-header.component';
-import { VlGridElement, VlH1Element, VlLayoutElement } from '@domg-wc/elements';
 
 registerWebComponents([VlContentHeaderComponent, VlGridElement, VlH1Element, VlLayoutElement]);
 
 export default {
     title: 'components/template',
     tags: ['autodocs'],
-    args: storyArgs(templateArgs),
-    argTypes: storyArgTypes(templateArgTypes),
+    args: templateArgs,
+    argTypes: templateArgTypes,
 } as Meta<typeof templateArgs>;
 
 const version = '1.2.3'; // TODO uit de package.json halen, om een json te kunnen importeren moet je echter wat config wijzigen

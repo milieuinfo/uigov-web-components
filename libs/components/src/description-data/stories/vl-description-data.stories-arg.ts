@@ -1,6 +1,7 @@
-import { TYPES } from '@domg-wc/common-storybook';
+import { defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 
 export const descriptionDataArgs = {
+    ...defaultArgs,
     size: undefined,
     maxSize: undefined,
     mediumSize: undefined,
@@ -12,6 +13,7 @@ export const descriptionDataArgs = {
 };
 
 export const descriptionDataArgTypes = {
+    ...defaultArgTypes(),
     size: {
         name: 'data-vl-items-size',
         type: { name: TYPES.NUMBER, required: false },

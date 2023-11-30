@@ -1,18 +1,18 @@
+import { defaultArgs, defaultArgTypes, story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
-import '../../baselayer/vl-map-base-layer-grb/vl-map-base-layer-grb';
 import '../../baselayer/vl-map-base-layer-grb-ortho/vl-map-base-layer-grb-ortho';
+import '../../baselayer/vl-map-base-layer-grb/vl-map-base-layer-grb';
 import '../vl-map-overview-map';
-import { Meta } from '@storybook/web-components';
 import mapOverviewMapDoc from './vl-map-overview-map.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/overview-map',
     tags: ['autodocs'],
-    args: storyArgs({}),
-    argTypes: storyArgTypes({}),
+    args: defaultArgs,
+    argTypes: defaultArgTypes(),
     parameters: {
         docs: {
             page: mapOverviewMapDoc,
@@ -21,7 +21,7 @@ export default {
             hideNoControlsWarning: true,
         },
     },
-} as Meta;
+} as Meta<typeof defaultArgs>;
 
 export const MapOverviewMapDefault = story(
     {},

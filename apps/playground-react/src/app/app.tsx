@@ -1,11 +1,11 @@
-import { VlAccordionComponent, VlCascaderComponent, VlInfoTile } from '@domg-wc/components';
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import './app.module.css';
+import { VlAccordionComponent, VlCascaderComponent, VlInfoTile } from '@domg-wc/components';
+import { createComponent } from '@lit/react';
 import React, { DOMAttributes } from 'react';
-import { createComponent } from '@lit-labs/react';
+import './app.module.css';
+import { nodeData } from './vl-cascader.data';
 import { cascaderItemTemplates } from './vl-cascader.templates';
 import { getItemList } from './vl-cascader.utils';
-import { nodeData } from './vl-cascader.data';
 
 registerWebComponents([VlCascaderComponent, VlInfoTile, VlAccordionComponent]);
 

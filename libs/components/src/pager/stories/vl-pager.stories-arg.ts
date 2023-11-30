@@ -1,6 +1,8 @@
+import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 
 export const pagerArgs = {
+    ...defaultArgs,
     totalItems: 50,
     currentPage: 1,
     itemsPerPage: 7,
@@ -11,6 +13,7 @@ export const pagerArgs = {
 };
 
 export const pagerArgTypes = {
+    ...defaultArgTypes(),
     totalItems: {
         name: 'data-vl-total-items',
         description: 'This attribute determines the total number of elements.',

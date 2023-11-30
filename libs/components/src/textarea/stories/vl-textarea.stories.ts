@@ -1,4 +1,4 @@
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-textarea.element';
@@ -8,8 +8,8 @@ import textAreaDoc from './vl-textarea.stories-doc.mdx';
 export default {
     title: 'Components/textarea',
     tags: ['autodocs'],
-    args: storyArgs(textareaArgs),
-    argTypes: storyArgTypes(textareaArgTypes),
+    args: textareaArgs,
+    argTypes: textareaArgTypes,
     parameters: {
         docs: {
             page: textAreaDoc,

@@ -1,15 +1,15 @@
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import { styleMap } from 'lit-html/directives/style-map.js';
 import '../vl-tooltip.component';
 import { tooltipArgs, tooltipArgTypes } from './vl-tooltip.stories-arg';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/tooltip',
     tags: ['autodocs'],
-    args: storyArgs(tooltipArgs),
-    argTypes: storyArgTypes(tooltipArgTypes),
-};
+    args: tooltipArgs,
+    argTypes: tooltipArgTypes,
+} as Meta<typeof tooltipArgs>;
 
 export const tooltipDefault = ({ placement, tooltipContent, vlStatic }: typeof tooltipArgs) => {
     return html` <div

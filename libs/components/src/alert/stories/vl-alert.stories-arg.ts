@@ -1,9 +1,9 @@
+import { CATEGORIES, defaultArgs, defaultArgTypes, logStorybookEvent, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { VlAlertClosedEvent } from '../vl-alert.model';
-import { ALERT_ICON, ALERT_SIZE, ALERT_TYPE } from '../vl-alert.model';
-import { CATEGORIES, TYPES, logStorybookEvent } from '@domg-wc/common-storybook';
+import { ALERT_ICON, ALERT_SIZE, ALERT_TYPE, VlAlertClosedEvent } from '../vl-alert.model';
 
 export const alertArgs = {
+    ...defaultArgs,
     closable: false,
     naked: false,
     title: '',
@@ -18,6 +18,7 @@ export const alertArgs = {
 };
 
 export const alertArgTypes: ArgTypes<typeof alertArgs> = {
+    ...defaultArgTypes(),
     closable: {
         name: 'data-vl-closable',
         description: 'Sluitknop voor de waarschuwing',

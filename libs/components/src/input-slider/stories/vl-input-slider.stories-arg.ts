@@ -1,8 +1,9 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 
 export const inputSliderArgs = {
+    ...defaultArgs,
     maxValue: 100,
     minValue: 0,
     value: 0,
@@ -10,6 +11,7 @@ export const inputSliderArgs = {
 };
 
 export const inputSliderArgTypes: ArgTypes<typeof inputSliderArgs> = {
+    ...defaultArgTypes(),
     maxValue: {
         name: 'data-vl-max-value',
         description: 'De maximumwaarde die geselecteerd kan worden.',

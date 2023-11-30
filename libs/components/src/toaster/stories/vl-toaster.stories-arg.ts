@@ -1,7 +1,7 @@
 import { TYPES } from '@domg-wc/common-storybook';
-import { Args, ArgTypes } from '@storybook/web-components';
+import { ArgTypes } from '@storybook/web-components';
 
-export const toasterArgs: Args = {
+export const toasterArgs = {
     topLeft: false,
     topRight: false,
     bottomLeft: false,

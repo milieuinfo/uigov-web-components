@@ -1,6 +1,7 @@
-import { TYPES } from '@domg-wc/common-storybook';
+import { defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 
 export const descriptionDataItemArgs = {
+    ...defaultArgs,
     label: 'Uitgever',
     value: 'Kind en Gezin',
     labelSlotText: 'Uitgever',
@@ -8,6 +9,7 @@ export const descriptionDataItemArgs = {
 };
 
 export const descriptionDataItemArgTypes = {
+    ...defaultArgTypes(),
     label: {
         name: 'data-vl-label',
         description: 'Changes the label of the data item.',

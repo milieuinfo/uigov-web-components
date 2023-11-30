@@ -1,5 +1,6 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
+@webComponent('vl-doormat-text', { extends: 'div' })
 export class VlDoormatTextElement extends BaseElementOfType(HTMLDivElement) {
     connectedCallback() {
         this._processStyle();
@@ -13,5 +14,3 @@ export class VlDoormatTextElement extends BaseElementOfType(HTMLDivElement) {
         this.classList.add('vl-doormat__text');
     }
 }
-
-define('vl-doormat-text', VlDoormatTextElement, { extends: 'div' });

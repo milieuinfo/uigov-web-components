@@ -1,12 +1,14 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const annotationArgs = {
+    ...defaultArgs,
     content: 'Inhoud',
     small: false,
 };
 
 export const annotationArgTypes: ArgTypes = {
+    ...defaultArgTypes(),
     content: {
         name: 'content',
         description: 'Inhoud van de annotation.',

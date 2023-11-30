@@ -1,17 +1,17 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../../../vl-map';
 import '../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../vl-map-wmts-layer';
-import { Meta } from '@storybook/web-components';
-import { mapWmtsLayerArgTypes, mapWmtsLayerArgs } from './vl-map-wmts-layer.stories-arg';
+import { mapWmtsLayerArgs, mapWmtsLayerArgTypes } from './vl-map-wmts-layer.stories-arg';
 import mapWmtsLayerDoc from './vl-map-wmts-layer.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/wmts-layer',
     tags: ['autodocs'],
-    args: storyArgs(mapWmtsLayerArgs),
-    argTypes: storyArgTypes(mapWmtsLayerArgTypes),
+    args: mapWmtsLayerArgs,
+    argTypes: mapWmtsLayerArgTypes,
     parameters: {
         docs: {
             page: mapWmtsLayerDoc,

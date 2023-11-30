@@ -1,14 +1,13 @@
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-pill.component';
 import { pillArgs, pillArgTypes } from './vl-pill.stories-arg';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/pill/pill',
     tags: ['autodocs'],
-    args: storyArgs(pillArgs),
-    argTypes: storyArgTypes(pillArgTypes),
+    args: pillArgs,
+    argTypes: pillArgTypes,
 } as Meta<typeof pillArgs>;
 
 export const PillDefault = ({ closable, checkable, checked, type, disabled, close, check }: typeof pillArgs) => html`

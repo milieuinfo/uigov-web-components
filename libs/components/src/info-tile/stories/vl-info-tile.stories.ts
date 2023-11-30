@@ -1,16 +1,16 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import '../vl-info-tile.component';
 import { infoTileArgs, infoTileArgTypes } from './vl-info-tile.stories-arg';
-import { Meta } from '@storybook/web-components';
 import infoTileDoc from './vl-info-tile.stories-doc.mdx';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/info-tile',
     tags: ['autodocs'],
-    args: storyArgs(infoTileArgs),
-    argTypes: storyArgTypes(infoTileArgTypes),
+    args: infoTileArgs,
+    argTypes: infoTileArgTypes,
     parameters: {
         docs: {
             page: infoTileDoc,

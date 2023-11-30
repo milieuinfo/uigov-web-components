@@ -1,20 +1,20 @@
-import { html } from 'lit-html';
-import { mapSideSheetArgs, mapSideSheetArgTypes } from './vl-map-side-sheet.stories-arg';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+import { html } from 'lit-html';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import mapSideSheetDoc from './vl-map-side-sheet.stories-doc.mdx';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../vl-map-side-sheet';
 import '../vl-map-side-sheet-menu';
 import '../vl-map-side-sheet-menu-item';
+import { mapSideSheetArgs, mapSideSheetArgTypes } from './vl-map-side-sheet.stories-arg';
+import mapSideSheetDoc from './vl-map-side-sheet.stories-doc.mdx';
 
 export default {
     title: 'map/side-sheet',
     tags: ['autodocs'],
-    args: storyArgs(mapSideSheetArgs),
-    argTypes: storyArgTypes(mapSideSheetArgTypes),
+    args: mapSideSheetArgs,
+    argTypes: mapSideSheetArgTypes,
     parameters: {
         docs: {
             page: mapSideSheetDoc,
@@ -26,7 +26,8 @@ export const MapSideSheetDefault = story(
     mapSideSheetArgs,
     ({ right, enableSwipe, defaultSlot, toggleText, tooltipText, customIcon, iconPlacement, hideToggleButton }) => html`
         <vl-map>
-            <vl-map-baselayer-grb-gray /></vl-map-baselayer-grb-gray>
+            <vl-map-baselayer-grb-gray/>
+            </vl-map-baselayer-grb-gray>
             <vl-map-side-sheet
                 ?data-vl-right=${right}
                 ?data-vl-enable-swipe=${enableSwipe}
@@ -35,8 +36,8 @@ export const MapSideSheetDefault = story(
                 data-vl-custom-icon=${customIcon}
                 data-vl-icon-placement=${iconPlacement}
                 ?data-vl-hide-toggle-button=${hideToggleButton}
-                >
-                    ${unsafeHTML(defaultSlot)}
+            >
+                ${unsafeHTML(defaultSlot)}
             </vl-map-side-sheet>
         </vl-map>
     `
@@ -92,8 +93,8 @@ export const MapSideSheetDual = story(
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
             <vl-map-side-sheet>${unsafeHTML(defaultSlot)}</vl-map-side-sheet>
             <vl-map-side-sheet data-vl-right ?data-vl-enable-swipe=${enableSwipe}
-                >${unsafeHTML(defaultSlot)}</vl-map-side-sheet
-            >
+                >${unsafeHTML(defaultSlot)}
+            </vl-map-side-sheet>
         </vl-map>
     `
 );

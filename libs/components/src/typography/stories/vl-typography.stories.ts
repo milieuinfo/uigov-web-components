@@ -1,14 +1,13 @@
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-typography.component';
 import { typographyArgs, typographyArgTypes } from './vl-typography.stories-arg';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/typography',
     tags: ['autodocs'],
-    args: storyArgs(typographyArgs),
-    argTypes: storyArgTypes(typographyArgTypes),
+    args: typographyArgs,
+    argTypes: typographyArgTypes,
     parameters: {
         controls: {
             hideNoControlsWarning: true,

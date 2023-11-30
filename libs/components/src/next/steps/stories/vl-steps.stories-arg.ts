@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const stepsArgs = {
+    ...defaultArgs,
     line: false,
     timeline: false,
     simpleTimeline: false,
@@ -11,6 +12,7 @@ export const stepsArgs = {
 };
 
 export const stepsArgTypes: ArgTypes = {
+    ...defaultArgTypes(),
     line: {
         name: 'data-vl-line',
         description: 'Beeldt een verticale lijn af tussen de stappen.',

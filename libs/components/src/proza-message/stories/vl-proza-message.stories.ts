@@ -1,16 +1,16 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import { VlProzaMessage } from '../vl-proza-message.component';
+import { prozaMessageArgs, prozaMessageArgTypes } from './vl-proza-message.stories-arg';
 import { prozaMessageMockDomainData, prozaMessageMockDomainEditableData } from './vl-proza-message.stories-data';
-import { prozaMessageArgTypes, prozaMessageArgs } from './vl-proza-message.stories-arg';
-import { Meta } from '@storybook/web-components';
 import prozaMessageDoc from './vl-proza-message.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'components/proza-message',
     tags: ['autodocs'],
-    args: storyArgs(prozaMessageArgs),
-    argTypes: storyArgTypes(prozaMessageArgTypes),
+    args: prozaMessageArgs,
+    argTypes: prozaMessageArgTypes,
     parameters: {
         docs: {
             page: prozaMessageDoc,

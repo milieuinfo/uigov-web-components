@@ -1,6 +1,8 @@
+import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 
 export const pillArgs = {
+    ...defaultArgs,
     closable: false,
     checkable: false,
     checked: false,
@@ -11,6 +13,7 @@ export const pillArgs = {
 };
 
 export const pillArgTypes = {
+    ...defaultArgTypes(),
     closable: {
         name: 'data-vl-closable',
         description:

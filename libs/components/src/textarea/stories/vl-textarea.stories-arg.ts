@@ -1,8 +1,9 @@
-import { TYPES } from '@domg-wc/common-storybook';
+import { defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { defaultTinyMceToolbar } from '../vl-textarea.element';
 
 export const textareaArgs = {
+    ...defaultArgs,
     block: false,
     disabled: false,
     error: false,
@@ -14,6 +15,7 @@ export const textareaArgs = {
 };
 
 export const textareaArgTypes: ArgTypes = {
+    ...defaultArgTypes(),
     block: {
         name: 'data-vl-block',
         description:

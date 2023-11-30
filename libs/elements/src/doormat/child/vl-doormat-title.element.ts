@@ -1,5 +1,6 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
+@webComponent('vl-doormat-title', { extends: 'h2' })
 export class VlDoormatTitleElement extends BaseElementOfType(HTMLHeadingElement) {
     connectedCallback() {
         this._processStyle();
@@ -13,5 +14,3 @@ export class VlDoormatTitleElement extends BaseElementOfType(HTMLHeadingElement)
         this.classList.add('vl-doormat__title');
     }
 }
-
-define('vl-doormat-title', VlDoormatTitleElement, { extends: 'h2' });

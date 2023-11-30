@@ -1,16 +1,16 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../../../vl-map';
+import { mapBaselayerArgs, mapBaselayerArgTypes } from '../../stories/vl-map-baselayer.stories-arg';
 import '../vl-map-base-layer-grb-gray';
-import { Meta } from '@storybook/web-components';
 import mapBaselayerGrbGrayDoc from './vl-map-baselayer-grb-gray.stories-doc.mdx';
-import { mapBaselayerArgs } from '../../stories/vl-map-baselayer.stories-arg';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/baselayer/baselayer-grb-gray',
     tags: ['autodocs'],
-    args: storyArgs({}),
-    argTypes: storyArgTypes({}),
+    args: mapBaselayerArgs,
+    argTypes: mapBaselayerArgTypes,
     parameters: {
         docs: {
             page: mapBaselayerGrbGrayDoc,

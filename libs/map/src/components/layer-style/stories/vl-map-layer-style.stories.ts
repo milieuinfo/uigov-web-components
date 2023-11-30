@@ -1,18 +1,18 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../vl-map-layer-style';
 import { mapLayerStyleArg, mapLayerStyleArgTypes } from './vl-map-layer-style.stories-arg';
-import { Meta } from '@storybook/web-components';
 import mapLayerStyleDoc from './vl-map-layer-style.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer-style',
     tags: ['autodocs'],
-    args: storyArgs(mapLayerStyleArg),
-    argTypes: storyArgTypes(mapLayerStyleArgTypes),
+    args: mapLayerStyleArg,
+    argTypes: mapLayerStyleArgTypes,
     parameters: {
         docs: {
             page: mapLayerStyleDoc,

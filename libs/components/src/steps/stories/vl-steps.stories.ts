@@ -1,4 +1,3 @@
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import {
     VlSideNavigation,
@@ -33,8 +32,8 @@ registerWebComponents([
 export default {
     title: 'Components/steps',
     tags: ['autodocs'],
-    args: storyArgs(stepsArgs),
-    argTypes: storyArgTypes(stepsArgTypes),
+    args: stepsArgs,
+    argTypes: stepsArgTypes,
     parameters: {
         controls: {
             hideNoControlsWarning: true,

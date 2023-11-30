@@ -1,22 +1,22 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../../../vl-map';
-import '../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
-import '../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../../../action/draw-action/draw-polygon-action/vl-map-draw-polygon-action';
 import '../../../action/layer-action/delete-action/vl-map-delete-action';
 import '../../../action/layer-action/modify-action/vl-map-modify-action';
+import '../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../../vl-map-action-controls';
 import '../vl-map-action-control';
-import { Meta } from '@storybook/web-components';
-import actionControlDoc from './vl-map-action-control.stories-doc.mdx';
 import { mapActionControlArgs, mapActionControlArgTypes } from './vl-map-action-control.stories-arg';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
+import actionControlDoc from './vl-map-action-control.stories-doc.mdx';
 
 export default {
     title: 'map/controls/action-control',
     tags: ['autodocs'],
-    args: storyArgs(mapActionControlArgs),
-    argTypes: storyArgTypes(mapActionControlArgTypes),
+    args: mapActionControlArgs,
+    argTypes: mapActionControlArgTypes,
     parameters: {
         docs: {
             page: actionControlDoc,

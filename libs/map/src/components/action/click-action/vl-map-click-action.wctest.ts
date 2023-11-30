@@ -24,11 +24,11 @@ describe('vl-map-click-action', () => {
             clientX: 1,
             clientY: 1,
         });
-        const listener = oneEvent(clickAction, VlMapClickedEvent.eventType);
+        const listener = oneEvent(clickAction, VlMapClickedEvent.eventType, false);
         const evt = new MapBrowserEvent<PointerEvent>('singleclick', map.map, pointerEvent);
         map.map.dispatchEvent(evt);
         await aTimeout(100);
-        const event: VlMapClickedEvent = await listener;
+        const event = await listener;
         await aTimeout(100);
         assert.isNotNull(event);
         assert.equal(event.type, VlMapClickedEvent.eventType);

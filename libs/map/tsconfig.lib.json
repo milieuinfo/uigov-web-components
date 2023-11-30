@@ -7,7 +7,7 @@
         "inlineSources": true,
         "declaration": true,
         "types": [
-            "mocha", "cypress", "cypress-axe"
+            "cypress", "cypress-axe"
         ]
     },
     "exclude": [

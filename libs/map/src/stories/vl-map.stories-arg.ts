@@ -1,9 +1,10 @@
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
-import { EVENT } from '../vl-map.model';
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
+import { EVENT } from '../vl-map.model';
 
 export const mapArgs = {
+    ...defaultArgs,
     allowFullscreen: false,
     disableEscape: false,
     disableRotation: false,
@@ -16,6 +17,7 @@ export const mapArgs = {
 };
 
 export const mapArgTypes: ArgTypes<typeof mapArgs> = {
+    ...defaultArgTypes(),
     allowFullscreen: {
         name: 'data-vl-allow-fullscreen',
         description:

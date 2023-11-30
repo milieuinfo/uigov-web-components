@@ -1,20 +1,20 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../../../vl-map';
 import '../../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../../../../layer-style/vl-map-layer-style';
 import '../../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../../../../layer/vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
-import '../../../../layer-style/vl-map-layer-style';
-import '../vl-map-draw-line-action';
 import { mapDrawActionArgs, mapDrawActionArgTypes } from '../../stories/vl-map-draw-action.stories-arg';
+import '../vl-map-draw-line-action';
 import mapDrawActionDoc from './vl-map-draw-line-action.stories-doc.mdx';
-import { Meta } from '@storybook/web-components';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/draw-action/draw-line-action',
     tags: ['autodocs'],
-    args: storyArgs(mapDrawActionArgs),
-    argTypes: storyArgTypes(mapDrawActionArgTypes),
+    args: mapDrawActionArgs,
+    argTypes: mapDrawActionArgTypes,
     parameters: {
         docs: {
             page: mapDrawActionDoc,

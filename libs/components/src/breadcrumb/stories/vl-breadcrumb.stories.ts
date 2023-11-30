@@ -1,16 +1,16 @@
-import { html } from 'lit';
-import '../vl-breadcrumb.component';
-import '../vl-breadcrumb-item.component';
-import { breadcrumbItemArgs, breadcrumbItemArgTypes } from './vl-breadcrumb.stories-arg';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+import { html } from 'lit';
+import '../vl-breadcrumb-item.component';
+import '../vl-breadcrumb.component';
+import { breadcrumbItemArgs, breadcrumbItemArgTypes } from './vl-breadcrumb.stories-arg';
 import breadcrumbDoc from './vl-breadcrumb.stories-doc.mdx';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/breadcrumb',
     tags: ['autodocs'],
-    args: storyArgs(breadcrumbItemArgs),
-    argTypes: storyArgTypes(breadcrumbItemArgTypes),
+    args: breadcrumbItemArgs,
+    argTypes: breadcrumbItemArgTypes,
     parameters: {
         docs: {
             page: breadcrumbDoc,

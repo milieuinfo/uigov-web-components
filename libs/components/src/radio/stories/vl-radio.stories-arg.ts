@@ -1,6 +1,7 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 
 export const radioArgs = {
+    ...defaultArgs,
     block: false,
     checked: false,
     disabled: false,
@@ -12,6 +13,7 @@ export const radioArgs = {
 };
 
 export const radioArgTypes = {
+    ...defaultArgTypes(),
     block: {
         name: 'data-vl-block',
         description: 'Beeldt de checkbox af als een block element.',

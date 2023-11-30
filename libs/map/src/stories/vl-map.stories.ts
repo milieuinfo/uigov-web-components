@@ -1,6 +1,32 @@
-import { mapArgs, mapArgTypes } from './vl-map.stories-arg';
-import { html } from 'lit';
+import { story } from '@domg-wc/common-storybook';
+import '@domg-wc/components';
+// deze imports van alle elements, components en map werken IN de monorepo
+// -> buiten de monorepo werkt dat niet omdat sideEffects disabled worden voor de root-barrel file in de artifacts
+import '@domg-wc/elements';
 import { Meta } from '@storybook/web-components';
+import { html } from 'lit';
+import '../components/action/draw-action/draw-line-action/vl-map-draw-line-action';
+import '../components/action/draw-action/draw-point-action/vl-map-draw-point-action';
+import '../components/action/draw-action/draw-polygon-action/vl-map-draw-polygon-action';
+import '../components/action/draw-action/measure-action/vl-map-measure-action';
+import '../components/action/layer-action/delete-action/vl-map-delete-action';
+import '../components/action/layer-action/modify-action/vl-map-modify-action';
+import '../components/action/layer-action/select-action/vl-map-select-action';
+import '../components/baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../components/baselayer/vl-map-base-layer-grb-ortho/vl-map-base-layer-grb-ortho';
+import '../components/baselayer/vl-map-base-layer-grb/vl-map-base-layer-grb';
+import '../components/controls/measure-control/vl-map-measure-control';
+import '../components/controls/vl-map-action-controls';
+import '../components/layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
+import '../components/layer-style/vl-map-layer-style';
+import '../components/layer-switcher/vl-map-layer-switcher';
+import '../components/layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
+import { LEGEND_PLACEMENT } from '../components/legend/vl-map-legend';
+import '../components/legend/vl-map-legend';
+import '../components/overview-map/vl-map-overview-map';
+import '../components/side-sheet/vl-map-side-sheet';
+import '../vl-map';
+import { mapArgs, mapArgTypes } from './vl-map.stories-arg';
 import mapDoc from './vl-map.stories-doc.mdx';
 import {
     getActionElement,
@@ -9,38 +35,12 @@ import {
     handleLayerVisibleChange,
     handleOpacitySliderChange,
 } from './vl-map.stories-util';
-import { LEGEND_PLACEMENT } from '../components/legend/vl-map-legend';
-// deze imports van alle elements, components en map werken IN de monorepo
-// -> buiten de monorepo werkt dat niet omdat sideEffects disabled worden voor de root-barrel file in de artifacts
-import '@domg-wc/elements';
-import '@domg-wc/components';
-import '../vl-map';
-import '../components/controls/vl-map-action-controls';
-import '../components/controls/measure-control/vl-map-measure-control';
-import '../components/side-sheet/vl-map-side-sheet';
-import '../components/layer-switcher/vl-map-layer-switcher';
-import '../components/overview-map/vl-map-overview-map';
-import '../components/baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
-import '../components/baselayer/vl-map-base-layer-grb/vl-map-base-layer-grb';
-import '../components/baselayer/vl-map-base-layer-grb-ortho/vl-map-base-layer-grb-ortho';
-import '../components/layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
-import '../components/layer-style/vl-map-layer-style';
-import '../components/layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
-import '../components/action/draw-action/draw-point-action/vl-map-draw-point-action';
-import '../components/action/draw-action/draw-line-action/vl-map-draw-line-action';
-import '../components/action/draw-action/draw-polygon-action/vl-map-draw-polygon-action';
-import '../components/action/draw-action/measure-action/vl-map-measure-action';
-import '../components/action/layer-action/modify-action/vl-map-modify-action';
-import '../components/action/layer-action/delete-action/vl-map-delete-action';
-import '../components/action/layer-action/select-action/vl-map-select-action';
-import '../components/legend/vl-map-legend';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/map',
     tags: ['autodocs'],
-    args: storyArgs(mapArgs),
-    argTypes: storyArgTypes(mapArgTypes),
+    args: mapArgs,
+    argTypes: mapArgTypes,
     parameters: {
         docs: {
             page: mapDoc,

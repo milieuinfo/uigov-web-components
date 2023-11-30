@@ -1,8 +1,9 @@
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
-import { CASCADER_MESSAGES, CASCADER_SLOTS, ItemListFn, TemplateFn, CascaderItem } from '../vl-cascader.model';
+import { CASCADER_MESSAGES, CASCADER_SLOTS, CascaderItem, ItemListFn, TemplateFn } from '../vl-cascader.model';
 
 export const cascaderArgs = {
+    ...defaultArgs,
     breadcrumbPlaceholder: '',
     level: 0,
     contentSlot: '',
@@ -18,6 +19,7 @@ export const cascaderArgs = {
 };
 
 export const cascaderArgTypes: ArgTypes<typeof cascaderArgs> = {
+    ...defaultArgTypes(true),
     breadcrumbPlaceholder: {
         name: CASCADER_SLOTS.BREADCRUMB_PLACEHOLDER,
         description:

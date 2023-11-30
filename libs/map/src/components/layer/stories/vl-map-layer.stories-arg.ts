@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapLayerArgs = {
+    ...defaultArgs,
     hidden: false,
     opacity: 1,
     maxResolution: Infinity,
@@ -10,6 +11,7 @@ export const mapLayerArgs = {
 };
 
 export const mapLayerArgTypes: ArgTypes<typeof mapLayerArgs> = {
+    ...defaultArgTypes(),
     hidden: {
         name: 'data-vl-hidden',
         description: 'Bepaalt of de kaartlaag zichtbaar is.',

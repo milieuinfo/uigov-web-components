@@ -1,15 +1,15 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-checkbox.component';
 import { checkboxArgs, checkboxArgTypes } from './vl-checkbox.stories-arg';
-import { Meta } from '@storybook/web-components';
 import checkboxDoc from './vl-checkbox.stories-doc.mdx';
-import { storyArgTypes, storyArgs, story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/checkbox',
     tags: ['autodocs'],
-    args: storyArgs(checkboxArgs),
-    argTypes: storyArgTypes(checkboxArgTypes),
+    args: checkboxArgs,
+    argTypes: checkboxArgTypes,
     parameters: {
         docs: {
             page: checkboxDoc,

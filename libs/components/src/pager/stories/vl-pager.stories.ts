@@ -1,14 +1,13 @@
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-pager.component';
 import { pagerArgs, pagerArgTypes } from './vl-pager.stories-arg';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/pager',
     tags: ['autodocs'],
-    args: storyArgs(pagerArgs),
-    argTypes: storyArgTypes(pagerArgTypes),
+    args: pagerArgs,
+    argTypes: pagerArgTypes,
 } as Meta<typeof pagerArgs>;
 
 const pagerTemplate = ({

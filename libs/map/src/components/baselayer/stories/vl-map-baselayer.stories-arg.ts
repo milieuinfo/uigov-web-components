@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapBaselayerArgs = {
+    ...defaultArgs,
     backgroundLayer: false,
     layer: '',
     title: '',
@@ -10,6 +11,7 @@ export const mapBaselayerArgs = {
 };
 
 export const mapBaselayerArgTypes: ArgTypes<typeof mapBaselayerArgs> = {
+    ...defaultArgTypes(),
     backgroundLayer: {
         name: 'data-vl-background-layer',
         description:

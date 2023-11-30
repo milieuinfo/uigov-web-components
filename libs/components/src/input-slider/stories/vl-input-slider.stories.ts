@@ -1,15 +1,15 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-input-slider.component';
-import { Meta } from '@storybook/web-components';
 import { inputSliderArgs, inputSliderArgTypes } from './vl-input-slider.stories-arg';
 import inputSliderDoc from './vl-input-slider.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/input-slider',
     tags: ['autodocs'],
-    args: storyArgs(inputSliderArgs),
-    argTypes: storyArgTypes(inputSliderArgTypes),
+    args: inputSliderArgs,
+    argTypes: inputSliderArgTypes,
     parameters: {
         docs: {
             page: inputSliderDoc,

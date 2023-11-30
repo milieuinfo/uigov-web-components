@@ -1,8 +1,9 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 
 export const progressBarArgs = {
+    ...defaultArgs,
     activeStep: 1,
     focusOnChange: false,
     numeric: false,
@@ -11,6 +12,7 @@ export const progressBarArgs = {
 };
 
 export const progressBarArgTypes: ArgTypes<typeof progressBarArgs> = {
+    ...defaultArgTypes(),
     activeStep: {
         name: 'data-vl-active-step',
         description: 'Markeert een stap als de actieve.',

@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapSideSheetArgs = {
+    ...defaultArgs,
     customIcon: '',
     enableSwipe: false,
     hideToggleButton: false,
@@ -15,6 +16,7 @@ export const mapSideSheetArgs = {
 };
 
 export const mapSideSheetArgTypes: ArgTypes<typeof mapSideSheetArgs> = {
+    ...defaultArgTypes(),
     customIcon: {
         name: 'data-vl-custom-icon',
         description: 'Het icoon van de toggle button.',

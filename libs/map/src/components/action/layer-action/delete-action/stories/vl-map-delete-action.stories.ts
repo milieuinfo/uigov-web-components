@@ -1,20 +1,20 @@
-import { mapActionArgs, mapActionArgTypes } from '../../../stories/vl-map-action.stories-arg';
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../../../vl-map';
 import '../../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
-import '../../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
-import '../../../../layer-style/vl-map-layer-style';
 import '../../../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
+import '../../../../layer-style/vl-map-layer-style';
+import '../../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
+import { mapActionArgs, mapActionArgTypes } from '../../../stories/vl-map-action.stories-arg';
 import '../vl-map-delete-action';
-import { Meta } from '@storybook/web-components';
 import mapDeleteActionDoc from './vl-map-delete-action.stories-doc.mdx';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/layer-action/delete-action',
     tags: ['autodocs'],
-    args: storyArgs(mapActionArgs),
-    argTypes: storyArgTypes(mapActionArgTypes),
+    args: mapActionArgs,
+    argTypes: mapActionArgTypes,
     parameters: {
         docs: {
             page: mapDeleteActionDoc,

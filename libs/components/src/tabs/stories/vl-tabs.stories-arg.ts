@@ -1,8 +1,9 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 
 export const tabsArgs = {
+    ...defaultArgs,
     activeTab: '',
     alt: false,
     disableLinks: false,
@@ -14,6 +15,7 @@ export const tabsArgs = {
 };
 
 export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {
+    ...defaultArgTypes(),
     activeTab: {
         name: 'data-vl-active-tab',
         description: 'Het id van de actieve tab. De tab in kwestie wordt geselecteerd bij het aanpassen van dit id.',
