@@ -1,4 +1,4 @@
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-side-sheet.component';
@@ -9,8 +9,8 @@ import sideSheetToggleImplementation from './vl-side-sheet.stories-utils';
 export default {
     title: 'Components/side-sheet',
     tags: ['autodocs'],
-    args: storyArgs(sideSheetArgs),
-    argTypes: storyArgTypes(sideSheetArgTypes),
+    args: sideSheetArgs,
+    argTypes: sideSheetArgTypes,
     parameters: {
         docs: {
             page: sideSheetDoc,

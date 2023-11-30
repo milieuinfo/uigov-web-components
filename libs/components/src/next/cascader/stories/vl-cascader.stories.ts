@@ -1,20 +1,20 @@
-import { html } from 'lit-html';
-import '../vl-cascader.component';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+import { nothing } from 'lit';
+import { html } from 'lit-html';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import '../vl-cascader.component';
 import { cascaderArgs, cascaderArgTypes } from './vl-cascader.stories-arg';
 import cascaderDoc from './vl-cascader.stories-doc.mdx';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { nodeData } from './vl-cascader.stories-util.data';
 import { getItemList } from './vl-cascader.stories-util.item-list-function';
 import { cascaderItemTemplates } from './vl-cascader.stories-util.templates';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { nothing } from 'lit';
 
 export default {
     title: 'Components-next/cascader',
     tags: ['autodocs'],
-    args: storyArgs(cascaderArgs),
-    argTypes: storyArgTypes(cascaderArgTypes, true),
+    args: cascaderArgs,
+    argTypes: cascaderArgTypes,
     parameters: {
         docs: {
             page: cascaderDoc,
@@ -172,7 +172,7 @@ CascaderDynamicTemplating.parameters = {
 };
 export const CascaderPropertyBinding = story(cascaderArgs, ({ items }) => {
     return html`
-        <vl-cascader .items=${items} .itemListFn=${getItemList} .templates=${cascaderItemTemplates}> </vl-cascader>
+        <vl-cascader .items=${items} .itemListFn=${getItemList} .templates=${cascaderItemTemplates}></vl-cascader>
     `;
 });
 CascaderPropertyBinding.storyName = 'vl-cascader - property binding';
@@ -205,7 +205,7 @@ export const CascaderItemSlots = story(
                 <vl-cascader-item label=${label}>
                     ${unsafeHTML(labelSlot)} ${unsafeHTML(contentSlot)}
                     <vl-cascader-item label="Gemeente">
-                        <vl-cascader-item label="Stad"> </vl-cascader-item>
+                        <vl-cascader-item label="Stad"></vl-cascader-item>
                     </vl-cascader-item>
                 </vl-cascader-item>
             </vl-cascader>

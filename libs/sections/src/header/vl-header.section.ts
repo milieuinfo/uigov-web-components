@@ -77,7 +77,7 @@ export class VlHeader extends BaseLitElement {
         }
     }
 
-    protected createRenderRoot(): Element {
+    protected createRenderRoot(): HTMLElement | DocumentFragment {
         return this;
     }
 

@@ -1,19 +1,19 @@
+import { defaultArgs, defaultArgTypes, story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../../../vl-map';
-import '../../vl-map-action-controls';
-import '../vl-map-measure-control';
+import '../../../action/draw-action/measure-action/vl-map-measure-action';
 import '../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
-import '../../../action/draw-action/measure-action/vl-map-measure-action';
+import '../../vl-map-action-controls';
+import '../vl-map-measure-control';
 import measureControlDoc from './vl-map-measure-control.stories-doc.mdx';
-import { Meta } from '@storybook/web-components';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/controls/measure-control',
     tags: ['autodocs'],
-    args: storyArgs({}),
-    argTypes: storyArgTypes({}),
+    args: defaultArgs,
+    argTypes: defaultArgTypes(),
     parameters: {
         docs: {
             page: measureControlDoc,
@@ -22,7 +22,7 @@ export default {
             hideNoControlsWarning: true,
         },
     },
-} as Meta;
+} as Meta<typeof defaultArgs>;
 
 export const MapMeasureControlDefault = story(
     {},

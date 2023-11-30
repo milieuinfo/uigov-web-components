@@ -1,17 +1,17 @@
-import { html } from 'lit-html';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+import { html } from 'lit-html';
 import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../vl-map-current-location';
 import { mapCurrentLocationArgs, mapCurrentLocationArgTypes } from './vl-map-current-location.stories-arg';
 import mapCurrentLocationDoc from './vl-map-current-location.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/current-location',
     tags: ['autodocs'],
-    args: storyArgs(mapCurrentLocationArgs),
-    argTypes: storyArgTypes(mapCurrentLocationArgTypes),
+    args: mapCurrentLocationArgs,
+    argTypes: mapCurrentLocationArgTypes,
     parameters: {
         docs: {
             page: mapCurrentLocationDoc,

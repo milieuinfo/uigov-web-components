@@ -1,4 +1,4 @@
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/web-components';
@@ -16,8 +16,8 @@ registerWebComponents([VlBreadcrumbComponent, VlBreadcrumbItemComponent, VlFunct
 export default {
     title: 'Components/functional-header',
     tags: ['autodocs'],
-    args: storyArgs(functionalHeaderArgs),
-    argTypes: storyArgTypes(functionalHeaderArgTypes),
+    args: functionalHeaderArgs,
+    argTypes: functionalHeaderArgTypes,
     parameters: {
         docs: {
             page: functionalHeaderDoc,

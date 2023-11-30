@@ -1,13 +1,15 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapActionArgs = {
+    ...defaultArgs,
     active: false,
     defaultActive: false,
     layer: '',
 };
 
 export const mapActionArgTypes: ArgTypes<typeof mapActionArgs> = {
+    ...defaultArgTypes(),
     active: {
         name: 'active',
         description: 'Controleert de actieve status van de actie.',

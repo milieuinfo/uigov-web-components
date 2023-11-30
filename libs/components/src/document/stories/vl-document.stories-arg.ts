@@ -1,7 +1,8 @@
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 
 export const documentArgs = {
+    ...defaultArgs,
     href: '#',
     type: '',
     title: '',
@@ -9,6 +10,7 @@ export const documentArgs = {
 };
 
 export const documentArgTypes: ArgTypes<typeof documentArgs> = {
+    ...defaultArgTypes(),
     href: {
         name: 'data-vl-href',
         description: 'Attribuut wordt gebruikt om de download link te bepalen.',

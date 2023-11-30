@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const infoTileArgs = {
+    ...defaultArgs,
     autoOpen: false,
     center: false,
     toggleable: false,
@@ -11,6 +12,7 @@ export const infoTileArgs = {
 };
 
 export const infoTileArgTypes: ArgTypes<typeof infoTileArgs> = {
+    ...defaultArgTypes(),
     autoOpen: {
         name: 'data-vl-auto-open',
         description:

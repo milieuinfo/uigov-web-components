@@ -1,8 +1,9 @@
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { SIZE } from '../vl-spotlight.model';
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 
 export const spotlightArgs = {
+    ...defaultArgs,
     link: '',
     alt: false,
     size: SIZE.S,
@@ -15,6 +16,7 @@ export const spotlightArgs = {
 };
 
 export const spotlightArgTypes: ArgTypes = {
+    ...defaultArgTypes(),
     link: {
         name: 'data-vl-link',
         description:

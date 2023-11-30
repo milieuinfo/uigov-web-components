@@ -1,6 +1,7 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 
 export const httpErrorMessageArgs = {
+    ...defaultArgs,
     title: 'Niets gevonden hiervoor.',
     image: 'https://cdn.milieuinfo.be/http-error-message-assets/LATEST/img/unexpected-error.svg',
     alt: 'Niets gevonden',
@@ -9,6 +10,7 @@ export const httpErrorMessageArgs = {
 };
 
 export const httpErrorMessageArgTypes = {
+    ...defaultArgTypes(),
     title: {
         name: 'data-vl-title',
         type: { name: TYPES.STRING, required: false },

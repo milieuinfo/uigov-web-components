@@ -1,6 +1,8 @@
+import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const infoblockArgs = {
+    ...defaultArgs,
     title: '',
     content: '',
     type: '',
@@ -8,6 +10,7 @@ export const infoblockArgs = {
 };
 
 export const infoblockArgTypes: ArgTypes<typeof infoblockArgs> = {
+    ...defaultArgTypes(),
     type: {
         name: 'data-vl-type',
         options: ['contact', 'publications', 'faq', 'news', 'timeline', 'question'],

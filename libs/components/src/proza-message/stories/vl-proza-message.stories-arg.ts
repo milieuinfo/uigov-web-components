@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const prozaMessageArgs = {
+    ...defaultArgs,
     baseUrl: '',
     block: false,
     code: '',
@@ -10,6 +11,7 @@ export const prozaMessageArgs = {
 };
 
 export const prozaMessageArgTypes: ArgTypes<typeof prozaMessageArgs> = {
+    ...defaultArgTypes(),
     baseUrl: {
         name: 'data-vl-base-url',
         description: `Optionele baseUrl waarvan het Proza bericht opgehaald wordt.<br>Indien deze baseUrl niet meegegeven wordt, wordt het Proza bericht opgehaald relatief tov de huidige url op het pad 'proza/domein/{domain}/{code}'.<br>Dit attribuut is niet reactief.`,

@@ -1,21 +1,21 @@
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 import '../../../../../../vl-map';
 import '../../../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../../../../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import '../../../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../vl-map-select-actions';
-import '../../../../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
-import mapSelectActionsDoc from './vl-map-select-actions.stories-doc.mdx';
 import { mapSelectActionsArgs, mapSelectActionsArgTypes } from './vl-map-select-actions.stories-arg';
-import { component as defaultComponent } from './vl-map-select-actions.stories-default';
-import { component as customStyleComponent } from './vl-map-select-actions.stories-custom-style';
 import { component as clusteringComponent } from './vl-map-select-actions.stories-clustering';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
+import { component as customStyleComponent } from './vl-map-select-actions.stories-custom-style';
+import { component as defaultComponent } from './vl-map-select-actions.stories-default';
+import mapSelectActionsDoc from './vl-map-select-actions.stories-doc.mdx';
 
 export default {
     title: 'map/action/layer-action/select-action/select-actions',
     tags: ['autodocs'],
-    args: storyArgs(mapSelectActionsArgs),
-    argTypes: storyArgTypes(mapSelectActionsArgTypes),
+    args: mapSelectActionsArgs,
+    argTypes: mapSelectActionsArgTypes,
     parameters: {
         docs: {
             page: mapSelectActionsDoc,

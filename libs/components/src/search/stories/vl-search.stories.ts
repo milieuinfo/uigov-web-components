@@ -1,14 +1,14 @@
+import { defaultArgs, defaultArgTypes, story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-search.component';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/search',
     tags: ['autodocs'],
-    args: storyArgs({}),
-    argTypes: storyArgTypes({}),
-} as Meta;
+    args: defaultArgs,
+    argTypes: defaultArgTypes(),
+} as Meta<typeof defaultArgs>;
 
 // TODO Add options to the story.
 export const searchDefault = story(

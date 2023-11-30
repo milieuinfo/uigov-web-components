@@ -1,3 +1,4 @@
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import { story } from '@domg-wc/common-storybook';
 import '../vl-cookie-consent.section';
@@ -15,7 +16,7 @@ export default {
             page: cookieConsentDoc,
         },
     },
-};
+} as Meta<typeof cookieConsentArgs>;
 
 export const CookieConsentDefault = story(
     cookieConsentArgs,

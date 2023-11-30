@@ -1,4 +1,3 @@
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-wizard-pane.component';
@@ -9,8 +8,8 @@ import { getWizard } from './vl-wizard.stories-util';
 export default {
     title: 'Components/wizard/wizard',
     tags: ['autodocs'],
-    args: storyArgs(wizardArgs),
-    argTypes: storyArgTypes(wizardArgTypes),
+    args: wizardArgs,
+    argTypes: wizardArgTypes,
 } as Meta<typeof wizardArgs>;
 
 export const wizardDefault = ({ activeStepSlider, title, header, onClickStep }: typeof wizardArgs) => html` <div

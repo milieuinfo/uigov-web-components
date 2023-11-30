@@ -1,21 +1,21 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../../../vl-map';
 import '../../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../../../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
+import '../../../../layer-style/vl-map-layer-style';
 import '../../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../../../../layer/vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
-import '../../../../layer-style/vl-map-layer-style';
-import '../../../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import '../vl-map-modify-action';
 import { mapModifyActionArgs, mapModifyActionArgTypes } from './vl-map-modify-action.stories-arg';
 import mapModifyActionDoc from './vl-map-modify-action.stories-doc.mdx';
-import { Meta } from '@storybook/web-components';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/layer-action/modify-action',
     tags: ['autodocs'],
-    args: storyArgs(mapModifyActionArgs),
-    argTypes: storyArgTypes(mapModifyActionArgTypes),
+    args: mapModifyActionArgs,
+    argTypes: mapModifyActionArgTypes,
     parameters: {
         docs: {
             page: mapModifyActionDoc,

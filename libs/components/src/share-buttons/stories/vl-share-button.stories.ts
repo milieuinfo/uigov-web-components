@@ -1,4 +1,3 @@
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-share-button.component';
@@ -8,8 +7,8 @@ import { shareButtonArgs, shareButtonArgTypes } from './vl-share-button.stories-
 export default {
     title: 'Components/share-buttons/button',
     tags: ['autodocs'],
-    args: storyArgs(shareButtonArgs),
-    argTypes: storyArgTypes(shareButtonArgTypes),
+    args: shareButtonArgs,
+    argTypes: shareButtonArgTypes,
 } as Meta<typeof shareButtonArgs>;
 
 export const shareButtonDefault = ({ href, medium }: typeof shareButtonArgs) =>

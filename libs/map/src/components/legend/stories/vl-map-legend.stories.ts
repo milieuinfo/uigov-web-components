@@ -1,4 +1,3 @@
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
@@ -17,8 +16,8 @@ import mapLegendDoc from './vl-map-legend.stories-doc.mdx';
 export default {
     title: 'map/legend',
     tags: ['autodocs'],
-    args: storyArgs(mapLegendArgs),
-    argTypes: storyArgTypes(mapLegendArgTypes),
+    args: mapLegendArgs,
+    argTypes: mapLegendArgTypes,
     parameters: {
         docs: {
             page: mapLegendDoc,

@@ -1,3 +1,4 @@
+import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 const PLACEMENT = {
@@ -8,12 +9,14 @@ const PLACEMENT = {
 };
 
 export const tooltipArgs = {
+    ...defaultArgs,
     placement: 'top',
     tooltipContent: 'Tooltip content',
     vlStatic: false,
 };
 
 export const tooltipArgTypes: ArgTypes<typeof tooltipArgs> = {
+    ...defaultArgTypes(),
     placement: {
         name: 'data-vl-placement',
         options: [PLACEMENT.TOP, PLACEMENT.RIGHT, PLACEMENT.BOTTOM, PLACEMENT.LEFT],

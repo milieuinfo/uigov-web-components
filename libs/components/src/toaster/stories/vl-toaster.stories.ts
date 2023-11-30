@@ -1,5 +1,6 @@
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlButtonElement } from '@domg-wc/elements';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import { VlAlert } from '../../alert/vl-alert.component';
 import { VlToasterElement } from '../vl-toaster.element';
@@ -17,7 +18,7 @@ export default {
             hideNoControlsWarning: true,
         },
     },
-};
+} as Meta<typeof toasterArgs>;
 
 export const toasterDefault = ({ topLeft, topRight, bottomLeft, bottomRight, fadeOut }: typeof toasterArgTypes) => html`
     <div

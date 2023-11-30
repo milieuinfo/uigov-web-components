@@ -1,8 +1,9 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { Args, ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 
 export const uploadArgs = {
+    ...defaultArgs,
     acceptedFiles: '',
     autoProcess: false,
     disabled: false,
@@ -25,6 +26,7 @@ export const uploadArgs = {
 };
 
 export const uploadArgTypes: ArgTypes = {
+    ...defaultArgTypes(),
     acceptedFiles: {
         name: 'data-vl-accepted-files',
         description:

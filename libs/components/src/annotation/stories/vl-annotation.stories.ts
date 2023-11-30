@@ -1,14 +1,13 @@
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-annotation.component';
 import { annotationArgs, annotationArgTypes } from './vl-annotation.stories-arg';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/annotation',
     tags: ['autodocs'],
-    args: storyArgs(annotationArgs),
-    argTypes: storyArgTypes(annotationArgTypes),
+    args: annotationArgs,
+    argTypes: annotationArgTypes,
 } as Meta<typeof annotationArgs>;
 
 const annotationTemplate = ({ content, small }: typeof annotationArgs) => html`

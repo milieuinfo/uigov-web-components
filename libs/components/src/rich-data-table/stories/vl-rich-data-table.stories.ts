@@ -1,22 +1,22 @@
 // deze imports van alle elements werkt IN de monorepo
+import { story } from '@domg-wc/common-storybook';
 // -> buiten de monorepo werkt dat niet omdat sideEffects disabled worden voor de root-barrel file in de artifacts
 import '@domg-wc/elements';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-rich-data-table.component';
+import { filterRichTableImplementation } from './vl-rich-data-table-filter.stories-util';
+import richDataFilterPagerData from './vl-rich-data-table-pagination.stories-mock';
+import { paginationRichTableImplementation } from './vl-rich-data-table-pagination.stories-util';
+import { sortingRichTableImplementation } from './vl-rich-data-table-sorting.stories-util';
 import { richDataTableArgs, richDataTableArgTypes } from './vl-rich-data-table.stories-arg';
 import richDataTableDoc from './vl-rich-data-table.stories-doc.mdx';
-import { sortingRichTableImplementation } from './vl-rich-data-table-sorting.stories-util';
-import { filterRichTableImplementation } from './vl-rich-data-table-filter.stories-util';
-import { paginationRichTableImplementation } from './vl-rich-data-table-pagination.stories-util';
-import richDataFilterPagerData from './vl-rich-data-table-pagination.stories-mock';
-import { storyArgTypes, storyArgs, story } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/rich-data-table',
     tags: ['autodocs'],
-    args: storyArgs(richDataTableArgs),
-    argTypes: storyArgTypes(richDataTableArgTypes),
+    args: richDataTableArgs,
+    argTypes: richDataTableArgTypes,
     parameters: {
         docs: {
             page: richDataTableDoc,

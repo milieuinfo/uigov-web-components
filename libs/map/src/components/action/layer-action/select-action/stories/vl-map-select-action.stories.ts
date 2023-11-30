@@ -1,18 +1,18 @@
-import { mapSelectActionArgs, mapSelectActionArgTypes } from './vl-map-select-action.stories-arg';
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import '../../../../../vl-map';
 import '../../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
+import '../../../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import '../../../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../vl-map-select-action';
-import '../../../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
-import { Meta } from '@storybook/web-components';
+import { mapSelectActionArgs, mapSelectActionArgTypes } from './vl-map-select-action.stories-arg';
 import mapSelectActionDoc from './vl-map-select-action.stories-doc.mdx';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/action/layer-action/select-action',
-    args: storyArgs(mapSelectActionArgs),
-    argTypes: storyArgTypes(mapSelectActionArgTypes),
+    args: mapSelectActionArgs,
+    argTypes: mapSelectActionArgTypes,
     parameters: {
         docs: {
             page: mapSelectActionDoc,
@@ -104,8 +104,8 @@ export const MapSelectActionClustering = story(
                         data-vl-color="#0099ff"
                         data-vl-text-color="#ffffff"
                         data-vl-border-color="#ffffff"
-                    ></vl-map-layer-circle-style
-                ></vl-map-select-action>
+                    ></vl-map-layer-circle-style>
+                </vl-map-select-action>
                 <vl-map-layer-circle-style data-vl-border-color="#000000"></vl-map-layer-circle-style>
             </vl-map-features-layer>
         </vl-map>

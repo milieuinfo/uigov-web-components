@@ -1,17 +1,17 @@
-import { html } from 'lit-html';
-import { VlProzaMessage } from '../vl-proza-message.component';
-import { VlProzaMessagePreloader } from '../vl-proza-message-preloader.component';
-import { prozaMessageMockDomainData } from './vl-proza-message.stories-data';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
-import { prozaMessagePreloaderArgTypes, prozaMessagePreloaderArgs } from './vl-proza-message-preloader.stories-arg';
+import { html } from 'lit-html';
+import { VlProzaMessagePreloader } from '../vl-proza-message-preloader.component';
+import { VlProzaMessage } from '../vl-proza-message.component';
+import { prozaMessagePreloaderArgs, prozaMessagePreloaderArgTypes } from './vl-proza-message-preloader.stories-arg';
 import prozaMessagePreloaderDoc from './vl-proza-message-preloader.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
+import { prozaMessageMockDomainData } from './vl-proza-message.stories-data';
 
 export default {
     title: 'components/proza-message-preloader',
     tags: ['autodocs'],
-    args: storyArgs(prozaMessagePreloaderArgs),
-    argTypes: storyArgTypes(prozaMessagePreloaderArgTypes),
+    args: prozaMessagePreloaderArgs,
+    argTypes: prozaMessagePreloaderArgTypes,
     parameters: {
         docs: {
             page: prozaMessagePreloaderDoc,

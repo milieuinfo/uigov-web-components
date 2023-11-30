@@ -1,14 +1,14 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-infoblock.component';
 import { infoblockArgs, infoblockArgTypes } from './vl-infoblock.stories-arg';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/infoblock',
     tags: ['autodocs'],
-    args: storyArgs(infoblockArgs),
-    argTypes: storyArgTypes(infoblockArgTypes),
+    args: infoblockArgs,
+    argTypes: infoblockArgTypes,
 } as Meta<typeof infoblockArgs>;
 
 const infoblockTemplate = story(

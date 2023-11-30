@@ -1,15 +1,15 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-content-header.component';
 import { contentHeaderArgs, contentHeaderArgTypes } from './vl-content-header.stories-arg';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
 import contentHeaderDoc from './vl-content-header.stories-doc.mdx';
 
 export default {
     title: 'Components/content-header',
     tags: ['autodocs'],
-    args: storyArgs(contentHeaderArgs),
-    argTypes: storyArgTypes(contentHeaderArgTypes),
+    args: contentHeaderArgs,
+    argTypes: contentHeaderArgTypes,
     parameters: {
         docs: {
             page: contentHeaderDoc,

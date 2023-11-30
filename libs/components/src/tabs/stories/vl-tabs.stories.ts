@@ -1,4 +1,4 @@
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-tabs.component';
@@ -9,8 +9,8 @@ import { addPane } from './vl-tabs.stories-util';
 export default {
     title: 'Components/tabs',
     tags: ['autodocs'],
-    args: storyArgs(tabsArgs),
-    argTypes: storyArgTypes(tabsArgTypes),
+    args: tabsArgs,
+    argTypes: tabsArgTypes,
     parameters: {
         docs: {
             page: tabsDoc,

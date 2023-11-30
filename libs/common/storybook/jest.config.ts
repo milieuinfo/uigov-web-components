@@ -2,6 +2,7 @@
 export default {
     displayName: 'common-storybook',
     preset: '../../../jest.preset.js',
+    globals: {},
     transform: {
         '^.+\\.[tj]sx?$': [
             'ts-jest',
@@ -10,6 +11,7 @@ export default {
             },
         ],
     },
+    transformIgnorePatterns: [],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
     coverageDirectory: '../../../coverage/libs/common/storybook',
 };

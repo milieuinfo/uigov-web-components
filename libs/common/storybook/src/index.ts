@@ -1,10 +1,10 @@
 export {
     CATEGORIES,
     TYPES,
+    defaultArgs,
+    defaultArgTypes,
     filterOutClasses,
     formatHTML,
     logStorybookEvent,
     story,
-    storyArgs,
-    storyArgTypes,
 } from './stories.helper';

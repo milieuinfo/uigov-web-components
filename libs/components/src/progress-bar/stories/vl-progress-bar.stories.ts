@@ -1,15 +1,15 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-progress-bar.component';
 import { progressBarArgs, progressBarArgTypes } from './vl-progress-bar.stories-arg';
-import { Meta } from '@storybook/web-components';
 import progressBarDoc from './vl-progress-bar.stories-doc.mdx';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/progress-bar',
     tags: ['autodocs'],
-    args: storyArgs(progressBarArgs),
-    argTypes: storyArgTypes(progressBarArgTypes),
+    args: progressBarArgs,
+    argTypes: progressBarArgTypes,
     parameters: {
         docs: {
             page: progressBarDoc,

@@ -1,9 +1,8 @@
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-toggle-button.component';
-import { toggleButtonArgs, toggleButtonArgTypes } from './vl-toggle-button.stories-arg';
 import { ICON_PLACEMENT } from '../vl-toggle-button.model';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
+import { toggleButtonArgs, toggleButtonArgTypes } from './vl-toggle-button.stories-arg';
 
 const getLastElement = (element: any) => {
     const [lastItem] = [...Array(document.querySelectorAll(element))].slice(-1);
@@ -13,8 +12,8 @@ const getLastElement = (element: any) => {
 export default {
     title: 'Components/toggle-button',
     tags: ['autodocs'],
-    args: storyArgs(toggleButtonArgs),
-    argTypes: storyArgTypes(toggleButtonArgTypes),
+    args: toggleButtonArgs,
+    argTypes: toggleButtonArgTypes,
 } as Meta<typeof toggleButtonArgs>;
 
 export const toggleButtonDefault = ({

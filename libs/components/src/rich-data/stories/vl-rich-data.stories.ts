@@ -1,15 +1,15 @@
-import { html } from 'lit-html';
-import '../vl-rich-data.component';
-import '../../rich-data-table/vl-rich-data-field.component';
-import { richDataArgs, richDataArgTypes } from './vl-rich-data.stories-arg';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
+import { html } from 'lit-html';
+import '../../rich-data-table/vl-rich-data-field.component';
+import '../vl-rich-data.component';
+import { richDataArgs, richDataArgTypes } from './vl-rich-data.stories-arg';
 
 export default {
     title: 'components/rich-data',
     tags: ['autodocs'],
-    args: storyArgs(richDataArgs),
-    argTypes: storyArgTypes(richDataArgTypes),
+    args: richDataArgs,
+    argTypes: richDataArgTypes,
 } as Meta<typeof richDataArgs>;
 
 export const richDataDefault = ({ filterCloseable, filterClosed }: typeof richDataArgs) => {

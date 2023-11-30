@@ -1,14 +1,13 @@
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-description-data-item.component';
 import { descriptionDataItemArgs, descriptionDataItemArgTypes } from './vl-description-data-item.stories-arg';
-import { Meta } from '@storybook/web-components';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/description-data/description-data-item',
     tags: ['autodocs'],
-    args: storyArgs(descriptionDataItemArgs),
-    argTypes: storyArgTypes(descriptionDataItemArgTypes),
+    args: descriptionDataItemArgs,
+    argTypes: descriptionDataItemArgTypes,
     parameters: {
         controls: {
             hideNoControlsWarning: true,

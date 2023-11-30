@@ -1,16 +1,16 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-upload.component';
 import { uploadArgs, uploadArgTypes } from './vl-upload.stories-args';
 import uploadDoc from './vl-upload.stories-doc.mdx';
-import { Meta } from '@storybook/web-components';
 import addDuplicateWarning from './vl-upload.stories-util';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
 
 export default {
     title: 'Components/upload',
     tags: ['autodocs'],
-    args: storyArgs(uploadArgs),
-    argTypes: storyArgTypes(uploadArgTypes),
+    args: uploadArgs,
+    argTypes: uploadArgTypes,
     parameters: {
         docs: {
             page: uploadDoc,

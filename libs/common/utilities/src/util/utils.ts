@@ -1,6 +1,6 @@
-import { Class } from '../type/types';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
 import { VL } from '../models';
+
 declare const vl: VL;
 
 /**
@@ -12,26 +12,6 @@ declare const vl: VL;
  * @param webComponents
  */
 export const registerWebComponents = (webComponents: any[]) => {};
-
-/**
- * Definieert een class als custom element enkel wanneer deze nog niet gedefinieerd werd.
- *
- * @param {String} name - custom HTML element naam
- * @param {Object} constructor - constructor voor de class
- * @param {Object} options - opties
- * @return {void}g
- */
-export const define = (
-    name: string,
-    constructor: Class, // TODO kspeltin: CustomElementConstructor,
-    options?: ElementDefinitionOptions
-): void => {
-    if (customElements.get(name)) {
-        console.warn(`${name} werd reeds gedefinieerd als custom element`);
-    } else {
-        customElements.define(name, constructor, options);
-    }
-};
 
 /**
  * Asynchroon een script downloaden maar synchroon in volgorde uitvoeren.

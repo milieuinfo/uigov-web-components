@@ -1,8 +1,9 @@
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { LEGEND_PLACEMENT } from '../vl-map-legend';
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 
 export const mapLegendArgs = {
+    ...defaultArgs,
     bottom: '',
     left: '',
     placement: LEGEND_PLACEMENT.BOTTOM_RIGHT,
@@ -11,6 +12,7 @@ export const mapLegendArgs = {
 };
 
 export const mapLegendArgTypes: ArgTypes<typeof mapLegendArgs> = {
+    ...defaultArgTypes(),
     bottom: {
         name: 'bottom',
         description:
@@ -45,9 +47,9 @@ export const mapLegendArgTypes: ArgTypes<typeof mapLegendArgs> = {
         },
         table: {
             type: {
-                summary: `"${LEGEND_PLACEMENT.TOP_LEFT}" | 
-                "${LEGEND_PLACEMENT.TOP_RIGHT}" | 
-                "${LEGEND_PLACEMENT.BOTTOM_LEFT}" | 
+                summary: `"${LEGEND_PLACEMENT.TOP_LEFT}" |
+                "${LEGEND_PLACEMENT.TOP_RIGHT}" |
+                "${LEGEND_PLACEMENT.BOTTOM_LEFT}" |
                 "${LEGEND_PLACEMENT.BOTTOM_RIGHT}"`,
             },
             category: CATEGORIES.ATTRIBUTES,

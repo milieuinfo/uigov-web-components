@@ -1,15 +1,14 @@
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-loader.component';
 import { loaderArgs, loaderArgTypes } from './vl-loader.stories-arg';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
 
 export default {
     title: 'Components/loader',
     tags: ['autodocs'],
-    args: storyArgs(loaderArgs),
-    argTypes: storyArgTypes(loaderArgTypes),
-} as Meta<typeof storyArgs>;
+    args: loaderArgs,
+    argTypes: loaderArgTypes,
+} as Meta<typeof loaderArgs>;
 
 export const loaderDefault = ({ light, text, single }: typeof loaderArgs) => html`
     <vl-loader ?data-vl-light=${light} data-vl-text=${text} ?data-vl-single=${single} data-cy="loader"></vl-loader>

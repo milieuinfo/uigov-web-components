@@ -1,11 +1,13 @@
-import { CATEGORIES, logStorybookEvent } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, logStorybookEvent } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapClickActionArg = {
+    ...defaultArgs,
     onMapClicked: logStorybookEvent('vl-map-clicked'),
 };
 
 export const mapClickActionArgTypes: ArgTypes<typeof mapClickActionArg> = {
+    ...defaultArgTypes(),
     onMapClicked: {
         name: 'vl-map-clicked',
         description:

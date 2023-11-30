@@ -1,8 +1,9 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
-import { ArgTypes } from '@storybook/web-components';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { PADDINGS } from '@domg-wc/common-utilities';
+import { ArgTypes } from '@storybook/web-components';
 
 export const popoverDefaultArgs = {
+    ...defaultArgs,
     contentPadding: 'small',
     for: '',
     trigger: 'click',
@@ -14,6 +15,7 @@ export const popoverDefaultArgs = {
 };
 
 export const popoverArgTypes: ArgTypes = {
+    ...defaultArgTypes(true),
     for: {
         name: 'for',
         description:

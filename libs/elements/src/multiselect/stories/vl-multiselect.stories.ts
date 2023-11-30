@@ -1,3 +1,4 @@
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../link/vl-link.element';
 import '../vl-multiselect.element';
@@ -11,7 +12,7 @@ export default {
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
-};
+} as Meta<typeof multiselectArgs>;
 
 export const multiselectDefault = ({ block, error, success, disabled }: typeof multiselectArgs) => html`
     <select

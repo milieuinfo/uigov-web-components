@@ -1,5 +1,6 @@
-import { BaseElementOfType, define } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
+@webComponent('vl-doormat-content', { extends: 'div' })
 export class VlDoormatContentElement extends BaseElementOfType(HTMLDivElement) {
     connectedCallback() {
         this._processStyle();
@@ -22,5 +23,3 @@ export class VlDoormatContentElement extends BaseElementOfType(HTMLDivElement) {
         this.prepend(this._iconTemplate);
     }
 }
-
-define('vl-doormat-content', VlDoormatContentElement, { extends: 'div' });

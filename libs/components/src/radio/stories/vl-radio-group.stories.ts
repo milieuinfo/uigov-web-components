@@ -1,4 +1,4 @@
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { defaultArgs, defaultArgTypes, story } from '@domg-wc/common-storybook';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
@@ -11,8 +11,8 @@ registerWebComponents([VlRadio, VlRadioGroup]);
 export default {
     title: 'Components/radio',
     tags: ['autodocs'],
-    args: storyArgs({}),
-    argTypes: storyArgTypes({}),
+    args: defaultArgs,
+    argTypes: defaultArgTypes(),
     parameters: {
         docs: {
             page: radioDoc,
@@ -21,7 +21,7 @@ export default {
             hideNoControlsWarning: true,
         },
     },
-} as Meta;
+} as Meta<typeof defaultArgs>;
 
 export const RadioGroupDefault = story(
     {},

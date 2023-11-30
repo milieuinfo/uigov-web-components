@@ -1,9 +1,10 @@
 import { ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 import { PADDINGS } from '@domg-wc/common-utilities';
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 
 export const accordionArgs = {
+    ...defaultArgs,
     bold: false,
     closeToggleText: '',
     contentPadding: null,
@@ -20,6 +21,7 @@ export const accordionArgs = {
 };
 
 export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
+    ...defaultArgTypes(),
     bold: {
         name: 'data-vl-bold',
         description: 'Beeldt de toggle-text van de accordion af in bold.',
@@ -121,8 +123,7 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
     },
     subtitleSlot: {
         name: 'subtitle',
-        description:
-            'Subtitel slotelement. Wordt getoond in open en gesloten toestand.',
+        description: 'Subtitel slotelement. Wordt getoond in open en gesloten toestand.',
         table: {
             type: { summary: TYPES.HTML },
             category: CATEGORIES.SLOTS,
@@ -131,8 +132,7 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
     },
     menuSlot: {
         name: 'menu',
-        description:
-            'Slotelement om menu item toe te voegen in rechterbovenhoek.',
+        description: 'Slotelement om menu item toe te voegen in rechterbovenhoek.',
         table: {
             type: { summary: TYPES.HTML },
             category: CATEGORIES.SLOTS,

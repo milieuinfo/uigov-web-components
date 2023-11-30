@@ -1,11 +1,14 @@
+import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const templateArgs = {
+    ...defaultArgs,
     center: false,
     stretch: false,
 };
 
 export const templateArgTypes: ArgTypes<typeof templateArgs> = {
+    ...defaultArgTypes(),
     center: {
         name: 'data-vl-v-center',
         description: 'Attribuut wordt gebruikt om ervoor te zorgen dat de content verticaal gecentreerd wordt.',

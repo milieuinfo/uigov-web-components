@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapSearchArgs = {
+    ...defaultArgs,
     placeholder: 'Zoeken op kaart',
     searchEmptyText: 'Geen adres gevonden',
     searchNoResultsText: 'Geen adres gevonden',
@@ -10,6 +11,7 @@ export const mapSearchArgs = {
 };
 
 export const mapSearchArgTypes: ArgTypes<typeof mapSearchArgs> = {
+    ...defaultArgTypes(),
     placeholder: {
         name: 'data-vl-placeholder',
         description: 'De placeholder van het select element.<br>Dit attribuut is niet reactief.',

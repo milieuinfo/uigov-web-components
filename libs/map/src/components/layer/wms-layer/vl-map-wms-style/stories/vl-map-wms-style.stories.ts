@@ -1,18 +1,18 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../../../../vl-map';
 import '../../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
-import '../vl-map-wms-style';
 import '../../vl-map-tiled-wms-layer/vl-map-tiled-wms-layer';
-import { Meta } from '@storybook/web-components';
+import '../vl-map-wms-style';
 import { mapWmsStyleArgs, mapWmsStyleArgTypes } from './vl-map-wms-style.stories-arg';
 import mapWmsStyleDoc from './vl-map-wms-style.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/wms-layer/wms-style',
     tags: ['autodocs'],
-    args: storyArgs(mapWmsStyleArgs),
-    argTypes: storyArgTypes(mapWmsStyleArgTypes),
+    args: mapWmsStyleArgs,
+    argTypes: mapWmsStyleArgTypes,
     parameters: {
         docs: {
             page: mapWmsStyleDoc,

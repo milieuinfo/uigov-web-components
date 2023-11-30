@@ -1,4 +1,4 @@
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-radio.component';
@@ -7,8 +7,8 @@ import { radioArgs, radioArgTypes } from './vl-radio.stories-arg';
 export default {
     title: 'Components/radio',
     tags: ['autodocs'],
-    args: storyArgs(radioArgs),
-    argTypes: storyArgTypes(radioArgTypes),
+    args: radioArgs,
+    argTypes: radioArgTypes,
     parameters: {
         controls: {
             hideNoControlsWarning: true,

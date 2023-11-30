@@ -1,8 +1,12 @@
+import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+
 export const buttonPillArgs = {
+    ...defaultArgs,
     type: '',
 };
 
 export const buttonPillArgTypes = {
+    ...defaultArgTypes(),
     type: {
         name: 'data-vl-type',
         description: 'The attribute that determines the type. ',

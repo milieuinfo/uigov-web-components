@@ -1,20 +1,20 @@
-import { html } from 'lit-html';
-import '../vl-accordion.component';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { story } from '@domg-wc/common-storybook';
+import { registerWebComponents } from '@domg-wc/common-utilities';
 import { Meta } from '@storybook/web-components';
+import { html } from 'lit-html';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { VlPopoverComponent } from '../../popover';
+import '../vl-accordion.component';
 import { accordionArgs, accordionArgTypes } from './vl-accordion.stories-arg';
 import accordionDoc from './vl-accordion.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
-import { VlPopoverComponent } from '../../popover';
-import { registerWebComponents } from '@domg-wc/common-utilities';
 
 registerWebComponents([VlPopoverComponent]);
 
 export default {
     title: 'Components/accordion',
     tags: ['autodocs'],
-    args: storyArgs(accordionArgs),
-    argTypes: storyArgTypes(accordionArgTypes),
+    args: accordionArgs,
+    argTypes: accordionArgTypes,
     parameters: {
         docs: {
             page: accordionDoc,

@@ -1,15 +1,15 @@
-import { html } from 'lit-html';
-import { stepsArgs, stepsArgTypes } from './vl-steps.stories-arg';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
-import stepsDoc from './vl-steps.stories-doc.mdx';
+import { html } from 'lit-html';
 import '../vl-steps.component';
+import { stepsArgs, stepsArgTypes } from './vl-steps.stories-arg';
+import stepsDoc from './vl-steps.stories-doc.mdx';
 
 export default {
     title: 'Components-next/steps-next',
     tags: ['autodocs'],
-    args: storyArgs(stepsArgs),
-    argTypes: storyArgTypes(stepsArgTypes),
+    args: stepsArgs,
+    argTypes: stepsArgTypes,
     parameters: {
         docs: {
             page: stepsDoc,

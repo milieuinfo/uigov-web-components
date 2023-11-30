@@ -1,10 +1,7 @@
 import { filterOutClasses, formatHTML } from '@domg-wc/common-storybook';
 import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlIconElement } from '@domg-wc/elements';
 import 'reflect-metadata';
-import { VlIconElement } from '../../../libs/elements/src';
-// import vlElementsStyle from '../../../libs/elements/src/vl-elements.uig-css';
-
-// document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },

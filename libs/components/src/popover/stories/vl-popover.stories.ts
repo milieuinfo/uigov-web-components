@@ -1,21 +1,21 @@
-import { html } from 'lit-html';
-import { popoverArgTypes, popoverDefaultArgs } from './vl-popover.stories-arg';
-import { story, storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
-import { Meta } from '@storybook/web-components';
-import popoverDoc from './vl-popover.stories-doc.mdx';
-import { action } from '@storybook/addon-actions';
-import { VlPopoverComponent } from '../vl-popover.component';
-import { VlPopoverActionComponent } from '../vl-popover-action.component';
-import { VlPopoverActionListComponent } from '../vl-popover-action-list.component';
+import { story } from '@domg-wc/common-storybook';
 import { registerWebComponents } from '@domg-wc/common-utilities';
+import { action } from '@storybook/addon-actions';
+import { Meta } from '@storybook/web-components';
+import { html } from 'lit-html';
+import { VlPopoverActionListComponent } from '../vl-popover-action-list.component';
+import { VlPopoverActionComponent } from '../vl-popover-action.component';
+import { VlPopoverComponent } from '../vl-popover.component';
+import { popoverArgTypes, popoverDefaultArgs } from './vl-popover.stories-arg';
+import popoverDoc from './vl-popover.stories-doc.mdx';
 
 registerWebComponents([VlPopoverComponent, VlPopoverActionComponent, VlPopoverActionListComponent]);
 
 export default {
     title: 'Components/popover',
     tags: ['autodocs'],
-    args: storyArgs(popoverDefaultArgs),
-    argTypes: storyArgTypes(popoverArgTypes, true),
+    args: popoverDefaultArgs,
+    argTypes: popoverArgTypes,
     parameters: {
         docs: {
             page: popoverDoc,

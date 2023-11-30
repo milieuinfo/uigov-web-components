@@ -1,6 +1,8 @@
+import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 
 export const wizardArgs = {
+    ...defaultArgs,
     activeStepSlider: 1,
     title: 'Wizard title',
     header: "You're a wizard Harry",
@@ -8,6 +10,7 @@ export const wizardArgs = {
 };
 
 export const wizardArgTypes = {
+    ...defaultArgTypes(),
     activeStepSlider: {
         name: 'data-vl-active-step',
         description: 'Sets the active step of the wizard.',

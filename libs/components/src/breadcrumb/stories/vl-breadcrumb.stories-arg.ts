@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const breadcrumbItemArgs = {
+    ...defaultArgs,
     href1: '',
     href2: '',
     href3: '',
@@ -9,6 +10,7 @@ export const breadcrumbItemArgs = {
 };
 
 export const breadcrumbItemArgTypes: ArgTypes<typeof breadcrumbItemArgs> = {
+    ...defaultArgTypes(),
     href1: {
         name: 'data-vl-href',
         description: 'Url voor bread-crumb-item #1.',

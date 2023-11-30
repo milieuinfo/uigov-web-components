@@ -1,15 +1,14 @@
-import { html } from 'lit-html';
-import { spotlightArgs, spotlightArgTypes } from './vl-spotlight.stories-arg';
-import { SIZE } from '../vl-spotlight.model';
-import '../vl-spotlight.component';
 import { Meta } from '@storybook/web-components';
-import { storyArgs, storyArgTypes } from '@domg-wc/common-storybook';
+import { html } from 'lit-html';
+import '../vl-spotlight.component';
+import { SIZE } from '../vl-spotlight.model';
+import { spotlightArgs, spotlightArgTypes } from './vl-spotlight.stories-arg';
 
 export default {
     title: 'components/spotlight',
     tags: ['autodocs'],
-    args: storyArgs(spotlightArgs),
-    argTypes: storyArgTypes(spotlightArgTypes),
+    args: spotlightArgs,
+    argTypes: spotlightArgTypes,
     parameters: {
         controls: {
             hideNoControlsWarning: true,

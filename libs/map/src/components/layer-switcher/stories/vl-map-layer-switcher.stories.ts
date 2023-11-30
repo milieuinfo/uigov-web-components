@@ -1,22 +1,22 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../../vl-map';
 import '../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
-import '../../side-sheet/vl-map-side-sheet';
-import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
+import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
+import '../../side-sheet/vl-map-side-sheet';
 import '../vl-map-layer-switcher';
-import { storyControlTemplates, mapLayersToAddOrRemove } from './vl-map-layer-switcher.stories-templates';
-import { Meta } from '@storybook/web-components';
+import { mapLayerSwitcherArgs, mapLayerSwitcherArgTypes } from './vl-map-layer-switcher.stories-arg';
 import mapLayerSwitcherDoc from './vl-map-layer-switcher.stories-doc.mdx';
+import { mapLayersToAddOrRemove, storyControlTemplates } from './vl-map-layer-switcher.stories-templates';
 import { dynamicLayerSwitcherImplementation } from './vl-map-layer-switcher.stories-utils';
-import { mapLayerSwitcherArgTypes, mapLayerSwitcherArgs } from './vl-map-layer-switcher.stories-arg';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer-switcher',
     tags: ['autodocs'],
-    args: storyArgs(mapLayerSwitcherArgs),
-    argTypes: storyArgTypes(mapLayerSwitcherArgTypes),
+    args: mapLayerSwitcherArgs,
+    argTypes: mapLayerSwitcherArgTypes,
     parameters: {
         docs: {
             page: mapLayerSwitcherDoc,

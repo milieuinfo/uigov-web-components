@@ -1,11 +1,13 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapWmsStyleArgs = {
+    ...defaultArgs,
     sld: '',
 };
 
 export const mapWmsStyleArgTypes: ArgTypes<typeof mapWmsStyleArgs> = {
+    ...defaultArgTypes(),
     sld: {
         name: 'data-vl-sld',
         description:

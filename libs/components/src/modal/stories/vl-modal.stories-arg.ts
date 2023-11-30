@@ -1,6 +1,8 @@
+import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const modalArgs = {
+    ...defaultArgs,
     title: 'Modal',
     open: false,
     closable: false,
@@ -10,6 +12,7 @@ export const modalArgs = {
 };
 
 export const modalArgTypes: ArgTypes = {
+    ...defaultArgTypes(),
     title: {
         name: 'data-vl-title',
         description: 'Attribute used to add an heading 2 (h2) title. When empty there is no heading element created.',

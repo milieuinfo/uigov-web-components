@@ -1,3 +1,4 @@
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-form-column.element';
 import '../../form/vl-form.element';
@@ -10,7 +11,7 @@ export default {
     tags: ['autodocs'],
     args: gridColumnArgs,
     argTypes: gridColumnArgTypes,
-};
+} as Meta<typeof gridColumnArgs>;
 
 export const formGridColumn = ({
     size,

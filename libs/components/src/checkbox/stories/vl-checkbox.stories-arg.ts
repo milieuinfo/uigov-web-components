@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const checkboxArgs = {
+    ...defaultArgs,
     block: false,
     checked: false,
     disabled: false,
@@ -15,6 +16,7 @@ export const checkboxArgs = {
 };
 
 export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
+    ...defaultArgTypes(),
     block: {
         name: 'data-vl-block',
         description: 'Beeldt de checkbox af als een block element.',

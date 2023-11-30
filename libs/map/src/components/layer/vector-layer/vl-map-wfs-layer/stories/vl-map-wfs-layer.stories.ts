@@ -1,17 +1,17 @@
+import { story } from '@domg-wc/common-storybook';
+import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../../../../../vl-map';
 import '../../../../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import '../vl-map-wfs-layer';
-import { Meta } from '@storybook/web-components';
 import { mapWfsLayerArgs, mapWfsLayerArgTypes } from './vl-map-wfs-layer.stories-arg';
 import mapWfsLayerDoc from './vl-map-wfs-layer.stories-doc.mdx';
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
 
 export default {
     title: 'map/layer/vector-layer/wfs-layer',
     tags: ['autodocs'],
-    args: storyArgs(mapWfsLayerArgs),
-    argTypes: storyArgTypes(mapWfsLayerArgTypes),
+    args: mapWfsLayerArgs,
+    argTypes: mapWfsLayerArgTypes,
     parameters: {
         docs: {
             page: mapWfsLayerDoc,

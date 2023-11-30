@@ -1,12 +1,13 @@
 // TODO: te bekijken of dit nuttig is: remove from here and reuse from "vl-button.stories-helper.ts" instead.
 // import { sharedButtonArgs, sharedButtonArgTypes } from '@domg-wc/elements';
 
-import { TYPES } from '@domg-wc/common-storybook';
+import { defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
-import { ICON_PLACEMENT } from '../vl-toggle-button.model';
 import { ArgTypes } from '@storybook/web-components';
+import { ICON_PLACEMENT } from '../vl-toggle-button.model';
 
 const sharedButtonArgs = {
+    ...defaultArgs,
     loading: false,
     disabled: false,
     error: false,
@@ -18,6 +19,7 @@ const sharedButtonArgs = {
 };
 
 const sharedButtonArgTypes: ArgTypes<typeof sharedButtonArgs> = {
+    ...defaultArgTypes(),
     disabled: {
         description: 'Used to indicate to the user that the functionality is not active.',
         table: {

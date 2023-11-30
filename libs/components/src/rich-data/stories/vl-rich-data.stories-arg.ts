@@ -1,12 +1,14 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const richDataArgs = {
+    ...defaultArgs,
     filterCloseable: false,
     filterClosed: false,
 };
 
 export const richDataArgTypes: ArgTypes<typeof richDataArgs> = {
+    ...defaultArgTypes(),
     filterCloseable: {
         name: 'data-vl-filter-closeable',
         description:

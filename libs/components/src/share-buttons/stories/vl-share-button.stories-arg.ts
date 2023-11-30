@@ -1,12 +1,15 @@
+import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { MEDIA } from '../vl-share-button.model';
 
 export const shareButtonArgs = {
+    ...defaultArgs,
     href: '#',
     medium: MEDIA.FACEBOOK,
 };
 
 export const shareButtonArgTypes: ArgTypes = {
+    ...defaultArgTypes(),
     medium: {
         name: 'data-vl-medium',
         options: [MEDIA.FACEBOOK, MEDIA.TWITTER, MEDIA.LINKED_IN, MEDIA.GOOGLE_PLUS, MEDIA.MAIL],
