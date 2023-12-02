@@ -10,7 +10,7 @@ import {
 import datepickerUigStyle from './vl-datepicker.uig-css';
 import { CSSResult, html, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { FormControl } from '../form-control/FormControl';
+import { FormControl, FormControlDefaults } from '../form-control/FormControl';
 
 import { Options } from 'flatpickr/dist/types/options';
 import { Instance } from 'flatpickr/dist/types/instance';
@@ -23,6 +23,7 @@ import { VlButtonInputAddon, VlIconElement } from '@domg-wc/elements';
 import { live } from 'lit/directives/live.js';
 
 export const DatepickerDefaults = {
+    ...FormControlDefaults,
     type: '',
     format: 'd.m.Y',
     visualFormat: 'd.m.Y',
@@ -32,8 +33,6 @@ export const DatepickerDefaults = {
     minTime: '',
     maxTime: '',
     amPm: '',
-    error: false,
-    success: false,
     value: '',
     pattern: '',
     name: '',
@@ -78,6 +77,7 @@ export class VlDatepickerComponent extends FormControl {
     private pattern = DatepickerDefaults.pattern;
     private instance?: Instance;
     private calenderObserver: MutationObserver | undefined;
+    private initialValue = '';
 
     static {
         registerWebComponents([VlButtonInputAddon, VlIconElement]);
@@ -151,15 +151,16 @@ export class VlDatepickerComponent extends FormControl {
         return this.renderRoot?.querySelector('input:not([type="hidden"])') as HTMLInputElement;
     }
 
-    initializeComponent(): void {
-        if (this.getDatePicker()) {
-            this.initializeFlatpickr();
+    parseSelectedDate(): string {
+        const formatDate = (date: Date) => flatpickr.formatDate(date, this.format);
+        if (this.selectedDate === 'today') {
+            return formatDate(new Date());
+        } else {
+            return this.selectedDate;
         }
     }
 
     getDynamicOptions(): Options {
-        const formatDate = (date: Date) => flatpickr.formatDate(date, this.format);
-
         // minTime en maxTime gebruiken om defaultHour en defaultMinute te bepalen
         let defaultHour: number | undefined;
         let defaultMinute: number | undefined;
@@ -171,7 +172,7 @@ export class VlDatepickerComponent extends FormControl {
             defaultMinute = Number(this.maxTime.split(':')[1]);
         }
 
-        const defaultDate = this.selectedDate === 'today' ? formatDate(new Date()) : this.selectedDate;
+        const defaultDate = this.parseSelectedDate();
         return {
             altInput: !!this.visualFormat,
             altFormat: this.visualFormat,
@@ -216,13 +217,22 @@ export class VlDatepickerComponent extends FormControl {
         return options;
     }
 
-    protected firstUpdated() {
+    protected firstUpdated(changedProperties: Map<string, unknown>): void {
+        super.firstUpdated(changedProperties);
         this.initializeComponent();
-
-        this.getDatePicker()?.classList.add('static');
 
         if (!this.isInShadowDOM()) {
             this.getFlatpickrCalendar()?.classList.add('flatpickr-calendar--push-top');
+        }
+
+        if (changedProperties.has('selectedDate')) {
+            if (this.selectedDate) {
+                this.updateValue(this.parseSelectedDate());
+            }
+        }
+
+        if (!this.initialValue) {
+            this.initialValue = this.value;
         }
     }
 
@@ -232,12 +242,9 @@ export class VlDatepickerComponent extends FormControl {
         const options = this.getDynamicOptions();
         this.updateOptionsForInstance(options);
 
-        if (changedProperties.has('selectedDate')) {
-            if (this.selectedDate) this.updateValue(this.selectedDate);
-        }
-
         if (changedProperties.has('value')) {
             this.updateValue(this.value);
+            console.log('after changedProperties, value', this.value);
         }
 
         this.processVisibleInputOnUpdate(changedProperties);
@@ -325,9 +332,10 @@ export class VlDatepickerComponent extends FormControl {
         calendar.style.left = `${rect.left}px`;
     }
 
-    private initializeFlatpickr() {
+    private initializeComponent() {
         if (this.getDatePicker()) {
             this.instance = flatpickr(this.getDatePicker(), this.getOptions()) as unknown as Instance;
+            this.getDatePicker().classList.add('static');
             this.calenderObserver = new MutationObserver(() => {
                 this.updateCalendarPosition();
             });
@@ -338,10 +346,11 @@ export class VlDatepickerComponent extends FormControl {
         }
     }
 
-    private destroyFlatpickr() {
+    private destroyComponent() {
         if (this.instance) {
             this.instance.destroy();
         }
+        this.calenderObserver?.disconnect();
     }
 
     private isInShadowDOM() {
@@ -400,10 +409,15 @@ export class VlDatepickerComponent extends FormControl {
         `;
     }
 
+    connectedCallback() {
+        console.log('connectedCallback');
+        super.connectedCallback();
+    }
+
     disconnectedCallback() {
+        console.log('disconnectedCallback');
         super.disconnectedCallback();
-        this.destroyFlatpickr();
-        this.calenderObserver?.disconnect();
+        this.destroyComponent();
     }
 
     handleDateChange = (date: string) => {
@@ -436,7 +450,8 @@ export class VlDatepickerComponent extends FormControl {
     resetFormControl() {
         super.resetFormControl();
         this.instance?.clear();
-        this.setValue('');
+        this.updateValue(this.initialValue);
+        if (this.initialValue) this.instance?.setDate(this.initialValue, true, this.format);
     }
 }
 

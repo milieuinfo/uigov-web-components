@@ -19,8 +19,10 @@ export const FormControlDefaults = {
     label: '',
     block: false,
     required: false,
+    readonly: false,
     disabled: false,
     error: false,
+    success: false,
 };
 
 export abstract class FormControl extends FormControlMixin(BaseLitElement) {
@@ -32,8 +34,8 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     protected required = FormControlDefaults.required;
     protected disabled = FormControlDefaults.disabled;
     protected error = FormControlDefaults.error;
-    protected success = false;
-    protected readonly = false;
+    protected success = FormControlDefaults.success;
+    protected readonly = FormControlDefaults.readonly;
 
     // State
     protected isInvalid = false;

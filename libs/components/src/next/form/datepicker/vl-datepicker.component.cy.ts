@@ -1,8 +1,9 @@
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import { VlDatepickerComponent } from './vl-datepicker.component';
+import { DatepickerDefaults, VlDatepickerComponent } from './vl-datepicker.component';
+import { VlErrorMessageComponent } from '../error-message';
 
-registerWebComponents([VlDatepickerComponent]);
+registerWebComponents([VlDatepickerComponent, VlErrorMessageComponent]);
 
 // function that returns the current date in the format Y-m-d
 const createDateString = ({
@@ -282,5 +283,72 @@ describe('story vl-datepicker', () => {
             .find('.flatpickr-calendar')
             .find('.numInput.flatpickr-minute')
             .should('have.value', '40');
+    });
+});
+
+const mountDatepickerInForm = ({ selectedDate, block, required }: typeof DatepickerDefaults) => {
+    cy.mount(html`
+        <div class="container">
+            <form id="form" class="vl-form">
+                <div class="vl-form-grid vl-form-grid--is-stacked">
+                    <div class="vl-col--3-12">
+                        <label class="vl-form__label vl-form__label--block" for="geboortedatum">
+                            Geboortedatum: *
+                        </label>
+                    </div>
+                    <div class="vl-col--9-12">
+                        <vl-datepicker-next
+                            id="geboortedatum"
+                            name="geboortedatum"
+                            ?block=${block}
+                            ?required=${required}
+                            selected-date=${selectedDate || nothing}
+                        >
+                        </vl-datepicker-next>
+                        <vl-error-message-next input="geboortedatum" state="valueMissing">
+                            Gelieve een geboortedatum in te vullen.
+                        </vl-error-message-next>
+                    </div>
+                    <div class="vl-col--9-12 vl-push--3-12">
+                        <div class="vl-action-group">
+                            <button class="vl-button" type="submit">Verstuur</button>
+                            <button class="vl-button" type="reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    `);
+};
+
+describe('story vl-datepicker in form', () => {
+    it.skip('should reset datepicker', () => {
+        mountDatepickerInForm({ ...DatepickerDefaults, block: true });
+
+        cy.get('vl-datepicker-next').shadow();
+
+        // test that should check if the datepicker is reset to the initial value
+        cy.get('vl-datepicker-next').should('have.value', '');
+
+        cy.get('vl-datepicker-next').invoke('attr', 'value', '21.12.2023');
+        cy.get('vl-datepicker-next').should('have.value', '21.12.2023');
+
+        cy.get('button[type="reset"]').click();
+        cy.get('vl-datepicker-next').should('have.value', '');
+    });
+
+    it('should reset datepicker with initial value', () => {
+        const initialValue = '02.12.2023';
+        mountDatepickerInForm({ ...DatepickerDefaults, selectedDate: initialValue, block: true });
+
+        cy.get('vl-datepicker-next').shadow();
+
+        cy.get('vl-datepicker-next').should('have.value', initialValue);
+
+        cy.get('vl-datepicker-next').invoke('attr', 'value', '21.12.2023');
+        cy.get('vl-datepicker-next').should('have.value', '21.12.2023');
+
+        cy.get('button[type="reset"]').click();
+        cy.get('vl-datepicker-next').should('have.value', initialValue);
     });
 });
