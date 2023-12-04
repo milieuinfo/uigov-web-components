@@ -1,13 +1,17 @@
-import { BaseLitElement } from '@domg-wc/common-utilities';
-import { html, nothing } from 'lit';
+import { BaseLitElement, VL } from '@domg-wc/common-utilities';
+import '@govflanders/vl-ui-util/dist/js/util.js';
+import { html, nothing, PropertyDeclarations } from 'lit';
 import { customElement } from 'lit/decorators.js';
+
+// onduidelijk waarom de vl declaratie en de util.js import nodig zijn, maar zonder falen de component.cy testen
+declare const vl: VL;
 
 @customElement('vl-wizard-pane')
 export class VlWizardPane extends BaseLitElement {
-    private isActive = false;
-    private name = '';
+    isActive = false;
+    name = '';
 
-    static get properties() {
+    static get properties(): PropertyDeclarations {
         return {
             isActive: { type: Boolean },
             name: { type: String, attribute: 'data-vl-name', reflect: true },
@@ -19,7 +23,7 @@ export class VlWizardPane extends BaseLitElement {
     }
 
     render() {
-        return html`${this.isActive ? html`<slot></slot>` : nothing}`;
+        return html`${this.isActive ? html` <slot></slot>` : nothing}`;
     }
 }
 

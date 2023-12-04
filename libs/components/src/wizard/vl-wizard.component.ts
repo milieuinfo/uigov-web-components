@@ -1,14 +1,20 @@
-import { wizardStyle } from '@domg/govflanders-style/component';
+import { BaseLitElement, registerWebComponents, VL } from '@domg-wc/common-utilities';
 import { resetStyle } from '@domg/govflanders-style/common';
-import { html } from 'lit';
+import { wizardStyle } from '@domg/govflanders-style/component';
+import '@govflanders/vl-ui-util/dist/js/util.js';
+import { html, PropertyDeclarations } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { VlProgressBarComponent } from '../progress-bar/vl-progress-bar.component';
-import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { VlWizardPane } from './vl-wizard-pane.component';
+
+// onduidelijk waarom de vl declaratie en de util.js import nodig zijn, maar zonder falen de component.cy testen
+declare const vl: VL;
 
 @customElement('vl-wizard')
 export class VlWizard extends BaseLitElement {
-    private panes: any[];
-    public activeStep: number;
+    activeStep: number;
+
+    private panes: VlWizardPane[];
 
     static {
         registerWebComponents([VlProgressBarComponent]);
@@ -18,7 +24,7 @@ export class VlWizard extends BaseLitElement {
         return [resetStyle, wizardStyle];
     }
 
-    static get properties() {
+    static get properties(): PropertyDeclarations {
         return {
             panes: { type: Array },
             activeStep: {
