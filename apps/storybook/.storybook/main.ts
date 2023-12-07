@@ -16,6 +16,8 @@ const tsconfigPathsPlugin = new TsconfigPathsPlugin({
 const config: StorybookConfig = {
     stories: [
         '../docs/**/*.stories.mdx',
+        '../docs/**/*.stories.@(js|jsx|ts|tsx)',
+        '../docs/**/*.stories-doc.mdx',
         '../../../libs/components/src/**/*.stories.@(js|jsx|ts|tsx)',
         '../../../libs/elements/src/**/*.stories.@(js|jsx|ts|tsx)',
         '../../../libs/map/src/**/*.stories.@(js|jsx|ts|tsx)',

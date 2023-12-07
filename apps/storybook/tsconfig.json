@@ -5,11 +5,11 @@
     },
     "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
     "include": [
-        "src/**/*.stories.ts",
-        "src/**/*.stories.js",
-        "src/**/*.stories.jsx",
-        "src/**/*.stories.tsx",
-        "src/**/*.stories.mdx",
+        "docs/**/*.stories.ts",
+        "docs/**/*.stories.js",
+        "docs/**/*.stories.jsx",
+        "docs/**/*.stories.tsx",
+        "docs/**/*.stories.mdx",
         ".storybook/*.js",
         ".storybook/*.ts"
     ]

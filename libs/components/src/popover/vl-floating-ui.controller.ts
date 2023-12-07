@@ -1,5 +1,6 @@
 import { LitElement, ReactiveController } from 'lit';
-import { computePosition, arrow, flip, shift, offset, type Placement, Middleware } from '@floating-ui/dom';
+import { offsetParent } from 'composed-offset-position';
+import { computePosition, arrow, flip, shift, offset, type Placement, Middleware, platform } from '@floating-ui/dom';
 
 type FloatingControllerOptions = {
     reference: string;
@@ -79,6 +80,10 @@ export default class FloatingController implements ReactiveController {
             {
                 placement: this.options.placement,
                 middleware: this.buildMiddlewares(),
+                platform: {
+                    ...platform,
+                    getOffsetParent: (element) => platform.getOffsetParent(element, offsetParent),
+                },
             }
         );
 
