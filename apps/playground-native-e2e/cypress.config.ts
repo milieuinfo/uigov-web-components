@@ -8,10 +8,6 @@ export default defineConfig({
     videosFolder: '../../dist/cypress/apps/playground-native-e2e/videos',
     screenshotsFolder: '../../dist/cypress/apps/playground-native-e2e/screenshots',
     chromeWebSecurity: false,
-    reporter: '../../node_modules/cypress-multi-reporters',
-    reporterOptions: {
-        configFile: 'reporter-config.json',
-    },
     retries: 3,
     e2e: {
         specPattern: './src/e2e/**/*.cy.{js,jsx,ts,tsx}',
