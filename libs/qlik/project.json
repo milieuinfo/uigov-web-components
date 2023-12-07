@@ -8,10 +8,13 @@
             "executor": "@nx/js:tsc",
             "outputs": ["{options.outputPath}"],
             "options": {
+                "clean": true,
+                "rootDir": "libs/qlik/src",
                 "outputPath": "dist/libs/qlik",
-                "main": "libs/qlik/src/index.ts",
+                "main": "libs/qlik/index.ts",
                 "tsConfig": "libs/qlik/tsconfig.lib.json",
-                "assets": ["libs/qlik/*.md"]
+                "assets": ["libs/qlik/*.md"],
+                "updateBuildableProjectDepsInPackageJson": true
             }
         },
         "build-with-js": {
