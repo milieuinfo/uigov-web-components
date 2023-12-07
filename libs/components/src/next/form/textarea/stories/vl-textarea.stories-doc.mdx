@@ -1,10 +1,11 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlTextAreaStories from './vl-textarea.stories';
 
 # Textarea
 
 Gebruik de `textarea-next` component om een textarea veld toe te voegen aan een pagina.<br/>
-Dit component is de volgende versie van het [vl-textarea](?path=/docs/components-textarea--textarea-default) component, we raden aan deze versie te gebruiken.<br />
-In tegenstelling tot de vorige [vl-textarea](?path=/docs/components-textarea--textarea-default) bevat dit component geen rich-text modus, hier wordt op termijn een ander component voor voorzien.
+Dit component is de volgende versie van de [vl-textarea](/docs/components-textarea--documentatie) component, we raden aan deze versie te gebruiken.<br />
+In tegenstelling tot de vorige [vl-textarea](/docs/components-textarea--documentatie) bevat dit component geen rich-text modus, hier wordt op termijn een ander component voor voorzien.
 
 ## Voorbeeld
 
@@ -16,22 +17,22 @@ import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
 <vl-textarea-next></vl-textarea-next>
 ```
 
-<DocsStory id="components-next-form-textarea-next--textarea-default" />
+<Canvas of={VlTextAreaStories.TextareaDefault} />
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlTextAreaStories.TextareaDefault} />
 
 ## Referenties
 
 ### Digitaal Vlaanderen
 
-**Documentatie Digitaal Vlaanderen:** https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-textarea
+[Documentatie Digitaal Vlaanderen - Textarea](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-textarea)
 
 ### Legacy Documentatie
 
-**Legacy Storybook:** https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-textarea--default
+[Legacy Storybook - Textarea](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-textarea--default)
 
-**Legacy Documentatie:** https://webcomponenten.omgeving.vlaanderen.be/doc/VlTextarea.html
+[Legacy Documentatie - Textarea](https://webcomponenten.omgeving.vlaanderen.be/doc/VlTextarea.html)
 
-**Legacy Demo:** https://webcomponenten.omgeving.vlaanderen.be/demo/vl-textarea.html
+[Legacy Demo - Textarea](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-textarea.html)

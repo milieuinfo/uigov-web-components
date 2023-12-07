@@ -8,6 +8,7 @@ import '../vl-error-message.component';
 
 export default {
     title: 'Components-next/form/error-message-next',
+    tags: ['autodocs'],
     args: storyArgs(errorMessageArgs),
     argTypes: storyArgTypes(errorMessageArgTypes, true),
     parameters: {
