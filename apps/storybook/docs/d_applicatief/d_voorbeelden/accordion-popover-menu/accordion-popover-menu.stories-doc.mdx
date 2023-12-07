@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs';
+import { Canvas } from '@storybook/blocks';
+import * as AccordionPopoverMenuStories from './accordion-popover-menu.stories'
+
+<Meta of={AccordionPopoverMenuStories} />
+
+# Accordion met popover menu's
+
+De accordion is een UI-element dat wordt gebruikt om inhoud te organiseren in een uitklapbaar formaat. Elk
+accordion-item kan een popover bevatten dat extra opties biedt voor dat specifieke item.
+
+
+## Gebruik
+
+- De accordion met popover menu's wordt gebruikt om inhoud te structureren en gebruikers de mogelijkheid te geven om
+  specifieke acties uit te voeren op individuele items.
+
+
+## Ontwerp
+
+- Accordion-item: Elk item bestaat uit een titel en een inhoudsgebied dat kan worden uitgeklapt of ingeklapt.
+
+- Popover menu: Elk accordion-item kan een popover menu bevatten dat extra opties biedt voor dat specifieke item. Het
+  popover menu wordt meestal weergegeven als drie verticale punten (•••).
+
+- Interactie: Gebruikers kunnen op de titel van een accordion-item klikken of tikken om het item uit te klappen of in
+  te klappen. Door op het popover menu te klikken of tikken, wordt een keuzemenu geopend met extra opties voor dat
+  specifieke item.
+
+
+## Voorbeeld
+
+<Canvas of={AccordionPopoverMenuStories.AccordionPopoverMenu} />
