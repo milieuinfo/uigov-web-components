@@ -1,30 +1,14 @@
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { createComponent } from '@lit/react';
 import { vlElementsStyle } from '@domg-wc/elements';
-import React, { DOMAttributes } from 'react';
 import './app.module.css';
-import { nodeData } from './vl-cascader.data';
-import { cascaderItemTemplates } from './vl-cascader.templates';
-import { getItemList } from './vl-cascader.utils';
+import React from 'react';
 
 document.adoptedStyleSheets = [...vlElementsStyle.map((style) => style.styleSheet)];
-registerWebComponents([VlCheckboxComponent, VlInputFieldComponent, VlErrorMessageComponent, VlTextareaComponent]);
+registerWebComponents([]);
 
 export function App() {
-    return (
-        <main>
-            <vl-side-sheet
-                data-vl-left
-                data-vl-open
-                data-vl-custom-css=".vl-layout {padding:0} .vl-region{padding:0} .vl-region:first-child{padding:0} :host #vl-side-sheet {padding:0} :host {--vl-side-sheet-width: 600px;}"
-            >
-                <h4 is="vl-h4" data-vl-has-border={true}>
-                    Kies uit kantoren
-                </h4>
-                <VlCascader items={nodeData} itemListFn={getItemList} templates={cascaderItemTemplates}></VlCascader>
-            </vl-side-sheet>
-        </main>
-    );
+    return <></>
 }
 
 export default App;

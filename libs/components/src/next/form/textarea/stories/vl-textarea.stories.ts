@@ -7,6 +7,7 @@ import '../vl-textarea.component';
 
 export default {
     title: 'Components-next/form/textarea-next',
+    tags: ['autodocs'],
     args: storyArgs(textareaArgs),
     argTypes: storyArgTypes(textareaArgTypes, true),
     parameters: {

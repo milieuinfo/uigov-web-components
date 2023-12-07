@@ -1,0 +1,6 @@
+<testsuite name="Mocha Tests" tests="4" failures="0" errors="0" skipped="0" timestamp="Wed, 06 Dec 2023 16:40:49 GMT" time="2.899">
+<testcase classname="story vl-map-tiled-wms-layer default" name="should fetch new WMS layer on change url attribute" time="0.614"/>
+<testcase classname="story vl-map-tiled-wms-layer default" name="should fetch new WMS layer on change layers attribute" time="0.494"/>
+<testcase classname="story vl-map-tiled-wms-layer default" name="should fetch new WMS layer on change version attribute" time="0.453"/>
+<testcase classname="story vl-map-tiled-wms-layer default" name="should fetch new WMS layer on change styles attribute" time="0.514"/>
+</testsuite>

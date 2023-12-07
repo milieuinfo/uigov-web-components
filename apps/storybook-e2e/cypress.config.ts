@@ -9,7 +9,6 @@ export default defineConfig({
     videosFolder: '../../dist/cypress/apps/storybook-e2e/videos',
     screenshotsFolder: '../../dist/cypress/apps/storybook-e2e/screenshots',
     chromeWebSecurity: false,
-    reporter: '../../node_modules/cypress-multi-reporters',
     retries: 3,
     e2e: nxE2EPreset(__filename, { cypressDir: 'src' }),
 });
