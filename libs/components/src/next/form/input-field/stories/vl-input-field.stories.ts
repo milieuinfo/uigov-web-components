@@ -1,12 +1,13 @@
 import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
-import { inputFieldArgTypes, inputFieldArgs } from './vl-input.stories-arg';
+import { inputFieldArgTypes, inputFieldArgs } from './vl-input-field.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
-import inputFieldDocs from './vl-input.stories-doc.mdx';
+import inputFieldDocs from './vl-input-field.stories-doc.mdx';
 import '../vl-input-field.component';
 
 export default {
     title: 'Components-next/form/input-field-next',
+    tags: ['autodocs'],
     args: storyArgs(inputFieldArgs),
     argTypes: storyArgTypes(inputFieldArgTypes, true),
     parameters: {
