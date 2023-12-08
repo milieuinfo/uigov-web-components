@@ -72,7 +72,9 @@ interface Toaster {
 }
 
 interface Tooltip$$1 {
-    tooltips: any[];
+    tooltips: HTMLElement[];
+    undress(tooltip: HTMLElement): void;
+    createTooltip(parentNode: HTMLElement): void;
 }
 
 interface Upload {

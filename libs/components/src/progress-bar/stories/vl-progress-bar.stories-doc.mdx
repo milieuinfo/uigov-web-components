@@ -5,6 +5,7 @@ import * as VlProgressBarStories from './vl-progress-bar.stories';
 
 Gebruik een progress-bar om de vooruitgang te tonen van een proces dat uit verschillende stappen bestaat.
 
+Standaard worden stappen alleen getoond als je er met de muis overheen gaat. Dit kan worden geconfigureerd met `data-vl-show-steps`.
 
 ## Voorbeeld
 
@@ -18,11 +19,9 @@ import { VlProgressBarComponent } from '@domg-wc/components';
 
 <Canvas of={VlProgressBarStories.ProgressBarDefault} />
 
-
 ## Configuratie
 
 <ArgTypes of={VlProgressBarStories.ProgressBarDefault} />
-
 
 ## Varianten
 
@@ -33,7 +32,6 @@ import { VlProgressBarComponent } from '@domg-wc/components';
 ### Focus op de actieve stap
 
 <Canvas of={VlProgressBarStories.ProgressBarFocused} />
-
 
 ## Referenties
 

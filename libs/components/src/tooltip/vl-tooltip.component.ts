@@ -1,10 +1,10 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { type VL, BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { tooltipStyle } from '@domg/govflanders-style/component';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import './vl-tooltip.lib.js';
 
-declare const vl: any;
+declare const vl: VL;
 
 /**
  * VlTooltip

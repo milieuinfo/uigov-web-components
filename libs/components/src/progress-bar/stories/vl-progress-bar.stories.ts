@@ -19,9 +19,10 @@ export default {
 
 const Template = story(
     progressBarArgs,
-    ({ activeStep, focusOnChange, numeric, steps, onClickStep }) => html`
+    ({ activeStep, showSteps, focusOnChange, numeric, steps, onClickStep }) => html`
         <vl-progress-bar
             data-vl-active-step=${activeStep}
+            ?data-vl-show-steps=${showSteps}
             ?data-vl-focus-on-change=${focusOnChange}
             ?data-vl-numeric=${numeric}
             .steps=${steps}
