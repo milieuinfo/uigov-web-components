@@ -1,13 +1,17 @@
+const registerWebComponent = (constructor: Function, tagName: string, options?: ElementDefinitionOptions) => {
+    if (customElements.get(tagName)) {
+        console.debug(`${tagName} werd reeds geregistreerd`);
+    } else {
+        console.debug('registratie', tagName);
+        window.customElements.define(tagName, constructor as CustomElementConstructor, options);
+    }
+};
+
 export const webComponent =
     (tagName: string, options?: ElementDefinitionOptions) =>
     // eslint-disable-next-line @typescript-eslint/ban-types
     (constructor: Function): any => {
-        if (customElements.get(tagName)) {
-            console.debug(`${tagName} werd reeds geregistreerd`);
-        } else {
-            console.debug('registratie', tagName);
-            window.customElements.define(tagName, constructor as CustomElementConstructor, options);
-        }
+        registerWebComponent(constructor, tagName, options);
     };
 
 // variant waaraan een custom registratie methode wordt meegegeven
@@ -28,10 +32,7 @@ export const webComponentPromised =
         if (customElements.get(tagName)) {
             console.debug(`${tagName} werd reeds geregistreerd`);
         } else {
-            console.debug('registratie', tagName);
-            Promise.all(promises).then(() =>
-                window.customElements.define(tagName, constructor as CustomElementConstructor, options)
-            );
+            Promise.all(promises).then(() => registerWebComponent(constructor, tagName, options));
         }
     };
 
