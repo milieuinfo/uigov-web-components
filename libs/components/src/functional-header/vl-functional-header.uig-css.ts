@@ -12,10 +12,6 @@ const styles: CSSResult = css`
         flex-direction: row;
     }
 
-    #back-link {
-        display: flex;
-    }
-
     @media (max-width: 767px) {
         .uig-functional-header__row {
             flex-direction: column;

@@ -30,7 +30,7 @@ const styles: CSSResult = css`
     }
 
     .js-vl-select[data-type*='multiple'] .vl-pill__close::before {
-        content: '\\f17f';
+        content: '\\f181';
     }
 
     .js-vl-select[data-type*='multiple'] .vl-pill__close:hover,

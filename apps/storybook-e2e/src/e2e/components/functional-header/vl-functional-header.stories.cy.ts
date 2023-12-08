@@ -32,7 +32,11 @@ const shouldDisableBackLinkAndEmitEvent = () => {
 };
 
 const shouldSetTitleLink = () => {
-    cy.get('vl-functional-header').shadow().find('a.vl-functional-header__title').should('have.attr', 'href', 'test');
+    cy.get('vl-functional-header')
+        .shadow()
+        .find('.vl-functional-header__title')
+        .find('a')
+        .should('have.attr', 'href', 'test');
 };
 
 const shouldSetSubTitleText = () => {
@@ -43,7 +47,11 @@ const shouldSetSubTitleText = () => {
 };
 
 const shouldSetTitleText = () => {
-    cy.get('vl-functional-header').shadow().find('a.vl-functional-header__title').contains('School en studietoelagen');
+    cy.get('vl-functional-header')
+        .shadow()
+        .find('.vl-functional-header__title')
+        .find('a')
+        .contains('School en studietoelagen');
 };
 
 describe('story vl-functional-header default', () => {
@@ -283,7 +291,11 @@ describe('story vl-functional-header slots', () => {
     it('should set title slot', () => {
         cy.visit(functionalHeaderSlotsUrl);
 
-        cy.get('vl-functional-header').shadow().find('a.vl-functional-header__title').find('slot[name="title"]');
+        cy.get('vl-functional-header')
+            .shadow()
+            .find('.vl-functional-header__title')
+            .find('a')
+            .find('slot[name="title"]');
         cy.get('vl-functional-header').find('span[slot="title"]').contains('School- en studietoelagen');
     });
 

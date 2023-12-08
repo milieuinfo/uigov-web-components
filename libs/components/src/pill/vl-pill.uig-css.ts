@@ -68,7 +68,7 @@ const styles: CSSResult = css`
         font-family: 'vlaanderen-icon' !important;
     }
     .vl-pill__close::before {
-        content: '\\f17f';
+        content: '\\f181';
     }
     .vl-pill--checkable__checkbox:disabled:checked + span::before {
         transform: translateZ(0) translate(-50%, -50%) scale(1);

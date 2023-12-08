@@ -1,7 +1,11 @@
+import { registerWebComponents } from '@domg-wc/common-utilities';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import '../vl-modal.component';
+import { VlDatepickerComponent } from '../../datepicker/vl-datepicker.component';
 import { modalArgs, modalArgTypes } from './vl-modal.stories-arg';
+
+registerWebComponents([VlDatepickerComponent]);
 
 export default {
     title: 'Components/modal',
