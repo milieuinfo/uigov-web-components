@@ -3,7 +3,7 @@ import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
 import { progressBarStyle } from '@domg/govflanders-style/component';
 import ProgressBar from '@govflanders/vl-ui-progress-bar/src/js/progress-bar.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
-import { html } from 'lit';
+import { type PropertyDeclarations, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import 'reflect-metadata';
@@ -17,6 +17,7 @@ export class VlProgressBarComponent extends BaseLitElement {
     private activeStep = 1;
     private progressBar = new ProgressBar();
     private steps = [];
+    private showSteps = false;
 
     static {
         registerWebComponents([VlTooltipComponent]);
@@ -26,7 +27,7 @@ export class VlProgressBarComponent extends BaseLitElement {
         return [resetStyle, progressBarStyle, progressBarUigStyle, accessibilityStyle];
     }
 
-    static get properties() {
+    static get properties(): PropertyDeclarations {
         return {
             numeric: { type: Boolean, attribute: 'data-vl-numeric', reflect: true },
             activeStep: {
@@ -40,6 +41,7 @@ export class VlProgressBarComponent extends BaseLitElement {
                 reflect: true,
             },
             steps: { type: Array },
+            showSteps: { type: Boolean, attribute: 'data-vl-show-steps', reflect: true },
         };
     }
 
@@ -50,6 +52,7 @@ export class VlProgressBarComponent extends BaseLitElement {
         this.activeStep = 1;
         this.progressBar = new ProgressBar();
         this.steps = [];
+        this.showSteps = false;
     }
 
     updated() {
@@ -57,32 +60,45 @@ export class VlProgressBarComponent extends BaseLitElement {
     }
 
     render() {
-        const classes = {
+        const progressBarClasses = {
             'vl-progress-bar': true,
             'vl-progress-bar--numeric': this.numeric,
             'vl-progress-bar--data-vl-numeric': this.numeric,
         };
-        return html` <div class=${classMap(classes)}>
-            ${this.steps.map(
-                (step, index) => html` <div class="vl-progress-bar__step">
-                    <button
-                        @click=${() =>
-                            this.dispatchEvent(
-                                new CustomEvent('vl-click-step', {
-                                    bubbles: true,
-                                    composed: true,
-                                    detail: { step, number: index + 1 },
-                                })
-                            )}
-                        class="vl-progress-bar__bullet"
-                        aria-label=${step}
-                    >
-                        <vl-tooltip placement="top">${step}</vl-tooltip>
-                        <span class="vl-u-visually-hidden">${step}</span>
-                    </button>
-                </div>`
-            )}
+
+        return html` <div class=${classMap(progressBarClasses)}>
+            ${this.steps.map((step, index) => this.renderStep(step, index))}
         </div>`;
+    }
+
+    private renderStep = (step: string, index: number) => {
+        const stepClasses = {
+            'vl-progress-bar__step': true,
+            'vl-progress-bar__step--active': this.activeStep === index + 1,
+        };
+
+        return html` <div class=${classMap(stepClasses)}>
+            <button
+                @click=${() => this.handleStepClick(step, index + 1)}
+                class="vl-progress-bar__bullet"
+                aria-label=${step}
+            >
+                <vl-tooltip placement="top" ?data-vl-tooltip-content=${!this.showSteps ? step : undefined}>
+                    ${!this.showSteps ? step : undefined}
+                </vl-tooltip>
+                ${this.showSteps ? html`<span class="vl-progress-bar__bullet__text" title=${step}>${step}</span>` : ''}
+            </button>
+        </div>`;
+    };
+
+    private handleStepClick(step: string, stepNumber: number) {
+        this.dispatchEvent(
+            new CustomEvent('vl-click-step', {
+                bubbles: true,
+                composed: true,
+                detail: { step, number: stepNumber },
+            })
+        );
     }
 }
 

@@ -29,7 +29,7 @@ const shouldSetCorrectActiveStep = () => {
     shouldHaveActiveStep(3);
 };
 
-const shouldHaveVisibleTooltipForStep = (stepNumber) => {
+const shouldHaveVisibleTooltipForStep = (stepNumber: number) => {
     cy.get('vl-progress-bar')
         .shadow()
         .find('.vl-progress-bar__step')

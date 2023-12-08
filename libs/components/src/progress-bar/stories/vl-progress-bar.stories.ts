@@ -19,9 +19,10 @@ export default {
 
 const Template = story(
     progressBarArgs,
-    ({ activeStep, focusOnChange, numeric, steps, onClickStep }) => html`
+    ({ activeStep, showSteps, focusOnChange, numeric, steps, onClickStep }) => html`
         <vl-progress-bar
             data-vl-active-step=${activeStep}
+            ?data-vl-show-steps=${showSteps}
             ?data-vl-focus-on-change=${focusOnChange}
             ?data-vl-numeric=${numeric}
             .steps=${steps}
@@ -35,12 +36,14 @@ export const ProgressBarDefault = Template.bind({});
 ProgressBarDefault.storyName = 'vl-progress-bar - default';
 ProgressBarDefault.args = {
     steps: ['Stap 1/3: Aanvraag', 'Stap 2/3: Gegevens', 'Stap 3/3: Bevestigen'],
+    activeStep: 1,
 };
 
 export const ProgressBarNumeric = Template.bind({});
 ProgressBarNumeric.storyName = 'vl-progress-bar - numeric';
 ProgressBarNumeric.args = {
     steps: ['Stap 1/3: Aanvraag', 'Stap 2/3: Gegevens', 'Stap 3/3: Bevestigen'],
+    activeStep: 1,
     numeric: true,
 };
 
@@ -48,5 +51,6 @@ export const ProgressBarFocused = Template.bind({});
 ProgressBarFocused.storyName = 'vl-progress-bar - focused';
 ProgressBarFocused.args = {
     steps: ['Stap 1/3: Aanvraag', 'Stap 2/3: Gegevens', 'Stap 3/3: Bevestigen'],
+    activeStep: 1,
     focusOnChange: true,
 };
