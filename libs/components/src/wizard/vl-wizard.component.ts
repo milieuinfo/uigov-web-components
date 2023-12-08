@@ -5,7 +5,7 @@ import '@govflanders/vl-ui-util/dist/js/util.js';
 import { html, PropertyDeclarations } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { VlProgressBarComponent } from '../progress-bar/vl-progress-bar.component';
-import { VlWizardPane } from './vl-wizard-pane.component';
+import { VlWizardPane } from './vl-wizard-pane.component'; // onduidelijk waarom de vl declaratie en de util.js import nodig zijn, maar zonder falen de component.cy testen
 
 // onduidelijk waarom de vl declaratie en de util.js import nodig zijn, maar zonder falen de component.cy testen
 declare const vl: VL;
@@ -17,7 +17,7 @@ export class VlWizard extends BaseLitElement {
     private panes: VlWizardPane[];
 
     static {
-        registerWebComponents([VlProgressBarComponent]);
+        registerWebComponents([VlProgressBarComponent, VlWizardPane]);
     }
 
     static get styles() {
@@ -60,6 +60,7 @@ export class VlWizard extends BaseLitElement {
                 </header>
                 <vl-progress-bar
                     data-vl-active-step=${this.activeStep}
+                    data-vl-show-steps
                     .steps=${this.panes.map((pane) => pane.name)}
                 ></vl-progress-bar>
                 <div class="vl-wizard__panes">

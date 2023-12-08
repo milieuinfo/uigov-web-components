@@ -3,15 +3,15 @@ import { action } from '@storybook/addon-actions';
 
 export const wizardArgs = {
     ...defaultArgs,
-    activeStepSlider: 1,
-    title: 'Wizard title',
-    header: "You're a wizard Harry",
+    activeStep: 0,
+    title: '',
+    header: '',
     onClickStep: action('vl-click-step'),
 };
 
 export const wizardArgTypes = {
     ...defaultArgTypes(),
-    activeStepSlider: {
+    activeStep: {
         name: 'data-vl-active-step',
         description: 'Sets the active step of the wizard.',
         control: { type: 'range', min: 1, max: 2, step: 1 },
@@ -20,16 +20,6 @@ export const wizardArgTypes = {
                 summary: 'Number',
             },
             category: 'Attributes',
-            defaultValue: { summary: 1 },
-        },
-    },
-    activeStep: {
-        description: 'Sets the active step of the wizard.',
-        table: {
-            type: {
-                summary: 'Number',
-            },
-            category: 'Properties',
             defaultValue: { summary: 1 },
         },
     },
