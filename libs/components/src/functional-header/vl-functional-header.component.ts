@@ -1,6 +1,5 @@
 import { BaseElementOfType, MARGINS, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
-import { VlIconElement, VlLinkElement } from '@domg-wc/elements';
-import { baseStyle, elementStyle, layoutStyle, resetStyle } from '@domg/govflanders-style/common';
+import { vlElementsStyle, VlIconElement, VlLinkElement } from '@domg-wc/elements';
 import { functionalHeaderStyle } from '@domg/govflanders-style/component';
 import functionalHeaderUigStyle from './vl-functional-header.uig-css';
 
@@ -49,10 +48,7 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
     constructor() {
         super(`
           <style>
-            ${resetStyle}
-            ${baseStyle}
-            ${layoutStyle}
-            ${elementStyle}
+            ${vlElementsStyle}
             ${functionalHeaderStyle}
             ${functionalHeaderUigStyle}
           </style>
@@ -64,11 +60,11 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
                         <slot name="top-left"></slot>
                     </div>
                     <div class="vl-functional-header__content">
-                        <div class="vl-title">
-                            <a id="title" class="vl-functional-header__title" tabindex="0">
+                        <h1 class="vl-functional-header__title vl-title vl-title--h1 vl-title--no-space-bottom">
+                            <a id="title" class="vl-link vl-link--neutral" tabindex="0">
                                 <slot name="title"></slot>
                             </a>
-                        </div>
+                        </h1>
                     </div>
                 </div>
                 <div class="uig-functional-header__top-right">
@@ -80,12 +76,11 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
               </div>
               <div class="vl-functional-header__sub" id="sub-header">
                 <slot name="sub-header">
-                  <ul class="vl-functional-header__sub__actions">
+                  <ul class="vl-functional-header__sub-row vl-functional-header__sub-actions">
                       <li id="back-link-container" class="vl-functional-header__sub__action">
                           <slot name="back-link">
                               <a id="back-link" is="vl-link" tabindex="0" href="${document.referrer}">
-                                  <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span>
-                                  <slot id="back-link-text" name="back"><span>Terug</span></slot>
+                                  <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span><slot id="back-link-text" name="back"><span>Terug</span></slot>
                               </a>
                           </slot>
                       </li>

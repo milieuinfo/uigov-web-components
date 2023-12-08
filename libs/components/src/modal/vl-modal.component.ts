@@ -44,33 +44,35 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
 
     constructor() {
         super(`
-          <style>
-            ${resetStyle}
-            ${modalStyle}
-            ${modalUigStyle}
-            ${accessibilityStyle}
-            ${actionGroupStyle}
-            ${iconStyle}
-            ${linkStyle}
-            ${gridStyle}
-          </style>
-          <div class="vl-modal">
-            <dialog class="vl-modal-dialog" data-vl-modal tabindex="-1" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-toggle-title" aria-describedby="modal-toggle-description">
-              <div is="vl-grid" data-vl-is-stacked>
-                <div id="modal-toggle-description" is="vl-column" data-vl-size="12" data-vl-medium-size="12" class="vl-modal-dialog__content">
-                  <slot name="content">Modal content</slot>
-                </div>
-                <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
-                  <div id="modal-action-group" is="vl-action-group">
-                    <slot name="button" data-vl-modal-close></slot>
-                    <button is="vl-button-link" id="modal-toggle-cancellable" data-vl-modal-close>
-                      <span is="vl-icon" icon="cross" before></span>Annuleer
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </dialog>
-          </div>
+            <style>
+                ${resetStyle}
+                ${modalStyle}
+                ${modalUigStyle}
+                ${accessibilityStyle}
+                ${actionGroupStyle}
+                ${iconStyle}
+                ${linkStyle}
+                ${gridStyle}
+            </style>
+            <div class="vl-modal">
+                <dialog class="vl-modal-dialog" data-vl-modal tabindex="-1" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-toggle-title" aria-describedby="modal-toggle-description">
+                    <div class="vl-modal-dialog__wrapper" id="modal-dialog-wrapper">
+                        <div is="vl-grid" data-vl-is-stacked>
+                            <div id="modal-toggle-description" is="vl-column" data-vl-size="12" data-vl-medium-size="12" class="vl-modal-dialog__content">
+                                <slot name="content">Modal content</slot>
+                            </div>
+                            <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
+                                <div id="modal-action-group" is="vl-action-group">
+                                    <slot name="button" data-vl-modal-close></slot>
+                                    <button is="vl-button-link" id="modal-toggle-cancellable" data-vl-modal-close>
+                                        <span is="vl-icon" icon="cross" before></span>Annuleer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </dialog>
+            </div>
         `);
     }
 
@@ -82,6 +84,10 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
 
     get _dialogElement(): HTMLDialogElement {
         return this._element?.querySelector('dialog');
+    }
+
+    get _dialogWrapperElement(): HTMLDialogElement {
+        return this._element?.querySelector('#modal-dialog-wrapper');
     }
 
     get _titleElement() {
@@ -192,7 +198,7 @@ export class VlModalComponent extends BaseElementOfType(HTMLElement) {
             if (this._titleElement) {
                 this._titleElement.innerText = newValue;
             } else {
-                this._dialogElement.prepend(this._getTitleTemplate(newValue));
+                this._dialogWrapperElement.prepend(this._getTitleTemplate(newValue));
             }
         } else if (this._titleElement) {
             this._titleElement.remove();
