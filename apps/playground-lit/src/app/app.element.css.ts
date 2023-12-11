@@ -2,14 +2,14 @@ import { css, CSSResult } from 'lit';
 
 const styles: CSSResult = css`
     .container {
-        width: 800px;
+        width: 1600px;
         padding: 50px;
     }
 
-    .vl-title--h4 {
-        margin-top: 1rem;
-        padding-left: 1.4rem;
-        margin-bottom: 0.7rem !important;
+    .vl-action-group__top {
+        margin-bottom: 50px;
+        border: 1px solid #ccc;
+        padding: 10px;
     }
 `;
 export default styles;

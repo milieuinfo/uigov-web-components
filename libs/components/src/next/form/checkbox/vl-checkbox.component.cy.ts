@@ -146,6 +146,20 @@ describe('component vl-checkbox-next - default', () => {
             .find('i.vl-checkbox__box')
             .shouldHaveComputedStyle({ pseudo: ':before', style: 'color', value: 'rgb(210, 55, 60)' });
     });
+
+    it('should dispatch checked event on check and uncheck', () => {
+        cy.createStubForEvent('vl-checkbox-next', 'checked');
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
+        cy.get('@checked')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { checked: true });
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
+        cy.get('@checked')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { checked: false });
+    });
 });
 
 // TODO: testen migreren naar playgrounds-e2e
@@ -254,6 +268,20 @@ describe('component vl-checkbox-next - switch', () => {
         cy.get('vl-checkbox-next').invoke('attr', 'checked', '');
 
         shouldHaveErrorStyleSwitch();
+    });
+
+    it('should dispatch checked event on check and uncheck', () => {
+        cy.createStubForEvent('vl-checkbox-next', 'checked');
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
+        cy.get('@checked')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { checked: true });
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
+        cy.get('@checked')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { checked: false });
     });
 });
 
