@@ -15,29 +15,31 @@ import { BaseLitElement } from '@domg-wc/common-utilities';
 import 'reflect-metadata';
 
 export const FormControlDefaults = {
+    id: '',
     name: '',
     label: '',
     block: false,
     required: false,
     disabled: false,
     error: false,
+    success: false,
+    readonly: false,
 };
 
 export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     // Properties
-    id = '';
+    id = FormControlDefaults.id;
     protected name = FormControlDefaults.name;
     protected label = FormControlDefaults.label;
     protected block = FormControlDefaults.block;
     protected required = FormControlDefaults.required;
     protected disabled = FormControlDefaults.disabled;
     protected error = FormControlDefaults.error;
-    protected success = false;
-    protected readonly = false;
+    protected success = FormControlDefaults.success;
+    protected readonly = FormControlDefaults.readonly;
 
     // State
     protected isInvalid = false;
-    protected touched = false;
 
     static formControlValidators = [
         requiredValidator,
@@ -98,26 +100,25 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     resetFormControl(): void {
         this.error = false;
         this.isInvalid = false;
-        this.touched = false;
         this.hideErrorMessages();
         this.dispatchEvent(new Event('reset'));
     }
 
-    private onKeydown = (event: KeyboardEvent): void => {
+    private onKeydown(event: KeyboardEvent): void {
         if (event.code === 'Enter') {
             if (this.form) {
                 submit(this.form);
             }
         }
-    };
+    }
 
-    private onInvalid = (event: Event): void => {
+    private onInvalid(event: Event): void {
         event.preventDefault();
 
         this.isInvalid = true;
         this.focusFirstInvalidInput();
         this.showErrorMessage();
-    };
+    }
 
     private focusFirstInvalidInput(): void {
         const firstInvalidInput = this.form?.querySelector(':invalid');

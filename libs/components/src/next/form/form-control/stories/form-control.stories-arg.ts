@@ -1,16 +1,9 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
+import { FormControlDefaults } from '../FormControl';
 
-export const formControlArgs = {
-    id: '',
-    name: '',
-    label: '',
-    block: false,
-    required: false,
-    disabled: false,
-    error: false,
-    success: false,
-    readonly: false,
+export const formControlArgs: typeof FormControlDefaults = {
+    ...FormControlDefaults,
 };
 
 export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
@@ -34,7 +27,8 @@ export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
     },
     label: {
         name: 'label',
-        description: 'Het label van het veld.',
+        description:
+            'Het label van het veld.<br>Standaard wordt de tekst van het bijhorende label element gebruikt, indien dit niet aanwezig is of geen tekst bevat kan je dit attribuut gebruiken om het label te definiëren.',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
@@ -43,7 +37,7 @@ export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
     },
     block: {
         name: 'block',
-        description: 'Duidt aan dat het component de volledige breedte van zijn parent mag innemen.',
+        description: 'Duidt aan dat de component de volledige breedte van zijn parent mag innemen.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
@@ -61,7 +55,7 @@ export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
     },
     disabled: {
         name: 'disabled',
-        description: 'Beeldt het component in een disabled state af.',
+        description: 'Beeldt de component in een disabled state af.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
@@ -70,7 +64,7 @@ export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
     },
     error: {
         name: 'error',
-        description: 'Beeldt het component in een error state af.',
+        description: 'Beeldt de component in een error state af.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
@@ -79,7 +73,7 @@ export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
     },
     success: {
         name: 'success',
-        description: 'Beeldt het component in een success state af.',
+        description: 'Beeldt de component in een success state af.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
