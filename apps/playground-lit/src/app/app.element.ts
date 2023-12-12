@@ -565,8 +565,7 @@ export class AppElement extends LitElement {
                                 ?required=${this.filledInTruthfullyRequired}
                                 ?disabled=${this.filledInTruthfullyDisabled}
                                 ?checked=${this.filledInTruthfully}
-                                readonly
-                                @checked=${(e: CustomEvent) => (this.filledInTruthfully = e.detail.checked)}
+                                @vl-checked=${(e: CustomEvent) => (this.filledInTruthfully = e.detail.checked)}
                                 @reset=${() => {
                                     this.filledInTruthfully = false;
                                     this.filledInTruthfullyValue = '';

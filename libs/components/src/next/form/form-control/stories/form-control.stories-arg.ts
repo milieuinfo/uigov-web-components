@@ -35,15 +35,6 @@ export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
             defaultValue: { summary: formControlArgs.label },
         },
     },
-    block: {
-        name: 'block',
-        description: 'Duidt aan dat de component de volledige breedte van zijn parent mag innemen.',
-        table: {
-            type: { summary: TYPES.BOOLEAN },
-            category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: formControlArgs.block },
-        },
-    },
     required: {
         name: 'required',
         description: 'Duidt aan dat het veld verplicht is.',
@@ -78,15 +69,6 @@ export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: formControlArgs.success },
-        },
-    },
-    readonly: {
-        name: 'readonly',
-        description: 'Duidt aan dat het veld enkel leesbaar is.',
-        table: {
-            type: { summary: TYPES.BOOLEAN },
-            category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: formControlArgs.readonly },
         },
     },
 };

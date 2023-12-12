@@ -1,4 +1,3 @@
-import { PropertyDeclarations } from 'lit';
 import {
     FormControlMixin,
     maxLengthValidator,
@@ -7,7 +6,7 @@ import {
     programmaticValidator,
     requiredValidator,
 } from '@open-wc/form-control';
-import { LitElement } from 'lit';
+import { LitElement, PropertyDeclarations } from 'lit';
 import { submit } from '@open-wc/form-helpers';
 import { maxValueValidator, minValueValidator } from './validators';
 import { ERROR_MESSAGE_CUSTOM_TAG } from '../error-message/vl-error-message.component';
@@ -18,12 +17,10 @@ export const FormControlDefaults = {
     id: '',
     name: '',
     label: '',
-    block: false,
     required: false,
     disabled: false,
     error: false,
     success: false,
-    readonly: false,
 };
 
 export abstract class FormControl extends FormControlMixin(BaseLitElement) {
@@ -31,12 +28,10 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     id = FormControlDefaults.id;
     protected name = FormControlDefaults.name;
     protected label = FormControlDefaults.label;
-    protected block = FormControlDefaults.block;
     protected required = FormControlDefaults.required;
     protected disabled = FormControlDefaults.disabled;
     protected error = FormControlDefaults.error;
     protected success = FormControlDefaults.success;
-    protected readonly = FormControlDefaults.readonly;
 
     // State
     protected isInvalid = false;
@@ -58,12 +53,10 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
             id: { type: String, reflect: true },
             name: { type: String, reflect: true },
             label: { type: String, reflect: true },
-            block: { type: Boolean, reflect: true },
             required: { type: Boolean, reflect: true },
             disabled: { type: Boolean, reflect: true },
             error: { type: Boolean, reflect: true },
             success: { type: Boolean, reflect: true },
-            readonly: { type: Boolean, reflect: true },
             isInvalid: { type: Boolean, state: true },
         };
     }

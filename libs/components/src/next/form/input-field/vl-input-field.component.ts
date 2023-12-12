@@ -4,18 +4,33 @@ import { inputFieldStyle } from '@domg/govflanders-style/component';
 import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { FormControl } from '../form-control/FormControl';
+import { FormControl, FormControlDefaults } from '../form-control/FormControl';
+
+export const InputFieldDefaults = {
+    ...FormControlDefaults,
+    block: false,
+    readonly: false,
+    type: 'text',
+    value: '',
+    minLength: null,
+    maxLength: null,
+    min: null,
+    max: null,
+    pattern: '',
+};
 
 @customElement('vl-input-field-next')
 export class VlInputFieldComponent extends FormControl {
     // Properties
-    private value = '';
-    private type = 'text';
-    private minLength: number | null = null;
-    private maxLength: number | null = null;
-    private min: number | null = null;
-    private max: number | null = null;
-    private pattern: string | null = '';
+    private block = InputFieldDefaults.block;
+    private readonly = InputFieldDefaults.readonly;
+    private type = InputFieldDefaults.type;
+    private value = InputFieldDefaults.value;
+    private minLength: number | null = InputFieldDefaults.minLength;
+    private maxLength: number | null = InputFieldDefaults.maxLength;
+    private min: number | null = InputFieldDefaults.min;
+    private max: number | null = InputFieldDefaults.max;
+    private pattern: string | null = InputFieldDefaults.pattern;
 
     // Variables
     private initialValue = '';
@@ -26,13 +41,15 @@ export class VlInputFieldComponent extends FormControl {
 
     static get properties(): PropertyDeclarations {
         return {
-            type: { type: String, reflect: true },
+            block: { type: Boolean, reflect: false },
+            readonly: { type: Boolean, reflect: false },
+            type: { type: String, reflect: false },
             value: { type: String, reflect: true },
-            minLength: { type: Number, reflect: true, attribute: 'min-length' },
-            maxLength: { type: Number, reflect: true, attribute: 'max-length' },
-            min: { type: Number, reflect: true },
-            max: { type: Number, reflect: true },
-            pattern: { type: String, reflect: true },
+            minLength: { type: Number, reflect: false, attribute: 'min-length' },
+            maxLength: { type: Number, reflect: false, attribute: 'max-length' },
+            min: { type: Number, reflect: false },
+            max: { type: Number, reflect: false },
+            pattern: { type: String, reflect: false },
         };
     }
 
@@ -55,10 +72,10 @@ export class VlInputFieldComponent extends FormControl {
     render(): TemplateResult {
         const classes = {
             'vl-input-field': true,
-            'vl-input-field--block': this.block,
             'vl-input-field--disabled': this.disabled,
             'vl-input-field--error': this.isInvalid || this.error,
             'vl-input-field--success': this.success,
+            'vl-input-field--block': this.block,
         };
 
         return html`
@@ -66,19 +83,19 @@ export class VlInputFieldComponent extends FormControl {
                 id=${this.id}
                 name=${this.name || this.id}
                 class=${classMap(classes)}
-                type=${this.type}
-                .value=${live(this.value)}
                 aria-label=${this.label}
-                @input=${this.onInput}
                 ?required=${this.required}
                 ?disabled=${this.disabled}
-                ?readonly=${this.readonly}
                 ?error=${this.error}
+                ?readonly=${this.readonly}
+                type=${this.type}
+                .value=${live(this.value)}
                 minlength=${this.minLength}
                 maxlength=${this.maxLength}
                 min=${this.min}
                 max=${this.max}
                 pattern=${this.pattern}
+                @input=${this.onInput}
             />
         `;
     }
@@ -89,6 +106,9 @@ export class VlInputFieldComponent extends FormControl {
 
     protected onInput(event: Event & { target: HTMLInputElement }): void {
         this.value = event?.target?.value;
+        this.dispatchEvent(
+            new CustomEvent('vl-input', { composed: true, bubbles: true, detail: { value: this.value } })
+        );
     }
 
     resetFormControl(): void {

@@ -9,6 +9,7 @@ import { FormControl, FormControlDefaults } from '../form-control/FormControl';
 
 export const CheckboxDefaults = {
     ...FormControlDefaults,
+    block: false,
     value: '',
     checked: false,
     isSwitch: false,
@@ -17,6 +18,7 @@ export const CheckboxDefaults = {
 @customElement('vl-checkbox-next')
 export class VlCheckboxComponent extends FormControl {
     // Properties
+    private block = CheckboxDefaults.block;
     private value = CheckboxDefaults.value;
     private checked = CheckboxDefaults.checked;
     private isSwitch = CheckboxDefaults.isSwitch;
@@ -31,8 +33,9 @@ export class VlCheckboxComponent extends FormControl {
 
     static get properties(): PropertyDeclarations {
         return {
-            checked: { type: Boolean, reflect: true },
+            block: { type: Boolean, reflect: false },
             value: { type: String, reflect: false },
+            checked: { type: Boolean, reflect: true },
             isSwitch: { type: Boolean, reflect: false, attribute: 'switch' },
         };
     }
@@ -71,10 +74,10 @@ export class VlCheckboxComponent extends FormControl {
     renderCheckboxDefault(): TemplateResult {
         const classes = {
             'vl-checkbox': true,
-            'vl-checkbox--block': this.block,
             'vl-checkbox--disabled': this.disabled,
             'vl-checkbox--error': this.isInvalid || this.error,
             'vl-checkbox--success': this.success,
+            'vl-checkbox--block': this.block,
         };
 
         return html`
@@ -82,14 +85,14 @@ export class VlCheckboxComponent extends FormControl {
                 <input
                     id=${this.id}
                     name=${this.name}
-                    class="vl-checkbox__toggle"
                     type="checkbox"
+                    class="vl-checkbox__toggle"
                     aria-label=${this.label}
-                    .value=${this.value}
-                    ?checked=${this.checked}
                     ?required=${this.required}
                     ?disabled=${this.disabled}
                     ?error=${this.error}
+                    .value=${this.value}
+                    .checked=${this.checked}
                     @click=${this.toggle}
                 />
                 <div class="vl-checkbox__label">
@@ -105,10 +108,10 @@ export class VlCheckboxComponent extends FormControl {
     renderCheckboxSwitch(): TemplateResult {
         const classes = {
             'vl-checkbox--switch__wrapper': true,
-            'vl-checkbox--block': this.block,
             'vl-checkbox--disabled': this.disabled,
             'vl-checkbox--error': this.isInvalid || this.error,
             'vl-checkbox--success': this.success,
+            'vl-checkbox--block': this.block,
         };
 
         return html`
@@ -116,14 +119,14 @@ export class VlCheckboxComponent extends FormControl {
                 <input
                     id=${this.id}
                     name=${this.name}
-                    class="vl-checkbox--switch"
                     type="checkbox"
+                    class="vl-checkbox--switch"
                     aria-label=${this.label}
-                    .value=${this.value}
-                    ?checked=${this.checked}
                     ?required=${this.required}
                     ?disabled=${this.disabled}
                     ?error=${this.error}
+                    .value=${this.value}
+                    .checked=${this.checked}
                 />
                 <label class="vl-checkbox__label" @click=${this.toggle}>
                     <span class="vl-checkbox--switch__label">
@@ -140,8 +143,18 @@ export class VlCheckboxComponent extends FormControl {
     toggle(): void {
         if (!this.disabled) {
             this.checked = !this.checked;
+
+            const detailObject: { checked: boolean; value?: string } = { checked: this.checked };
+            if (this.checked) {
+                detailObject.value = this.value || 'on';
+            }
+
             this.dispatchEvent(
-                new CustomEvent('checked', { bubbles: true, composed: true, detail: { checked: this.checked } })
+                new CustomEvent('vl-checked', {
+                    bubbles: true,
+                    composed: true,
+                    detail: detailObject,
+                })
             );
         }
     }

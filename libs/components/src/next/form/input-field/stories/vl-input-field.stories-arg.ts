@@ -1,27 +1,34 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { InputFieldDefaults } from '../vl-input-field.component';
+import { action } from '@storybook/addon-actions';
 
-export const inputFieldArgs = {
-    ...formControlArgs,
-    value: '',
-    type: 'text',
-    minLength: null,
-    maxLength: null,
-    min: null,
-    max: null,
-    pattern: '',
+export const inputFieldArgs: typeof defaultArgs & typeof InputFieldDefaults & { onVlInput: () => void } = {
+    ...defaultArgs,
+    ...InputFieldDefaults,
+    onVlInput: action('vl-input'),
 };
 
 export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
+    ...defaultArgTypes(true),
     ...formControlArgTypes,
-    value: {
-        name: 'value',
-        description: 'De waarde van het input veld.',
+    block: {
+        name: 'block',
+        description: 'Duidt aan dat de component de volledige breedte van zijn parent mag innemen.',
         table: {
-            type: { summary: TYPES.STRING },
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: inputFieldArgs.value },
+            defaultValue: { summary: inputFieldArgs.block },
+        },
+    },
+    readonly: {
+        name: 'readonly',
+        description: 'Duidt aan dat het veld enkel leesbaar is.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: inputFieldArgs.readonly },
         },
     },
     type: {
@@ -31,6 +38,15 @@ export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldArgs.type },
+        },
+    },
+    value: {
+        name: 'value',
+        description: 'De waarde van het input veld.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: inputFieldArgs.value },
         },
     },
     minLength: {
@@ -80,6 +96,15 @@ export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldArgs.pattern },
+        },
+    },
+    onVlInput: {
+        name: 'vl-input',
+        description:
+            'Event dat afgevuurd wordt als de waarde van het input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
         },
     },
 };

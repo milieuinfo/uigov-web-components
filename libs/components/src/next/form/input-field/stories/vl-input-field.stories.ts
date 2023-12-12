@@ -1,4 +1,4 @@
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
 import { inputFieldArgTypes, inputFieldArgs } from './vl-input-field.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
@@ -8,8 +8,8 @@ import '../vl-input-field.component';
 export default {
     title: 'Components-next/form/input-field-next',
     tags: ['autodocs'],
-    args: storyArgs(inputFieldArgs),
-    argTypes: storyArgTypes(inputFieldArgTypes, true),
+    args: inputFieldArgs,
+    argTypes: inputFieldArgTypes,
     parameters: {
         docs: {
             page: inputFieldDocs,
@@ -23,37 +23,39 @@ export const InputFieldDefault = story(
         id,
         name,
         label,
-        block,
         required,
         disabled,
         error,
         success,
+        block,
         readonly,
-        value,
         type,
+        value,
         minLength,
         maxLength,
         min,
         max,
         pattern,
+        onVlInput,
     }) => {
         return html` <vl-input-field-next
             id=${id}
             name=${name}
             label=${label}
-            ?block=${block}
             ?required=${required}
             ?disabled=${disabled}
             ?error=${error}
             ?success=${success}
+            ?block=${block}
             ?readonly=${readonly}
-            value=${value}
             type=${type}
+            value=${value}
             min-length=${minLength}
             max-length=${maxLength}
             min=${min}
             max=${max}
             pattern=${pattern}
+            @vl-input=${onVlInput}
         ></vl-input-field-next>`;
     }
 );

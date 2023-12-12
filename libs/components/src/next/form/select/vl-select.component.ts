@@ -49,7 +49,7 @@ export class VlSelectComponent extends FormControl {
     // Variables
     choices: Choices | null = null;
     private initialOptions: SelectOption[] = [];
-    private value: string | null = null;
+    private value = '';
 
     static get styles(): CSSResult[] {
         return [resetStyle, baseStyle, inputFieldStyle, selectStyle, multiselectStyle, selectUigStyle];
@@ -112,7 +112,6 @@ export class VlSelectComponent extends FormControl {
         const classes = {
             'vl-select': !this.multiple,
             'vl-multiselect': this.multiple,
-            'vl-select--block': this.block,
             'vl-select--disabled': this.disabled,
             'vl-select--error': this.isInvalid || this.error,
             'vl-select--success': this.success,
@@ -287,7 +286,7 @@ export class VlSelectComponent extends FormControl {
         if (this.value !== value) {
             this.value = value;
             this.setValue(value);
-            this.dispatchEvent(new CustomEvent('select', { bubbles: true, composed: true, detail: { value } }));
+            this.dispatchEvent(new CustomEvent('vl-select', { bubbles: true, composed: true, detail: { value } }));
             // requestUpdate() nodig om invalid state te updaten als het veld gemarkeerd is als invalid
             this.requestUpdate();
         }
