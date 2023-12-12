@@ -1,15 +1,17 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
 import { SelectPosition, SelectDefaults } from '../index';
 import { action } from '@storybook/addon-actions';
 
-export const selectArgs: typeof SelectDefaults & { onSelect: () => void } = {
+export const selectArgs: typeof defaultArgs & typeof SelectDefaults & { onVlSelect: () => void } = {
+    ...defaultArgs,
     ...SelectDefaults,
-    onSelect: action('select'),
+    onVlSelect: action('vl-select'),
 };
 
 export const selectArgTypes: ArgTypes<typeof selectArgs> = {
+    ...defaultArgTypes(true),
     ...formControlArgTypes,
     placeholder: {
         name: 'placeholder',
@@ -104,10 +106,10 @@ export const selectArgTypes: ArgTypes<typeof selectArgs> = {
             defaultValue: { summary: selectArgs.options },
         },
     },
-    onSelect: {
-        name: 'select',
+    onVlSelect: {
+        name: 'vl-select',
         description:
-            'Event dat afgevuurd wordt als je een optie selecteert of verwijderdt.<br>Bij de multiselect worden de opties gescheiden door een ;.',
+            'Event dat afgevuurd wordt als er een optie selecteerd of verwijderd wordt.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect worden de waarden van de geselecteerde opties gescheiden door een `;`.',
         table: {
             type: { summary: '{ value: string }' },
             category: CATEGORIES.EVENTS,

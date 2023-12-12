@@ -1,4 +1,4 @@
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
 import { selectArgs, selectArgTypes } from './vl-select.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
@@ -8,8 +8,8 @@ import '../vl-select.component';
 export default {
     title: 'Components-next/form/select-next',
     tags: ['autodocs'],
-    args: storyArgs(selectArgs),
-    argTypes: storyArgTypes(selectArgTypes, true),
+    args: selectArgs,
+    argTypes: selectArgTypes,
     parameters: {
         docs: {
             page: selectDocs,
@@ -40,7 +40,7 @@ const SelectTemplate = story(
         noResultsText,
         noChoicesText,
         searchPlaceholder,
-        onSelect,
+        onVlSelect,
     }) => {
         return html` <vl-select-next
             id=${id}
@@ -60,7 +60,7 @@ const SelectTemplate = story(
             no-results-text=${noResultsText}
             no-choices-text=${noChoicesText}
             search-placeholder=${searchPlaceholder}
-            @select=${onSelect}
+            @vl-select=${onVlSelect}
         ></vl-select-next>`;
     }
 );

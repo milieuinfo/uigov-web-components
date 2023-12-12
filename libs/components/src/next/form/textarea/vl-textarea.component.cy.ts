@@ -118,4 +118,13 @@ describe('component vl-textarea-next', () => {
         cy.get('vl-textarea-next').should('have.attr', 'cols', 10);
         cy.get('vl-textarea-next').shadow().find('textarea').should('have.attr', 'cols', 10);
     });
+
+    it('should dispatch vl-input event on input', () => {
+        cy.mount(html`<vl-textarea-next></vl-textarea-next>`);
+
+        cy.createStubForEvent('vl-textarea-next', 'vl-input');
+        cy.get('vl-textarea-next').shadow().find('textarea').type('test');
+        cy.get('@vl-input').its('callCount').should('eq', 4);
+        cy.get('@vl-input').its('lastCall.args.0.detail').should('deep.equal', { value: 'test' });
+    });
 });

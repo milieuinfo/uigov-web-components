@@ -1,4 +1,4 @@
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
 import { textareaArgTypes, textareaArgs } from './vl-textarea.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
@@ -8,8 +8,8 @@ import '../vl-textarea.component';
 export default {
     title: 'Components-next/form/textarea-next',
     tags: ['autodocs'],
-    args: storyArgs(textareaArgs),
-    argTypes: storyArgTypes(textareaArgTypes, true),
+    args: textareaArgs,
+    argTypes: textareaArgTypes,
     parameters: {
         docs: {
             page: textareaDocs,
@@ -23,33 +23,35 @@ export const TextareaDefault = story(
         id,
         name,
         label,
-        block,
         required,
         disabled,
         error,
         success,
+        block,
         readonly,
         value,
         minLength,
         maxLength,
         rows,
         cols,
+        onVlInput,
     }) => {
         return html` <vl-textarea-next
             id=${id}
             name=${name}
             label=${label}
-            ?block=${block}
             ?required=${required}
             ?disabled=${disabled}
             ?error=${error}
             ?success=${success}
+            ?block=${block}
             ?readonly=${readonly}
             value=${value}
             min-length=${minLength}
             max-length=${maxLength}
             rows=${rows}
             cols=${cols}
+            @vl-input=${onVlInput}
         ></vl-textarea-next>`;
     }
 );

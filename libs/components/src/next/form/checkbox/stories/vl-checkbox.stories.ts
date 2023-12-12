@@ -3,13 +3,14 @@ import '../vl-checkbox.component';
 import { checkboxArgs, checkboxArgTypes } from './vl-checkbox.stories-arg';
 import { Meta } from '@storybook/web-components';
 import checkboxDoc from './vl-checkbox.stories-doc.mdx';
-import { storyArgTypes, storyArgs, story } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 export default {
     title: 'Components-next/form/checkbox',
     tags: ['autodocs'],
-    args: storyArgs(checkboxArgs),
-    argTypes: storyArgTypes(checkboxArgTypes, true),
+    args: checkboxArgs,
+    argTypes: checkboxArgTypes,
     parameters: {
         docs: {
             page: checkboxDoc,
@@ -19,48 +20,87 @@ export default {
 
 export const CheckboxDefault = story(
     checkboxArgs,
-    ({ block, checked, disabled, error, label, name, value, isSwitch }) => html`
+    ({
+        id,
+        name,
+        label,
+        required,
+        disabled,
+        error,
+        success,
+        block,
+        value,
+        checked,
+        isSwitch,
+        contentSlot,
+        onVlChecked,
+    }) => html`
         <vl-checkbox-next
-            ?block=${block}
-            ?checked=${checked}
+            id=${id}
+            name=${name}
+            label=${label}
+            ?required=${required}
             ?disabled=${disabled}
             ?error=${error}
-            label=${label}
-            ?switch=${isSwitch}
-            name=${name}
+            ?success=${success}
+            ?block=${block}
             value=${value}
+            ?checked=${checked}
+            ?switch=${isSwitch}
+            @vl-checked=${onVlChecked}
         >
-            Bevestig.
+            ${unsafeHTML(contentSlot)}
         </vl-checkbox-next>
     `
 );
 CheckboxDefault.storyName = 'vl-checkbox-next - default';
 CheckboxDefault.args = {
+    id: 'checkbox-default',
     name: 'options',
-    isSwitch: false,
     value: 'Optie 1',
+    contentSlot: '<span>Bevestig.</span>',
 };
 
 export const CheckboxSwitch = story(
     checkboxArgs,
-    ({ block, checked, disabled, error, label, name, value, isSwitch }) => html`
+    ({
+        id,
+        name,
+        label,
+        required,
+        disabled,
+        error,
+        success,
+        block,
+        value,
+        checked,
+        isSwitch,
+        contentSlot,
+        onVlChecked,
+    }) => html`
         <vl-checkbox-next
-            ?block=${block}
-            ?checked=${checked}
+            id=${id}
+            name=${name}
+            label=${label}
+            ?required=${required}
             ?disabled=${disabled}
             ?error=${error}
-            label=${label}
-            name=${name}
-            ?switch=${isSwitch}
+            ?success=${success}
+            ?block=${block}
             value=${value}
+            ?checked=${checked}
+            ?switch=${isSwitch}
+            @vl-checked=${onVlChecked}
         >
-            Instellingen toepassen.
+            ${unsafeHTML(contentSlot)}
         </vl-checkbox-next>
     `
 );
 CheckboxSwitch.storyName = 'vl-checkbox-next - switch';
 CheckboxSwitch.args = {
+    id: 'checkbox-switch',
     name: 'options',
     isSwitch: true,
     value: 'Optie 1',
+    contentSlot: '<span>Instellingen toepassen.</span>',
 };

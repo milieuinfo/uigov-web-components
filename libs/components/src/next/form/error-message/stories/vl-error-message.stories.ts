@@ -1,4 +1,4 @@
-import { story, storyArgTypes, storyArgs } from '@domg-wc/common-storybook';
+import { story } from '@domg-wc/common-storybook';
 import { errorMessageArgs, errorMessageArgTypes } from './vl-error-message.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
@@ -9,8 +9,8 @@ import '../vl-error-message.component';
 export default {
     title: 'Components-next/form/error-message-next',
     tags: ['autodocs'],
-    args: storyArgs(errorMessageArgs),
-    argTypes: storyArgTypes(errorMessageArgTypes, true),
+    args: errorMessageArgs,
+    argTypes: errorMessageArgTypes,
     parameters: {
         docs: {
             page: errorMessageDocs,
