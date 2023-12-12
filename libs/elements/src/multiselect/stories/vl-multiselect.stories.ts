@@ -3,6 +3,7 @@ import { html } from 'lit-html';
 import '../../link/vl-link.element';
 import '../vl-multiselect.element';
 import { multiselectArgs, multiselectArgTypes } from './vl-multiselect.stories-arg';
+import multiSelectDoc from './vl-multiselect.stories-doc.mdx';
 
 export default {
     title: 'Elements/multiselect',
@@ -11,10 +12,13 @@ export default {
     argTypes: multiselectArgTypes,
     parameters: {
         controls: { hideNoControlsWarning: true },
+        docs: {
+            page: multiSelectDoc,
+        },
     },
 } as Meta<typeof multiselectArgs>;
 
-export const multiselectDefault = ({ block, error, success, disabled }: typeof multiselectArgs) => html`
+export const MultiselectDefault = ({ block, error, success, disabled }: typeof multiselectArgs) => html`
     <select
         is="vl-multiselect"
         ?data-vl-block=${block}
@@ -27,9 +31,9 @@ export const multiselectDefault = ({ block, error, success, disabled }: typeof m
         <option value="France">Frankrijk</option>
     </select>
 `;
-multiselectDefault.storyName = 'vl-multiselect - default';
+MultiselectDefault.storyName = 'vl-multiselect - default';
 
-export const multiselectPredefinedOption = ({ block, error, success, disabled }: typeof multiselectArgs) => html`
+export const MultiselectPredefinedOption = ({ block, error, success, disabled }: typeof multiselectArgs) => html`
     <select
         is="vl-multiselect"
         ?data-vl-block=${block}
@@ -42,9 +46,9 @@ export const multiselectPredefinedOption = ({ block, error, success, disabled }:
         <option value="Ghent">Gent</option>
     </select>
 `;
-multiselectPredefinedOption.storyName = 'vl-multiselect - predefined option';
+MultiselectPredefinedOption.storyName = 'vl-multiselect - predefined option';
 
-export const multiselectGroupedItems = ({ block, error, success, disabled }: typeof multiselectArgs) => html`
+export const MultiselectGroupedItems = ({ block, error, success, disabled }: typeof multiselectArgs) => html`
     <select
         is="vl-multiselect"
         ?data-vl-block=${block}
@@ -64,4 +68,4 @@ export const multiselectGroupedItems = ({ block, error, success, disabled }: typ
         </optgroup>
     </select>
 `;
-multiselectGroupedItems.storyName = 'vl-multiselect - grouped items';
+MultiselectGroupedItems.storyName = 'vl-multiselect - grouped items';
