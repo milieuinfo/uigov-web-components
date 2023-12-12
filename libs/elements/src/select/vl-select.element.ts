@@ -1,16 +1,18 @@
-import { awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
+import { type VL, awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
 import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
 import './vl-select.lib.js';
 import { elementStyles } from '../vl-elements.uig-css';
 
-declare const vl: any;
+declare const vl: VL;
 
 export const SELECT_POSITION = {
     AUTO: 'auto',
     TOP: 'top',
     BOTTOM: 'bottom',
-};
+} as const;
+
+export type SelectPosition = (typeof SELECT_POSITION)[keyof typeof SELECT_POSITION];
 
 /**
  * VlSelect
@@ -39,18 +41,12 @@ export const SELECT_POSITION = {
 @elementStyles()
 @webComponentPromised([vlFormValidation.ready()], 'vl-select', { extends: 'select' })
 export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSelectElement)) {
-    /**
-     * Geeft de ready event naam.
-     *
-     * @return {string}
-     */
-
     static get readyEvent() {
         return 'VlSelectReady';
     }
 
     static get _observedAttributes() {
-        return vlFormValidation._observedAttributes().concat(['error', 'success']);
+        return vlFormValidation._observedAttributes().concat(['error', 'success', 'disabled']);
     }
 
     static get _observedChildClassAttributes() {
@@ -72,6 +68,14 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
 
         const searchInputElement = this._choices?.input;
         searchInputElement?.removeEventListener('input', this.onSearchInput);
+    }
+
+    attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+        if (name === 'data-vl-disabled' || name === 'disabled') {
+            this._disabledChangedCallback(newValue);
+        } else {
+            super.attributeChangedCallback(name, oldValue, newValue);
+        }
     }
 
     /**
@@ -115,24 +119,20 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
         return 'data-vl-select-dressed';
     }
 
+    /**
+     * @param oldValue {String} - wordt niet gebruikt, maar nodig voor de signature super.__changeAttribute
+     * @param newValue {String}
+     */
     _successChangedCallback(oldValue: string, newValue: string) {
         this.__stateChangedCallback(newValue, 'success');
     }
 
+    /**
+     * @param oldValue {String} - wordt niet gebruikt, maar nodig voor de signature super.__changeAttribute
+     * @param newValue {String}
+     */
     _errorChangedCallback(oldValue: string, newValue: string) {
         this.__stateChangedCallback(newValue, 'error');
-    }
-
-    set __searchPlaceholderTranslation(value: string) {
-        this._changeTranslation('select.search_placeholder_value', value);
-    }
-
-    set __searchNoResultTranslation(value: string) {
-        this._changeTranslation('select.no_results', value);
-    }
-
-    set __noMoreOptionsTranslation(value: string) {
-        this._changeTranslation('select.no_more_options', value);
     }
 
     __stateChangedCallback(newValue: string, type: string) {
@@ -151,6 +151,18 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
             } else {
                 this.classList.remove('vl-select--' + type);
             }
+        }
+    }
+
+    // NOTE: (UIG-2212) - we stellen hier zelf disabled in ipv dit te laten doen door vl.utils.select object van DV
+    // we nemen de css van DV maar niet alle functionaliteit dit van de disable() fn komt
+    _disabledChangedCallback(newValue: string) {
+        if (newValue !== null) {
+            this.setAttribute('disabled', '');
+            vl.select.disable(this as unknown as HTMLSelectElement);
+        } else {
+            this.removeAttribute('disabled');
+            vl.select.enable(this as unknown as HTMLSelectElement);
         }
     }
 
@@ -177,7 +189,13 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
      * @param {String} classPrefix
      * @private
      */
-    __changeAttribute(element: any, oldValue: string, newValue: string, attribute: string, classPrefix: string) {
+    __changeAttribute(
+        element: HTMLElement,
+        oldValue: string,
+        newValue: string,
+        attribute: string,
+        classPrefix: string
+    ) {
         const el = this.__lookupElement(element);
         super.__changeAttribute(el, oldValue, newValue, attribute, classPrefix);
     }
@@ -188,11 +206,23 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
      * @return {HTMLElement|*} element waar de CSS class toegevoegd moet worden.
      * @private
      */
-    __lookupElement(element: any) {
+    __lookupElement(element: HTMLElement) {
         if (this._dressed) {
             return this._wrapperElement.parentElement;
         }
         return element;
+    }
+
+    set __searchPlaceholderTranslation(value: string) {
+        this._changeTranslation('select.search_placeholder_value', value);
+    }
+
+    set __searchNoResultTranslation(value: string) {
+        this._changeTranslation('select.no_results', value);
+    }
+
+    set __noMoreOptionsTranslation(value: string) {
+        this._changeTranslation('select.no_more_options', value);
     }
 
     /**
@@ -207,20 +237,21 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
     /**
      * Zet sorteer functie voor de mogelijke keuzes.
      *
-     * @param {function(T, T)} fn bi-functie die de mogelijke keuzes sorteert.
+     * @param {function(unknown, unknown): number} fn bi-functie die de mogelijke keuzes sorteert.
      */
-    set sortFilter(fn: any) {
+    set sortFilter(fn: (a: unknown, b: unknown) => number) {
         this._choices.config.sortFilter = fn;
     }
 
     /**
      * Zet het geselecteerd option element op basis van de option value.
      *
+     * @param {as unknown as HTMLElement} this - het option element dat gekozen moet worden.
      * @param {string} value - de option value van het option element dat gekozen moet worden.
      */
-    set value(value) {
+    set value(value: string) {
         if (this._dressed) {
-            vl.select.setValueByChoice(this, value);
+            vl.select.setValueByChoice(this as unknown as HTMLElement, value);
         } else {
             super.value = value;
         }
@@ -288,6 +319,7 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
 
             if (!this._dressed) {
                 const position: string = this.getAttribute('position') || SELECT_POSITION.AUTO;
+
                 vl.select.dress(this, params, { position });
 
                 (async () => {
@@ -336,21 +368,21 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
      * Activeer de component.
      */
     enable() {
-        vl.select.enable(this);
+        vl.select.enable(this as unknown as HTMLSelectElement);
     }
 
     /**
      * Deactiveer de component.
      */
-    disable() {
-        vl.select.disable(this);
+    disable(): void {
+        vl.select.disable(this as unknown as HTMLSelectElement);
     }
 
     /**
      * Verwijder de actieve geselecteerde optie.
      */
     removeActive() {
-        vl.select.removeActive(this);
+        vl.select.removeActive(this as unknown as HTMLElement);
     }
 
     /**
@@ -364,14 +396,14 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
      * Toon de dropdown met de mogelijke keuzes.
      */
     showDropdown() {
-        vl.select.showDropdown(this);
+        vl.select.showDropdown(this as unknown as HTMLElement);
     }
 
     /**
      * Verberg de dropdown met de mogelijke keuzes.
      */
     hideDropdown() {
-        vl.select.hideDropdown(this);
+        vl.select.hideDropdown(this as unknown as HTMLElement);
     }
 
     /**
