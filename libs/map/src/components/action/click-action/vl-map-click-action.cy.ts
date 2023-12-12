@@ -73,9 +73,9 @@ describe('vl-map-click-action marker functionality', () => {
     });
 
     it('should add a marker on the map if vl-map-click-action is present in the DOM and the map has been clicked ', () => {
-        cy.get('vl-map').should('exist');
+        cy.get('vl-map').shadow();
 
-        cy.get('vl-map-click-action').should('exist');
+        cy.get('vl-map-click-action').shadow();
 
         cy.get('vl-map').click();
 

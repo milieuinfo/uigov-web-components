@@ -24,7 +24,7 @@ export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
     },
     readonly: {
         name: 'readonly',
-        description: 'Duidt aan dat het veld enkel leesbaar is.',
+        description: 'Duidt aan dat het veld enkel `readonly` is.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
