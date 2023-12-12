@@ -680,8 +680,13 @@
                                             );
                                         this.containerOuter.classList.add(this.config.classNames.openState),
                                             this.containerOuter.setAttribute('aria-expanded', 'true'),
-                                            this.dropdown.classList.add(this.config.classNames.activeState),
-                                            this.dropdown.setAttribute('aria-expanded', 'true');
+                                            // NOTE: (UIG-2212) - Verwijdert de dropdown bij de multi-select indien div.js-vl-select
+                                            // (multi-select.parent) de <is-disabled> (=disabledState) klasse heeft.
+                                            this.containerOuter.classList.contains(this.config.classNames.disabledState)
+                                                ? this.dropdown.classList.remove(this.config.classNames.activeState)
+                                                : this.dropdown.classList.add(this.config.classNames.activeState);
+
+                                        this.dropdown.setAttribute('aria-expanded', 'true');
                                         var s = this.dropdown.getBoundingClientRect(),
                                             o = Math.ceil(s.top + window.scrollY + this.dropdown.offsetHeight),
                                             r = !1;
@@ -1464,6 +1469,7 @@
                                         var t = e.target,
                                             i = this.dropdown.classList.contains(this.config.classNames.activeState),
                                             n = this.store.getItemsFilteredByActive();
+
                                         if (this.containerOuter.contains(t))
                                             t.hasAttribute('data-button') && this._handleButtonAction(n, t),
                                                 i
