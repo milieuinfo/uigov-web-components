@@ -24,7 +24,7 @@ export const textareaArgTypes: ArgTypes<typeof textareaArgs> = {
     },
     readonly: {
         name: 'readonly',
-        description: 'Duidt aan dat het veld enkel leesbaar is.',
+        description: 'Duidt aan dat het veld `readonly` is.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,

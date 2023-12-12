@@ -33,7 +33,7 @@ declare const vl: any;
  * @property {(range | time | date-time)} data-vl-type - Attribuut bepaalt het soort datepicker.
  * @property {string} data-vl-format - Attribuut bepaalt het formaat van de datum/tijd waarde, standaard 'd.m.Y' (-> 31.12.2019).
  * @property {string} data-vl-visual-format - Attribuut bepaalt het visueel formaat van de datum/tijd waarde.
- * @property {string} data-vl-selected-date - Attribuut voor een vooringestelde datum conform het ingestelde formaat (bv. '03-10-2019') of 'today' voor vandaag.
+ * @property {string} data-vl-selected-date - Attribuut voor een vooraf ingestelde datum conform het ingestelde formaat (bv. '03-10-2019') of 'today' voor vandaag.
  * @property {string} data-vl-min-date - Attribuut voor een minimum datum conform het ingestelde formaat (bv. '01-01-2019') of 'today' voor vandaag.
  * @property {string} data-vl-max-date - Attribuut voor een maximum datum conform het ingestelde format (bv. '31-12-2019') of 'today' voor vandaag.
  * @property {string} data-vl-min-time - Attribuut voor een minimum tijd conform het ingestelde formaat (bv. '09:00').

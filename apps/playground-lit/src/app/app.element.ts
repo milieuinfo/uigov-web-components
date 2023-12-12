@@ -9,18 +9,20 @@ import { VlCheckboxComponent } from '@domg-wc/components/next/form/checkbox';
 import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/components/next/form/radio';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import appElementStyle from './app.element.css';
+import { VlDatepickerComponent } from '@domg-wc/components/next/form/datepicker';
 
 type SubmittedFormData = {
     voornaam?: string;
     achternaam?: string;
     interesses?: string;
+    geboortedatum?: string;
     geboorteplaats?: string;
     [`hobby's`]?: string;
     leeftijd?: number;
     kinderen?: number;
     adres?: string;
-    waarheidsgetrouw?: boolean;
     contactmethode?: string;
+    waarheidsgetrouw?: boolean;
 };
 
 @customElement('app-element')
@@ -29,30 +31,34 @@ export class AppElement extends LitElement {
     private firstNameRequired = false;
     private lastNameRequired = false;
     private interestsRequired = false;
+    private birthdateRequired = false;
     private birthplaceRequired = false;
     private hobbiesRequired = false;
     private ageRequired = false;
     private kidsRequired = false;
     private addressFieldRequired = false;
-    private filledInTruthfullyRequired = false;
     private preferredContactMethodRequired = false;
+    private filledInTruthfullyRequired = false;
 
     // Disabled state values
     private firstNameDisabled = false;
     private lastNameDisabled = false;
     private interestsDisabled = false;
+    private birthdateDisabled = false;
     private birthplaceDisabled = false;
     private hobbiesDisabled = false;
     private ageDisabled = false;
     private kidsDisabled = false;
     private addressFieldDisabled = false;
-    private filledInTruthfullyDisabled = false;
     private preferredContactMethodDisabled = false;
+
+    private filledInTruthfullyDisabled = false;
 
     // Read only state values
     private firstNameReadonly = false;
     private lastNameReadonly = false;
     private interestsReadonly = false;
+    private birthdateReadonly = false;
     private birthplaceReadonly = false;
     private hobbiesReadonly = false;
     private ageReadonly = false;
@@ -68,6 +74,7 @@ export class AppElement extends LitElement {
     private firstName = '';
     private lastName = '';
     private interests = '';
+    private birthdate = '';
     private birthplaces: SelectOption[] = [
         {
             label: 'België',
@@ -117,6 +124,7 @@ export class AppElement extends LitElement {
             VlCheckboxComponent,
             VlRadioComponent,
             VlRadioGroupComponent,
+            VlDatepickerComponent,
         ]);
     }
 
@@ -129,44 +137,48 @@ export class AppElement extends LitElement {
             firstNameRequired: { type: Boolean, state: true },
             lastNameRequired: { type: Boolean, state: true },
             interestsRequired: { type: Boolean, state: true },
+            birthdateRequired: { type: Boolean, state: true },
             birthplaceRequired: { type: Boolean, state: true },
             hobbiesRequired: { type: Boolean, state: true },
             ageRequired: { type: Boolean, state: true },
             kidsRequired: { type: Boolean, state: true },
             addressFieldRequired: { type: Boolean, state: true },
-            filledInTruthfullyRequired: { type: Boolean, state: true },
             preferredContactMethodRequired: { type: Boolean, state: true },
+            filledInTruthfullyRequired: { type: Boolean, state: true },
             firstNameDisabled: { type: Boolean, state: true },
             lastNameDisabled: { type: Boolean, state: true },
             interestsDisabled: { type: Boolean, state: true },
+            birthdateDisabled: { type: Boolean, state: true },
             birthplaceDisabled: { type: Boolean, state: true },
             hobbiesDisabled: { type: Boolean, state: true },
             ageDisabled: { type: Boolean, state: true },
             kidsDisabled: { type: Boolean, state: true },
             addressFieldDisabled: { type: Boolean, state: true },
-            filledInTruthfullyDisabled: { type: Boolean, state: true },
             preferredContactMethodDisabled: { type: Boolean, state: true },
+            filledInTruthfullyDisabled: { type: Boolean, state: true },
             firstNameReadonly: { type: Boolean, state: true },
             lastNameReadonly: { type: Boolean, state: true },
             interestsReadonly: { type: Boolean, state: true },
+            birthdateReadonly: { type: Boolean, state: true },
             birthplaceReadonly: { type: Boolean, state: true },
             hobbiesReadonly: { type: Boolean, state: true },
             ageReadonly: { type: Boolean, state: true },
             kidsReadonly: { type: Boolean, state: true },
             addressFieldReadonly: { type: Boolean, state: true },
-            filledInTruthfullyReadonly: { type: Boolean, state: true },
             preferredContactMethodReadonly: { type: Boolean, state: true },
+            filledInTruthfullyReadonly: { type: Boolean, state: true },
             firstName: { type: String, state: true },
             lastName: { type: String, state: true },
             interests: { type: String, state: true },
+            birthdate: { type: String, state: true },
             birthplaces: { type: Array, state: true },
             hobbies: { type: Array, state: true },
             age: { type: Number, state: true },
             kids: { type: Number, state: true },
             address: { type: String, state: true },
+            preferredContactMethod: { type: String, state: true },
             filledInTruthfully: { type: Boolean, state: true },
             filledInTruthfullyValue: { type: String, state: true },
-            preferredContactMethod: { type: String, state: true },
             showAddressField: { type: Boolean, state: true },
             submittedFormData: { type: Object, state: true },
             submittedCount: { type: Number, state: true },
@@ -388,6 +400,64 @@ export class AppElement extends LitElement {
                                     @click=${() => (this.interests = 'Coding, spreadsheets')}
                                 >
                                     Set 'Coding, spreadsheets'
+                                </button>
+                            </div>
+                        </div>
+                        <div class="vl-col--2-12">
+                            <label class="vl-form__label vl-form__label--block" for="geboortedatum">
+                                Geboortedatum${this.birthdateRequired ? ' *' : ''}
+                            </label>
+                        </div>
+                        <div class="vl-col--4-12">
+                            <vl-datepicker-next
+                                id="geboortedatum"
+                                name="geboortedatum"
+                                pattern="^(0?[1-9]|[12][0-9]|3[01])\\.(0?[1-9]|1[012])\\.([0-9]{4})$"
+                                block
+                                value=${this.birthdate}
+                                ?required=${this.birthdateRequired}
+                                ?disabled=${this.birthdateDisabled}
+                                @vl-input=${(e: CustomEvent) => (this.birthdate = e.detail.value)}
+                                @reset=${() => (this.birthdate = '')}
+                            >
+                            </vl-datepicker-next>
+                            <vl-error-message-next for="geboortedatum" state="valueMissing">
+                                Gelieve een geboortedatum in te vullen.
+                            </vl-error-message-next>
+                            <vl-error-message-next for="geboortedatum" state="patternMismatch">
+                                Gelieve het volgende datum formaat te gebruiken: "dd.mm.YYYY", bv. 01.12.1976 of
+                                1.2.1993
+                            </vl-error-message-next>
+                        </div>
+                        <div class="vl-col--6-12">
+                            <div class="vl-action-group">
+                                <button
+                                    class="vl-button ${!this.birthdateRequired ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.birthdateRequired = !this.birthdateRequired)}
+                                >
+                                    Required
+                                </button>
+                                <button
+                                    class="vl-button ${!this.birthdateDisabled ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.birthdateDisabled = !this.birthdateDisabled)}
+                                >
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.birthdateReadonly ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.birthdateReadonly = !this.birthdateReadonly)}
+                                >
+                                    Readonly
+                                </button>
+                                <button
+                                    class="vl-button vl-button--secondary"
+                                    type="button"
+                                    @click=${() => (this.birthdate = '31.12.1976')}
+                                >
+                                    Select '31.12.1976'
                                 </button>
                             </div>
                         </div>
@@ -680,6 +750,71 @@ export class AppElement extends LitElement {
                                   </div>
                               `
                             : ''}
+
+                        <div class="vl-col--2-12">
+                            <label class="vl-form__label vl-form__label--block" for="contactmethode">
+                                Voorkeurscontactmethode${this.preferredContactMethodRequired ? ' *' : ''}
+                            </label>
+                        </div>
+                        <div class="vl-col--4-12">
+                            <vl-radio-group-next
+                                id="contactmethode"
+                                name="contactmethode"
+                                ?required=${this.preferredContactMethodRequired}
+                                ?disabled=${this.preferredContactMethodDisabled}
+                                ?readonly=${this.preferredContactMethodReadonly}
+                                value=${this.preferredContactMethod}
+                                @vl-checked=${(e: CustomEvent) => (this.preferredContactMethod = e.detail.value)}
+                            >
+                                <vl-radio-next value="e-mail">e-mail</vl-radio-next>
+                                <vl-radio-next value="telefoon">telefoon</vl-radio-next>
+                                <vl-radio-next value="post">post</vl-radio-next>
+                            </vl-radio-group-next>
+                            <vl-error-message-next for="contactmethode" state="valueMissing">
+                                Gelieve een contactmethode te selecteren.
+                            </vl-error-message-next>
+                        </div>
+                        <div class="vl-col--6-12">
+                            <div class="vl-action-group">
+                                <button
+                                    class="vl-button ${!this.preferredContactMethodRequired
+                                        ? 'vl-button--secondary'
+                                        : ''}"
+                                    type="button"
+                                    @click=${() =>
+                                        (this.preferredContactMethodRequired = !this.preferredContactMethodRequired)}
+                                >
+                                    Required
+                                </button>
+                                <button
+                                    class="vl-button ${!this.preferredContactMethodDisabled
+                                        ? 'vl-button--secondary'
+                                        : ''}"
+                                    type="button"
+                                    @click=${() =>
+                                        (this.preferredContactMethodDisabled = !this.preferredContactMethodDisabled)}
+                                >
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.preferredContactMethodReadonly
+                                        ? 'vl-button--secondary'
+                                        : ''}"
+                                    type="button"
+                                    @click=${() =>
+                                        (this.preferredContactMethodReadonly = !this.preferredContactMethodReadonly)}
+                                >
+                                    Readonly
+                                </button>
+                                <button
+                                    class="vl-button vl-button--secondary"
+                                    type="button"
+                                    @click=${() => (this.preferredContactMethod = 'post')}
+                                >
+                                    Set 'post'
+                                </button>
+                            </div>
+                        </div>
                         <div class="vl-col--2-12">
                             <label class="vl-form__label vl-form__label--block" for="waarheidsgetrouw">
                                 Waarheidsgetrouw${this.filledInTruthfullyRequired ? ' *' : ''}
@@ -748,69 +883,6 @@ export class AppElement extends LitElement {
                                 </button>
                             </div>
                         </div>
-                        <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="contactmethode">
-                                Voorkeurscontactmethode${this.preferredContactMethodRequired ? ' *' : ''}
-                            </label>
-                        </div>
-                        <div class="vl-col--4-12">
-                            <vl-radio-group-next
-                                id="contactmethode"
-                                name="contactmethode"
-                                ?required=${this.preferredContactMethodRequired}
-                                ?disabled=${this.preferredContactMethodDisabled}
-                                ?readonly=${this.preferredContactMethodReadonly}
-                                value=${this.preferredContactMethod}
-                            >
-                                <vl-radio-next value="e-mail">e-mail</vl-radio-next>
-                                <vl-radio-next value="telefoon">telefoon</vl-radio-next>
-                                <vl-radio-next value="post">post</vl-radio-next>
-                            </vl-radio-group-next>
-                            <vl-error-message-next for="contactmethode" state="valueMissing">
-                                Gelieve een contactmethode te selecteren.
-                            </vl-error-message-next>
-                        </div>
-                        <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.preferredContactMethodRequired
-                                        ? 'vl-button--secondary'
-                                        : ''}"
-                                    type="button"
-                                    @click=${() =>
-                                        (this.preferredContactMethodRequired = !this.preferredContactMethodRequired)}
-                                >
-                                    Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.preferredContactMethodDisabled
-                                        ? 'vl-button--secondary'
-                                        : ''}"
-                                    type="button"
-                                    @click=${() =>
-                                        (this.preferredContactMethodDisabled = !this.preferredContactMethodDisabled)}
-                                >
-                                    Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.preferredContactMethodReadonly
-                                        ? 'vl-button--secondary'
-                                        : ''}"
-                                    type="button"
-                                    @click=${() =>
-                                        (this.preferredContactMethodReadonly = !this.preferredContactMethodReadonly)}
-                                >
-                                    Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${() => (this.preferredContactMethod = 'e-mail')}
-                                >
-                                    Set 'e-mail'
-                                </button>
-                            </div>
-                        </div>
                         <div class="vl-col--6-12 vl-push--2-12">
                             <div class="vl-action-group">
                                 <button class="vl-button" type="submit">Verstuur</button>
@@ -830,12 +902,14 @@ export class AppElement extends LitElement {
                                 <dd class="vl-properties__data">${this.submittedFormData.achternaam}</dd>
                                 <dt class="vl-properties__label">Interesses</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData.interesses}</dd>
-                                <dt class="vl-properties__label">Geboorteplaats</dt>
-                                <dd class="vl-properties__data">${this.submittedFormData.geboorteplaats}</dd>
+                                <dt class="vl-properties__label">Geboortedatum</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.geboortedatum}</dd>
                             </dl>
                         </div>
                         <div class="vl-properties__column">
                             <dl class="vl-properties__list">
+                                <dt class="vl-properties__label">Geboorteplaats</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.geboorteplaats}</dd>
                                 <dt class="vl-properties__label">Hobby's</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData[`hobby's`]}</dd>
                                 <dt class="vl-properties__label">Leeftijd</dt>
@@ -850,10 +924,10 @@ export class AppElement extends LitElement {
                         </div>
                         <div class="vl-properties__column">
                             <dl class="vl-properties__list">
-                                <dt class="vl-properties__label">Waarheidsgetrouw</dt>
-                                <dd class="vl-properties__data">${this.submittedFormData.waarheidsgetrouw}</dd>
                                 <dt class="vl-properties__label">Contactmethode</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData.contactmethode}</dd>
+                                <dt class="vl-properties__label">Waarheidsgetrouw</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.waarheidsgetrouw}</dd>
                             </dl>
                         </div>
                     </div>
@@ -877,13 +951,14 @@ export class AppElement extends LitElement {
         this.lastName = '';
         this.interests = '';
         this.resetBirthplace();
+        this.birthdate = '';
         this.resetHobbies();
         this.age = null;
         this.kids = null;
         this.address = '';
+        this.preferredContactMethod = '';
         this.filledInTruthfully = false;
         this.filledInTruthfullyValue = '';
-        this.preferredContactMethod = '';
         this.submittedFormData = {};
         this.submittedCount = 0;
 
@@ -891,33 +966,36 @@ export class AppElement extends LitElement {
             this.firstNameRequired = false;
             this.lastNameRequired = false;
             this.interestsRequired = false;
+            this.birthdateRequired = false;
             this.birthplaceRequired = false;
             this.hobbiesRequired = false;
             this.ageRequired = false;
             this.kidsRequired = false;
             this.addressFieldRequired = false;
-            this.filledInTruthfullyRequired = false;
             this.preferredContactMethodRequired = false;
+            this.filledInTruthfullyRequired = false;
             this.firstNameDisabled = false;
             this.lastNameDisabled = false;
             this.interestsDisabled = false;
+            this.birthdateDisabled = false;
             this.birthplaceDisabled = false;
             this.hobbiesDisabled = false;
             this.ageDisabled = false;
             this.kidsDisabled = false;
             this.addressFieldDisabled = false;
-            this.filledInTruthfullyDisabled = false;
             this.preferredContactMethodDisabled = false;
+            this.filledInTruthfullyDisabled = false;
             this.firstNameReadonly = false;
             this.lastNameReadonly = false;
             this.interestsReadonly = false;
+            this.birthdateReadonly = false;
             this.birthplaceReadonly = false;
             this.hobbiesReadonly = false;
             this.ageReadonly = false;
             this.kidsReadonly = false;
             this.addressFieldReadonly = false;
-            this.filledInTruthfullyReadonly = false;
             this.preferredContactMethodReadonly = false;
+            this.filledInTruthfullyReadonly = false;
         }
     }
 
