@@ -1,1 +1,1 @@
-export { VlInputFieldComponent } from './vl-input-field.component';
+export { VlInputFieldComponent, InputFieldDefaults } from './vl-input-field.component';

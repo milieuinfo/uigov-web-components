@@ -1,14 +1,15 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
+import { ErrorMessageDefaults } from '../vl-error-message.component';
 
-export const errorMessageArgs = {
-    input: '',
-    state: '',
-    show: false,
+export const errorMessageArgs: typeof defaultArgs & typeof ErrorMessageDefaults & { defaultSlot: string } = {
+    ...defaultArgs,
+    ...ErrorMessageDefaults,
     defaultSlot: '',
 };
 
 export const errorMessageArgTypes: ArgTypes<typeof errorMessageArgs> = {
+    ...defaultArgTypes(true),
     input: {
         name: 'input',
         description: 'Het id van het input element waarvoor de error message getoond moet worden.',

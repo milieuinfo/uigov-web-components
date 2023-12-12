@@ -1,18 +1,36 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { action } from '@storybook/addon-actions';
+import { TextareaDefaults } from '../vl-textarea.component';
 
-export const textareaArgs = {
-    ...formControlArgs,
-    value: '',
-    minLength: null,
-    maxLength: null,
-    rows: null,
-    cols: null,
+export const textareaArgs: typeof defaultArgs & typeof TextareaDefaults & { onVlInput: () => void } = {
+    ...defaultArgs,
+    ...TextareaDefaults,
+    onVlInput: action('vl-input'),
 };
 
 export const textareaArgTypes: ArgTypes<typeof textareaArgs> = {
+    ...defaultArgTypes(true),
     ...formControlArgTypes,
+    block: {
+        name: 'block',
+        description: 'Duidt aan dat de component de volledige breedte van zijn parent mag innemen.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: textareaArgs.block },
+        },
+    },
+    readonly: {
+        name: 'readonly',
+        description: 'Duidt aan dat het veld enkel leesbaar is.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: textareaArgs.readonly },
+        },
+    },
     value: {
         name: 'value',
         description: 'De waarde van het textarea veld.',
@@ -60,6 +78,15 @@ export const textareaArgTypes: ArgTypes<typeof textareaArgs> = {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: textareaArgs.cols },
+        },
+    },
+    onVlInput: {
+        name: 'vl-input',
+        description:
+            'Event dat afgevuurd wordt als de waarde van het input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
         },
     },
 };

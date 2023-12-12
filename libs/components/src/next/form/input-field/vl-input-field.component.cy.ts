@@ -133,4 +133,13 @@ describe('component vl-input-field-next', () => {
         cy.get('vl-input-field-next').should('have.attr', 'pattern', 'Van(.*)');
         cy.get('vl-input-field-next').shadow().find('input').should('have.attr', 'pattern', 'Van(.*)');
     });
+
+    it('should dispatch vl-input event on input', () => {
+        cy.mount(html`<vl-input-field-next></vl-input-field-next>`);
+
+        cy.createStubForEvent('vl-input-field-next', 'vl-input');
+        cy.get('vl-input-field-next').shadow().find('input').type('test');
+        cy.get('@vl-input').its('callCount').should('eq', 4);
+        cy.get('@vl-input').its('lastCall.args.0.detail').should('deep.equal', { value: 'test' });
+    });
 });

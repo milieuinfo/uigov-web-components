@@ -317,11 +317,11 @@ describe('component vl-select-next - single select', () => {
         cy.mount(html`<vl-select-next label="geboorteplaats" deletable .options=${options}></vl-select-next>`);
         cy.injectAxe();
 
-        cy.createStubForEvent('vl-select-next', 'select');
+        cy.createStubForEvent('vl-select-next', 'vl-select');
         cy.checkA11y('vl-select-next');
         cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
-        cy.get('@select')
+        cy.get('@vl-select')
             .should('have.been.calledOnce')
             .its('firstCall.args.0.detail')
             .should('deep.equal', { value: 'hasselt' });
@@ -331,7 +331,7 @@ describe('component vl-select-next - single select', () => {
             .find('.vl-select__item')
             .find('.vl-pill__close')
             .click();
-        cy.get('@select')
+        cy.get('@vl-select')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
             .should('deep.equal', { value: '' });
@@ -410,6 +410,34 @@ describe('component vl-select-next - multiple select', () => {
             .find('.vl-select__item')
             .contains('Dans')
             .should('not.exist');
+        cy.checkA11y('vl-select-next');
+    });
+
+    it('should dispatch select event on select and on delete', () => {
+        cy.mount(html`<vl-select-next label="hobby's" multiple deletable .options=${options}></vl-select-next>`);
+        cy.injectAxe();
+
+        cy.createStubForEvent('vl-select-next', 'vl-select');
+        cy.checkA11y('vl-select-next');
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
+        cy.get('@vl-select')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { value: 'padel' });
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
+        cy.get('@vl-select')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { value: 'padel;dans' });
+        cy.get('vl-select-next')
+            .shadow()
+            .find('.vl-input-field')
+            .find('.vl-select__item[data-value="padel"]')
+            .find('.vl-pill__close')
+            .click();
+        cy.get('@vl-select').its('callCount').should('eq', 3);
+        cy.get('@vl-select').its('lastCall.args.0.detail').should('deep.equal', { value: 'dans' });
         cy.checkA11y('vl-select-next');
     });
 

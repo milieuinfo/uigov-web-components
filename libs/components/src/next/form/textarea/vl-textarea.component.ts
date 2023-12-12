@@ -4,16 +4,29 @@ import { textareaStyle } from '@domg/govflanders-style/component';
 import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { FormControl } from '../form-control/FormControl';
+import { FormControl, FormControlDefaults } from '../form-control/FormControl';
+
+export const TextareaDefaults = {
+    ...FormControlDefaults,
+    block: false,
+    readonly: false,
+    value: '',
+    minLength: null,
+    maxLength: null,
+    rows: null,
+    cols: null,
+};
 
 @customElement('vl-textarea-next')
 export class VlTextareaComponent extends FormControl {
     // Properties
-    private value = '';
-    private minLength: number | null = null;
-    private maxLength: number | null = null;
-    private rows: number | null = null;
-    private cols: number | null = null;
+    private block = TextareaDefaults.block;
+    private readonly = TextareaDefaults.readonly;
+    private value = TextareaDefaults.value;
+    private minLength: number | null = TextareaDefaults.minLength;
+    private maxLength: number | null = TextareaDefaults.maxLength;
+    private rows: number | null = TextareaDefaults.rows;
+    private cols: number | null = TextareaDefaults.cols;
 
     // Variables
     private initialValue = '';
@@ -24,11 +37,13 @@ export class VlTextareaComponent extends FormControl {
 
     static get properties(): PropertyDeclarations {
         return {
+            block: { type: Boolean, reflect: false },
+            readonly: { type: Boolean, reflect: false },
             value: { type: String, reflect: true },
-            minLength: { type: Number, reflect: true, attribute: 'min-length' },
-            maxLength: { type: Number, reflect: true, attribute: 'max-length' },
-            rows: { type: Number, reflect: true },
-            cols: { type: Number, reflect: true },
+            minLength: { type: Number, reflect: false, attribute: 'min-length' },
+            maxLength: { type: Number, reflect: false, attribute: 'max-length' },
+            rows: { type: Number, reflect: false },
+            cols: { type: Number, reflect: false },
         };
     }
 
@@ -51,10 +66,10 @@ export class VlTextareaComponent extends FormControl {
     render(): TemplateResult {
         const classes = {
             'vl-textarea': true,
-            'vl-textarea--block': this.block,
             'vl-textarea--disabled': this.disabled,
             'vl-textarea--error': this.isInvalid || this.error,
             'vl-textarea--success': this.success,
+            'vl-textarea--block': this.block,
         };
 
         return html`
@@ -62,17 +77,17 @@ export class VlTextareaComponent extends FormControl {
                 id=${this.id}
                 name=${this.name || this.id}
                 class=${classMap(classes)}
-                .value=${live(this.value)}
                 aria-label=${this.label}
-                @input=${this.onInput}
                 ?required=${this.required}
                 ?disabled=${this.disabled}
-                ?readonly=${this.readonly}
                 ?error=${this.error}
+                ?readonly=${this.readonly}
+                .value=${live(this.value)}
                 minlength=${this.minLength}
                 maxlength=${this.maxLength}
                 rows=${this.rows}
                 cols=${this.cols}
+                @input=${this.onInput}
             />
         `;
     }
@@ -83,6 +98,9 @@ export class VlTextareaComponent extends FormControl {
 
     protected onInput(event: Event & { target: HTMLInputElement }): void {
         this.value = event?.target?.value;
+        this.dispatchEvent(
+            new CustomEvent('vl-input', { composed: true, bubbles: true, detail: { value: this.value } })
+        );
     }
 
     resetFormControl(): void {

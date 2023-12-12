@@ -147,15 +147,15 @@ describe('component vl-checkbox-next - default', () => {
             .shouldHaveComputedStyle({ pseudo: ':before', style: 'color', value: 'rgb(210, 55, 60)' });
     });
 
-    it('should dispatch checked event on check and uncheck', () => {
-        cy.createStubForEvent('vl-checkbox-next', 'checked');
+    it('should dispatch vl-checked event on check and uncheck', () => {
+        cy.createStubForEvent('vl-checkbox-next', 'vl-checked');
         cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
-        cy.get('@checked')
+        cy.get('@vl-checked')
             .should('have.been.calledOnce')
             .its('firstCall.args.0.detail')
-            .should('deep.equal', { checked: true });
+            .should('deep.equal', { checked: true, value });
         cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
-        cy.get('@checked')
+        cy.get('@vl-checked')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
             .should('deep.equal', { checked: false });
@@ -270,15 +270,15 @@ describe('component vl-checkbox-next - switch', () => {
         shouldHaveErrorStyleSwitch();
     });
 
-    it('should dispatch checked event on check and uncheck', () => {
-        cy.createStubForEvent('vl-checkbox-next', 'checked');
+    it('should dispatch vl-checked event on check and uncheck', () => {
+        cy.createStubForEvent('vl-checkbox-next', 'vl-checked');
         cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
-        cy.get('@checked')
+        cy.get('@vl-checked')
             .should('have.been.calledOnce')
             .its('firstCall.args.0.detail')
-            .should('deep.equal', { checked: true });
+            .should('deep.equal', { checked: true, value });
         cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
-        cy.get('@checked')
+        cy.get('@vl-checked')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
             .should('deep.equal', { checked: false });
