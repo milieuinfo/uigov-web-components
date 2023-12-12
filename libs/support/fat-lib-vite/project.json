@@ -1,0 +1,28 @@
+{
+    "name": "support-fat-lib-vite",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/support/fat-lib-vite/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nx/vite:build",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/libs/support/fat-lib-vite",
+                "sourceMap": true
+            }
+        },
+        "publish": {
+            "command": "node tools/scripts/publish.mjs support-fat-lib-vite {args.ver} {args.tag}",
+            "dependsOn": ["build"]
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["libs/support/fat-lib-vite/**/*.ts", "libs/support/fat-lib-vite/package.json"]
+            }
+        }
+    },
+    "tags": []
+}

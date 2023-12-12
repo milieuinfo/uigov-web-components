@@ -29,6 +29,10 @@
                 "{projectRoot}/.storybook/**/*",
                 "{projectRoot}/tsconfig.storybook.json"
             ]
+        },
+        "@nx/vite:test": {
+            "cache": true,
+            "inputs": ["default", "^production"]
         }
     },
     "namedInputs": {

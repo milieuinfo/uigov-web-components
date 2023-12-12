@@ -1,0 +1,23 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../../../dist/out-tsc",
+        "strict": false,
+        "sourceMap": true,
+        "inlineSources": true,
+        "declaration": false,
+        "types": [
+            "node",
+            "vite/client"
+        ]
+    },
+    "include": [
+        "**/*.ts",
+        "../../components/src/external-types.d.ts"
+    ],
+    "exclude": [
+        "jest.config.ts",
+        "**/*.spec.ts",
+        "**/stories"
+    ]
+}

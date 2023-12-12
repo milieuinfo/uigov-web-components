@@ -21,6 +21,7 @@
             "@domg-wc/components/next/*": ["libs/components/src/next/*"],
             "@domg-wc/elements": ["libs/elements/src/index.ts"],
             "@domg-wc/fat-lib": ["libs/support/fat-lib/src/index.ts"],
+            "@domg-wc/fat-lib-vite": ["libs/support/fat-lib-vite/src/index.ts"],
             "@domg-wc/map": ["libs/map/src/index.ts"],
             "@domg-wc/qlik": ["libs/qlik/src/index.ts"],
             "@domg-wc/sections": ["libs/sections/src/index.ts"],

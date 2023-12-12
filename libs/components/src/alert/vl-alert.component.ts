@@ -1,5 +1,5 @@
-import { html, PropertyDeclarations, TemplateResult, CSSResult } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { html, TemplateResult, CSSResult } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import { BaseLitElement } from '@domg-wc/common-utilities';
 import { alertStyle, iconStyle } from '@domg/govflanders-style/component';
 import { accessibilityStyle, resetStyle, markStyle } from '@domg/govflanders-style/common';
@@ -8,29 +8,42 @@ import { classMap } from 'lit/directives/class-map.js';
 
 @customElement('vl-alert')
 export class VlAlert extends BaseLitElement {
+    @property({ type: String, attribute: 'data-vl-icon', reflect: true })
     icon = '';
+
+    @property({ type: String, attribute: 'data-vl-title', reflect: true })
     title = '';
+
+    @property({ type: String, attribute: 'data-vl-type', reflect: true })
     type = '';
+
+    @property({ type: String, attribute: 'data-vl-size', reflect: true })
     size = '';
+
+    @property({ type: String, attribute: 'data-vl-message', reflect: true })
     message = '';
+
+    @property({ type: Boolean, attribute: 'data-vl-naked', reflect: true })
     naked = false;
+
+    @property({ type: Boolean, attribute: 'data-vl-closable', reflect: true })
     closable = false;
 
     static get styles(): CSSResult[] {
         return [resetStyle, alertStyle, iconStyle, accessibilityStyle, markStyle];
     }
 
-    static get properties(): PropertyDeclarations {
-        return {
-            icon: { type: String, attribute: 'data-vl-icon', reflect: true },
-            title: { type: String, attribute: 'data-vl-title', reflect: true },
-            closable: { type: Boolean, attribute: 'data-vl-closable', reflect: true },
-            type: { type: String, attribute: 'data-vl-type', reflect: true },
-            size: { type: String, attribute: 'data-vl-size', reflect: true },
-            naked: { type: Boolean, attribute: 'data-vl-naked', reflect: true },
-            message: { type: String, attribute: 'data-vl-message', reflect: true },
-        };
-    }
+    // static get properties(): PropertyDeclarations {
+    //     return {
+    //         icon: { type: String, attribute: 'data-vl-icon', reflect: true },
+    //         title: { type: String, attribute: 'data-vl-title', reflect: true },
+    //         closable: { type: Boolean, attribute: 'data-vl-closable', reflect: true },
+    //         type: { type: String, attribute: 'data-vl-type', reflect: true },
+    //         size: { type: String, attribute: 'data-vl-size', reflect: true },
+    //         naked: { type: Boolean, attribute: 'data-vl-naked', reflect: true },
+    //         message: { type: String, attribute: 'data-vl-message', reflect: true },
+    //     };
+    // }
 
     protected updated(changedProperties: Map<string, unknown>): void {
         super.updated(changedProperties);
