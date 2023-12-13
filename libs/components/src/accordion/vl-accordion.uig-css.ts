@@ -34,5 +34,9 @@ const styles: CSSResult = css`
     .vl-accordion__button-container {
         display: flex;
     }
+
+    .js-vl-accordion--open > .vl-accordion__button-container > .vl-toggle > .vl-vi-arrow-right-fat::before {
+        transform: rotate(-90deg);
+    }
 `;
 export default styles;
