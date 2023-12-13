@@ -6,6 +6,7 @@ import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field
 import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
 import { VlSelectComponent, SelectOption } from '@domg-wc/components/next/form/select';
 import { VlCheckboxComponent } from '@domg-wc/components/next/form/checkbox';
+import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/components/next/form/radio';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import appElementStyle from './app.element.css';
 
@@ -19,6 +20,7 @@ type SubmittedFormData = {
     kinderen?: number;
     adres?: string;
     waarheidsgetrouw?: boolean;
+    contactmethode?: string;
 };
 
 @customElement('app-element')
@@ -33,6 +35,7 @@ export class AppElement extends LitElement {
     private kidsRequired = false;
     private addressFieldRequired = false;
     private filledInTruthfullyRequired = false;
+    private preferredContactMethodRequired = false;
 
     // Disabled state values
     private firstNameDisabled = false;
@@ -44,6 +47,7 @@ export class AppElement extends LitElement {
     private kidsDisabled = false;
     private addressFieldDisabled = false;
     private filledInTruthfullyDisabled = false;
+    private preferredContactMethodDisabled = false;
 
     // Read only state values
     private firstNameReadonly = false;
@@ -55,6 +59,7 @@ export class AppElement extends LitElement {
     private kidsReadonly = false;
     private addressFieldReadonly = false;
     private filledInTruthfullyReadonly = false;
+    private preferredContactMethodReadonly = false;
 
     // Other state values
     private showAddressField = false;
@@ -94,6 +99,7 @@ export class AppElement extends LitElement {
     private address = '';
     private filledInTruthfully = false;
     private filledInTruthfullyValue = '';
+    private preferredContactMethod = '';
 
     // Submitted form values
     private submittedFormData: SubmittedFormData = {};
@@ -109,6 +115,8 @@ export class AppElement extends LitElement {
             VlTextareaComponent,
             VlSelectComponent,
             VlCheckboxComponent,
+            VlRadioComponent,
+            VlRadioGroupComponent,
         ]);
     }
 
@@ -127,6 +135,7 @@ export class AppElement extends LitElement {
             kidsRequired: { type: Boolean, state: true },
             addressFieldRequired: { type: Boolean, state: true },
             filledInTruthfullyRequired: { type: Boolean, state: true },
+            preferredContactMethodRequired: { type: Boolean, state: true },
             firstNameDisabled: { type: Boolean, state: true },
             lastNameDisabled: { type: Boolean, state: true },
             interestsDisabled: { type: Boolean, state: true },
@@ -136,6 +145,7 @@ export class AppElement extends LitElement {
             kidsDisabled: { type: Boolean, state: true },
             addressFieldDisabled: { type: Boolean, state: true },
             filledInTruthfullyDisabled: { type: Boolean, state: true },
+            preferredContactMethodDisabled: { type: Boolean, state: true },
             firstNameReadonly: { type: Boolean, state: true },
             lastNameReadonly: { type: Boolean, state: true },
             interestsReadonly: { type: Boolean, state: true },
@@ -145,6 +155,7 @@ export class AppElement extends LitElement {
             kidsReadonly: { type: Boolean, state: true },
             addressFieldReadonly: { type: Boolean, state: true },
             filledInTruthfullyReadonly: { type: Boolean, state: true },
+            preferredContactMethodReadonly: { type: Boolean, state: true },
             firstName: { type: String, state: true },
             lastName: { type: String, state: true },
             interests: { type: String, state: true },
@@ -155,6 +166,7 @@ export class AppElement extends LitElement {
             address: { type: String, state: true },
             filledInTruthfully: { type: Boolean, state: true },
             filledInTruthfullyValue: { type: String, state: true },
+            preferredContactMethod: { type: String, state: true },
             showAddressField: { type: Boolean, state: true },
             submittedFormData: { type: Object, state: true },
             submittedCount: { type: Number, state: true },
@@ -210,17 +222,17 @@ export class AppElement extends LitElement {
                                 @vl-input=${(e: CustomEvent) => (this.firstName = e.detail.value)}
                             ></vl-input-field-next>
                             <vl-error-message-next for="voornaam" state="valueMissing"
-                                >Gelieve een voornaam in te vullen.</vl-error-message-next
-                            >
+                                >Gelieve een voornaam in te vullen.
+                            </vl-error-message-next>
                             <vl-error-message-next for="voornaam" state="tooShort"
-                                >Gelieve minimum 2 karakters te gebruiken.</vl-error-message-next
-                            >
+                                >Gelieve minimum 2 karakters te gebruiken.
+                            </vl-error-message-next>
                             <vl-error-message-next for="voornaam" state="tooLong"
-                                >Gelieve maximum 20 karakters te gebruiken.</vl-error-message-next
-                            >
+                                >Gelieve maximum 20 karakters te gebruiken.
+                            </vl-error-message-next>
                             <vl-error-message-next for="voornaam" state="patternMismatch"
-                                >Gelieve geen nummers of speciale tekens in te vullen.</vl-error-message-next
-                            >
+                                >Gelieve geen nummers of speciale tekens in te vullen.
+                            </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
@@ -274,17 +286,17 @@ export class AppElement extends LitElement {
                                 @vl-input=${(e: CustomEvent) => (this.lastName = e.detail.value)}
                             ></vl-input-field-next>
                             <vl-error-message-next for="achternaam" state="valueMissing"
-                                >Gelieve een achternaam in te vullen.</vl-error-message-next
-                            >
+                                >Gelieve een achternaam in te vullen.
+                            </vl-error-message-next>
                             <vl-error-message-next for="achternaam" state="tooShort"
-                                >Gelieve minimum 2 karakters te gebruiken.</vl-error-message-next
-                            >
+                                >Gelieve minimum 2 karakters te gebruiken.
+                            </vl-error-message-next>
                             <vl-error-message-next for="achternaam" state="tooLong"
-                                >Gelieve maximum 20 karakters te gebruiken.</vl-error-message-next
-                            >
+                                >Gelieve maximum 20 karakters te gebruiken.
+                            </vl-error-message-next>
                             <vl-error-message-next for="achternaam" state="patternMismatch"
-                                >Gelieve geen nummers of speciale tekens in te vullen.</vl-error-message-next
-                            >
+                                >Gelieve geen nummers of speciale tekens in te vullen.
+                            </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
@@ -338,14 +350,14 @@ export class AppElement extends LitElement {
                                 @vl-input=${(e: CustomEvent) => (this.interests = e.detail.value)}
                             ></vl-textarea-next>
                             <vl-error-message-next for="interesses" state="valueMissing"
-                                >Gelieve je interesses in te vullen.</vl-error-message-next
-                            >
+                                >Gelieve je interesses in te vullen.
+                            </vl-error-message-next>
                             <vl-error-message-next for="interesses" state="tooShort"
-                                >Gelieve minimum 5 karakters te gebruiken.</vl-error-message-next
-                            >
+                                >Gelieve minimum 5 karakters te gebruiken.
+                            </vl-error-message-next>
                             <vl-error-message-next for="interesses" state="tooLong"
-                                >Gelieve maximum 100 karakters te gebruiken.</vl-error-message-next
-                            >
+                                >Gelieve maximum 100 karakters te gebruiken.
+                            </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
@@ -401,8 +413,8 @@ export class AppElement extends LitElement {
                             >
                             </vl-select-next>
                             <vl-error-message-next for="geboorteplaats" state="valueMissing"
-                                >Gelieve een geboorteplaats te selecteren.</vl-error-message-next
-                            >
+                                >Gelieve een geboorteplaats te selecteren.
+                            </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
@@ -457,8 +469,8 @@ export class AppElement extends LitElement {
                             >
                             </vl-select-next>
                             <vl-error-message-next for="hobby's" state="valueMissing"
-                                >Gelieve een hobby te selecteren.</vl-error-message-next
-                            >
+                                >Gelieve een hobby te selecteren.
+                            </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
@@ -508,14 +520,14 @@ export class AppElement extends LitElement {
                                 @vl-input=${(e: CustomEvent) => (this.age = e.detail.value)}
                             ></vl-input-field-next>
                             <vl-error-message-next for="leeftijd" state="valueMissing"
-                                >Gelieve een leeftijd in te vullen.</vl-error-message-next
-                            >
+                                >Gelieve een leeftijd in te vullen.
+                            </vl-error-message-next>
                             <vl-error-message-next for="leeftijd" state="rangeUnderflow"
-                                >De minimum leeftijd is 0 jaar.</vl-error-message-next
-                            >
+                                >De minimum leeftijd is 0 jaar.
+                            </vl-error-message-next>
                             <vl-error-message-next for="leeftijd" state="rangeOverflow"
-                                >De maximum leeftijd is 99 jaar.</vl-error-message-next
-                            >
+                                >De maximum leeftijd is 99 jaar.
+                            </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
@@ -568,11 +580,11 @@ export class AppElement extends LitElement {
                                 @vl-input=${(e: CustomEvent) => (this.kids = e.detail.value)}
                             ></vl-input-field-next>
                             <vl-error-message-next for="kinderen" state="valueMissing"
-                                >Gelieve een aantal kinderen in te vullen.</vl-error-message-next
-                            >
+                                >Gelieve een aantal kinderen in te vullen.
+                            </vl-error-message-next>
                             <vl-error-message-next for="kinderen" state="rangeUnderflow"
-                                >Het minimum aantal kinderen is 0.</vl-error-message-next
-                            >
+                                >Het minimum aantal kinderen is 0.
+                            </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
@@ -625,8 +637,8 @@ export class AppElement extends LitElement {
                                           @vl-input=${(e: CustomEvent) => (this.address = e.detail.value)}
                                       ></vl-input-field-next>
                                       <vl-error-message-next for="adres" state="valueMissing"
-                                          >Gelieve een adres in te vullen.</vl-error-message-next
-                                      >
+                                          >Gelieve een adres in te vullen.
+                                      </vl-error-message-next>
                                   </div>
                                   <div class="vl-col--6-12">
                                       <div class="vl-action-group">
@@ -736,6 +748,69 @@ export class AppElement extends LitElement {
                                 </button>
                             </div>
                         </div>
+                        <div class="vl-col--2-12">
+                            <label class="vl-form__label vl-form__label--block" for="contactmethode">
+                                Voorkeurscontactmethode${this.preferredContactMethodRequired ? ' *' : ''}
+                            </label>
+                        </div>
+                        <div class="vl-col--4-12">
+                            <vl-radio-group-next
+                                id="contactmethode"
+                                name="contactmethode"
+                                ?required=${this.preferredContactMethodRequired}
+                                ?disabled=${this.preferredContactMethodDisabled}
+                                ?readonly=${this.preferredContactMethodReadonly}
+                                value=${this.preferredContactMethod}
+                            >
+                                <vl-radio-next value="e-mail">e-mail</vl-radio-next>
+                                <vl-radio-next value="telefoon">telefoon</vl-radio-next>
+                                <vl-radio-next value="post">post</vl-radio-next>
+                            </vl-radio-group-next>
+                            <vl-error-message-next for="contactmethode" state="valueMissing">
+                                Gelieve een contactmethode te selecteren.
+                            </vl-error-message-next>
+                        </div>
+                        <div class="vl-col--6-12">
+                            <div class="vl-action-group">
+                                <button
+                                    class="vl-button ${!this.preferredContactMethodRequired
+                                        ? 'vl-button--secondary'
+                                        : ''}"
+                                    type="button"
+                                    @click=${() =>
+                                        (this.preferredContactMethodRequired = !this.preferredContactMethodRequired)}
+                                >
+                                    Required
+                                </button>
+                                <button
+                                    class="vl-button ${!this.preferredContactMethodDisabled
+                                        ? 'vl-button--secondary'
+                                        : ''}"
+                                    type="button"
+                                    @click=${() =>
+                                        (this.preferredContactMethodDisabled = !this.preferredContactMethodDisabled)}
+                                >
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.preferredContactMethodReadonly
+                                        ? 'vl-button--secondary'
+                                        : ''}"
+                                    type="button"
+                                    @click=${() =>
+                                        (this.preferredContactMethodReadonly = !this.preferredContactMethodReadonly)}
+                                >
+                                    Readonly
+                                </button>
+                                <button
+                                    class="vl-button vl-button--secondary"
+                                    type="button"
+                                    @click=${() => (this.preferredContactMethod = 'e-mail')}
+                                >
+                                    Set 'e-mail'
+                                </button>
+                            </div>
+                        </div>
                         <div class="vl-col--6-12 vl-push--2-12">
                             <div class="vl-action-group">
                                 <button class="vl-button" type="submit">Verstuur</button>
@@ -777,6 +852,8 @@ export class AppElement extends LitElement {
                             <dl class="vl-properties__list">
                                 <dt class="vl-properties__label">Waarheidsgetrouw</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData.waarheidsgetrouw}</dd>
+                                <dt class="vl-properties__label">Contactmethode</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.contactmethode}</dd>
                             </dl>
                         </div>
                     </div>
@@ -806,6 +883,7 @@ export class AppElement extends LitElement {
         this.address = '';
         this.filledInTruthfully = false;
         this.filledInTruthfullyValue = '';
+        this.preferredContactMethod = '';
         this.submittedFormData = {};
         this.submittedCount = 0;
 
@@ -819,6 +897,7 @@ export class AppElement extends LitElement {
             this.kidsRequired = false;
             this.addressFieldRequired = false;
             this.filledInTruthfullyRequired = false;
+            this.preferredContactMethodRequired = false;
             this.firstNameDisabled = false;
             this.lastNameDisabled = false;
             this.interestsDisabled = false;
@@ -828,6 +907,7 @@ export class AppElement extends LitElement {
             this.kidsDisabled = false;
             this.addressFieldDisabled = false;
             this.filledInTruthfullyDisabled = false;
+            this.preferredContactMethodDisabled = false;
             this.firstNameReadonly = false;
             this.lastNameReadonly = false;
             this.interestsReadonly = false;
@@ -837,6 +917,7 @@ export class AppElement extends LitElement {
             this.kidsReadonly = false;
             this.addressFieldReadonly = false;
             this.filledInTruthfullyReadonly = false;
+            this.preferredContactMethodReadonly = false;
         }
     }
 
