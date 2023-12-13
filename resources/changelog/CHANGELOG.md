@@ -1,3 +1,31 @@
+# [1.21.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.20.0...v1.21.0) (2023-12-13)
+
+
+### Bug Fixes
+
+* configuratie correctie mbt de build van het qlik artifact ([f2cf86a](https://github.com/milieuinfo/uigov-web-components/commit/f2cf86aaa674582ba373f5312095aa7feb251a13))
+* de sideEffects van de map waren verloren gegaan bij introductie van de qlik module ([036c8a5](https://github.com/milieuinfo/uigov-web-components/commit/036c8a5b8e503e287d6b8133c4401d8a5c125abb))
+* in de promise afhandeling van webComponentPromised verifiëren dat de component nog niet geregistreerd werd ([d2eecce](https://github.com/milieuinfo/uigov-web-components/commit/d2eecceb1c8c2c5aaed1caf005c51d02d00423da))
+* package-lock.json was outdated ([f23ae9d](https://github.com/milieuinfo/uigov-web-components/commit/f23ae9db063937750258fac7fae1ecdd844c84d7))
+* UIG-2642 - vl-accordion toggle ([a5d3b12](https://github.com/milieuinfo/uigov-web-components/commit/a5d3b12c23ab912976ab0d5d7dfe14496ad6e30c))
+* vl-wizard - het wizard-pane verscheen niet (was al stuk sinds v1.0.0) ([020d90e](https://github.com/milieuinfo/uigov-web-components/commit/020d90e491cad6467f6acfc7abd5d2781979b528))
+
+
+### Features
+
+* UIG-2437 - vl-autocomplete - wcag compliance ([6d4c2c9](https://github.com/milieuinfo/uigov-web-components/commit/6d4c2c9353d63d305f67433ef8cf34a14cf37822))
+* UIG-2495 - accessibility expandable componenten ([429509c](https://github.com/milieuinfo/uigov-web-components/commit/429509c3b2c8a220ca8cc558db293c84b968e228))
+* UIG-2536 - vl-map-tiled-wms - request params uitbreiding ([d3976de](https://github.com/milieuinfo/uigov-web-components/commit/d3976de2db90e4edb43ea1d4887eb2e97ada9fbe))
+* UIG-2642 - vl-accordion - subtitleslot en menuslot toegevoegd ([b1d06be](https://github.com/milieuinfo/uigov-web-components/commit/b1d06becc0f8277d662aaa9accf7be1f7442140b))
+* UIG-2700 - vl-map-search - koppel- en plusteken ondersteuning ([e447599](https://github.com/milieuinfo/uigov-web-components/commit/e4475990c28edfc1866151c272923d1a129a5f59))
+* UIG-2728 - vl-map-click-action - nullpointer opgelost ([600cb5e](https://github.com/milieuinfo/uigov-web-components/commit/600cb5ebc518211d6a10c7bda1d457cf8c958c81))
+* UIG-2741 - Lit upgrade ([97ca795](https://github.com/milieuinfo/uigov-web-components/commit/97ca79581f1991f4a75761fa1962b69a5861ec49))
+* UIG-2751 - attribuut om de document styles niet automatisch toe te voegen ([3906264](https://github.com/milieuinfo/uigov-web-components/commit/390626423b0506916251f2b77904b1c91171ebf8))
+* UIG-2754 - vl-header - skeleton toegevoegd ([2232f5c](https://github.com/milieuinfo/uigov-web-components/commit/2232f5cd1f2b51d1ea562120c92acaf82a192f55))
+* UIG-2760 - voorbeelden popover menu ([a4b423f](https://github.com/milieuinfo/uigov-web-components/commit/a4b423f9a381bd5752e511d4222622579a07b817))
+* UIG-2761 - build script aanpassingen ([17a0a4e](https://github.com/milieuinfo/uigov-web-components/commit/17a0a4e0cb1443dea8d683ee924dadc042f27843))
+* UIG-2764 - vl-wizard - testen toegevoegd ([37abe1e](https://github.com/milieuinfo/uigov-web-components/commit/37abe1edc40483b80c15f2f8c91a3b6241466fd6))
+
 # [1.20.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.19.0...v1.20.0) (2023-11-24)
 
 
