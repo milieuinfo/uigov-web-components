@@ -1,0 +1,38 @@
+import { ArgTypes, Canvas } from '@storybook/blocks';
+import * as VlMapLegendItemStories from './vl-map-legend-item.stories';
+
+# Map Legend Item
+
+Gebruik de `map-legend-item` component om een custom legende af te beelden op de kaart.
+
+Indien geen icon- en labelslots meegegeven zijn zal het `map-legend-item` de default style items van de bijhorende laag tonen.
+
+
+## Voorbeeld
+
+```js
+import { VlMapLegendItem } from '@domg-wc/map';
+```
+
+```html
+<vl-map-legend-item></vl-map-legend-item>
+```
+
+<Canvas of={VlMapLegendItemStories.MapLegendItemDefault} />
+
+
+## Configuratie
+
+<ArgTypes of={VlMapLegendItemStories.MapLegendItemDefault} />
+
+
+## Varianten
+
+### Custom Icon
+<Canvas of={VlMapLegendItemStories.MapLegendItemIcon} />
+
+### Custom Label
+<Canvas of={VlMapLegendItemStories.MapLegendItemLabel} />
+
+### Cusom Icon en Label
+<Canvas of={VlMapLegendItemStories.MapLegendItemIconLabel} />

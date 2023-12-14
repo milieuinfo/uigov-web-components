@@ -312,12 +312,15 @@ const mapLegendStyles: CSSResult = css`
         line-height: 1em;
     }
 
-    div.uig-map-legend-icon {
+    div.uig-map-legend-icon-container {
         vertical-align: middle;
-        height: 0.8em;
-        width: 0.8em;
         margin-left: 0.5em;
         display: inline-block;
+    }
+
+    div.uig-map-legend-icon {
+        height: 0.8em;
+        width: 0.8em;
     }
 
     div.uig-map-legend-image {

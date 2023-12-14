@@ -85,7 +85,9 @@ describe('component vl-map-legend - features layer - multiple styles', () => {
 
         cy.get('vl-map-legend')
             .shadow()
-            .find('div.uig-map-legend > div.uig-map-legend-item > div.uig-map-legend-icon')
+            .find(
+                'div.uig-map-legend > div.uig-map-legend-item > div.uig-map-legend-icon-container > div.uig-map-legend-icon'
+            )
             .its('length')
             .should('eq', 3);
 
@@ -239,7 +241,9 @@ describe('component vl-map-legend - features layer - multiple styles', () => {
 
         cy.get('vl-map-legend')
             .shadow()
-            .find('div.uig-map-legend > div.uig-map-legend-item > div.uig-map-legend-icon')
+            .find(
+                'div.uig-map-legend > div.uig-map-legend-item > div.uig-map-legend-icon-container > div.uig-map-legend-icon'
+            )
             .its('length')
             .should('eq', 3);
 
@@ -295,7 +299,10 @@ describe('component vl-map-legend - wfs layer', () => {
     it('should contain the correct style item with an icon and name', () => {
         cy.get('vl-map-legend')
             .shadow()
-            .find('div.uig-map-legend > div.uig-map-legend-item > div.uig-map-legend-icon')
+            .find(
+                'div.uig-map-legend > div.uig-map-legend-item > div.uig-map-legend-icon-container > div.uig-map-legend-icon'
+            )
+            .should('have.attr', 'style', 'border: 1px solid #000; background-color:#ffe615;border-radius: 50%;')
             .its('length')
             .should('eq', 1);
 
@@ -362,7 +369,9 @@ describe('component vl-map-legend - wfs and wms layers', () => {
     it('should contain the correct style items with an icon and name for the wfs layer', () => {
         cy.get('vl-map-legend')
             .shadow()
-            .find('div.uig-map-legend > div.uig-map-legend-item > div.uig-map-legend-icon')
+            .find(
+                'div.uig-map-legend > div.uig-map-legend-item > div.uig-map-legend-icon-container > div.uig-map-legend-icon'
+            )
             .its('length')
             .should('eq', 1);
 
