@@ -10,6 +10,7 @@ import { BaseLitElement } from '@domg-wc/common-utilities';
 import { VlMapLayer } from '../layer/vl-map-layer';
 import { VlMapLayerStyle } from '../layer-style/vl-map-layer-style';
 import { VlMapFeaturesLayer } from '../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
+import { VlMapLegendItem } from '../legend-item/vl-map-legend-item';
 
 export const LEGEND_PLACEMENT = {
     TOP_LEFT: 'top_left',
@@ -26,18 +27,26 @@ export interface Position {
 }
 
 export interface StyledItem {
+    type: 'styled';
     name: string;
     style: VlMapLayerStyle;
     url?: never;
 }
 
 export interface UrlItem {
+    type: 'url';
     name: string;
     style?: never;
     url: URL;
 }
 
-export type Item = StyledItem | UrlItem;
+export interface CustomItem {
+    type: 'custom';
+    name: string;
+    styleElement: HTMLElement;
+}
+
+export type Item = StyledItem | UrlItem | CustomItem;
 
 export type GeometryLayer = VlMapWfsLayer | VlMapFeaturesLayer;
 
@@ -50,6 +59,11 @@ export class VlMapLegend extends BaseLitElement {
     private placement: string;
     private mapElement: VlMap;
     private items: Item[] = [];
+    private styledItems: StyledItem[] = [];
+    private urlItems: UrlItem[] = [];
+    private customItems: CustomItem[] = [];
+    private observer: MutationObserver;
+
     static get styles() {
         return [
             css`
@@ -127,17 +141,43 @@ export class VlMapLegend extends BaseLitElement {
 
         imageLayers.forEach((wmsLayer) => {
             wmsLayer &&
-                this.items.push({
+                this.urlItems.push({
+                    type: 'url',
                     url: this.legendUrl(wmsLayer),
                     name: wmsLayer.dataset.vlName,
                 });
         });
+
+        this.customItems = this.customLegendItems();
+        this.updateItems();
 
         geometryLayers.forEach((layer) => {
             layer.addEventListener(VlMapVectorLayer.EVENTS.styleChanged, () => {
                 this.updateLegendGeometryItems(geometryLayers);
             });
         });
+
+        this.initializeCustomLegendObserver();
+    }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        this.observer.disconnect();
+    }
+
+    private initializeCustomLegendObserver() {
+        this.observer = new MutationObserver(() => {
+            this.customItems = this.customLegendItems();
+            this.updateItems();
+        });
+
+        const config = {
+            childList: true,
+            subtree: true,
+            attributes: true,
+        };
+
+        this.observer.observe(this, config);
     }
 
     private legendUrl(wmsLayer: VlMapWmsLayer) {
@@ -152,29 +192,57 @@ export class VlMapLegend extends BaseLitElement {
         return new URL(`?${legendSearchParams}`, layerUrl);
     }
 
+    private customLegendItems(): CustomItem[] {
+        const childNodeList = Array.from(this.childNodes);
+        const legendItemsList = childNodeList.filter((child) => child instanceof VlMapLegendItem);
+        const legendItems: CustomItem[] = legendItemsList.map((item: VlMapLegendItem) => {
+            return { type: 'custom', name: item.layer, styleElement: item.cloneNode(true) as VlMapLegendItem };
+        });
+        return legendItems;
+    }
+
     private updateLegendGeometryItems(layers: VlMapLayer[]) {
+        let items: StyledItem[] = [];
         layers.forEach((layer) => {
             if (layer._styles.length === 1) {
                 const style = layer._styles[0];
 
-                if (!style.name) {
-                    if (layer.name !== undefined && layer.name != null) {
-                        this.items.push({ style: style, name: layer.name });
-                    }
-                } else {
-                    this.items.push({ style: style, name: layer.name });
+                if (style.name || (layer.name !== undefined && layer.name != null)) {
+                    items.push({ type: 'styled', style: style, name: layer.name });
                 }
             } else {
-                const styleItems: Item[] =
-                    layer._styles
+                items = items.concat(
+                    ...(layer._styles
                         ?.filter((style) => style.name)
-                        ?.map((style) => ({ style: style, name: style.name })) || [];
-
-                const imageItems = this.items.filter((item) => item.url);
-
-                this.items = [...styleItems, ...imageItems];
+                        ?.map((style) => ({ type: 'styled', style: style, name: style.name })) || [])
+                );
             }
         });
+
+        this.styledItems = items;
+        this.updateItems();
+    }
+
+    private updateItems() {
+        const defaultItems: Item[] = [...this.styledItems, ...this.urlItems];
+        const hasCustomLegendItems = this.customItems.length > 0;
+
+        if (hasCustomLegendItems) {
+            // build a custom map legend from the vl-map-legend-item elements in the vl-map-legend
+            this.items = [];
+            this.customItems.forEach((item) => {
+                if (item.styleElement.children.length > 0) {
+                    this.items.push(item);
+                } else {
+                    const layer = item.name;
+                    const defaultItemsForLayer = defaultItems.filter((item) => item.name === layer);
+                    this.items = this.items.concat(...defaultItemsForLayer);
+                }
+            });
+        } else {
+            // use the default generated legend items
+            this.items = defaultItems;
+        }
         this.requestUpdate();
     }
 
@@ -188,15 +256,22 @@ export class VlMapLegend extends BaseLitElement {
                 <span class="uig-map-legend-text uig-map-legend-title">Legende: </span>
             </div>
             ${this.items.map((item) => {
-                if (item.style) {
-                    return html` <div class="uig-map-legend-item">
-                        <div class="uig-map-legend-icon" style="${this.generateIconStyle(item.style)}"></div>
-                        <span class="uig-map-legend-text">${item.name}</span>
-                    </div>`;
-                } else {
-                    return html`<div class="uig-map-legend-item uig-map-legend-image">
-                        <img alt="map legend image" class="uig-map-legend-icon" src="${item.url}" />
-                    </div>`;
+                switch (item.type) {
+                    case 'custom':
+                        return html` ${item.styleElement} `;
+                    case 'styled':
+                        return html` <div class="uig-map-legend-item">
+                            <div class="uig-map-legend-icon-container">
+                                <div class="uig-map-legend-icon" style="${this.generateIconStyle(item.style)}"></div>
+                            </div>
+                            <span class="uig-map-legend-text">${item.name}</span>
+                        </div>`;
+                    case 'url':
+                        return html`<div class="uig-map-legend-item uig-map-legend-image">
+                            <img alt="map legend image" class="uig-map-legend-icon" src="${item.url}" />
+                        </div>`;
+                    default:
+                        return '';
                 }
             })}
         </div>`;

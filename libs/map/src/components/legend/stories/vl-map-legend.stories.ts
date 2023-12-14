@@ -10,6 +10,7 @@ import MLMFL from './vl-map-legend-multiple-features-layer.sub-story';
 import MLWFSL from './vl-map-legend-wfs-layer.sub-story';
 import MLWMSL from './vl-map-legend-wms-layer.sub-story';
 import MLWMSWFSL from './vl-map-legend-wms-wfs-layer.sub-story';
+import MLCI from './vl-map-legend-custom-items.sub-story';
 import { mapLegendArgs, mapLegendArgTypes } from './vl-map-legend.stories-arg';
 import mapLegendDoc from './vl-map-legend.stories-doc.mdx';
 
@@ -42,3 +43,6 @@ MapLegendWmsLayer.storyName = 'vl-map-legend - wms-layer';
 
 export const MapLegendWmsWfsLayer = MLWMSWFSL;
 MapLegendWmsWfsLayer.storyName = 'vl-map-legend - wms - wfs -layer';
+
+export const MapLegendCustomItems = MLCI;
+MapLegendCustomItems.storyName = 'vl-map-legend - custom items';
