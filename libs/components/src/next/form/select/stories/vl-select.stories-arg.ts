@@ -24,7 +24,7 @@ export const selectArgTypes: ArgTypes<typeof selectArgs> = {
     },
     deletable: {
         name: 'deletable',
-        description: 'Duidt aan dat de selectie verwijderbaar is.<br>Dit attribuut is niet reactief.',
+        description: 'Duidt aan dat de selectie verwijderbaar is.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
@@ -101,7 +101,7 @@ export const selectArgTypes: ArgTypes<typeof selectArgs> = {
         name: 'options',
         description: 'De opties die je kan selecteren.',
         table: {
-            type: { summary: 'VlSelectOption' },
+            type: { summary: 'SelectOption' },
             category: CATEGORIES.PROPERTIES,
             defaultValue: { summary: selectArgs.options },
         },

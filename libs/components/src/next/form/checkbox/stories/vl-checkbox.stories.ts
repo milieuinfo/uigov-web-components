@@ -18,7 +18,7 @@ export default {
     },
 } as Meta<typeof checkboxArgs>;
 
-export const CheckboxDefault = story(
+const CheckboxTemplate = story(
     checkboxArgs,
     ({
         id,
@@ -53,15 +53,34 @@ export const CheckboxDefault = story(
         </vl-checkbox-next>
     `
 );
+
+export const CheckboxDefault = CheckboxTemplate.bind({});
 CheckboxDefault.storyName = 'vl-checkbox-next - default';
 CheckboxDefault.args = {
     id: 'checkbox-default',
-    name: 'options',
-    value: 'Optie 1',
-    contentSlot: '<span>Bevestig.</span>',
+    name: 'checkbox',
+    contentSlot: '<span>Bevestig</span>',
 };
 
-export const CheckboxSwitch = story(
+export const CheckboxValue = CheckboxTemplate.bind({});
+CheckboxValue.storyName = 'vl-checkbox-next - value';
+CheckboxValue.args = {
+    id: 'checkbox-value',
+    name: 'checkbox',
+    value: 'bevestigd',
+    contentSlot: '<span>Bevestig</span>',
+};
+
+export const CheckboxSwitch = CheckboxTemplate.bind({});
+CheckboxSwitch.storyName = 'vl-checkbox-next - switch';
+CheckboxSwitch.args = {
+    id: 'checkbox-switch',
+    name: 'checkbox',
+    isSwitch: true,
+    contentSlot: '<span>Instellingen toepassen</span>',
+};
+
+export const CheckboxReadonly = story(
     checkboxArgs,
     ({
         id,
@@ -94,13 +113,15 @@ export const CheckboxSwitch = story(
         >
             ${unsafeHTML(contentSlot)}
         </vl-checkbox-next>
+        <input type="hidden" name=${name} value=${checked ? value || 'on' : ''} />
     `
 );
-CheckboxSwitch.storyName = 'vl-checkbox-next - switch';
-CheckboxSwitch.args = {
-    id: 'checkbox-switch',
-    name: 'options',
-    isSwitch: true,
-    value: 'Optie 1',
-    contentSlot: '<span>Instellingen toepassen.</span>',
+CheckboxReadonly.storyName = 'vl-checkbox-next - readonly';
+CheckboxReadonly.args = {
+    id: 'checkbox-readonly',
+    name: 'checkbox',
+    disabled: true,
+    checked: true,
+    value: 'bevestigd',
+    contentSlot: '<span>Bevestig</span>',
 };

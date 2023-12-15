@@ -13,8 +13,11 @@ const selectNextGroupsUrl =
 const selectNextMultipleUrl =
     'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-multiple&viewMode=story';
 
-const selectNextPreSelectedUrl =
-    'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-pre-selected&viewMode=story';
+const selectNextSelectedOptionUrl =
+    'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-selected-option&viewMode=story';
+
+const selectNextDisabledOptionUrl =
+    'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-disabled-option&viewMode=story';
 
 const selectNextReadOnlyUrl =
     'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-read-only&viewMode=story';
@@ -59,9 +62,17 @@ describe('story vl-select-next multiple', () => {
     });
 });
 
-describe('story vl-select-next pre selected', () => {
+describe('story vl-select-next selected option', () => {
     it('should display story', () => {
-        cy.visit(selectNextPreSelectedUrl);
+        cy.visit(selectNextSelectedOptionUrl);
+
+        cy.get('vl-select-next').shadow().find('select');
+    });
+});
+
+describe('story vl-select-next disabled option', () => {
+    it('should display story', () => {
+        cy.visit(selectNextDisabledOptionUrl);
 
         cy.get('vl-select-next').shadow().find('select');
     });

@@ -7,14 +7,14 @@ import { resetStyle } from '@domg/govflanders-style/common';
 export const ERROR_MESSAGE_CUSTOM_TAG = 'vl-error-message-next';
 
 export const ErrorMessageDefaults = {
-    input: '',
+    for: '',
     state: null,
     show: false,
 };
 
 @customElement(ERROR_MESSAGE_CUSTOM_TAG)
 export class VlErrorMessageComponent extends BaseLitElement {
-    input = ErrorMessageDefaults.input;
+    for = ErrorMessageDefaults.for;
     state: keyof ValidityState | null = ErrorMessageDefaults.state;
     show = ErrorMessageDefaults.show;
 
@@ -24,8 +24,8 @@ export class VlErrorMessageComponent extends BaseLitElement {
 
     static get properties(): PropertyDeclarations {
         return {
-            input: { type: String, reflect: false },
-            state: { type: String, reflect: false },
+            for: { type: String },
+            state: { type: String },
             show: { type: Boolean, reflect: true },
         };
     }

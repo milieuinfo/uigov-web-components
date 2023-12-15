@@ -158,14 +158,30 @@ SelectMultiple.args = {
     ],
 };
 
-export const SelectPreSelected = SelectTemplate.bind({});
-SelectPreSelected.storyName = 'vl-select-next - pre selected';
-SelectPreSelected.args = {
+export const SelectSelectedOption = SelectTemplate.bind({});
+SelectSelectedOption.storyName = 'vl-select-next - selected option';
+SelectSelectedOption.args = {
     id: 'geboorteplaats',
     name: 'geboorteplaats',
     placeholder: 'Kies je geboorteplaats',
     options: [
         { label: 'Hasselt', value: 'hasselt', selected: true },
+        { label: 'Turnhout', value: 'turnhout' },
+        { label: 'Knokke-Heist', value: 'knokke-heist' },
+        { label: 'Waregem', value: 'waregem' },
+        { label: 'Lier', value: 'lier' },
+        { label: 'Rio Piedras', value: 'rio piedras' },
+    ],
+};
+
+export const SelectDisabledOption = SelectTemplate.bind({});
+SelectDisabledOption.storyName = 'vl-select-next - disabled option';
+SelectDisabledOption.args = {
+    id: 'geboorteplaats',
+    name: 'geboorteplaats',
+    placeholder: 'Kies je geboorteplaats',
+    options: [
+        { label: 'Hasselt', value: 'hasselt', disabled: true },
         { label: 'Turnhout', value: 'turnhout' },
         { label: 'Knokke-Heist', value: 'knokke-heist' },
         { label: 'Waregem', value: 'waregem' },

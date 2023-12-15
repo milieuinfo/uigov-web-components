@@ -37,13 +37,13 @@ export class VlTextareaComponent extends FormControl {
 
     static get properties(): PropertyDeclarations {
         return {
-            block: { type: Boolean, reflect: false },
-            readonly: { type: Boolean, reflect: false },
+            block: { type: Boolean },
+            readonly: { type: Boolean },
             value: { type: String, reflect: true },
-            minLength: { type: Number, reflect: false, attribute: 'min-length' },
-            maxLength: { type: Number, reflect: false, attribute: 'max-length' },
-            rows: { type: Number, reflect: false },
-            cols: { type: Number, reflect: false },
+            minLength: { type: Number, attribute: 'min-length' },
+            maxLength: { type: Number, attribute: 'max-length' },
+            rows: { type: Number },
+            cols: { type: Number },
         };
     }
 

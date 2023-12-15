@@ -10,13 +10,13 @@ export const errorMessageArgs: typeof defaultArgs & typeof ErrorMessageDefaults 
 
 export const errorMessageArgTypes: ArgTypes<typeof errorMessageArgs> = {
     ...defaultArgTypes(true),
-    input: {
-        name: 'input',
+    for: {
+        name: 'for',
         description: 'Het id van het input element waarvoor de error message getoond moet worden.',
         table: {
             category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.STRING },
-            defaultValue: { summary: errorMessageArgs.input },
+            defaultValue: { summary: errorMessageArgs.for },
         },
     },
     state: {
