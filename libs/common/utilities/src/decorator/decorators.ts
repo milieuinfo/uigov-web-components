@@ -1,17 +1,10 @@
-const registerWebComponent = (constructor: Function, tagName: string, options?: ElementDefinitionOptions) => {
-    if (customElements.get(tagName)) {
-        console.debug(`${tagName} werd reeds geregistreerd`);
-    } else {
-        console.debug('registratie', tagName);
-        window.customElements.define(tagName, constructor as CustomElementConstructor, options);
-    }
-};
+import { defineWebComponent } from '../util/utils';
 
 export const webComponent =
     (tagName: string, options?: ElementDefinitionOptions) =>
     // eslint-disable-next-line @typescript-eslint/ban-types
     (constructor: Function): any => {
-        registerWebComponent(constructor, tagName, options);
+        defineWebComponent(constructor, tagName, options);
     };
 
 // variant waaraan een custom registratie methode wordt meegegeven
@@ -32,7 +25,7 @@ export const webComponentPromised =
         if (customElements.get(tagName)) {
             console.debug(`${tagName} werd reeds geregistreerd`);
         } else {
-            Promise.all(promises).then(() => registerWebComponent(constructor, tagName, options));
+            Promise.all(promises).then(() => defineWebComponent(constructor, tagName, options));
         }
     };
 
@@ -46,9 +39,6 @@ export const webComponentConditional =
         if (customElements.get(tagName)) {
             console.debug(`${tagName} werd reeds geregistreerd`);
         } else {
-            console.debug('registratie', tagName);
-            window.customElements
-                .whenDefined(defined)
-                .then(() => window.customElements.define(tagName, constructor as CustomElementConstructor, options));
+            window.customElements.whenDefined(defined).then(() => defineWebComponent(constructor, tagName, options));
         }
     };

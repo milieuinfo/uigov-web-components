@@ -5,13 +5,32 @@ declare const vl: VL;
 
 /**
  * Als web-componenten geïmporteerd worden met named imports (aanbevolen, oa voor tree shaking), dan wordt de component
- * niet gerefereert en daardoor niet geregistreert. Door ze te refereren met deze methode (conventie) vermijd je dat je
+ * niet gerefereerd en daardoor niet geregistreerd. Door ze te refereren met deze methode (conventie) vermijd je dat je
  * IDE en Webpack de import als dode code behandelen. Daarnaast zorgt het ervoor dat je steeds een minimale referentie
  * hebt die (door de @webComponent en @customElement decorators) de component als web-component registreert.
  *
  * @param webComponents
  */
 export const registerWebComponents = (webComponents: any[]) => {};
+
+/**
+ * Registreert een web-component.
+ *
+ * window.customElements.define geeft een fout indien de web-component al geregistreerd werd, deze methode verifieert
+ * of er al geregistreerd werd en logged in dat geval enkel een boodschap.
+ *
+ * @param constructor
+ * @param tagName
+ * @param options
+ */
+export const defineWebComponent = (constructor: Function, tagName: string, options?: ElementDefinitionOptions) => {
+    if (customElements.get(tagName)) {
+        console.debug(`${tagName} werd reeds geregistreerd`);
+    } else {
+        console.debug('registratie', tagName);
+        window.customElements.define(tagName, constructor as CustomElementConstructor, options);
+    }
+};
 
 /**
  * Asynchroon een script downloaden maar synchroon in volgorde uitvoeren.
