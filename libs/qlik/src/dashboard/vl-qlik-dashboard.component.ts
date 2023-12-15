@@ -4,7 +4,7 @@ import { stardust } from '@nebula.js/stardust/types';
 import { Qlik, STARDUST } from '@domg/qlik-lib';
 import { bindVlSelect, debounce, queryById, queryBySelectorAll, renderStack } from '../utils/qlik-render-utils';
 import { DashboardVisualization, Filter } from '../utils/vl-qlik.model';
-import { vlElementsStyle } from '@domg-wc/elements';
+import { vlElementsStyle, VlFormElement, VlFormLabel, VlMultiSelect, VlSearchFilterElement } from '@domg-wc/elements';
 import dashboardUigStyle from './vl-qlik-dashboard.uig-css';
 import { VlQlikVisualComponent } from '../visual';
 import { VlLoaderComponent, VlPillComponent } from '@domg-wc/components';
@@ -21,7 +21,15 @@ export class VlQlikDashboardComponent extends BaseLitElement {
     private selected = {};
 
     static {
-        registerWebComponents([VlQlikVisualComponent, VlLoaderComponent, VlPillComponent]);
+        registerWebComponents([
+            VlQlikVisualComponent,
+            VlLoaderComponent,
+            VlPillComponent,
+            VlSearchFilterElement,
+            VlFormElement,
+            VlFormLabel,
+            VlMultiSelect,
+        ]);
     }
 
     static get styles(): (CSSResult | CSSResult[])[] {
@@ -59,7 +67,7 @@ export class VlQlikDashboardComponent extends BaseLitElement {
         this.search();
     }
 
-    async updated(_changedProperties) {
+    updated(_changedProperties) {
         super.updated(_changedProperties);
         if (this.initialized && this.filters && this.filters.length > 0) {
             this.bindFilters();
@@ -128,14 +136,14 @@ export class VlQlikDashboardComponent extends BaseLitElement {
                     {
                         size: 12,
                         template: html`
-                            <label is="vl-form-message" for="filter-${k}">${k}</label>
+                            <label is="vl-form-label" for="filter-${k}">${k}</label>
                             <div id="filter-${k}">
                                 ${s.selections.map(
                                     (sel) => html` <vl-pill data-vl-closable @close="${() => this.deselect(k, sel)}">
                                         ${sel}
                                     </vl-pill>`
                                 )}
-                                ${s.count > 6 ? html`<span> en nog ${s.count - 6} anderen</span>` : html``}
+                                ${s.count > 6 ? html` <span> en nog ${s.count - 6} anderen</span>` : html``}
                             </div>
                         `,
                     },
@@ -144,7 +152,7 @@ export class VlQlikDashboardComponent extends BaseLitElement {
     }
 
     private renderFilter(filter) {
-        return html`<label is="vl-form-message" for="${filter.id}">${filter.filter.name}</label> ${this.renderSelect(
+        return html`<label is="vl-form-label" for="${filter.id}">${filter.filter.name}</label> ${this.renderSelect(
                 filter
             )}`;
     }
@@ -193,7 +201,7 @@ export class VlQlikDashboardComponent extends BaseLitElement {
 
     private renderVisual(v: DashboardVisualization) {
         return html`
-            <label is="vl-form-message" for="visual-${v.id}" class="visual-label-100-${v['align-label'] || 'left'}"
+            <label is="vl-form-label" for="visual-${v.id}" class="visual-label-100-${v['align-label'] || 'left'}"
                 >${v.label}</label
             >
             <div style="min-height: ${v.height}">
@@ -231,7 +239,11 @@ export class VlQlikDashboardComponent extends BaseLitElement {
                             ? this.selected[this.fieldValue(filter)].selections
                             : [],
                     });
-                    return { filtername: filter.filter.name, values: filterValues, filterid: filter.id };
+                    return {
+                        filtername: filter.filter.name,
+                        values: filterValues,
+                        filterid: filter.id,
+                    };
                 })
             )
         ).reduce((result, item) => {
@@ -240,7 +252,7 @@ export class VlQlikDashboardComponent extends BaseLitElement {
         }, {});
 
         Object.keys(filterVs).forEach((f) => {
-            queryBySelectorAll(this)(`div[id^="choices-${filterVs[f].filterid}-item"]`).forEach((c) => {
+            queryBySelectorAll(this)(`div[id^="choices-${filterVs[f].filterid}-item"]`).forEach((c: HTMLElement) => {
                 const value = c.innerText.trim();
                 const state = filterVs[f].values.find((v) => v.label === value).state;
                 c.classList.remove(
@@ -255,10 +267,9 @@ export class VlQlikDashboardComponent extends BaseLitElement {
     }
 
     private async changeFilter(e) {
-        await this.connection.selectFilters(
-            this.filters.find((f) => f.id === e.target.id).filter.name,
-            queryById(this)(e.target.id).values
-        );
+        const element = queryById(this)(e.target.id);
+        await this.connection.selectFilters(this.filters.find((f) => f.id === e.target.id).filter.name, element.values);
+        element.focus();
     }
 
     private fieldValue(f) {

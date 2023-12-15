@@ -13,8 +13,8 @@ export class VlQlikVisualComponent extends BaseLitElement {
     private width? = '';
     private additionalStyle = '';
     private visual: (stardust.Viz | stardust.Sheet) & {
-        __DO_NOT_USE__?: any;
-        model: any;
+        __DO_NOT_USE__?;
+        model;
     };
 
     static get styles(): (CSSResult | CSSResult[])[] {
@@ -34,7 +34,7 @@ export class VlQlikVisualComponent extends BaseLitElement {
     }
 
     async updated(_changedProperties) {
-        super.updated(_changedProperties)
+        super.updated(_changedProperties);
         if (this.visual) {
             this.visual.destroy();
         }

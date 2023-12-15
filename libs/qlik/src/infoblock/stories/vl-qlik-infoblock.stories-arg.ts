@@ -10,7 +10,7 @@ export const qlikInfoblockArgs = {
 };
 
 export const qlikInfoblockArgTypes: ArgTypes<typeof qlikInfoblockArgs> = {
-    ...defaultArgTypes(),
+    ...defaultArgTypes(true),
     title: {
         name: 'title',
         description: 'Titel van het infoblock, zie ``vl-infoblock',
