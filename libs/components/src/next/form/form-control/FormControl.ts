@@ -50,13 +50,13 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
 
     static get properties(): PropertyDeclarations {
         return {
-            id: { type: String, reflect: true },
-            name: { type: String, reflect: true },
-            label: { type: String, reflect: true },
-            required: { type: Boolean, reflect: true },
-            disabled: { type: Boolean, reflect: true },
+            id: { type: String },
+            name: { type: String },
+            label: { type: String },
+            required: { type: Boolean },
+            disabled: { type: Boolean },
             error: { type: Boolean, reflect: true },
-            success: { type: Boolean, reflect: true },
+            success: { type: Boolean },
             isInvalid: { type: Boolean, state: true },
         };
     }
@@ -134,19 +134,19 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
 
         // Zoek de error message die bij de huidige error state hoort
         let errorMessage = this.form?.querySelector(
-            `${ERROR_MESSAGE_CUSTOM_TAG}[input="${this.id}"][state="${errorState}"]`
+            `${ERROR_MESSAGE_CUSTOM_TAG}[for="${this.id}"][state="${errorState}"]`
         );
 
         // Als er geen error message is voor de huidige error state, zoek dan de algemene error message
         if (!errorMessage) {
-            errorMessage = this.form?.querySelector(`${ERROR_MESSAGE_CUSTOM_TAG}[input="${this.id}"]`);
+            errorMessage = this.form?.querySelector(`${ERROR_MESSAGE_CUSTOM_TAG}[for="${this.id}"]`);
         }
 
         errorMessage?.setAttribute('show', 'true');
     }
 
     private hideErrorMessages(): void {
-        const errorMessages = this.form?.querySelectorAll(`${ERROR_MESSAGE_CUSTOM_TAG}[input="${this.id}"]`);
+        const errorMessages = this.form?.querySelectorAll(`${ERROR_MESSAGE_CUSTOM_TAG}[for="${this.id}"]`);
 
         errorMessages?.forEach((errorMessage) => {
             errorMessage.removeAttribute('show');

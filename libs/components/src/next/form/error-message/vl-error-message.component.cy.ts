@@ -32,10 +32,10 @@ describe('component vl-error-message-next', () => {
         cy.get('vl-error-message-next').shadow().find('.vl-form__error').should('be.visible');
     });
 
-    it('should set input', () => {
-        cy.mount(html`<vl-error-message-next input="test-input">Test error message</vl-error-message-next>`);
+    it('should set for', () => {
+        cy.mount(html`<vl-error-message-next for="test-input">Test error message</vl-error-message-next>`);
 
-        cy.get('vl-error-message-next').should('have.attr', 'input', 'test-input');
+        cy.get('vl-error-message-next').should('have.attr', 'for', 'test-input');
     });
 
     it('should set state', () => {

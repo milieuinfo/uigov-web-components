@@ -9,38 +9,59 @@ import { VlCheckboxComponent } from '@domg-wc/components/next/form/checkbox';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import appElementStyle from './app.element.css';
 
+type SubmittedFormData = {
+    voornaam?: string;
+    achternaam?: string;
+    interesses?: string;
+    geboorteplaats?: string;
+    [`hobby's`]?: string;
+    leeftijd?: number;
+    kinderen?: number;
+    adres?: string;
+    waarheidsgetrouw?: boolean;
+};
+
 @customElement('app-element')
 export class AppElement extends LitElement {
     // Required state values
     private firstNameRequired = false;
     private lastNameRequired = false;
-    private ageRequired = false;
-    private kidsRequired = false;
     private interestsRequired = false;
     private birthplaceRequired = false;
     private hobbiesRequired = false;
+    private ageRequired = false;
+    private kidsRequired = false;
     private addressFieldRequired = false;
     private filledInTruthfullyRequired = false;
 
     // Disabled state values
     private firstNameDisabled = false;
     private lastNameDisabled = false;
-    private ageDisabled = false;
-    private kidsDisabled = false;
     private interestsDisabled = false;
     private birthplaceDisabled = false;
     private hobbiesDisabled = false;
+    private ageDisabled = false;
+    private kidsDisabled = false;
     private addressFieldDisabled = false;
     private filledInTruthfullyDisabled = false;
+
+    // Read only state values
+    private firstNameReadonly = false;
+    private lastNameReadonly = false;
+    private interestsReadonly = false;
+    private birthplaceReadonly = false;
+    private hobbiesReadonly = false;
+    private ageReadonly = false;
+    private kidsReadonly = false;
+    private addressFieldReadonly = false;
+    private filledInTruthfullyReadonly = false;
 
     // Other state values
     private showAddressField = false;
 
-    // Form values
+    // Form state values
     private firstName = '';
     private lastName = '';
-    private age: number = null;
-    private kids: number = null;
     private interests = '';
     private birthplaces: SelectOption[] = [
         {
@@ -68,9 +89,18 @@ export class AppElement extends LitElement {
         { label: 'Boardgames', value: 'boardgames' },
         { label: 'Fietsen', value: 'fietsen' },
     ];
-    private addressField = '';
+    private age: number = null;
+    private kids: number = null;
+    private address = '';
     private filledInTruthfully = false;
     private filledInTruthfullyValue = '';
+
+    // Submitted form values
+    private submittedFormData: SubmittedFormData = {};
+    private submittedCount = 0;
+
+    // Other values
+    private resetEverything = false;
 
     static {
         registerWebComponents([
@@ -83,7 +113,7 @@ export class AppElement extends LitElement {
     }
 
     static get styles(): (CSSResult | CSSResult[])[] {
-        return [appElementStyle, vlElementsStyle];
+        return [vlElementsStyle, appElementStyle];
     }
 
     static get properties(): PropertyDeclarations {
@@ -91,32 +121,44 @@ export class AppElement extends LitElement {
             firstNameRequired: { type: Boolean, state: true },
             lastNameRequired: { type: Boolean, state: true },
             interestsRequired: { type: Boolean, state: true },
-            ageRequired: { type: Boolean, state: true },
-            kidsRequired: { type: Boolean, state: true },
             birthplaceRequired: { type: Boolean, state: true },
             hobbiesRequired: { type: Boolean, state: true },
+            ageRequired: { type: Boolean, state: true },
+            kidsRequired: { type: Boolean, state: true },
             addressFieldRequired: { type: Boolean, state: true },
             filledInTruthfullyRequired: { type: Boolean, state: true },
             firstNameDisabled: { type: Boolean, state: true },
             lastNameDisabled: { type: Boolean, state: true },
-            ageDisabled: { type: Boolean, state: true },
-            kidsDisabled: { type: Boolean, state: true },
             interestsDisabled: { type: Boolean, state: true },
             birthplaceDisabled: { type: Boolean, state: true },
             hobbiesDisabled: { type: Boolean, state: true },
+            ageDisabled: { type: Boolean, state: true },
+            kidsDisabled: { type: Boolean, state: true },
             addressFieldDisabled: { type: Boolean, state: true },
             filledInTruthfullyDisabled: { type: Boolean, state: true },
+            firstNameReadonly: { type: Boolean, state: true },
+            lastNameReadonly: { type: Boolean, state: true },
+            interestsReadonly: { type: Boolean, state: true },
+            birthplaceReadonly: { type: Boolean, state: true },
+            hobbiesReadonly: { type: Boolean, state: true },
+            ageReadonly: { type: Boolean, state: true },
+            kidsReadonly: { type: Boolean, state: true },
+            addressFieldReadonly: { type: Boolean, state: true },
+            filledInTruthfullyReadonly: { type: Boolean, state: true },
             firstName: { type: String, state: true },
             lastName: { type: String, state: true },
-            age: { type: Number, state: true },
-            kids: { type: Number, state: true },
             interests: { type: String, state: true },
             birthplaces: { type: Array, state: true },
             hobbies: { type: Array, state: true },
-            addressField: { type: String, state: true },
+            age: { type: Number, state: true },
+            kids: { type: Number, state: true },
+            address: { type: String, state: true },
             filledInTruthfully: { type: Boolean, state: true },
             filledInTruthfullyValue: { type: String, state: true },
             showAddressField: { type: Boolean, state: true },
+            submittedFormData: { type: Object, state: true },
+            submittedCount: { type: Number, state: true },
+            resetEverything: { type: Boolean, state: true },
         };
     }
 
@@ -125,19 +167,31 @@ export class AppElement extends LitElement {
             <div class="container">
                 <div class="vl-action-group vl-action-group__top">
                     <button
-                        class="vl-button"
+                        class="vl-button  ${!this.showAddressField ? 'vl-button--secondary' : ''}"
                         type="button"
-                        @click=${() => (this.showAddressField = !this.showAddressField)}
+                        @click=${() => {
+                            this.showAddressField = !this.showAddressField;
+
+                            if (!this.showAddressField) {
+                                this.address = '';
+                                this.submittedFormData.adres = '';
+                            }
+                        }}
                     >
-                        Toggle address field
+                        Address field
+                    </button>
+                    <button
+                        class="vl-button ${!this.resetEverything ? 'vl-button--secondary' : ''}"
+                        type="button"
+                        @click=${() => (this.resetEverything = !this.resetEverything)}
+                    >
+                        Reset everything
                     </button>
                 </div>
-                <form id="form" class="vl-form" @submit=${this.onSubmit}>
+                <form id="form" class="vl-form" @submit=${this.onSubmit} @reset=${this.onReset}>
                     <div class="vl-form-grid vl-form-grid--is-stacked">
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="voornaam"
-                                >Voornaam${this.firstNameRequired ? ' *' : ''}</label
-                            >
+                            <label class="vl-form__label vl-form__label--block" for="voornaam">Voornaam</label>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-input-field-next
@@ -146,41 +200,48 @@ export class AppElement extends LitElement {
                                 block
                                 ?required=${this.firstNameRequired}
                                 ?disabled=${this.firstNameDisabled}
+                                ?readonly=${this.firstNameReadonly}
                                 value=${this.firstName}
                                 pattern="^[a-zA-Z]*$"
                                 min-length=${2}
                                 max-length=${20}
-                                @input=${(e: InputEvent) => (this.firstName = (e.target as HTMLInputElement).value)}
-                                @reset=${() => (this.firstName = '')}
+                                @vl-input=${(e: CustomEvent) => (this.firstName = e.detail.value)}
                             ></vl-input-field-next>
-                            <vl-error-message-next input="voornaam" state="valueMissing"
+                            <vl-error-message-next for="voornaam" state="valueMissing"
                                 >Gelieve een voornaam in te vullen.</vl-error-message-next
                             >
-                            <vl-error-message-next input="voornaam" state="tooShort"
+                            <vl-error-message-next for="voornaam" state="tooShort"
                                 >Gelieve minimum 2 karakters te gebruiken.</vl-error-message-next
                             >
-                            <vl-error-message-next input="voornaam" state="tooLong"
+                            <vl-error-message-next for="voornaam" state="tooLong"
                                 >Gelieve maximum 20 karakters te gebruiken.</vl-error-message-next
                             >
-                            <vl-error-message-next input="voornaam" state="patternMismatch"
+                            <vl-error-message-next for="voornaam" state="patternMismatch"
                                 >Gelieve geen nummers of speciale tekens in te vullen.</vl-error-message-next
                             >
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.firstNameRequired ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.firstNameRequired = !this.firstNameRequired)}
                                 >
-                                    Toggle required
+                                    Required
                                 </button>
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.firstNameDisabled ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.firstNameDisabled = !this.firstNameDisabled)}
                                 >
-                                    Toggle disabled
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.firstNameReadonly ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.firstNameReadonly = !this.firstNameReadonly)}
+                                >
+                                    Readonly
                                 </button>
                                 <button
                                     class="vl-button vl-button--secondary"
@@ -192,9 +253,7 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="achternaam"
-                                >Achternaam${this.lastNameRequired ? ' *' : ''}</label
-                            >
+                            <label class="vl-form__label vl-form__label--block" for="achternaam">Achternaam</label>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-input-field-next
@@ -203,41 +262,48 @@ export class AppElement extends LitElement {
                                 block
                                 ?required=${this.lastNameRequired}
                                 ?disabled=${this.lastNameDisabled}
+                                ?readonly=${this.lastNameReadonly}
                                 min-length=${2}
                                 max-length=${20}
                                 value=${this.lastName}
                                 pattern="^[a-zA-Z]*$"
-                                @input=${(e: InputEvent) => (this.lastName = (e.target as HTMLInputElement).value)}
-                                @reset=${() => (this.lastName = '')}
+                                @vl-input=${(e: CustomEvent) => (this.lastName = e.detail.value)}
                             ></vl-input-field-next>
-                            <vl-error-message-next input="achternaam" state="valueMissing"
+                            <vl-error-message-next for="achternaam" state="valueMissing"
                                 >Gelieve een achternaam in te vullen.</vl-error-message-next
                             >
-                            <vl-error-message-next input="achternaam" state="tooShort"
+                            <vl-error-message-next for="achternaam" state="tooShort"
                                 >Gelieve minimum 2 karakters te gebruiken.</vl-error-message-next
                             >
-                            <vl-error-message-next input="achternaam" state="tooLong"
+                            <vl-error-message-next for="achternaam" state="tooLong"
                                 >Gelieve maximum 20 karakters te gebruiken.</vl-error-message-next
                             >
-                            <vl-error-message-next input="achternaam" state="patternMismatch"
+                            <vl-error-message-next for="achternaam" state="patternMismatch"
                                 >Gelieve geen nummers of speciale tekens in te vullen.</vl-error-message-next
                             >
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.lastNameRequired ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.lastNameRequired = !this.lastNameRequired)}
                                 >
-                                    Toggle required
+                                    Required
                                 </button>
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.lastNameDisabled ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.lastNameDisabled = !this.lastNameDisabled)}
                                 >
-                                    Toggle disabled
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.lastNameReadonly ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.lastNameReadonly = !this.lastNameReadonly)}
+                                >
+                                    Readonly
                                 </button>
                                 <button
                                     class="vl-button vl-button--secondary"
@@ -249,49 +315,54 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="interests"
-                                >Interesses${this.interestsRequired ? ' *' : ''}</label
-                            >
+                            <label class="vl-form__label vl-form__label--block" for="interesses">Interesses</label>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-textarea-next
-                                id="interests"
-                                name="interests"
+                                id="interesses"
+                                name="interesses"
                                 block
                                 ?required=${this.interestsRequired}
                                 ?disabled=${this.interestsDisabled}
+                                ?readonly=${this.interestsReadonly}
                                 min-length=${5}
                                 max-length=${100}
                                 rows=${10}
                                 value=${this.interests}
-                                @input=${(e: InputEvent) => (this.interests = (e.target as HTMLInputElement).value)}
-                                @reset=${() => (this.interests = '')}
+                                @vl-input=${(e: CustomEvent) => (this.interests = e.detail.value)}
                             ></vl-textarea-next>
-                            <vl-error-message-next input="interests" state="valueMissing"
+                            <vl-error-message-next for="interesses" state="valueMissing"
                                 >Gelieve je interesses in te vullen.</vl-error-message-next
                             >
-                            <vl-error-message-next input="interests" state="tooShort"
+                            <vl-error-message-next for="interesses" state="tooShort"
                                 >Gelieve minimum 5 karakters te gebruiken.</vl-error-message-next
                             >
-                            <vl-error-message-next input="interests" state="tooLong"
+                            <vl-error-message-next for="interesses" state="tooLong"
                                 >Gelieve maximum 100 karakters te gebruiken.</vl-error-message-next
                             >
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.interestsRequired ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.interestsRequired = !this.interestsRequired)}
                                 >
-                                    Toggle required
+                                    Required
                                 </button>
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.interestsDisabled ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.interestsDisabled = !this.interestsDisabled)}
                                 >
-                                    Toggle disabled
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.interestsReadonly ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.interestsReadonly = !this.interestsReadonly)}
+                                >
+                                    Readonly
                                 </button>
                                 <button
                                     class="vl-button vl-button--secondary"
@@ -313,35 +384,42 @@ export class AppElement extends LitElement {
                                 name="geboorteplaats"
                                 ?required=${this.birthplaceRequired}
                                 ?disabled=${this.birthplaceDisabled}
-                                deletable
+                                ?deletable=${!this.birthplaceReadonly}
                                 search
                                 .options=${this.birthplaces}
                                 result-limit="2"
                                 placeholder="Selecteer je geboorteplaats"
                                 no-results-text="Geen geboorteplaatsen gevonden"
                                 search-placeholder="Zoek geboorteplaats"
-                                @reset=${this.resetBirthplace}
+                                @vl-select=${this.onSelectBirthplace}
                             >
                             </vl-select-next>
-                            <vl-error-message-next input="geboorteplaats" state="valueMissing"
+                            <vl-error-message-next for="geboorteplaats" state="valueMissing"
                                 >Gelieve een geboorteplaats te selecteren.</vl-error-message-next
                             >
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.birthplaceRequired ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.birthplaceRequired = !this.birthplaceRequired)}
                                 >
-                                    Toggle required
+                                    Required
                                 </button>
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.birthplaceDisabled ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.birthplaceDisabled = !this.birthplaceDisabled)}
                                 >
-                                    Toggle disabled
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.birthplaceReadonly ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${this.toggleBirthplaceReadonly}
+                                >
+                                    Readonly
                                 </button>
                                 <button
                                     class="vl-button vl-button--secondary"
@@ -363,34 +441,41 @@ export class AppElement extends LitElement {
                                 name="hobby's"
                                 ?required=${this.hobbiesRequired}
                                 ?disabled=${this.hobbiesDisabled}
-                                deletable
+                                ?deletable=${!this.hobbiesReadonly}
                                 multiple
                                 .options=${this.hobbies}
                                 placeholder="Selecteer je hobby's"
                                 no-results-text="Geen hobbies gevonden"
                                 no-choices-text="Geen resterende hobbies gevonden"
-                                @reset=${this.resetHobbies}
+                                @vl-select=${this.onSelectHobbies}
                             >
                             </vl-select-next>
-                            <vl-error-message-next input="hobby's" state="valueMissing"
+                            <vl-error-message-next for="hobby's" state="valueMissing"
                                 >Gelieve een hobby te selecteren.</vl-error-message-next
                             >
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.hobbiesRequired ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.hobbiesRequired = !this.hobbiesRequired)}
                                 >
-                                    Toggle required
+                                    Required
                                 </button>
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.hobbiesDisabled ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.hobbiesDisabled = !this.hobbiesDisabled)}
                                 >
-                                    Toggle disabled
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.hobbiesReadonly ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${this.toggleHobbiesReadonly}
+                                >
+                                    Readonly
                                 </button>
                                 <button class="vl-button vl-button--secondary" type="button" @click=${this.selectHobby}>
                                     Select 'Boardgames'
@@ -410,37 +495,44 @@ export class AppElement extends LitElement {
                                 block
                                 ?required=${this.ageRequired}
                                 ?disabled=${this.ageDisabled}
+                                ?readonly=${this.ageReadonly}
                                 min=${0}
                                 max=${99}
                                 value=${this.age}
-                                @input=${(e: InputEvent) => (this.age = Number((e.target as HTMLInputElement).value))}
-                                @reset=${() => (this.age = null)}
+                                @vl-input=${(e: CustomEvent) => (this.age = e.detail.value)}
                             ></vl-input-field-next>
-                            <vl-error-message-next input="leeftijd" state="valueMissing"
+                            <vl-error-message-next for="leeftijd" state="valueMissing"
                                 >Gelieve een leeftijd in te vullen.</vl-error-message-next
                             >
-                            <vl-error-message-next input="leeftijd" state="rangeUnderflow"
+                            <vl-error-message-next for="leeftijd" state="rangeUnderflow"
                                 >De minimum leeftijd is 0 jaar.</vl-error-message-next
                             >
-                            <vl-error-message-next input="leeftijd" state="rangeOverflow"
+                            <vl-error-message-next for="leeftijd" state="rangeOverflow"
                                 >De maximum leeftijd is 99 jaar.</vl-error-message-next
                             >
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.ageRequired ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.ageRequired = !this.ageRequired)}
                                 >
-                                    Toggle required
+                                    Required
                                 </button>
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.ageDisabled ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.ageDisabled = !this.ageDisabled)}
                                 >
-                                    Toggle disabled
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.ageReadonly ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.ageReadonly = !this.ageReadonly)}
+                                >
+                                    Readonly
                                 </button>
                                 <button
                                     class="vl-button vl-button--secondary"
@@ -464,33 +556,40 @@ export class AppElement extends LitElement {
                                 block
                                 ?required=${this.kidsRequired}
                                 ?disabled=${this.kidsDisabled}
+                                ?readonly=${this.kidsReadonly}
                                 min=${0}
                                 value=${this.kids}
-                                @input=${(e: InputEvent) => (this.kids = Number((e.target as HTMLInputElement).value))}
-                                @reset=${() => (this.kids = null)}
+                                @vl-input=${(e: CustomEvent) => (this.kids = e.detail.value)}
                             ></vl-input-field-next>
-                            <vl-error-message-next input="kinderen" state="valueMissing"
+                            <vl-error-message-next for="kinderen" state="valueMissing"
                                 >Gelieve een aantal kinderen in te vullen.</vl-error-message-next
                             >
-                            <vl-error-message-next input="kinderen" state="rangeUnderflow"
+                            <vl-error-message-next for="kinderen" state="rangeUnderflow"
                                 >Het minimum aantal kinderen is 0.</vl-error-message-next
                             >
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.kidsRequired ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.kidsRequired = !this.kidsRequired)}
                                 >
-                                    Toggle required
+                                    Required
                                 </button>
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.kidsDisabled ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.kidsDisabled = !this.kidsDisabled)}
                                 >
-                                    Toggle disabled
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.kidsReadonly ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.kidsReadonly = !this.kidsReadonly)}
+                                >
+                                    Readonly
                                 </button>
                                 <button
                                     class="vl-button vl-button--secondary"
@@ -515,35 +614,47 @@ export class AppElement extends LitElement {
                                           block
                                           ?required=${this.addressFieldRequired}
                                           ?disabled=${this.addressFieldDisabled}
-                                          value=${this.addressField}
-                                          @input=${(e: InputEvent) =>
-                                              (this.addressField = (e.target as HTMLInputElement).value)}
-                                          @reset=${() => (this.addressField = '')}
+                                          ?readonly=${this.addressFieldReadonly}
+                                          value=${this.address}
+                                          @vl-input=${(e: CustomEvent) => (this.address = e.detail.value)}
                                       ></vl-input-field-next>
-                                      <vl-error-message-next input="adres" state="valueMissing"
+                                      <vl-error-message-next for="adres" state="valueMissing"
                                           >Gelieve een adres in te vullen.</vl-error-message-next
                                       >
                                   </div>
                                   <div class="vl-col--6-12">
                                       <div class="vl-action-group">
                                           <button
-                                              class="vl-button vl-button--secondary"
+                                              class="vl-button ${!this.addressFieldRequired
+                                                  ? 'vl-button--secondary'
+                                                  : ''}"
                                               type="button"
                                               @click=${() => (this.addressFieldRequired = !this.addressFieldRequired)}
                                           >
-                                              Toggle required
+                                              Required
                                           </button>
                                           <button
-                                              class="vl-button vl-button--secondary"
+                                              class="vl-button ${!this.addressFieldDisabled
+                                                  ? 'vl-button--secondary'
+                                                  : ''}"
                                               type="button"
                                               @click=${() => (this.addressFieldDisabled = !this.addressFieldDisabled)}
                                           >
-                                              Toggle disabled
+                                              Disabled
+                                          </button>
+                                          <button
+                                              class="vl-button ${!this.addressFieldReadonly
+                                                  ? 'vl-button--secondary'
+                                                  : ''}"
+                                              type="button"
+                                              @click=${() => (this.addressFieldReadonly = !this.addressFieldReadonly)}
+                                          >
+                                              Readonly
                                           </button>
                                           <button
                                               class="vl-button vl-button--secondary"
                                               type="button"
-                                              @click=${() => (this.addressField = 'Koning Albert II-laan 20')}
+                                              @click=${() => (this.address = 'Koning Albert II-laan 20')}
                                           >
                                               Set 'Koning Albert II-laan 20'
                                           </button>
@@ -563,49 +674,59 @@ export class AppElement extends LitElement {
                                 block
                                 value=${this.filledInTruthfullyValue}
                                 ?required=${this.filledInTruthfullyRequired}
-                                ?disabled=${this.filledInTruthfullyDisabled}
+                                ?disabled=${this.filledInTruthfullyDisabled || this.filledInTruthfullyReadonly}
                                 ?checked=${this.filledInTruthfully}
                                 @vl-checked=${(e: CustomEvent) => (this.filledInTruthfully = e.detail.checked)}
-                                @reset=${() => {
-                                    this.filledInTruthfully = false;
-                                    this.filledInTruthfullyValue = '';
-                                }}
                             >
                                 Naar waarheid ingevuld
                             </vl-checkbox-next>
-                            <vl-error-message-next input="waarheidsgetrouw" state="valueMissing">
+                            ${this.filledInTruthfullyReadonly
+                                ? html`<input
+                                      type="hidden"
+                                      name="waarheidsgetrouw"
+                                      value=${this.filledInTruthfully ? this.filledInTruthfullyValue || 'on' : ''}
+                                  />`
+                                : ''}
+                            <vl-error-message-next for="waarheidsgetrouw" state="valueMissing">
                                 Gelieve te bevestigen dat bovenstaande gegevens naar waarheid zijn ingevuld.
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
                             <div class="vl-action-group">
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.filledInTruthfullyRequired ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.filledInTruthfullyRequired = !this.filledInTruthfullyRequired)}
                                 >
-                                    Toggle required
+                                    Required
                                 </button>
                                 <button
-                                    class="vl-button vl-button--secondary"
+                                    class="vl-button ${!this.filledInTruthfullyDisabled ? 'vl-button--secondary' : ''}"
                                     type="button"
                                     @click=${() => (this.filledInTruthfullyDisabled = !this.filledInTruthfullyDisabled)}
                                 >
-                                    Toggle disabled
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.filledInTruthfullyReadonly ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.filledInTruthfullyReadonly = !this.filledInTruthfullyReadonly)}
+                                >
+                                    Readonly
                                 </button>
                                 <button
                                     class="vl-button vl-button--secondary"
                                     type="button"
-                                    @click=${() => (this.filledInTruthfullyValue = 'Zo waar als een koe')}
+                                    @click=${() => (this.filledInTruthfullyValue = 'Een waarheid als een koe')}
                                 >
-                                    Set 'Zo waar als een koe'
+                                    Set 'Een waarheid als een koe'
                                 </button>
                                 <button
                                     class="vl-button vl-button--secondary"
                                     type="button"
-                                    @click=${() => (this.filledInTruthfully = true)}
+                                    @click=${() => (this.filledInTruthfully = !this.filledInTruthfully)}
                                 >
-                                    Check
+                                    Toggle checked
                                 </button>
                             </div>
                         </div>
@@ -617,6 +738,43 @@ export class AppElement extends LitElement {
                         </div>
                     </div>
                 </form>
+                <div class="submitted-form">
+                    <div class="vl-properties">
+                        <h1 class="vl-properties__title">Gegevens (${this.submittedCount}x submitted)</h1>
+                        <div class="vl-properties__column">
+                            <dl class="vl-properties__list">
+                                <dt class="vl-properties__label">Voornaam</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.voornaam}</dd>
+                                <dt class="vl-properties__label">Achternaam</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.achternaam}</dd>
+                                <dt class="vl-properties__label">Interesses</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.interesses}</dd>
+                                <dt class="vl-properties__label">Geboorteplaats</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.geboorteplaats}</dd>
+                            </dl>
+                        </div>
+                        <div class="vl-properties__column">
+                            <dl class="vl-properties__list">
+                                <dt class="vl-properties__label">Hobby's</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData[`hobby's`]}</dd>
+                                <dt class="vl-properties__label">Leeftijd</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.leeftijd}</dd>
+                                <dt class="vl-properties__label">Aantal kinderen</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.kinderen}</dd>
+                                ${this.showAddressField
+                                    ? html` <dt class="vl-properties__label">Adres</dt>
+                                          <dd class="vl-properties__data">${this.submittedFormData.adres}</dd>`
+                                    : ''}
+                            </dl>
+                        </div>
+                        <div class="vl-properties__column">
+                            <dl class="vl-properties__list">
+                                <dt class="vl-properties__label">Waarheidsgetrouw</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.waarheidsgetrouw}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
             </div>
         `;
     }
@@ -625,13 +783,87 @@ export class AppElement extends LitElement {
         e.preventDefault();
 
         const data = new FormData(e.target as HTMLFormElement);
+
         console.log(Object.fromEntries(data));
+        this.submittedFormData = Object.fromEntries(data);
+        this.submittedCount++;
+    }
+
+    private onReset(): void {
+        this.firstName = '';
+        this.lastName = '';
+        this.interests = '';
+        this.resetBirthplace();
+        this.resetHobbies();
+        this.age = null;
+        this.kids = null;
+        this.address = '';
+        this.filledInTruthfully = false;
+        this.filledInTruthfullyValue = '';
+        this.submittedFormData = {};
+        this.submittedCount = 0;
+
+        if (this.resetEverything) {
+            this.firstNameRequired = false;
+            this.lastNameRequired = false;
+            this.interestsRequired = false;
+            this.birthplaceRequired = false;
+            this.hobbiesRequired = false;
+            this.ageRequired = false;
+            this.kidsRequired = false;
+            this.addressFieldRequired = false;
+            this.filledInTruthfullyRequired = false;
+            this.firstNameDisabled = false;
+            this.lastNameDisabled = false;
+            this.interestsDisabled = false;
+            this.birthplaceDisabled = false;
+            this.hobbiesDisabled = false;
+            this.ageDisabled = false;
+            this.kidsDisabled = false;
+            this.addressFieldDisabled = false;
+            this.filledInTruthfullyDisabled = false;
+            this.firstNameReadonly = false;
+            this.lastNameReadonly = false;
+            this.interestsReadonly = false;
+            this.birthplaceReadonly = false;
+            this.hobbiesReadonly = false;
+            this.ageReadonly = false;
+            this.kidsReadonly = false;
+            this.addressFieldReadonly = false;
+            this.filledInTruthfullyReadonly = false;
+        }
     }
 
     private selectBirthplace(): void {
         const birthplaces: SelectOption[] = this.birthplaces.map((birthplaceGroup) => {
             birthplaceGroup.choices = birthplaceGroup.choices?.map((birthplace) => {
                 birthplace.selected = birthplace.value === 'turnhout';
+                return birthplace;
+            });
+            return birthplaceGroup;
+        });
+
+        this.birthplaces = birthplaces;
+    }
+
+    private onSelectBirthplace(e: CustomEvent): void {
+        const birthplaces: SelectOption[] = this.birthplaces.map((birthplaceGroup) => {
+            birthplaceGroup.choices = birthplaceGroup.choices?.map((birthplace) => {
+                birthplace.selected = birthplace.value === e.detail.value;
+                return birthplace;
+            });
+            return birthplaceGroup;
+        });
+
+        this.birthplaces = birthplaces;
+    }
+
+    private toggleBirthplaceReadonly(): void {
+        this.birthplaceReadonly = !this.birthplaceReadonly;
+
+        const birthplaces: SelectOption[] = this.birthplaces.map((birthplaceGroup) => {
+            birthplaceGroup.choices = birthplaceGroup.choices?.map((birthplace) => {
+                birthplace.disabled = this.birthplaceReadonly;
                 return birthplace;
             });
             return birthplaceGroup;
@@ -668,6 +900,28 @@ export class AppElement extends LitElement {
                 return hobby;
             }),
         ];
+
+        this.hobbies = hobbies;
+    }
+
+    private onSelectHobbies(e: CustomEvent): void {
+        const hobbies: SelectOption[] = [
+            ...this.hobbies.map((hobby) => {
+                hobby.selected = e.detail.value.includes(hobby.value);
+                return hobby;
+            }),
+        ];
+
+        this.hobbies = hobbies;
+    }
+
+    private toggleHobbiesReadonly(): void {
+        this.hobbiesReadonly = !this.hobbiesReadonly;
+
+        const hobbies: SelectOption[] = this.hobbies.map((hobby) => {
+            hobby.disabled = this.hobbiesReadonly;
+            return hobby;
+        });
 
         this.hobbies = hobbies;
     }

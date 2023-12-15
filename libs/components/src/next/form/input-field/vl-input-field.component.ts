@@ -41,15 +41,15 @@ export class VlInputFieldComponent extends FormControl {
 
     static get properties(): PropertyDeclarations {
         return {
-            block: { type: Boolean, reflect: false },
-            readonly: { type: Boolean, reflect: false },
-            type: { type: String, reflect: false },
+            block: { type: Boolean },
+            readonly: { type: Boolean },
+            type: { type: String },
             value: { type: String, reflect: true },
-            minLength: { type: Number, reflect: false, attribute: 'min-length' },
-            maxLength: { type: Number, reflect: false, attribute: 'max-length' },
-            min: { type: Number, reflect: false },
-            max: { type: Number, reflect: false },
-            pattern: { type: String, reflect: false },
+            minLength: { type: Number, attribute: 'min-length' },
+            maxLength: { type: Number, attribute: 'max-length' },
+            min: { type: Number },
+            max: { type: Number },
+            pattern: { type: String },
         };
     }
 

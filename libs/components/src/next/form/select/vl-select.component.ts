@@ -58,15 +58,15 @@ export class VlSelectComponent extends FormControl {
     static get properties(): PropertyDeclarations {
         return {
             options: { type: Array },
-            placeholder: { type: String, reflect: false },
-            deletable: { type: Boolean, reflect: false },
-            multiple: { type: Boolean, reflect: false },
-            search: { type: Boolean, reflect: false },
-            position: { type: String, reflect: false },
-            resultLimit: { type: Number, reflect: false, attribute: 'result-limit' },
-            noResultsText: { type: String, reflect: false, attribute: 'no-results-text' },
-            noChoicesText: { type: String, reflect: false, attribute: 'no-choices-text' },
-            searchPlaceholder: { type: String, reflect: false, attribute: 'search-placeholder' },
+            placeholder: { type: String },
+            deletable: { type: Boolean },
+            multiple: { type: Boolean },
+            search: { type: Boolean },
+            position: { type: String },
+            resultLimit: { type: Number, attribute: 'result-limit' },
+            noResultsText: { type: String, attribute: 'no-results-text' },
+            noChoicesText: { type: String, attribute: 'no-choices-text' },
+            searchPlaceholder: { type: String, attribute: 'search-placeholder' },
         };
     }
 
@@ -93,18 +93,27 @@ export class VlSelectComponent extends FormControl {
     updated(changedProperties: Map<string, unknown>): void {
         super.updated(changedProperties);
 
+        if (!this.choices) {
+            return;
+        }
+
         if (changedProperties.has('options')) {
-            this.choices?.clearStore();
-            this.choices?.setChoices(this.getOptions(), 'value', 'label', true);
+            this.choices.clearStore();
+            this.choices.setChoices(this.getOptions(), 'value', 'label', true);
             this.onChange();
         }
 
         if (changedProperties.has('disabled')) {
             if (this.disabled) {
-                this.choices?.disable();
+                this.choices.disable();
             } else {
-                this.choices?.enable();
+                this.choices.enable();
             }
+        }
+
+        if (changedProperties.has('deletable')) {
+            this.choices.config.removeItemButton = this.deletable;
+            this.choices.config.removeItems = this.deletable;
         }
     }
 

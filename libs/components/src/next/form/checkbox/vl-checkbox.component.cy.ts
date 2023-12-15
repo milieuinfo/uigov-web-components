@@ -37,7 +37,7 @@ const mountCheckboxInForm = ({ value, isSwitch, checked }: CheckboxDefaultTypes)
                     >
                         Bevestig.
                     </vl-checkbox-next>
-                    <vl-error-message-next input="confirmation" state="valueMissing"
+                    <vl-error-message-next for="confirmation" state="valueMissing"
                         >Gelieve je gegevens te bevestigen.</vl-error-message-next
                     >
                 </div>
@@ -190,41 +190,41 @@ describe('component vl-checkbox-next - default in form', () => {
     it('should validate', () => {
         mountCheckboxInForm({});
 
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
         cy.get('button[type="submit"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('be.visible');
         cy.get('vl-checkbox-next').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
     });
 
     it('should validate with initial value', () => {
         mountCheckboxInForm({ checked: true });
 
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
         cy.get('vl-checkbox-next').click();
         cy.get('button[type="submit"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('be.visible');
         cy.get('vl-checkbox-next').click();
         cy.get('button[type="submit"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
     });
 
     it('should be disabled', () => {
         mountCheckboxInForm({});
         shouldDisabledDefault();
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
         cy.get('button[type="submit"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
     });
 
     it('should reset', () => {
         mountCheckboxInForm({});
 
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
         cy.get('button[type="submit"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('be.visible');
         cy.get('button[type="reset"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
     });
 });
 
@@ -313,43 +313,43 @@ describe('component vl-checkbox-next - switch in form', () => {
     it('should validate', () => {
         mountCheckboxInForm({ isSwitch: true, value: 'bevestig' });
 
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
         cy.get('button[type="submit"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('be.visible');
         cy.get('vl-checkbox-next').click();
         cy.get('button[type="submit"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
     });
 
     it('should validate with initial value', () => {
         mountCheckboxInForm({ checked: true, isSwitch: true, value: 'bevestig' });
 
         cy.get('button[type="submit"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
         cy.get('vl-checkbox-next').click();
         cy.get('button[type="submit"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('be.visible');
     });
 
     it('should be disabled', () => {
         mountCheckboxInForm({ isSwitch: true, value: 'bevestig' });
         shouldDisabledSwitch();
 
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
         cy.get('button[type="submit"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
     });
 
     it('should reset', () => {
         mountCheckboxInForm({ isSwitch: true, value: 'bevestig' });
 
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
 
         cy.get('button[type="submit"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('be.visible');
         shouldHaveErrorStyleSwitch();
 
         cy.get('button[type="reset"]').click();
-        cy.get('vl-error-message-next[input="confirmation"]').should('not.be.visible');
+        cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
     });
 });

@@ -33,10 +33,10 @@ export class VlCheckboxComponent extends FormControl {
 
     static get properties(): PropertyDeclarations {
         return {
-            block: { type: Boolean, reflect: false },
-            value: { type: String, reflect: false },
+            block: { type: Boolean },
+            value: { type: String },
             checked: { type: Boolean, reflect: true },
-            isSwitch: { type: Boolean, reflect: false, attribute: 'switch' },
+            isSwitch: { type: Boolean, attribute: 'switch' },
         };
     }
 
