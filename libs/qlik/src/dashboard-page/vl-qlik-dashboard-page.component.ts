@@ -1,7 +1,22 @@
 import { CSSResult, html, PropertyDeclarations } from 'lit';
 import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
-import { vlElementsStyle } from '@domg-wc/elements';
-import {VlQlikDashboardComponent} from "../dashboard";
+import {
+    VlActionGroup,
+    VlButtonElement,
+    VlButtonLinkElement,
+    vlElementsStyle,
+    VlFormElement,
+    VlH1Element,
+    VlH2Element,
+    VlH3Element,
+    VlH4Element,
+    VlH5Element,
+    VlH6Element,
+    VlIconElement,
+    VlIconWrapperElement,
+    VlSelect,
+} from '@domg-wc/elements';
+import { VlQlikDashboardComponent } from '../dashboard';
 import { DashboardVisualization, Filter, Views } from '../utils/vl-qlik.model';
 import { exportCSVFile, exportExcelFile, Qlik } from '@domg/qlik-lib';
 import {
@@ -11,9 +26,7 @@ import {
     queryById,
     renderStack,
 } from '../utils/qlik-render-utils';
-import '../dashboard/vl-qlik-dashboard.component';
 import { VlAlert, VlAnnotation, VlLoaderComponent } from '@domg-wc/components';
-
 
 const DEFAULT = {
     name: 'default',
@@ -43,7 +56,25 @@ export class VlQlikDashboardPageComponent extends BaseLitElement {
     private refresh: string;
 
     static {
-        registerWebComponents([VlAlert, VlLoaderComponent, VlAnnotation, VlQlikDashboardComponent]);
+        registerWebComponents([
+            VlAlert,
+            VlLoaderComponent,
+            VlAnnotation,
+            VlQlikDashboardComponent,
+            VlActionGroup,
+            VlIconWrapperElement,
+            VlIconElement,
+            VlButtonElement,
+            VlButtonLinkElement,
+            VlFormElement,
+            VlH1Element,
+            VlH2Element,
+            VlH3Element,
+            VlH4Element,
+            VlH5Element,
+            VlH6Element,
+            VlSelect,
+        ]);
     }
 
     static get styles(): (CSSResult | CSSResult[])[] {

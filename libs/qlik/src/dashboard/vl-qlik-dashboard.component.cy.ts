@@ -73,7 +73,7 @@ describe('qlik visual with filters', () => {
                 cy.get('vl-qlik-dashboard')
                     .shadow()
                     .find('div[is="vl-search-filter"]')
-                    .find('label[is="vl-form-message"]')
+                    .find('label[is="vl-form-label"]')
                     .contains(fName)
                     .should('exist');
             });

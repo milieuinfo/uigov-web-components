@@ -16,7 +16,7 @@ export const qlikDashboardArgs = {
 };
 
 export const qlikDashboardArgTypes: ArgTypes<typeof qlikDashboardArgs> = {
-    ...defaultArgTypes(),
+    ...defaultArgTypes(true),
     visuals: {
         name: 'visuals',
         description: 'Het object dat de eigenlijke visualisatie config bevat',

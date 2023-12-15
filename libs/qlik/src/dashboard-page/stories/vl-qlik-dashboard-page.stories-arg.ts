@@ -14,7 +14,7 @@ export const qlikDashboardPageArgs = {
 };
 
 export const qlikDashboardPageArgTypes: ArgTypes<typeof qlikDashboardPageArgs> = {
-    ...defaultArgTypes(),
+    ...defaultArgTypes(true),
     title: {
         name: 'title',
         description: 'Titel van de dashboard pagina',

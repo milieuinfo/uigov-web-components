@@ -21,7 +21,7 @@ export const qlikVisualArgs = {
 };
 
 export const qlikVisualArgTypes: ArgTypes<typeof qlikVisualArgs> = {
-    ...defaultArgTypes(),
+    ...defaultArgTypes(true),
     type: {
         name: 'type',
         description: 'Het type visualisatie.',
