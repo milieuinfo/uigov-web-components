@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.21.0...v1.22.0) (2023-12-15)
+
+
+### Features
+
+* TSSS-154 - qlik components ([e9994c2](https://github.com/milieuinfo/uigov-web-components/commit/e9994c219c3c311251f243162781fe2d1b341fd6))
+
 # [1.21.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.20.0...v1.21.0) (2023-12-13)
 
 
