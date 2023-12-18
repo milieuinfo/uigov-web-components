@@ -1,3 +1,11 @@
+## [1.22.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.22.0...v1.22.1) (2023-12-18)
+
+
+### Bug Fixes
+
+* 'defineWebComponent' methode die de oude 'define' herintroduceert ([e53b907](https://github.com/milieuinfo/uigov-web-components/commit/e53b907bb1e206cc01b30dec4369635612d08d15))
+* TSSS-154 - qlik styling ([75521ab](https://github.com/milieuinfo/uigov-web-components/commit/75521ab3aef3f8d68800bf08de71d260930587c1))
+
 # [1.22.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.21.0...v1.22.0) (2023-12-15)
 
 
