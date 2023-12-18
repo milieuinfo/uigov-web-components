@@ -1,7 +1,7 @@
 import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
 import { VlFunctionalHeaderComponent } from '@domg-wc/components';
 import { vlElementsStyle } from '@domg-wc/elements';
-import { CSSResult, html } from 'lit';
+import { type PropertyDeclarations, CSSResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { content } from './child/content.section';
 import { header } from './child/header.section';
@@ -19,7 +19,7 @@ export class VlAccessibility extends BaseLitElement {
         return vlElementsStyle;
     }
 
-    static get properties() {
+    static get properties(): PropertyDeclarations {
         return {
             application: {
                 type: String,
