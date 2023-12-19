@@ -191,7 +191,9 @@ export class AppElement extends LitElement {
                 <form id="form" class="vl-form" @submit=${this.onSubmit} @reset=${this.onReset}>
                     <div class="vl-form-grid vl-form-grid--is-stacked">
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="voornaam">Voornaam</label>
+                            <label class="vl-form__label vl-form__label--block" for="voornaam"
+                                >Voornaam${this.firstNameRequired ? ' *' : ''}</label
+                            >
                         </div>
                         <div class="vl-col--4-12">
                             <vl-input-field-next
@@ -253,7 +255,9 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="achternaam">Achternaam</label>
+                            <label class="vl-form__label vl-form__label--block" for="achternaam"
+                                >Achternaam${this.lastNameRequired ? ' *' : ''}</label
+                            >
                         </div>
                         <div class="vl-col--4-12">
                             <vl-input-field-next
@@ -315,7 +319,9 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="interesses">Interesses</label>
+                            <label class="vl-form__label vl-form__label--block" for="interesses"
+                                >Interesses${this.interestsRequired ? ' *' : ''}</label
+                            >
                         </div>
                         <div class="vl-col--4-12">
                             <vl-textarea-next

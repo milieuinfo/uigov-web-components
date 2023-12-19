@@ -55,7 +55,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
             label: { type: String },
             required: { type: Boolean },
             disabled: { type: Boolean },
-            error: { type: Boolean, reflect: true },
+            error: { type: Boolean },
             success: { type: Boolean },
             isInvalid: { type: Boolean, state: true },
         };
@@ -91,7 +91,6 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     abstract get validationTarget(): HTMLElement | undefined | null;
 
     resetFormControl(): void {
-        this.error = false;
         this.isInvalid = false;
         this.hideErrorMessages();
         this.dispatchEvent(new Event('reset'));
@@ -118,7 +117,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
 
         if (this === firstInvalidInput) {
             (firstInvalidInput as HTMLElement)?.focus();
-            (firstInvalidInput as HTMLElement)?.scrollIntoView();
+            (firstInvalidInput as HTMLElement)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
 

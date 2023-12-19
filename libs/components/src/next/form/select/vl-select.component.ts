@@ -79,15 +79,8 @@ export class VlSelectComponent extends FormControl {
         setTimeout(() => {
             // Fix voor Choices.js dropdown te openen in een Shadow DOM
             const choicesElement = this.shadowRoot!.querySelector('.js-vl-select');
-            choicesElement!.addEventListener('click', this.onClickChoices);
+            choicesElement?.addEventListener('click', this.onClickChoices);
         }, 0);
-    }
-
-    disconnectedCallback(): void {
-        super.disconnectedCallback();
-
-        const choicesElement = this.shadowRoot!.querySelector('.js-vl-select');
-        choicesElement?.removeEventListener('click', this.onClickChoices);
     }
 
     updated(changedProperties: Map<string, unknown>): void {
@@ -115,6 +108,17 @@ export class VlSelectComponent extends FormControl {
             this.choices.config.removeItemButton = this.deletable;
             this.choices.config.removeItems = this.deletable;
         }
+
+        if (changedProperties.has('error')) {
+            (this.internals as ElementInternals).setValidity({ customError: this.error }, 'custom-error');
+        }
+    }
+
+    disconnectedCallback(): void {
+        super.disconnectedCallback();
+
+        const choicesElement = this.shadowRoot!.querySelector('.js-vl-select');
+        choicesElement?.removeEventListener('click', this.onClickChoices);
     }
 
     render(): TemplateResult {

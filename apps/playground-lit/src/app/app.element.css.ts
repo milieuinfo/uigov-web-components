@@ -30,11 +30,11 @@ const styles: CSSResult = css`
     }
 
     .vl-properties__label {
-        flex: 0 0 30%;
+        flex: 0 0 40%;
     }
 
     .vl-properties__data {
-        flex: 3 0 70%;
+        flex: 3 0 60%;
     }
 `;
 export default styles;
