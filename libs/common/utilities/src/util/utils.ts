@@ -1,5 +1,6 @@
 import { ifDefined } from 'lit-html/directives/if-defined.js';
 import { VL } from '../models';
+import { type WebComponent } from '../type/types';
 
 declare const vl: VL;
 
@@ -9,9 +10,9 @@ declare const vl: VL;
  * IDE en Webpack de import als dode code behandelen. Daarnaast zorgt het ervoor dat je steeds een minimale referentie
  * hebt die (door de @webComponent en @customElement decorators) de component als web-component registreert.
  *
- * @param webComponents
+ * @param webComponents {WebComponent[]} - een array van web-components
  */
-export const registerWebComponents = (webComponents: any[]) => {};
+export const registerWebComponents = (webComponents: WebComponent[]) => {};
 
 /**
  * Registreert een web-component.

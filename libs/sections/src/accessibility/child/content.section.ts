@@ -4,10 +4,52 @@ import { setupStatement } from './setup-statement.section';
 import { inaccessibleContent } from './inaccessible-content.section';
 import { sideNavigation } from './side-navigation.section';
 import { complianceStatus } from './compliance-status.section';
+import {
+    VlColumnElement,
+    VlGridElement,
+    VlH2Element,
+    VlIconElement,
+    VlLayoutElement,
+    VlLinkElement,
+    VlPropertiesComponent,
+    VlPropertiesListElement,
+    VlPropertyTermElement,
+    VlPropertyValueElement,
+    VlRegionElement,
+    VlSideNavigationReferenceElement,
+} from '@domg-wc/elements';
+import { VlContactCardComponent, VlInfoblockComponent } from '@domg-wc/components';
+import { type WebComponent } from '@domg-wc/common-utilities';
 
-export const content = (props: AccessibilityProperties) => {
-    const { application } = props;
+// export type ContentProps = AccessibilityProperties;
 
+export function setElements(): WebComponent[] {
+    return [
+        VlRegionElement,
+        VlLayoutElement,
+        VlGridElement,
+        VlSideNavigationReferenceElement,
+        VlColumnElement,
+        VlLinkElement,
+        VlContactCardComponent,
+        VlInfoblockComponent,
+        VlPropertiesComponent,
+        VlPropertiesListElement,
+        VlPropertyTermElement,
+        VlPropertyValueElement,
+        VlIconElement,
+        VlH2Element,
+    ];
+}
+
+export const content = ({
+    application,
+    compliance,
+    date,
+    dateModified,
+    evaluation,
+    limitations,
+}: AccessibilityProperties) => {
     return html` <section id="content" is="vl-region">
         <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
@@ -54,7 +96,9 @@ export const content = (props: AccessibilityProperties) => {
                                 <br />
                                 <p>Deze toegankelijkheidsverklaring is van toepassing op ${application}.</p>
                             </div>
-                            ${complianceStatus(props)} ${inaccessibleContent(props)} ${setupStatement(props)}
+                            ${complianceStatus({ compliance, evaluation })}
+                            ${inaccessibleContent({ compliance, evaluation, limitations })}
+                            ${setupStatement({ evaluation, date, dateModified })}
                             <div id="feedback-contact" is="vl-column" data-vl-size="12" data-vl-medium-size="12">
                                 <h2 is="vl-h2">Feedback en contactgegevens</h2>
                                 <p>
@@ -185,7 +229,7 @@ export const content = (props: AccessibilityProperties) => {
                         </div>
                     </div>
                 </div>
-                ${sideNavigation(props)}
+                ${sideNavigation({ compliance })}
             </div>
         </div>
     </section>`;

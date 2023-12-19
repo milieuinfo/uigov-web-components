@@ -1,7 +1,10 @@
 import { html } from 'lit';
 import { AccessibilityProperties } from '../vl-accessibility.model';
 
-export const setupStatement = ({ evaluation, date, dateModified }: AccessibilityProperties) => {
+export type SetupStatementProps = Pick<AccessibilityProperties, 'evaluation' | 'date' | 'dateModified'>;
+
+// export const setupStatement = ({ evaluation, date, dateModified }: AccessibilityProperties) => {
+export const setupStatement = ({ evaluation, date, dateModified }: SetupStatementProps) => {
     const setupStatementTemplate = () => {
         switch (evaluation) {
             case 'EXPERT_EVALUATED':

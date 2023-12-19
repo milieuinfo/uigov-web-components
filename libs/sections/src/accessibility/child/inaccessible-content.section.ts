@@ -1,7 +1,9 @@
 import { html } from 'lit';
 import { AccessibilityProperties } from '../vl-accessibility.model';
 
-export const inaccessibleContent = ({ compliance, evaluation, limitations }: AccessibilityProperties) => {
+export type InaccessibleContentProps = Pick<AccessibilityProperties, 'compliance' | 'evaluation' | 'limitations'>;
+// export const inaccessibleContent = ({ compliance, evaluation, limitations }: AccessibilityProperties) => {
+export const inaccessibleContent = ({ compliance, evaluation, limitations }: InaccessibleContentProps) => {
     const inaccessibleContentTemplate = () => {
         if (evaluation === 'NOT_EVALUATED') {
             return html`De niet-toegankelijke inhoud is onbekend omdat de website niet is getest.`;

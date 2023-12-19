@@ -1,4 +1,3 @@
-import { html } from 'lit';
 import { wcagLink } from './wcag-link.section';
 import { type ComplianceStatusProps, complianceStatus } from './compliance-status.section';
 import { COMPLIANCE_STATUS, EVALUATION_STATUS } from '../vl-accessibility.model';
@@ -9,7 +8,7 @@ registerWebComponents([complianceStatus, wcagLink]);
 const mountDefault = ({ compliance, evaluation }: ComplianceStatusProps) =>
     cy.mount(complianceStatus({ compliance, evaluation }));
 
-// [TODO]: Fix this test
+// [FIXME]: Extend this test suite
 describe('component compliance-status', () => {
     const props: ComplianceStatusProps = {
         compliance: COMPLIANCE_STATUS.FULLY_COMPLIANT,

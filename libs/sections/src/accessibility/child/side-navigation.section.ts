@@ -1,7 +1,10 @@
 import { html } from 'lit';
 import { AccessibilityProperties } from '../vl-accessibility.model';
 
-export const sideNavigation = ({ compliance }: AccessibilityProperties) => {
+export type SideNavigationProps = Pick<AccessibilityProperties, 'compliance'>;
+
+// export const sideNavigation = ({ compliance }: AccessibilityProperties) => {
+export const sideNavigation = ({ compliance }: SideNavigationProps) => {
     return html` <div
         is="vl-column"
         data-vl-size="4"

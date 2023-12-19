@@ -1,16 +1,10 @@
-import { header } from './header.section';
-import { AccessibilityProperties } from '../vl-accessibility.model';
+import { type HeaderProps, header } from './header.section';
 
-// [TODO]: Creert props zoals complianceStatusProps om te zien of dat het probleem is in dat component
-const mountDefault = (props: Pick<AccessibilityProperties, 'disableBackLink'>) => cy.mount(header(props));
+const mountDefault = (props: HeaderProps) => cy.mount(header(props));
 
 describe('component header', () => {
-    const props: Pick<AccessibilityProperties, 'disableBackLink'> = {
-        disableBackLink: false,
-    };
-
     beforeEach(() => {
-        mountDefault(props);
+        mountDefault({ disableBackLink: false });
     });
 
     it('should mount', () => {
@@ -19,6 +13,7 @@ describe('component header', () => {
 
     it('should render the correct title', () => {
         cy.get('vl-functional-header').should('have.attr', 'data-vl-title', 'Departement Omgeving');
+        cy.get('vl-functional-header').should('not.have.attr', 'data-vl-title', 'Test');
     });
 
     it('should render the correct sub-title', () => {
@@ -26,6 +21,12 @@ describe('component header', () => {
             'have.attr',
             'data-vl-sub-title',
             'Toegankelijkheid en gebruiksvoorwaarden'
+        );
+
+        cy.get('vl-functional-header').should(
+            'not.have.attr',
+            'data-vl-sub-title',
+            'ToegankelijkheidEngebruiksvoorwaarden'
         );
     });
 
@@ -39,15 +40,13 @@ describe('component header', () => {
 });
 
 describe('component header - with disableBackLink set to true', () => {
-    const props: Pick<AccessibilityProperties, 'disableBackLink'> = {
-        disableBackLink: true,
-    };
-
-    beforeEach(() => {
-        mountDefault(props);
+    it('should disable the back link when disableBackLink is true', () => {
+        mountDefault({ disableBackLink: true });
+        cy.get('vl-functional-header').should('have.attr', 'data-vl-disable-back-link');
     });
 
-    it('should disable the back link when disableBackLink is true', () => {
-        cy.get('vl-functional-header').should('have.attr', 'data-vl-disable-back-link');
+    it('should NOT disable the back link when disableBackLink is false', () => {
+        mountDefault({ disableBackLink: false });
+        cy.get('vl-functional-header').should('not.have.attr', 'data-vl-disable-back-link');
     });
 });

@@ -8,8 +8,8 @@ export {
     webComponentPromised,
     webComponentConditional,
 } from './decorator/decorators';
-export { VL } from './models/vl.model';
-export { Class } from './type/types';
+export type { VL } from './models/vl.model';
+export type { Class, WebComponent } from './type/types';
 export {
     registerWebComponents,
     defineWebComponent,

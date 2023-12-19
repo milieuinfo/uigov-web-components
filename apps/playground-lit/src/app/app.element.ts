@@ -7,6 +7,9 @@ import appElementStyle from './app.element.css';
 import { cascaderItemTemplates } from './vl-cascader.templates';
 import { getItemList } from './vl-cascader.utils';
 import { nodeData } from './vl-cascader.data';
+import { COMPLIANCE_STATUS, EVALUATION_STATUS } from '@domg-wc/sections';
+
+import { type InaccessibleContentProps, inaccessibleContent, VlAccessibility } from '@domg-wc/sections';
 
 @customElement('app-element')
 export class AppElement extends LitElement {
@@ -18,12 +21,22 @@ export class AppElement extends LitElement {
         return [appElementStyle, vlElementsStyle];
     }
 
+    // TODO - add data-vl-open
     render(): TemplateResult {
+        const baseProps: InaccessibleContentProps = {
+            compliance: COMPLIANCE_STATUS.FULLY_COMPLIANT,
+            evaluation: EVALUATION_STATUS.NOT_EVALUATED,
+            limitations: {
+                withTiming: ['Limitation 1', 'Limitation 2'],
+                withoutTiming: ['Limitation 3', 'Limitation 4'],
+                outsideApplicableLaw: ['Limitation 5', 'Limitation 6'],
+            },
+        };
         return html`
             <main>
+                ${inaccessibleContent(baseProps)}
                 <vl-side-sheet
                     data-vl-left
-                    data-vl-open
                     data-vl-custom-css=${'.vl-layout {padding:0px} .vl-region{padding:10px} .vl-region:first-child{padding:0} :host #vl-side-sheet {padding:0} :host {--vl-side-sheet-width: 600px;}'}
                 >
                     <h4 is="vl-h4" class="vl-title--has-border">Kies uit kantoren</h4>
