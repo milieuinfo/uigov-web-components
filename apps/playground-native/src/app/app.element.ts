@@ -27,7 +27,6 @@ export class AppElement extends HTMLElement {
 
     connectedCallback(): void {
         const cascader: VlCascaderComponent = this.querySelector('#cascader');
-        console.log('cascader', cascader);
         if (cascader) {
             //                     <vl-cascader .items=${nodeData} .itemListFn=${getItemList} .templates=${cascaderItemTemplates}>
             cascader.items = nodeData;
@@ -36,7 +35,6 @@ export class AppElement extends HTMLElement {
         } else {
             console.error('cascader not found');
         }
-        console.log('cascader.items', cascader.items);
     }
 }
 customElements.define('app-element', AppElement);
