@@ -187,7 +187,6 @@ describe('story vl-form - validation without submit', () => {
                 const inputField = inputFieldResult[0];
                 const errorPlaceholderId = inputField.getAttribute('data-vl-error-placeholder');
                 const isRequired = inputField.hasAttribute('data-vl-required');
-                console.log('isRequired', isRequired);
                 if (isRequired) {
                     cy.get(`[is="vl-form-validation-message"][data-vl-error-id="${errorPlaceholderId}"]`).should(
                         'not.have.attr',
@@ -241,7 +240,6 @@ describe('story vl-form - validation without submit', () => {
                 const inputField = inputFieldResult[0];
                 const errorPlaceholderId = inputField.getAttribute('data-vl-error-placeholder');
                 const isRequired = inputField.hasAttribute('data-vl-required');
-                console.log('isRequired', isRequired);
                 if (isRequired) {
                     cy.get(`[is="vl-form-validation-message"][data-vl-error-id="${errorPlaceholderId}"]`).should(
                         'not.have.attr',
