@@ -1,3 +1,21 @@
+# [1.23.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.22.0...v1.23.0) (2023-12-22)
+
+
+### Bug Fixes
+
+* 'defineWebComponent' methode die de oude 'define' herintroduceert ([e53b907](https://github.com/milieuinfo/uigov-web-components/commit/e53b907bb1e206cc01b30dec4369635612d08d15))
+* TSSS-154 - qlik styling ([75521ab](https://github.com/milieuinfo/uigov-web-components/commit/75521ab3aef3f8d68800bf08de71d260930587c1))
+
+
+### Features
+
+* UIG-2406 - upgrade DV packages naar v21.0.2 ([7e3e794](https://github.com/milieuinfo/uigov-web-components/commit/7e3e79498fbcd8d93395ba4d2f1d4af7124bb33a))
+* UIG-2675 - vl-map-legend-item voor custom map legende ([dffef12](https://github.com/milieuinfo/uigov-web-components/commit/dffef123143a8ecaf3c505686232ad1d65485059))
+* UIG-2733 - vl-modal sluitknop cursor ([9dc1765](https://github.com/milieuinfo/uigov-web-components/commit/9dc1765112c071044c7d6bcf7be2d348399f753c))
+* UIG-2765 - vl-wizard - altijd de stappen tonen ([a72d021](https://github.com/milieuinfo/uigov-web-components/commit/a72d02143595d5946cd3c33e6913bf77975bee83))
+* UIG-2782 - vl-map-click-action - testen versimpeld ([b8925a3](https://github.com/milieuinfo/uigov-web-components/commit/b8925a3cf76e52070327c31851cb851442484bb1))
+* UIG-2785 - opkuis console.log statements ([d163ba3](https://github.com/milieuinfo/uigov-web-components/commit/d163ba3e4246d23ad9e5d81febab2a38ff7a1cd9))
+
 # [1.22.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.21.0...v1.22.0) (2023-12-15)
 
 
