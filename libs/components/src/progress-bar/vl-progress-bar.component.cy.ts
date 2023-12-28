@@ -5,26 +5,71 @@ import { html } from 'lit';
 
 registerWebComponents([VlProgressBarComponent, VlTooltipComponent]);
 
-const mountDefault = (steps: string[]) => cy.mount(html`<vl-progress-bar .steps=${steps}></vl-progress-bar> `);
-const mountWithProps = () =>
-    cy.mount(
-        html`<vl-progress-bar
-            .steps=${['Step 1', 'Step 2', 'Step 3']}
-            .numeric=${true}
-            .activeStep=${2}
-            .showSteps=${true}
-        ></vl-progress-bar>`
-    );
+type MountDefaultProps = {
+    activeStep: number;
+    focusOnChange: boolean;
+    numeric?: boolean;
+    steps: string[];
+    showSteps: boolean;
+    onClickStep: (event: CustomEvent) => void;
+};
+
+const props: MountDefaultProps = {
+    activeStep: 1,
+    focusOnChange: false,
+    numeric: false,
+    steps: [],
+    showSteps: false,
+    onClickStep: (event) => {
+        console.log(event);
+    },
+};
+
+const mountDefault = (props: MountDefaultProps) =>
+    cy.mount(html` <vl-progress-bar
+        data-vl-active-step=${props.activeStep}
+        ?data-vl-show-steps=${props.showSteps}
+        ?data-vl-focus-on-change=${props.focusOnChange}
+        ?data-vl-numeric=${props.numeric}
+        .steps=${props.steps}
+        @vl-click-step=${(event: CustomEvent) => props.onClickStep(event.detail)}
+    >
+    </vl-progress-bar>`);
+
+const VlProgressBarTestUtils = {
+    changeActiveStep: function changeActiveStep(stepNumber: number) {
+        cy.get('vl-progress-bar').invoke('attr', 'data-vl-active-step', stepNumber);
+    },
+
+    verifyActiveStepChange: function verifyActiveStepChange(stepNumber: number) {
+        this.changeActiveStep(stepNumber);
+
+        cy.get('vl-progress-bar')
+            .shadow()
+            .find('.vl-progress-bar__step')
+            .eq(stepNumber - 1)
+            .should('have.class', 'vl-progress-bar__step--active');
+    },
+    shouldHaveVisibleTooltipForStep: function shouldHaveVisibleTooltipForStep(stepNumber: number) {
+        cy.get('vl-progress-bar')
+            .shadow()
+            .find('.vl-progress-bar__step')
+            .eq(stepNumber - 1)
+            .find('button.vl-progress-bar__bullet')
+            .next()
+            .should('have.attr', 'aria-hidden', 'false');
+    },
+};
 
 describe('component vl-progress-bar - default', () => {
     const steps = ['Step 1', 'Step 2', 'Step 3'];
 
     beforeEach(() => {
-        mountDefault(steps);
+        mountDefault({ ...props, steps: steps });
     });
 
     it('should mount', () => {
-        cy.get('vl-progress-bar');
+        cy.get('vl-progress-bar').shadow();
     });
 
     it('should be accessible', () => {
@@ -43,40 +88,82 @@ describe('component vl-progress-bar - default', () => {
                 .contains(step);
         });
     });
+});
 
-    it('should emit vl-click-step event when a step is clicked', () => {
-        cy.createStubForEvent('vl-progress-bar', 'vl-click-step');
-        cy.get('vl-progress-bar').shadow().find('.vl-progress-bar__step:nth-child(2) button').click();
-        cy.get('@vl-click-step').should('have.been.calledWithMatch', { detail: { step: steps[1], number: 2 } });
-        cy.get('@vl-click-step').should('not.have.been.calledWithMatch', { detail: { step: steps[1], number: 1 } });
+describe('component vl-progress-bar - properties default ', () => {
+    it('should have default values for properties', () => {
+        mountDefault(props);
+
+        cy.get('vl-progress-bar').should('have.attr', 'data-vl-active-step', props.activeStep);
+        cy.get('vl-progress-bar').should('not.have.attr', 'data-vl-focus-on-change', props.focusOnChange);
+        cy.get('vl-progress-bar').should('not.have.attr', 'data-vl-numeric');
+        cy.get('vl-progress-bar').should('not.have.attr', 'data-vl-show-steps');
     });
 });
 
-describe('component vl-progress-bar - with properties', () => {
+describe('component vl-progress-bar - properties reflect', () => {
     const steps = ['Step 1', 'Step 2', 'Step 3'];
-    const activeStep = 2;
 
-    beforeEach(() => {
-        mountWithProps();
-    });
+    it('should have active step class on the correct step when <activeStep> property is set', () => {
+        const activeStep = 2;
 
-    it('should have numeric class when numeric property is true', () => {
-        cy.get('vl-progress-bar').shadow().find('.vl-progress-bar--numeric').should('exist');
-    });
+        mountDefault({ ...props, steps, activeStep });
 
-    it('should have active step class on the correct step when activeStep property is set', () => {
         cy.get('vl-progress-bar')
             .shadow()
             .find(`.vl-progress-bar__step:nth-child(${activeStep})`)
             .should('have.class', 'vl-progress-bar__step--active');
     });
 
-    it('should always show step text when showSteps property is true', () => {
+    it('should add the <.vl-progress-bar--numeric> class when <numeric> property is true', () => {
+        mountDefault({ ...props, steps, numeric: true });
+        cy.get('vl-progress-bar').shadow().find('.vl-progress-bar--numeric').should('exist');
+    });
+
+    it('should set the steps when the <steps> property is passed', () => {
+        mountDefault({ ...props, steps });
+        cy.get('vl-progress-bar').shadow().find('.vl-progress-bar__step').should('have.length', steps.length);
+    });
+
+    it('should always show step text when <showSteps> property is true', () => {
+        mountDefault({ ...props, steps, showSteps: true });
+
         steps.forEach((__, index) => {
             cy.get('vl-progress-bar')
                 .shadow()
                 .find(`.vl-progress-bar__step:nth-child(${index + 1}) .vl-progress-bar__bullet__text`)
                 .should('exist');
         });
+    });
+
+    it('should dynamically update the active step', () => {
+        mountDefault({ ...props, steps });
+
+        VlProgressBarTestUtils.verifyActiveStepChange(1);
+        VlProgressBarTestUtils.verifyActiveStepChange(2);
+        VlProgressBarTestUtils.verifyActiveStepChange(3);
+    });
+
+    it('should have visible tooltip for active step', () => {
+        mountDefault({ ...props, steps, focusOnChange: true });
+
+        VlProgressBarTestUtils.shouldHaveVisibleTooltipForStep(1);
+
+        VlProgressBarTestUtils.changeActiveStep(2);
+        VlProgressBarTestUtils.shouldHaveVisibleTooltipForStep(2);
+
+        VlProgressBarTestUtils.changeActiveStep(3);
+        VlProgressBarTestUtils.shouldHaveVisibleTooltipForStep(3);
+    });
+
+    it('should emit vl-click-step event when a step is clicked', () => {
+        mountDefault({ ...props, steps });
+
+        cy.createStubForEvent('vl-progress-bar', 'vl-click-step');
+
+        cy.get('vl-progress-bar').shadow().find('.vl-progress-bar__step:nth-child(2) button').click();
+
+        cy.get('@vl-click-step').should('have.been.calledWithMatch', { detail: { step: steps[1], number: 2 } });
+        cy.get('@vl-click-step').should('not.have.been.calledWithMatch', { detail: { step: steps[1], number: 1 } });
     });
 });
