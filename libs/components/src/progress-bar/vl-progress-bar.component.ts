@@ -12,9 +12,9 @@ import progressBarUigStyle from './vl-progress-bar.uig-css';
 
 @customElement('vl-progress-bar')
 export class VlProgressBarComponent extends BaseLitElement {
-    private numeric = false;
-    private focusOnChange = false;
     private activeStep = 1;
+    private focusOnChange = false;
+    private numeric = false;
     private progressBar = new ProgressBar();
     private steps = [];
     private showSteps = false;
@@ -29,7 +29,6 @@ export class VlProgressBarComponent extends BaseLitElement {
 
     static get properties(): PropertyDeclarations {
         return {
-            numeric: { type: Boolean, attribute: 'data-vl-numeric', reflect: true },
             activeStep: {
                 type: Number,
                 attribute: 'data-vl-active-step',
@@ -40,6 +39,7 @@ export class VlProgressBarComponent extends BaseLitElement {
                 attribute: 'data-vl-focus-on-change',
                 reflect: true,
             },
+            numeric: { type: Boolean, attribute: 'data-vl-numeric', reflect: true },
             steps: { type: Array },
             showSteps: { type: Boolean, attribute: 'data-vl-show-steps', reflect: true },
         };
