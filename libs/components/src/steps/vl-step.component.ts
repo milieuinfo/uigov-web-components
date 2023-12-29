@@ -5,6 +5,9 @@ declare const vl: any;
 
 /**
  * VlStep
+ *
+ * @deprecated gebruik de vl-steps-next component
+ *
  * @class
  * @classdesc De step component stelt een enkele stap voor in de steps component.
  *

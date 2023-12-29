@@ -8,6 +8,9 @@ declare const vl: VL;
 
 /**
  * VlTooltip
+ *
+ * @deprecated gebruik de vl-popover component
+ *
  * @class
  * @classdesc Gebruik de vl-tooltip om beschrijvende informatie over een knop, label of eender welk element weer te geven.
  *
