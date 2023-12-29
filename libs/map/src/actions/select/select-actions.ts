@@ -24,7 +24,7 @@ export class VlSelectActions extends VlSelectAction {
         this._layer = layer;
     }
 
-    private getLayerByFeature(layers: OlVectorLayerType[], feature: OlFeature): OlVectorLayerType {
+    protected getLayerByFeature(layers: OlVectorLayerType[], feature: OlFeature): OlVectorLayerType {
         return layers.find((layer) => {
             const features = layer?.getSource()?.getFeatures() || [];
             const clusteredFeature = feature?.get('features')?.[0];

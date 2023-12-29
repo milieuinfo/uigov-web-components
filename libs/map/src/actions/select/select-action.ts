@@ -17,6 +17,7 @@ export class VlSelectAction extends VlBaseMapAction {
     public hoverInteractionFilter: (feature, layer) => boolean;
     // Gebruikt protected naamgeving maar moet public zijn omdat het in een .spec bestand gebruikt wordt.
     public _fixClusterBehaviorListener: () => void;
+    protected onSelect: (...args: any[]) => void;
 
     constructor(layer?: OlVectorLayerType, onSelect?: (...args: any[]) => void, options?: ActionOptions) {
         const cluster = options && options.cluster;
@@ -53,6 +54,7 @@ export class VlSelectAction extends VlBaseMapAction {
             condition: click,
             style,
             layers,
+            multi: true,
         });
 
         super([markInteraction, selectInteraction, hoverInteraction]);
@@ -79,7 +81,14 @@ export class VlSelectAction extends VlBaseMapAction {
         this.selectedFeature = null;
 
         this.getLayer = () => layer;
+        this.onSelect = onSelect;
 
+        this.selectInteraction.on('select', this._selectHandler);
+        this.selectInteractionFilter = selectInteractionFilter;
+        this.hoverInteractionFilter = hoverInteractionFilter;
+    }
+
+    _selectHandler = (event: OlSelectEvent) => {
         const nextFeature = (features: OlCollection<OlFeature>): OlFeature => {
             const index = features.getArray().indexOf(this.selectedFeature);
             let next = index + 1;
@@ -89,28 +98,30 @@ export class VlSelectAction extends VlBaseMapAction {
             return features.getArray()[next];
         };
 
-        this.selectInteraction.on('select', (event: OlSelectEvent) => {
-            this.markInteraction.getFeatures().clear();
-            if (this.selectInteraction.getFeatures().getLength() > 0) {
-                if (this.selectInteraction.getFeatures().getLength() === 1) {
-                    this.selectedFeature = this.selectInteraction.getFeatures().getArray()[0];
-                } else {
-                    this.selectedFeature = nextFeature(this.selectInteraction.getFeatures());
-                }
-                if (onSelect) {
-                    onSelect(this.selectedFeature, event, this.getLayer());
-                }
+        this.markInteraction.getFeatures().clear();
+        if (this.selectInteraction.getFeatures().getLength() > 0) {
+            if (this.selectInteraction.getFeatures().getLength() === 1) {
+                this.selectedFeature = this.selectInteraction.getFeatures().getArray()[0];
             } else {
-                this.selectedFeature = null;
-                if (onSelect) {
-                    onSelect();
-                }
+                this.selectedFeature = nextFeature(this.selectInteraction.getFeatures());
             }
-            this.map.render();
-        });
-        this.selectInteractionFilter = selectInteractionFilter;
-        this.hoverInteractionFilter = hoverInteractionFilter;
-    }
+        } else {
+            this.selectedFeature = null;
+        }
+
+        this._onSelectHandler(event);
+        this.map.render();
+    };
+
+    _onSelectHandler = (event: OlSelectEvent) => {
+        if (!this.onSelect) return;
+
+        if (this.selectedFeature) {
+            this.onSelect(this.selectedFeature, event, this.getLayer());
+        } else {
+            this.onSelect();
+        }
+    };
 
     _fixClusterBehavior(): void {
         if (this.selectedFeature) {

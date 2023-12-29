@@ -1,0 +1,33 @@
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlMapMultiselectActionsStories from './vl-map-multiselect-actions.stories';
+import defaultStorySource from './vl-map-multiselect-actions.stories-default?raw';
+
+# Map Multiselect Actions
+
+Gebruik de `map-multiselect-actions` component om meerdere overlappende features samen te selecteren.<br/>
+Deze component erft over van de
+[map-select-actions](/docs/map-action-layer-action-select-action--map-select-actions-default) component.
+
+
+## Voorbeeld
+
+```js
+import { VlMapMultiselectActions } from '@domg-wc/map';
+```
+
+```html
+<vl-map-multiselect-actions></vl-map-multiselect-actions>
+```
+
+<Canvas of={VlMapMultiselectActionsStories.MapMultiselectActionsDefault} />
+
+
+<details>
+    <summary>Toon code</summary>
+    <Source code={defaultStorySource} language="ts" dark={true} />
+</details>
+
+
+## Configuratie
+
+<ArgTypes of={VlMapMultiselectActionsStories.MapMultiselectActionsDefault} />
