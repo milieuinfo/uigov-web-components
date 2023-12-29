@@ -3,15 +3,21 @@ import { html } from 'lit-html';
 import { styleMap } from 'lit-html/directives/style-map.js';
 import '../vl-tooltip.component';
 import { tooltipArgs, tooltipArgTypes } from './vl-tooltip.stories-arg';
+import tooltipDoc from './vl-tooltip.stories-doc.mdx';
 
 export default {
     title: 'Components/tooltip',
     tags: ['autodocs'],
     args: tooltipArgs,
     argTypes: tooltipArgTypes,
+    parameters: {
+        docs: {
+            page: tooltipDoc,
+        },
+    },
 } as Meta<typeof tooltipArgs>;
 
-export const tooltipDefault = ({ placement, tooltipContent, vlStatic }: typeof tooltipArgs) => {
+export const TooltipDefault = ({ placement, tooltipContent, vlStatic }: typeof tooltipArgs) => {
     return html` <div
         style=${styleMap({
             display: 'flex',
@@ -25,8 +31,8 @@ export const tooltipDefault = ({ placement, tooltipContent, vlStatic }: typeof t
         </button>
     </div>`;
 };
-tooltipDefault.storyName = 'vl-tooltip - default';
-tooltipDefault.argTypes = {
+TooltipDefault.storyName = 'vl-tooltip - default';
+TooltipDefault.argTypes = {
     vlStatic: {
         control: {
             disable: true,
@@ -34,7 +40,7 @@ tooltipDefault.argTypes = {
     },
 };
 
-export const tooltipStatic = ({ placement, tooltipContent, vlStatic }: typeof tooltipArgs) => {
+export const TooltipStatic = ({ placement, tooltipContent, vlStatic }: typeof tooltipArgs) => {
     return html` <div
         style=${styleMap({
             border: '1px solid #e8ebee',
@@ -45,5 +51,5 @@ export const tooltipStatic = ({ placement, tooltipContent, vlStatic }: typeof to
         <vl-tooltip ?data-vl-static=${vlStatic} data-vl-placement=${placement}>${tooltipContent}</vl-tooltip>
     </div>`;
 };
-tooltipStatic.storyName = 'vl-tooltip - static';
-tooltipStatic.args = { vlStatic: true };
+TooltipStatic.storyName = 'vl-tooltip - static';
+TooltipStatic.args = { vlStatic: true };

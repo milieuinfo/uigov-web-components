@@ -2,6 +2,9 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
 /**
  * VlDurationStep
+ *
+ * @deprecated gebruik de vl-steps-next component
+ *
  * @class
  * @classdesc De step duration component stelt een moment tussen twee stappen voor.
  *

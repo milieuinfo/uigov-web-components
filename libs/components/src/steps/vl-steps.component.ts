@@ -5,6 +5,9 @@ import stepsUigStyle from './vl-steps.uig-css';
 
 /**
  * VlSteps
+ *
+ * @deprecated gebruik de vl-steps-next component
+ *
  * @class
  * @classdesc De steps component bevat een verticale lijst van genummerde stappen. Stappen kunnen gebruikt worden om de gebruiker stap voor stap door een procedure te begeleiden.
  *
