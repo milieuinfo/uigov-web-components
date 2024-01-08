@@ -7,6 +7,9 @@ import VectorLayer from 'ol/layer/Vector';
 import Map from 'ol/Map';
 import VectorSource from 'ol/source/Vector';
 import Style from 'ol/style/Style';
+import ResizeObserver from 'resize-observer-polyfill';
+
+global.ResizeObserver = ResizeObserver;
 
 describe('select action', () => {
     const createVlSelectAction = ({ layer = <OlVectorLayerType>{}, callback, options }: MapActionPayload) => {

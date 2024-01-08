@@ -14,6 +14,9 @@ import { VlMapWithActions } from './map-with-actions';
 import { VlBaseMapAction } from '../mapaction';
 import { VlDrawLineAction } from '../draw/draw-line-action';
 import { VlMapAction } from '../../components/action/vl-map-action';
+import ResizeObserver from 'resize-observer-polyfill';
+
+global.ResizeObserver = ResizeObserver;
 
 // TODO: Review timeout
 // Use to wait for map action to be activated because of timeout for activating a mapaction in map-with-actions
@@ -123,55 +126,55 @@ describe('map with actions', () => {
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DragRotate).length,
+                .filter((interaction) => interaction instanceof DragRotate).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DoubleClickZoom).length,
+                .filter((interaction) => interaction instanceof DoubleClickZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof KeyboardPan).length,
+                .filter((interaction) => interaction instanceof KeyboardPan).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof KeyboardZoom).length,
+                .filter((interaction) => interaction instanceof KeyboardZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof MouseWheelZoom).length,
+                .filter((interaction) => interaction instanceof MouseWheelZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof PinchZoom).length,
+                .filter((interaction) => interaction instanceof PinchZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof PinchRotate).length,
+                .filter((interaction) => interaction instanceof PinchRotate).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DragPan).length,
+                .filter((interaction) => interaction instanceof DragPan).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DragZoom).length,
+                .filter((interaction) => interaction instanceof DragZoom).length
         ).toBe(1);
     });
 
@@ -182,7 +185,7 @@ describe('map with actions', () => {
 
         jest.spyOn(map, 'activateDefaultAction');
 
-        const event = new KeyboardEvent('keydown', {keyCode: 27});
+        const event = new KeyboardEvent('keydown', { keyCode: 27 });
         document.body.dispatchEvent(event);
 
         expect(map.activateDefaultAction).toHaveBeenCalled();
@@ -208,7 +211,7 @@ describe('map with actions', () => {
 
         const currentActiveActionStub = jest.spyOn(map, 'getCurrentActiveAction').mockReturnValue(drawLineAction);
 
-        const event = new KeyboardEvent('keydown', {keyCode: 27});
+        const event = new KeyboardEvent('keydown', { keyCode: 27 });
         document.body.dispatchEvent(event);
 
         expect(drawLineAction.stop).toHaveBeenCalled();
@@ -225,7 +228,7 @@ describe('map with actions', () => {
         const activateDefaultActionStub = jest.spyOn(map, 'activateDefaultAction').mockImplementation();
         expect(map.activateDefaultAction).not.toHaveBeenCalled();
 
-        const event = new KeyboardEvent('keydown', {keyCode: 27});
+        const event = new KeyboardEvent('keydown', { keyCode: 27 });
         document.body.dispatchEvent(event);
 
         expect(map.activateDefaultAction).not.toHaveBeenCalled();
@@ -244,55 +247,55 @@ describe('map with actions', () => {
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DoubleClickZoom).length,
+                .filter((interaction) => interaction instanceof DoubleClickZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof KeyboardPan).length,
+                .filter((interaction) => interaction instanceof KeyboardPan).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof KeyboardZoom).length,
+                .filter((interaction) => interaction instanceof KeyboardZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof MouseWheelZoom).length,
+                .filter((interaction) => interaction instanceof MouseWheelZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof PinchZoom).length,
+                .filter((interaction) => interaction instanceof PinchZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DragPan).length,
+                .filter((interaction) => interaction instanceof DragPan).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DragZoom).length,
+                .filter((interaction) => interaction instanceof DragZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DragRotate).length,
+                .filter((interaction) => interaction instanceof DragRotate).length
         ).toBe(0);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof PinchRotate).length,
+                .filter((interaction) => interaction instanceof PinchRotate).length
         ).toBe(0);
     });
 
@@ -317,55 +320,55 @@ describe('map with actions', () => {
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DragRotate).length,
+                .filter((interaction) => interaction instanceof DragRotate).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DoubleClickZoom).length,
+                .filter((interaction) => interaction instanceof DoubleClickZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof KeyboardPan).length,
+                .filter((interaction) => interaction instanceof KeyboardPan).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof KeyboardZoom).length,
+                .filter((interaction) => interaction instanceof KeyboardZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof MouseWheelZoom).length,
+                .filter((interaction) => interaction instanceof MouseWheelZoom).length
         ).toBe(0);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof PinchZoom).length,
+                .filter((interaction) => interaction instanceof PinchZoom).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof PinchRotate).length,
+                .filter((interaction) => interaction instanceof PinchRotate).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DragPan).length,
+                .filter((interaction) => interaction instanceof DragPan).length
         ).toBe(1);
         expect(
             map
                 .getInteractions()
                 .getArray()
-                .filter((interaction) => interaction instanceof DragZoom).length,
+                .filter((interaction) => interaction instanceof DragZoom).length
         ).toBe(1);
     });
 });

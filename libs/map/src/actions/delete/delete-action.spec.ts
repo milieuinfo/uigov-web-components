@@ -5,6 +5,9 @@ import VectorLayer from 'ol/layer/Vector';
 import Feature from 'ol/Feature';
 import { MapActionPayload, OlVectorLayerType } from '../../vl-map.model';
 import { VlDeleteAction } from './delete-action';
+import ResizeObserver from 'resize-observer-polyfill';
+
+global.ResizeObserver = ResizeObserver;
 
 describe('delete action', () => {
     const createVlDeleteAction = ({ layer = <OlVectorLayerType>{}, callback, options }: MapActionPayload) => {

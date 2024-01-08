@@ -5,6 +5,6 @@
         "registry": "https://repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/"
     },
     "dependencies": {
-        "ol": "6.15.1"
+        "ol": "8.2.0"
     }
 }
