@@ -2,6 +2,9 @@ import { Group, Tile, Vector } from 'ol/layer';
 import Projection from 'ol/proj/Projection';
 import { Vector as VectorSource } from 'ol/source';
 import { VlCustomMap } from './custom-map';
+import ResizeObserver from 'resize-observer-polyfill';
+
+global.ResizeObserver = ResizeObserver;
 
 describe('custom map', () => {
     let map;

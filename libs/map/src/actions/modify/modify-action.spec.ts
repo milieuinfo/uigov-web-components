@@ -7,6 +7,9 @@ import Map from 'ol/Map';
 import VectorSource from 'ol/source/Vector';
 import { VlSnapInteraction } from '../snap/snap-interaction';
 import { VlModifyAction } from './modify-action';
+import ResizeObserver from 'resize-observer-polyfill';
+
+global.ResizeObserver = ResizeObserver;
 
 describe('modify action', () => {
     const source = new VectorSource();

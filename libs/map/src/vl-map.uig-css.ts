@@ -296,25 +296,22 @@ const mapStyles: CSSResult = css`
         display: none;
         position: relative;
         --vl-map--margin-top: 0px;
+        border: 1px solid #cbd2da;
         height: calc(var(--vl-map-height, 500px) - var(--vl-map--margin-top));
     }
 
-    :host(.vl-map--no-border) #map {
+    :host(.vl-map--no-border) {
         border: none;
     }
 
     :host(.vl-map--full-height) {
         height: calc(100% - var(--vl-map--margin-top));
     }
-    :host(.vl-map--full-height) #map {
-        height: calc(100% - var(--vl-map--margin-top));
-    }
 
     #map {
         position: relative;
-        height: calc(var(--vl-map-height, 500px) - var(--vl-map--margin-top));
+        height: 100%;
         width: 100%;
-        border: 1px solid #cbd2da;
         box-sizing: border-box;
         overflow: hidden;
         background: white;

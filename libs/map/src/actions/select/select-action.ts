@@ -1,9 +1,9 @@
-import { Collection as OlCollection, Feature as OlFeature } from 'ol';
-import { FilterFunction as OlFilterFunction, SelectEvent as OlSelectEvent } from 'ol/interaction/Select';
+import { Collection as OlCollection, Feature, Feature as OlFeature } from 'ol';
 import { click, never, pointerMove } from 'ol/events/condition';
 import { Select as OlSelect } from 'ol/interaction';
-import { VlBaseMapAction } from '../mapaction';
+import { FilterFunction as OlFilterFunction, SelectEvent as OlSelectEvent } from 'ol/interaction/Select';
 import { ActionOptions, OlVectorLayerType } from '../../vl-map.model';
+import { VlBaseMapAction } from '../mapaction';
 
 export class VlSelectAction extends VlBaseMapAction {
     public selectInteraction: OlSelect;
@@ -201,7 +201,7 @@ export class VlSelectAction extends VlBaseMapAction {
         layer = layer || this.layer;
         const feature =
             layer.getSource().getFeatureById(id) || this.getClusterWithFeatureId(layer.getSource().getFeatures(), id);
-        if (feature) {
+        if (feature && feature instanceof Feature) {
             if (this.markInteraction.getFeatures().getArray().indexOf(feature) === -1) {
                 this.markInteraction.getFeatures().push(feature);
             }

@@ -1,4 +1,3 @@
-import { esbuildPlugin } from '@web/dev-server-esbuild';
 import { fromRollup } from '@web/dev-server-rollup';
 import rollupAlias from '@rollup/plugin-alias';
 
@@ -14,10 +13,6 @@ export default {
                 { find: '@domg-wc/components', replacement: `${dirname}dist/libs/components` },
                 { find: '@domg-wc/elements', replacement: `${dirname}dist/libs/elements` },
             ],
-        }),
-        esbuildPlugin({
-            target: 'es2020',
-            ts: true,
         }),
     ],
 };
