@@ -1,4 +1,5 @@
 import { ifDefined } from 'lit-html/directives/if-defined.js';
+import { UigConfig } from '../config/uig-config';
 import { VL } from '../models';
 
 declare const vl: VL;
@@ -25,9 +26,13 @@ export const registerWebComponents = (webComponents: any[]) => {};
  */
 export const defineWebComponent = (constructor: Function, tagName: string, options?: ElementDefinitionOptions) => {
     if (customElements.get(tagName)) {
-        console.debug(`${tagName} werd reeds geregistreerd`);
+        if (UigConfig.getPreferences().logWebComponentRegistration) {
+            console.debug(`${tagName} werd reeds geregistreerd`);
+        }
     } else {
-        console.debug('registratie', tagName);
+        if (UigConfig.getPreferences().logWebComponentRegistration) {
+            console.debug('registratie', tagName);
+        }
         window.customElements.define(tagName, constructor as CustomElementConstructor, options);
     }
 };

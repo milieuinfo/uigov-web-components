@@ -1,16 +1,12 @@
 /* eslint-disable */
 export default {
     displayName: 'common-utilities',
-    preset: '../../../jest.preset.js',
-    globals: {},
+    preset: 'ts-jest',
     transform: {
-        '^.+\\.[tj]sx?$': [
-            'ts-jest',
-            {
-                tsconfig: '<rootDir>/tsconfig.spec.json',
-            },
-        ],
+        '^.+\\.(ts|tsx)?$': 'ts-jest',
+        '^.+\\.(js|jsx)$': 'babel-jest',
     },
+    globals: {},
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
     coverageDirectory: '../../../coverage/libs/common/utilities',
 };

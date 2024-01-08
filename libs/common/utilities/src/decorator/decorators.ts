@@ -1,3 +1,4 @@
+import { UigConfig } from '../config/uig-config';
 import { defineWebComponent } from '../util/utils';
 
 export const webComponent =
@@ -23,7 +24,9 @@ export const webComponentPromised =
     // eslint-disable-next-line @typescript-eslint/ban-types
     (constructor: Function): any => {
         if (customElements.get(tagName)) {
-            console.debug(`${tagName} werd reeds geregistreerd`);
+            if (UigConfig.getPreferences().logWebComponentRegistration) {
+                console.debug(`${tagName} werd reeds geregistreerd`);
+            }
         } else {
             Promise.all(promises).then(() => defineWebComponent(constructor, tagName, options));
         }
@@ -37,7 +40,9 @@ export const webComponentConditional =
     // eslint-disable-next-line @typescript-eslint/ban-types
     (constructor: Function): any => {
         if (customElements.get(tagName)) {
-            console.debug(`${tagName} werd reeds geregistreerd`);
+            if (UigConfig.getPreferences().logWebComponentRegistration) {
+                console.debug(`${tagName} werd reeds geregistreerd`);
+            }
         } else {
             window.customElements.whenDefined(defined).then(() => defineWebComponent(constructor, tagName, options));
         }

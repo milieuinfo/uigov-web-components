@@ -204,6 +204,43 @@ VlButtonElement;
 ```
 
 
+## Configuratie
+
+M.b.v. de statische klasse `UigConfig` kunnen voorkeuren gewijzigd worden.
+
+De defaults zijn:
+    - autoRegisterStyles: true
+    - logWebComponentRegistration: false
+
+
+### Afname via de npm-packages
+
+Wijzig de defaults als volgt; voordat het eerste element geïmporteerd wordt.
+
+```
+import { UigConfig } from '@domg-wc/common-utilities';
+
+UigConfig.setPreferences({ logWebComponentRegistration: true });
+```
+
+**Opmerking**: ervoor zorgen dat deze code als eerste uitgevoerd wordt (alvorens de eerste component geregistreerd
+wordt) is specifiek aan de opzet en bundeling van de toepassing. Wat altijd zou moeten werken is:
+ - een bestand aanmaken met bovenstaande code in (de import en het setPreferences statement) bvb. in `app.config.ts`
+ - en dan dit bestand via een neven-effect import `import './app/app.config';` als aller eerste importeren
+
+### Afname via 'fat-js'
+
+Wijzig de defaults m.b.v. het desbetreffende attribuut.
+
+```
+<script type="module"
+        auto-register-styles="false"
+        log-web-component-registration="true"
+        src="https://cdn.omgeving.vlaanderen.be/domg/domg-wc/1.20.1/domg-wc-1.20.1.min.js">
+</script>
+```
+
+
 ## Styling
 
 ### Elementen & CSS
@@ -245,28 +282,8 @@ class RegisterStyles {
 
 ### Deactivatie Globale Styling
 
-Indien gewenst kan je de automatische registratie van de globale (document) styling de-activeren:
-
-#### Afname via de 'fat-js'
-
-Zet het attribuut `auto-register-styles` op false.
-
-```
-<script type="module"
-        auto-register-styles="false"
-        src="https://cdn.omgeving.vlaanderen.be/domg/domg-wc/1.20.1/domg-wc-1.20.1.min.js">
-</script>
-```
-
-#### Afname via de npm-package
-
-Wijzig de RegisterStyles properties als volgt; voordat het eerste element geïmporteerd wordt.
-
-```
-RegisterStyles.autoRegisterStyles = false;
-RegisterStyles.initialised = true;
-```
-
+Indien gewenst kan je de automatische registratie van globale (document) styling de-activeren via de
+`autoRegisterStyles` property (zie hierboven onder Configuratie).
 
 ### Custom CSS
 

@@ -1,4 +1,5 @@
 import 'construct-style-sheets-polyfill';
+import { UigConfig } from '@domg-wc/common-utilities';
 import { CSSResult } from 'lit';
 
 // @govflanders common styles
@@ -123,29 +124,15 @@ export const allElementStyles = [...commonStyles, ...componentStyles, ...element
 export default allElementStyles;
 
 class RegisterStyles {
-    static initialised = false;
-    static autoRegisterStyles = true;
     static elementStylesRegistered = false;
 
-    static initialise() {
-        if (RegisterStyles.initialised) return;
-        for (const script of document.scripts) {
-            if (script.src.indexOf('domg-wc') >= 0 && script.getAttribute('auto-register-styles') === 'false') {
-                RegisterStyles.autoRegisterStyles = false;
-                console.log('RegisterStyles: element-styling wordt niet toegevoegd aan het document');
-            }
-        }
-        RegisterStyles.initialised = true;
-    }
-
     static registerElementsStyles() {
-        RegisterStyles.initialise();
-        if (RegisterStyles.autoRegisterStyles && !RegisterStyles.elementStylesRegistered) {
+        if (UigConfig.getPreferences().autoRegisterStyles && !this.elementStylesRegistered) {
             document.adoptedStyleSheets = [
                 ...document.adoptedStyleSheets,
                 ...(allElementStyles.map((style) => style.styleSheet) as CSSStyleSheet[]),
             ];
-            RegisterStyles.elementStylesRegistered = true;
+            this.elementStylesRegistered = true;
             console.log('RegisterStyles: element-styling toegevoegd aan het document');
         }
     }
