@@ -7,8 +7,7 @@ import popoverMenuDoc from './popover-menu.stories-doc.mdx';
 registerWebComponents([VlPopoverComponent, VlPopoverActionListComponent]);
 
 export default {
-    title: 'Applicatief/Voorbeelden/popover-menu',
-    component: 'popover menu',
+    title: 'Applicatief/Voorbeelden/Popover Menu',
     parameters: {
         docs: {
             page: popoverMenuDoc,

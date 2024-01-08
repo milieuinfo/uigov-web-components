@@ -7,7 +7,7 @@ import {
     VlPopoverComponent,
 } from '@domg-wc/components';
 import { VlIconElement, VlLinkElement } from '@domg-wc/elements';
-import AccordionPopoverMenuDoc from './accordion-popover-menu.stories-doc.mdx';
+import PopoverMenuAccordionDoc from './popover-menu-accordion.stories-doc.mdx';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 
 registerWebComponents([
@@ -20,11 +20,10 @@ registerWebComponents([
 ]);
 
 export default {
-    title: 'Applicatief/Voorbeelden/accordion-popover-menu',
-    component: 'accordion popover menu',
+    title: 'Applicatief/Voorbeelden/Popover Menu in Accordion',
     parameters: {
         docs: {
-            page: AccordionPopoverMenuDoc,
+            page: PopoverMenuAccordionDoc,
             story: {
                 inline: false,
                 iframeHeight: 500,
@@ -47,7 +46,7 @@ const subAccordionCss = `
     .vl-accordion__subtitle {margin: 0;}
 `;
 
-export const AccordionPopoverMenu = () => html`
+export const PopoverMenuAccordion = () => html`
     <style>
         .laaginfo {
             display: flex;
@@ -350,3 +349,4 @@ export const AccordionPopoverMenu = () => html`
         </div>
     </div>
 `;
+PopoverMenuAccordion.storyName = 'Popover Menu in Accordion';

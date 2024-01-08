@@ -1,0 +1,26 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Applicatief/Voorbeelden/Common Utilities/Debounce"/>
+
+# Debounce (Common Utilities)
+
+De `debounce` methode beperkt het aantal keren dat een functie aangeroepen wordt.
+
+
+## Voorbeeld
+
+```ts
+import { debounce } from '@domg-wc/common-utilities';
+
+document.addEventListener('DOMContentLoaded', () => {
+    const inputField = document.getElementById('input-field'); // <input id="input-field" is="vl-input-field" />
+    if (inputField) {
+        inputField.addEventListener(
+            'input',
+            debounce((event) => {
+                // doe iets
+            }, 200)
+        );
+    }
+});
+```

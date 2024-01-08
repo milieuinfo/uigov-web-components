@@ -18,7 +18,6 @@ export {
     sleep,
     awaitUntil,
     unwrap,
-    deferred,
     debounce,
     returnNotEmptyString,
     returnNumber,

@@ -108,39 +108,19 @@ export const unwrap = (element: Element) => {
 };
 
 /**
- * creates new Promise that resolves in x milliseconds
- * returns created Promise & function to cancel the Promise
- * @param ms
+ * De `debounce` methode beperkt het aantal keren dat een functie aangeroepen wordt.
+ * Opmerking: deze methode volgt de closure opzet, daarom is deze bewust niet beter ge-typed!
+ *  → zie https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
+ *
+ * @param func - de aan te roepen functie
+ * @param ms - het aantal milliseconden dat er gewacht wordt alvorens de functie aan te roepen; als er in die
+ *             tijdspanne een nieuwe aanroep gebeurd herstart de timer
  */
-export const deferred = (ms: number): { promise: Promise<unknown>; cancel: any } => {
-    let cancel: unknown;
-    const promise = new Promise((resolve, reject) => {
-        cancel = reject;
-        setTimeout(resolve, ms);
-    });
-    return { promise, cancel };
-};
-
-/**
- * debouncing a task will wait to execute the given task until it hasn't been called for the amount of given milliseconds
- * @param task - function to debounce
- * @param ms - milliseconds to delay until last iteration of function should be called
- */
-export const debounce = (task: (...args: any) => void, ms: number) => {
-    // t: local binding for local state
-    let t: { cancel: any; promise: Promise<unknown> } = {
-        promise: null!,
-        cancel: (_?: any) => void 0,
-    };
-    return async (...args: any) => {
-        try {
-            t.cancel();
-            t = deferred(ms);
-            await t.promise;
-            await task(...args);
-        } catch (_) {
-            //
-        }
+export const debounce = (func: any, ms: number) => {
+    let timer: any = undefined; // type van timer is number in oudere browsers, Timeout in nieuwste (wij kennen dat type niet)
+    return (...args: unknown[]): void => {
+        clearTimeout(timer);
+        timer = setTimeout(() => func(args), ms);
     };
 };
 
