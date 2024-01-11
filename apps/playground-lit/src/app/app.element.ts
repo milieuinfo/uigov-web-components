@@ -3,6 +3,7 @@ import { customElement } from 'lit/decorators.js';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
 import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
+import { VlInputFieldMaskedComponent } from '@domg-wc/components/next/form/input-field/input-field-masked';
 import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
 import { VlSelectComponent, SelectOption } from '@domg-wc/components/next/form/select';
 import { VlCheckboxComponent } from '@domg-wc/components/next/form/checkbox';
@@ -14,6 +15,7 @@ import { VlDatepickerComponent } from '@domg-wc/components/next/form/datepicker'
 type SubmittedFormData = {
     voornaam?: string;
     achternaam?: string;
+    rrn?: string;
     interesses?: string;
     geboortedatum?: string;
     geboorteplaats?: string;
@@ -30,6 +32,7 @@ export class AppElement extends LitElement {
     // Required state values
     private firstNameRequired = false;
     private lastNameRequired = false;
+    private rrnRequired = false;
     private interestsRequired = false;
     private birthdateRequired = false;
     private birthplaceRequired = false;
@@ -43,6 +46,7 @@ export class AppElement extends LitElement {
     // Disabled state values
     private firstNameDisabled = false;
     private lastNameDisabled = false;
+    private rrnDisabled = false;
     private interestsDisabled = false;
     private birthdateDisabled = false;
     private birthplaceDisabled = false;
@@ -57,6 +61,7 @@ export class AppElement extends LitElement {
     // Read only state values
     private firstNameReadonly = false;
     private lastNameReadonly = false;
+    private rrnReadonly = false;
     private interestsReadonly = false;
     private birthdateReadonly = false;
     private birthplaceReadonly = false;
@@ -73,6 +78,7 @@ export class AppElement extends LitElement {
     // Form state values
     private firstName = '';
     private lastName = '';
+    private rrn = '';
     private interests = '';
     private birthdate = '';
     private birthplaces: SelectOption[] = [
@@ -119,6 +125,7 @@ export class AppElement extends LitElement {
         registerWebComponents([
             VlErrorMessageComponent,
             VlInputFieldComponent,
+            VlInputFieldMaskedComponent,
             VlTextareaComponent,
             VlSelectComponent,
             VlCheckboxComponent,
@@ -136,6 +143,7 @@ export class AppElement extends LitElement {
         return {
             firstNameRequired: { type: Boolean, state: true },
             lastNameRequired: { type: Boolean, state: true },
+            rrnRequired: { type: Boolean, state: true },
             interestsRequired: { type: Boolean, state: true },
             birthdateRequired: { type: Boolean, state: true },
             birthplaceRequired: { type: Boolean, state: true },
@@ -147,6 +155,7 @@ export class AppElement extends LitElement {
             filledInTruthfullyRequired: { type: Boolean, state: true },
             firstNameDisabled: { type: Boolean, state: true },
             lastNameDisabled: { type: Boolean, state: true },
+            rrnDisabled: { type: Boolean, state: true },
             interestsDisabled: { type: Boolean, state: true },
             birthdateDisabled: { type: Boolean, state: true },
             birthplaceDisabled: { type: Boolean, state: true },
@@ -158,6 +167,7 @@ export class AppElement extends LitElement {
             filledInTruthfullyDisabled: { type: Boolean, state: true },
             firstNameReadonly: { type: Boolean, state: true },
             lastNameReadonly: { type: Boolean, state: true },
+            rrnReadonly: { type: Boolean, state: true },
             interestsReadonly: { type: Boolean, state: true },
             birthdateReadonly: { type: Boolean, state: true },
             birthplaceReadonly: { type: Boolean, state: true },
@@ -169,6 +179,7 @@ export class AppElement extends LitElement {
             filledInTruthfullyReadonly: { type: Boolean, state: true },
             firstName: { type: String, state: true },
             lastName: { type: String, state: true },
+            rrn: { type: String, state: true },
             interests: { type: String, state: true },
             birthdate: { type: String, state: true },
             birthplaces: { type: Array, state: true },
@@ -343,9 +354,61 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="interesses"
-                                >Interesses${this.interestsRequired ? ' *' : ''}</label
+                            <label class="vl-form__label vl-form__label--block" for="rrn">Rijksregisternummer</label>
+                        </div>
+                        <div class="vl-col--4-12">
+                            <vl-input-field-masked-next
+                                id="rrn"
+                                name="rrn"
+                                block
+                                ?required=${this.rrnRequired}
+                                ?disabled=${this.rrnDisabled}
+                                ?readonly=${this.rrnReadonly}
+                                value=${this.rrn}
+                                mask="rrn"
+                                @vl-input=${(e: CustomEvent) => (this.rrn = e.detail.value)}
+                            ></vl-input-field-masked-next>
+                            <vl-error-message-next for="rrn" state="valueMissing"
+                                >Gelieve een rijksregisternummer in te vullen.</vl-error-message-next
                             >
+                            <vl-error-message-next for="rrn" state="patternMismatch"
+                                >Gelieve een geldig rijksregisternummer in te vullen.</vl-error-message-next
+                            >
+                        </div>
+                        <div class="vl-col--6-12">
+                            <div class="vl-action-group">
+                                <button
+                                    class="vl-button ${!this.rrnRequired ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.rrnRequired = !this.rrnRequired)}
+                                >
+                                    Required
+                                </button>
+                                <button
+                                    class="vl-button ${!this.rrnDisabled ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.rrnDisabled = !this.rrnDisabled)}
+                                >
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.rrnReadonly ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.rrnReadonly = !this.rrnReadonly)}
+                                >
+                                    Readonly
+                                </button>
+                                <button
+                                    class="vl-button vl-button--secondary"
+                                    type="button"
+                                    @click=${() => (this.rrn = '85.01.05-123.45')}
+                                >
+                                    Set '85.01.05-123.45'
+                                </button>
+                            </div>
+                        </div>
+                        <div class="vl-col--2-12">
+                            <label class="vl-form__label vl-form__label--block" for="interesses">Interesses</label>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-textarea-next
@@ -900,6 +963,8 @@ export class AppElement extends LitElement {
                                 <dd class="vl-properties__data">${this.submittedFormData.voornaam}</dd>
                                 <dt class="vl-properties__label">Achternaam</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData.achternaam}</dd>
+                                <dt class="vl-properties__label">Rijksregisternummer</dt>
+                                <dd class="vl-properties__data">${this.submittedFormData.rrn}</dd>
                                 <dt class="vl-properties__label">Interesses</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData.interesses}</dd>
                                 <dt class="vl-properties__label">Geboortedatum</dt>
@@ -949,6 +1014,7 @@ export class AppElement extends LitElement {
     private onReset(): void {
         this.firstName = '';
         this.lastName = '';
+        this.rrn = '';
         this.interests = '';
         this.resetBirthplace();
         this.birthdate = '';
@@ -965,6 +1031,7 @@ export class AppElement extends LitElement {
         if (this.resetEverything) {
             this.firstNameRequired = false;
             this.lastNameRequired = false;
+            this.rrnRequired = false;
             this.interestsRequired = false;
             this.birthdateRequired = false;
             this.birthplaceRequired = false;
@@ -976,6 +1043,7 @@ export class AppElement extends LitElement {
             this.filledInTruthfullyRequired = false;
             this.firstNameDisabled = false;
             this.lastNameDisabled = false;
+            this.rrnDisabled = false;
             this.interestsDisabled = false;
             this.birthdateDisabled = false;
             this.birthplaceDisabled = false;
@@ -987,6 +1055,7 @@ export class AppElement extends LitElement {
             this.filledInTruthfullyDisabled = false;
             this.firstNameReadonly = false;
             this.lastNameReadonly = false;
+            this.rrnReadonly = false;
             this.interestsReadonly = false;
             this.birthdateReadonly = false;
             this.birthplaceReadonly = false;

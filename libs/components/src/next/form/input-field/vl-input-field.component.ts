@@ -5,6 +5,8 @@ import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { FormControl, FormControlDefaults } from '../form-control/FormControl';
+import { maxValueValidator, minValueValidator } from './validators';
+import { patternValidator } from '@open-wc/form-control';
 
 export const InputFieldDefaults = {
     ...FormControlDefaults,
@@ -25,7 +27,7 @@ export class VlInputFieldComponent extends FormControl {
     private block = InputFieldDefaults.block;
     private readonly = InputFieldDefaults.readonly;
     private type = InputFieldDefaults.type;
-    private value = InputFieldDefaults.value;
+    protected value = InputFieldDefaults.value;
     private minLength: number | null = InputFieldDefaults.minLength;
     private maxLength: number | null = InputFieldDefaults.maxLength;
     private min: number | null = InputFieldDefaults.min;
@@ -33,7 +35,14 @@ export class VlInputFieldComponent extends FormControl {
     private pattern: string | null = InputFieldDefaults.pattern;
 
     // Variables
-    private initialValue = '';
+    protected initialValue = '';
+
+    static formControlValidators = [
+        ...FormControl.formControlValidators,
+        minValueValidator,
+        maxValueValidator,
+        patternValidator,
+    ];
 
     static get styles(): CSSResult[] {
         return [resetStyle, baseStyle, inputFieldStyle];
