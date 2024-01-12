@@ -5,10 +5,11 @@
         "sourceMap": true,
         "inlineSources": true,
         "declaration": true,
-        "types": ["cypress", "cypress-axe"]
+        "types": ["cypress", "cypress-axe"],
+        "composite": true
     },
     "exclude": [
         "jest.config.ts",
         "**/*.spec.ts"
-    ]
+    ],
 }
