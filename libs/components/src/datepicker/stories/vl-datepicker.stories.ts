@@ -3,12 +3,19 @@ import { html } from 'lit-html';
 import '../vl-datepicker.component';
 import { datepickerArgs, datepickerArgTypes } from './vl-datepicker.stories-arg';
 import { story } from '@domg-wc/common-storybook';
+import datepickerDocs from './vl-datepicker.stories-doc.mdx';
 
 export default {
     title: 'Components/datepicker',
     tags: ['autodocs'],
     args: datepickerArgs,
     argTypes: datepickerArgTypes,
+    parameters: {
+        docs: {
+            page: datepickerDocs,
+        },
+    },
+    decorators: [(story: () => unknown) => html` <div style="height: 400px;">${story()}</div>`],
 } as Meta<typeof datepickerArgs>;
 
 const Template = story(
