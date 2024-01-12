@@ -1,14 +1,40 @@
 import { css, CSSResult } from 'lit';
 
 const styles: CSSResult = css`
-    main {
-        display: flex;
+    .container {
+        padding: 50px;
     }
 
-    .vl-title--h4 {
-        margin-top: 1rem;
-        padding-left: 1.4rem;
-        margin-bottom: 0.7rem !important;
+    .vl-button {
+        border: 0.2rem solid #05c;
+    }
+
+    .vl-button:hover {
+        border: 0.2rem solid #003bb0;
+    }
+
+    .vl-action-group__top {
+        margin-bottom: 50px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .submitted-form {
+        margin-top: 70px;
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
+
+    .vl-properties__column {
+        width: calc(33% - 1rem);
+    }
+
+    .vl-properties__label {
+        flex: 0 0 40%;
+    }
+
+    .vl-properties__data {
+        flex: 3 0 60%;
     }
 `;
 export default styles;
