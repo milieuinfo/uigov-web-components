@@ -23,6 +23,7 @@ export const TYPES = {
     URL: 'url',
     FUNCTION: 'function',
     XML: 'xml',
+    REGEX: 'regex'
 } as const;
 
 export const filterOutClasses = (input: string) => {
@@ -76,7 +77,7 @@ export const defaultArgTypes = (next = false) => ({
         name: !next ? 'data-vl-custom-css' : 'custom-css',
         description:
             'Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets van de shadow DOM van het component.',
-        control: false,
+        control: { type: null },
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,

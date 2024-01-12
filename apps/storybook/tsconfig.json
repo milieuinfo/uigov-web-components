@@ -10,6 +10,7 @@
         "docs/**/*.stories.jsx",
         "docs/**/*.stories.tsx",
         "docs/**/*.stories.mdx",
+        "docs/**/*.component.ts",
         ".storybook/*.js",
         ".storybook/*.ts"
     ]
