@@ -5,6 +5,9 @@ import { buttonStyle } from '@domg/govflanders-style/component';
 import { CSSResult, html } from 'lit';
 import { VlHttpErrorMessage } from './vl-http-error-message.component';
 
+/**
+ * @deprecated
+ */
 @webComponent('vl-http-414-message')
 export class VlHttp414Message extends BaseLitElement {
     static {
@@ -16,22 +19,7 @@ export class VlHttp414Message extends BaseLitElement {
     }
 
     render() {
-        return html`
-            <vl-http-error-message
-                data-vl-title="URL te groot"
-                data-vl-image="https://cdn.milieuinfo.be/http-error-message-assets/LATEST/img/unexpected-error.svg"
-                data-vl-image-alt="URI te groot"
-            >
-                <p slot="text">
-                    Er ging iets fout.
-                    <a href="mailto:help@omgevingvlaanderen.be?subject=HTTP-code 414">Mail de helpdesk</a> en vermeld
-                    daarbij de URL hierboven en de foutcode 414.
-                </p>
-                <div slot="actions">
-                    <a is="vl-link-button" href="/">Terug naar de startpagina</a>
-                </div>
-            </vl-http-error-message>
-        `;
+        return html`<vl-http-error-message data-vl-error-code="414"> </vl-http-error-message> `;
     }
 }
 

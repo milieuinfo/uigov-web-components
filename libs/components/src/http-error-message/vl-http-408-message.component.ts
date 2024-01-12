@@ -5,6 +5,9 @@ import { buttonStyle } from '@domg/govflanders-style/component';
 import { CSSResult, html } from 'lit';
 import { VlHttpErrorMessage } from './vl-http-error-message.component';
 
+/**
+ * @deprecated
+ */
 @webComponent('vl-http-408-message')
 export class VlHttp408Message extends BaseLitElement {
     static {
@@ -16,22 +19,7 @@ export class VlHttp408Message extends BaseLitElement {
     }
 
     render() {
-        return html`
-            <vl-http-error-message
-                data-vl-title="Oeps, dat duurde te lang"
-                data-vl-image="https://cdn.milieuinfo.be/http-error-message-assets/LATEST/img/unexpected-error.svg"
-                data-vl-image-alt="Verzoek duurt te lang"
-            >
-                <p slot="text">
-                    Het laden van de pagina duurde te lang. Probeer het opnieuw en als het nog niet lukt:
-                    <a href="mailto:help@omgevingvlaanderen.be?subject=HTTP-code 408">mail dan de helpdesk</a> en
-                    vermeld daarbij de URL hierboven en de foutcode 408.
-                </p>
-                <div slot="actions">
-                    <a is="vl-link-button" href="/">Terug naar de startpagina</a>
-                </div>
-            </vl-http-error-message>
-        `;
+        return html`<vl-http-error-message data-vl-error-code="408"> </vl-http-error-message> `;
     }
 }
 

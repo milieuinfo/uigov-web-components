@@ -1,62 +1,74 @@
+import { ArgTypes } from '@storybook/web-components';
 import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 
 export const httpErrorMessageArgs = {
     ...defaultArgs,
-    title: 'Niets gevonden hiervoor.',
-    image: 'https://cdn.milieuinfo.be/http-error-message-assets/LATEST/img/unexpected-error.svg',
-    alt: 'Niets gevonden',
-    textSlotText: 'Sorry, er liep iets onverwachts mis.',
-    actionsSlotText: 'Opnieuw opstarten',
+    title: '',
+    image: '',
+    alt: '',
+    errorCode: '',
+    textSlot: '',
+    actionsSlot: '',
 };
 
-export const httpErrorMessageArgTypes = {
+export const httpErrorMessageArgTypes: ArgTypes<typeof httpErrorMessageArgs> = {
     ...defaultArgTypes(),
     title: {
         name: 'data-vl-title',
         type: { name: TYPES.STRING, required: false },
-        description: 'Changes the title of the error message.',
+        description: 'Past de title van de error message aan.',
         table: {
             type: { summary: TYPES.STRING },
-            defaultValue: { summary: undefined },
+            defaultValue: { summary: httpErrorMessageArgs.title },
             category: CATEGORIES.ATTRIBUTES,
         },
     },
     image: {
         name: 'data-vl-image',
         type: { name: TYPES.STRING, required: false },
-        description: 'Changes the URL of the image that is shown.',
+        description: 'De URL voor de afbeelding die weergegeven moet worden.',
         table: {
             type: { summary: TYPES.STRING },
-            defaultValue: { summary: undefined },
+            defaultValue: { summary: httpErrorMessageArgs.image },
             category: CATEGORIES.ATTRIBUTES,
         },
     },
     alt: {
         name: 'data-vl-image-alt',
         type: { name: TYPES.STRING, required: false },
-        description: 'Changes the alternative text of the image.',
+        description: 'Past de alternatieve tekst van de afbeelding aan.',
         table: {
             type: { summary: TYPES.STRING },
-            defaultValue: { summary: undefined },
+            defaultValue: { summary: httpErrorMessageArgs.alt },
             category: CATEGORIES.ATTRIBUTES,
         },
     },
-    textSlotText: {
-        name: 'text',
+    errorCode: {
+        name: 'data-vl-error-code',
         type: { name: TYPES.STRING, required: false },
-        description: 'Changes the descriptive text that is shown under the title.',
+        description: 'Geeft de default titel, afbeelding, tekst en actie voor een specifieke error code weer.',
         table: {
-            category: CATEGORIES.SLOTS,
-            defaultValue: { summary: undefined },
+            type: { summary: TYPES.STRING },
+            defaultValue: { summary: httpErrorMessageArgs.errorCode },
+            category: CATEGORIES.ATTRIBUTES,
         },
     },
-    actionsSlotText: {
-        name: 'actions',
-        type: { name: TYPES.STRING, required: false },
-        description: 'Defines the actions that need to be shown.',
+    textSlot: {
+        name: 'text',
+        description: 'Past de omschrijvende tekst onder de titel aan. Dit slot is niet reactief',
         table: {
+            type: { name: TYPES.HTML },
             category: CATEGORIES.SLOTS,
-            defaultValue: { summary: undefined },
+            defaultValue: { summary: httpErrorMessageArgs.textSlot },
+        },
+    },
+    actionsSlot: {
+        name: 'actions',
+        description: 'Past de acties aan. Dit slot is niet reactief',
+        table: {
+            type: { name: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+            defaultValue: { summary: httpErrorMessageArgs.actionsSlot },
         },
     },
 };

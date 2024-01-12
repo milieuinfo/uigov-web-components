@@ -5,6 +5,9 @@ import { buttonStyle } from '@domg/govflanders-style/component';
 import { CSSResult, html } from 'lit';
 import { VlHttpErrorMessage } from './vl-http-error-message.component';
 
+/**
+ * @deprecated
+ */
 @webComponent('vl-http-500-message')
 export class VlHttp500Message extends BaseLitElement {
     static {
@@ -16,22 +19,7 @@ export class VlHttp500Message extends BaseLitElement {
     }
 
     render() {
-        return html`
-            <vl-http-error-message
-                data-vl-title="Interne fout"
-                data-vl-image="https://cdn.milieuinfo.be/http-error-message-assets/LATEST/img/unexpected-error.svg"
-                data-vl-image-alt="Onverwachte fout"
-            >
-                <p slot="text">
-                    Er ging iets fout. Probeer het nog eens. Lukt het nog niet,
-                    <a href="mailto:help@omgevingvlaanderen.be?subject=HTTP-code 500">mail dan de helpdesk</a> en
-                    vermeld daarbij de URL hierboven en de foutcode 500.
-                </p>
-                <div slot="actions">
-                    <a is="vl-link-button" href="/">Terug naar de startpagina</a>
-                </div>
-            </vl-http-error-message>
-        `;
+        return html`<vl-http-error-message data-vl-error-code="500"> </vl-http-error-message> `;
     }
 }
 
