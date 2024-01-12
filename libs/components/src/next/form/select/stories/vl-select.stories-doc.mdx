@@ -1,0 +1,102 @@
+import { ArgTypes, Canvas } from '@storybook/addon-docs';
+import * as VlSelectStories from './vl-select.stories';
+
+# Select
+
+Gebruik de `select-next` component om een select of multiselect veld toe te voegen aan een pagina.<br/>
+Dit component is de volgende versie van de [vl-select](?path=/docs/elements-select--select-default) component en de [vl-multiselect](?path=/docs/elements-multiselect--multiselect-default) component, we raden aan deze versie te gebruiken.<br />
+
+## Voorbeeld
+
+```js
+import { VlSelectComponent } from '@domg-wc/components/next/form/select';
+```
+
+```html
+<vl-select-next></vl-select-next>
+```
+
+<Canvas of={VlSelectStories.SelectDefault} />
+
+## Configuratie
+
+<ArgTypes of={VlSelectStories.SelectDefault} />
+
+## Styles
+
+De styles van DV zijn lokaal gezet en aangepast omdat deze niet CSP compliant waren.<br/>
+Er werd gebruik gemaakt van een `data:` attribuut om een SVG op te halen van w3.org.
+Hierdoor breekt de CSP compliance tenzij je alle `data:` attributen whitelist, wat niet de bedoeling is.
+
+## Events en form submit
+
+Bij het selecteren of verwijderen van een optie wordt er een `select` event afgevuurd, het detail object van het event bevat de huidig geselecteerde value als string.
+Bij het gebruik van de multiselect worden meerdere values gescheiden door een `;`.<br/>
+We hebben gekozen voor het gebruik van een separator omdat bij `form submit` er voor elk veld een string value meegegeven moet worden, en we op deze manier het `select` event en de `form submit` op dezelfde manier kunnen behandelen.
+
+## Accessibility
+
+Momenteel is dit component niet volledig accessible.<br/>
+Als je gebruik maakt van de zoekfunctie en er geen resultaten of geen resterende opties zijn, plaatst Choices.js een foutief `aria-activedescandent` attribuut.<br/>
+Als je gebruik maakt van groepen plaatst Choices.js foutieve `role` attributen op de items.
+
+## Varianten
+
+### Zoekfunctie
+
+De zoekfunctie is standaard geactiveerd voor de multiselect.
+
+<Canvas of={VlSelectStories.SelectSearch} />
+
+### Verwijderbaar
+
+<Canvas of={VlSelectStories.SelectDeletable} />
+
+### Groepen
+
+<Canvas of={VlSelectStories.SelectGroups} />
+
+### Multiselect
+
+De zoekfunctie is standaard geactiveerd voor de multiselect.
+
+<Canvas of={VlSelectStories.SelectMultiple} />
+
+### Geselecteerde optie
+
+Als je een optie programmatorisch wil selecteren moet je voor deze optie de 'selected' boolean op true zetten.
+
+<Canvas of={VlSelectStories.SelectSelectedOption} />
+
+### Disabled optie
+
+Als je een optie programmatorisch wil uitzetten moet je voor deze optie de 'disabled' boolean op true zetten.
+
+<Canvas of={VlSelectStories.SelectDisabledOption} />
+
+### Read only
+
+Als je wil dat de select read only is, moet je voor alle opties de 'disabled' boolean op true zetten.<br/>
+Indien de 'required' boolean op true staat, moet je zien een value programmatorisch te selecteren of je form wordt unsubmittable.
+
+<Canvas of={VlSelectStories.SelectReadOnly} />
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+[Documentatie Digitaal Vlaanderen - Select](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-select)
+
+[Documentatie Digitaal Vlaanderen - Multiselect](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-multiselect)
+
+### Legacy Documentatie
+
+[Legacy Storybook - Multiselect](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-multiselect--default)
+
+[Legacy Documentatie - Select](https://webcomponenten.omgeving.vlaanderen.be/doc/VlSelect.html)
+
+[Legacy Documentatie - Multiselect](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMultiSelect.html)
+
+[Legacy Demo - Select](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-select.html)
+
+[Legacy Demo - Multiselect](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-multiselect.html)
