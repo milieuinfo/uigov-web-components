@@ -34,6 +34,7 @@ const Template = story(
         selectDeletable,
         searchPlaceholder,
         searchNoResultsText,
+        onVlSelectSearch,
     }) => html`
         <select
             is="vl-select"
@@ -51,6 +52,7 @@ const Template = story(
             data-vl-select-search-empty-text=${selectSearchEmptyText}
             data-vl-search-no-results-text=${searchNoResultsText}
             data-vl-search-placeholder=${searchPlaceholder}
+            @vl-select-search=${onVlSelectSearch}
         >
             <optgroup label="Landen">
                 <option value="België">België</option>

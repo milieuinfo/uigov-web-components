@@ -76,4 +76,21 @@ describe('story vl-select', () => {
         cy.get('[is="vl-select"]').parent().parent().click();
         cy.get('[is="vl-select"]').parent().parent().should('not.have.class', 'is-flipped');
     });
+
+    it('should dispatch select-search event on input and delete search value', () => {
+        cy.visit(`${selectUrl}&args=select:true`);
+
+        cy.createStubForEvent('[is="vl-select"]', 'vl-select-search');
+        cy.get('[is="vl-select"]').parent().parent().find('.vl-select__inner').click();
+        cy.get('[is="vl-select"]').parent().parent().find('input.vl-input-field').type('t');
+        cy.get('@vl-select-search')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { value: 't' });
+        cy.get('[is="vl-select"]').parent().parent().find('input.vl-input-field').clear();
+        cy.get('@vl-select-search')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { value: '' });
+    });
 });

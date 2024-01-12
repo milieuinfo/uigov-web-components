@@ -1,6 +1,7 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { SELECT_POSITION } from '../vl-select.element';
+import { action } from '@storybook/addon-actions';
 
 export const selectArgs = {
     block: false,
@@ -18,6 +19,7 @@ export const selectArgs = {
     selectSearchNoResultLimit: false,
     selectSearchResultLimit: 4,
     success: false,
+    onVlSelectSearch: action('vl-select-search'),
 };
 
 export const selectArgTypes: ArgTypes<typeof selectArgs> = {
@@ -162,6 +164,14 @@ export const selectArgTypes: ArgTypes<typeof selectArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: selectArgs.success },
+        },
+    },
+    onVlSelectSearch: {
+        name: 'vl-select-search',
+        description: 'Event dat afgevuurd wordt als er een waarde ingegeven wordt in het zoekveld.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
         },
     },
 };

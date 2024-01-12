@@ -67,6 +67,13 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
         }
     }
 
+    disconnectedCallback(): void {
+        super.disconnectedCallback();
+
+        const searchInputElement = this._choices?.input;
+        searchInputElement?.removeEventListener('input', this.onSearchInput);
+    }
+
     /**
      * Geeft de ready event naam.
      *
@@ -289,6 +296,9 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
                     this.__wrap();
                     this._dressFormValidation();
                     this.dispatchEvent(new CustomEvent(this.readyEvent));
+                    // Fix voor Choices.js search event dat niet afgevuurd wordt als de search value verwijderd wordt.
+                    const searchInputElement = this._choices?.input;
+                    searchInputElement?.addEventListener('input', this.onSearchInput);
                 })();
             }
         });
@@ -395,6 +405,11 @@ export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSele
     _setValidationParentAttribute(element?: any) {
         (element || this).setAttribute('data-vl-validate-error-parent', '');
     }
+
+    private onSearchInput = (event: Event): void => {
+        const value = (event?.target as HTMLInputElement)?.value;
+        this.dispatchEvent(new CustomEvent('vl-select-search', { bubbles: true, composed: true, detail: { value } }));
+    };
 }
 
 declare global {
