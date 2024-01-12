@@ -178,6 +178,7 @@
         "@ungap/custom-elements": "1.3.0",
         "bootstrap-sass": "3.4.3",
         "choices.js": "10.2.0",
+        "cleave.js": "1.6.0",
         "composed-offset-position": "0.0.4",
         "construct-style-sheets-polyfill": "3.1.0",
         "core-js": "3.35.0",
