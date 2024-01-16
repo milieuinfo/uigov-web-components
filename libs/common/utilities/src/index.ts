@@ -14,6 +14,7 @@ export { Class } from './type/types';
 export {
     registerWebComponents,
     defineWebComponent,
+    define,
     awaitScript,
     sleep,
     awaitUntil,
