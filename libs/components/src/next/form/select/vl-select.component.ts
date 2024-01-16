@@ -3,7 +3,7 @@ import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FormControl, FormControlDefaults } from '../form-control/FormControl';
 import Choices, { Choice, Options, DEFAULT_CLASSNAMES, Item } from 'choices.js';
-import { inputFieldStyle } from '@domg/govflanders-style/component';
+import { iconStyle, inputFieldStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import selectUigStyle from './styles/vl-select.uig-css';
 import selectStyle from './styles/vl-select.css';
@@ -52,7 +52,7 @@ export class VlSelectComponent extends FormControl {
     private value = '';
 
     static get styles(): CSSResult[] {
-        return [resetStyle, baseStyle, inputFieldStyle, selectStyle, multiselectStyle, selectUigStyle];
+        return [resetStyle, baseStyle, inputFieldStyle, selectStyle, multiselectStyle, iconStyle, selectUigStyle];
     }
 
     static get properties(): PropertyDeclarations {
@@ -221,10 +221,12 @@ export class VlSelectComponent extends FormControl {
                                     ${data.disabled ? 'aria-disabled="true"' : 'data-deletable'}
                                 >
                                     <span>${data.label}</span>
-                                    <button class="vl-pill__close" data-button aria-label="verwijder">
+                                    <button class="vl-pill__close ${
+                                        !this.multiple ? 'vl-vi vl-vi-close' : ''
+                                    }" data-button aria-label="verwijder">
                                         ${
                                             this.multiple
-                                                ? `<span class="vl-pill__close__icon" aria-hidden="true"></span>`
+                                                ? `<span class="vl-pill__close__icon vl-vi vl-vi-close" aria-hidden="true"></span>`
                                                 : ''
                                         }
                                     </button>

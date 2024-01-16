@@ -71,20 +71,6 @@ const style = css`
     .vl-pill__close__icon {
         line-height: 0;
     }
-    .vl-pill__close__icon::before,
-    .vl-pill__close__icon::after {
-        font-family: 'vlaanderen-icon' !important;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: normal;
-        text-decoration: none;
-        text-transform: none;
-    }
-    .vl-pill__close__icon::before {
-        content: '\\f160';
-    }
     .vl-pill__close__icon::before {
         display: inline-block;
         font-size: 0.8rem;
@@ -129,93 +115,6 @@ const style = css`
         outline: transparent solid 0.2rem;
         border-color: #5991de;
         box-shadow: 0 0 0 2px #fff, 0 0 0 5px rgba(0, 85, 204, 0.65), inset 0 0 0 0.1rem #05c;
-    }
-    .vl-pill--checkable {
-        position: relative;
-        padding-left: 3.6rem;
-        margin-bottom: 0.3rem;
-    }
-    .vl-pill--checkable:not(.vl-pill--disabled) {
-        cursor: pointer;
-        color: #05c;
-    }
-    .vl-pill--checkable:not(.vl-pill--disabled):hover {
-        box-shadow: inset 0 0 0 0.1rem #05c;
-        border: #05c 0.1rem solid;
-        background-color: #e6eefa;
-    }
-    .vl-pill--checkable__checkbox {
-        position: absolute;
-        overflow: hidden;
-        clip: rect(0 0 0 0);
-        width: 0.1rem;
-        height: 0.1rem;
-        padding: 0;
-        margin: -0.1rem;
-    }
-    .vl-pill--checkable__checkbox[disabled] + span {
-        background-color: #cbd2d9;
-        color: #687483;
-    }
-    .vl-pill--checkable__checkbox:not([disabled]):focus + span {
-        box-shadow: 0 0 0 2px #fff, 0 0 0 5px rgba(0, 85, 204, 0.65), inset 0 0 0 0.1rem #05c;
-        border: #05c 0.1rem solid;
-    }
-    .vl-pill--checkable__checkbox:not([disabled]):active + span {
-        box-shadow: 0 0 0 2px #fff, 0 0 0 5px rgba(0, 85, 204, 0.65), inset 0 0 0 0.1rem #05c;
-        border: #05c 0.1rem solid;
-    }
-    .vl-pill--checkable__checkbox:not([disabled]):checked + span {
-        background: #05c;
-    }
-    .vl-pill--checkable__checkbox:not([disabled]):checked + span::before {
-        transform: translateZ(0) translate(-50%, -50%) scale(1);
-    }
-    .vl-pill--checkable__checkbox + span {
-        position: absolute;
-        display: inline-block;
-        background: #fff;
-        width: 2.4rem;
-        height: 2.4rem;
-        cursor: pointer;
-        overflow: hidden;
-        white-space: nowrap;
-        border-top-left-radius: 0.3rem;
-        border-bottom-left-radius: 0.3rem;
-        transition: background-color 0.2s, box-shadow 0.2s;
-        margin: 0 1.4rem 0 0;
-        left: -0.1rem;
-        top: -0.1rem;
-        border: 0.1rem solid #687483;
-    }
-    .vl-pill--checkable__checkbox + span::before,
-    .vl-pill--checkable__checkbox + span::after {
-        font-family: 'vlaanderen-icon' !important;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: normal;
-        text-decoration: none;
-        text-transform: none;
-    }
-    .vl-pill--checkable__checkbox + span::before {
-        content: '\\f15a';
-    }
-    .vl-pill--checkable__checkbox + span::before {
-        position: absolute;
-        display: block;
-        font-size: 0.8rem;
-        color: #fff;
-        line-height: 1;
-        text-align: center;
-        transition: all 0.3s cubic-bezier(1, 0.1, 0, 0.9) 0.1s, background-color 0.2, box-shadow 0.2s;
-        transform: translateZ(0) translate(-50%, -50%) scale(0);
-        top: 50%;
-        left: 50%;
-    }
-    .vl-pill--checkable__checkbox[disabled] + span {
-        cursor: auto;
     }
 
     .vl-multiselect .multiselect__loading-enter-active,
@@ -419,60 +318,6 @@ const style = css`
         border: 1px solid #8695a8;
         transition: color 0.2s, background-color 0.2s, box-shadow 0.2s;
     }
-    .vl-multiselect .multiselect__tag-icon {
-        cursor: pointer;
-        margin-left: 1.4rem;
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        font-weight: 700;
-        font-style: normal;
-        width: 22px;
-        text-align: center;
-        line-height: 22px;
-        transition: background-color 0.2s ease;
-        border-left: 1px solid #8695a8;
-        color: #05c;
-        font-size: 0.8rem;
-        border-top-right-radius: 0.3rem;
-        border-bottom-right-radius: 0.3rem;
-    }
-    .vl-multiselect .multiselect__tag-icon::before,
-    .vl-multiselect .multiselect__tag-icon::after {
-        font-family: 'vlaanderen-icon' !important;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: normal;
-        text-decoration: none;
-        text-transform: none;
-    }
-    .vl-multiselect .multiselect__tag-icon::before {
-        content: '\\f17f';
-    }
-    .vl-multiselect .multiselect__tag-icon:hover {
-        color: #003bb0;
-        box-shadow: inset 0 0 0 0.1rem #05c;
-        border: #05c 0.1rem solid;
-        background-color: #e6eefa;
-        top: -0.1rem;
-        right: -0.1rem;
-        bottom: -0.1rem;
-        width: 22px;
-        margin-left: 1.2rem;
-    }
-    .vl-multiselect .multiselect__tag-icon:focus {
-        outline: transparent solid 0.2rem;
-        border: #05c 0.1rem solid;
-        box-shadow: 0 0 0 2px #fff, 0 0 0 5px rgba(0, 85, 204, 0.65), inset 0 0 0 0.1rem #05c;
-        top: -0.1rem;
-        right: -0.1rem;
-        bottom: -0.1rem;
-        width: 22px;
-        margin-left: 1.3rem;
-    }
     .vl-multiselect .multiselect__current {
         min-height: 40px;
         overflow: hidden;
@@ -566,117 +411,6 @@ const style = css`
     .vl-multiselect .multiselect__element {
         display: block;
     }
-    .vl-multiselect .multiselect__element:hover .multiselect__option {
-        position: relative;
-        border-top: 1px solid rgba(179, 207, 245, 0.3);
-        border-bottom: 1px solid rgba(179, 207, 245, 0.3);
-        box-shadow: 0px 2px 0 #a1beec, 0px -2px 0 #a1beec;
-        z-index: 2;
-    }
-    .vl-multiselect .multiselect__element:hover .multiselect__option--disabled {
-        box-shadow: none;
-    }
-    .vl-multiselect .multiselect__option {
-        display: block;
-        position: relative;
-        padding: 12px;
-        padding-left: 40px;
-        min-height: 40px;
-        line-height: 16px;
-        text-decoration: none;
-        text-transform: none;
-        position: relative;
-        cursor: pointer;
-        white-space: nowrap;
-        border-top: 1px solid transparent;
-        border-bottom: 1px solid #f7f9fc;
-    }
-    .vl-multiselect .multiselect__option::before {
-        content: '\\f15a';
-    }
-    .vl-multiselect .multiselect__option::before {
-        font-family: 'vlaanderen-icon' !important;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: normal;
-        text-decoration: none;
-        text-transform: none;
-        display: none;
-        position: absolute;
-        font-size: 12px;
-        left: 0;
-        width: 40px;
-        text-align: center;
-    }
-    .vl-multiselect .multiselect__option::after {
-        display: none;
-        top: 0;
-        right: 0;
-        position: absolute;
-        line-height: 40px;
-        padding-right: 12px;
-        padding-left: 20px;
-        font-size: 13px;
-    }
-    .vl-multiselect .multiselect__option--highlight {
-        background: rgba(179, 207, 245, 0.3);
-        outline: none;
-        color: #333332;
-    }
-    .vl-multiselect .multiselect__option--highlight::after {
-        content: attr(data-select);
-        color: #333332;
-    }
-    .vl-multiselect .multiselect__option--selected {
-        background: #fff;
-    }
-    .vl-multiselect .multiselect__option--selected.multiselect__option--highlight {
-        background: rgba(179, 207, 245, 0.3);
-        outline: none;
-        color: #333332;
-    }
-    .vl-multiselect .multiselect__option--selected::before {
-        display: block;
-    }
-    .vl-multiselect .multiselect__option--selected::after {
-        content: attr(data-selected);
-        color: #333332;
-    }
-    .vl-multiselect .multiselect__option--disabled {
-        background: #e8ebee;
-        color: #b2b2b2;
-        cursor: text;
-        pointer-events: none;
-    }
-    .vl-multiselect .multiselect__option--disabled.multiselect__option--highlight {
-        background: #d3d9e0;
-    }
-    .vl-multiselect .multiselect__option--group {
-        background: #687483;
-        color: #fff;
-    }
-    .vl-multiselect .multiselect__option--group.multiselect__option--highlight {
-        background: #5d6775;
-        color: #fff;
-    }
-    .vl-multiselect .multiselect__option--group.multiselect__option--highlight::after {
-        display: block;
-        content: attr(data-select);
-        background: #5d6775;
-        color: #fff;
-    }
-    .vl-multiselect .multiselect__option--group-selected.multiselect__option--highlight {
-        background: #515b67;
-        color: #fff;
-    }
-    .vl-multiselect .multiselect__option--group-selected.multiselect__option--highlight::after {
-        display: block;
-        content: attr(data-deselect);
-        background: #515b67;
-        color: #fff;
-    }
     .vl-multiselect .multiselect__strong {
         margin-bottom: 8px;
         line-height: 20px;
@@ -695,10 +429,6 @@ const style = css`
     }
     .vl-multiselect [dir='rtl'] .multiselect__content {
         text-align: right;
-    }
-    .vl-multiselect [dir='rtl'] .multiselect__option::after {
-        right: auto;
-        left: 0;
     }
     .vl-multiselect [dir='rtl'] .multiselect__clear {
         right: auto;

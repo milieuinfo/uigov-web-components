@@ -34,15 +34,6 @@ const styles: CSSResult = css`
         }
     }
 
-    .js-vl-select[data-type='select-multiple'] .vl-select__inner .vl-pill__close {
-        border: none;
-        border-left: 0.1rem solid #687483;
-
-        &:hover {
-            border: #05c 0.1rem solid;
-        }
-    }
-
     .js-vl-select .vl-select__list--dropdown .vl-select__list .vl-select__group {
         border-top: none;
     }
