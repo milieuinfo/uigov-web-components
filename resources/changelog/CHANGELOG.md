@@ -1,3 +1,19 @@
+# [1.24.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.23.0...v1.24.0) (2024-01-17)
+
+
+### Features
+
+* UIG-2212 - vl-select - disable bug opgelost ([4f4f32f](https://github.com/milieuinfo/uigov-web-components/commit/4f4f32f88afba8b736153b82b47198d452441882))
+* UIG-2674 - vl-http-error-message - extra informatie / generiek gemaakt ([5a9fb25](https://github.com/milieuinfo/uigov-web-components/commit/5a9fb25caa002608b12dc9765a77294d51292251))
+* UIG-2717 - vl-tooltip - deprecated, gebruik de vl-popover component ([f6c9a73](https://github.com/milieuinfo/uigov-web-components/commit/f6c9a73d5ebb172424f3b1b61971864cf8675eb8))
+* UIG-2742 - OpenLayers upgrade naar v8.2.0 ([94d3f06](https://github.com/milieuinfo/uigov-web-components/commit/94d3f06cff7654e4dc88dbfc04c921fff7f25b1b))
+* UIG-2745 - vl-map-multiselect-actions - selecteren van overlappende features ([fc749d9](https://github.com/milieuinfo/uigov-web-components/commit/fc749d9aefb3e1c5b0eb31442934d19f20d55a47))
+* UIG-2757 - debounce voorbeeld / herstructurering van de voorbeelden ([63882e3](https://github.com/milieuinfo/uigov-web-components/commit/63882e34e4fb4575f8472a6d14cd0b01a50a1f95))
+* UIG-2770 - configuratie opzet om voorkeuren te wijzigen ([52a6d8d](https://github.com/milieuinfo/uigov-web-components/commit/52a6d8dbf88d8f10e7f0f234415d5267c36aa5e0))
+* UIG-2787 - vl-progress-bar - storybook testen omgezet naar component testen ([e8632cc](https://github.com/milieuinfo/uigov-web-components/commit/e8632cce4519c7efc32bd3e11b22305b3c34b17a))
+* UIG-2806 - vl-select - search event ([95bdfed](https://github.com/milieuinfo/uigov-web-components/commit/95bdfedc0d0282ce878f2ed92d995399b532ddad))
+* UIG-2813 - herintroductie van define ([663845e](https://github.com/milieuinfo/uigov-web-components/commit/663845ecf7b4729dfe537183f66553de33f8322d))
+
 # [1.23.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.22.0...v1.23.0) (2023-12-22)
 
 
