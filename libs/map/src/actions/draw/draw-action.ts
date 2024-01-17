@@ -6,32 +6,39 @@ import Overlay from 'ol/Overlay';
 import { Circle, Fill, Stroke, Style } from 'ol/style';
 import { VlBaseMapAction } from '../mapaction';
 import { VlSnapInteraction } from '../snap/snap-interaction';
+import { Type } from 'ol/geom/Geometry';
 
 export class VlDrawAction extends VlBaseMapAction {
     tooltip: Overlay;
     protected measurePointermoveHandler: EventsKey;
     drawInteraction: Draw;
-    constructor(layer, type, onDraw, _options = {}) {
+    constructor(layer: any, type: Type, onDraw, _options: { style?: any; maxPoints?: number } = {}) {
         const interactions = [];
 
         const style = new Style({
-            fill: new Fill({
-                color: 'rgba(2, 85, 204, 0.8)',
-            }),
-            stroke: new Stroke({
-                color: 'rgba(2, 85, 204, 1)',
-                width: 1,
-            }),
-            image: new Circle({
-                radius: 4,
-                stroke: new Stroke({
+            fill:
+                _options.style?.getFill() ||
+                new Fill({
+                    color: 'rgba(2, 85, 204, 0.8)',
+                }),
+            stroke:
+                _options.style?.getStroke() ||
+                new Stroke({
                     color: 'rgba(2, 85, 204, 1)',
                     width: 1,
                 }),
-                fill: new Fill({
-                    color: 'rgba(2, 85, 204, 0.8)',
+            image:
+                _options.style?.getImage() ||
+                new Circle({
+                    radius: 4,
+                    stroke: new Stroke({
+                        color: 'rgba(2, 85, 204, 1)',
+                        width: 1,
+                    }),
+                    fill: new Fill({
+                        color: 'rgba(2, 85, 204, 0.8)',
+                    }),
                 }),
-            }),
         });
 
         const options: any = {
@@ -171,6 +178,5 @@ export class VlDrawAction extends VlBaseMapAction {
         this.drawInteraction.abortDrawing();
     }
 
-    pointermove() {
-    }
+    pointermove() {}
 }

@@ -1,6 +1,8 @@
 import { VlCompositeVectorLayer } from '../../../actions/layer/composite-vector-layer';
 import { VlMapVectorLayer } from '../../layer/vector-layer/vl-map-vector-layer';
 import { VlMapLayerAction } from '../layer-action/vl-map-layer-action';
+import { VlMapDrawActionStyle } from './draw-action-style/vl-map-draw-action-style';
+import { StyleLike as OlStyleLike } from 'ol/style/Style';
 
 /**
  * VlMapDrawAction
@@ -24,25 +26,44 @@ export class VlMapDrawAction extends VlMapLayerAction {
      *                            - {ol.Feature} de getekende feature
      *                            - {Function} reject callback zonder argument waarbij de feature terug wordt verwijderd
      */
+
+    protected _style: OlStyleLike;
+
+    // @ts-ignore: Negeer override van de property "style" van de native Element klasse die van een ander type is.
+    get style(): OlStyleLike {
+        return this._style;
+    }
+
+    // @ts-ignore: Negeer override van de property "style" van de native Element klasse die van een ander type is.
+    set style(style: VlMapDrawActionStyle | OlStyleLike) {
+        if (style instanceof VlMapDrawActionStyle) {
+            this._style = style.style;
+        }
+        this._processAction();
+    }
+
     onDraw(callback) {
         this.__callback = callback;
     }
 
-    get __drawOptions() {
+    get __drawOptions(): {
+        style: OlStyleLike;
+        snapping: any;
+    } {
+        const options = { style: this.style, snapping: undefined };
+
         if (this.dataset.vlSnapping !== undefined) {
-            if (this.__snappingLayers.length === 0) {
-                return { snapping: true };
-            }
-            return {
-                snapping: {
-                    layer: this.__createSnappingLayer(),
-                    pixelTolerance: this.dataset.vlSnappingPixelTolerance || 10,
-                    node: false,
-                    vertex: false,
-                },
-            };
+            options.snapping =
+                this.__snappingLayers.length === 0
+                    ? true
+                    : {
+                          layer: this.__createSnappingLayer(),
+                          pixelTolerance: this.dataset.vlSnappingPixelTolerance || 10,
+                          node: false,
+                          vertex: false,
+                      };
         }
-        return {};
+        return options;
     }
 
     __createSnappingLayer() {
