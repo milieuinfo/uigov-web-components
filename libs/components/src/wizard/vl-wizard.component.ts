@@ -12,9 +12,9 @@ declare const vl: VL;
 
 @customElement('vl-wizard')
 export class VlWizard extends BaseLitElement {
-    activeStep: number;
-
+    private activeStep: number;
     private panes: VlWizardPane[];
+    private showSteps: boolean;
 
     static {
         registerWebComponents([VlProgressBarComponent, VlWizardPane]);
@@ -32,6 +32,7 @@ export class VlWizard extends BaseLitElement {
                 attribute: 'data-vl-active-step',
                 reflect: true,
             },
+            showSteps: { type: Boolean, attribute: 'data-vl-show-steps', reflect: true },
         };
     }
 
@@ -39,6 +40,7 @@ export class VlWizard extends BaseLitElement {
         super();
         this.panes = [];
         this.activeStep = 1;
+        this.showSteps = false;
     }
 
     onSlotChange() {
@@ -60,7 +62,7 @@ export class VlWizard extends BaseLitElement {
                 </header>
                 <vl-progress-bar
                     data-vl-active-step=${this.activeStep}
-                    data-vl-show-steps
+                   ?data-vl-show-steps=${this.showSteps}
                     .steps=${this.panes.map((pane) => pane.name)}
                 ></vl-progress-bar>
                 <div class="vl-wizard__panes">
