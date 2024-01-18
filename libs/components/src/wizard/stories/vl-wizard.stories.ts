@@ -7,6 +7,14 @@ import { wizardArgs, wizardArgTypes } from './vl-wizard.stories-arg';
 import wizardDoc from './vl-wizard.stories-doc.mdx';
 import { getWizard } from './vl-wizard.stories-util';
 
+interface VlClickStepDetail {
+    number: number;
+    step: string;
+}
+interface VlClickStepEvent extends CustomEvent {
+    detail: VlClickStepDetail;
+}
+
 export default {
     title: 'Components/wizard/wizard',
     tags: ['autodocs'],
@@ -21,10 +29,11 @@ export default {
 
 export const WizardDefault = story(
     wizardArgs,
-    ({ activeStep, title, header, onClickStep }: typeof wizardArgs) => html` <div style="max-width: 780px;">
+    ({ activeStep, hideLabels, title, header, onClickStep }: typeof wizardArgs) => html` <div style="max-width: 780px;">
         <vl-wizard
             data-vl-active-step=${activeStep}
-            @vl-click-step=${(event: any) => {
+            ?data-vl-hide-labels=${hideLabels}
+            @vl-click-step=${(event: VlClickStepEvent) => {
                 onClickStep(event.detail);
                 getWizard().activeStep = event.detail.number;
             }}

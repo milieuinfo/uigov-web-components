@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 export const wizardArgs = {
     ...defaultArgs,
     activeStep: 0,
+    hideLabels: false,
     title: '',
     header: '',
     onClickStep: action('vl-click-step'),
@@ -13,7 +14,7 @@ export const wizardArgTypes = {
     ...defaultArgTypes(),
     activeStep: {
         name: 'data-vl-active-step',
-        description: 'Sets the active step of the wizard.',
+        description: 'Zet de actieve stap.',
         control: { type: 'range', min: 1, max: 2, step: 1 },
         table: {
             type: {
@@ -23,14 +24,26 @@ export const wizardArgTypes = {
             defaultValue: { summary: 1 },
         },
     },
+    hideLabels: {
+        name: 'data-vl-hide-labels',
+        description: 'Bepaalt of de labels van de stappen verborgen moeten worden.',
+        control: { type: 'boolean' },
+        table: {
+            type: {
+                summary: 'Boolean',
+            },
+            category: 'Attributes',
+            defaultValue: { summary: false },
+        },
+    },
     title: {
-        description: 'Slot to place a title in the wizard.',
+        description: 'Slot voor de titel.',
         table: {
             category: 'Slots',
         },
     },
     header: {
-        description: 'Slot to place a header in the wizard.',
+        description: 'Slot voor de header.',
         table: {
             category: 'Slots',
         },
@@ -38,7 +51,7 @@ export const wizardArgTypes = {
     onClickStep: {
         name: 'vl-click-step',
         description:
-            'The custom event fired on click of a step. In the detail of the event, you can find the number and name of the clicked step.',
+            'Afgevuurd wanneer er op een stap geklikt wordt. In het event wordt het nummer en de naam vermeld.',
         table: { category: 'Events' },
     },
 };
