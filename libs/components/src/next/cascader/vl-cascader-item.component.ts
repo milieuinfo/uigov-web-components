@@ -19,12 +19,14 @@ export class VlCascaderItemComponent extends BaseLitElement {
     label = CASCADER_MESSAGES.LABEL_MISSING;
     templateType: string | undefined;
     cascaderRef: VlCascaderComponent | undefined;
+    annotation: string | undefined;
 
     static get properties(): PropertyDeclarations {
         return {
             label: { type: String },
             templateType: { type: String, attribute: 'template-type' },
             item: { type: Object },
+            annotation: { type: String },
         };
     }
 
@@ -42,6 +44,7 @@ export class VlCascaderItemComponent extends BaseLitElement {
             this.item.label = this.label;
             this.item.templateType = this.templateType;
         }
+        this.item.annotation = this.annotation;
     }
 
     protected render(): TemplateResult {

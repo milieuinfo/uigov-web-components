@@ -4,6 +4,7 @@ import { CASCADER_MESSAGES, CASCADER_SLOTS, CascaderItem, ItemListFn, TemplateFn
 
 export const cascaderArgs = {
     ...defaultArgs,
+    annotation: '',
     breadcrumbPlaceholder: '',
     level: 0,
     contentSlot: '',
@@ -20,6 +21,17 @@ export const cascaderArgs = {
 
 export const cascaderArgTypes: ArgTypes<typeof cascaderArgs> = {
     ...defaultArgTypes(true),
+    annotation: {
+        name: 'annotation',
+        description:
+            'Annotation attribuut op de `vl-cascader-item` component. Dit bepaalt de ondertitel in de breadcrumb navigatie.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.CHILD_ATTRIBUTES,
+            defaultValue: { summary: cascaderArgs.annotation },
+        },
+        type: { name: TYPES.STRING, required: false },
+    },
     breadcrumbPlaceholder: {
         name: CASCADER_SLOTS.BREADCRUMB_PLACEHOLDER,
         description:

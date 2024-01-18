@@ -11,6 +11,7 @@ export interface CascaderItem<
     children?: CascaderItem[];
     component?: VlCascaderItemComponent;
     narrowDown?: boolean;
+    annotation?: string;
     data?: D;
 }
 

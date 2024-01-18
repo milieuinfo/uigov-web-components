@@ -12,7 +12,7 @@ registerWebComponents([VlCascaderComponent, VlCascaderItemComponent, VlAccordion
 
 const defaultCascaderTemplate = html`
     <vl-cascader>
-        <vl-cascader-item label="West-Vlaanderen">
+        <vl-cascader-item label="West-Vlaanderen" annotation="ondertitel">
             <vl-cascader-item label="Gemeente: Damme">
                 <vl-cascader-item label="Deelgemeente - Moerkerke">
                     <vl-cascader-item label="Dorp - Moerkerke"></vl-cascader-item>
@@ -193,6 +193,22 @@ describe('component vl-cascader default', () => {
         cy.get('vl-cascader').shadow().find('nav');
         cy.get('vl-cascader').invoke('attr', 'hide-breadcrumb', 'true');
         cy.get('vl-cascader').shadow().find('nav').should('not.exist');
+    });
+
+    it('should display the subtitle', () => {
+        cy.get('vl-cascader')
+            .shadow()
+            .find('vl-cascader-item[label="West-Vlaanderen"]')
+            .shadow()
+            .find('vl-annotation')
+            .should('have.text', 'ondertitel');
+
+        cy.get('vl-cascader')
+            .shadow()
+            .find('vl-cascader-item[label="Oost-Vlaanderen"]')
+            .shadow()
+            .find('vl-annotation')
+            .should('not.exist');
     });
 });
 
