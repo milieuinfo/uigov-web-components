@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 export const wizardArgs = {
     ...defaultArgs,
     activeStep: 0,
+    showSteps: false,
     title: '',
     header: '',
     onClickStep: action('vl-click-step'),
@@ -21,6 +22,18 @@ export const wizardArgTypes = {
             },
             category: 'Attributes',
             defaultValue: { summary: 1 },
+        },
+    },
+    showSteps: {
+        name: 'data-vl-show-steps',
+        description: 'Shows the steps in the progress bar.',
+        control: { type: 'boolean' },
+        table: {
+            type: {
+                summary: 'Boolean',
+            },
+            category: 'Attributes',
+            defaultValue: { summary: false },
         },
     },
     title: {
