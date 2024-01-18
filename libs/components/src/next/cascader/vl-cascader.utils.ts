@@ -1,5 +1,5 @@
 import { CascaderItem, VlCascaderComponent } from './index';
-import { html, TemplateResult } from 'lit';
+import { html, TemplateResult, nothing } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 
 export const getNodesForSlot = (element: HTMLElement, slotName: string) => {
@@ -52,5 +52,6 @@ export const defaultItemActionTemplate = (item: CascaderItem): TemplateResult =>
                 ? html` <span is="vl-icon" data-vl-icon="arrow-right-fat"></span> `
                 : ''}
         </a>
+        ${item.annotation ? html`<vl-annotation>${item.annotation}</vl-annotation>` : nothing}
     `;
 };
