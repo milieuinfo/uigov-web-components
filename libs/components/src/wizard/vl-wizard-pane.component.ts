@@ -1,10 +1,6 @@
-import { BaseLitElement, VL } from '@domg-wc/common-utilities';
-import '@govflanders/vl-ui-util/dist/js/util.js';
+import { BaseLitElement } from '@domg-wc/common-utilities';
 import { html, nothing, PropertyDeclarations } from 'lit';
 import { customElement } from 'lit/decorators.js';
-
-// onduidelijk waarom de vl declaratie en de util.js import nodig zijn, maar zonder falen de component.cy testen
-declare const vl: VL;
 
 @customElement('vl-wizard-pane')
 export class VlWizardPane extends BaseLitElement {

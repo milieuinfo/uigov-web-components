@@ -22,7 +22,7 @@ describe('component vl-wizard-pane - default', () => {
         mountDefault({});
 
         cy.get('[data-cy-root]').within(() => {
-            cy.get('vl-wizard-pane').should('exist');
+            cy.get('vl-wizard-pane').shadow();
             cy.get('vl-wizard-pane').find('p').should('have.text', 'Wizard Pane Content (1)');
         });
     });

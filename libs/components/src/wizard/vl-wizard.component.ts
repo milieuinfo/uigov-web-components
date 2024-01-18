@@ -7,14 +7,11 @@ import { customElement } from 'lit/decorators.js';
 import { VlProgressBarComponent } from '../progress-bar/vl-progress-bar.component';
 import { VlWizardPane } from './vl-wizard-pane.component'; // onduidelijk waarom de vl declaratie en de util.js import nodig zijn, maar zonder falen de component.cy testen
 
-// onduidelijk waarom de vl declaratie en de util.js import nodig zijn, maar zonder falen de component.cy testen
-declare const vl: VL;
-
 @customElement('vl-wizard')
 export class VlWizard extends BaseLitElement {
-    activeStep: number;
-
+    private activeStep: number;
     private panes: VlWizardPane[];
+    private hideLabels: boolean;
 
     static {
         registerWebComponents([VlProgressBarComponent, VlWizardPane]);
@@ -32,6 +29,7 @@ export class VlWizard extends BaseLitElement {
                 attribute: 'data-vl-active-step',
                 reflect: true,
             },
+            hideLabels: { type: Boolean, attribute: 'data-vl-hide-labels' },
         };
     }
 
@@ -39,6 +37,7 @@ export class VlWizard extends BaseLitElement {
         super();
         this.panes = [];
         this.activeStep = 1;
+        this.hideLabels = false;
     }
 
     onSlotChange() {
@@ -60,7 +59,7 @@ export class VlWizard extends BaseLitElement {
                 </header>
                 <vl-progress-bar
                     data-vl-active-step=${this.activeStep}
-                    data-vl-show-labels
+                    ?data-vl-show-labels=${!this.hideLabels}
                     .steps=${this.panes.map((pane) => pane.name)}
                 ></vl-progress-bar>
                 <div class="vl-wizard__panes">
