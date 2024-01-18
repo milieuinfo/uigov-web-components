@@ -13,7 +13,11 @@ declare const vl: VL;
  *
  * @param webComponents
  */
-export const registerWebComponents = (webComponents: any[]) => {};
+export const registerWebComponents = (webComponents: any[]) => {
+    if (UigConfig.getPreferences().logTreeshakeRegistration) {
+        console.debug(`treeshake registratie van`, webComponents.map((wc: any) => wc?.name).toString());
+    }
+};
 
 /**
  * Registreert een web-component.

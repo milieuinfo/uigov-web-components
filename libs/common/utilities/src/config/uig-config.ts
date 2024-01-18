@@ -1,11 +1,13 @@
 export interface Preferences {
     autoRegisterStyles?: boolean;
     logWebComponentRegistration?: boolean;
+    logTreeshakeRegistration?: boolean;
 }
 
 const defaultPreferences = (): Preferences => ({
     autoRegisterStyles: true,
     logWebComponentRegistration: false,
+    logTreeshakeRegistration: false,
 });
 
 export class UigConfig {
