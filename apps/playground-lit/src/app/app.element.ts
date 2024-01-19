@@ -17,7 +17,6 @@ export class AppElement extends LitElement {
     static get styles(): (CSSResult | CSSResult[])[] {
         return [appElementStyle, vlElementsStyle];
     }
-
     render(): TemplateResult {
         return html`
             <main>
