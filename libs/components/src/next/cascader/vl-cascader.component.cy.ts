@@ -11,7 +11,7 @@ import { VlAccordionComponent } from '../../accordion';
 registerWebComponents([VlCascaderComponent, VlCascaderItemComponent, VlAccordionComponent, VlInfoTile]);
 
 const defaultCascaderTemplate = html`
-    <vl-cascader>
+    <vl-cascader header-text="header tekst">
         <vl-cascader-item label="West-Vlaanderen" annotation="ondertitel">
             <vl-cascader-item label="Gemeente: Damme">
                 <vl-cascader-item label="Deelgemeente - Moerkerke">
@@ -86,11 +86,13 @@ const mountWithSlots = (
     homeSlotText: string,
     label: string,
     labelSlotText: string,
-    contentSlotText: string
+    contentSlotText: string,
+    headerSlotText: string
 ) => {
     cy.mount(html`
         <vl-cascader>
             <p slot="home">${homeSlotText}</p>
+            <p slot="header">${headerSlotText}</p>
             <p slot="breadcrumb-placeholder">
                 <label>${placeholderText}</label>
                 <vl-autocomplete data-vl-placeholder=${placeholderText}></vl-autocomplete>
@@ -210,6 +212,10 @@ describe('component vl-cascader default', () => {
             .find('vl-annotation')
             .should('not.exist');
     });
+
+    it('should display the header text', () => {
+        cy.get('vl-cascader').shadow().find('div > header.vl-header > h4').should('have.text', 'header tekst');
+    });
 });
 
 describe('component vl-cascader in vl-side-sheet', () => {
@@ -271,13 +277,25 @@ describe('component vl-cascader - slots', () => {
     const label = 'West-Vlaanderen';
     const labelSlotText = `Provincie: West-Vlaanderen`;
     const homeSlotText = `België`;
+    const headerSlotText = 'header slot tekst';
 
     beforeEach(() => {
-        mountWithSlots(placeholderText, homeSlotText, label, labelSlotText, tekstWestVlaanderen);
+        mountWithSlots(placeholderText, homeSlotText, label, labelSlotText, tekstWestVlaanderen, headerSlotText);
     });
 
     it('should set label slot', () => {
         getCascaderNodeByLabel(label).find('h5').contains(labelSlotText);
+    });
+
+    it('should set header slot', () => {
+        cy.get('vl-cascader')
+            .shadow()
+            .find('header')
+            .find('slot')
+            .then(($slot) => {
+                const slottedContent = $slot[0].assignedNodes()[0].textContent;
+                expect(slottedContent).to.contain(headerSlotText);
+            });
     });
 
     it('should set content slot', () => {

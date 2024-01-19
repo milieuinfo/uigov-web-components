@@ -17,6 +17,8 @@ export const cascaderArgs = {
     labelSlot: '',
     loadingMessage: CASCADER_MESSAGES.LOADING as string,
     templates: null as unknown as Map<string, TemplateFn>,
+    headerText: '',
+    headerSlot: '',
 };
 
 export const cascaderArgTypes: ArgTypes<typeof cascaderArgs> = {
@@ -31,6 +33,24 @@ export const cascaderArgTypes: ArgTypes<typeof cascaderArgs> = {
             defaultValue: { summary: cascaderArgs.annotation },
         },
         type: { name: TYPES.STRING, required: false },
+    },
+    headerText: {
+        name: 'header-text',
+        description: 'Hiermee kan je de tekst instellen voor de header.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: cascaderArgs.headerText,
+        },
+    },
+    headerSlot: {
+        name: CASCADER_SLOTS.HEADER,
+        description: 'Hiermee kan je de standaard header vervangen door een header naar keuze.',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+            defaultValue: cascaderArgs.headerSlot,
+        },
     },
     breadcrumbPlaceholder: {
         name: CASCADER_SLOTS.BREADCRUMB_PLACEHOLDER,

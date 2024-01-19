@@ -26,31 +26,36 @@ const mediumWidthDecorator = (story: () => unknown) => {
     return html` <div style="width: 600px;margin: auto auto;">${story()}</div>`;
 };
 
-export const CascaderDefault = story(cascaderArgs, ({ level, loadingMessage, loading, hideBreadcrumb }) => {
-    return html`
-        <vl-cascader
-            level="${level}"
-            hide-breadcrumb="${hideBreadcrumb}"
-            loading="${loading}"
-            loading-message="${loadingMessage}"
-        >
-            <vl-cascader-item label="Provincie: West-Vlaanderen" annotation="Ondertitel West-Vlaanderen">
-                <vl-cascader-item label="Gemeente: Damme">
-                    <vl-cascader-item label="Deelgemeente - Moerkerke">
-                        <vl-cascader-item label="Dorp - Moerkerke"></vl-cascader-item>
-                        <vl-cascader-item label="Dorp - Sint-Rita"></vl-cascader-item>
+export const CascaderDefault = story(
+    cascaderArgs,
+    ({ level, loadingMessage, loading, hideBreadcrumb, headerSlot, headerText }) => {
+        return html`
+            <vl-cascader
+                level="${level}"
+                hide-breadcrumb="${hideBreadcrumb}"
+                loading="${loading}"
+                loading-message="${loadingMessage}"
+                header-text="${headerText}"
+            >
+                ${headerSlot ? unsafeHTML(headerSlot) : nothing}
+                <vl-cascader-item label="Provincie: West-Vlaanderen" annotation="Ondertitel West-Vlaanderen">
+                    <vl-cascader-item label="Gemeente: Damme">
+                        <vl-cascader-item label="Deelgemeente - Moerkerke">
+                            <vl-cascader-item label="Dorp - Moerkerke"></vl-cascader-item>
+                            <vl-cascader-item label="Dorp - Sint-Rita"></vl-cascader-item>
+                        </vl-cascader-item>
+                        <vl-cascader-item label="Deelgemeente - Sint-Kruis"></vl-cascader-item>
                     </vl-cascader-item>
-                    <vl-cascader-item label="Deelgemeente - Sint-Kruis"></vl-cascader-item>
+                    <vl-cascader-item label="Gemeente: Brugge"></vl-cascader-item>
                 </vl-cascader-item>
-                <vl-cascader-item label="Gemeente: Brugge"></vl-cascader-item>
-            </vl-cascader-item>
-            <vl-cascader-item label="Provincie: Oost-Vlaanderen" annotation="Ondertitel Oost-Vlaanderen">
-                <vl-cascader-item label="Gemeente: Gent"></vl-cascader-item>
-                <vl-cascader-item label="Gemeente: Lokeren"></vl-cascader-item>
-            </vl-cascader-item>
-        </vl-cascader>
-    `;
-});
+                <vl-cascader-item label="Provincie: Oost-Vlaanderen" annotation="Ondertitel Oost-Vlaanderen">
+                    <vl-cascader-item label="Gemeente: Gent"></vl-cascader-item>
+                    <vl-cascader-item label="Gemeente: Lokeren"></vl-cascader-item>
+                </vl-cascader-item>
+            </vl-cascader>
+        `;
+    }
+);
 CascaderDefault.storyName = 'vl-cascader - default';
 CascaderDefault.decorators = [mediumWidthDecorator];
 CascaderDefault.parameters = {
@@ -195,27 +200,24 @@ CascaderPropertyBinding.parameters = {
         exclude: ['content', 'label', 'labelSlot'],
     },
 };
-export const CascaderItemSlots = story(
-    cascaderArgs,
-    ({ annotation, breadcrumbPlaceholder, contentSlot, homeSlot, label, labelSlot }) => {
-        return html`
-            <vl-cascader>
-                ${homeSlot ? unsafeHTML(homeSlot) : nothing}
-                ${breadcrumbPlaceholder ? unsafeHTML(breadcrumbPlaceholder) : nothing}
-                <vl-cascader-item label=${label} annotation=${annotation}>
-                    ${unsafeHTML(labelSlot)} ${unsafeHTML(contentSlot)}
-                    <vl-cascader-item label="Gemeente">
-                        <vl-cascader-item label="Stad"></vl-cascader-item>
-                    </vl-cascader-item>
+export const CascaderItemSlots = story(cascaderArgs, ({ annotation, breadcrumbPlaceholder, contentSlot, homeSlot, label, labelSlot }) => {
+    return html`
+        <vl-cascader>
+            ${homeSlot ? unsafeHTML(homeSlot) : nothing}
+            ${breadcrumbPlaceholder ? unsafeHTML(breadcrumbPlaceholder) : nothing}
+            <vl-cascader-item label=${label} annotation=${annotation}>
+                ${unsafeHTML(labelSlot)} ${unsafeHTML(contentSlot)}
+                <vl-cascader-item label="Gemeente">
+                    <vl-cascader-item label="Stad"></vl-cascader-item>
                 </vl-cascader-item>
-            </vl-cascader>
-        `;
-    }
-);
+            </vl-cascader-item>
+        </vl-cascader>
+    `;
+});
 CascaderItemSlots.storyName = 'vl-cascader-item - slots';
 CascaderItemSlots.parameters = {
     controls: {
-        include: ['breadcrumbPlaceholder', 'content', 'homeSlot', 'label', 'labelSlot', 'annotation'],
+        include: ['breadcrumbPlaceholder', 'content', 'homeSlot', 'label', 'labelSlot', 'annotation', 'headerSlot'],
     },
 };
 CascaderItemSlots.args = {

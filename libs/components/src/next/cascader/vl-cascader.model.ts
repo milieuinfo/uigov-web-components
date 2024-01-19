@@ -35,6 +35,7 @@ export const CASCADER_MESSAGES = {
 export type CASCADER_MESSAGES = (typeof CASCADER_MESSAGES)[keyof typeof CASCADER_MESSAGES];
 
 export const CASCADER_SLOTS = {
+    HEADER: 'header',
     BREADCRUMB_PLACEHOLDER: 'breadcrumb-placeholder',
     CONTENT: 'content',
     HOME: 'home',
