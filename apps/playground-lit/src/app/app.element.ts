@@ -196,7 +196,6 @@ export class AppElement extends LitElement {
             resetEverything: { type: Boolean, state: true },
         };
     }
-
     render(): TemplateResult {
         return html`
             <div class="container">

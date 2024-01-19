@@ -1,9 +1,9 @@
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import { VlTooltipComponent } from '../tooltip/vl-tooltip.component';
+import { VlPopoverComponent } from '../popover/vl-popover.component';
 import { VlProgressBarComponent } from './vl-progress-bar.component';
 import { html } from 'lit';
 
-registerWebComponents([VlProgressBarComponent, VlTooltipComponent]);
+registerWebComponents([VlProgressBarComponent, VlPopoverComponent]);
 
 type MountDefaultProps = {
     activeStep: number;
@@ -50,14 +50,15 @@ const VlProgressBarTestUtils = {
             .eq(stepNumber - 1)
             .should('have.class', 'vl-progress-bar__step--active');
     },
-    shouldHaveVisibleTooltipForStep: function shouldHaveVisibleTooltipForStep(stepNumber: number) {
+    shouldHaveVisiblePopoverForStep: function shouldHaveVisiblePopoverForStep(stepNumber: number) {
         cy.get('vl-progress-bar')
             .shadow()
             .find('.vl-progress-bar__step')
             .eq(stepNumber - 1)
             .find('button.vl-progress-bar__bullet')
-            .next()
-            .should('have.attr', 'aria-hidden', 'false');
+            .click()
+            .find('vl-popover')
+            .should('have.attr', 'open');
     },
 };
 
@@ -84,7 +85,7 @@ describe('component vl-progress-bar - default', () => {
             cy.get('vl-progress-bar')
                 .shadow()
                 .find(`.vl-progress-bar__step:nth-child(${index + 1}) `)
-                .find('vl-tooltip')
+                .find('vl-popover')
                 .contains(step);
         });
     });
@@ -144,16 +145,16 @@ describe('component vl-progress-bar - properties reflect', () => {
         VlProgressBarTestUtils.verifyActiveStepChange(3);
     });
 
-    it('should have visible tooltip for active step', () => {
+    it('should have visible popover for active step', () => {
         mountDefault({ ...props, steps, focusOnChange: true });
 
-        VlProgressBarTestUtils.shouldHaveVisibleTooltipForStep(1);
+        VlProgressBarTestUtils.shouldHaveVisiblePopoverForStep(1);
 
         VlProgressBarTestUtils.changeActiveStep(2);
-        VlProgressBarTestUtils.shouldHaveVisibleTooltipForStep(2);
+        VlProgressBarTestUtils.shouldHaveVisiblePopoverForStep(2);
 
         VlProgressBarTestUtils.changeActiveStep(3);
-        VlProgressBarTestUtils.shouldHaveVisibleTooltipForStep(3);
+        VlProgressBarTestUtils.shouldHaveVisiblePopoverForStep(3);
     });
 
     it('should emit vl-click-step event when a step is clicked', () => {

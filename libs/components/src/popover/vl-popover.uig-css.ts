@@ -30,6 +30,7 @@ const styles: CSSResult = css`
         will-change: filter;
         background-color: #fff;
         padding: 1rem;
+        font-size: 1.6rem;
     }
 
     .padding-none {

@@ -7,7 +7,7 @@ import { type PropertyDeclarations, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import 'reflect-metadata';
-import { VlTooltipComponent } from '../tooltip/vl-tooltip.component';
+import { VlPopoverComponent } from '../popover/vl-popover.component';
 import progressBarUigStyle from './vl-progress-bar.uig-css';
 
 @customElement('vl-progress-bar')
@@ -20,7 +20,7 @@ export class VlProgressBarComponent extends BaseLitElement {
     private showSteps = false;
 
     static {
-        registerWebComponents([VlTooltipComponent]);
+        registerWebComponents([VlPopoverComponent]);
     }
 
     static get styles() {
@@ -72,6 +72,8 @@ export class VlProgressBarComponent extends BaseLitElement {
     }
 
     private renderStep = (step: string, index: number) => {
+        const isPopOverActive = !this.showSteps;
+
         const stepClasses = {
             'vl-progress-bar__step': true,
             'vl-progress-bar__step--active': this.activeStep === index + 1,
@@ -82,10 +84,13 @@ export class VlProgressBarComponent extends BaseLitElement {
                 @click=${() => this.handleStepClick(step, index + 1)}
                 class="vl-progress-bar__bullet"
                 aria-label=${step}
+                id="step-${index + 1}"
             >
-                <vl-tooltip placement="top" ?data-vl-tooltip-content=${!this.showSteps ? step : undefined}>
-                    ${!this.showSteps ? step : undefined}
-                </vl-tooltip>
+        
+                <vl-popover for="step-${index + 1}" placement="top" trigger=${isPopOverActive
+                    ? 'focus hover'
+                    : undefined}>${isPopOverActive ? step : undefined}</vl-popover>
+
                 ${this.showSteps ? html`<span class="vl-progress-bar__bullet__text" title=${step}>${step}</span>` : ''}
             </button>
         </div>`;
