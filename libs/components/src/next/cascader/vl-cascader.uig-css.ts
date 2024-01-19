@@ -7,6 +7,15 @@ const styles: CSSResult = css`
         height: 100%;
     }
 
+    header {
+        border-bottom: 1px solid #cbd2da;
+        padding-left: 1.5rem;
+    }
+
+    h4 {
+        margin: 1.8rem 0;
+    }
+
     div.content {
         overflow: hidden;
     }

@@ -33,6 +33,7 @@ export class VlCascaderComponent extends BaseLitElement {
     private isLoading = false;
     private loadingMessage = CASCADER_MESSAGES.LOADING;
     private declarativeMode = false;
+    private headerText: string | undefined;
 
     static {
         registerWebComponents([VlCascaderItemComponent]);
@@ -40,6 +41,7 @@ export class VlCascaderComponent extends BaseLitElement {
 
     static get properties(): PropertyDeclarations {
         return {
+            headerText: { type: String, attribute: 'header-text', reflect: true },
             level: { type: Number, attribute: 'level', reflect: true },
             hideBreadcrumb: { type: Boolean, attribute: 'hide-breadcrumb', reflect: true },
             loadingMessage: { type: String, attribute: 'loading-message', reflect: true },
@@ -147,6 +149,22 @@ export class VlCascaderComponent extends BaseLitElement {
                 this.goBack();
             });
         }
+    }
+
+    private renderHeader(): TemplateResult<1> | typeof nothing {
+        return getNodesForSlot(this, 'header')?.length
+            ? html`
+                  <header>
+                      <slot name="header"></slot>
+                  </header>
+              `
+            : this.headerText
+            ? html`
+                  <header class="vl-header">
+                      <h4 is="vl-h4" class="vl-header__title vl-label vl-label--h4">${this.headerText}</h4>
+                  </header>
+              `
+            : nothing;
     }
 
     private renderBreadcrumbHome = () => {
@@ -275,7 +293,7 @@ export class VlCascaderComponent extends BaseLitElement {
         };
         return html`
             <div>
-                ${this.renderBreadcrumb()}
+                ${this.renderBreadcrumb()} ${this.renderHeader()}
                 <div class="content">
                     <section class=${classMap(navSectionClasses)} @animationend=${this.handleAnimationEnd}>
                         ${!this.isLoading
