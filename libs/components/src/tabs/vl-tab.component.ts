@@ -25,7 +25,7 @@ export class VlTabComponent extends BaseElementOfType(HTMLLIElement) {
     }
 
     get __linkElementTemplate() {
-        return this._template(`<a class="vl-tab__link" data-vl-tab role="tab"></a>`);
+        return this._template(`<a class="vl-tab__link" data-vl-tab></a>`);
     }
 
     get isActive() {

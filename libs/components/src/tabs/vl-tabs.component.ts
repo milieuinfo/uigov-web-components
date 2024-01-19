@@ -1,5 +1,7 @@
-import { awaitUntil, BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
-import './vl-tabs.lib.js';
+import { type VL, awaitUntil, BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+
+import '@govflanders/vl-ui-util/dist/js/util.js'; // Moet expliciet geïmporteerd worden om de cy test te laten slagen - de vl object is nodig
+import './vl-tabs.lib';
 import { VlTabComponent } from './vl-tab.component';
 import { VlTabSectionComponent } from './vl-tab-section.component';
 import { VlTabsPaneComponent } from './vl-tabs-pane.component';
@@ -7,8 +9,8 @@ import { tabsStyle } from '@domg/govflanders-style/component';
 import { baseStyle, elementStyle, resetStyle } from '@domg/govflanders-style/common';
 import tabsUigStyle from './vl-tabs.uig-css';
 
-declare const vl: any;
-declare const window: any;
+declare const vl: VL;
+declare const window: Window;
 
 @webComponent('vl-tabs')
 export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
@@ -35,8 +37,8 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     </style>
     <div id="tabs" data-vl-tabs data-vl-tabs-responsive-label="Navigatie">
       <div id="tabs-wrapper" class="vl-tabs__wrapper">
-        <ul id="tab-list" class="vl-tabs" data-vl-tabs-list role="tablist"></ul>
-        <button type="button" data-vl-tabs-toggle aria-expanded="false" class="vl-tabs__toggle" data-vl-close="false">
+        <ul id="tab-list" class="vl-tabs" data-vl-tabs-list role="tablist" aria-label="tabs"></ul>
+        <button type="button" data-vl-tabs-toggle class="vl-tabs__toggle" data-vl-close="false">
           <span id="data-vl-tabs-responsive-label">Navigatie</span>
         </button>
       </div>
@@ -106,11 +108,12 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         return [...this.querySelectorAll(VlTabsPaneComponent.is)];
     }
 
-    __getTabTemplate({ id, title }: any) {
+    __getTabTemplate({ id, title }: { id: string; title: string }) {
         const disableLinks = this.hasAttribute('disable-links');
 
         return this._template(`
             <li
+                role="tab"
                 is="vl-tab"
                 data-vl-id="${id}"
                 data-vl-href="${this.__href}#${id}"

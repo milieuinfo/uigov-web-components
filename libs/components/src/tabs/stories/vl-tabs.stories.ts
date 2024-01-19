@@ -24,7 +24,7 @@ export const TabsDefault = story(
         <vl-tabs
             data-vl-active-tab=${activeTab}
             ?data-vl-alt=${alt}
-            ?data-vl-responsive-label=${responsiveLabel}
+            data-vl-responsive-label=${responsiveLabel}
             ?data-vl-disable-links=${disableLinks}
             @change=${(event: CustomEvent) => onChangeActiveTab(event.detail)}
         >
@@ -93,7 +93,7 @@ export const TabsDynamic = story(
                 id="tabs"
                 data-vl-active-tab=${activeTab}
                 ?data-vl-alt=${alt}
-                ?data-vl-responsive-label=${responsiveLabel}
+                data-vl-responsive-label=${responsiveLabel}
                 ?data-vl-disable-links=${disableLinks}
                 @change=${(event: CustomEvent) => onChangeActiveTab(event.detail)}
             >
