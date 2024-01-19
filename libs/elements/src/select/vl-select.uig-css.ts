@@ -3,12 +3,12 @@ import { css, CSSResult } from 'lit';
 const styles: CSSResult = css`
     .js-vl-select,
     .vl-select__list--dropdown {
-        z-index: 100;
+        z-index: 100 !important;
     }
 
     .js-vl-select.is-open,
     .vl-select__list--dropdown.is-active {
-        z-index: 101;
+        z-index: 101 !important;
     }
 
     .js-vl-select.vl-search__input > .vl-select__inner {
