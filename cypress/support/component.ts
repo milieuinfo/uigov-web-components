@@ -27,7 +27,7 @@ Cypress.Commands.add('mount', (template: TemplateResult) => {
             .first()
             .then((element) => {
                 const name = element.prop('tagName').toLowerCase();
-                const el = document.getElementsByTagName(name)[0];
+                const el = document.querySelector(`${name}:not([data-cy-root])`)[0];
 
                 componentInstance = el;
 
