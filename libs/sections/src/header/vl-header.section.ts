@@ -22,7 +22,6 @@ const customRegistration = () =>
 @webComponentCustom(customRegistration)
 export class VlHeader extends BaseLitElement {
     // Attributen
-    private skeleton = false;
     private authenticatedUserUrl = '/sso/ingelogde_gebruiker';
     private development = false;
     private identifier = '';
@@ -30,6 +29,7 @@ export class VlHeader extends BaseLitElement {
     private loginUrl = '/sso/aanmelden';
     private logoutUrl = '/sso/afgemeld';
     private simple = false;
+    private skeleton = false;
     private switchCapacityUrl = '/sso/wissel_organisatie';
 
     // Private properties
@@ -39,7 +39,6 @@ export class VlHeader extends BaseLitElement {
 
     static get properties(): PropertyDeclarations {
         return {
-            skeleton: { type: Boolean, attribute: 'data-vl-skeleton', reflect: true },
             authenticatedUserUrl: { type: String, attribute: 'data-vl-authenticated-user-url', reflect: true },
             development: { type: Boolean, attribute: 'data-vl-development', reflect: true },
             identifier: { type: String, attribute: 'data-vl-identifier', reflect: true },
@@ -47,6 +46,7 @@ export class VlHeader extends BaseLitElement {
             loginUrl: { type: String, attribute: 'data-vl-login-url', reflect: true },
             logoutUrl: { type: String, attribute: 'data-vl-logout-url', reflect: true },
             simple: { type: Boolean, attribute: 'data-vl-simple', reflect: true },
+            skeleton: { type: Boolean, attribute: 'data-vl-skeleton', reflect: true },
             switchCapacityUrl: { type: String, attribute: 'data-vl-switch-capacity-url', reflect: true },
         };
     }

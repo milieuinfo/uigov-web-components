@@ -1,7 +1,12 @@
 import { html } from 'lit';
-import { AccessibilityProperties } from '../vl-accessibility.model';
+import type { AccessibilityProperties } from '../vl-accessibility.model';
+import { VlFunctionalHeaderComponent } from '@domg-wc/components';
 
-export const header = ({ disableBackLink }: AccessibilityProperties) => html`
+export type HeaderProps = Pick<AccessibilityProperties, 'disableBackLink'>;
+
+export const headerElements = () => [VlFunctionalHeaderComponent];
+
+export const header = ({ disableBackLink }: HeaderProps) => html`
     <vl-functional-header
         data-vl-title="Departement Omgeving"
         data-vl-sub-title="Toegankelijkheid en gebruiksvoorwaarden"

@@ -1,3 +1,4 @@
+import { render } from 'lit-html';
 import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import { VlContactCardComponent, VlInfoblockComponent, VlTypography } from '@domg-wc/components';
 import {
@@ -21,7 +22,7 @@ import {
     VlSideNavigationReferenceElement,
     VlSideNavigationToggleElement,
 } from '@domg-wc/elements';
-import { header } from './child/header.section';
+import { header, cookieStatementHeaderElements } from './child/header.section';
 import './cookie/vl-authentication-cookie.section';
 import './cookie/vl-cookie.section';
 import './cookie/vl-header-authentication-cookie.section';
@@ -58,6 +59,9 @@ export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
             VlContactCardComponent,
             VlInfoblockComponent,
             VlTypography,
+
+            // child components
+            ...cookieStatementHeaderElements(),
         ]);
     }
 
@@ -70,8 +74,15 @@ export class VlCookieStatement extends BaseElementOfType(HTMLElement) {
             <style>
                 ${styles}
             </style>
-            <slot name="header">${header()}</slot>
-        `);
+             <slot name="header"></slot>
+            `);
+
+        const headerSlot = this.shadowRoot.querySelector('slot[name="header"]');
+
+        if (headerSlot) {
+            render(header(), headerSlot);
+        }
+
         this.allowCustomCSS = false;
         this._element.insertAdjacentHTML(
             'afterend',

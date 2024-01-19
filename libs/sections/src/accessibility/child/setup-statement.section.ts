@@ -1,7 +1,12 @@
 import { html } from 'lit';
-import { AccessibilityProperties } from '../vl-accessibility.model';
+import type { AccessibilityProperties } from '../vl-accessibility.model';
+import { VlColumnElement, VlH2Element } from '@domg-wc/elements';
 
-export const setupStatement = ({ evaluation, date, dateModified }: AccessibilityProperties) => {
+export type SetupStatementProps = Pick<AccessibilityProperties, 'evaluation' | 'date' | 'dateModified'>;
+
+export const setupStatementElements = () => [VlColumnElement, VlH2Element];
+
+export const setupStatement = ({ evaluation, date, dateModified }: SetupStatementProps) => {
     const setupStatementTemplate = () => {
         switch (evaluation) {
             case 'EXPERT_EVALUATED':

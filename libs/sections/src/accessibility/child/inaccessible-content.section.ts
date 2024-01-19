@@ -1,7 +1,13 @@
 import { html } from 'lit';
 import { AccessibilityProperties } from '../vl-accessibility.model';
+import { VlTypography } from '@domg-wc/components';
+import { VlColumnElement, VlH2Element } from '@domg-wc/elements';
 
-export const inaccessibleContent = ({ compliance, evaluation, limitations }: AccessibilityProperties) => {
+export type InaccessibleContentProps = Pick<AccessibilityProperties, 'compliance' | 'evaluation' | 'limitations'>;
+
+export const inaccessibleContentElements = () => [VlTypography, VlColumnElement, VlH2Element];
+
+export const inaccessibleContent = ({ compliance, evaluation, limitations }: InaccessibleContentProps) => {
     const inaccessibleContentTemplate = () => {
         if (evaluation === 'NOT_EVALUATED') {
             return html`De niet-toegankelijke inhoud is onbekend omdat de website niet is getest.`;

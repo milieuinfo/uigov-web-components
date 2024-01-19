@@ -1,7 +1,28 @@
 import { html } from 'lit';
-import { AccessibilityProperties } from '../vl-accessibility.model';
+import type { AccessibilityProperties } from '../vl-accessibility.model';
+import {
+    VlColumnElement,
+    VlGridElement,
+    VlH1Element,
+    VlIntroductionElement,
+    VlLayoutElement,
+    VlRegionElement,
+} from '@domg-wc/elements';
+import { VlTypography } from '@domg-wc/components';
 
-export const title = ({ version, date }: AccessibilityProperties) => html` <section is="vl-region">
+export type TitleProps = Pick<AccessibilityProperties, 'version' | 'date'>;
+
+export const titleElements = () => [
+    VlRegionElement,
+    VlLayoutElement,
+    VlGridElement,
+    VlColumnElement,
+    VlH1Element,
+    VlIntroductionElement,
+    VlTypography,
+];
+
+export const title = ({ version, date }: TitleProps) => html` <section is="vl-region">
     <div is="vl-layout">
         <div is="vl-grid" data-vl-is-stacked>
             <div is="vl-column" data-vl-size="10">
