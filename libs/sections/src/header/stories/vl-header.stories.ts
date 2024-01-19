@@ -22,20 +22,19 @@ export default {
 export const HeaderDefault = story(
     headerArgs,
     ({
-        skeleton,
         authenticatedUserUrl,
         development,
         identifier,
         loginRedirectUrl,
         loginUrl,
         logoutUrl,
+        skeleton,
         simple,
         switchCapacityUrl,
         onReady,
     }) => html`
         <div is="vl-body">
             <vl-header
-                data-vl-skeleton=${skeleton}
                 data-vl-authenticated-user-url=${authenticatedUserUrl}
                 ?data-vl-development=${development}
                 data-vl-identifier=${identifier}
@@ -43,6 +42,7 @@ export const HeaderDefault = story(
                 data-vl-login-url=${loginUrl}
                 data-vl-logout-url=${logoutUrl}
                 ?data-vl-simple=${simple}
+                ?data-vl-skeleton=${skeleton}
                 data-vl-switch-capacity-url=${switchCapacityUrl}
                 @ready=${(event: CustomEvent) => onReady(event)}
             ></vl-header>

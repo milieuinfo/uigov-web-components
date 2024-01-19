@@ -27,11 +27,14 @@ import {
 } from '@domg-wc/elements';
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { header } from './child/header.section';
+import { header, privacyHeaderElements } from './child/header.section';
+import type { AccessibilityProperties } from '../accessibility/vl-accessibility.model';
+
+export type PrivacyProps = Pick<AccessibilityProperties, 'date' | 'version'> & { disableBackLink: boolean | string };
 
 export const privacyProps = {
     date: 'data-vl-date',
-    disableBackLink: 'data-vl-disable-back-link',
+    disableBackLink: 'data-vl-disable-back-link', // FIXME: dit is een boolean, maar wordt als string meegegeven? (zie ook accessibility/child/header.section.ts)
     version: 'data-vl-version',
 };
 
@@ -69,6 +72,9 @@ export class VlPrivacy extends BaseLitElement {
             VlDocumentComponent,
             VlInfoblockComponent,
             VlTypography,
+
+            // child components
+            ...privacyHeaderElements(),
         ]);
     }
 

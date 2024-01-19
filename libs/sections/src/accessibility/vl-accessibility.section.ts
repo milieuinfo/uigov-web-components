@@ -1,25 +1,26 @@
 import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
 import { VlFunctionalHeaderComponent } from '@domg-wc/components';
 import { vlElementsStyle } from '@domg-wc/elements';
-import { CSSResult, html } from 'lit';
+import { CSSResult, html, type PropertyDeclarations } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { content } from './child/content.section';
-import { header } from './child/header.section';
-import { title } from './child/title.section';
+import { content, contentElements } from './child/content.section';
+import { header, headerElements } from './child/header.section';
+import { title, titleElements } from './child/title.section';
 import { AccessibilityProperties, COMPLIANCE_STATUS, EVALUATION_STATUS, Limitations } from './vl-accessibility.model';
 
 @customElement('vl-accessibility')
 export class VlAccessibility extends BaseLitElement {
     static {
-        // TODO verbeteren ihkv UIG-2740
-        registerWebComponents([VlFunctionalHeaderComponent]);
+        registerWebComponents([
+            ...new Set([VlFunctionalHeaderComponent, ...contentElements(), ...headerElements(), ...titleElements()]),
+        ]);
     }
 
     static get styles(): CSSResult[] {
         return vlElementsStyle;
     }
 
-    static get properties() {
+    static get properties(): PropertyDeclarations {
         return {
             application: {
                 type: String,

@@ -1,9 +1,37 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import styles from '../vl-cookie-statement.uig-css';
+import { registerWebComponents } from '@domg-wc/common-utilities';
+import {
+    VlPropertiesComponent,
+    VlPropertiesListElement,
+    VlPropertyTermElement,
+    VlPropertyValueElement,
+} from '@domg-wc/elements';
+import { VlTypography } from '@domg-wc/components';
 
+export interface VlCookieProps {
+    title?: string;
+    name?: string | string[];
+    purpose?: string;
+    domain?: string;
+    processor?: string;
+    validity?: string;
+}
 @webComponent('vl-cookie')
 export class VlCookie extends BaseElementOfType(HTMLElement) {
-    constructor({ title, name, purpose, domain, processor, validity }: any = {}) {
+    static {
+        registerWebComponents([
+            // elements
+            VlPropertiesComponent,
+            VlPropertiesListElement,
+            VlPropertyTermElement,
+            VlPropertyValueElement,
+            // components
+            VlTypography,
+        ]);
+    }
+
+    constructor({ title, name, purpose, domain, processor, validity }: VlCookieProps = {}) {
         super(`
         <style>
           ${styles}

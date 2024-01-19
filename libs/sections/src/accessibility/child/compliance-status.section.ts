@@ -1,8 +1,13 @@
 import { html } from 'lit';
+import type { AccessibilityProperties } from '../vl-accessibility.model';
+import { VlColumnElement } from '@domg-wc/elements';
 import { wcagLink } from './wcag-link.section';
-import { AccessibilityProperties } from '../vl-accessibility.model';
 
-export const complianceStatus = ({ compliance, evaluation }: AccessibilityProperties) => {
+export type ComplianceStatusProps = Pick<AccessibilityProperties, 'compliance' | 'evaluation'>;
+
+export const complianceStatusElements = () => [VlColumnElement];
+
+export const complianceStatus = ({ compliance, evaluation }: ComplianceStatusProps) => {
     const complianceTemplate = () => {
         switch (compliance) {
             case 'FULLY_COMPLIANT':

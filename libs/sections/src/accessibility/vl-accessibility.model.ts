@@ -4,7 +4,7 @@ export const COMPLIANCE_STATUS = {
     NOT_COMPLIANT: 'NOT_COMPLIANT',
 } as const;
 
-export type COMPLIANCE_STATUS = typeof COMPLIANCE_STATUS[keyof typeof COMPLIANCE_STATUS];
+export type COMPLIANCE_STATUS = (typeof COMPLIANCE_STATUS)[keyof typeof COMPLIANCE_STATUS];
 
 export const EVALUATION_STATUS = {
     EXPERT_EVALUATED: 'EXPERT_EVALUATED',
@@ -12,7 +12,7 @@ export const EVALUATION_STATUS = {
     NOT_EVALUATED: 'NOT_EVALUATED',
 } as const;
 
-export type EVALUATION_STATUS = typeof EVALUATION_STATUS[keyof typeof EVALUATION_STATUS];
+export type EVALUATION_STATUS = (typeof EVALUATION_STATUS)[keyof typeof EVALUATION_STATUS];
 
 export interface Limitations {
     withTiming?: string[];

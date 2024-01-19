@@ -1,8 +1,14 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { VlCheckboxComponent } from '@domg-wc/components';
+
+import { BaseElementOfType, webComponent, registerWebComponents } from '@domg-wc/common-utilities';
 import { vlElementsStyle } from '@domg-wc/elements';
 
 @webComponent('vl-cookie-consent-opt-in')
 export class VlCookieConsentOptIn extends BaseElementOfType(HTMLElement) {
+    static {
+        registerWebComponents([VlCheckboxComponent]);
+    }
+
     static get _observedAttributes() {
         return ['label', 'description', 'checked', 'mandatory'];
     }

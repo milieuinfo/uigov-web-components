@@ -1,7 +1,29 @@
 import { html } from 'lit';
-import { AccessibilityProperties } from '../vl-accessibility.model';
+import type { AccessibilityProperties } from '../vl-accessibility.model';
+import {
+    VlColumnElement,
+    VlSideNavigation,
+    VlSideNavigationContentElement,
+    VlSideNavigationGroupElement,
+    VlSideNavigationH1,
+    VlSideNavigationItemElement,
+    VlSideNavigationToggleElement,
+} from '@domg-wc/elements';
 
-export const sideNavigation = ({ compliance }: AccessibilityProperties) => {
+export type SideNavigationProps = Pick<AccessibilityProperties, 'compliance'>;
+
+export const sideNavigationElements = () => [
+    VlColumnElement,
+    VlSideNavigation,
+    VlSideNavigationH1,
+    VlSideNavigationContentElement,
+    VlSideNavigationGroupElement,
+    VlSideNavigationItemElement,
+    VlSideNavigationToggleElement,
+];
+
+
+export const sideNavigation = ({ compliance }: SideNavigationProps) => {
     return html` <div
         is="vl-column"
         data-vl-size="4"
