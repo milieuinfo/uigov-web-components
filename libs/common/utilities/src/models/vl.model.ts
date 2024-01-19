@@ -70,6 +70,7 @@ interface SideNavigation {
 
 interface Tabs {
     currentTabIndexForCurrentTabsContainer: number;
+    dress(element: HTMLElement | undefined): void;
 }
 
 interface Toaster {

@@ -130,15 +130,11 @@ class Tabs {
             activeTab.click();
         }
 
-        // Deteact arrow & spacebar usage on tabContainer
+        // Detect arrows (<-, ->) & spacebar usage on tabContainer
         tabsContainer.addEventListener('keydown', (event) => {
             switch (event.keyCode) {
+                // left arrow <-
                 case 37: {
-                    // empty
-                }
-                // fallsthrough
-                case 38: {
-                    // left arrow
                     let i = this.currentTabIndexForCurrentTabsContainer - 1;
 
                     if (i < 0) {
@@ -151,13 +147,8 @@ class Tabs {
                     }
                     break;
                 }
-                // fallsthrough
+                // right arrow ->
                 case 39: {
-                    // empty
-                }
-                // fallsthrough
-                case 40: {
-                    // right arrow
                     let i = this.currentTabIndexForCurrentTabsContainer + 1;
 
                     if (i >= tabs.length) {
