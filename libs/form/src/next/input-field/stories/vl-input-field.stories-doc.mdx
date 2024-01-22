@@ -1,0 +1,39 @@
+import { ArgTypes, Canvas } from '@storybook/addon-docs';
+import * as VlInputFieldStories from './vl-input-field.stories';
+
+# Input Field - next
+
+Gebruik de `input-field-next` component om een input veld toe te voegen aan een pagina.<br/>
+Zie het [form demo](/docs/applicatief-voorbeelden-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.
+
+Dit component is de volgende versie van de [vl-input-field](/docs/elements-input-field--documentatie) component, we raden aan deze versie te gebruiken.
+
+## Voorbeeld
+
+```js
+import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
+```
+
+```html
+<vl-input-field-next></vl-input-field-next>
+```
+
+<Canvas of={VlInputFieldStories.InputFieldDefault} />
+
+## Configuratie
+
+<ArgTypes of={VlInputFieldStories.InputFieldDefault} />
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+[Documentatie Digitaal Vlaanderen - Input field](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-input-field)
+
+### Legacy Documentatie
+
+[Legacy Storybook - Input field](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/native-elements-vl-input-field--default)
+
+[Legacy Documentatie - Input field](https://webcomponenten.omgeving.vlaanderen.be/doc/VlInputField.html)
+
+[Legacy Demo - Input field](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-input-field.html)

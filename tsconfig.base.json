@@ -19,6 +19,7 @@
             "@domg-wc/common-utilities": ["libs/common/utilities/src/index.ts"],
             "@domg-wc/components": ["libs/components/src/index.ts"],
             "@domg-wc/components/next/*": ["libs/components/src/next/*"],
+            "@domg-wc/form/*": ["libs/form/src/*"],
             "@domg-wc/elements": ["libs/elements/src/index.ts"],
             "@domg-wc/fat-lib": ["libs/support/fat-lib/src/index.ts"],
             "@domg-wc/map": ["libs/map/src/index.ts"],

@@ -1,0 +1,75 @@
+import { ArgTypes, Canvas } from '@storybook/addon-docs';
+import * as VlDatepickerStories from './vl-datepicker.stories';
+
+# Datepicker - next
+
+Gebruik de `datepicker-next` component om de gebruiker op een gebruiksvriendelijke manier een datum of tijd te laten selecteren.<br/>
+Zie het [form demo](/docs/applicatief-voorbeelden-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.
+
+Dit component is de volgende versie van de [vl-datepicker](/docs/components-datepicker--documentatie) component, we raden aan deze versie te gebruiken.
+
+## Voorbeeld
+
+```js
+import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
+```
+
+```html
+<vl-datepicker-next></vl-datepicker-next>
+```
+
+<Canvas of={VlDatepickerStories.DatepickerDefault} />
+
+
+## Formaat
+
+Je kan het `format` attribuut gebruiken om de datumnotatie te wijzigen. Standaard is het formaat `d.m.Y`.
+
+In onderstaand voorbeeld wordt de datumnotatie expliciet ingesteld op `d/m/Y`.
+> `format="d/m/Y"` zal de datum tonen als `31/12/2023`
+
+```html
+<vl-datepicker-next format="d/m/Y"></vl-datepicker-next>
+```
+
+Het formaat dat getoond wordt aan de gebruiker, is hetzelfde formaat dat ook als `value` wordt ingesteld.
+
+### Conversie
+
+Wanneer je in jouw implementatie een ander formaat wilt gebruiken dan het formaat dat aan de gebruiker wordt getoond,
+is het noodzakelijk dat je zelf een omzetting uitvoert.
+
+Hiervoor kan je gebruik maken van de `flatpickr`-functie `formatDate`:
+
+```ts
+import flatpickr from 'flatpickr';
+
+function convertDate(date: Date, format: string) {
+  return flatpickr.formatDate(date, format);
+}
+```
+
+Meer documentatie over `flatpickr`-formaten kan je terugvinden in de [Flatpickr documentatie](https://flatpickr.js.org/formatting/).
+
+
+## Configuratie
+
+<ArgTypes of={VlDatepickerStories.DatepickerDefault} />
+
+## Referenties
+
+### Flatpickr
+
+[Documentatie Flatpickr](https://flatpickr.js.org/)
+
+### Digitaal Vlaanderen
+
+[Documentatie Digitaal Vlaanderen - Datepicker](https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-datepicker/)
+
+### Legacy Documentatie
+
+[Legacy Storybook - Datepicker](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/custom-elements-vl-datepicker--default)
+
+[Legacy Documentatie - Datepicker](https://webcomponenten.omgeving.vlaanderen.be/doc/VlDatepicker.html)
+
+[Legacy Demo - Datepicker](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html)

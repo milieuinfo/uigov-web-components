@@ -10,6 +10,7 @@ import {Meta} from '@storybook/blocks';
 - [@domg-wc/common-utilities](#domg-wccommon-utilities)
 - [@domg-wc/elements](#domg-wcelements)
 - [@domg-wc/components](#domg-wccomponents)
+- [@domg-wc/form](#domg-wcform)
 - [@domg-wc/sections](#domg-wcsections)
 - [@domg-wc/map](#domg-wcmap)
 - [fat-js: domg-wc](#fat-js-domg-wc)
@@ -58,6 +59,14 @@ Een __component__ heeft technisch volgende eigenschappen:
 - element styling wordt waar nodig voorzien in de shadow DOM
 
 
+## @domg-wc/form
+
+Alle web-componenten die gebruikt kunnen worden in een form zitten onder de desbetreffende folder. De huidige versie
+bevat enkel `next` componenten, die zullen op termijn (v2) de huidige form-componenten (deze onder components
+en elements) vervangen. Het heeft de voorkeur om daar waar mogelijk, zeker in nieuwe toepassingen, alvast de
+`next` componenten te gebruiken.
+
+
 ## @domg-wc/sections
 
 Onder __sections__ zitten web-componenten specifiek voor Departement Omgeving. Het zijn geen bouwstenen
@@ -77,4 +86,4 @@ die een plugin opzet volgen.
 Specifiek voor legacy toepassingen is er een 'fat-js' variant beschikbaar. Via de CDN van Departement Omgeving kan
 je daar geversioneerd naar refereren conform: `https://cdn.omgeving.vlaanderen.be/domg/wc/domg-wc-1.18.0.min.js`. Bij
 de import worden alle web-componenten (elements, components, sections en map) geregistreerd. Zie
-[CDN Bundel - fat-js](/story/afnemen-cookbook--page#cdn-bundel---fat-js) onder `Cookbook` voor meer informatie.
+[CDN Bundel - fat-js](/docs/afnemen-cookbook--documentatie#cdn-bundel---fat-js) onder `Cookbook` voor meer informatie.
