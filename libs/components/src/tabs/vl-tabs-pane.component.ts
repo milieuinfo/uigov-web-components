@@ -21,11 +21,11 @@ export class VlTabsPaneComponent extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    get id() {
+    get paneId() {
         return this.getAttribute('data-vl-id');
     }
 
-    get title() {
+    get paneTitle() {
         return this.getAttribute('data-vl-title') || '';
     }
 
@@ -42,8 +42,8 @@ export class VlTabsPaneComponent extends BaseElementOfType(HTMLElement) {
 
     __moveTabPaneTitleSlot() {
         const clone = this.titleSlot.cloneNode(true);
-        clone.setAttribute('slot', `${this.id}-title-slot`);
-        const slot = this.parentElement.querySelector(`[slot="${this.id}-title-slot"]`);
+        clone.setAttribute('slot', `${this.paneId}-title-slot`);
+        const slot = this.parentElement.querySelector(`[slot="${this.paneId}-title-slot"]`);
         if (slot) {
             this.parentElement.replaceChild(clone, slot);
         } else {
@@ -59,10 +59,10 @@ export class VlTabsPaneComponent extends BaseElementOfType(HTMLElement) {
 
     _titleChangedCallback(oldValue: string, newValue: string) {
         if (this.hasAttribute('observe-title')) {
-            const tab = this.parentElement?.shadowRoot?.querySelector(`a.vl-tab__link#${this.id}`);
+            const tab = this.parentElement?.shadowRoot?.querySelector(`a.vl-tab__link#${this.paneId}`);
 
             if (tab) {
-                tab.innerHTML = `<slot name="${this.id}-title-slot">${newValue}</slot>`;
+                tab.innerHTML = `<slot name="${this.paneId}-title-slot">${newValue}</slot>`;
             }
         }
     }
