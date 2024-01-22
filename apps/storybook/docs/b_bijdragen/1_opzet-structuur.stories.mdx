@@ -16,10 +16,10 @@ De code van de web-componenten bibliotheek zit in GitHub onder de
 [Nx](https://nx.dev/). Nx (wat staat voor Nrwl Extensions) is een 'Smart, Fast and Extensible Build System' dat
 open-source ontwikkeld wordt door [Nrwl](https://github.com/nrwl), een start-up die groeide uit Google.
 
-Ontwikkeling gebeurd [branch-based](/story/bijdragen-git-branching-strategie--page) waarbij het
-[release proces](/story/beheren-ci-cd--page) volledig geautomatiseerd is.
+Ontwikkeling gebeurd [branch-based](/docs/bijdragen-git-branching-strategie--documentatie) waarbij het
+[release proces](/docs/beheren-ci-cd--documentatie) volledig geautomatiseerd is.
 
-Naast de web-componenten bibliotheek zijn er nog [andere repositories](/story/beheren-repositories--page).
+Naast de web-componenten bibliotheek zijn er nog [andere repositories](/docs/beheren-repositories--documentatie).
 
 ## Structuur
 
@@ -32,7 +32,7 @@ De Playground applicaties zijn bedoeld om integraties en combinaties van compone
 De playground-legacy applicatie is de vorige versie van de playground applicaties en is behouden voor historische redenen.
 
 De feitelijke componenten zitten opgesplitst in een aantal bibliotheken onder de libs folder. Ze worden aangeboden
-als [npm packages](/story/afnemen-artifacts--page).
+als [npm packages](/docs/afnemen-artifacts--documentatie).
 
 ```
 ─ uigov-web-components/
@@ -57,12 +57,18 @@ als [npm packages](/story/afnemen-artifacts--page).
   │  │   -> @domg-wc/components
   │  ├─ elements/
   │  │   -> @domg-wc/elements
+  │  ├─ form/
+  │  │   -> @domg-wc/form
   │  ├─ map/
   │  │   -> @domg-wc/map
+  │  ├─ qlik/
+  │  │   -> @domg-wc/qlik
   │  ├─ sections
   │  │   -> @domg-wc/sections
-  │  │   -> domg-wc-sections (fat-js)
   │  ├─ support/
-  │  │   -> @domg-wc/test-support [js]
+  │  │  ├─ fat-lib/
+  │  │  │   -> domg-wc (in artifactory onder local-generic/domg)
+  │  │  ├─ test-support/
+  │  │  │   -> @domg-wc/test-support
   ├─ resources/
 ```

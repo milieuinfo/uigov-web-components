@@ -1,15 +1,15 @@
 import { customElement } from 'lit/decorators.js';
 import { CSSResult, LitElement, css, html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
+import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
 import { vlElementsStyle } from '@domg-wc/elements';
-import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
-import { VlInputFieldMaskedComponent } from '@domg-wc/components/next/form/input-field-masked';
-import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
-import { SelectOption, VlSelectComponent } from '@domg-wc/components/next/form/select';
-import { VlCheckboxComponent } from '@domg-wc/components/next/form/checkbox';
-import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/components/next/form/radio-group';
-import { VlDatepickerComponent } from '@domg-wc/components/next/form/datepicker';
+import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
+import { VlInputFieldMaskedComponent } from '@domg-wc/form/next/input-field-masked';
+import { VlTextareaComponent } from '@domg-wc/form/next/textarea';
+import { SelectOption, VlSelectComponent } from '@domg-wc/form/next/select';
+import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
+import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio-group';
+import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 
 @customElement('vl-form-demo')
 export class FormDemoComponent extends LitElement {

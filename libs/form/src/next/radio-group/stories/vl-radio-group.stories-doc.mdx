@@ -1,0 +1,45 @@
+import { ArgTypes, Canvas } from '@storybook/addon-docs';
+import * as VlRadioGroupStories from './vl-radio-group.stories';
+
+# Radio Group - next
+
+Gebruik de `radio-group-next` component om de gebruiker de mogelijkheid te geven om 1 keuze te selecteren in een lijst.<br/>
+Wanneer mogelijk, selecteer geen `radio` van vooraf zodat de gebruiker een bewuste keuze kan maken.<br/>
+De `radio-next` component is een onderdeel van de `radio-group-next` component.<br/>
+Zie het [form demo](/docs/applicatief-voorbeelden-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.
+
+Dit component is de volgende versie van het [vl-radio](/docs/components-radio--documentatie) component, we raden aan deze versie te gebruiken.
+
+## Voorbeeld
+
+```js
+import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio-group';
+```
+
+```html
+<vl-radio-group-next>
+    <vl-radio-next></vl-radio-next>
+    <vl-radio-next></vl-radio-next>
+    <vl-radio-next></vl-radio-next>
+</vl-radio-group-next>
+```
+
+<Canvas of={VlRadioGroupStories.RadioGroupDefault} />
+
+## Configuratie
+
+<ArgTypes of={VlRadioGroupStories.RadioGroupDefault} />
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+[Documentatie Digitaal Vlaanderen](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-radio/)
+
+### Legacy Documentatie
+
+[Legacy Storybook](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-radio-next--default)
+
+[Legacy Documentatie](https://webcomponenten.omgeving.vlaanderen.be/doc/VlRadio.html)
+
+[Legacy Demo](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-radio-next.html)
