@@ -28,6 +28,7 @@ Dit document beschrijft (in grote lijnen) de stappen utgevoerd om de UIG repo op
 -   npx nx g @nx/js:lib support/test-support --buildable --publishable --importPath=@domg-wc/test-support
 -   npx nx g @nx/js:lib support/fat-lib --buildable --publishable --importPath=@domg-wc/fat-lib
 -   npx nx g @nx/js:lib map --buildable --publishable --importPath=@domg-wc/map
+-   npx nx g @nx/js:lib form --buildable --publishable --importPath=@domg-wc/form
 -   npx nx g @nx/web:application playground
 -   npx nx g @nx/web:application playground-lit --e2eTestRunner=none
 -   npx nx g @nx/web:application playground-native --e2eTestRunner=none

@@ -1,0 +1,30 @@
+import { ArgTypes, Canvas } from '@storybook/addon-docs';
+import * as VlErrorMessageStories from './vl-error-message.stories';
+
+# Error Message
+
+Gebruik de `error-message-next` component om een error af te beelden voor een input veld.<br/>
+Deze component is de opvolger van de [vl-form-validation-message](/docs/elements-form-message-form-validation-message--documentatie)
+component, we raden aan deze nieuwe versie te gebruiken.
+
+## Voorbeeld
+
+```js
+import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
+```
+
+```html
+<vl-error-message-next></vl-error-message-next>
+```
+
+<Canvas of={VlErrorMessageStories.ErrorMessageDefault} />
+
+## Configuratie
+
+<ArgTypes of={VlErrorMessageStories.ErrorMessageDefault} />
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+[Documentatie Digitaal Vlaanderen - Form Message](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-form-message)

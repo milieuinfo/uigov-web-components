@@ -2,8 +2,8 @@ import { customElement } from 'lit/decorators.js';
 import { Validator } from '@open-wc/form-control';
 import { CSSResult, LitElement, PropertyDeclarations, html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
-import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
+import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
+import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
 import { vlElementsStyle } from '@domg-wc/elements';
 
 const fooValidator: Validator = {

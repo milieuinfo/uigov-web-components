@@ -1,16 +1,16 @@
 import { CSSResult, html, LitElement, PropertyDeclarations, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { vlElementsStyle } from '@domg-wc/elements';
-import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
-import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
-import { VlInputFieldMaskedComponent } from '@domg-wc/components/next/form/input-field/input-field-masked';
-import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
-import { VlSelectComponent, SelectOption } from '@domg-wc/components/next/form/select';
-import { VlCheckboxComponent } from '@domg-wc/components/next/form/checkbox';
-import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/components/next/form/radio';
+import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
+import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
+import { VlInputFieldMaskedComponent } from '@domg-wc/form/next/input-field-masked';
+import { VlTextareaComponent } from '@domg-wc/form/next/textarea';
+import { VlSelectComponent, SelectOption } from '@domg-wc/form/next/select';
+import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
+import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import appElementStyle from './app.element.css';
-import { VlDatepickerComponent } from '@domg-wc/components/next/form/datepicker';
+import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 
 type SubmittedFormData = {
     voornaam?: string;

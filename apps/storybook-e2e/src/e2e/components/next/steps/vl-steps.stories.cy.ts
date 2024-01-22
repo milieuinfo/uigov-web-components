@@ -1,16 +1,15 @@
-const stepsNextUrl = 'http://localhost:8080/iframe.html?id=components-next-steps-next--steps-default&viewMode=story';
-const stepsNextIconsUrl = 'http://localhost:8080/iframe.html?id=components-next-steps-next--steps-icons&viewMode=story';
-const stepsNextStatesUrl =
-    'http://localhost:8080/iframe.html?id=components-next-steps-next--steps-states&viewMode=story';
+const stepsNextUrl = 'http://localhost:8080/iframe.html?id=components-next-steps--steps-default&viewMode=story';
+const stepsNextIconsUrl = 'http://localhost:8080/iframe.html?id=components-next-steps--steps-icons&viewMode=story';
+const stepsNextStatesUrl = 'http://localhost:8080/iframe.html?id=components-next-steps--steps-states&viewMode=story';
 const stepsNextAccordionsUrl =
-    'http://localhost:8080/iframe.html?id=components-next-steps-next--steps-accordions&viewMode=story';
-const stepsNextLineUrl = 'http://localhost:8080/iframe.html?id=components-next-steps-next--steps-line&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-steps--steps-accordions&viewMode=story';
+const stepsNextLineUrl = 'http://localhost:8080/iframe.html?id=components-next-steps--steps-line&viewMode=story';
 const stepsNextTimelineUrl =
-    'http://localhost:8080/iframe.html?id=components-next-steps-next--steps-timeline&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-steps--steps-timeline&viewMode=story';
 const stepsNextSimpleTimelineUrl =
-    'http://localhost:8080/iframe.html?id=components-next-steps-next--steps-simple-timeline&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-steps--steps-simple-timeline&viewMode=story';
 const stepsSideNavigationUrl =
-    'http://localhost:8080/iframe.html?id=components-next-steps-next--steps-side-navigation&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-steps--steps-side-navigation&viewMode=story';
 
 describe('story vl-steps-next default', () => {
     it('should be accessible', () => {

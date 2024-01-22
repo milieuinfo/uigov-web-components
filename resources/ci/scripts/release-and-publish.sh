@@ -115,6 +115,7 @@ cd dist/libs
 rm -rf ./map/**/*.wctest.*
 rm -rf ./components/**/stories
 rm -rf ./elements/**/stories
+rm -rf ./form/**/stories
 rm -rf ./map/**/stories
 rm -rf ./qlik/**/stories
 rm -rf ./sections/**/stories
@@ -142,6 +143,9 @@ npm pkg set sideEffects='["./*/**"]' --json
 cd ../components
 npm pkg delete type --json
 npm pkg set sideEffects='["./*/**"]' --json
+cd ../form
+npm pkg delete type --json
+npm pkg set sideEffects='["./*/**"]' --json
 cd ../sections
 npm pkg delete type --json
 npm pkg set sideEffects='["./*/**"]' --json
@@ -165,6 +169,7 @@ if [[ ${release_branch} == true ]];
     cd ../../common/storybook && npm publish
     cd ../../elements && npm publish
     cd ../components && npm publish
+    cd ../form && npm publish
     cd ../sections && npm publish
     cd ../map  && npm publish
     cd ../qlik  && npm publish
@@ -185,6 +190,9 @@ if [[ ${develop_branch} == true ]];
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     npm publish
     cd ../components
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
+    npm publish
+    cd ../form
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     npm publish
     cd ../sections

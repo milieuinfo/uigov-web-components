@@ -1,0 +1,45 @@
+{
+    "name": "form",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/form/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nx/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "clean": true,
+                "rootDir": "libs/form/src",
+                "outputPath": "dist/libs/form",
+                "main": "libs/form/index.ts",
+                "tsConfig": "libs/form/tsconfig.lib.json",
+                "assets": ["libs/form/*.md"],
+                "updateBuildableProjectDepsInPackageJson": true
+            }
+        },
+        "build-with-js": {
+            "executor": "nx:run-commands",
+            "dependsOn": ["build"],
+            "options": {
+                "command": "node tools/build-with-js/copy-form-js.mjs"
+            }
+        },
+        "publish": {
+            "command": "node tools/scripts/publish.mjs form {args.ver} {args.tag}",
+            "dependsOn": ["build"]
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/form/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}
