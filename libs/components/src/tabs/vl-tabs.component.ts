@@ -130,8 +130,8 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     }
 
     _addTab({ tabPane, index }: any) {
-        const { id, title } = tabPane;
-        const element = this.__getTabTemplate({ id, title });
+        const { paneId, paneTitle } = tabPane;
+        const element = this.__getTabTemplate({ id: paneId, title: paneTitle });
         if (index && index >= 0) {
             this.__tabList.insertBefore(element, this.__tabList.children[index]);
         } else {
@@ -171,7 +171,7 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     }
 
     _renderSections() {
-        this.__tabPanes.forEach((tabPane, index) => this._addTabSection({ id: tabPane.id, index }));
+        this.__tabPanes.forEach((tabPane, index) => this._addTabSection({ id: tabPane.paneId, index }));
     }
 
     _altChangedCallback(oldValue: string, newValue: string) {
@@ -246,15 +246,15 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         this._addTab({ tabPane, index });
 
         if (!this.hasAttribute('within-functional-header')) {
-            this._addTabSection({ id: tabPane.id, index });
+            this._addTabSection({ id: tabPane.paneId, index });
         }
     }
 
     __removeTabAndSection(tabPane: any) {
-        this._removeTab(tabPane.id);
+        this._removeTab(tabPane.paneId);
 
         if (!this.hasAttribute('within-functional-header')) {
-            this._removeTabSection(tabPane.id);
+            this._removeTabSection(tabPane.paneId);
         }
     }
 }
