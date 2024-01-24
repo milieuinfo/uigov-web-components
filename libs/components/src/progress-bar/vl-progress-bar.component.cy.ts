@@ -10,7 +10,7 @@ type MountDefaultProps = {
     focusOnChange: boolean;
     numeric?: boolean;
     steps: string[];
-    showSteps: boolean;
+    showLabels: boolean;
     onClickStep: (event: CustomEvent) => void;
 };
 
@@ -19,7 +19,7 @@ const props: MountDefaultProps = {
     focusOnChange: false,
     numeric: false,
     steps: [],
-    showSteps: false,
+    showLabels: false,
     onClickStep: (event) => {
         console.log(event);
     },
@@ -28,7 +28,7 @@ const props: MountDefaultProps = {
 const mountDefault = (props: MountDefaultProps) =>
     cy.mount(html` <vl-progress-bar
         data-vl-active-step=${props.activeStep}
-        ?data-vl-show-steps=${props.showSteps}
+        ?data-vl-show-labels=${props.showLabels}
         ?data-vl-focus-on-change=${props.focusOnChange}
         ?data-vl-numeric=${props.numeric}
         .steps=${props.steps}
@@ -98,7 +98,7 @@ describe('component vl-progress-bar - properties default ', () => {
         cy.get('vl-progress-bar').should('have.attr', 'data-vl-active-step', props.activeStep);
         cy.get('vl-progress-bar').should('not.have.attr', 'data-vl-focus-on-change', props.focusOnChange);
         cy.get('vl-progress-bar').should('not.have.attr', 'data-vl-numeric');
-        cy.get('vl-progress-bar').should('not.have.attr', 'data-vl-show-steps');
+        cy.get('vl-progress-bar').should('not.have.attr', 'data-vl-show-labels');
     });
 });
 
@@ -126,8 +126,8 @@ describe('component vl-progress-bar - properties reflect', () => {
         cy.get('vl-progress-bar').shadow().find('.vl-progress-bar__step').should('have.length', steps.length);
     });
 
-    it('should always show step text when <showSteps> property is true', () => {
-        mountDefault({ ...props, steps, showSteps: true });
+    it('should always show the labels when <showLabels> property is true', () => {
+        mountDefault({ ...props, steps, showLabels: true });
 
         steps.forEach((__, index) => {
             cy.get('vl-progress-bar')

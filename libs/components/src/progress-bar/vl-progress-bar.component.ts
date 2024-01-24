@@ -3,7 +3,7 @@ import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
 import { progressBarStyle } from '@domg/govflanders-style/component';
 import ProgressBar from '@govflanders/vl-ui-progress-bar/src/js/progress-bar.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
-import { type PropertyDeclarations, html } from 'lit';
+import { type PropertyDeclarations, html, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import 'reflect-metadata';
@@ -17,7 +17,7 @@ export class VlProgressBarComponent extends BaseLitElement {
     private numeric = false;
     private progressBar = new ProgressBar();
     private steps = [];
-    private showSteps = false;
+    private showLabels = false;
 
     static {
         registerWebComponents([VlPopoverComponent]);
@@ -41,7 +41,7 @@ export class VlProgressBarComponent extends BaseLitElement {
             },
             numeric: { type: Boolean, attribute: 'data-vl-numeric', reflect: true },
             steps: { type: Array },
-            showSteps: { type: Boolean, attribute: 'data-vl-show-steps', reflect: true },
+            showLabels: { type: Boolean, attribute: 'data-vl-show-labels', reflect: true },
         };
     }
 
@@ -52,7 +52,7 @@ export class VlProgressBarComponent extends BaseLitElement {
         this.activeStep = 1;
         this.progressBar = new ProgressBar();
         this.steps = [];
-        this.showSteps = false;
+        this.showLabels = false;
     }
 
     updated() {
@@ -72,8 +72,6 @@ export class VlProgressBarComponent extends BaseLitElement {
     }
 
     private renderStep = (step: string, index: number) => {
-        const isPopOverActive = !this.showSteps;
-
         const stepClasses = {
             'vl-progress-bar__step': true,
             'vl-progress-bar__step--active': this.activeStep === index + 1,
@@ -86,12 +84,14 @@ export class VlProgressBarComponent extends BaseLitElement {
                 aria-label=${step}
                 id="step-${index + 1}"
             >
-        
-                <vl-popover for="step-${index + 1}" placement="top" trigger=${isPopOverActive
-                    ? 'focus hover'
-                    : undefined}>${isPopOverActive ? step : undefined}</vl-popover>
-
-                ${this.showSteps ? html`<span class="vl-progress-bar__bullet__text" title=${step}>${step}</span>` : ''}
+                ${!this.showLabels
+                    ? html`
+                          <vl-popover for="step-${index + 1}" placement="top" trigger="focus hover">
+                              ${step}
+                          </vl-popover>
+                      `
+                    : nothing}
+                ${this.showLabels ? html`<span class="vl-progress-bar__bullet__text" title=${step}>${step}</span>` : ''}
             </button>
         </div>`;
     };

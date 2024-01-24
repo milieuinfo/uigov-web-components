@@ -5,7 +5,7 @@ import { ArgTypes } from '@storybook/web-components';
 export const progressBarArgs = {
     ...defaultArgs,
     activeStep: 0,
-    showSteps: false,
+    showLabels: false,
     focusOnChange: false,
     numeric: false,
     steps: [''],
@@ -24,13 +24,13 @@ export const progressBarArgTypes: ArgTypes<typeof progressBarArgs> = {
             defaultValue: { summary: progressBarArgs.activeStep },
         },
     },
-    showSteps: {
-        name: 'data-vl-show-steps',
-        description: 'Bepaalt of de stappen altijd zichtbaar zijn.',
+    showLabels: {
+        name: 'data-vl-show-labels',
+        description: 'Bepaalt of de labels van de stappen altijd zichtbaar zijn.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: progressBarArgs.showSteps },
+            defaultValue: { summary: progressBarArgs.showLabels },
         },
     },
     focusOnChange: {
