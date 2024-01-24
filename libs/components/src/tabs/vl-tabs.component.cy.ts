@@ -36,6 +36,7 @@ type MountDefaultProps = {
     title?: string;
     responsiveLabel?: string;
     observeTitle?: boolean;
+    tabListStyle?: string;
     onChangeActiveTab: (activeTab: string) => void;
 };
 
@@ -50,6 +51,7 @@ const props: MountDefaultProps = {
     onChangeActiveTab: (activeTab) => {
         console.log(activeTab);
     },
+    tabListStyle: '',
 };
 
 const mountDefault = ({
@@ -59,12 +61,14 @@ const mountDefault = ({
     disableLinks,
     onChangeActiveTab,
     observeTitle,
+    tabListStyle,
 }: MountDefaultProps) => {
-    return cy.mount(html` <vl-tabs
+    return cy.mount(html` <div><vl-tabs
         data-vl-active-tab=${activeTab}
         ?data-vl-alt=${alt}
         data-vl-responsive-label=${responsiveLabel}
         ?data-vl-disable-links=${disableLinks}
+        data-vl-tab-list-style=${tabListStyle}
         @change=${(event: CustomEvent) => onChangeActiveTab(event.detail)}
     >
         <vl-tabs-pane data-vl-id="trein" data-vl-title="Trein" ?data-vl-observe-title=${observeTitle}>
@@ -82,7 +86,7 @@ const mountDefault = ({
             leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras justo odio, dapibus ac facilisis
             in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
         </vl-tabs-pane>
-    </vl-tabs>`);
+    </vl-tabs></div>`);
 };
 
 describe('component vl-tabs', () => {
@@ -120,6 +124,53 @@ describe('component vl-tabs - accessibility', () => {
 });
 
 describe('component vl-tabs - attributes', () => {
+    it('should render the expanded view for containers with width > 767', () => {
+        mountDefault({ ...props });
+        document.querySelector('div')?.setAttribute('style', 'width:768px');
+        cy.get('vl-tabs').should('not.have.attr', 'data-vl-collapsed');
+        cy.get('vl-tabs')
+            .shadow()
+            .find('div#tabs > div#tabs-wrapper > ul#tab-list > li')
+            .each(($el) => {
+                expect($el.css('display')).to.eq('inline-block');
+            });
+    });
+
+    it('should render the collapsed view for containers with width <= 767', () => {
+        mountDefault({ ...props });
+        document.querySelector('div')?.setAttribute('style', 'width:767px');
+        cy.get('vl-tabs').should('have.attr', 'data-vl-collapsed');
+        cy.get('vl-tabs')
+            .shadow()
+            .find('div#tabs > div#tabs-wrapper > ul#tab-list > li')
+            .each(($el) => {
+                expect($el.css('display')).to.eq('block');
+            });
+    });
+
+    it('should render the collapsed view for containers with width > 767 when data-vl-tab-list-style is set to collapsed', () => {
+        mountDefault({ ...props, tabListStyle: 'collapsed' });
+        document.querySelector('div')?.setAttribute('style', 'width:768px');
+        cy.get('vl-tabs').should('have.attr', 'data-vl-collapsed');
+        cy.get('vl-tabs')
+            .shadow()
+            .find('div#tabs > div#tabs-wrapper > ul#tab-list > li')
+            .each(($el) => {
+                expect($el.css('display')).to.eq('block');
+            });
+    });
+
+    it('should render the expanded view for containers with width <= 767 when data-vl-tab-list-style is set to expanded', () => {
+        mountDefault({ ...props, tabListStyle: 'expanded' });
+        document.querySelector('div')?.setAttribute('style', 'width:767px');
+        cy.get('vl-tabs').should('not.have.attr', 'data-vl-collapsed');
+        cy.get('vl-tabs')
+            .shadow()
+            .find('div#tabs > div#tabs-wrapper > ul#tab-list > li')
+            .each(($el) => {
+                expect($el.css('display')).to.eq('inline-block');
+            });
+    });
     it('should not have an <activeTab> selected', () => {
         mountDefault({ ...props, activeTab: '' });
 
@@ -156,11 +207,14 @@ describe('component vl-tabs - attributes', () => {
 
         cy.get('vl-tabs').should('have.attr', 'data-vl-disable-links');
     });
+
+
 });
 
 describe('component vl-tabs-pane - functionality on larger devices', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
+        document.querySelector('div')?.setAttribute('style', 'width:768px');
     });
 
     it('should emit event on click tab', () => {
@@ -200,6 +254,7 @@ describe('component vl-tabs-pane - functionality on larger devices', () => {
 describe('component vl-tabs-pane - functionality on smaller devices', () => {
     beforeEach(() => {
         cy.viewport(550, 750);
+        document.querySelector('div')?.setAttribute('style', 'width:767px');
     });
 
     it('should emit event on click tab', () => {

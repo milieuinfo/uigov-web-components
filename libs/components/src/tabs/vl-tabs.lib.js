@@ -1,7 +1,6 @@
 // Er zijn wijzigingen in deze file toegepast tov de originele file van Digitaal Vlaanderen v14.0.2.
-// Er staat een comment bij alle wijzingen beginnend met het ticket nummer waar de wijziging voor doorgevoerd is (UIG-...).
+// Er staat een comment bij alle wijzigingen beginnend met het ticket nummer waar de wijziging voor doorgevoerd is (UIG-...).
 // Verder is de dressAll() methode en alle calls hiernaar verwijderd aangezien deze methode niet nodig is.
-import Breakpoint from '@govflanders/vl-ui-util/src/js/breakpoint';
 
 // Private Variables
 const tabActiveClass = `${vl.ns}tab--active`,
@@ -13,10 +12,6 @@ const tabActiveClass = `${vl.ns}tab--active`,
     tabShowAtt = `data-${vl.ns}show`,
     tabCloseAtt = `data-${vl.ns}close`,
     tabsAtt = `data-${vl.ns}tabs`;
-
-const breakpoint = new Breakpoint();
-
-breakpoint.dress();
 
 class Tabs {
     constructor() {
@@ -80,12 +75,10 @@ class Tabs {
     setupResponsiveToggleBtnForTabsContainer(tabsContainer) {
         const toggleBtnEl = tabsContainer.querySelector(`[${tabToggleAtt}]`);
 
-        const bp = breakpoint._getBreakpoint();
-
+        // UIG-2210: click event listener voor toggle button altijd enabled. Mobile view van de tabs hangt niet meer
+        // af van de screen width maar van de breedte van de tabs component.
         // setup responsive toggle btn
-        if (bp === 'xsmall' || bp === 'small') {
-            toggleBtnEl.addEventListener('click', this.clickEvent, false);
-        }
+        toggleBtnEl.addEventListener('click', this.clickEvent, false);
     }
 
     dress(tabsContainer) {
@@ -99,16 +92,12 @@ class Tabs {
         // UIG-2483: Check voor tabPanes.length > 0 uitgezet.
         // Bij het gebruik binnen de functional-header zijn er geen tabPanes, maar de logica hieronder moet wel uitgevoerd worden.
         // Indien dit niet uitgevoerd wordt zijn er problemen in de mobile view en problemen met accessibility.
-
-        // if (tabPanes.length > 0) {
         vl.util.each(tabs, (tab, index) => {
             tab.addEventListener('focus', () => {
                 this.currentTabIndexForCurrentTabsContainer = index;
                 tab.click();
             });
             tab.addEventListener('click', () => {
-                // event.preventDefault();
-
                 // reset tabs & panes
                 this.resetTabIndexesForTabs(tabs);
                 this.resetTabPanes(tabPanes);
@@ -124,7 +113,6 @@ class Tabs {
                 toggleBtnEl.click();
             });
         });
-        // }
 
         if (activeTab) {
             activeTab.click();
@@ -165,38 +153,14 @@ class Tabs {
                     break;
             }
         });
-
-        window.addEventListener(
-            'resize',
-            vl.util.debounce(() => {
-                const bp = breakpoint._getBreakpoint();
-
-                // setup responsive toggle btn
-                if (bp === 'xsmall' || bp === 'small') {
-                    const toggleBtnEl = tabsContainer.querySelector(`[${tabToggleAtt}]`);
-
-                    toggleBtnEl.removeEventListener('click', this.clickEvent, false);
-
-                    this.setupResponsiveToggleBtnForTabsContainer(tabsContainer);
-                }
-            }, 0)
-        );
+        // UIG-2210: click event listener voor toggle button altijd enabled. Mobile view van de tabs hangt niet meer af
+        // van de screen width maar van de breedte van de tabs component.
+        this.setupResponsiveToggleBtnForTabsContainer(tabsContainer);
     }
-
-    // DressAll() methode verwijderd, deze is niet nodig.
-    // dressAll() {
-    //     const wrappers = document.querySelectorAll(`[${tabsAtt}]:not([data-${vl.ns}js-dress="false"])`);
-
-    //     vl.util.each(wrappers, (tabsContainer) => {
-    //         this.dress(tabsContainer);
-    //     });
-    // }
 }
 
 if (!('tabs' in vl)) {
     vl.tabs = new Tabs();
-    // Call naar dressAll() uitgeschakeld, de dressAll() methode was niet nodig en is verwijderd.
-    // vl.tabs.dressAll();
 }
 
 export default Tabs;

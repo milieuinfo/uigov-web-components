@@ -219,6 +219,7 @@ describe('story vl-functional-header tabs', () => {
         cy.visit(functionalHeaderTabsUrl);
 
         cy.createStubForEvent('vl-tabs', 'change');
+        cy.get('vl-tabs').shadow().find('button[data-vl-tabs-toggle]').click();
         cy.get('vl-tabs').shadow().find('a#trein').click();
         cy.get('@change').should('have.been.calledOnce');
     });
