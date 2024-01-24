@@ -102,7 +102,7 @@ interface Util {
     bytesToSize(bytes: number, addUnits: boolean, base: number): number;
     closest(value: any, to: any): any;
     countDecimals(numStr: unknown): any;
-    debounce(func: () => any, wait: number, immediate?: boolean): any;
+    debounce(func: (...args: any[]) => any, wait: number, immediate?: boolean): any;
     each(arr: any[], fn: (el: any) => any): any;
     exists(value: unknown): any;
     getJson(url: string, callback: () => any): any;

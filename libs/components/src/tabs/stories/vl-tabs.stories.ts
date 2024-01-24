@@ -20,9 +20,10 @@ export default {
 
 export const TabsDefault = story(
     tabsArgs,
-    ({ activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab, observeTitle }) => html`
+    ({ activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab, observeTitle, tabListStyle }) => html`
         <vl-tabs
             data-vl-active-tab=${activeTab}
+            data-vl-tab-list-style=${tabListStyle}
             ?data-vl-alt=${alt}
             data-vl-responsive-label=${responsiveLabel}
             ?data-vl-disable-links=${disableLinks}

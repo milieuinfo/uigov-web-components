@@ -10,6 +10,7 @@ export const tabsArgs = {
     responsiveLabel: '',
     id: '',
     title: '',
+    tabListStyle: '',
     observeTitle: false,
     onChangeActiveTab: action('change'),
 };
@@ -71,6 +72,14 @@ export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.CHILD_ATTRIBUTES,
+        },
+    },
+    tabListStyle: {
+        name: 'data-vl-tab-list-style',
+        description: 'De stijl van de tab list.',
+        table: {
+            type: { summary: ['auto', 'collapsed', 'expanded'] },
+            category: CATEGORIES.ATTRIBUTES,
         },
     },
     observeTitle: {

@@ -1,7 +1,6 @@
 import { type VL, awaitUntil, BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
-
 import '@govflanders/vl-ui-util/dist/js/util.js'; // Moet expliciet geïmporteerd worden om de cy test te laten slagen - de vl object is nodig
-import './vl-tabs.lib';
+import './vl-tabs.lib.js';
 import { VlTabComponent } from './vl-tab.component';
 import { VlTabSectionComponent } from './vl-tab-section.component';
 import { VlTabsPaneComponent } from './vl-tabs-pane.component';
@@ -23,7 +22,15 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
     }
 
     static get _observedAttributes() {
-        return ['alt', 'responsive-label', 'active-tab', 'href', 'disable-links', 'within-functional-header'];
+        return [
+            'alt',
+            'responsive-label',
+            'active-tab',
+            'href',
+            'disable-links',
+            'within-functional-header',
+            'tab-list-style', // 'auto' | 'collapsed' | 'expanded'
+        ];
     }
 
     constructor() {
@@ -43,6 +50,8 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         </button>
       </div>
     </div>`);
+
+        this.__tabListStyle = 'auto';
     }
 
     connectedCallback() {
@@ -56,10 +65,16 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
 
         this.__dress();
         this._observer = this.__observeTabPanes((mutations: any) => this.__processTabPane(mutations));
+
+        const debouncedResizeHandler: ResizeObserverCallback = vl.util.debounce((entries: any, observer: any) => {
+            this.__processResize(entries, observer);
+        }, 0);
+        this._resizeObserver = this.__observeResize(debouncedResizeHandler);
     }
 
     disconnectedCallback() {
         this._observer.disconnect();
+        this._resizeObserver.disconnect();
     }
 
     get _dressed() {
@@ -215,6 +230,11 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         this.__updateHrefs();
     }
 
+    _tabListStyleChangedCallback(oldValue: string, newValue: string) {
+        this.__tabListStyle = newValue || 'auto';
+        this.__setTabListStyle();
+    }
+
     get __href() {
         return this.getAttribute('data-vl-href') || window.location.pathname + window.location.search;
     }
@@ -242,6 +262,40 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         tabPanesToDelete.forEach((tabPane: any) => this.__removeTabAndSection(tabPane));
 
         this.__dress(true);
+    }
+
+    __observeResize(callback: ResizeObserverCallback) {
+        const observer = new ResizeObserver(callback);
+        observer.observe(this.__tabs);
+        return observer;
+    }
+
+    __processResize: ResizeObserverCallback = (entries) => {
+        const tab = this as unknown as VlTabComponent;
+        for (const entry of entries) {
+            if (entry.target === tab.__tabs) {
+                tab.__setTabListStyle();
+            }
+        }
+    };
+
+    __setTabListStyle() {
+        const width = this.__tabs.getBoundingClientRect().width;
+        let collapsed = width <= 767;
+
+        if (this.__tabListStyle === 'collapsed') {
+            collapsed = true;
+        }
+
+        if (this.__tabListStyle === 'expanded') {
+            collapsed = false;
+        }
+
+        if (collapsed) {
+            this.setAttribute('data-vl-collapsed', '');
+        } else {
+            this.removeAttribute('data-vl-collapsed');
+        }
     }
 
     __addTabAndSection(tabPane: any) {

@@ -142,5 +142,64 @@ const styles: CSSResult = css`
         border: 0;
         border-bottom: none;
     }
+    .vl-tabs:not(.vl-tabs--overflow) {
+        display: block;
+        position: relative;
+        left: unset;
+        width: unset;
+        margin: 0 0 3rem 0;
+        padding: 0;
+        border: 0;
+        border-bottom: 1px #cbd2da solid;
+        line-height: unset;
+    }
+    [data-vl-tabs] .vl-tabs:not(.vl-tabs--overflow) .vl-tab {
+        display: inline-block;
+        position: relative;
+        margin: 0 1.3rem;
+        padding: 0;
+        border-bottom: 3px solid transparent;
+    }
+    .vl-tabs__toggle {
+        display: none;
+    }
+    [data-vl-tabs] .vl-tabs:not(.vl-tabs--overflow) .vl-tab:first-of-type {
+        width: unset;
+    }
+    [data-vl-tabs] .vl-tabs:not(.vl-tabs--overflow) .vl-tab--active {
+        border-bottom: 3px solid;
+    }
+    [data-vl-tabs] .vl-tabs:not(.vl-tabs--overflow) .vl-tab:hover,
+    .vl-tab:focus {
+        border-bottom-color: var(--vl-theme-fg-color);
+    }
+    :host([data-vl-collapsed]) .vl-tabs:not(.vl-tabs--overflow) {
+        display: none;
+        position: relative;
+        left: -1.5rem;
+        width: calc(100% + 3rem);
+        margin: 0 0 1rem;
+        padding: 0.4rem 0;
+        border-top: 1px #f7f9fc solid;
+        border-bottom: 1px #f7f9fc solid;
+        line-height: 1.33;
+    }
+    :host([data-vl-collapsed]) .vl-tabs:not(.vl-tabs--overflow)[data-vl-show='true'] {
+        display: block;
+    }
+    :host([data-vl-collapsed]) .vl-tabs__toggle {
+        display: block;
+    }
+    :host([data-vl-collapsed]) [data-vl-tabs] .vl-tabs:not(.vl-tabs--overflow) .vl-tab:first-of-type {
+        width: calc(100% - 4.2rem);
+    }
+    :host([data-vl-collapsed]) [data-vl-tabs] .vl-tabs:not(.vl-tabs--overflow) .vl-tab {
+        display: block;
+        top: 0;
+        padding: 0.7rem 1.5rem;
+        border: 0;
+        font-size: 1.5rem;
+        margin: 0;
+    }
 `;
 export default styles;
