@@ -60,7 +60,7 @@ export class VlWizard extends BaseLitElement {
                 </header>
                 <vl-progress-bar
                     data-vl-active-step=${this.activeStep}
-                    data-vl-show-steps
+                    data-vl-show-labels
                     .steps=${this.panes.map((pane) => pane.name)}
                 ></vl-progress-bar>
                 <div class="vl-wizard__panes">
