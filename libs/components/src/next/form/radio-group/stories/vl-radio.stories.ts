@@ -3,13 +3,12 @@ import { registerWebComponents } from '@domg-wc/common-utilities';
 import { radioArgs, radioArgTypes } from './vl-radio.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
-import radioDoc from './vl-radio.stories-doc.mdx';
 import { VlRadioComponent } from '../vl-radio.component';
 
 registerWebComponents([VlRadioComponent]);
 
 export default {
-    title: 'Components-next/form/radio',
+    title: 'Components-next/form/radio-group',
     tags: ['autodocs'],
     args: radioArgs,
     argTypes: radioArgTypes,

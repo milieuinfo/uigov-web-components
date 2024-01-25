@@ -27,8 +27,8 @@ export class VlInputFieldWithFooValidatorComponent extends VlInputFieldComponent
     static formControlValidators = [...VlInputFieldComponent.formControlValidators, fooValidator];
 }
 
-@customElement('vl-custom-validation-form')
-export class CustomValidationFormComponent extends LitElement {
+@customElement('vl-form-custom-validation')
+export class FormCustomValidationComponent extends LitElement {
     private success = false;
 
     static {
@@ -91,6 +91,6 @@ export class CustomValidationFormComponent extends LitElement {
 declare global {
     interface HTMLElementTagNameMap {
         'vl-input-field-with-foo-validator': VlInputFieldWithFooValidatorComponent;
-        'vl-custom-validation-form': CustomValidationFormComponent;
+        'vl-form-custom-validation': FormCustomValidationComponent;
     }
 }

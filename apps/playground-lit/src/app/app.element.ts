@@ -3,11 +3,11 @@ import { customElement } from 'lit/decorators.js';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { VlErrorMessageComponent } from '@domg-wc/components/next/form/error-message';
 import { VlInputFieldComponent } from '@domg-wc/components/next/form/input-field';
-import { VlInputFieldMaskedComponent } from '@domg-wc/components/next/form/input-field/input-field-masked';
+import { VlInputFieldMaskedComponent } from '@domg-wc/components/next/form/input-field-masked';
 import { VlTextareaComponent } from '@domg-wc/components/next/form/textarea';
 import { VlSelectComponent, SelectOption } from '@domg-wc/components/next/form/select';
 import { VlCheckboxComponent } from '@domg-wc/components/next/form/checkbox';
-import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/components/next/form/radio';
+import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/components/next/form/radio-group';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import appElementStyle from './app.element.css';
 import { VlDatepickerComponent } from '@domg-wc/components/next/form/datepicker';
@@ -353,7 +353,9 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="rrn">Rijksregisternummer</label>
+                            <label class="vl-form__label vl-form__label--block" for="rrn"
+                                >Rijksregisternummer${this.rrnRequired ? ' *' : ''}</label
+                            >
                         </div>
                         <div class="vl-col--4-12">
                             <vl-input-field-masked-next
@@ -407,7 +409,9 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="interesses">Interesses</label>
+                            <label class="vl-form__label vl-form__label--block" for="interesses"
+                                >Interesses${this.interestsRequired ? ' *' : ''}</label
+                            >
                         </div>
                         <div class="vl-col--4-12">
                             <vl-textarea-next

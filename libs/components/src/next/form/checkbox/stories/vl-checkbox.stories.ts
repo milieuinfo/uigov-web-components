@@ -1,10 +1,13 @@
 import { html } from 'lit-html';
-import '../vl-checkbox.component';
 import { checkboxArgs, checkboxArgTypes } from './vl-checkbox.stories-arg';
 import { Meta } from '@storybook/web-components';
 import checkboxDoc from './vl-checkbox.stories-doc.mdx';
 import { story } from '@domg-wc/common-storybook';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlCheckboxComponent } from '../vl-checkbox.component';
+
+registerWebComponents([VlCheckboxComponent]);
 
 export default {
     title: 'Components-next/form/checkbox',

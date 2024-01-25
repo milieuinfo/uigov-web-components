@@ -1,7 +1,7 @@
 import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { FormControl, FormControlDefaults } from '../form-control/FormControl';
+import { FormControl, FormControlDefaults } from '../form-control';
 import Choices, { Choice, Options, DEFAULT_CLASSNAMES, Item } from 'choices.js';
 import { iconStyle, inputFieldStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
@@ -78,8 +78,15 @@ export class VlSelectComponent extends FormControl {
 
         setTimeout(() => {
             // Fix voor Choices.js dropdown te openen in een Shadow DOM
-            const choicesElement = this.shadowRoot!.querySelector('.js-vl-select');
-            choicesElement?.addEventListener('click', this.onClickChoices);
+            this.choicesElement?.addEventListener('click', this.onClickChoices);
+
+            // Fix voor Choices.js dropdown te openen als er geklikt wordt op het label
+            this.internals.labels[0]?.addEventListener('click', this.onClickChoices);
+
+            if (!this.value) {
+                // Fix voor required validator
+                this.setValue('');
+            }
         }, 0);
     }
 
@@ -117,8 +124,8 @@ export class VlSelectComponent extends FormControl {
     disconnectedCallback(): void {
         super.disconnectedCallback();
 
-        const choicesElement = this.shadowRoot!.querySelector('.js-vl-select');
-        choicesElement?.removeEventListener('click', this.onClickChoices);
+        this.choicesElement?.removeEventListener('click', this.onClickChoices);
+        this.internals.labels[0]?.removeEventListener('click', this.onClickChoices);
     }
 
     render(): TemplateResult {
@@ -147,6 +154,10 @@ export class VlSelectComponent extends FormControl {
 
     get validationTarget(): HTMLSelectElement | null | undefined {
         return this.shadowRoot?.querySelector('select');
+    }
+
+    get choicesElement(): HTMLElement | null {
+        return this.shadowRoot?.querySelector('.js-vl-select') as HTMLElement | null;
     }
 
     resetFormControl(): void {

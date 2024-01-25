@@ -4,8 +4,8 @@ import { radioStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import radioUigStyle from './vl-radio.component.uig-css';
-import { FormControl, FormControlDefaults } from '../form-control/FormControl';
-import { VlRadioComponent } from '../radio/vl-radio.component';
+import { FormControl, FormControlDefaults } from '../form-control';
+import { VlRadioComponent } from './vl-radio.component';
 
 export const RadioGroupDefaults = {
     ...FormControlDefaults,

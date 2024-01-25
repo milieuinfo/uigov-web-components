@@ -3,20 +3,20 @@ import { registerWebComponents } from '@domg-wc/common-utilities';
 import { radioGroupArgs, radioGroupArgTypes } from './vl-radio-group.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
-import radioDoc from './vl-radio.stories-doc.mdx';
+import radioGroupDoc from './vl-radio-group.stories-doc.mdx';
 import { VlRadioComponent } from '../vl-radio.component';
 import { VlRadioGroupComponent } from '../vl-radio-group.component';
 
 registerWebComponents([VlRadioComponent, VlRadioGroupComponent]);
 
 export default {
-    title: 'Components-next/form/radio',
+    title: 'Components-next/form/radio-group',
     tags: ['autodocs'],
     args: radioGroupArgs,
     argTypes: radioGroupArgTypes,
     parameters: {
         docs: {
-            page: radioDoc,
+            page: radioGroupDoc,
         },
     },
 } as Meta<typeof radioGroupArgs>;

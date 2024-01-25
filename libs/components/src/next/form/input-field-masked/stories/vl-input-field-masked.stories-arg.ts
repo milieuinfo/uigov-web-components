@@ -1,8 +1,8 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { InputFieldMaskedDefaults } from '../vl-input-field-masked.component';
-import { inputFieldArgTypes, inputFieldArgs } from '../../stories/vl-input-field.stories-arg';
-import { maskOptions } from '../masks';
+import { inputFieldArgTypes, inputFieldArgs } from '../../input-field/stories/vl-input-field.stories-arg';
+import { masks } from '../masks';
 
 export const inputFieldMaskedArgs: typeof inputFieldArgs & typeof InputFieldMaskedDefaults = {
     ...inputFieldArgs,
@@ -26,9 +26,9 @@ export const inputFieldMaskedArgTypes: ArgTypes<typeof inputFieldMaskedArgs> = {
         name: 'mask',
         description: 'Het mask van het input veld.<br/>Dit attribuut is niet reactief.',
         control: { type: 'select' },
-        options: Object.keys(maskOptions),
+        options: Object.keys(masks),
         table: {
-            type: { summary: Object.keys(maskOptions) },
+            type: { summary: Object.keys(masks) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: InputFieldMaskedDefaults.mask },
         },

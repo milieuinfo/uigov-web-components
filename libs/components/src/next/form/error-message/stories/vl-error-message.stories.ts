@@ -4,10 +4,13 @@ import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import errorMessageDocs from './vl-error-message.stories-doc.mdx';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import '../vl-error-message.component';
+import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlErrorMessageComponent } from '../vl-error-message.component';
+
+registerWebComponents([VlErrorMessageComponent]);
 
 export default {
-    title: 'Components-next/form/error-message-next',
+    title: 'Components-next/form/error-message',
     tags: ['autodocs'],
     args: errorMessageArgs,
     argTypes: errorMessageArgTypes,

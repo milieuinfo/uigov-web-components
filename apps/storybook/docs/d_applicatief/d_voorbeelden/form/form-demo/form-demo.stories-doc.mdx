@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/addon-docs';
+import { Canvas, Source } from '@storybook/blocks';
+import * as formDemoStories from './form-demo.stories';
+import formDemoSource from './form-demo.component.raw-ts?raw';
+
+<Meta of={formDemoStories} />
+
+# Form Demo
+
+Dit is een voorbeeld van hoe de form componenten in een form gebruikt kunnen worden.<br/>
+De submitted waarden worden in deze demo in de console gelogd.
+
+## Componenten
+
+- [vl-input-field-next](/docs/components-next-form-input-field--documentatie)
+- [vl-input-field-masked-next](/docs/components-next-form-input-field-masked--documentatie)
+- [vl-textarea-next](/docs/components-next-form-textarea--documentatie)
+- [vl-datepicker-next](/docs/components-next-form-datepicker--documentatie)
+- [vl-select-next](/docs/components-next-form-select--documentatie)
+- [vl-radio-group-next](/docs/components-next-form-radio-group--documentatie)
+- [vl-checkbox-next](/docs/components-next-form-checkbox--documentatie)
+- [vl-error-message-next](/docs/components-next-form-error-message--documentatie)
+
+## Native elementen
+
+Gebruik voor de volgende elementen native HtmlElements met css classes:
+- Form: native HTMLFormElement met class `vl-form`
+- Label: native HtmlLabelElement met class `vl-form__label`
+- Button: native HtmlButtonElement met class `vl-button`
+- Action Group: native HtmlDivElement met class `vl-action-group`
+
+## Grid
+
+Maak voor het opbouwen van de grid structuur gebruik van de [vl-form-grid classes](https://overheid.vlaanderen.be/webuniversum/v3/documentation/form-grid) van Digitaal Vlaanderen.<br/>
+Plaats deze op native HtmlDivElements.
+
+## ❗Let op
+
+Indien je een form component wrapped in een custom component, zorg er voor dat dit custom component geen Shadow DOM heeft.<br/>
+Als dit custom component een Shadow DOM heeft, zal het native HtmlFormElement het form component niet meer vinden.
+
+<Canvas of={formDemoStories.Demo} sourceState='none' />
+
+<details open>
+    <summary>Code</summary>
+    <Source code={formDemoSource} language="ts" dark={true} />
+</details>

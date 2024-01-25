@@ -1,12 +1,15 @@
 import { story } from '@domg-wc/common-storybook';
-import { inputFieldMaskedArgs, inputFieldMaskedArgTypes } from './vl-input-field-masked.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
+import { inputFieldMaskedArgs, inputFieldMaskedArgTypes } from './vl-input-field-masked.stories-arg';
 import inputFieldMaskedDocs from './vl-input-field-masked.stories-doc.mdx';
-import '../vl-input-field-masked.component';
+import { VlInputFieldMaskedComponent } from '../vl-input-field-masked.component';
+import { registerWebComponents } from '@domg-wc/common-utilities';
+
+registerWebComponents([VlInputFieldMaskedComponent]);
 
 export default {
-    title: 'Components-next/form/input-field-next/input-field-masked-next',
+    title: 'Components-next/form/input-field-masked',
     tags: ['autodocs'],
     args: inputFieldMaskedArgs,
     argTypes: inputFieldMaskedArgTypes,
@@ -76,5 +79,5 @@ InputFieldMaskedDefault.storyName = 'vl-input-field-masked-next - default';
 InputFieldMaskedDefault.args = {
     id: 'rrn',
     name: 'rrn',
-    mask: 'rrn'
-}
+    mask: 'rrn',
+};

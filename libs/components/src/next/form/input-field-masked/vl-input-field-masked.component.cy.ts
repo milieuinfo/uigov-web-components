@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlInputFieldMaskedComponent } from './vl-input-field-masked.component';
-import { maskOptions } from './masks';
+import { masks } from './masks';
 
 registerWebComponents([VlInputFieldMaskedComponent]);
 
@@ -24,7 +24,7 @@ describe('component vl-input-field-masked-next', () => {
         cy.injectAxe();
 
         cy.get('vl-input-field-masked-next').should('have.attr', 'mask', 'phone');
-        cy.get('vl-input-field-masked-next').shadow().find('input').should('have.value', maskOptions.phone.prefix);
+        cy.get('vl-input-field-masked-next').shadow().find('input').should('have.value', masks.phone.prefix);
         cy.get('vl-input-field-masked-next').shadow().find('input').type('12345678');
         cy.get('vl-input-field-masked-next').shadow().find('input').should('have.value', '+32 12 34 56 78');
         cy.get('vl-input-field-masked-next').shadow().find('input').type('092834');

@@ -1,5 +1,5 @@
 const textareaNextUrl =
-    'http://localhost:8080/iframe.html?id=components-next-form-textarea-next--textarea-default&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-form-textarea--textarea-default&viewMode=story';
 
 describe('story vl-textarea-next default', () => {
     it('should display story', () => {

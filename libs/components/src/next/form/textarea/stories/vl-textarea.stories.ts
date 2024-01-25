@@ -3,10 +3,13 @@ import { textareaArgTypes, textareaArgs } from './vl-textarea.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import textareaDocs from './vl-textarea.stories-doc.mdx';
-import '../vl-textarea.component';
+import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlTextareaComponent } from '../vl-textarea.component';
+
+registerWebComponents([VlTextareaComponent]);
 
 export default {
-    title: 'Components-next/form/textarea-next',
+    title: 'Components-next/form/textarea',
     tags: ['autodocs'],
     args: textareaArgs,
     argTypes: textareaArgTypes,

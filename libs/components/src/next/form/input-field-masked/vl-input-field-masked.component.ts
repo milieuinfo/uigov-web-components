@@ -1,9 +1,9 @@
 import { PropertyDeclarations } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import Cleave from 'cleave.js';
-import { maskOptions } from './masks';
-import { VlInputFieldComponent, InputFieldDefaults } from '../vl-input-field.component';
-import { CleaveInstance, MaskOptions } from './model';
+import { masks } from './masks';
+import { VlInputFieldComponent, InputFieldDefaults } from '../input-field/vl-input-field.component';
+import { CleaveInstance, MaskOptions } from './vl-input-field-masked.model';
 import { Validator } from '@open-wc/form-control';
 
 const maskValidator: Validator = {
@@ -73,7 +73,7 @@ export class VlInputFieldMaskedComponent extends VlInputFieldComponent {
     firstUpdated(changedProperties: Map<string, unknown>) {
         super.firstUpdated(changedProperties);
 
-        this.maskOptions = { ...maskOptions[this.mask] };
+        this.maskOptions = { ...masks[this.mask] };
 
         if (!this.maskOptions) {
             return;

@@ -4,7 +4,7 @@ import { inputFieldStyle } from '@domg/govflanders-style/component';
 import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { FormControl, FormControlDefaults } from '../form-control/FormControl';
+import { FormControl, FormControlDefaults } from '../form-control';
 import { maxValueValidator, minValueValidator } from './validators';
 import { patternValidator } from '@open-wc/form-control';
 

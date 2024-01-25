@@ -5,7 +5,7 @@ import customValidationSource from './custom-validation.component.raw-ts?raw';
 
 <Meta of={customValidationStories} />
 
-# Custom Validatie
+# Form Custom Validatie
 
 Om gebruik te maken van custom validatie moet je een nieuw component maken dat overerft van één van onze form controls.<br/>
 Aan dit component kan je je custom validator toevoegen. Via de `customError` ValidityState key kan je een error message linken aan je custom validator.
@@ -19,9 +19,9 @@ Bij het toevoegen van een 2de custom validator zal de eerste custom validator ov
 
 ## Voorbeeld
 
-<Canvas of={customValidationStories.CustomValidation} />
+<Canvas of={customValidationStories.CustomValidation} sourceState='none' />
 
-<details>
-    <summary>Toon code</summary>
+<details open>
+    <summary>Code</summary>
     <Source code={customValidationSource} language="ts" dark={true} />
 </details>

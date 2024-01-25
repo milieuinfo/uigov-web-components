@@ -3,10 +3,13 @@ import { inputFieldArgTypes, inputFieldArgs } from './vl-input-field.stories-arg
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import inputFieldDocs from './vl-input-field.stories-doc.mdx';
-import '../vl-input-field.component';
+import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlInputFieldComponent } from '../vl-input-field.component';
+
+registerWebComponents([VlInputFieldComponent]);
 
 export default {
-    title: 'Components-next/form/input-field-next',
+    title: 'Components-next/form/input-field',
     tags: ['autodocs'],
     args: inputFieldArgs,
     argTypes: inputFieldArgTypes,

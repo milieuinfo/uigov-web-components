@@ -3,10 +3,13 @@ import { selectArgs, selectArgTypes } from './vl-select.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import selectDocs from './vl-select.stories-doc.mdx';
-import '../vl-select.component';
+import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlSelectComponent } from '../vl-select.component';
+
+registerWebComponents([VlSelectComponent]);
 
 export default {
-    title: 'Components-next/form/select-next',
+    title: 'Components-next/form/select',
     tags: ['autodocs'],
     args: selectArgs,
     argTypes: selectArgTypes,
