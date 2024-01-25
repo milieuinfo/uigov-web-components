@@ -2,7 +2,6 @@ import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common
 import { ArgTypes } from '@storybook/web-components';
 import { RadioDefaults } from '../index';
 import { action } from '@storybook/addon-actions';
-import { inputFieldArgs } from '@domg-wc/components/next/form/input-field/stories/vl-input-field.stories-arg';
 
 export const radioArgs: typeof defaultArgs & typeof RadioDefaults & { onVlChecked: () => void; contentSlot: string } = {
     ...defaultArgs,
@@ -65,7 +64,7 @@ export const radioArgTypes: ArgTypes<typeof radioArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: inputFieldArgs.readonly },
+            defaultValue: { summary: radioArgs.readonly },
         },
     },
     disabled: {

@@ -131,7 +131,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
             errorMessage = this.form?.querySelector(`${ERROR_MESSAGE_CUSTOM_TAG}[for="${this.id}"]`);
         }
 
-        errorMessage?.setAttribute('show', 'true');
+        errorMessage?.setAttribute('show', '');
     }
 
     private hideErrorMessages(): void {

@@ -4,10 +4,6 @@ import { VlRadioComponent } from './vl-radio.component';
 
 registerWebComponents([VlRadioComponent]);
 
-const clickRadioWithValue = (value: string) => {
-    cy.get(`vl-radio-next[value="${value}"]`).shadow().find('input').click({ force: true });
-};
-
 const shouldDisabledDefault = () => {
     cy.get('vl-radio-next').invoke('attr', 'disabled', '');
     cy.get('vl-radio-next').should('have.attr', 'disabled');

@@ -1,26 +1,26 @@
 const selectNextDefaultUrl =
-    'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-default&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-form-select--select-default&viewMode=story';
 
 const selectNextSearchUrl =
-    'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-search&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-form-select--select-search&viewMode=story';
 
 const selectNextDeletableUrl =
-    'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-deletable&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-form-select--select-deletable&viewMode=story';
 
 const selectNextGroupsUrl =
-    'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-groups&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-form-select--select-groups&viewMode=story';
 
 const selectNextMultipleUrl =
-    'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-multiple&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-form-select--select-multiple&viewMode=story';
 
 const selectNextSelectedOptionUrl =
-    'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-selected-option&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-form-select--select-selected-option&viewMode=story';
 
 const selectNextDisabledOptionUrl =
-    'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-disabled-option&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-form-select--select-disabled-option&viewMode=story';
 
 const selectNextReadOnlyUrl =
-    'http://localhost:8080/iframe.html?id=components-next-form-select-next--select-read-only&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-form-select--select-read-only&viewMode=story';
 
 describe('story vl-select-next default', () => {
     it('should display story', () => {

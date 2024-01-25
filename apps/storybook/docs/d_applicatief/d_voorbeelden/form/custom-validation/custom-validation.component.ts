@@ -27,8 +27,8 @@ export class VlInputFieldWithFooValidatorComponent extends VlInputFieldComponent
     static formControlValidators = [...VlInputFieldComponent.formControlValidators, fooValidator];
 }
 
-@customElement('vl-custom-validation-form')
-export class CustomValidationFormComponent extends LitElement {
+@customElement('vl-form-custom-validation')
+export class FormCustomValidationComponent extends LitElement {
     private success = false;
 
     static {
@@ -59,6 +59,9 @@ export class CustomValidationFormComponent extends LitElement {
                             block
                             required
                             ?success=${this.success}
+                            @invalid=${() => {
+                                this.success = false;
+                            }}
                         ></vl-input-field-with-foo-validator>
                         <vl-error-message-next for="waarde" state="valueMissing"
                             >Gelieve een waarde in te vullen.</vl-error-message-next
@@ -91,6 +94,6 @@ export class CustomValidationFormComponent extends LitElement {
 declare global {
     interface HTMLElementTagNameMap {
         'vl-input-field-with-foo-validator': VlInputFieldWithFooValidatorComponent;
-        'vl-custom-validation-form': CustomValidationFormComponent;
+        'vl-form-custom-validation': FormCustomValidationComponent;
     }
 }
