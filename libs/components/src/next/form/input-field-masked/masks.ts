@@ -1,10 +1,10 @@
-import { MaskOptions } from './model';
+import { MaskOptions } from './vl-input-field-masked.model';
 
 // Deze maskers zijn gebaseerd op de maskers van Cleave.js, uitgebreid met de properties customTransformFn en validationRegex.
 // De customTransformFn wordt gebruikt om features die Cleave.js niet ondersteunt toe te voegen, bv. het verwijderen van niet hexadecimale karakters.
 // De validationRegex wordt gebruikt om de waarde te valideren, tijdens het valideren wordt altijd de rawValue gebruikt.
 
-export const maskOptions: { [key: string]: MaskOptions } = {
+export const masks: { [key: string]: MaskOptions } = {
     iban: {
         blocks: [4, 4, 4, 4],
         prefix: 'BE',

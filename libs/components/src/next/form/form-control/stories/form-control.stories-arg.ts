@@ -1,6 +1,6 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { FormControlDefaults } from '../FormControl';
+import { FormControlDefaults } from '../form-control';
 
 export const formControlArgs: typeof FormControlDefaults = {
     ...FormControlDefaults,

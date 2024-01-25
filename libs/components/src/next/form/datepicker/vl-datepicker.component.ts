@@ -7,15 +7,14 @@ import {
     inputGroupStyle,
     tooltipStyle,
 } from '@domg/govflanders-style/component';
+import { patternValidator } from '@open-wc/form-control';
 import datepickerUigStyle from './vl-datepicker.uig-css';
 import { CSSResult, html, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { FormControl, FormControlDefaults } from '../form-control/FormControl';
-
+import { FormControl, FormControlDefaults } from '../form-control';
 import { Options } from 'flatpickr/dist/types/options';
 import { Instance } from 'flatpickr/dist/types/instance';
 import flatpickr from 'flatpickr';
-
 import Dutch from 'flatpickr/dist/l10n/nl.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { registerWebComponents } from '@domg-wc/common-utilities';
@@ -59,6 +58,8 @@ export class VlDatepickerComponent extends FormControl {
     static {
         registerWebComponents([VlButtonInputAddon, VlIconElement]);
     }
+
+    static formControlValidators = [...FormControl.formControlValidators, patternValidator];
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [

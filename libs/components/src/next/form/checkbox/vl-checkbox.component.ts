@@ -5,7 +5,7 @@ import { checkboxStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import checkboxUigStyle from './vl-checkbox.component.uig-css';
-import { FormControl, FormControlDefaults } from '../form-control/FormControl';
+import { FormControl, FormControlDefaults } from '../form-control';
 
 export const CheckboxDefaults = {
     ...FormControlDefaults,

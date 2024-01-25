@@ -1,1 +1,1 @@
-export { FormControl, FormControlDefaults } from './FormControl';
+export { FormControl, FormControlDefaults } from './form-control';

@@ -1,5 +1,5 @@
 const inputFieldNextUrl =
-    'http://localhost:8080/iframe.html?id=components-next-form-input-field-next--input-field-default&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-form-input-field--input-field-default&viewMode=story';
 
 describe('story vl-input-field-next default', () => {
     it('should display story', () => {
