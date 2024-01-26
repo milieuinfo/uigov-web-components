@@ -2,9 +2,9 @@ import { html } from 'lit-html';
 import '../vl-data-table.element';
 import { dataTableArgs, dataTableArgTypes } from './vl-data-table.stories-arg';
 import { Meta } from '@storybook/web-components';
-import { VlDataTable } from '../vl-data-table.element';
 import dataTableDoc from './vl-data-table.stories-doc.mdx';
 import { story } from '@domg-wc/common-storybook';
+import { VlDataTable } from '../vl-data-table.element';
 
 export default {
     title: 'Elements/data-table',
@@ -139,10 +139,6 @@ DataTableJoinedRowTitles.args = dataTableArgs;
 export const DataTableExpandable = story(
     dataTableArgs,
     ({ hover, matrix, grid, zebra, uigZebra, collapsedM, collapsedS, collapsedXS }: typeof dataTableArgs) => {
-        let table: VlDataTable & HTMLElement;
-        customElements.whenDefined('vl-data-table').then(() => {
-            table = document.querySelector('#vl-data-table-with-expandable-details') as VlDataTable & HTMLElement;
-        });
         return html`
             <table
                 is="vl-data-table"
@@ -175,15 +171,7 @@ export const DataTableExpandable = story(
                         <td data-title="Entry Header 4">Entry line 4</td>
                     </tr>
                     <tr class="vl-data-table__element--disabled" data-details-id="details-row1">
-                        <td data-title="details-title 1">
-                            <div>
-                                <ul>
-                                    <li>Extra Details 1</li>
-                                    <li>Extra Details 1</li>
-                                    <li>Extra Details 1</li>
-                                </ul>
-                            </div>
-                        </td>
+                        <td data-title="details-title 1">Title 1: generic details</td>
                     </tr>
                     <tr>
                         <td data-title="Entry Header 1">Entry line 1</td>
@@ -191,32 +179,43 @@ export const DataTableExpandable = story(
                         <td data-title="Entry Header 3">Entry line 3</td>
                     </tr>
                     <tr data-details-id="details-row2">
-                        <td data-title="details-title 2">
-                            <div>
-                                <ul>
-                                    <li>Extra Details 2</li>
-                                    <li>Extra Details 2</li>
-                                    <li>Extra Details 2</li>
-                                </ul>
-                            </div>
-                        </td>
+                        <td data-title="details-title 2">Title 2: generic details</td>
                     </tr>
-                    <tr>
+                    <tr id="multiple-cells">
                         <td data-title="Entry Header 1">Entry line 1</td>
                         <td data-title="Entry Header 2">Entry line 2</td>
                         <td data-title="Entry Header 3">Entry line 3</td>
                         <td data-title="Entry Header 4">Entry line 4</td>
                     </tr>
                     <tr data-details-id="details-row3">
-                        <td data-title="details-title 3">
-                            <div>
-                                <ul>
-                                    <li>Extra Details 3</li>
-                                    <li>Extra Details 3</li>
-                                    <li>Extra Details 3</li>
-                                </ul>
-                            </div>
-                        </td>
+                        <td data-title="details-title 3">Title 3: Zij die ter kaperen varen:</td>
+                        <td>*</td>
+                        <td>*</td>
+                        <td>*</td>
+                    </tr>
+                    <tr data-details-id="details-row3">
+                        <td data-title="naam">Jan</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
+                    </tr>
+                    <tr data-details-id="details-row3">
+                        <td data-title="naam">Piet</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
+                    </tr>
+                    <tr data-details-id="details-row3">
+                        <td data-title="naam">Joris</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
+                    </tr>
+                    <tr data-details-id="details-row3">
+                        <td data-title="naam">Korneel</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
                     </tr>
                 </tbody>
             </table>
@@ -224,14 +223,13 @@ export const DataTableExpandable = story(
     }
 );
 DataTableExpandable.storyName = 'vl-data-table - expandable';
-DataTableExpandable.args = dataTableArgs;
 
 export const DataTableExpandableCustomToggleDetailsColumn = story(
     dataTableArgs,
     ({ hover, matrix, grid, zebra, uigZebra, collapsedM, collapsedS, collapsedXS }) => {
-        let table: any;
+        let table: (VlDataTable & Element) | null;
         customElements.whenDefined('vl-data-table').then(() => {
-            table = document.querySelector('#vl-data-table-with-custom-expandable-details');
+            table = document.querySelector<VlDataTable & Element>('#vl-data-table-with-custom-expandable-details');
         });
         return html`
             <table
@@ -276,7 +274,7 @@ export const DataTableExpandableCustomToggleDetailsColumn = story(
                         </td>
                     </tr>
                     <tr data-details-id="details-row1">
-                        <td data-title="details-title 1">
+                        <td data-title="details-title 1" colspan="5">
                             <div>
                                 <ul>
                                     <li>Extra Details 1</li>
@@ -285,6 +283,52 @@ export const DataTableExpandableCustomToggleDetailsColumn = story(
                                 </ul>
                             </div>
                         </td>
+                    </tr>
+                    <tr>
+                        <td data-title="Entry Header 1">Entry line 1</td>
+                        <td data-title="Entry Header 2" colspan="2">Entry line 2</td>
+                        <td data-title="Entry Header 3">Entry line 3</td>
+                    </tr>
+                    <tr data-details-id="details-row2">
+                        <td data-title="details-title 2" colspan="1">
+                            <div>
+                                <ul>
+                                    <li>Extra Details 2</li>
+                                    <li>Extra Details 2</li>
+                                    <li>Extra Details 2</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-title="Entry Header 1">Entry line 1</td>
+                        <td data-title="Entry Header 2">Entry line 2</td>
+                        <td data-title="Entry Header 3">Entry line 3</td>
+                        <td data-title="Entry Header 4">Entry line 4</td>
+                    </tr>
+                    <tr data-details-id="details-row3">
+                        <td data-title="naam">Jan</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
+                    </tr>
+                    <tr data-details-id="details-row3">
+                        <td data-title="naam">Piet</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
+                    </tr>
+                    <tr data-details-id="details-row3">
+                        <td data-title="naam">Joris</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
+                    </tr>
+                    <tr data-details-id="details-row3">
+                        <td data-title="naam">Korneel</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
                     </tr>
                 </tbody>
             </table>

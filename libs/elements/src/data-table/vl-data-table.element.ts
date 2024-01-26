@@ -3,6 +3,17 @@ import { elementStyles } from '../vl-elements.uig-css';
 import { VlButtonElement } from '../button/vl-button.element';
 import { VlIconElement } from '../icon/vl-icon.element';
 
+export const dataTableDefaults = {
+    hover: false,
+    matrix: false,
+    grid: false,
+    zebra: false,
+    uigZebra: false,
+    collapsedM: false,
+    collapsedS: false,
+    collapsedXS: false,
+};
+
 /**
  * VlDataTable
  * @class
@@ -70,6 +81,12 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
         );
     }
 
+    _detailsTableRowElements(id: string): NodeListOf<HTMLTableRowElement> | null {
+        return (this as unknown as HTMLTableElement).querySelectorAll<HTMLTableRowElement>(
+            `tbody tr[data-details-id="${id}"]`
+        );
+    }
+
     get _classPrefix() {
         return 'vl-data-table--';
     }
@@ -89,7 +106,7 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
 
     _expandCollapseTemplate(id: string): DocumentFragment {
         const template = this._template(
-            `<button id="details-toggle-${id}" aria-expanded="false" type="button" is="vl-button" class="vl-button vl-button--icon-after" data-vl-narrow data-vl-secondary>
+            `<button id="details-toggle-${id}" aria-expanded="false" type="button" is="vl-button" class="vl-button vl-button--icon-after" data-vl-narrow data-vl-secondary aria-label="toggle details">
                 <span is="vl-icon" data-vl-icon="arrow-down-fat" ></span>
              </button>`
         );
@@ -112,16 +129,24 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
     }
 
     _showDetails(id: string, show: boolean) {
-        const details = this._detailsTableRowElement(id);
+        const details = this._detailsTableRowElements(id);
         const button = this._detailsToggleButtonElement(id);
         if (show) {
-            if (details) details.style.removeProperty('display');
+            if (details) {
+                details.forEach((detail) => {
+                    detail.style.removeProperty('display');
+                });
+            }
             if (button) {
                 button.setAttribute('aria-expanded', 'true');
                 button.innerHTML = '<span is="vl-icon" data-vl-icon="arrow-up-fat" class="vl-button__icon"></span>';
             }
         } else {
-            if (details) details.style.display = 'none';
+            if (details) {
+                details.forEach((detail) => {
+                    detail.style.display = 'none';
+                });
+            }
             if (button) {
                 button.setAttribute('aria-expanded', 'false');
                 button.innerHTML = '<span is="vl-icon" data-vl-icon="arrow-down-fat" class="vl-button__icon"></span>';
@@ -135,8 +160,8 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
         for (let i = 0; i < rows.length; i += 1) {
             const row = rows[i];
 
-            const isDataRow = !row.hasAttribute('data-details-id');
-            if (isDataRow) {
+            const isDataRow = (rowValue: HTMLTableRowElement) => !rowValue.hasAttribute('data-details-id');
+            if (isDataRow(row)) {
                 dataRowIndex += 1;
             } else {
                 const id = row.getAttribute('data-details-id');
@@ -144,16 +169,19 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
                 row.style.display = 'none';
 
                 const dataRow = rows[i - 1];
-                if (dataRow.querySelectorAll('td[with-expand-details]').length === 0 && id) {
+                if (dataRow.querySelectorAll('td[with-expand-details]').length === 0 && id && isDataRow(dataRow)) {
                     const cell = document.createElement('td');
                     const button = this._expandCollapseTemplate(id);
                     cell.append(button);
                     dataRow.appendChild(cell);
                 }
 
-                const dataCellCount = dataRow.querySelectorAll('td').length;
-                const detailsCell = row.querySelector('td');
-                if (detailsCell) detailsCell.colSpan = dataCellCount;
+                const detailsCellCount = row?.querySelectorAll('td')?.length;
+                if (detailsCellCount === 1) {
+                    const dataCellCount = dataRow.querySelectorAll('td').length;
+                    const detailsCell = row.querySelector('td');
+                    if (detailsCell) detailsCell.colSpan = dataCellCount;
+                }
             }
 
             const even = dataRowIndex % 2 === 0;
@@ -169,8 +197,11 @@ export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
     }
 
     toggleDetails(id: string) {
-        const details = this._detailsTableRowElement(id);
-        const detailsVisible = details?.style.display !== 'none';
+        const details = this._detailsTableRowElements(id);
+        const detailsVisible = details ? details[0].style.display !== 'none' : false;
+        details?.forEach((detail) => {
+            detail.style.display = detailsVisible ? 'none' : 'table-row';
+        });
         this._showDetails(id, !detailsVisible);
     }
 }
