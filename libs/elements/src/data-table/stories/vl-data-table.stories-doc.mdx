@@ -5,7 +5,6 @@ import * as VlDataTableStories from './vl-data-table.stories';
 
 Gebruik het `data-table` component om op een gestructureerde manier (grote hoeveelheden) relationele data te tonen.
 
-
 ## Voorbeeld
 
 ```js
@@ -69,10 +68,11 @@ Om dit toe passen maak je zelf gebruik van native html-attribuut `rowspan`.
 ## Expandable
 
 Om een rijen te laten uitklappen ("expanden") moet je het volgende doen:<br/>
-Als je 2 rijen hebt, en je wil rij A altijd zichtbaar zetten en rij B verborgen tot die word opengeklapt:
+Als je 2 rijen hebt, en je wil rij A altijd zichtbaar zetten en rij B verborgen tot die wordt opengeklapt:
 
 - maak een nieuwe rij B direct na rij A
 - zet je het attribuut `data-details-id` op de rij B
+- je kan ook meerdere rijen uitklapbaar maken, zolang je maar dezelfde `data-details-id` hergebruikt
 
 <details>
     <summary>voorbeeld expandable row</summary>
@@ -94,12 +94,16 @@ Als je 2 rijen hebt, en je wil rij A altijd zichtbaar zetten en rij B verborgen 
 </details>
 
 Dan zal er automatisch een `button` toegevoegd worden die de gebruiker toelaat de rij B te zien wanneer op de
-desbetreffende knop bij rij A word gedrukt.
+desbetreffende knop bij rij A wordt gedrukt.
 
 <Canvas of={VlDataTableStories.DataTableExpandable} layout="padded" />
 
+### Colspan
 
-## Expandable with custom toggle
+We berekenen automatisch de `colspan` van de rij die uitklapt, zodat de rij die uitklapt de volledige breedte van de tabel inneemt.
+Dit doen we enkel als de rij die uitklapt een enkele cel bevat. Als de rij die uitklapt meerdere cellen bevat, moet je zelf de `colspan` instellen.
+
+### Expandable with custom toggle
 
 Je kan ook de knop die de rij open en dicht klapt zelf kiezen.<br/>
 Als je 2 rijen hebt, en je wil rij A altijd zichtbaar zetten en rij B verborgen tot die word opengeklapt:<br/>
