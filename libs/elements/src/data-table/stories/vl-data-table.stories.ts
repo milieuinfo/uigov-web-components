@@ -208,15 +208,28 @@ export const DataTableExpandable = story(
                         <td data-title="Entry Header 4">Entry line 4</td>
                     </tr>
                     <tr data-details-id="details-row3">
-                        <td data-title="details-title 3">
-                            <div>
-                                <ul>
-                                    <li>Extra Details 3</li>
-                                    <li>Extra Details 3</li>
-                                    <li>Extra Details 3</li>
-                                </ul>
-                            </div>
-                        </td>
+                        <td data-title="naam">Jan</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
+                    </tr>
+                    <tr data-details-id="details-row3">
+                        <td data-title="naam">Piet</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
+                    </tr>
+                    <tr data-details-id="details-row3">
+                        <td data-title="naam">Joris</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
+                    </tr>
+                    <tr data-details-id="details-row3">
+                        <td data-title="naam">Korneel</td>
+                        <td data-title="familienaam">familienaam</td>
+                        <td data-title="telefoon">telefoon</td>
+                        <td data-title="adres">adres</td>
                     </tr>
                 </tbody>
             </table>
