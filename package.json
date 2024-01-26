@@ -140,6 +140,7 @@
         "node-fetch": "3.3.2",
         "nx": "17.2.8",
         "ol": "8.2.0",
+        "raw-loader": "4.0.2",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-refresh": "0.14.0",
