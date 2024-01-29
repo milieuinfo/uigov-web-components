@@ -245,8 +245,8 @@ echo "maak een tgz van Storybook"
 cd ./dist/apps/storybook
 tar cfz ../storybook-${nextRelease_version}.tgz .
 if [ $? -eq 0 ]
-then
-  echo "Storybook succesvol in een tgz gestoken"
-else
-  echo "fout bij het tgz''en van Storybook" >&2
+  then
+    echo "Storybook succesvol in een tgz gestoken"
+  else
+    echo "fout bij het tgz''en van Storybook" >&2
 fi
