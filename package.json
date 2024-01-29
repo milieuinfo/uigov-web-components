@@ -1,6 +1,7 @@
 {
     "name": "uigov-web-components",
     "version": "1.25.0",
+    "author": "UIG <uig@vlaanderen.be>",
     "license": "MIT",
     "scripts": {
         "test": "npm run test:unit && npm run test:wct",
@@ -17,7 +18,7 @@
         "storybook:test": "npx nx e2e storybook-e2e",
         "storybook:test-watch": "npx nx e2e storybook-e2e --watch",
         "storybook:build": "npx nx build-storybook storybook",
-        "storybook:ci-test": "start-server-and-test 'npx nx storybook storybook' http://localhost:8080 'npx nx e2e storybook-e2e'",
+        "storybook:ci-test": "start-server-and-test 'npx nx storybook storybook 2> buffer-stderr.txt' http://localhost:8080 'npx nx e2e storybook-e2e'",
         "playground-lit": "npx nx serve playground-lit",
         "playground-react": "npx nx serve playground-react",
         "playground-native": "npx nx serve playground-native",
@@ -103,7 +104,7 @@
         "@swc/core": "1.3.103",
         "@swc/jest": "0.2.29",
         "@types/jest": "29.5.11",
-        "@types/node": "20.10.4",
+        "@types/node": "20.11.16",
         "@types/prettier": "2.7.3",
         "@types/react": "18.2.47",
         "@types/react-dom": "18.2.18",
@@ -196,7 +197,7 @@
         }
     },
     "volta": {
-        "node": "20.10.0"
+        "node": "20.11.0"
     },
     "nx": {
         "includedScripts": []

@@ -6,11 +6,6 @@ set -e
 echo 'RUNNING SCRIPT: release-and-publish.sh'
 cd uigov-web-components
 
-echo 'pwd'
-pwd
-echo 'ls -la'
-ls -la
-
 # get branch name
 gitRefName=$(git rev-parse --abbrev-ref HEAD)
 echo using $gitRefName as gitRefName
@@ -21,13 +16,17 @@ release_branch=false
 
 if [[ ${gitRefName} == *"develop"* ]] || [[ ${gitRefName} == *"bugfix"* ]];
   then
+    echo "--------------------------------------"
     echo "develop branch detected - beta release"
+    echo "--------------------------------------"
     develop_branch=true
 fi
 
 if [[ ${gitRefName} == *"release"* ]];
   then
+    echo "---------------------------------"
     echo "release branch detected - release"
+    echo "---------------------------------"
     release_branch=true
 fi
 
@@ -57,41 +56,52 @@ fi
 
 # the remote set by Bamboo is not authenticated, so remove the remote and add one with authentication
 echo 'git remote rm origin'
-git remote rm origin
+git remote rm origin &> /dev/null
 echo 'git remote add origin https://${secret_github_token}@github.com/milieuinfo/uigov-web-components.git'
-git remote add origin https://${secret_github_token}@github.com/milieuinfo/uigov-web-components.git
+git remote add origin https://${secret_github_token}@github.com/milieuinfo/uigov-web-components.git &> /dev/null
 echo 'git fetch --prune origin'
-git fetch --prune origin
+git fetch --prune origin &> /dev/null
 echo 'git pull origin ${gitRefName}'
+git config pull.ff only
 git pull origin ${gitRefName}
 # the git fetch is necessary -> otherwise semantic-release is unaware of the previous version
 # this gives 'does not point to a valid object!' errors - they can be ignored
 echo 'delete all local git tags'
-git tag -d $(git tag -l)
+git tag -d $(git tag -l) &> /dev/null
 echo 'fetch all remote git tags'
-git fetch --all --tags --force
+git fetch --all --tags --force &> /dev/null
 
 GITHUB_USER=kspeltix
 GITHUB_EMAIL=kris.speltincx@vlaanderen.be
-#GITHUB_TOKEN=ghp_
+echo 'git config user.name'
 git config user.name ${GITHUB_USER}
 git config user.name
+echo 'git config user.email'
 git config user.email ${GITHUB_EMAIL}
 git config user.email
-echo using ${GITHUB_TOKEN} as GITHUB_TOKEN
 
 echo "npm install - no 'ci' to avoid the clean"
-npm install --save-exact
+set +e
+npm install --save-exact 2> buffer-stderr.txt 1> buffer-stdout.txt
+if [ $? -eq 0 ]
+  then
+    echo "npm install - success"
+  else
+    echo "npm install - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt >&2
+    exit $?
+fi
+set -e
 
 if [[ ${release_branch} == true ]];
   then
-    echo "semantic-release - voorbereiding"
+    echo "semantic-release - '.releaserc-release' script wordt gebruikt"
     cp .releaserc-release .releaserc
 fi
 
 if [[ ${develop_branch} == true ]];
   then
-    echo "semantic-develop - voorbereiding"
+    echo "semantic-release - '.releaserc-develop' script wordt gebruikt"
     cp .releaserc-develop .releaserc
 fi
 
@@ -101,12 +111,6 @@ npx semantic-release --no-ci
 echo "variabelen bepalen en zetten"
 nextRelease_version=$(npm pkg get version | sed 's/"//g')
 echo using $nextRelease_version as nextRelease_version
-
-#rootsemver=$(echo $nextRelease_version | cut -d '.' -f1-3)
-#echo using $rootsemver as rootsemver
-
-#pagesSubPath=$gitRefName/$nextRelease_version
-#echo using $pagesSubPath as pagesSubPath
 
 # releasen van de packages
 cd dist/libs
@@ -132,83 +136,103 @@ sed -i "s,$toReplace,$nextRelease_version," ./*/*/package.json
 #  -> dus expliciet specifieren van alle files in minimum 1 subfolder + eventueel de 'andere' root-files
 echo "sideEffects zetten in de package.json bestanden"
 cd ./common/utilities
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../../common/storybook
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**", "./stories.helper.*"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**", "./stories.helper.*"]' --json &> /dev/null
 cd ../../elements
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../components
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../form
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../sections
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../map
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**", "./vl-map.*"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**", "./vl-map.*"]' --json &> /dev/null
 cd ../qlik
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../support/test-support
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../..
 
 # de feitelijke release actie is afhankelijk van de branch
 
+set +e
 if [[ ${release_branch} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG 'local-npm' repository"
-    cd ./common/utilities && npm publish
-    cd ../../common/storybook && npm publish
-    cd ../../elements && npm publish
-    cd ../components && npm publish
-    cd ../form && npm publish
-    cd ../sections && npm publish
-    cd ../map  && npm publish
-    cd ../qlik  && npm publish
-    cd ../support/test-support && npm publish
+    cd ./common/utilities && npm publish 2> buffer-stderr.txt 1> buffer-stdout.txt
+    cd ../../common/storybook && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../../elements && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../components && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../form && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../sections && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../map  && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../qlik  && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../support/test-support && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../..
 fi
+if [ $? -eq 0 ]
+  then
+    echo "publiceren van de npm packages naar de DOMG 'local-npm' repository - success"
+  else
+    echo "publiceren van de npm packages naar de DOMG 'local-npm' repository - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt >&2
+    exit $?
+fi
+set -e
 
+set +e
 if [[ ${develop_branch} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository"
     cd ./common/utilities
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish 2> buffer-stderr.txt 1> buffer-stdout.txt
     cd ../../common/storybook
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../../elements
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../components
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../form
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../sections
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../map
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../qlik
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../support/test-support
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../..
 fi
+if [ $? -eq 0 ]
+  then
+    echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository - success"
+  else
+    echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt >&2
+    exit $?
+fi
+set -e
 
 cd ..
 
@@ -235,9 +259,29 @@ fi
 
 cd ..
 
-# builden van storybook
-echo "build storybook en maak er een tgz van"
-npm run storybook:build
+# builden van Storybook
+echo "build Storybook"
+set +e
+npm run storybook:build &> /dev/null
+if [ $? -eq 0 ]
+then
+  echo "Storybook succesvol gebouwd"
+else
+  echo "fout bij het bouwen van Storybook" >&2
+  exit $?
+fi
+set -e
+
 # tgz van Storybook maken
+echo "tgz''en van Storybook"
+set +e
 cd ./dist/apps/storybook
 tar cfz ../storybook-${nextRelease_version}.tgz .
+if [ $? -eq 0 ]
+  then
+    echo "Storybook succesvol in een tgz gestoken"
+  else
+    echo "fout bij het tgz''en van Storybook" >&2
+    exit $?
+fi
+set -e

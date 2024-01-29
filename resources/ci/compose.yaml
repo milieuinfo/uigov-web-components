@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  build:
+    image: cypress/browsers:node-20.11.0-chrome-121.0.6167.85-1-ff-120.0-edge-121.0.2277.83-1
+    container_name: uigov-web-components-build
+    command: bash $BUILD_SCRIPT
+    volumes:
+      - ${HOME:-.}/.npmrc:/root/.npmrc:ro
+      - ./../..:/uigov-web-components
+    environment:
+      - secret_github_token=${secret_github_token:-not-specified}
+      - acd_repository_debian_login=${acd_repository_debian_login:-not-specified}
+      - acd_repository_bamboo_password=${acd_repository_bamboo_password:-not-specified}
+      - acd_repository_url=${acd_repository_url:-not-specified}
