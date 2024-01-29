@@ -17,6 +17,7 @@ declare global {
                 pseudo?: string;
                 not?: boolean;
             }): Chainable<any>;
+            runTestFor<T>(selector: string, test: (component: T) => void): Chainable<Subject>;
         }
     }
 }

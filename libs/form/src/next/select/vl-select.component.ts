@@ -47,7 +47,7 @@ export class VlSelectComponent extends FormControl {
     private searchPlaceholder = SelectDefaults.searchPlaceholder;
 
     // Variables
-    choices: Choices | null = null;
+    private choices: Choices | null = null;
     private initialOptions: SelectOption[] = [];
     private value = '';
 
@@ -70,7 +70,7 @@ export class VlSelectComponent extends FormControl {
         };
     }
 
-    firstUpdated(changedProperties: Map<string, unknown>): void {
+    firstUpdated(changedProperties: Map<string, unknown>) {
         super.firstUpdated(changedProperties);
 
         this.choices = new Choices(this.validationTarget!, this.getChoicesConfig());
@@ -83,14 +83,17 @@ export class VlSelectComponent extends FormControl {
             // Fix voor Choices.js dropdown te openen als er geklikt wordt op het label
             this.internals.labels[0]?.addEventListener('click', this.onClickChoices);
 
+            // Fix voor required validator
             if (!this.value) {
-                // Fix voor required validator
                 this.setValue('');
             }
+
+            // Fix voor Choices.js search event dat niet afgevuurd wordt als de search value verwijderd wordt.
+            this.choices?.input?.element?.addEventListener('input', this.onSearchInput);
         }, 0);
     }
 
-    updated(changedProperties: Map<string, unknown>): void {
+    updated(changedProperties: Map<string, unknown>) {
         super.updated(changedProperties);
 
         if (!this.choices) {
@@ -121,11 +124,12 @@ export class VlSelectComponent extends FormControl {
         }
     }
 
-    disconnectedCallback(): void {
+    disconnectedCallback() {
         super.disconnectedCallback();
 
         this.choicesElement?.removeEventListener('click', this.onClickChoices);
         this.internals.labels[0]?.removeEventListener('click', this.onClickChoices);
+        this.choices?.input?.element?.removeEventListener('input', this.onSearchInput);
     }
 
     render(): TemplateResult {
@@ -160,10 +164,20 @@ export class VlSelectComponent extends FormControl {
         return this.shadowRoot?.querySelector('.js-vl-select') as HTMLElement | null;
     }
 
-    resetFormControl(): void {
+    resetFormControl() {
         super.resetFormControl();
 
         this.options = [...this.initialOptions];
+    }
+
+    getSelectedValues(): string[] {
+        const selectedOptions = (this.validationTarget! as HTMLSelectElement).selectedOptions;
+        return (
+            Array.from(selectedOptions)
+                // Filter placeholder optie eruit
+                .filter((option) => option.value)
+                .map((option) => option.value)
+        );
     }
 
     private getChoicesConfig(): Partial<Options> {
@@ -304,9 +318,8 @@ export class VlSelectComponent extends FormControl {
         return options;
     }
 
-    private onChange(): void {
-        const selectedOptions: NodeListOf<HTMLOptionElement> = this.shadowRoot!.querySelectorAll('option:checked');
-        const selectedValues = Array.from(selectedOptions).map((option) => option.value);
+    private onChange() {
+        const selectedValues = this.getSelectedValues();
         const value = selectedValues.join(';') || '';
 
         if (this.value !== value) {
@@ -318,12 +331,17 @@ export class VlSelectComponent extends FormControl {
         }
     }
 
-    private onClickChoices = (event: Event): void => {
+    private onClickChoices = (event: Event) => {
         event.stopPropagation();
 
         if (!this.disabled) {
             this.choices?.showDropdown();
         }
+    };
+
+    private onSearchInput = (event: Event) => {
+        const value = (event?.target as HTMLInputElement)?.value;
+        this.dispatchEvent(new CustomEvent('vl-select-search', { bubbles: true, composed: true, detail: { value } }));
     };
 }
 
