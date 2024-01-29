@@ -18,6 +18,7 @@ De submitted waarden worden in deze demo in de console gelogd.
 - [vl-datepicker-next](/docs/form-next-datepicker--documentatie)
 - [vl-select-next](/docs/form-next-select--documentatie)
 - [vl-radio-group-next](/docs/form-next-radio-group--documentatie)
+- [vl-upload-next](/docs/form-next-upload--documentatie)
 - [vl-checkbox-next](/docs/form-next-checkbox--documentatie)
 - [vl-error-message-next](/docs/form-next-error-message--documentatie)
 
@@ -34,6 +35,11 @@ Gebruik voor de volgende elementen native HtmlElements met css classes:
 Maak voor het opbouwen van de grid structuur gebruik van de [vl-form-grid classes](https://overheid.vlaanderen.be/webuniversum/v3/documentation/form-grid) van Digitaal Vlaanderen.<br/>
 Plaats deze op native HtmlDivElements.
 
+## FormData
+
+Gebruik de [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) API om de form data te verzamelen.
+Voor velden die meerdere waardes per naam kunnen hebben, zoals bv. de `vl-upload-next`, kan je de `FormData.getAll()` methode gebruiken.
+
 ## ❗Let op
 
 Indien je een form control wrapped in een custom component, zorg er voor dat dit custom component geen Shadow DOM heeft.<br/>
@@ -45,3 +51,4 @@ Als dit custom component een Shadow DOM heeft, zal het native HtmlFormElement de
     <summary>Code</summary>
     <Source code={formDemoSource} language="ts" dark={true} />
 </details>
+

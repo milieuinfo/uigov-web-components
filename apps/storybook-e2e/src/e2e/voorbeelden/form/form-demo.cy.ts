@@ -40,6 +40,10 @@ const getContactMethodeRadioGroup = ({ shadow = true } = {}) => {
     return getFormControl({ selector: 'vl-radio-group-next#contactmethode', shadow });
 };
 
+const getFotosUpload = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-upload-next#foto', shadow });
+};
+
 const getWaarheidsGetrouwCheckbox = ({ shadow = true } = {}) => {
     return getFormControl({ selector: 'vl-checkbox-next#waarheidsgetrouw', shadow });
 };
@@ -88,9 +92,39 @@ const fillInForm = () => {
         // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
         // Zoek een andere manier moest deze test flaky zijn hierdoor.
         .check({ force: true });
+    getFotosUpload().find('input[type="file"]').selectFile('src/fixtures/upload/cat.jpeg', { force: true });
     // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
     // Zoek een andere manier moest deze test flaky zijn hierdoor.
     getWaarheidsGetrouwCheckbox().find('input').check({ force: true });
+};
+
+const setupMockedUploadFormData = (submittedFormData: unknown & { foto: File }) => {
+    cy.readFile('src/fixtures/upload/cat.jpeg', 'base64').then((fileContent) => {
+        const blob = Cypress.Blob.base64StringToBlob(fileContent);
+        const lastModified = new Date().getTime();
+        const fileToAdd = new File([blob], 'cat.jpeg', {
+            type: 'image/jpeg',
+            lastModified,
+        });
+        return cy
+            .get('vl-form-demo')
+            .shadow()
+            .find('vl-upload-next#foto')
+            .then((uploadNext) => {
+                // gebruiken hier addFile omdat we File object niet kunnen toevoegen met cy.selectFile() (enkel referenties)
+                (<HTMLElement & { addFile(file: File): void }>uploadNext[0]).addFile(fileToAdd);
+                // we maken de file hier opnieuw aan omdat de file gemuteerd wordt door de upload component
+                // meer specifiek worden er Dropzone specifieke properties toegevoegd aan de file, die dan niet gaan matchen met de file die we in de formData terechtkomt
+                const fileToTest = new File([blob], 'cat.jpeg', {
+                    type: 'image/jpeg',
+                    lastModified,
+                });
+                submittedFormData.foto = fileToTest;
+            });
+    });
+    cy.fixture('upload/cat.jpeg', null).as('catFoto');
+
+    getFotosUpload().find('input[type="file"]').selectFile('@catFoto', { force: true });
 };
 
 describe('composition - form demo', () => {
@@ -111,6 +145,7 @@ describe('composition - form demo', () => {
         getInteressesTextarea();
         getLeeftijdInput();
         getContactMethodeRadioGroup();
+        getFotosUpload();
         getWaarheidsGetrouwCheckbox();
     });
 
@@ -178,6 +213,9 @@ describe('composition - form demo', () => {
         // Contact methode error messages
         getErrorMessages({ forAttr: 'contactmethode', state: 'valueMissing' });
 
+        // Fotos upload error messages
+        getErrorMessages({ forAttr: 'foto', state: 'valueMissing' });
+
         // Waarheidsgetrouw error messages
         getErrorMessages({ forAttr: 'waarheidsgetrouw', state: 'valueMissing' });
 
@@ -204,6 +242,7 @@ describe('composition - form demo', () => {
             .shadow()
             .find('input[value="telefoon"]')
             .should('not.be.checked');
+        getFotosUpload().find('input[type="file"]').should('have.value', '');
         getWaarheidsGetrouwCheckbox().find('input').should('not.be.checked');
     });
 
@@ -217,11 +256,13 @@ describe('composition - form demo', () => {
             interesses: 'Vanalles en nog wat',
             leeftijd: '32',
             contactmethode: 'telefoon',
+            foto: null,
             waarheidsgetrouw: 'on',
         };
 
         cy.visit(formDemoUrl);
         createStubForSubmitEvent();
+        setupMockedUploadFormData(submittedFormData);
 
         fillInForm();
         getSubmitButton().click();
@@ -245,11 +286,13 @@ describe('composition - form demo', () => {
             interesses: 'Vanalles en nog wat',
             leeftijd: '32',
             contactmethode: 'telefoon',
+            foto: null,
             waarheidsgetrouw: 'on',
         };
 
         cy.visit(formDemoUrl);
         createStubForSubmitEvent();
+        setupMockedUploadFormData(submittedFormData);
 
         getRrnInput({ shadow: false }).invoke('attr', 'raw-value', '');
         fillInForm();
@@ -274,6 +317,7 @@ describe('composition - form demo', () => {
             interesses: '',
             leeftijd: '',
             contactmethode: '',
+            foto: '',
             waarheidsgetrouw: '',
         };
 
@@ -288,6 +332,7 @@ describe('composition - form demo', () => {
         getInteressesTextarea({ shadow: false }).invoke('removeAttr', 'required');
         getLeeftijdInput({ shadow: false }).invoke('removeAttr', 'required');
         getContactMethodeRadioGroup({ shadow: false }).invoke('removeAttr', 'required');
+        getFotosUpload({ shadow: false }).invoke('removeAttr', 'required');
         getWaarheidsGetrouwCheckbox({ shadow: false }).invoke('removeAttr', 'required');
         getSubmitButton().click();
         cy.get('@submit').should('have.been.calledOnce');

@@ -10,6 +10,7 @@ import { SelectOption, VlSelectComponent } from '@domg-wc/form/next/select';
 import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
 import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio-group';
 import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
+import { VlUploadComponent } from '@domg-wc/form/next/upload';
 
 @customElement('vl-form-demo')
 export class FormDemoComponent extends LitElement {
@@ -50,6 +51,7 @@ export class FormDemoComponent extends LitElement {
             VlSelectComponent,
             VlRadioGroupComponent,
             VlRadioComponent,
+            VlUploadComponent,
             VlCheckboxComponent,
             VlErrorMessageComponent,
         ]);
@@ -232,6 +234,21 @@ export class FormDemoComponent extends LitElement {
                         </vl-radio-group-next>
                         <vl-error-message-next for="contactmethode" state="valueMissing">
                             Gelieve een contactmethode te selecteren.
+                        </vl-error-message-next>
+                    </div>
+                    <div class="vl-form-col--4-12">
+                        <label class="vl-form__label" for="foto">Pasfoto *</label>
+                    </div>
+                    <div class="vl-form-col--8-12">
+                        <vl-upload-next
+                            id="foto"
+                            name="foto"
+                            accepted-files="image/*"
+                            required
+                            url="http://httpbin.org/post"
+                        ></vl-upload-next>
+                        <vl-error-message-next for="foto" state="valueMissing">
+                            Gelieve een foto te selecteren.
                         </vl-error-message-next>
                     </div>
                     <div class="vl-form-col--4-12">
