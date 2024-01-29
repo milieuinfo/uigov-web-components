@@ -33,6 +33,26 @@ git gc --prune=now
 du -sh .git 
 ```
 
+### Opkuisen Git - old tags
+
+Show all tags
+`git tag`
+`git tag -l "v1.24.*-develop*"`
+`git ls-remote --tags origin -l "v1.24.*-develop*"`
+
+Delete all local tags
+`git tag -d $(git tag -l)`
+
+Fetch all tags
+`git fetch --all --tags --force`
+
+Delete local tags
+`git tag -d $(git tag -l "v1.24.*-develop*")`
+
+Delete remote tags
+`git push origin --delete $(git tag -l "v1.24.*-develop*")`
+
+
 ### Semantic Release
 
 notes fetchen
@@ -46,12 +66,12 @@ git notes --ref semantic-release show 2231b72
 
 na een historiek herschrijving een tag opnieuw leggen + de notes toevoegen 
 ```
-git push --delete origin v1.21.0-develop.2
-git tag -d v1.21.0-develop.2
-git tag v1.21.0-develop.2 17a0a4e0
-git push origin v1.21.0-develop.2
+git push --delete origin v1.26.0-develop.1
+git tag -d v1.26.0-develop.1
+git tag v1.26.0-develop.1 4d12688f
+git push origin v1.26.0-develop.1
 
-git notes --ref semantic-release add -f -m '{"channels":["develop"]}' v1.21.0-develop.2
+git notes --ref semantic-release add -f -m '{"channels":["develop"]}' v1.26.0-develop.1
 git push --force origin refs/notes/semantic-release
 ```
 
