@@ -1,3 +1,39 @@
+# [1.25.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.24.0...v1.25.0) (2024-01-29)
+
+
+### Bug Fixes
+
+* UIG-2216 - vl-tabs-pane - native id en title attribute getters behouden ([7be163a](https://github.com/milieuinfo/uigov-web-components/commit/7be163a708aed270007b1c28db436ebbae9c41c1))
+* UIG-2788 - vl-select - dropdown z-index fix ([ab44e58](https://github.com/milieuinfo/uigov-web-components/commit/ab44e58e78f0efb9f99d2474100e0051fc9beb74))
+* UIG-2812 - vl-select-next - foutieve iconen ([9e89922](https://github.com/milieuinfo/uigov-web-components/commit/9e89922de5cefe9563b730661692e7437632f607))
+* UIG-2816 - vermijden dat registerWebComponents door rollup ge-treeshaked wordt ([952edf0](https://github.com/milieuinfo/uigov-web-components/commit/952edf00b8f6c8c6c800506c58a4ca4162a8c24e))
+
+
+### Features
+
+* UIG-2218 - vl-tabs - tabListStyle attribuut toegevoegd ([695e31a](https://github.com/milieuinfo/uigov-web-components/commit/695e31a96fc1cab36cc9aea95c67090a0c905e31))
+* UIG-2432 - vl-map-draw-action-style - zet de style van vl-map-draw-action ([0e91492](https://github.com/milieuinfo/uigov-web-components/commit/0e91492d46815c0639c32b3b6ec05b33f2854e83))
+* UIG-2706 - vl-input-field-next - introductie component ([669b659](https://github.com/milieuinfo/uigov-web-components/commit/669b659f0cc0bdc33ab263f219c9aacd766cf3cc))
+* UIG-2707 - vl-select-next - introductie component ([a32cd9b](https://github.com/milieuinfo/uigov-web-components/commit/a32cd9b3767004620e0755f605666966fd0f0b34))
+* UIG-2708 - vl-textarea-next - introductie component ([2c7eafb](https://github.com/milieuinfo/uigov-web-components/commit/2c7eafba49aa8047e59518a33a89cf9b4c11d954))
+* UIG-2709 - vl-datepicker-next - introductie component ([7e78e7f](https://github.com/milieuinfo/uigov-web-components/commit/7e78e7f9de85a6eec59462f952201230d0d53c57))
+* UIG-2711 - vl-radio-next, vl-radio-group-next - introductie componenten ([d3c82a5](https://github.com/milieuinfo/uigov-web-components/commit/d3c82a54e12a3c1528d30cd81877d428efb35c57))
+* UIG-2713 - vl-checkbox-next - introductie component ([881cf1c](https://github.com/milieuinfo/uigov-web-components/commit/881cf1c5b12d49e67c99e679255cb3a1fe0dc936))
+* UIG-2734 - FormControl base class ([9cd3672](https://github.com/milieuinfo/uigov-web-components/commit/9cd3672990e66c4a9ec2e26479434facf90c95e4))
+* UIG-2735 - vl-tabs - navigatie met pijltjestoetsen opgelost ([823196d](https://github.com/milieuinfo/uigov-web-components/commit/823196d2bbb72bf5d8f6846e468280e70e370f22))
+* UIG-2739 - sections testen gemigreerd ([0a3dfa3](https://github.com/milieuinfo/uigov-web-components/commit/0a3dfa3865967fb41baa97a06abcb65a61a665d3))
+* UIG-2740 - vl-accessibility, vl-cookie-consent - import problemen opgelost ([e92ed35](https://github.com/milieuinfo/uigov-web-components/commit/e92ed35b446b22a6f9fcc54353f2f50ae0d85396))
+* UIG-2744 - form demo voorbeeld ([331e71f](https://github.com/milieuinfo/uigov-web-components/commit/331e71fd1e8f19e3b7e3526eeecf25ecbf8f0936))
+* UIG-2750 - Form CSP validatie ([f41ad69](https://github.com/milieuinfo/uigov-web-components/commit/f41ad6982ff76269b165b1cce79ccf4daac4598a))
+* UIG-2775 - vl-cascader-item - annotation attribuut toegevoegd ([2b48c34](https://github.com/milieuinfo/uigov-web-components/commit/2b48c3496c4923010d53fe8ed3a691271377bc68))
+* UIG-2776 - vl-cascader - header toegevoegd ([3f5b3ff](https://github.com/milieuinfo/uigov-web-components/commit/3f5b3ff9b56b27858ccd5257e4c1e7c7c56fad30))
+* UIG-2779 - Custom validators ([3033aa9](https://github.com/milieuinfo/uigov-web-components/commit/3033aa9cb59eaad9b845c354dce8d9eb9d21db88))
+* UIG-2781 - vl-input-field-masked-next - introductie component ([52d2f47](https://github.com/milieuinfo/uigov-web-components/commit/52d2f4723c2e4c8feca4410fa469c1c382346b8b))
+* UIG-2790 - vl-progress-bar - vl-popover vervangt de deprecated vl-tooltip ([b0c8530](https://github.com/milieuinfo/uigov-web-components/commit/b0c85306df8e7d883611877b9d8b761054da23c2))
+* UIG-2796 - vl-wizard - hideLabels attribuut toegevoegd ([8fe6934](https://github.com/milieuinfo/uigov-web-components/commit/8fe6934ecb645dbc78ab377dd131cdf53571acf6))
+* UIG-2801 - form module voor de nieuwe formulier componenten ([9e6adec](https://github.com/milieuinfo/uigov-web-components/commit/9e6adec98bd88d0bd114b31b65ea2f89d9f044c1))
+* UIG-2820 - vl-progress-bar - showLabels attribuut ipv showSteps ([56c1827](https://github.com/milieuinfo/uigov-web-components/commit/56c18276ca21dc3d2e724062e5b0d9d39d2ffd8d))
+
 # [1.24.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.23.0...v1.24.0) (2024-01-17)
 
 
