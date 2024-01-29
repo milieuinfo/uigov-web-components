@@ -6,11 +6,6 @@ set -e
 echo 'RUNNING SCRIPT: release-and-publish.sh'
 cd uigov-web-components
 
-echo 'pwd'
-pwd
-echo 'ls -la'
-ls -la
-
 # get branch name
 gitRefName=$(git rev-parse --abbrev-ref HEAD)
 echo using $gitRefName as gitRefName
@@ -67,9 +62,9 @@ git pull origin ${gitRefName}
 # the git fetch is necessary -> otherwise semantic-release is unaware of the previous version
 # this gives 'does not point to a valid object!' errors - they can be ignored
 echo 'delete all local git tags'
-git tag -d $(git tag -l)
+git tag -d $(git tag -l) > /dev/null
 echo 'fetch all remote git tags'
-git fetch --all --tags --force
+git fetch --all --tags --force > /dev/null
 
 GITHUB_USER=kspeltix
 GITHUB_EMAIL=kris.speltincx@vlaanderen.be
@@ -81,7 +76,7 @@ git config user.email
 echo using ${GITHUB_TOKEN} as GITHUB_TOKEN
 
 echo "npm install - no 'ci' to avoid the clean"
-npm install --save-exact
+npm install --save-exact > /dev/null
 
 if [[ ${release_branch} == true ]];
   then
@@ -235,9 +230,23 @@ fi
 
 cd ..
 
-# builden van storybook
-echo "build storybook en maak er een tgz van"
-npm run storybook:build
+# builden van Storybook
+echo "build Storybook"
+npm run storybook:build &> /dev/null
+if [ $? -eq 0 ]
+then
+  echo "Storybook succesvol gebouwd"
+else
+  echo "fout bij het bouwen van Storybook" >&2
+fi
+
 # tgz van Storybook maken
+echo "maak een tgz van Storybook"
 cd ./dist/apps/storybook
 tar cfz ../storybook-${nextRelease_version}.tgz .
+if [ $? -eq 0 ]
+then
+  echo "Storybook succesvol in een tgz gestoken"
+else
+  echo "fout bij het tgz''en van Storybook" >&2
+fi
