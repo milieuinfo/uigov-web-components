@@ -40,7 +40,7 @@ const mapLayerActionLayerByNameFixture = async () =>
         </vl-map>
     `);
 
-describe.only('vl-map-layer-action', () => {
+describe('vl-map-layer-action', () => {
     const sandbox = sinon.createSandbox();
 
     const action = {

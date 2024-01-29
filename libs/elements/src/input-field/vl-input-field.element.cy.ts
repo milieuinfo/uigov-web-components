@@ -75,7 +75,7 @@ describe('vl-input-field - functionality', () => {
     });
 });
 
-describe.only('vl-input-field - with debounce ', () => {
+describe('vl-input-field - with debounce ', () => {
     const mountWithDebounce = (debounceDelay: number) => {
         const debounceSpy = cy.spy().as('debounceSpy');
         const debouncedFunction = debounce(debounceSpy, debounceDelay);
