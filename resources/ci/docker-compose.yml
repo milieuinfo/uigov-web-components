@@ -8,8 +8,8 @@ services:
       - ${HOME:-.}/.npmrc:/root/.npmrc:ro
       - ./../..:/uigov-web-components
     environment:
-      - test_token=${test_token}
-      - secret_github_token=${secret_github_token}
-      - acd_repository_debian_login=${acd_repository_debian_login}
-      - acd_repository_bamboo_password=${acd_repository_bamboo_password}
-      - acd_repository_url=${acd_repository_url}
+      - test_token=${test_token:-not-specified}
+      - secret_github_token=${secret_github_token:-not-specified}
+      - acd_repository_debian_login=${acd_repository_debian_login:-not-specified}
+      - acd_repository_bamboo_password=${acd_repository_bamboo_password:-not-specified}
+      - acd_repository_url=${acd_repository_url:-not-specified}
