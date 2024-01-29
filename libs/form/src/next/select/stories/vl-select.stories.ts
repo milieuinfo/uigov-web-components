@@ -44,6 +44,7 @@ const SelectTemplate = story(
         noChoicesText,
         searchPlaceholder,
         onVlSelect,
+        onVlSelectSearch,
     }) => {
         return html` <vl-select-next
             id=${id}
@@ -64,6 +65,7 @@ const SelectTemplate = story(
             no-choices-text=${noChoicesText}
             search-placeholder=${searchPlaceholder}
             @vl-select=${onVlSelect}
+            @vl-select-search=${onVlSelectSearch}
         ></vl-select-next>`;
     }
 );

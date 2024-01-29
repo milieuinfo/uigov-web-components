@@ -5,7 +5,7 @@ import { SelectOption } from './index';
 
 registerWebComponents([VlSelectComponent]);
 
-describe('component vl-select-next - single select', () => {
+describe('component - vl-select-next - single select', () => {
     const options: SelectOption[] = [
         { label: 'Hasselt', value: 'hasselt' },
         { label: 'Turnhout', value: 'turnhout' },
@@ -313,7 +313,7 @@ describe('component vl-select-next - single select', () => {
         cy.checkA11y('vl-select-next');
     });
 
-    it('should dispatch select event on select and on delete', () => {
+    it('should dispatch vl-select event on select and delete option', () => {
         cy.mount(html`<vl-select-next label="geboorteplaats" deletable .options=${options}></vl-select-next>`);
         cy.injectAxe();
 
@@ -338,7 +338,27 @@ describe('component vl-select-next - single select', () => {
         cy.checkA11y('vl-select-next');
     });
 
-    it('should select value', () => {
+    it('should dispatch vl-select-search event on input search value', () => {
+        cy.mount(html`<vl-select-next label="geboorteplaats" search .options=${options}></vl-select-next>`);
+        cy.injectAxe();
+        cy.createStubForEvent('vl-select-next', 'vl-select-search');
+
+        cy.checkA11y('vl-select-next');
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('input').type('t');
+        cy.get('@vl-select-search')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { value: 't' });
+        cy.get('vl-select-next').shadow().find('input').clear();
+        cy.get('@vl-select-search')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { value: '' });
+        cy.checkA11y('vl-select-next');
+    });
+
+    it('should select option', () => {
         cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
         cy.injectAxe();
 
@@ -354,7 +374,25 @@ describe('component vl-select-next - single select', () => {
         cy.checkA11y('vl-select-next');
     });
 
-    it('should select value programmatically', () => {
+    it('should delete option', () => {
+        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options} deletable></vl-select-next>`);
+        cy.injectAxe();
+
+        cy.checkA11y('vl-select-next');
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Hasselt');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('.vl-input-field')
+            .find('.vl-select__item')
+            .find('.vl-pill__close')
+            .click();
+        cy.get('vl-select-next').shadow().find('select').find('option').should('not.exist');
+        cy.checkA11y('vl-select-next');
+    });
+
+    it('should select option programmatically', () => {
         const options: SelectOption[] = [
             { label: 'Hasselt', value: 'hasselt', selected: true },
             { label: 'Turnhout', value: 'turnhout' },
@@ -376,9 +414,44 @@ describe('component vl-select-next - single select', () => {
         cy.get('vl-select-next').shadow().find('select').find('option').contains('Rio Piedras').should('not.exist');
         cy.checkA11y('vl-select-next');
     });
+
+    it('should return selected value when calling getSelectedValues()', () => {
+        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options} deletable></vl-select-next>`);
+        cy.injectAxe();
+
+        cy.checkA11y('vl-select-next');
+        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
+            expect(component.getSelectedValues()).to.be.empty;
+        });
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
+        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
+            expect(component.getSelectedValues()).to.have.members(['hasselt']);
+        });
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next')
+            .shadow()
+            .find('.vl-select__list')
+            .find('.vl-select__item')
+            .contains('Turnhout')
+            .click();
+        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
+            expect(component.getSelectedValues()).to.have.members(['turnhout']);
+        });
+        cy.get('vl-select-next')
+            .shadow()
+            .find('.vl-input-field')
+            .find('.vl-select__item')
+            .find('.vl-pill__close')
+            .click();
+        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
+            expect(component.getSelectedValues()).to.be.empty;
+        });
+        cy.checkA11y('vl-select-next');
+    });
 });
 
-describe('component vl-select-next - multiple select', () => {
+describe('component - vl-select-next - multiple select', () => {
     const options: SelectOption[] = [
         { label: 'Padel', value: 'padel' },
         { label: 'Dans', value: 'dans' },
@@ -413,7 +486,7 @@ describe('component vl-select-next - multiple select', () => {
         cy.checkA11y('vl-select-next');
     });
 
-    it('should dispatch select event on select and on delete', () => {
+    it('should dispatch vl-select event on select and delete option', () => {
         cy.mount(html`<vl-select-next label="hobby's" multiple deletable .options=${options}></vl-select-next>`);
         cy.injectAxe();
 
@@ -441,7 +514,7 @@ describe('component vl-select-next - multiple select', () => {
         cy.checkA11y('vl-select-next');
     });
 
-    it('should select multiple values', () => {
+    it('should select multiple options', () => {
         cy.mount(html`<vl-select-next label="hobby's" multiple .options=${options}></vl-select-next>`);
         cy.injectAxe();
 
@@ -459,7 +532,47 @@ describe('component vl-select-next - multiple select', () => {
         cy.checkA11y('vl-select-next');
     });
 
-    it('should select multiple values programmatically', () => {
+    it('should delete multiple options', () => {
+        cy.mount(html`<vl-select-next label="hobby's" multiple .options=${options} deletable></vl-select-next>`);
+        cy.injectAxe();
+
+        cy.checkA11y('vl-select-next');
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Drummen').click();
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Padel');
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Dans');
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Drummen');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('.vl-input-field')
+            .find('.vl-select__item[data-value="padel"]')
+            .find('.vl-pill__close')
+            .click();
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Padel').should('not.exist');
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Dans');
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Drummen');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('.vl-input-field')
+            .find('.vl-select__item[data-value="dans"]')
+            .find('.vl-pill__close')
+            .click();
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Padel').should('not.exist');
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Dans').should('not.exist');
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Drummen');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('.vl-input-field')
+            .find('.vl-select__item[data-value="drummen"]')
+            .find('.vl-pill__close')
+            .click();
+        cy.get('vl-select-next').shadow().find('select').find('option').should('not.exist');
+        cy.checkA11y('vl-select-next');
+    });
+
+    it('should select multiple options programmatically', () => {
         const options: SelectOption[] = [
             { label: 'Padel', value: 'padel', selected: true },
             { label: 'Dans', value: 'dans', selected: true },
@@ -479,6 +592,36 @@ describe('component vl-select-next - multiple select', () => {
         cy.get('vl-select-next').shadow().find('select').find('option').contains('Zwemmen').should('not.exist');
         cy.get('vl-select-next').shadow().find('select').find('option').contains('Boardgames').should('not.exist');
         cy.get('vl-select-next').shadow().find('select').find('option').contains('Fietsen').should('not.exist');
+        cy.checkA11y('vl-select-next');
+    });
+
+    it('should return selected values when calling getSelectedValues()', () => {
+        cy.mount(html`<vl-select-next label="hobby's" multiple .options=${options} deletable></vl-select-next>`);
+        cy.injectAxe();
+
+        cy.checkA11y('vl-select-next');
+        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
+            expect(component.getSelectedValues()).to.be.empty;
+        });
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
+        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
+            expect(component.getSelectedValues()).to.have.members(['padel']);
+        });
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
+        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
+            expect(component.getSelectedValues()).to.have.members(['padel', 'dans']);
+        });
+        cy.get('vl-select-next')
+            .shadow()
+            .find('.vl-input-field')
+            .find('.vl-select__item[data-value="padel"]')
+            .find('.vl-pill__close')
+            .click();
+        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
+            expect(component.getSelectedValues()).to.have.members(['dans']);
+        });
         cy.checkA11y('vl-select-next');
     });
 });

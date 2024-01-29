@@ -4,10 +4,12 @@ import { formControlArgTypes } from '../../form-control/stories/form-control.sto
 import { SelectPosition, SelectDefaults } from '../index';
 import { action } from '@storybook/addon-actions';
 
-export const selectArgs: typeof defaultArgs & typeof SelectDefaults & { onVlSelect: () => void } = {
+export const selectArgs: typeof defaultArgs &
+    typeof SelectDefaults & { onVlSelect: () => void; onVlSelectSearch: () => void } = {
     ...defaultArgs,
     ...SelectDefaults,
     onVlSelect: action('vl-select'),
+    onVlSelectSearch: action('vl-select-search'),
 };
 
 export const selectArgTypes: ArgTypes<typeof selectArgs> = {
@@ -110,6 +112,14 @@ export const selectArgTypes: ArgTypes<typeof selectArgs> = {
         name: 'vl-select',
         description:
             'Event dat afgevuurd wordt als er een optie selecteerd of verwijderd wordt.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect worden de waarden van de geselecteerde opties gescheiden door een `;`.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlSelectSearch: {
+        name: 'vl-select-search',
+        description: 'Event dat afgevuurd wordt als er een waarde ingegeven wordt in het zoekveld.',
         table: {
             type: { summary: '{ value: string }' },
             category: CATEGORIES.EVENTS,
