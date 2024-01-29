@@ -10,10 +10,11 @@ import { SelectOption, VlSelectComponent } from '@domg-wc/form/next/select';
 import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
 import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio-group';
 import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
+import { VlUploadComponent } from '@domg-wc/form/next/upload';
 
 @customElement('vl-form-demo')
 export class FormDemoComponent extends LitElement {
-    private birthplaces: SelectOption[] = [
+    private geboorteplaatsen: SelectOption[] = [
         {
             label: 'België',
             value: '',
@@ -50,6 +51,7 @@ export class FormDemoComponent extends LitElement {
             VlSelectComponent,
             VlRadioGroupComponent,
             VlRadioComponent,
+            VlUploadComponent,
             VlCheckboxComponent,
             VlErrorMessageComponent,
         ]);
@@ -144,7 +146,7 @@ export class FormDemoComponent extends LitElement {
                             required
                             search
                             deletable
-                            .options=${this.birthplaces}
+                            .options=${this.geboorteplaatsen}
                             result-limit="2"
                             placeholder="Selecteer je geboorteplaats"
                             no-results-text="Geen geboorteplaatsen gevonden"
@@ -156,22 +158,22 @@ export class FormDemoComponent extends LitElement {
                         </vl-error-message-next>
                     </div>
                     <div class="vl-form-col--4-12">
-                        <label class="vl-form__label" for="hobby's">Hobby's *</label>
+                        <label class="vl-form__label" for="hobbies">Hobbies *</label>
                     </div>
                     <div class="vl-form-col--8-12">
                         <vl-select-next
-                            id="hobby's"
-                            name="hobby's"
+                            id="hobbies"
+                            name="hobbies"
                             required
                             multiple
                             deletable
                             .options=${this.hobbies}
-                            placeholder="Selecteer je hobby's"
+                            placeholder="Selecteer je hobbies"
                             no-results-text="Geen hobbies gevonden"
                             no-choices-text="Geen resterende hobbies gevonden"
                         >
                         </vl-select-next>
-                        <vl-error-message-next for="hobby's" state="valueMissing"
+                        <vl-error-message-next for="hobbies" state="valueMissing"
                             >Gelieve een hobby te selecteren.
                         </vl-error-message-next>
                     </div>
@@ -222,7 +224,7 @@ export class FormDemoComponent extends LitElement {
                         </vl-error-message-next>
                     </div>
                     <div class="vl-form-col--4-12">
-                        <label class="vl-form__label" for="contactmethode">Voorkeurscontactmethode *</label>
+                        <label class="vl-form__label" for="contactmethode">Contactmethode *</label>
                     </div>
                     <div class="vl-form-col--8-12">
                         <vl-radio-group-next id="contactmethode" name="contactmethode" required>
@@ -232,6 +234,21 @@ export class FormDemoComponent extends LitElement {
                         </vl-radio-group-next>
                         <vl-error-message-next for="contactmethode" state="valueMissing">
                             Gelieve een contactmethode te selecteren.
+                        </vl-error-message-next>
+                    </div>
+                    <div class="vl-form-col--4-12">
+                        <label class="vl-form__label" for="foto">Pasfoto *</label>
+                    </div>
+                    <div class="vl-form-col--8-12">
+                        <vl-upload-next
+                            id="foto"
+                            name="foto"
+                            accepted-files="image/*"
+                            required
+                            url="http://httpbin.org/post"
+                        ></vl-upload-next>
+                        <vl-error-message-next for="foto" state="valueMissing">
+                            Gelieve een foto te selecteren.
                         </vl-error-message-next>
                     </div>
                     <div class="vl-form-col--4-12">
@@ -256,10 +273,10 @@ export class FormDemoComponent extends LitElement {
         `;
     }
 
-    private onSubmit(e: Event): void {
-        e.preventDefault();
+    private onSubmit(event: Event): void {
+        event.preventDefault();
 
-        const data = new FormData(e.target as HTMLFormElement);
+        const data = new FormData(event.target as HTMLFormElement);
         console.log(Object.fromEntries(data));
     }
 }

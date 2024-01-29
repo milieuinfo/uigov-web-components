@@ -8,9 +8,10 @@ import { VlTextareaComponent } from '@domg-wc/form/next/textarea';
 import { VlSelectComponent, SelectOption } from '@domg-wc/form/next/select';
 import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
 import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio-group';
+import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
+import { VlUploadComponent } from '@domg-wc/form/next/upload';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import appElementStyle from './app.element.css';
-import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 
 type SubmittedFormData = {
     voornaam?: string;
@@ -24,6 +25,7 @@ type SubmittedFormData = {
     kinderen?: number;
     adres?: string;
     contactmethode?: string;
+    fotos?: File | File[];
     waarheidsgetrouw?: boolean;
 };
 
@@ -40,6 +42,7 @@ export class AppElement extends LitElement {
     private ageRequired = false;
     private kidsRequired = false;
     private addressFieldRequired = false;
+    private photosRequired = false;
     private preferredContactMethodRequired = false;
     private filledInTruthfullyRequired = false;
 
@@ -54,6 +57,7 @@ export class AppElement extends LitElement {
     private ageDisabled = false;
     private kidsDisabled = false;
     private addressFieldDisabled = false;
+    private photosDisabled = false;
     private preferredContactMethodDisabled = false;
 
     private filledInTruthfullyDisabled = false;
@@ -70,6 +74,7 @@ export class AppElement extends LitElement {
     private kidsReadonly = false;
     private addressFieldReadonly = false;
     private filledInTruthfullyReadonly = false;
+    private photosReadonly = false;
     private preferredContactMethodReadonly = false;
 
     // Other state values
@@ -112,6 +117,7 @@ export class AppElement extends LitElement {
     private address = '';
     private filledInTruthfully = false;
     private filledInTruthfullyValue = '';
+    private photos = null;
     private preferredContactMethod = '';
 
     // Submitted form values
@@ -132,6 +138,7 @@ export class AppElement extends LitElement {
             VlRadioComponent,
             VlRadioGroupComponent,
             VlDatepickerComponent,
+            VlUploadComponent,
         ]);
     }
 
@@ -151,6 +158,7 @@ export class AppElement extends LitElement {
             ageRequired: { type: Boolean, state: true },
             kidsRequired: { type: Boolean, state: true },
             addressFieldRequired: { type: Boolean, state: true },
+            photosRequired: { type: Boolean, state: true },
             preferredContactMethodRequired: { type: Boolean, state: true },
             filledInTruthfullyRequired: { type: Boolean, state: true },
             firstNameDisabled: { type: Boolean, state: true },
@@ -163,6 +171,7 @@ export class AppElement extends LitElement {
             ageDisabled: { type: Boolean, state: true },
             kidsDisabled: { type: Boolean, state: true },
             addressFieldDisabled: { type: Boolean, state: true },
+            photosDisabled: { type: Boolean, state: true },
             preferredContactMethodDisabled: { type: Boolean, state: true },
             filledInTruthfullyDisabled: { type: Boolean, state: true },
             firstNameReadonly: { type: Boolean, state: true },
@@ -175,6 +184,7 @@ export class AppElement extends LitElement {
             ageReadonly: { type: Boolean, state: true },
             kidsReadonly: { type: Boolean, state: true },
             addressFieldReadonly: { type: Boolean, state: true },
+            photosReadonly: { type: Boolean, state: true },
             preferredContactMethodReadonly: { type: Boolean, state: true },
             filledInTruthfullyReadonly: { type: Boolean, state: true },
             firstName: { type: String, state: true },
@@ -187,6 +197,7 @@ export class AppElement extends LitElement {
             age: { type: Number, state: true },
             kids: { type: Number, state: true },
             address: { type: String, state: true },
+            upload: { type: String, state: true },
             preferredContactMethod: { type: String, state: true },
             filledInTruthfully: { type: Boolean, state: true },
             filledInTruthfullyValue: { type: String, state: true },
@@ -815,7 +826,6 @@ export class AppElement extends LitElement {
                                   </div>
                               `
                             : ''}
-
                         <div class="vl-col--2-12">
                             <label class="vl-form__label vl-form__label--block" for="contactmethode">
                                 Voorkeurscontactmethode${this.preferredContactMethodRequired ? ' *' : ''}
@@ -877,6 +887,71 @@ export class AppElement extends LitElement {
                                     @click=${() => (this.preferredContactMethod = 'post')}
                                 >
                                     Set 'post'
+                                </button>
+                            </div>
+                        </div>
+                        <div class="vl-col--2-12">
+                            <label class="vl-form__label vl-form__label--block" for="fotos">
+                                Pasfoto's${this.photosRequired ? ' *' : ''}
+                            </label>
+                        </div>
+                        <div class="vl-col--4-12">
+                            <vl-upload-next
+                                id="fotos"
+                                name="fotos"
+                                max-files="2"
+                                accepted-files="image/*"
+                                url="http://httpbin.org/post"
+                                ?required=${this.photosRequired}
+                                ?disabled=${this.photosDisabled}
+                                ?readonly=${this.photosReadonly}
+                                @vl-input=${(e: CustomEvent) => {
+                                    this.photos = e.detail.value;
+                                }}
+                            ></vl-upload-next>
+                            <vl-error-message-next for="fotos" state="valueMissing">
+                                Gelieve 1 tot 2 foto's up te loaden.
+                            </vl-error-message-next>
+                        </div>
+                        <div class="vl-col--6-12">
+                            <div class="vl-action-group">
+                                <button
+                                    class="vl-button ${!this.photosRequired ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.photosRequired = !this.photosRequired)}
+                                >
+                                    Required
+                                </button>
+                                <button
+                                    class="vl-button ${!this.photosDisabled ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.photosDisabled = !this.photosDisabled)}
+                                >
+                                    Disabled
+                                </button>
+                                <button
+                                    class="vl-button ${!this.photosReadonly ? 'vl-button--secondary' : ''}"
+                                    type="button"
+                                    @click=${() => (this.photosReadonly = !this.photosReadonly)}
+                                >
+                                    Readonly
+                                </button>
+                                <button
+                                    class="vl-button vl-button--secondary"
+                                    type="button"
+                                    @click=${() => {
+                                        const vlUpload = this.shadowRoot?.querySelector('vl-upload-next');
+                                        if (vlUpload) {
+                                            const pasfoto = new File([''], 'pasfoto.jpg', { type: 'image/jpg' });
+                                            Object.defineProperty(pasfoto, 'size', {
+                                                value: (1024 * 1024 + 1) / 2,
+                                                configurable: true,
+                                            });
+                                            vlUpload.addFile(pasfoto);
+                                        }
+                                    }}
+                                >
+                                    Set 'pasfoto.jpg'
                                 </button>
                             </div>
                         </div>
@@ -993,6 +1068,12 @@ export class AppElement extends LitElement {
                             <dl class="vl-properties__list">
                                 <dt class="vl-properties__label">Contactmethode</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData.contactmethode}</dd>
+                                <dt class="vl-properties__label">Pasfoto's</dt>
+                                <dd class="vl-properties__data">
+                                    ${this.submittedFormData.fotos instanceof Array
+                                        ? this.submittedFormData.fotos.map((foto) => foto.name).join(';')
+                                        : this.submittedFormData.fotos?.name}
+                                </dd>
                                 <dt class="vl-properties__label">Waarheidsgetrouw</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData.waarheidsgetrouw}</dd>
                             </dl>
@@ -1008,8 +1089,17 @@ export class AppElement extends LitElement {
 
         const data = new FormData(e.target as HTMLFormElement);
 
-        console.log(Object.fromEntries(data));
-        this.submittedFormData = Object.fromEntries(data);
+        const formData = Array.from(data.keys()).reduce((result, key) => {
+            if (data.getAll(key).length > 1) {
+                return { ...result, [key]: data.getAll(key) };
+            } else {
+                return { ...result, [key]: data.get(key) };
+            }
+        }, {});
+
+        console.log(formData);
+
+        this.submittedFormData = formData;
         this.submittedCount++;
     }
 
@@ -1024,6 +1114,7 @@ export class AppElement extends LitElement {
         this.age = null;
         this.kids = null;
         this.address = '';
+        this.photos = null;
         this.preferredContactMethod = '';
         this.filledInTruthfully = false;
         this.filledInTruthfullyValue = '';
@@ -1041,6 +1132,7 @@ export class AppElement extends LitElement {
             this.ageRequired = false;
             this.kidsRequired = false;
             this.addressFieldRequired = false;
+            this.photosRequired = false;
             this.preferredContactMethodRequired = false;
             this.filledInTruthfullyRequired = false;
             this.firstNameDisabled = false;
@@ -1053,6 +1145,7 @@ export class AppElement extends LitElement {
             this.ageDisabled = false;
             this.kidsDisabled = false;
             this.addressFieldDisabled = false;
+            this.photosDisabled = false;
             this.preferredContactMethodDisabled = false;
             this.filledInTruthfullyDisabled = false;
             this.firstNameReadonly = false;
@@ -1065,6 +1158,7 @@ export class AppElement extends LitElement {
             this.ageReadonly = false;
             this.kidsReadonly = false;
             this.addressFieldReadonly = false;
+            this.photosReadonly = false;
             this.preferredContactMethodReadonly = false;
             this.filledInTruthfullyReadonly = false;
         }

@@ -25,4 +25,5 @@ export {
     ifDefinedString,
     ifDefinedNumber,
     findDeepestElementThroughShadowRoot,
+    findNodesForSlot,
 } from './util/utils';

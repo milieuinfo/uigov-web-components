@@ -132,9 +132,9 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
             `${ERROR_MESSAGE_CUSTOM_TAG}[for="${this.id}"][state="${errorState}"]`
         );
 
-        // Als er geen error message is voor de huidige error state, zoek dan de algemene error message
+        // Als er geen error message is voor de huidige error state, zoek dan de algemene error message zonder state attribuut
         if (!errorMessage) {
-            errorMessage = this.form?.querySelector(`${ERROR_MESSAGE_CUSTOM_TAG}[for="${this.id}"]`);
+            errorMessage = this.form?.querySelector(`${ERROR_MESSAGE_CUSTOM_TAG}[for="${this.id}"]:not([state])`);
         }
 
         errorMessage?.setAttribute('show', '');
