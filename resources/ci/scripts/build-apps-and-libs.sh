@@ -5,8 +5,10 @@ set -e
 
 echo 'RUNNING SCRIPT: build-apps-and-libs.sh'
 cd uigov-web-components
+
 echo "npm install - no 'ci' to avoid the clean"
 npm install --save-exact
+
 echo 'BUILDING'
 echo "build storybook"
 npx nx build-storybook storybook
