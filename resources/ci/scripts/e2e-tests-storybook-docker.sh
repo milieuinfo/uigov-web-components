@@ -15,7 +15,7 @@ cd resources/ci
 docker-compose run build
 
 echo
-echo ' ---------------------------- '
-echo '| CUSTOM BUILD SCRIPTS - END |'
-echo ' ---------------------------- '
+echo ' ------------------------------ '
+echo '|  CUSTOM BUILD SCRIPTS - END  |'
+echo ' ------------------------------ '
 echo
