@@ -165,10 +165,6 @@ export class VlQlikDashboardComponent extends BaseLitElement {
                 <select
                     is="vl-multiselect"
                     id="${filter.id}"
-                    multiple
-                    data-vl-multiselect
-                    data-vl-select-search
-                    data-vl-select-search-no-result-limit
                     @change="${this.changeFilter}"
                 ></select>
             </div>`;
