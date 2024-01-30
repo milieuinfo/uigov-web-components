@@ -17,7 +17,7 @@
         "storybook:test": "npx nx e2e storybook-e2e",
         "storybook:test-watch": "npx nx e2e storybook-e2e --watch",
         "storybook:build": "npx nx build-storybook storybook",
-        "storybook:ci-test": "start-server-and-test 'npx nx storybook storybook' http://localhost:8080 'npx nx e2e storybook-e2e'",
+        "storybook:ci-test": "start-server-and-test 'npx nx storybook storybook 2> output-buffer.txt' http://localhost:8080 'npx nx e2e storybook-e2e'",
         "playground-lit": "npx nx serve playground-lit",
         "playground-react": "npx nx serve playground-react",
         "playground-native": "npx nx serve playground-native",
