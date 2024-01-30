@@ -10,7 +10,7 @@ echo "npm ci"
 npm ci --maxsockets 5 &> /dev/null
 if [ $? -eq 0 ]
   then
-    echo "npm ci - success" >&2
+    echo "npm ci - success"
   else
     echo "npm ci - error" >&2
 fi
