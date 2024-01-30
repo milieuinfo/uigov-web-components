@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseHTMLElement, webComponent } from '@domg-wc/common-utilities';
 import { baseStyle, elementStyle, resetStyle } from '@domg/govflanders-style/common';
 import { documentStyle, iconStyle } from '@domg/govflanders-style/component';
 
@@ -10,12 +10,13 @@ import { documentStyle, iconStyle } from '@domg/govflanders-style/component';
  * @extends HTMLElement
  * @mixes vlElement
  *
- * @property {string} data-vl-href - Attribuut wordt gebruikt om de download link te bepalen.
+ * @property {string} data-vl-href - Bepaalt de download link.
+ * @property {string} data-vl-target - Bepaalt waar de link geopend wordt.
  */
 @webComponent('vl-document')
-export class VlDocumentComponent extends BaseElementOfType(HTMLElement) {
+export class VlDocumentComponent extends BaseHTMLElement {
     static get _observedAttributes() {
-        return ['href'];
+        return ['href', 'target'];
     }
 
     constructor() {
@@ -48,6 +49,14 @@ export class VlDocumentComponent extends BaseElementOfType(HTMLElement) {
 
     _hrefChangedCallback(oldValue: string, newValue: string) {
         this._element.href = newValue;
+    }
+
+    _targetChangedCallback(oldValue: string, newValue: string) {
+        if (newValue) {
+            this._element.setAttribute('target', newValue);
+        } else {
+            this._element.removeAttribute('target');
+        }
     }
 }
 
