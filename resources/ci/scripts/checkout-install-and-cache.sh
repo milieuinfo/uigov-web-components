@@ -7,10 +7,10 @@ echo 'RUNNING SCRIPT: checkout-install-and-cache.sh'
 cd uigov-web-components
 
 echo "npm ci"
-npm ci --maxsockets 5 &> /dev/null
+npm ci --maxsockets 5 > /dev/null
 if [ $? -eq 0 ]
   then
     echo "npm ci - success"
   else
-    echo "npm ci - error" >&2
+    echo "npm ci - error"
 fi
