@@ -10,10 +10,9 @@ echo "npm ci"
 npm ci --maxsockets 5 &> output-buffer.txt
 if [ $? -eq 0 ]
   then
-#    echo "npm ci - success"
-    echo "npm ci - success - output of buffer" >&2
-    cat output-buffer.txt >&2
+    echo "npm ci - success"
   else
-    echo "npm ci - error - output of buffer" >&2
+    echo "npm ci - error - OUTPUT OF BUFFER" >&2
     cat output-buffer.txt >&2
+    sleep 2
 fi
