@@ -2,12 +2,18 @@ import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FormControl, FormControlDefaults } from '../form-control';
-import Choices, { Choice, Options, DEFAULT_CLASSNAMES, Item } from 'choices.js';
+import * as choices from 'choices.js';
+import { Choice, Options, Item } from 'choices.js';
 import { iconStyle, inputFieldStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import selectUigStyle from './styles/vl-select.uig-css';
 import selectStyle from './styles/vl-select.css';
 import multiselectStyle from './styles/vl-multiselect.css';
+
+// web-dev-server (rollup) fix: ambiguous indirect export
+const DEFAULT_CLASSNAMES = choices.DEFAULT_CLASSNAMES;
+const Choices = choices.default;
+type Choices = choices.default;
 
 export type SelectOption = Choice;
 
