@@ -2,7 +2,7 @@ import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FormControl, FormControlDefaults } from '../form-control';
-import Choices, { Choice, Options, DEFAULT_CLASSNAMES, Item } from 'choices.js';
+import Choices, { Choice, Options, DEFAULT_CLASSNAMES as ChoicesClassnames, Item } from 'choices.js';
 import { iconStyle, inputFieldStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import selectUigStyle from './styles/vl-select.uig-css';
@@ -180,7 +180,7 @@ export class VlSelectComponent extends FormControl {
             noChoicesText: this.noChoicesText,
             searchPlaceholderValue: this.searchPlaceholder,
             classNames: {
-                ...DEFAULT_CLASSNAMES,
+                ...ChoicesClassnames,
                 containerOuter: 'js-vl-select',
                 containerInner: 'vl-select__inner',
                 input: 'vl-input-field',
