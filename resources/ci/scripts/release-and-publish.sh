@@ -76,7 +76,15 @@ git config user.email
 echo using ${GITHUB_TOKEN} as GITHUB_TOKEN
 
 echo "npm install - no 'ci' to avoid the clean"
-npm install --save-exact > /dev/null
+npm install --save-exact 2> error-buffer.txt 1> output-buffer.txt
+if [ $? -eq 0 ]
+  then
+    echo "npm install - success"
+  else
+    echo "npm install - error - ERROR-BUFFER" >&2
+    cat error-buffer.txt >&2
+    sleep 2
+fi
 
 if [[ ${release_branch} == true ]];
   then

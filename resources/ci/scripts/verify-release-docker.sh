@@ -9,7 +9,10 @@ echo '| CUSTOM BUILD SCRIPTS - START |'
 echo ' ------------------------------ '
 echo
 
-echo 'RUNNING SCRIPT: verify-release-docker.sh'
+#echo 'RUNNING SCRIPT: verify-release-docker.sh'
+#export BUILD_SCRIPT=uigov-web-components/resources/ci/scripts/verify-release-docker.sh
+#cd resources/ci
+#docker-compose run build
 
 echo
 echo ' ------------------------------ '

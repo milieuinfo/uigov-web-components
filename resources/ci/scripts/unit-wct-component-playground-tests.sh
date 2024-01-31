@@ -7,12 +7,14 @@ echo 'RUNNING SCRIPT: unit-wct-component-playground-tests.sh'
 cd uigov-web-components
 
 echo "npm install - no 'ci' to avoid the clean"
-npm install --save-exact &> /dev/null
+npm install --save-exact 2> error-buffer.txt 1> output-buffer.txt
 if [ $? -eq 0 ]
   then
     echo "npm install - success"
   else
-    echo "npm install - error" >&2
+    echo "npm install - error - ERROR-BUFFER" >&2
+    cat error-buffer.txt >&2
+    sleep 2
 fi
 
 echo "npm install yargs - specific to solve an issue with 'npx nx wct map' (that should not occur)"
