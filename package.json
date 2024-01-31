@@ -1,6 +1,6 @@
 {
     "name": "uigov-web-components",
-    "version": "1.25.0",
+    "version": "1.25.1",
     "license": "MIT",
     "scripts": {
         "test": "npm run test:unit && npm run test:wct",

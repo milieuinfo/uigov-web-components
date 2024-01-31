@@ -1,3 +1,10 @@
+## [1.25.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.25.0...v1.25.1) (2024-01-31)
+
+
+### Bug Fixes
+
+* UIG-2828 - vl-qlik-dashboard - multiselect attributen verwijderd ([7a846ba](https://github.com/milieuinfo/uigov-web-components/commit/7a846ba11f09b4b7c325fd2aecdd6f369661bc80))
+
 # [1.25.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.24.0...v1.25.0) (2024-01-29)
 
 
