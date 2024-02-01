@@ -13,3 +13,4 @@ services:
       - acd_repository_debian_login=${acd_repository_debian_login:-not-specified}
       - acd_repository_bamboo_password=${acd_repository_bamboo_password:-not-specified}
       - acd_repository_url=${acd_repository_url:-not-specified}
+    network_mode: none
