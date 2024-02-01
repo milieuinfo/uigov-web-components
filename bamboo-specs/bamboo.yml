@@ -27,9 +27,7 @@ checkout-install-and-cache:
     - Git
     - REMOTE_ONLY
   tasks:
-    - script: |
-        # avoid git warning
-        git config --global init.defaultBranch main
+    - script: git config --global init.defaultBranch main
     - clean
     - script: |
         # export variables
