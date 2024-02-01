@@ -115,7 +115,7 @@ verify-release:
         export acd_repository_bamboo_password=${bamboo.acd_repository_bamboo_password}
         export acd_repository_url=${bamboo.acd_repository_url}
         # boot the specific docker container
-        bash ./resources/ci/scripts/verify-release.sh
+        bash ./resources/ci/scripts/verify-release-docker.sh
   artifacts:
     - name: dist-verify-release
       location: dist
