@@ -1,7 +1,6 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
+import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { FormControl, FormControlDefaults } from '../form-control';
 import * as choices from 'choices.js';
 import { Choice, Options, Item } from 'choices.js';
 import { iconStyle, inputFieldStyle } from '@domg/govflanders-style/component';
@@ -9,6 +8,7 @@ import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import selectUigStyle from './styles/vl-select.uig-css';
 import selectStyle from './styles/vl-select.css';
 import multiselectStyle from './styles/vl-multiselect.css';
+import { FormControl, formControlDefaults } from '../form-control/form-control';
 
 // web-dev-server (rollup) fix: ambiguous indirect export
 const DEFAULT_CLASSNAMES = choices.DEFAULT_CLASSNAMES;
@@ -24,38 +24,40 @@ export const SelectPosition = {
 } as const;
 export type SelectPosition = (typeof SelectPosition)[keyof typeof SelectPosition];
 
-export const SelectDefaults = {
-    ...FormControlDefaults,
+export const selectDefaults = {
+    ...formControlDefaults,
     options: [] as SelectOption[],
-    placeholder: '',
-    deletable: false,
-    multiple: false,
-    search: false,
+    placeholder: '' as string,
+    deletable: false as boolean,
+    multiple: false as boolean,
+    search: false as boolean,
     position: SelectPosition.AUTO as SelectPosition,
-    resultLimit: 4,
-    noResultsText: 'Geen resultaten gevonden',
-    noChoicesText: 'Geen resterende opties gevonden',
-    searchPlaceholder: 'Zoek item',
-};
+    resultLimit: 4 as number,
+    noResultsText: 'Geen resultaten gevonden' as string,
+    noChoicesText: 'Geen resterende opties gevonden' as string,
+    searchPlaceholder: 'Zoek item' as string,
+} as const;
 
 @customElement('vl-select-next')
 export class VlSelectComponent extends FormControl {
     // Properties
-    private options: SelectOption[] = SelectDefaults.options;
-    private placeholder = SelectDefaults.placeholder;
-    private deletable = SelectDefaults.deletable;
-    private multiple = SelectDefaults.multiple;
-    private search = SelectDefaults.search;
-    private position: SelectPosition = SelectDefaults.position;
-    private resultLimit = SelectDefaults.resultLimit;
-    private noResultsText = SelectDefaults.noResultsText;
-    private noChoicesText = SelectDefaults.noChoicesText;
-    private searchPlaceholder = SelectDefaults.searchPlaceholder;
+    private options = selectDefaults.options;
+    private placeholder = selectDefaults.placeholder;
+    private deletable = selectDefaults.deletable;
+    private multiple = selectDefaults.multiple;
+    private search = selectDefaults.search;
+    private position = selectDefaults.position;
+    private resultLimit = selectDefaults.resultLimit;
+    private noResultsText = selectDefaults.noResultsText;
+    private noChoicesText = selectDefaults.noChoicesText;
+    private searchPlaceholder = selectDefaults.searchPlaceholder;
+
+    // State
+    private value = '';
 
     // Variables
     private choices: Choices | null = null;
     private initialOptions: SelectOption[] = [];
-    private value = '';
 
     static get styles(): CSSResult[] {
         return [resetStyle, baseStyle, inputFieldStyle, selectStyle, multiselectStyle, iconStyle, selectUigStyle];
@@ -73,6 +75,7 @@ export class VlSelectComponent extends FormControl {
             noResultsText: { type: String, attribute: 'no-results-text' },
             noChoicesText: { type: String, attribute: 'no-choices-text' },
             searchPlaceholder: { type: String, attribute: 'search-placeholder' },
+            value: { type: String, state: true },
         };
     }
 
@@ -84,7 +87,7 @@ export class VlSelectComponent extends FormControl {
 
         setTimeout(() => {
             // Fix voor Choices.js dropdown te openen in een Shadow DOM
-            this.choicesElement?.addEventListener('click', this.onClickChoices);
+            this.getChoicesElement()?.addEventListener('click', this.onClickChoices);
 
             // Fix voor Choices.js dropdown te openen als er geklikt wordt op het label
             this.internals.labels[0]?.addEventListener('click', this.onClickChoices);
@@ -112,6 +115,14 @@ export class VlSelectComponent extends FormControl {
             this.onChange();
         }
 
+        if (changedProperties.has('value')) {
+            const detail = { value: this.value };
+
+            this.setValue(this.value);
+            this.dispatchEvent(new CustomEvent('vl-select', { bubbles: true, composed: true, detail }));
+            this.dispatchEventIfValid(detail);
+        }
+
         if (changedProperties.has('disabled')) {
             if (this.disabled) {
                 this.choices.disable();
@@ -133,7 +144,7 @@ export class VlSelectComponent extends FormControl {
     disconnectedCallback() {
         super.disconnectedCallback();
 
-        this.choicesElement?.removeEventListener('click', this.onClickChoices);
+        this.getChoicesElement()?.removeEventListener('click', this.onClickChoices);
         this.internals.labels[0]?.removeEventListener('click', this.onClickChoices);
         this.choices?.input?.element?.removeEventListener('input', this.onSearchInput);
     }
@@ -152,7 +163,7 @@ export class VlSelectComponent extends FormControl {
                 id=${this.id}
                 name=${this.name || this.id}
                 class=${classMap(classes)}
-                aria-label=${this.label}
+                aria-label=${this.label || nothing}
                 ?required=${this.required}
                 ?disabled=${this.disabled}
                 ?error=${this.error}
@@ -164,10 +175,6 @@ export class VlSelectComponent extends FormControl {
 
     get validationTarget(): HTMLSelectElement | null | undefined {
         return this.shadowRoot?.querySelector('select');
-    }
-
-    get choicesElement(): HTMLElement | null {
-        return this.shadowRoot?.querySelector('.js-vl-select') as HTMLElement | null;
     }
 
     resetFormControl() {
@@ -184,6 +191,10 @@ export class VlSelectComponent extends FormControl {
                 .filter((option) => option.value)
                 .map((option) => option.value)
         );
+    }
+
+    private getChoicesElement(): HTMLElement | null {
+        return this.shadowRoot?.querySelector('.js-vl-select') as HTMLElement | null;
     }
 
     private getChoicesConfig(): Partial<Options> {
@@ -232,8 +243,8 @@ export class VlSelectComponent extends FormControl {
                                 tabindex="0"
                                 aria-controls="vl-select__list"
                                 aria-label="${
-                                    this.multiple ? 'selecteer één of meerdere opties' : 'selecteer één optie'
-                                }">
+                                this.multiple ? 'selecteer één of meerdere opties' : 'selecteer één optie'
+                            }">
                             </div>`
                         );
                     },
@@ -253,13 +264,13 @@ export class VlSelectComponent extends FormControl {
                                 >
                                     <span>${data.label}</span>
                                     <button class="vl-pill__close ${
-                                        !this.multiple ? 'vl-vi vl-vi-close' : ''
-                                    }" data-button aria-label="verwijder">
+                                    !this.multiple ? 'vl-vi vl-vi-close' : ''
+                                }" data-button aria-label="verwijder">
                                         ${
-                                            this.multiple
-                                                ? `<span class="vl-pill__close__icon vl-vi vl-vi-close" aria-hidden="true"></span>`
-                                                : ''
-                                        }
+                                    this.multiple
+                                        ? `<span class="vl-pill__close__icon vl-vi vl-vi-close" aria-hidden="true"></span>`
+                                        : ''
+                                }
                                     </button>
                                 </div>`
                             );
@@ -326,15 +337,7 @@ export class VlSelectComponent extends FormControl {
 
     private onChange() {
         const selectedValues = this.getSelectedValues();
-        const value = selectedValues.join(';') || '';
-
-        if (this.value !== value) {
-            this.value = value;
-            this.setValue(value);
-            this.dispatchEvent(new CustomEvent('vl-select', { bubbles: true, composed: true, detail: { value } }));
-            // requestUpdate() nodig om invalid state te updaten als het veld gemarkeerd is als invalid
-            this.requestUpdate();
-        }
+        this.value = selectedValues.join(';') || '';
     }
 
     private onClickChoices = (event: Event) => {

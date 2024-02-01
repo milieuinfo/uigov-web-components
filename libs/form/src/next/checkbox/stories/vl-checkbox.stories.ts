@@ -37,6 +37,8 @@ const CheckboxTemplate = story(
         isSwitch,
         contentSlot,
         onVlChecked,
+        onVlReset,
+        onVlValid,
     }) => html`
         <vl-checkbox-next
             id=${id}
@@ -51,6 +53,8 @@ const CheckboxTemplate = story(
             ?checked=${checked}
             ?switch=${isSwitch}
             @vl-checked=${onVlChecked}
+            @vl-reset=${onVlReset}
+            @vl-valid=${onVlValid}
         >
             ${unsafeHTML(contentSlot)}
         </vl-checkbox-next>

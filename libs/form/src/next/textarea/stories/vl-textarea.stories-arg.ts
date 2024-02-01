@@ -1,17 +1,20 @@
-import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
 import { action } from '@storybook/addon-actions';
-import { TextareaDefaults } from '../vl-textarea.component';
+import { textareaDefaults } from '../vl-textarea.component';
 
-export const textareaArgs: typeof defaultArgs & typeof TextareaDefaults & { onVlInput: () => void } = {
-    ...defaultArgs,
-    ...TextareaDefaults,
+type textareaArgsType = typeof formControlArgs &
+    typeof textareaDefaults & { onVlInput: () => void; onVlValid: () => void };
+
+export const textareaArgs: textareaArgsType = {
+    ...formControlArgs,
+    ...textareaDefaults,
     onVlInput: action('vl-input'),
+    onVlValid: action('vl-valid'),
 };
 
 export const textareaArgTypes: ArgTypes<typeof textareaArgs> = {
-    ...defaultArgTypes(true),
     ...formControlArgTypes,
     block: {
         name: 'block',
@@ -38,6 +41,24 @@ export const textareaArgTypes: ArgTypes<typeof textareaArgs> = {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: textareaArgs.value },
+        },
+    },
+    placeholder: {
+        name: 'placeholder',
+        description: 'De placeholder van het textarea veld.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: textareaArgs.placeholder },
+        },
+    },
+    autocomplete: {
+        name: 'autocomplete',
+        description: 'De autocomplete van het textarea veld.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: textareaArgs.autocomplete },
         },
     },
     minLength: {
@@ -83,7 +104,16 @@ export const textareaArgTypes: ArgTypes<typeof textareaArgs> = {
     onVlInput: {
         name: 'vl-input',
         description:
-            'Event dat afgevuurd wordt als de waarde van het input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde.',
+            'Event dat afgevuurd wordt als de waarde van het textarea veld verandert.<br>Het detail object van het event bevat de ingegeven waarde.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlValid: {
+        name: 'vl-valid',
+        description:
+            'Event dat afgevuurd wordt als de waarde van het textarea valid is.<br>Het detail object van het event bevat de ingegeven waarde.',
         table: {
             type: { summary: '{ value: string }' },
             category: CATEGORIES.EVENTS,

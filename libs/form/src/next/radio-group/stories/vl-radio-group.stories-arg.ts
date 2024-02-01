@@ -1,27 +1,21 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
-import { RadioGroupDefaults } from '../vl-radio-group.component';
+import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { radioGroupDefaults } from '../vl-radio-group.component';
 import { action } from '@storybook/addon-actions';
 
-export const radioGroupArgs: typeof defaultArgs & typeof RadioGroupDefaults & { onVlChecked: () => void } = {
-    ...defaultArgs,
-    ...RadioGroupDefaults,
+type radioGroupArgsType = typeof formControlArgs &
+    typeof radioGroupDefaults & { onVlChecked: () => void; onVlValid: () => void };
+
+export const radioGroupArgs: radioGroupArgsType = {
+    ...formControlArgs,
+    ...radioGroupDefaults,
     onVlChecked: action('vl-checked'),
+    onVlValid: action('vl-valid'),
 };
 
 export const radioGroupArgTypes: ArgTypes<typeof radioGroupArgs> = {
-    ...defaultArgTypes(true),
     ...formControlArgTypes,
-    block: {
-        name: 'block',
-        description: 'Duidt aan dat de component de volledige breedte van zijn parent mag innemen.',
-        table: {
-            type: { summary: TYPES.BOOLEAN },
-            category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: radioGroupArgs.block },
-        },
-    },
     readonly: {
         name: 'readonly',
         description: 'Duidt aan dat het veld enkel leesbaar is.',
@@ -43,7 +37,16 @@ export const radioGroupArgTypes: ArgTypes<typeof radioGroupArgs> = {
     onVlChecked: {
         name: 'vl-checked',
         description:
-            'Event dat afgevuurd wordt als de radio aangevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de radio.',
+            'Event dat afgevuurd wordt als een radio aangevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de radio.',
+        table: {
+            type: { summary: '{ checked: boolean, value?: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlValid: {
+        name: 'vl-valid',
+        description:
+            'Event dat afgevuurd wordt als een radio aangevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de radio.',
         table: {
             type: { summary: '{ checked: boolean, value?: string }' },
             category: CATEGORIES.EVENTS,

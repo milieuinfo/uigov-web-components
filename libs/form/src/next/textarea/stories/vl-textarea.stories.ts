@@ -33,11 +33,15 @@ export const TextareaDefault = story(
         block,
         readonly,
         value,
+        placeholder,
+        autocomplete,
         minLength,
         maxLength,
         rows,
         cols,
         onVlInput,
+        onVlReset,
+        onVlValid,
     }) => {
         return html` <vl-textarea-next
             id=${id}
@@ -50,11 +54,15 @@ export const TextareaDefault = story(
             ?block=${block}
             ?readonly=${readonly}
             value=${value}
+            placeholder=${placeholder}
+            autocomplete=${autocomplete}
             min-length=${minLength}
             max-length=${maxLength}
             rows=${rows}
             cols=${cols}
             @vl-input=${onVlInput}
+            @vl-reset=${onVlReset}
+            @vl-valid=${onVlValid}
         ></vl-textarea-next>`;
     }
 );

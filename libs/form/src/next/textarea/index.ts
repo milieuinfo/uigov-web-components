@@ -1,1 +1,1 @@
-export { VlTextareaComponent, TextareaDefaults } from './vl-textarea.component';
+export { VlTextareaComponent } from './vl-textarea.component';

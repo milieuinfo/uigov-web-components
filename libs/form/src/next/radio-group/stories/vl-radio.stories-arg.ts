@@ -1,13 +1,15 @@
 import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { RadioDefaults } from '../index';
 import { action } from '@storybook/addon-actions';
+import { radioDefaults } from '../vl-radio.component';
 
-export const radioArgs: typeof defaultArgs & typeof RadioDefaults & { onVlChecked: () => void; contentSlot: string } = {
+export const radioArgs: typeof defaultArgs &
+    typeof radioDefaults & { defaultSlot: string; onVlChecked: () => void; onVlValid: () => void } = {
     ...defaultArgs,
-    ...RadioDefaults,
-    contentSlot: '',
+    ...radioDefaults,
+    defaultSlot: '',
     onVlChecked: action('vl-checked'),
+    onVlValid: action('vl-valid'),
 };
 
 export const radioArgTypes: ArgTypes<typeof radioArgs> = {
@@ -103,17 +105,26 @@ export const radioArgTypes: ArgTypes<typeof radioArgs> = {
             defaultValue: { summary: radioArgs.checked },
         },
     },
-    contentSlot: {
-        name: 'content',
+    defaultSlot: {
+        name: '[default]',
         description: 'De content van de radio.',
         table: {
             category: CATEGORIES.SLOTS,
             type: { summary: TYPES.HTML },
-            defaultValue: { summary: radioArgs.contentSlot },
+            defaultValue: { summary: radioArgs.defaultSlot },
         },
     },
     onVlChecked: {
         name: 'vl-checked',
+        description:
+            'Event dat afgevuurd wordt als de radio aangevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de radio.',
+        table: {
+            type: { summary: '{ checked: boolean, value?: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlValid: {
+        name: 'vl-valid',
         description:
             'Event dat afgevuurd wordt als de radio aangevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de radio.',
         table: {

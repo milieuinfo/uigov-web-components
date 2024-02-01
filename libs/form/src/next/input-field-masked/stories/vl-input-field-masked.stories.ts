@@ -34,6 +34,8 @@ export const InputFieldMaskedDefault = story(
         readonly,
         type,
         value,
+        placeholder,
+        autocomplete,
         minLength,
         maxLength,
         min,
@@ -44,6 +46,8 @@ export const InputFieldMaskedDefault = story(
         disableValidation,
         validationRegex,
         onVlInput,
+        onVlReset,
+        onVlValid,
     }) => {
         return html`
             <div>
@@ -60,6 +64,8 @@ export const InputFieldMaskedDefault = story(
                     ?readonly=${readonly}
                     type=${type}
                     value=${value}
+                    placeholder=${placeholder}
+                    autocomplete=${autocomplete}
                     min-length=${minLength}
                     max-length=${maxLength}
                     min=${min}
@@ -70,6 +76,8 @@ export const InputFieldMaskedDefault = story(
                     ?disable-validation=${disableValidation}
                     .validationRegex=${validationRegex}
                     @vl-input=${onVlInput}
+                    @vl-reset=${onVlReset}
+                    @vl-valid=${onVlValid}
                 ></vl-input-field-masked-next>
             </div>
         `;

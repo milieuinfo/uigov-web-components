@@ -1,10 +1,12 @@
 import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { ErrorMessageDefaults } from '../vl-error-message.component';
+import { errorMessageDefaults } from '../vl-error-message.component';
 
-export const errorMessageArgs: typeof defaultArgs & typeof ErrorMessageDefaults & { defaultSlot: string } = {
+type ErrorMessageArgsType = typeof defaultArgs & typeof errorMessageDefaults & { defaultSlot: string };
+
+export const errorMessageArgs: ErrorMessageArgsType = {
     ...defaultArgs,
-    ...ErrorMessageDefaults,
+    ...errorMessageDefaults,
     defaultSlot: '',
 };
 

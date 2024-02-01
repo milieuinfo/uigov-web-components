@@ -1,19 +1,21 @@
-import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { CheckboxDefaults } from '../vl-checkbox.component';
-import { formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { checkboxDefaults } from '../vl-checkbox.component';
+import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
 import { action } from '@storybook/addon-actions';
 
-export const checkboxArgs: typeof defaultArgs &
-    typeof CheckboxDefaults & { contentSlot: string; onVlChecked: () => void } = {
-    ...defaultArgs,
-    ...CheckboxDefaults,
+type CheckboxArgsType = typeof formControlArgs &
+    typeof checkboxDefaults & { contentSlot: string; onVlChecked: () => void; onVlValid: () => void };
+
+export const checkboxArgs: CheckboxArgsType = {
+    ...formControlArgs,
+    ...checkboxDefaults,
     contentSlot: '',
     onVlChecked: action('vl-checked'),
+    onVlValid: action('vl-valid'),
 };
 
 export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
-    ...defaultArgTypes(true),
     ...formControlArgTypes,
     block: {
         name: 'block',
@@ -64,6 +66,15 @@ export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
         name: 'vl-checked',
         description:
             'Event dat afgevuurd wordt als de checkbox aangevinkt of uitgevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de checkbox indien deze aangevinkt is.',
+        table: {
+            type: { summary: '{ checked: boolean, value?: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlValid: {
+        name: 'vl-valid',
+        description:
+            'Event dat afgevuurd wordt als de checkbox valid is.<br>Het detail object van het event bevat de checked state en de waarde van de checkbox indien deze aangevinkt is.',
         table: {
             type: { summary: '{ checked: boolean, value?: string }' },
             category: CATEGORIES.EVENTS,

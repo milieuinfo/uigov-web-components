@@ -45,6 +45,8 @@ const SelectTemplate = story(
         searchPlaceholder,
         onVlSelect,
         onVlSelectSearch,
+        onVlReset,
+        onVlValid,
     }) => {
         return html` <vl-select-next
             id=${id}
@@ -66,6 +68,8 @@ const SelectTemplate = story(
             search-placeholder=${searchPlaceholder}
             @vl-select=${onVlSelect}
             @vl-select-search=${onVlSelectSearch}
+            @vl-reset=${onVlReset}
+            @vl-valid=${onVlValid}
         ></vl-select-next>`;
     }
 );

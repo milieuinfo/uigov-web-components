@@ -4,7 +4,7 @@ import { VlErrorMessageComponent } from './vl-error-message.component';
 
 registerWebComponents([VlErrorMessageComponent]);
 
-describe('component vl-error-message-next', () => {
+describe('component - vl-error-message-next', () => {
     it('should mount', () => {
         cy.mount(html`<vl-error-message-next>Test error message</vl-error-message-next>`);
 

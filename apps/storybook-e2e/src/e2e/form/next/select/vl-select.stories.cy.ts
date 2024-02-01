@@ -16,64 +16,64 @@ const selectNextDisabledOptionUrl =
 
 const selectNextReadOnlyUrl = 'http://localhost:8080/iframe.html?id=form-next-select--select-read-only&viewMode=story';
 
-describe('story vl-select-next default', () => {
-    it('should display story', () => {
+describe('story - vl-select-next - default', () => {
+    it('should render', () => {
         cy.visit(selectNextDefaultUrl);
 
         cy.get('vl-select-next').shadow().find('select');
     });
 });
 
-describe('story vl-select-next search', () => {
-    it('should display story', () => {
+describe('story - vl-select-next - search', () => {
+    it('should render', () => {
         cy.visit(selectNextSearchUrl);
 
         cy.get('vl-select-next').shadow().find('select');
     });
 });
 
-describe('story vl-select-next deletable', () => {
-    it('should display story', () => {
+describe('story - vl-select-next - deletable', () => {
+    it('should render', () => {
         cy.visit(selectNextDeletableUrl);
 
         cy.get('vl-select-next').shadow().find('select');
     });
 });
 
-describe('story vl-select-next groups', () => {
-    it('should display story', () => {
+describe('story - vl-select-next - groups', () => {
+    it('should render', () => {
         cy.visit(selectNextGroupsUrl);
 
         cy.get('vl-select-next').shadow().find('select');
     });
 });
 
-describe('story vl-select-next multiple', () => {
-    it('should display story', () => {
+describe('story - vl-select-next - multiple', () => {
+    it('should render', () => {
         cy.visit(selectNextMultipleUrl);
 
         cy.get('vl-select-next').shadow().find('select');
     });
 });
 
-describe('story vl-select-next selected option', () => {
-    it('should display story', () => {
+describe('story - vl-select-next - selected option', () => {
+    it('should render', () => {
         cy.visit(selectNextSelectedOptionUrl);
 
         cy.get('vl-select-next').shadow().find('select');
     });
 });
 
-describe('story vl-select-next disabled option', () => {
-    it('should display story', () => {
+describe('story - vl-select-next - disabled option', () => {
+    it('should render', () => {
         cy.visit(selectNextDisabledOptionUrl);
 
         cy.get('vl-select-next').shadow().find('select');
     });
 });
 
-describe('story vl-select-next read only', () => {
-    it('should display story', () => {
+describe('story - vl-select-next - read only', () => {
+    it('should render', () => {
         cy.visit(selectNextReadOnlyUrl);
 
         cy.get('vl-select-next').shadow().find('select');

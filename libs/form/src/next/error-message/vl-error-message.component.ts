@@ -6,17 +6,17 @@ import { resetStyle } from '@domg/govflanders-style/common';
 
 export const ERROR_MESSAGE_CUSTOM_TAG = 'vl-error-message-next';
 
-export const ErrorMessageDefaults = {
-    for: '',
-    state: null,
-    show: false,
-};
+export const errorMessageDefaults = {
+    for: '' as string,
+    state: null as keyof ValidityState | null,
+    show: false as boolean,
+} as const;
 
 @customElement(ERROR_MESSAGE_CUSTOM_TAG)
 export class VlErrorMessageComponent extends BaseLitElement {
-    for = ErrorMessageDefaults.for;
-    state: keyof ValidityState | null = ErrorMessageDefaults.state;
-    show = ErrorMessageDefaults.show;
+    for = errorMessageDefaults.for;
+    state = errorMessageDefaults.state;
+    show = errorMessageDefaults.show;
 
     static get styles(): CSSResult[] {
         return [resetStyle, formMessageStyle];

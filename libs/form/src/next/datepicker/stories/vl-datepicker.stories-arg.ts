@@ -1,17 +1,20 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
-import { DatepickerDefaults } from '../vl-datepicker.component';
+import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { datepickerDefaults } from '../vl-datepicker.component';
 import { action } from '@storybook/addon-actions';
 
-export const datepickerArgs: typeof defaultArgs & typeof DatepickerDefaults & { onVlInput: () => void } = {
-    ...defaultArgs,
-    ...DatepickerDefaults,
+type DatepickerArgsType = typeof formControlArgs &
+    typeof datepickerDefaults & { onVlInput: () => void; onVlValid: () => void };
+
+export const datepickerArgs: DatepickerArgsType = {
+    ...formControlArgs,
+    ...datepickerDefaults,
     onVlInput: action('vl-input'),
+    onVlValid: action('vl-valid'),
 };
 
-export const datepickerArgTypes: ArgTypes = {
-    ...defaultArgTypes(true),
+export const datepickerArgTypes: ArgTypes<typeof datepickerArgs> = {
     ...formControlArgTypes,
     block: {
         name: 'block',
@@ -57,6 +60,24 @@ export const datepickerArgTypes: ArgTypes = {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: datepickerArgs.value },
+        },
+    },
+    placeholder: {
+        name: 'placeholder',
+        description: 'De placeholder van het veld.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.placeholder },
+        },
+    },
+    autocomplete: {
+        name: 'autocomplete',
+        description: 'De autocomplete van het veld.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.autocomplete },
         },
     },
     format: {
@@ -122,9 +143,7 @@ export const datepickerArgTypes: ArgTypes = {
         name: 'am-pm',
         description: 'Activeert de 12-uurs AM/PM timepicker. \n\nEnkel van toepassing bij type: `time` of `date-time`.',
         table: {
-            type: {
-                summary: TYPES.STRING,
-            },
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: datepickerArgs.amPm },
         },
@@ -142,6 +161,15 @@ export const datepickerArgTypes: ArgTypes = {
         name: 'vl-input',
         description:
             'Event dat afgevuurd wordt als de waarde van het datepicker-input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlValid: {
+        name: 'vl-valid',
+        description:
+            'Event dat afgevuurd wordt als de waarde van het datepicker-input veld valid is.<br>Het detail object van het event bevat de ingegeven waarde.',
         table: {
             type: { summary: '{ value: string }' },
             category: CATEGORIES.EVENTS,

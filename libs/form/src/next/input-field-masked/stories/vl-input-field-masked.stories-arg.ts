@@ -1,12 +1,14 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { InputFieldMaskedDefaults } from '../vl-input-field-masked.component';
+import { inputFieldMaskedDefaults } from '../vl-input-field-masked.component';
 import { inputFieldArgTypes, inputFieldArgs } from '../../input-field/stories/vl-input-field.stories-arg';
 import { masks } from '../masks';
 
-export const inputFieldMaskedArgs: typeof inputFieldArgs & typeof InputFieldMaskedDefaults = {
+type InputFieldMaskedArgsType = typeof inputFieldArgs & typeof inputFieldMaskedDefaults;
+
+export const inputFieldMaskedArgs: InputFieldMaskedArgsType = {
     ...inputFieldArgs,
-    ...InputFieldMaskedDefaults,
+    ...inputFieldMaskedDefaults,
 };
 
 export const inputFieldMaskedArgTypes: ArgTypes<typeof inputFieldMaskedArgs> = {
@@ -19,7 +21,7 @@ export const inputFieldMaskedArgTypes: ArgTypes<typeof inputFieldMaskedArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: InputFieldMaskedDefaults.pattern },
+            defaultValue: { summary: inputFieldMaskedArgs.pattern },
         },
     },
     mask: {
@@ -30,7 +32,7 @@ export const inputFieldMaskedArgTypes: ArgTypes<typeof inputFieldMaskedArgs> = {
         table: {
             type: { summary: Object.keys(masks) },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: InputFieldMaskedDefaults.mask },
+            defaultValue: { summary: inputFieldMaskedArgs.mask },
         },
     },
     maskPrefix: {
@@ -40,16 +42,17 @@ export const inputFieldMaskedArgTypes: ArgTypes<typeof inputFieldMaskedArgs> = {
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: InputFieldMaskedDefaults.maskPrefix },
+            defaultValue: { summary: inputFieldMaskedArgs.maskPrefix },
         },
     },
     rawValue: {
         name: 'raw-value',
-        description: 'Geeft de raw value terug bij het submitten van een form.',
+        description:
+            'Geeft de raw value terug bij het submitten van een form.<br/>Bij het price mask wordt de prefix weggelaten.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: InputFieldMaskedDefaults.rawValue },
+            defaultValue: { summary: inputFieldMaskedArgs.rawValue },
         },
     },
     disableValidation: {
@@ -58,7 +61,7 @@ export const inputFieldMaskedArgTypes: ArgTypes<typeof inputFieldMaskedArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: InputFieldMaskedDefaults.disableValidation },
+            defaultValue: { summary: inputFieldMaskedArgs.disableValidation },
         },
     },
     validationRegex: {
@@ -67,7 +70,7 @@ export const inputFieldMaskedArgTypes: ArgTypes<typeof inputFieldMaskedArgs> = {
         table: {
             type: { summary: TYPES.REGEX },
             category: CATEGORIES.PROPERTIES,
-            defaultValue: { summary: InputFieldMaskedDefaults.validationRegex },
+            defaultValue: { summary: inputFieldMaskedArgs.validationRegex },
         },
     },
 };

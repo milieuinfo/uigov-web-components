@@ -4,22 +4,20 @@ import { radioStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import radioUigStyle from './vl-radio.component.uig-css';
-import { FormControl, FormControlDefaults } from '../form-control';
 import { VlRadioComponent } from './vl-radio.component';
+import { FormControl, formControlDefaults } from '../form-control/form-control';
 
-export const RadioGroupDefaults = {
-    ...FormControlDefaults,
-    block: false,
-    readonly: false,
-    value: '',
+export const radioGroupDefaults = {
+    ...formControlDefaults,
+    readonly: false as boolean,
+    value: '' as string,
 };
 
 @customElement('vl-radio-group-next')
 export class VlRadioGroupComponent extends FormControl {
     // Properties
-    private block = RadioGroupDefaults.block;
-    private readonly = RadioGroupDefaults.readonly;
-    private value: string = RadioGroupDefaults.value;
+    private readonly = radioGroupDefaults.readonly;
+    private value = radioGroupDefaults.value;
 
     // Variables
     private initialValue = '';

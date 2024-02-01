@@ -1,27 +1,27 @@
-import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
+import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { checkboxStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import checkboxUigStyle from './vl-checkbox.component.uig-css';
-import { FormControl, FormControlDefaults } from '../form-control';
+import { FormControl, formControlDefaults } from '../form-control/form-control';
 
-export const CheckboxDefaults = {
-    ...FormControlDefaults,
-    block: false,
-    value: '',
-    checked: false,
-    isSwitch: false,
-};
+export const checkboxDefaults = {
+    ...formControlDefaults,
+    block: false as boolean,
+    value: '' as string,
+    checked: false as boolean,
+    isSwitch: false as boolean,
+} as const;
 
 @customElement('vl-checkbox-next')
 export class VlCheckboxComponent extends FormControl {
     // Properties
-    private block = CheckboxDefaults.block;
-    private value = CheckboxDefaults.value;
-    private checked = CheckboxDefaults.checked;
-    private isSwitch = CheckboxDefaults.isSwitch;
+    private block = checkboxDefaults.block;
+    private value = checkboxDefaults.value;
+    private checked = checkboxDefaults.checked;
+    private isSwitch = checkboxDefaults.isSwitch;
 
     // Variables
     private initialValue = '';
@@ -49,21 +49,26 @@ export class VlCheckboxComponent extends FormControl {
         }
     }
 
-    updated(changedProperties: Map<string, unknown>): void {
+    updated(changedProperties: Map<string, unknown>) {
         super.updated(changedProperties);
 
-        if (changedProperties.has('checked')) {
-            if (this.checked) {
-                this.setValue(this.value || 'on');
-            } else {
-                this.setValue('');
-            }
-        }
+        if (changedProperties.has('checked') || changedProperties.has('value')) {
+            const value = this.checked ? this.value || 'on' : '';
+            const detail: { checked: boolean; value?: string } = { checked: this.checked };
 
-        if (changedProperties.has('value')) {
             if (this.checked) {
-                this.setValue(this.value || 'on');
+                detail.value = value;
             }
+
+            this.setValue(value);
+            this.dispatchEvent(
+                new CustomEvent('vl-checked', {
+                    bubbles: true,
+                    composed: true,
+                    detail,
+                })
+            );
+            this.dispatchEventIfValid(detail);
         }
     }
 
@@ -71,7 +76,7 @@ export class VlCheckboxComponent extends FormControl {
         return html` ${!this.isSwitch ? this.renderCheckboxDefault() : this.renderCheckboxSwitch()} `;
     }
 
-    renderCheckboxDefault(): TemplateResult {
+    private renderCheckboxDefault(): TemplateResult {
         const classes = {
             'vl-checkbox': true,
             'vl-checkbox--disabled': this.disabled,
@@ -84,10 +89,10 @@ export class VlCheckboxComponent extends FormControl {
             <label class=${classMap(classes)}>
                 <input
                     id=${this.id}
-                    name=${this.name}
+                    name=${this.name || this.id}
                     type="checkbox"
                     class="vl-checkbox__toggle"
-                    aria-label=${this.label}
+                    aria-label=${this.label || nothing}
                     ?required=${this.required}
                     ?disabled=${this.disabled}
                     ?error=${this.error}
@@ -105,7 +110,7 @@ export class VlCheckboxComponent extends FormControl {
         `;
     }
 
-    renderCheckboxSwitch(): TemplateResult {
+    private renderCheckboxSwitch(): TemplateResult {
         const classes = {
             'vl-checkbox--switch__wrapper': true,
             'vl-checkbox--disabled': this.disabled,
@@ -121,7 +126,7 @@ export class VlCheckboxComponent extends FormControl {
                     name=${this.name}
                     type="checkbox"
                     class="vl-checkbox--switch"
-                    aria-label=${this.label}
+                    aria-label=${this.label || nothing}
                     ?required=${this.required}
                     ?disabled=${this.disabled}
                     ?error=${this.error}
@@ -140,34 +145,19 @@ export class VlCheckboxComponent extends FormControl {
         `;
     }
 
-    toggle(): void {
-        if (!this.disabled) {
-            this.checked = !this.checked;
-
-            const detailObject: { checked: boolean; value?: string } = { checked: this.checked };
-            if (this.checked) {
-                detailObject.value = this.value || 'on';
-            }
-
-            this.dispatchEvent(
-                new CustomEvent('vl-checked', {
-                    bubbles: true,
-                    composed: true,
-                    detail: detailObject,
-                })
-            );
-        }
-    }
-
     get validationTarget(): HTMLInputElement | undefined | null {
         return this.shadowRoot?.querySelector('input');
     }
 
-    resetFormControl(): void {
+    resetFormControl() {
         super.resetFormControl();
 
         this.checked = this.initialCheckedValue;
         this.value = this.initialValue;
+    }
+
+    private toggle() {
+        this.checked = !this.checked;
     }
 }
 

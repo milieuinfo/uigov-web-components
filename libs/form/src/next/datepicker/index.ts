@@ -1,1 +1,1 @@
-export { VlDatepickerComponent, DatepickerDefaults } from './vl-datepicker.component';
+export { VlDatepickerComponent } from './vl-datepicker.component';

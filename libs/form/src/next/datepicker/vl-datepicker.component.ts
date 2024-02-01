@@ -9,9 +9,8 @@ import {
 } from '@domg/govflanders-style/component';
 import { patternValidator } from '@open-wc/form-control';
 import datepickerUigStyle from './vl-datepicker.uig-css';
-import { CSSResult, html, TemplateResult } from 'lit';
+import { CSSResult, html, nothing, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { FormControl, FormControlDefaults } from '../form-control';
 import { Options } from 'flatpickr/dist/types/options';
 import { Instance } from 'flatpickr/dist/types/instance';
 import flatpickr from 'flatpickr';
@@ -20,36 +19,41 @@ import { classMap } from 'lit/directives/class-map.js';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlButtonInputAddon, VlIconElement } from '@domg-wc/elements';
 import { live } from 'lit/directives/live.js';
+import { FormControl, formControlDefaults } from '../form-control/form-control';
 
-export const DatepickerDefaults = {
-    ...FormControlDefaults,
-    value: '',
-    type: '' as 'range' | 'time' | 'date-time',
-    block: false,
-    readonly: false,
-    format: 'd.m.Y',
-    minDate: '',
-    maxDate: '',
-    minTime: '',
-    maxTime: '',
-    amPm: '',
-    pattern: '',
-};
+export const datepickerDefaults = {
+    ...formControlDefaults,
+    block: false as boolean,
+    readonly: false as boolean,
+    value: '' as string,
+    placeholder: '' as string,
+    autocomplete: '' as string,
+    type: '' as '' | 'range' | 'time' | 'date-time',
+    format: 'd.m.Y' as string,
+    amPm: false as boolean,
+    minDate: '' as string,
+    maxDate: '' as string,
+    minTime: '' as string,
+    maxTime: '' as string,
+    pattern: '' as string,
+} as const;
 
 @customElement('vl-datepicker-next')
 export class VlDatepickerComponent extends FormControl {
     // Properties
-    private value = DatepickerDefaults.value;
-    private type = DatepickerDefaults.type;
-    private block = DatepickerDefaults.block;
-    private readonly = DatepickerDefaults.readonly;
-    private format = DatepickerDefaults.format;
-    private minDate = DatepickerDefaults.minDate;
-    private maxDate = DatepickerDefaults.maxDate;
-    private minTime = DatepickerDefaults.minTime;
-    private maxTime = DatepickerDefaults.maxTime;
-    private amPm = DatepickerDefaults.amPm;
-    private pattern = DatepickerDefaults.pattern;
+    private block = datepickerDefaults.block;
+    private readonly = datepickerDefaults.readonly;
+    private value = datepickerDefaults.value;
+    private placeholder = datepickerDefaults.placeholder;
+    private autocomplete = datepickerDefaults.autocomplete;
+    private type = datepickerDefaults.type;
+    private format = datepickerDefaults.format;
+    private amPm = datepickerDefaults.amPm;
+    private minDate = datepickerDefaults.minDate;
+    private maxDate = datepickerDefaults.maxDate;
+    private minTime = datepickerDefaults.minTime;
+    private maxTime = datepickerDefaults.maxTime;
+    private pattern = datepickerDefaults.pattern;
 
     // Variables
     private instance: Instance | null = null;
@@ -80,13 +84,15 @@ export class VlDatepickerComponent extends FormControl {
             block: { type: Boolean },
             readonly: { type: Boolean },
             value: { type: String, reflect: true },
+            placeholder: { type: String },
+            autocomplete: { type: String },
             type: { type: String },
             format: { type: String },
+            amPm: { type: Boolean, attribute: 'am-pm' },
             minDate: { type: String, attribute: 'min-date' },
             maxDate: { type: String, attribute: 'max-date' },
             minTime: { type: String, attribute: 'min-time' },
             maxTime: { type: String, attribute: 'max-time' },
-            amPm: { type: String, attribute: 'am-pm' },
             pattern: { type: String },
         };
     }
@@ -104,13 +110,13 @@ export class VlDatepickerComponent extends FormControl {
         }
     }
 
-    protected firstUpdated(changedProperties: Map<string, unknown>): void {
+    firstUpdated(changedProperties: Map<string, unknown>) {
         super.firstUpdated(changedProperties);
 
         this.initializeComponent();
     }
 
-    updated(changedProperties: Map<string, unknown>): void {
+    updated(changedProperties: Map<string, unknown>) {
         super.updated(changedProperties);
 
         const options = this.getDynamicOptions();
@@ -135,7 +141,7 @@ export class VlDatepickerComponent extends FormControl {
         this.instance?.destroy();
     }
 
-    protected render(): TemplateResult {
+    render(): TemplateResult {
         const inputClasses = {
             'vl-input-field': true,
             'js-vl-datepicker-toggle': true,
@@ -159,14 +165,16 @@ export class VlDatepickerComponent extends FormControl {
                     id=${this.id}
                     name=${this.name || this.id}
                     type="text"
+                    aria-label=${this.label || nothing}
                     class=${classMap(inputClasses)}
                     ?required=${this.required}
                     ?disabled=${this.disabled}
                     ?error=${this.error}
                     ?readonly=${this.readonly}
-                    pattern=${this.pattern}
-                    aria-label=${this.label}
                     .value=${live(this.value)}
+                    placeholder=${this.placeholder || nothing}
+                    autocomplete=${this.autocomplete || nothing}
+                    pattern=${this.pattern || nothing}
                     @input=${this.onInput}
                 />
                 <button
@@ -184,7 +192,7 @@ export class VlDatepickerComponent extends FormControl {
     }
 
     get validationTarget(): HTMLInputElement | undefined | null {
-        return this.getVisibleInputElement();
+        return this.shadowRoot?.querySelector('input');
     }
 
     resetFormControl() {
@@ -193,10 +201,6 @@ export class VlDatepickerComponent extends FormControl {
         this.instance?.clear();
         this.value = this.initialValue;
         if (this.initialValue) this.instance?.setDate(this.initialValue, true, this.format);
-    }
-
-    focus() {
-        this.getVisibleInputElement()?.focus();
     }
 
     private parseDate(dateString: 'today' | string | undefined): string | undefined {
@@ -271,10 +275,6 @@ export class VlDatepickerComponent extends FormControl {
         return this.shadowRoot?.querySelector('.flatpickr-wrapper') as HTMLDivElement;
     }
 
-    private getVisibleInputElement(): HTMLInputElement | undefined | null {
-        return this.renderRoot?.querySelector('input:not([type="hidden"])') as HTMLInputElement;
-    }
-
     private updateOptionsForInstance(options: Options) {
         Object.keys(options)
             .map((key) => key as keyof Options)
@@ -323,12 +323,11 @@ export class VlDatepickerComponent extends FormControl {
     };
 
     private updateValue = (value: string) => {
-        if (this.getVisibleInputElement() && value) this.getVisibleInputElement()!.value = value;
-        this.setValue(value);
+        const detail = { value: this.value };
 
-        this.dispatchEvent(
-            new CustomEvent('vl-input', { composed: true, bubbles: true, detail: { value: this.value } })
-        );
+        this.setValue(value);
+        this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+        this.dispatchEventIfValid(detail);
     };
 }
 

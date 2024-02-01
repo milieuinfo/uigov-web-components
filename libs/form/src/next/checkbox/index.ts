@@ -1,1 +1,1 @@
-export { VlCheckboxComponent, CheckboxDefaults } from './vl-checkbox.component';
+export { VlCheckboxComponent } from './vl-checkbox.component';

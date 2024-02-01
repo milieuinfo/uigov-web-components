@@ -23,19 +23,33 @@ export default {
 
 export const RadioGroupDefault = story(
     radioGroupArgs,
-    ({ id, block, required, readonly, disabled, error, success, label, name, value, onVlChecked }) => html`
+    ({
+        id,
+        required,
+        readonly,
+        disabled,
+        error,
+        success,
+        label,
+        name,
+        value,
+        onVlChecked,
+        onVlReset,
+        onVlValid,
+    }) => html`
         <vl-radio-group-next
             id=${id}
             name=${name}
             label=${label}
             value=${value}
-            ?block=${block}
             ?required=${required}
             ?readonly=${readonly}
             ?disabled=${disabled}
             ?error=${error}
             ?success=${success}
-            @vl-checked="${onVlChecked}"
+            @vl-checked=${onVlChecked}
+            @vl-reset=${onVlReset}
+            @vl-valid=${onVlValid}
         >
             <vl-radio-next value="land">Land</vl-radio-next>
             <vl-radio-next value="zee">Zee</vl-radio-next>

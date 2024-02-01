@@ -1,17 +1,20 @@
-import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
-import { InputFieldDefaults } from '../vl-input-field.component';
+import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { inputFieldDefaults } from '../vl-input-field.component';
 import { action } from '@storybook/addon-actions';
 
-export const inputFieldArgs: typeof defaultArgs & typeof InputFieldDefaults & { onVlInput: () => void } = {
-    ...defaultArgs,
-    ...InputFieldDefaults,
+type InputFieldArgsType = typeof formControlArgs &
+    typeof inputFieldDefaults & { onVlInput: () => void; onVlValid: () => void };
+
+export const inputFieldArgs: InputFieldArgsType = {
+    ...formControlArgs,
+    ...inputFieldDefaults,
     onVlInput: action('vl-input'),
+    onVlValid: action('vl-valid'),
 };
 
 export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
-    ...defaultArgTypes(true),
     ...formControlArgTypes,
     block: {
         name: 'block',
@@ -47,6 +50,24 @@ export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldArgs.value },
+        },
+    },
+    placeholder: {
+        name: 'placeholder',
+        description: 'De placeholder van het input veld.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: inputFieldArgs.placeholder },
+        },
+    },
+    autocomplete: {
+        name: 'autocomplete',
+        description: 'De autocomplete van het veld.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: inputFieldArgs.autocomplete },
         },
     },
     minLength: {
@@ -102,6 +123,15 @@ export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
         name: 'vl-input',
         description:
             'Event dat afgevuurd wordt als de waarde van het input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlValid: {
+        name: 'vl-valid',
+        description:
+            'Event dat afgevuurd wordt als de waarde van het input veld valid is.<br>Het detail object van het event bevat de ingegeven waarde.',
         table: {
             type: { summary: '{ value: string }' },
             category: CATEGORIES.EVENTS,
