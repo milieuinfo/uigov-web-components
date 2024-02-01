@@ -12,14 +12,7 @@ echo
 echo 'RUNNING SCRIPT: checkout-install-and-cache-docker.sh'
 export BUILD_SCRIPT=uigov-web-components/resources/ci/scripts/checkout-install-and-cache.sh
 cd resources/ci
-echo "docker-compose run build"
 docker-compose run build
-if [ $? -eq 0 ]
-  then
-    echo "docker-compose run build - success"
-  else
-    echo "docker-compose run build - error"
-fi
 
 echo
 echo ' ------------------------------ '
