@@ -1,47 +1,47 @@
 const formDemoUrl = 'http://localhost:8080/iframe.html?viewMode=story&id=applicatief-voorbeelden-form-demo--demo';
 
-const getNaamInput = ({ shadow = true } = {}) => {
+const getFormControl = ({ selector = '', shadow = true } = {}) => {
     if (shadow) {
-        return cy.get('vl-form-demo').shadow().find('vl-input-field-next#naam').shadow();
+        return cy.get('vl-form-demo').shadow().find(selector).shadow();
     } else {
-        return cy.get('vl-form-demo').shadow().find('vl-input-field-next#naam');
+        return cy.get('vl-form-demo').shadow().find(selector);
     }
 };
 
-const getRrnInput = () => {
-    return cy.get('vl-form-demo').shadow().find('vl-input-field-masked-next#rrn').shadow();
+const getNaamInput = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-input-field-next#naam', shadow });
 };
 
-const getGeboortedatumDatepicker = () => {
-    return cy.get('vl-form-demo').shadow().find('vl-datepicker-next#geboortedatum').shadow();
+const getRrnInput = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-input-field-masked-next#rrn', shadow });
 };
 
-const getGeboortePlaatsSelect = () => {
-    return cy.get('vl-form-demo').shadow().find('vl-select-next#geboorteplaats').shadow();
+const getGeboortedatumDatepicker = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-datepicker-next#geboortedatum', shadow });
 };
 
-const getHobbiesSelect = () => {
-    return cy.get('vl-form-demo').shadow().find('vl-select-next#hobbies').shadow();
+const getGeboortePlaatsSelect = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-select-next#geboorteplaats', shadow });
+};
+
+const getHobbiesSelect = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-select-next#hobbies', shadow });
 };
 
 const getInteressesTextarea = ({ shadow = true } = {}) => {
-    if (shadow) {
-        return cy.get('vl-form-demo').shadow().find('vl-textarea-next#interesses').shadow();
-    } else {
-        return cy.get('vl-form-demo').shadow().find('vl-textarea-next#interesses');
-    }
+    return getFormControl({ selector: 'vl-textarea-next#interesses', shadow });
 };
 
-const getLeeftijdInput = () => {
-    return cy.get('vl-form-demo').shadow().find('vl-input-field-next#leeftijd').shadow();
+const getLeeftijdInput = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-input-field-next#leeftijd', shadow });
 };
 
-const getContactMethodeRadioGroup = () => {
-    return cy.get('vl-form-demo').shadow().find('vl-radio-group-next#contactmethode');
+const getContactMethodeRadioGroup = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-radio-group-next#contactmethode', shadow });
 };
 
-const getWaarheidsGetrouwCheckbox = () => {
-    return cy.get('vl-form-demo').shadow().find('vl-checkbox-next#waarheidsgetrouw').shadow();
+const getWaarheidsGetrouwCheckbox = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-checkbox-next#waarheidsgetrouw', shadow });
 };
 
 const getSubmitButton = () => {
@@ -66,6 +66,31 @@ const createStubForSubmitEvent = () => {
         .then(($el) => {
             $el.get(0).addEventListener('submit', cy.stub().as('submit'));
         });
+};
+
+const fillInForm = () => {
+    getNaamInput().find('input').type('Kristof Spaas');
+    getRrnInput().find('input#rrn').click().type('12345678912');
+    getGeboortedatumDatepicker().find('input#geboortedatum').click().type('26.09.1991');
+    getGeboortePlaatsSelect().find('.vl-select__inner').click();
+    getGeboortePlaatsSelect().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
+    getHobbiesSelect().find('.vl-select__inner').click();
+    getHobbiesSelect().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
+    getHobbiesSelect().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
+    // Sluit de hobby dropdown
+    cy.get('body').click(0, 0);
+    getInteressesTextarea().find('textarea').click().type('Vanalles en nog wat');
+    getLeeftijdInput().find('input').click().type('32');
+    getContactMethodeRadioGroup({ shadow: false })
+        .find('vl-radio-next')
+        .shadow()
+        .find('input[value="telefoon"]')
+        // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
+        // Zoek een andere manier moest deze test flaky zijn hierdoor.
+        .check({ force: true });
+    // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
+    // Zoek een andere manier moest deze test flaky zijn hierdoor.
+    getWaarheidsGetrouwCheckbox().find('input').check({ force: true });
 };
 
 describe('composition - form demo', () => {
@@ -101,9 +126,11 @@ describe('composition - form demo', () => {
         getNaamInput().find('input').type('a');
         getSubmitButton().click();
         getErrorMessages({ forAttr: 'naam', state: 'tooShort' });
+        getNaamInput().find('input').clear();
         getNaamInput({ shadow: false }).invoke('attr', 'value', 'aaaaaaaaaaaaaaaaaaaaaaaaa');
         getSubmitButton().click();
         getErrorMessages({ forAttr: 'naam', state: 'tooLong' });
+        getNaamInput().find('input').clear();
         getNaamInput().find('input').type('!');
         getSubmitButton().click();
         getErrorMessages({ forAttr: 'naam', state: 'patternMismatch' });
@@ -162,31 +189,8 @@ describe('composition - form demo', () => {
     it('should reset form', () => {
         cy.visit(formDemoUrl);
 
-        getNaamInput().find('input').type('Kristof Spaas');
-        getRrnInput().find('input#rrn').click().type('12345678912');
-        getGeboortedatumDatepicker().find('input#geboortedatum').click().type('26.09.1991');
-        getGeboortePlaatsSelect().find('.vl-select__inner').click();
-        getGeboortePlaatsSelect().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
-        getHobbiesSelect().find('.vl-select__inner').click();
-        getHobbiesSelect().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
-        getHobbiesSelect().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
-        // Sluit de hobby dropdown
-        cy.get('body').click(0, 0);
-        getInteressesTextarea().find('textarea').click().type('Vanalles en nog wat');
-        getLeeftijdInput().find('input').click().type('32');
-        getContactMethodeRadioGroup()
-            .find('vl-radio-next')
-            .shadow()
-            .find('input[value="telefoon"]')
-            // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
-            // Zoek een andere manier moest deze test flaky zijn hierdoor.
-            .check({ force: true });
-        // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
-        // Zoek een andere manier moest deze test flaky zijn hierdoor.
-        getWaarheidsGetrouwCheckbox().find('input').check({ force: true });
-
+        fillInForm();
         getResetButton().click();
-
         getNaamInput().find('input').should('have.value', '');
         getRrnInput().find('input#rrn').should('have.value', '');
         getGeboortedatumDatepicker().find('input#geboortedatum').should('have.value', '');
@@ -195,7 +199,7 @@ describe('composition - form demo', () => {
         getHobbiesSelect().find('select').find('option[value="dans"]').should('not.exist');
         getInteressesTextarea().find('textarea').should('have.value', '');
         getLeeftijdInput().find('input').should('have.value', '');
-        getContactMethodeRadioGroup()
+        getContactMethodeRadioGroup({ shadow: false })
             .find('vl-radio-next')
             .shadow()
             .find('input[value="telefoon"]')
@@ -219,29 +223,72 @@ describe('composition - form demo', () => {
         cy.visit(formDemoUrl);
         createStubForSubmitEvent();
 
-        getNaamInput().find('input').type('Kristof Spaas');
-        getRrnInput().find('input#rrn').click().type('12345678912');
-        getGeboortedatumDatepicker().find('input#geboortedatum').click().type('26.09.1991');
-        getGeboortePlaatsSelect().find('.vl-select__inner').click();
-        getGeboortePlaatsSelect().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
-        getHobbiesSelect().find('.vl-select__inner').click();
-        getHobbiesSelect().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
-        getHobbiesSelect().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
-        // Sluit de hobby dropdown
-        cy.get('body').click(0, 0);
-        getInteressesTextarea().find('textarea').click().type('Vanalles en nog wat');
-        getLeeftijdInput().find('input').click().type('32');
-        getContactMethodeRadioGroup()
-            .find('vl-radio-next')
+        fillInForm();
+        getSubmitButton().click();
+        cy.get('@submit').should('have.been.calledOnce');
+        cy.get('vl-form-demo')
             .shadow()
-            .find('input[value="telefoon"]')
-            // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
-            // Zoek een andere manier moest deze test flaky zijn hierdoor.
-            .check({ force: true });
-        // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
-        // Zoek een andere manier moest deze test flaky zijn hierdoor.
-        getWaarheidsGetrouwCheckbox().find('input').check({ force: true });
+            .find('form')
+            .then(($el) => {
+                const formData = Object.fromEntries(new FormData($el.get(0) as HTMLFormElement));
+                expect(formData).to.deep.equal(submittedFormData);
+            });
+    });
 
+    it('should submit raw value of input-field-masked on submit form', () => {
+        const submittedFormData = {
+            naam: 'Kristof Spaas',
+            rrn: '12345678912',
+            geboortedatum: '26.09.1991',
+            geboorteplaats: 'hasselt',
+            hobbies: 'padel;dans',
+            interesses: 'Vanalles en nog wat',
+            leeftijd: '32',
+            contactmethode: 'telefoon',
+            waarheidsgetrouw: 'on',
+        };
+
+        cy.visit(formDemoUrl);
+        createStubForSubmitEvent();
+
+        getRrnInput({ shadow: false }).invoke('attr', 'raw-value', '');
+        fillInForm();
+        getSubmitButton().click();
+        cy.get('@submit').should('have.been.calledOnce');
+        cy.get('vl-form-demo')
+            .shadow()
+            .find('form')
+            .then(($el) => {
+                const formData = Object.fromEntries(new FormData($el.get(0) as HTMLFormElement));
+                expect(formData).to.deep.equal(submittedFormData);
+            });
+    });
+
+    it('should have dynamic validation attributes', () => {
+        const submittedFormData = {
+            naam: '',
+            rrn: '',
+            geboortedatum: '',
+            geboorteplaats: '',
+            hobbies: '',
+            interesses: '',
+            leeftijd: '',
+            contactmethode: '',
+            waarheidsgetrouw: '',
+        };
+
+        cy.visit(formDemoUrl);
+        createStubForSubmitEvent();
+
+        getNaamInput({ shadow: false }).invoke('removeAttr', 'required');
+        getRrnInput({ shadow: false }).invoke('removeAttr', 'required');
+        getGeboortedatumDatepicker({ shadow: false }).invoke('removeAttr', 'required');
+        getGeboortePlaatsSelect({ shadow: false }).invoke('removeAttr', 'required');
+        getHobbiesSelect({ shadow: false }).invoke('removeAttr', 'required');
+        getInteressesTextarea({ shadow: false }).invoke('removeAttr', 'required');
+        getLeeftijdInput({ shadow: false }).invoke('removeAttr', 'required');
+        getContactMethodeRadioGroup({ shadow: false }).invoke('removeAttr', 'required');
+        getWaarheidsGetrouwCheckbox({ shadow: false }).invoke('removeAttr', 'required');
         getSubmitButton().click();
         cy.get('@submit').should('have.been.calledOnce');
         cy.get('vl-form-demo')

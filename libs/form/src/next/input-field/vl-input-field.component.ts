@@ -1,38 +1,42 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
+import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { inputFieldStyle } from '@domg/govflanders-style/component';
 import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { FormControl, FormControlDefaults } from '../form-control';
 import { maxValueValidator, minValueValidator } from './validators';
 import { patternValidator } from '@open-wc/form-control';
+import { FormControl, formControlDefaults } from '../form-control/form-control';
 
-export const InputFieldDefaults = {
-    ...FormControlDefaults,
-    block: false,
-    readonly: false,
-    type: 'text',
-    value: '',
-    minLength: null,
-    maxLength: null,
-    min: null,
-    max: null,
-    pattern: '',
-};
+export const inputFieldDefaults = {
+    ...formControlDefaults,
+    block: false as boolean,
+    readonly: false as boolean,
+    type: 'text' as string,
+    value: '' as string,
+    placeholder: '' as string,
+    autocomplete: '' as string,
+    minLength: null as number | null,
+    maxLength: null as number | null,
+    min: null as number | null,
+    max: null as number | null,
+    pattern: '' as string,
+} as const;
 
 @customElement('vl-input-field-next')
 export class VlInputFieldComponent extends FormControl {
     // Properties
-    private block = InputFieldDefaults.block;
-    private readonly = InputFieldDefaults.readonly;
-    private type = InputFieldDefaults.type;
-    protected value = InputFieldDefaults.value;
-    private minLength: number | null = InputFieldDefaults.minLength;
-    private maxLength: number | null = InputFieldDefaults.maxLength;
-    private min: number | null = InputFieldDefaults.min;
-    private max: number | null = InputFieldDefaults.max;
-    private pattern: string | null = InputFieldDefaults.pattern;
+    private block = inputFieldDefaults.block;
+    private readonly = inputFieldDefaults.readonly;
+    private type = inputFieldDefaults.type;
+    protected value = inputFieldDefaults.value;
+    private placeholder = inputFieldDefaults.placeholder;
+    private autocomplete = inputFieldDefaults.autocomplete;
+    private minLength = inputFieldDefaults.minLength;
+    private maxLength = inputFieldDefaults.maxLength;
+    private min = inputFieldDefaults.min;
+    private max = inputFieldDefaults.max;
+    private pattern = inputFieldDefaults.pattern;
 
     // Variables
     protected initialValue = '';
@@ -54,6 +58,8 @@ export class VlInputFieldComponent extends FormControl {
             readonly: { type: Boolean },
             type: { type: String },
             value: { type: String, reflect: true },
+            placeholder: { type: String },
+            autocomplete: { type: String },
             minLength: { type: Number, attribute: 'min-length' },
             maxLength: { type: Number, attribute: 'max-length' },
             min: { type: Number },
@@ -62,7 +68,7 @@ export class VlInputFieldComponent extends FormControl {
         };
     }
 
-    connectedCallback(): void {
+    connectedCallback() {
         super.connectedCallback();
 
         if (!this.initialValue) {
@@ -70,12 +76,10 @@ export class VlInputFieldComponent extends FormControl {
         }
     }
 
-    updated(changedProperties: Map<string, unknown>): void {
+    updated(changedProperties: Map<string, unknown>) {
         super.updated(changedProperties);
 
-        if (changedProperties.has('value')) {
-            this.setValue(this.value);
-        }
+        this.onUpdated(changedProperties);
     }
 
     render(): TemplateResult {
@@ -92,18 +96,20 @@ export class VlInputFieldComponent extends FormControl {
                 id=${this.id}
                 name=${this.name || this.id}
                 class=${classMap(classes)}
-                aria-label=${this.label}
+                aria-label=${this.label || nothing}
                 ?required=${this.required}
                 ?disabled=${this.disabled}
                 ?error=${this.error}
                 ?readonly=${this.readonly}
                 type=${this.type}
                 .value=${live(this.value)}
-                minlength=${this.minLength}
-                maxlength=${this.maxLength}
-                min=${this.min}
-                max=${this.max}
-                pattern=${this.pattern}
+                placeholder=${this.placeholder || nothing}
+                autocomplete=${this.autocomplete || nothing}
+                minlength=${this.minLength ?? nothing}
+                maxlength=${this.maxLength ?? nothing}
+                min=${this.min ?? nothing}
+                max=${this.max ?? nothing}
+                pattern=${this.pattern || nothing}
                 @input=${this.onInput}
             />
         `;
@@ -113,17 +119,24 @@ export class VlInputFieldComponent extends FormControl {
         return this.shadowRoot?.querySelector('input');
     }
 
-    protected onInput(event: Event & { target: HTMLInputElement }): void {
-        this.value = event?.target?.value;
-        this.dispatchEvent(
-            new CustomEvent('vl-input', { composed: true, bubbles: true, detail: { value: this.value } })
-        );
-    }
-
-    resetFormControl(): void {
+    resetFormControl() {
         super.resetFormControl();
 
         this.value = this.initialValue;
+    }
+
+    protected onInput(event: Event & { target: HTMLInputElement }) {
+        this.value = event?.target?.value;
+    }
+
+    protected onUpdated(changedProperties: Map<string, unknown>) {
+        if (changedProperties.has('value')) {
+            const detail = { value: this.value };
+
+            this.setValue(this.value);
+            this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+            this.dispatchEventIfValid(detail);
+        }
     }
 }
 

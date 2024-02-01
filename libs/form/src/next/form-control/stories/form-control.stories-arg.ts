@@ -1,12 +1,18 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { FormControlDefaults } from '../form-control';
+import { formControlDefaults } from '../form-control';
+import { action } from '@storybook/addon-actions';
 
-export const formControlArgs: typeof FormControlDefaults = {
-    ...FormControlDefaults,
+type FormControlArgsType = typeof defaultArgs & typeof formControlDefaults & { onVlReset: () => void };
+
+export const formControlArgs: FormControlArgsType = {
+    ...defaultArgs,
+    ...formControlDefaults,
+    onVlReset: action('vl-reset'),
 };
 
 export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
+    ...defaultArgTypes(true),
     id: {
         name: 'id',
         description: 'Het id van het veld.',
@@ -69,6 +75,13 @@ export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: formControlArgs.success },
+        },
+    },
+    onVlReset: {
+        name: 'vl-reset',
+        description: 'Event dat afgevuurd wordt wanneer het veld gereset wordt.',
+        table: {
+            category: CATEGORIES.EVENTS,
         },
     },
 };

@@ -1,15 +1,13 @@
 import { html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import { VlCheckboxComponent, CheckboxDefaults } from './index';
+import { VlCheckboxComponent, checkboxDefaults } from './vl-checkbox.component';
 
 registerWebComponents([VlCheckboxComponent]);
-type CheckboxDefaultTypes = Partial<typeof CheckboxDefaults>;
+type CheckboxDefaultTypes = Partial<typeof checkboxDefaults>;
 
-const mountCheckbox = ({ name, value, isSwitch }: CheckboxDefaultTypes) => {
-    cy.mount(html` <vl-checkbox-next name=${name} value=${value} ?switch=${isSwitch}>Bevestig.</vl-checkbox-next> `);
-};
+const value = 'Optie 1';
 
-const mountCheckboxInForm = ({ value, isSwitch, checked }: CheckboxDefaultTypes) => {
+const mountCheckboxInForm = ({ isSwitch, checked, disabled }: CheckboxDefaultTypes = {}) => {
     cy.mount(html`
         <form
             id="form"
@@ -31,9 +29,10 @@ const mountCheckboxInForm = ({ value, isSwitch, checked }: CheckboxDefaultTypes)
                         name="confirmation"
                         block
                         required
-                        value=${value}
+                        value="bevestig"
                         ?switch=${isSwitch}
                         ?checked=${checked}
+                        ?disabled=${disabled}
                     >
                         Bevestig.
                     </vl-checkbox-next>
@@ -52,8 +51,7 @@ const mountCheckboxInForm = ({ value, isSwitch, checked }: CheckboxDefaultTypes)
     `);
 };
 
-const shouldDisabledDefault = () => {
-    cy.get('vl-checkbox-next').invoke('attr', 'disabled', '');
+const shouldBeDisabled = () => {
     cy.get('vl-checkbox-next').should('have.attr', 'disabled');
     cy.get('vl-checkbox-next')
         .shadow()
@@ -62,8 +60,7 @@ const shouldDisabledDefault = () => {
         .should('have.class', 'vl-checkbox--disabled');
 };
 
-const shouldDisabledSwitch = () => {
-    cy.get('vl-checkbox-next').invoke('attr', 'disabled', '');
+const shouldBeDisabledSwitch = () => {
     cy.get('vl-checkbox-next').should('have.attr', 'disabled');
     cy.get('vl-checkbox-next')
         .shadow()
@@ -72,9 +69,7 @@ const shouldDisabledSwitch = () => {
         .should('have.class', 'vl-checkbox--disabled');
 };
 
-const shouldCheckWithClick = (clickTarget: string) => {
-    cy.get('vl-checkbox-next').should('not.have.attr', 'checked');
-    cy.get('vl-checkbox-next').shadow().find(clickTarget).click({ force: true });
+const shouldToggleCheckedWithClick = (clickTarget: string) => {
     cy.get('vl-checkbox-next').should('have.attr', 'checked');
     cy.get('vl-checkbox-next').shadow().find(clickTarget).click({ force: true });
     cy.get('vl-checkbox-next').should('not.have.attr', 'checked');
@@ -96,41 +91,40 @@ const shouldHaveErrorStyleSwitch = () => {
         .shouldHaveComputedStyle({ pseudo: 'after', style: 'color', value: 'rgb(210, 55, 60)' });
 };
 
-describe('component vl-checkbox-next - default', () => {
-    const value = 'Optie 1';
+describe('component - vl-checkbox-next', () => {
+    it('should mount', () => {
+        cy.mount(html` <vl-checkbox-next value=${value}>Bevestig.</vl-checkbox-next> `);
 
-    beforeEach(() => {
-        mountCheckbox({
-            name: 'options',
-            value: value,
-            isSwitch: false,
-        });
+        cy.get('vl-checkbox-next').shadow().find('input');
     });
 
-    it('should mount', () => {
-        cy.get('vl-checkbox-next');
+    it('should be accessible', () => {
+        cy.mount(html` <vl-checkbox-next value=${value}>Bevestig.</vl-checkbox-next> `);
+        cy.injectAxe();
+
+        cy.checkA11y('vl-checkbox-next');
     });
 
     it('should be checked', () => {
-        shouldCheckWithClick('.vl-checkbox__label');
+        cy.mount(html` <vl-checkbox-next value=${value} checked>Bevestig.</vl-checkbox-next> `);
 
-        cy.get('vl-checkbox-next').invoke('attr', 'checked', '');
+        shouldToggleCheckedWithClick('.vl-checkbox__label');
         cy.get('vl-checkbox-next')
             .shadow()
             .find('.vl-checkbox__label')
             .find('.vl-checkbox__box')
             .shouldHaveComputedStyle({ pseudo: 'after', style: 'background-color', value: 'rgb(0, 85, 204)' });
-
-        cy.get('vl-checkbox-next').should('have.attr', 'checked');
-        cy.get('vl-checkbox-next').should('have.attr', 'value', value);
     });
 
     it('should be disabled', () => {
-        shouldDisabledDefault();
+        cy.mount(html` <vl-checkbox-next value=${value} disabled>Bevestig.</vl-checkbox-next> `);
+
+        shouldBeDisabled();
     });
 
-    it('should be error', () => {
-        cy.get('vl-checkbox-next').invoke('attr', 'error', '');
+    it('should have error', () => {
+        cy.mount(html` <vl-checkbox-next value=${value} error>Bevestig.</vl-checkbox-next> `);
+
         cy.get('vl-checkbox-next').should('have.attr', 'error');
         cy.get('vl-checkbox-next').shadow().find('.vl-checkbox').should('have.class', 'vl-checkbox--error');
         cy.get('vl-checkbox-next')
@@ -138,9 +132,7 @@ describe('component vl-checkbox-next - default', () => {
             .find('i.vl-checkbox__box')
             .shouldHaveComputedStyle({ pseudo: ':after', style: 'background-color', value: 'rgb(255, 255, 255)' })
             .shouldHaveComputedStyle({ pseudo: ':after', style: 'border-color', value: 'rgb(210, 55, 60)' });
-
-        cy.get('vl-checkbox-next').invoke('attr', 'checked', '');
-
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
         cy.get('vl-checkbox-next')
             .shadow()
             .find('i.vl-checkbox__box')
@@ -148,47 +140,58 @@ describe('component vl-checkbox-next - default', () => {
     });
 
     it('should dispatch vl-checked event on check and uncheck', () => {
+        cy.mount(html` <vl-checkbox-next value=${value}>Bevestig.</vl-checkbox-next> `);
         cy.createStubForEvent('vl-checkbox-next', 'vl-checked');
-        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
-        cy.get('@vl-checked')
-            .should('have.been.calledOnce')
-            .its('firstCall.args.0.detail')
-            .should('deep.equal', { checked: true, value });
+
         cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
         cy.get('@vl-checked')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
-            .should('deep.equal', { checked: false });
+            .should('deep.equal', { checked: true, value });
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
+        cy.get('@vl-checked').its('callCount').should('eq', 3);
+        cy.get('@vl-checked').its('lastCall.args.0.detail').should('deep.equal', { checked: false });
+    });
+
+    it('should dispatch vl-valid event on valid input', () => {
+        cy.mount(html` <vl-checkbox-next value=${value} required>Bevestig.</vl-checkbox-next> `);
+        cy.createStubForEvent('vl-checkbox-next', 'vl-valid');
+
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
+        cy.get('@vl-valid')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { checked: true, value });
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
+        cy.get('@vl-valid').should('have.been.calledOnce');
     });
 });
 
 // TODO: testen migreren naar playgrounds-e2e
-describe('component vl-checkbox-next - default in form', () => {
+describe('component - vl-checkbox-next - in form', () => {
     it('should mount', () => {
-        mountCheckboxInForm({});
+        mountCheckboxInForm();
 
-        cy.get('vl-checkbox-next');
+        cy.get('vl-checkbox-next').shadow().find('input');
     });
 
     it('should be accessible', () => {
-        mountCheckboxInForm({});
-
+        mountCheckboxInForm();
         cy.injectAxe();
 
         cy.checkA11y('vl-checkbox-next');
     });
 
     it('should be accessible on mobile', () => {
-        mountCheckboxInForm({});
+        mountCheckboxInForm();
 
         cy.injectAxe();
         cy.viewport(320, 480);
-
         cy.checkA11y('vl-checkbox-next');
     });
 
     it('should validate', () => {
-        mountCheckboxInForm({});
+        mountCheckboxInForm();
 
         cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
         cy.get('button[type="submit"]').click();
@@ -210,8 +213,9 @@ describe('component vl-checkbox-next - default in form', () => {
     });
 
     it('should be disabled', () => {
-        mountCheckboxInForm({});
-        shouldDisabledDefault();
+        mountCheckboxInForm({ disabled: true });
+
+        shouldBeDisabled();
         cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
         cy.get('button[type="submit"]').click();
         cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
@@ -228,81 +232,92 @@ describe('component vl-checkbox-next - default in form', () => {
     });
 });
 
-describe('component vl-checkbox-next - switch', () => {
-    const value = 'Optie 1';
-    beforeEach(() => {
-        mountCheckbox({
-            name: 'options',
-            value: value,
-            isSwitch: true,
-        });
+describe('component - vl-checkbox-next - switch', () => {
+    it('should mount', () => {
+        cy.mount(html` <vl-checkbox-next value=${value} switch>Bevestig.</vl-checkbox-next> `);
+
+        cy.get('vl-checkbox-next').shadow().find('input');
     });
 
-    it('should mount', () => {
-        cy.get('vl-checkbox-next');
+    it('should be accessible', () => {
+        cy.mount(html` <vl-checkbox-next value=${value} switch label="test-label">Bevestig.</vl-checkbox-next> `);
+        cy.injectAxe();
+
+        cy.checkA11y('vl-checkbox-next');
     });
 
     it('should be checked', () => {
-        shouldCheckWithClick('.vl-checkbox__label');
+        cy.mount(html` <vl-checkbox-next value=${value} switch checked>Bevestig.</vl-checkbox-next> `);
 
-        cy.get('vl-checkbox-next').invoke('attr', 'checked', '');
+        shouldToggleCheckedWithClick('.vl-checkbox__label');
         cy.get('vl-checkbox-next')
             .shadow()
             .find('.vl-checkbox--switch__label')
             .shouldHaveComputedStyle({ style: 'background-color', value: 'rgb(0, 85, 204)' });
-
         cy.get('vl-checkbox-next').should('have.attr', 'checked');
         cy.get('vl-checkbox-next').should('have.attr', 'value', value);
     });
 
     it('should be disabled', () => {
-        shouldDisabledSwitch();
+        cy.mount(html` <vl-checkbox-next value=${value} switch disabled>Bevestig.</vl-checkbox-next> `);
+
+        shouldBeDisabledSwitch();
     });
 
-    it('should be error', () => {
-        cy.get('vl-checkbox-next').invoke('attr', 'error', '');
+    it('should have error', () => {
+        cy.mount(html` <vl-checkbox-next value=${value} switch error>Bevestig.</vl-checkbox-next> `);
+
         cy.get('vl-checkbox-next').should('have.attr', 'error');
-
         shouldHaveErrorStyleSwitch();
-
-        cy.get('vl-checkbox-next').invoke('attr', 'checked', '');
-
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
         shouldHaveErrorStyleSwitch();
     });
 
     it('should dispatch vl-checked event on check and uncheck', () => {
+        cy.mount(html` <vl-checkbox-next value=${value} switch>Bevestig.</vl-checkbox-next> `);
         cy.createStubForEvent('vl-checkbox-next', 'vl-checked');
-        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
-        cy.get('@vl-checked')
-            .should('have.been.calledOnce')
-            .its('firstCall.args.0.detail')
-            .should('deep.equal', { checked: true, value });
+
         cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
         cy.get('@vl-checked')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
-            .should('deep.equal', { checked: false });
+            .should('deep.equal', { checked: true, value });
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
+        cy.get('@vl-checked').its('callCount').should('eq', 3);
+        cy.get('@vl-checked').its('lastCall.args.0.detail').should('deep.equal', { checked: false });
+    });
+
+    it('should dispatch vl-valid event on valid input', () => {
+        cy.mount(html` <vl-checkbox-next value=${value} switch required>Bevestig.</vl-checkbox-next> `);
+        cy.createStubForEvent('vl-checkbox-next', 'vl-valid');
+
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
+        cy.get('@vl-valid')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { checked: true, value });
+        cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
+        cy.get('@vl-valid').should('have.been.calledOnce');
     });
 });
 
 // TODO: testen migreren naar playgrounds-e2e
-describe('component vl-checkbox-next - switch in form', () => {
+describe('component - vl-checkbox-next - switch in form', () => {
     it('should mount', () => {
-        mountCheckboxInForm({ isSwitch: true, value: 'bevestig' });
+        mountCheckboxInForm({ isSwitch: true });
 
-        cy.get('vl-checkbox-next');
+        cy.get('vl-checkbox-next').shadow().find('input');
     });
 
     it('should be accessible', () => {
-        mountCheckboxInForm({ isSwitch: true, value: 'bevestig' });
-
+        mountCheckboxInForm({ isSwitch: true });
         cy.injectAxe();
 
         cy.checkA11y('vl-checkbox-next');
     });
 
     it('should be accessible on mobile', () => {
-        mountCheckboxInForm({ isSwitch: true, value: 'bevestig' });
+        mountCheckboxInForm({ isSwitch: true });
 
         cy.injectAxe();
         cy.viewport(320, 480);
@@ -311,7 +326,7 @@ describe('component vl-checkbox-next - switch in form', () => {
     });
 
     it('should validate', () => {
-        mountCheckboxInForm({ isSwitch: true, value: 'bevestig' });
+        mountCheckboxInForm({ isSwitch: true });
 
         cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
         cy.get('button[type="submit"]').click();
@@ -322,7 +337,7 @@ describe('component vl-checkbox-next - switch in form', () => {
     });
 
     it('should validate with initial value', () => {
-        mountCheckboxInForm({ checked: true, isSwitch: true, value: 'bevestig' });
+        mountCheckboxInForm({ checked: true, isSwitch: true });
 
         cy.get('button[type="submit"]').click();
         cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
@@ -332,23 +347,21 @@ describe('component vl-checkbox-next - switch in form', () => {
     });
 
     it('should be disabled', () => {
-        mountCheckboxInForm({ isSwitch: true, value: 'bevestig' });
-        shouldDisabledSwitch();
+        mountCheckboxInForm({ isSwitch: true, disabled: true });
 
+        shouldBeDisabledSwitch();
         cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
         cy.get('button[type="submit"]').click();
         cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
     });
 
     it('should reset', () => {
-        mountCheckboxInForm({ isSwitch: true, value: 'bevestig' });
+        mountCheckboxInForm({ isSwitch: true });
 
         cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
-
         cy.get('button[type="submit"]').click();
         cy.get('vl-error-message-next[for="confirmation"]').should('be.visible');
         shouldHaveErrorStyleSwitch();
-
         cy.get('button[type="reset"]').click();
         cy.get('vl-error-message-next[for="confirmation"]').should('not.be.visible');
     });

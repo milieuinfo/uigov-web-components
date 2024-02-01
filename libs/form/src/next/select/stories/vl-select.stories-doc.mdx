@@ -1,5 +1,6 @@
 import { ArgTypes, Canvas } from '@storybook/addon-docs';
 import * as VlSelectStories from './vl-select.stories';
+import FormControlPublicMethods from '../../form-control/stories/form-control.public-methods-doc.mdx'
 
 # Select - next
 
@@ -26,6 +27,8 @@ import { VlSelectComponent } from '@domg-wc/form/next/select';
 
 ## Publieke methodes
 
+<FormControlPublicMethods />
+
 ### getSelectedValues(): string[]
 
 Geeft de geselecteerde values terug.<br/>
@@ -37,17 +40,14 @@ De styles van DV zijn lokaal gezet en aangepast omdat deze niet CSP compliant wa
 Er werd gebruik gemaakt van een `data:` attribuut om een SVG op te halen van w3.org.
 Hierdoor breekt de CSP compliance tenzij je alle `data:` attributen whitelist, wat niet de bedoeling is.
 
-## Events en form submit
+## Select event
 
-Bij het selecteren of verwijderen van een optie wordt er een `select` event afgevuurd, het detail object van het event bevat de huidig geselecteerde value als string.
-Bij het gebruik van de multiselect worden meerdere values gescheiden door een `;`.<br/>
-We hebben gekozen voor het gebruik van een separator omdat bij `form submit` er voor elk veld een string value meegegeven moet worden, en we op deze manier het `select` event en de `form submit` op dezelfde manier kunnen behandelen.
+Bij het selecteren of verwijderen van een optie wordt het `vl-select` event afgevuurd, het detail object van dit event bevat de value van de geselecteerde optie als string.
+Bij het gebruik van de multiselect worden meerdere values gescheiden door een `;`.
 
 ## Accessibility
 
-Momenteel is dit component niet volledig accessible.<br/>
-Als je gebruik maakt van de zoekfunctie en er geen resultaten of geen resterende opties zijn, plaatst Choices.js een foutief `aria-activedescandent` attribuut.<br/>
-Als je gebruik maakt van groepen plaatst Choices.js foutieve `role` attributen op de items.
+Door de complexiteit van dit component is het niet mogelijk om het WCAG-compliant aan te bieden.
 
 ## Varianten
 
@@ -91,6 +91,10 @@ Indien de 'required' boolean op true staat, moet je zien een value programmatori
 <Canvas of={VlSelectStories.SelectReadOnly} />
 
 ## Referenties
+
+### Choices.js
+
+[Documentatie Choices.js](https://github.com/Choices-js/Choices)
 
 ### Digitaal Vlaanderen
 

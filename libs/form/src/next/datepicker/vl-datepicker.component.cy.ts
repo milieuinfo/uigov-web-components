@@ -1,6 +1,6 @@
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlErrorMessageComponent } from '../error-message';
-import { DatepickerDefaults, VlDatepickerComponent } from './vl-datepicker.component';
+import { VlDatepickerComponent, datepickerDefaults } from './vl-datepicker.component';
 import { html, nothing } from 'lit';
 
 registerWebComponents([VlDatepickerComponent, VlErrorMessageComponent]);
@@ -43,7 +43,7 @@ const createDateString = ({
     }
 };
 
-describe('component vl-datepicker', () => {
+describe('component - vl-datepicker-next', () => {
     it('should mount', () => {
         cy.mount(html`<vl-datepicker-next></vl-datepicker-next>`);
 
@@ -295,9 +295,33 @@ describe('component vl-datepicker', () => {
 
         cy.get('vl-datepicker-next').should('have.value', `${startDate} tot en met ${endDate}`);
     });
+
+    it('should dispatch vl-input event on input', () => {
+        cy.mount(html`<vl-datepicker-next></vl-datepicker-next>`);
+        cy.createStubForEvent('vl-datepicker-next', 'vl-input');
+
+        cy.get('vl-datepicker-next').shadow().find('button#toggle-calendar').click();
+        cy.get('vl-datepicker-next').shadow().find('.flatpickr-calendar').find('.flatpickr-day').contains('15').click();
+        cy.get('@vl-input')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { value: createDateString({ selectedDay: 15 }) });
+    });
+
+    it('should dispatch vl-valid event on valid input', () => {
+        cy.mount(html`<vl-datepicker-next required></vl-datepicker-next>`);
+        cy.createStubForEvent('vl-datepicker-next', 'vl-valid');
+
+        cy.get('vl-datepicker-next').shadow().find('button#toggle-calendar').click();
+        cy.get('vl-datepicker-next').shadow().find('.flatpickr-calendar').find('.flatpickr-day').contains('15').click();
+        cy.get('@vl-valid')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { value: createDateString({ selectedDay: 15 }) });
+    });
 });
 
-const mountDatepickerInForm = ({ value, disabled, block, required }: typeof DatepickerDefaults) => {
+const mountDatepickerInForm = ({ value, disabled, block, required }: typeof datepickerDefaults) => {
     cy.mount(html`
         <div class="container">
             <form id="form" class="vl-form">
@@ -333,10 +357,10 @@ const mountDatepickerInForm = ({ value, disabled, block, required }: typeof Date
     `);
 };
 
-describe('component vl-datepicker in form', () => {
+describe('component - vl-datepicker-next - in form', () => {
     it('should reset datepicker with initial value', () => {
         const initialValue = '02.12.2023';
-        mountDatepickerInForm({ ...DatepickerDefaults, value: initialValue, block: true });
+        mountDatepickerInForm({ ...datepickerDefaults, value: initialValue, block: true });
         cy.get('form').then((form$) => {
             form$.on('submit', (e) => {
                 e.preventDefault();
@@ -357,7 +381,7 @@ describe('component vl-datepicker in form', () => {
     });
 
     it('should process required validation', () => {
-        mountDatepickerInForm({ ...DatepickerDefaults, required: true });
+        mountDatepickerInForm({ ...datepickerDefaults, required: true });
         cy.get('form').then((form$) => {
             form$.on('submit', (e) => {
                 e.preventDefault();
@@ -381,7 +405,7 @@ describe('component vl-datepicker in form', () => {
     });
 
     it('should process disabled validation', () => {
-        mountDatepickerInForm({ ...DatepickerDefaults, disabled: true });
+        mountDatepickerInForm({ ...datepickerDefaults, disabled: true });
         cy.get('form').then((form$) => {
             form$.on('submit', (e) => {
                 e.preventDefault();

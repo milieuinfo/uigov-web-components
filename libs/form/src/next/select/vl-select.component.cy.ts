@@ -5,7 +5,7 @@ import { SelectOption } from './index';
 
 registerWebComponents([VlSelectComponent]);
 
-describe('component - vl-select-next - single select', () => {
+describe('component - vl-select-next', () => {
     const options: SelectOption[] = [
         { label: 'Hasselt', value: 'hasselt' },
         { label: 'Turnhout', value: 'turnhout' },
@@ -358,6 +358,28 @@ describe('component - vl-select-next - single select', () => {
         cy.checkA11y('vl-select-next');
     });
 
+    it('should dispatch vl-valid event on valid selection', () => {
+        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options} deletable required></vl-select-next>`);
+        cy.injectAxe();
+
+        cy.createStubForEvent('vl-select-next', 'vl-valid');
+        cy.checkA11y('vl-select-next');
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
+        cy.get('@vl-valid')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { value: 'hasselt' });
+        cy.get('vl-select-next')
+            .shadow()
+            .find('.vl-input-field')
+            .find('.vl-select__item')
+            .find('.vl-pill__close')
+            .click();
+        cy.get('@vl-valid').should('have.been.calledOnce');
+        cy.checkA11y('vl-select-next');
+    });
+
     it('should select option', () => {
         cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
         cy.injectAxe();
@@ -451,7 +473,7 @@ describe('component - vl-select-next - single select', () => {
     });
 });
 
-describe('component - vl-select-next - multiple select', () => {
+describe('component - vl-select-next - multiple', () => {
     const options: SelectOption[] = [
         { label: 'Padel', value: 'padel' },
         { label: 'Dans', value: 'dans' },

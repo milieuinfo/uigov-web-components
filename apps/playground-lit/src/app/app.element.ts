@@ -484,7 +484,6 @@ export class AppElement extends LitElement {
                                 ?required=${this.birthdateRequired}
                                 ?disabled=${this.birthdateDisabled}
                                 @vl-input=${(e: CustomEvent) => (this.birthdate = e.detail.value)}
-                                @reset=${() => (this.birthdate = '')}
                             >
                             </vl-datepicker-next>
                             <vl-error-message-next for="geboortedatum" state="valueMissing">

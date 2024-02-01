@@ -9,7 +9,7 @@ const clickRadioWithValue = (value: string) => {
     cy.get(`vl-radio-next[value="${value}"]`).shadow().find('input').click({ force: true });
 };
 
-describe('component vl-radio-group-next', () => {
+describe('component - vl-radio-group-next', () => {
     it('should mount', () => {
         cy.mount(html`<vl-radio-group-next></vl-radio-group-next>`);
 
@@ -204,7 +204,7 @@ describe('component vl-radio-group-next', () => {
     });
 });
 
-describe('component vl-radio-group-next in a form', () => {
+describe('component - vl-radio-group-next - in form', () => {
     it('should work inside a form', () => {
         cy.mount(html`
             <form>

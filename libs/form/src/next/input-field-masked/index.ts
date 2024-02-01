@@ -1,1 +1,1 @@
-export { VlInputFieldMaskedComponent, InputFieldMaskedDefaults } from './vl-input-field-masked.component';
+export { VlInputFieldMaskedComponent } from './vl-input-field-masked.component';

@@ -1,5 +1,6 @@
 import { ArgTypes, Canvas } from '@storybook/addon-docs';
 import * as VlCheckboxStories from './vl-checkbox.stories';
+import FormControlPublicMethods from '../../form-control/stories/form-control.public-methods-doc.mdx'
 
 # Checkbox - next
 
@@ -24,6 +25,12 @@ import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
 
 <ArgTypes of={VlCheckboxStories.CheckboxDefault} />
 
+## Publieke methodes
+
+<FormControlPublicMethods />
+
+## Varianten
+
 ### Met value
 
 Indien er geen value meegegeven wordt aan de checkbox, wordt er tijdens het submitten van een form de value `on` teruggegeven.<br/>
@@ -31,19 +38,17 @@ Dit is zoals de HTML5 standaard het voorschrijft. Indien er wel een value meegeg
 
 <Canvas of={VlCheckboxStories.CheckboxValue} />
 
-## Read only
+### Switch
+
+<Canvas of={VlCheckboxStories.CheckboxSwitch} />
+
+### Read only
 
 Readonly zorgt ervoor dat de value van een input niet aangepast kan worden, hierdoor heeft readonly plaatsen op een checkbox geen effect aangezien het aan- en uitvinken de checked state aanpast en niet de value.<br/>
 Als je een checkbox als readonly wilt gebruiken, moet je het `disabled` attribuut meegeven en gebruik maken van een hidden input zodat de value toch mee met het form gesubmit wordt.<br/>
 Zie dat de value van de hidden input overeenkomt met de checked state en de value van de disabled checkbox.
 
 <Canvas of={VlCheckboxStories.CheckboxReadonly} />
-
-## Varianten
-
-### Switch
-
-<Canvas of={VlCheckboxStories.CheckboxSwitch} />
 
 ## Referenties
 

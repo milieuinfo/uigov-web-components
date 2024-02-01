@@ -4,7 +4,7 @@ import { VlTextareaComponent } from './vl-textarea.component';
 
 registerWebComponents([VlTextareaComponent]);
 
-describe('component vl-textarea-next', () => {
+describe('component - vl-textarea-next', () => {
     it('should mount', () => {
         cy.mount(html`<vl-textarea-next label="textarea-label"></vl-textarea-next>`);
 
@@ -121,10 +121,19 @@ describe('component vl-textarea-next', () => {
 
     it('should dispatch vl-input event on input', () => {
         cy.mount(html`<vl-textarea-next></vl-textarea-next>`);
-
         cy.createStubForEvent('vl-textarea-next', 'vl-input');
+
         cy.get('vl-textarea-next').shadow().find('textarea').type('test');
-        cy.get('@vl-input').its('callCount').should('eq', 4);
+        cy.get('@vl-input').its('callCount').should('eq', 5);
         cy.get('@vl-input').its('lastCall.args.0.detail').should('deep.equal', { value: 'test' });
+    });
+
+    it('should dispatch vl-valid event on valid input', () => {
+        cy.mount(html`<vl-textarea-next required min-length="4"></vl-textarea-next>`);
+
+        cy.createStubForEvent('vl-textarea-next', 'vl-valid');
+        cy.get('vl-textarea-next').shadow().find('textarea').type('test');
+        cy.get('@vl-valid').should('have.been.calledOnce');
+        cy.get('@vl-valid').its('firstCall.args.0.detail').should('deep.equal', { value: 'test' });
     });
 });

@@ -1,19 +1,21 @@
-import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
-import { SelectPosition, SelectDefaults } from '../index';
+import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { SelectPosition, selectDefaults } from '../vl-select.component';
 import { action } from '@storybook/addon-actions';
 
-export const selectArgs: typeof defaultArgs &
-    typeof SelectDefaults & { onVlSelect: () => void; onVlSelectSearch: () => void } = {
-    ...defaultArgs,
-    ...SelectDefaults,
+type selectArgsType = typeof formControlArgs &
+    typeof selectDefaults & { onVlSelect: () => void; onVlSelectSearch: () => void; onVlValid: () => void };
+
+export const selectArgs: selectArgsType = {
+    ...formControlArgs,
+    ...selectDefaults,
     onVlSelect: action('vl-select'),
     onVlSelectSearch: action('vl-select-search'),
+    onVlValid: action('vl-valid'),
 };
 
 export const selectArgTypes: ArgTypes<typeof selectArgs> = {
-    ...defaultArgTypes(true),
     ...formControlArgTypes,
     placeholder: {
         name: 'placeholder',
@@ -120,6 +122,15 @@ export const selectArgTypes: ArgTypes<typeof selectArgs> = {
     onVlSelectSearch: {
         name: 'vl-select-search',
         description: 'Event dat afgevuurd wordt als er een waarde ingegeven wordt in het zoekveld.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlValid: {
+        name: 'vl-valid',
+        description:
+            'Event dat afgevuurd wordt als de select valid is.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect worden de waarden van de geselecteerde opties gescheiden door een `;`.',
         table: {
             type: { summary: '{ value: string }' },
             category: CATEGORIES.EVENTS,

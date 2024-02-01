@@ -2,7 +2,7 @@ import { PropertyDeclarations } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import Cleave from 'cleave.js';
 import { masks } from './masks';
-import { VlInputFieldComponent, InputFieldDefaults } from '../input-field/vl-input-field.component';
+import { VlInputFieldComponent, inputFieldDefaults } from '../input-field/vl-input-field.component';
 import { CleaveInstance, MaskOptions } from './vl-input-field-masked.model';
 import { Validator } from '@open-wc/form-control';
 
@@ -35,24 +35,24 @@ const maskValidator: Validator = {
     },
 };
 
-export const InputFieldMaskedDefaults = {
-    ...InputFieldDefaults,
-    mask: '',
-    maskPrefix: '',
-    rawValue: false,
-    disableValidation: false,
-    validationRegex: null,
-};
+export const inputFieldMaskedDefaults = {
+    ...inputFieldDefaults,
+    mask: '' as string,
+    maskPrefix: '' as string,
+    rawValue: false as boolean,
+    disableValidation: false as boolean,
+    validationRegex: null as RegExp | null,
+} as const;
 
 @customElement('vl-input-field-masked-next')
 export class VlInputFieldMaskedComponent extends VlInputFieldComponent {
     // Properties
-    private mask = InputFieldMaskedDefaults.mask;
-    private maskPrefix = InputFieldMaskedDefaults.maskPrefix;
-    private rawValue = InputFieldMaskedDefaults.rawValue;
+    private mask = inputFieldMaskedDefaults.mask;
+    private maskPrefix = inputFieldMaskedDefaults.maskPrefix;
+    private rawValue = inputFieldMaskedDefaults.rawValue;
     // Ongebruikt in dit component, maar wel nodig voor de maskValidator.
-    private disableValidation = InputFieldMaskedDefaults.disableValidation;
-    private validationRegex: RegExp | null = InputFieldMaskedDefaults.validationRegex;
+    private disableValidation = inputFieldMaskedDefaults.disableValidation;
+    private validationRegex = inputFieldMaskedDefaults.validationRegex;
 
     // Variables
     private maskOptions: MaskOptions | null = null;
@@ -70,8 +70,8 @@ export class VlInputFieldMaskedComponent extends VlInputFieldComponent {
         };
     }
 
-    firstUpdated(changedProperties: Map<string, unknown>) {
-        super.firstUpdated(changedProperties);
+    connectedCallback(): void {
+        super.connectedCallback();
 
         this.maskOptions = { ...masks[this.mask] };
 
@@ -86,23 +86,16 @@ export class VlInputFieldMaskedComponent extends VlInputFieldComponent {
         if (!this.value.startsWith(this.maskOptions.prefix || '')) {
             this.value = this.maskOptions.prefix + this.value;
         }
-
-        this.cleaveInstance = new Cleave(this.validationTarget!, this.maskOptions);
     }
 
-    updated(changedProperties: Map<string, unknown>) {
-        super.updated(changedProperties);
+    firstUpdated(changedProperties: Map<string, unknown>) {
+        super.firstUpdated(changedProperties);
 
-        if (changedProperties.has('value') || changedProperties.has('rawValue')) {
-            if (this.value === this.maskOptions?.prefix || this.getRawValue() === this.maskOptions?.prefix) {
-                // Zet de ElementInternals value op een lege string indien enkel de prefix overschiet.
-                // Dit zorgt ervoor dat de mask validatie niet inkicked als de gebruiker geen waarde heeft ingevuld.
-                this.setValue('');
-            } else {
-                const value = this.rawValue ? this.getRawValue() : this.value;
-                this.setValue(value || '');
-            }
+        if (!this.maskOptions) {
+            return;
         }
+
+        this.cleaveInstance = new Cleave(this.validationTarget!, this.maskOptions);
     }
 
     resetFormControl() {
@@ -126,17 +119,32 @@ export class VlInputFieldMaskedComponent extends VlInputFieldComponent {
             const customTransformFn = this.maskOptions?.customTransformFn;
             const transformedValue = customTransformFn ? customTransformFn(value) : value;
 
-            if (transformedValue !== value) {
-                this.value = transformedValue;
+            if (this.value === transformedValue) {
+                // Request een update zodat de waarde van de input teruggezet wordt naar de vorige waarde.
                 this.requestUpdate();
                 return;
             }
 
-            this.value = value;
-            this.dispatchEvent(
-                new CustomEvent('vl-input', { composed: true, bubbles: true, detail: { value: this.value } })
-            );
+            this.value = transformedValue;
         }, 0);
+    }
+
+    protected onUpdated(changedProperties: Map<string, unknown>) {
+        if (changedProperties.has('value') || changedProperties.has('rawValue')) {
+            let value = this.rawValue ? this.getRawValue() || '' : this.value;
+
+            if (this.value === this.maskOptions?.prefix || this.getRawValue() === this.maskOptions?.prefix) {
+                // Zet de ElementInternals value op een lege string indien enkel de prefix overschiet.
+                // Dit zorgt ervoor dat de required validator kan inkicken als de gebruiker geen waarde heeft ingevuld.
+                value = '';
+            }
+
+            const detail = { value };
+
+            this.setValue(value);
+            this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+            this.dispatchEventIfValid(detail);
+        }
     }
 }
 

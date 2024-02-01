@@ -40,9 +40,14 @@ export const DatepickerDefault = story(
         readonly,
         required,
         value,
+        placeholder,
+        autocomplete,
         label,
         pattern,
         name,
+        onVlInput,
+        onVlReset,
+        onVlValid,
     }) => {
         return html`
             <div style="height: 400px;">
@@ -51,6 +56,8 @@ export const DatepickerDefault = story(
                     name=${name}
                     label=${label}
                     value=${value}
+                    placeholder=${placeholder}
+                    autocomplete=${autocomplete}
                     ?error=${error}
                     ?success=${success}
                     ?required=${required}
@@ -65,6 +72,9 @@ export const DatepickerDefault = story(
                     max-time=${maxTime}
                     am-pm=${amPm}
                     pattern=${pattern}
+                    @vl-input=${onVlInput}
+                    @vl-reset=${onVlReset}
+                    @vl-valid=${onVlValid}
                 >
                 </vl-datepicker-next>
             </div>

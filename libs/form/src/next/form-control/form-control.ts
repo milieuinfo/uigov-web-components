@@ -11,25 +11,25 @@ import { ERROR_MESSAGE_CUSTOM_TAG } from '../error-message/vl-error-message.comp
 import { BaseLitElement } from '@domg-wc/common-utilities';
 import 'reflect-metadata';
 
-export const FormControlDefaults = {
-    id: '',
-    name: '',
-    label: '',
-    required: false,
-    disabled: false,
-    error: false,
-    success: false,
-};
+export const formControlDefaults = {
+    id: '' as string,
+    name: '' as string,
+    label: '' as string,
+    required: false as boolean,
+    disabled: false as boolean,
+    error: false as boolean,
+    success: false as boolean,
+} as const;
 
 export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     // Properties
-    id = FormControlDefaults.id;
-    protected name = FormControlDefaults.name;
-    protected label = FormControlDefaults.label;
-    protected required = FormControlDefaults.required;
-    protected disabled = FormControlDefaults.disabled;
-    protected error = FormControlDefaults.error;
-    protected success = FormControlDefaults.success;
+    id = formControlDefaults.id;
+    protected name = formControlDefaults.name;
+    protected label = formControlDefaults.label;
+    protected required = formControlDefaults.required;
+    protected disabled = formControlDefaults.disabled;
+    protected error = formControlDefaults.error;
+    protected success = formControlDefaults.success;
 
     // State
     protected isInvalid = false;
@@ -51,7 +51,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         };
     }
 
-    connectedCallback(): void {
+    connectedCallback() {
         super.connectedCallback();
 
         this.addEventListener('keydown', this.onKeydown);
@@ -62,14 +62,14 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         }
     }
 
-    disconnectedCallback(): void {
+    disconnectedCallback() {
         super.disconnectedCallback();
 
         this.removeEventListener('keydown', this.onKeydown);
         this.removeEventListener('invalid', this.onInvalid);
     }
 
-    updated(changedProperties: Map<string, unknown>): void {
+    updated(changedProperties: Map<string, unknown>) {
         super.updated(changedProperties);
 
         if (!changedProperties.has('isInvalid')) {
@@ -80,13 +80,19 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
 
     abstract get validationTarget(): HTMLElement | undefined | null;
 
-    resetFormControl(): void {
+    resetFormControl() {
         this.isInvalid = false;
         this.hideErrorMessages();
-        this.dispatchEvent(new Event('reset'));
+        this.dispatchEvent(new Event('vl-reset', { bubbles: true, composed: true }));
     }
 
-    private onKeydown(event: KeyboardEvent): void {
+    protected dispatchEventIfValid(detail: unknown) {
+        if (this.validity.valid) {
+            this.dispatchEvent(new CustomEvent('vl-valid', { composed: true, bubbles: true, detail }));
+        }
+    }
+
+    private onKeydown(event: KeyboardEvent) {
         if (event.code === 'Enter') {
             if (this.form) {
                 submit(this.form);
@@ -94,7 +100,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         }
     }
 
-    private onInvalid(event: Event): void {
+    private onInvalid(event: Event) {
         event.preventDefault();
 
         this.isInvalid = true;
@@ -102,7 +108,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         this.showErrorMessage();
     }
 
-    private focusFirstInvalidInput(): void {
+    private focusFirstInvalidInput() {
         const firstInvalidInput = this.form?.querySelector(':invalid');
 
         if (this === firstInvalidInput) {
@@ -111,7 +117,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         }
     }
 
-    private showErrorMessage(): void {
+    private showErrorMessage() {
         let errorState = '';
 
         for (const key in this.validity) {
@@ -134,7 +140,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         errorMessage?.setAttribute('show', '');
     }
 
-    private hideErrorMessages(): void {
+    private hideErrorMessages() {
         const errorMessages = this.form?.querySelectorAll(`${ERROR_MESSAGE_CUSTOM_TAG}[for="${this.id}"]`);
 
         errorMessages?.forEach((errorMessage) => {

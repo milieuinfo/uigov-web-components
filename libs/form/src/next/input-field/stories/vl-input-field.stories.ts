@@ -34,12 +34,16 @@ export const InputFieldDefault = story(
         readonly,
         type,
         value,
+        placeholder,
+        autocomplete,
         minLength,
         maxLength,
         min,
         max,
         pattern,
         onVlInput,
+        onVlReset,
+        onVlValid,
     }) => {
         return html` <vl-input-field-next
             id=${id}
@@ -53,12 +57,16 @@ export const InputFieldDefault = story(
             ?readonly=${readonly}
             type=${type}
             value=${value}
+            placeholder=${placeholder}
+            autocomplete=${autocomplete}
             min-length=${minLength}
             max-length=${maxLength}
             min=${min}
             max=${max}
             pattern=${pattern}
             @vl-input=${onVlInput}
+            @vl-reset=${onVlReset}
+            @vl-valid=${onVlValid}
         ></vl-input-field-next>`;
     }
 );
