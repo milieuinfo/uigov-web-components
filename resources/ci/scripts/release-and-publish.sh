@@ -81,8 +81,8 @@ if [ $? -eq 0 ]
   then
     echo "npm install - success"
   else
-    echo "npm install - error - ERROR-BUFFER" >&2
-    cat buffer-stderr.txt >&2
+    echo "npm install - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt>&2
     sleep 2
 fi
 

@@ -12,7 +12,7 @@ if [ $? -eq 0 ]
   then
     echo "npm ci - success"
   else
-    echo "npm ci - error - ERROR-BUFFER" >&2
-    cat buffer-stderr.txt >&2
+    echo "npm ci - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt>&2
     sleep 2
 fi

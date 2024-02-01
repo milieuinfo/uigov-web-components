@@ -12,8 +12,8 @@ if [ $? -eq 0 ]
   then
     echo "npm install - success"
   else
-    echo "npm install - error - ERROR-BUFFER" >&2
-    cat buffer-stderr.txt >&2
+    echo "npm install - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt>&2
     sleep 2
 fi
 
@@ -24,8 +24,8 @@ if [ $? -eq 0 ]
   then
     echo "build storybook - success"
   else
-    echo "build storybook - error - ERROR-BUFFER" >&2
-    cat buffer-stderr.txt >&2
+    echo "build storybook - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt>&2
     sleep 2
 fi
 
@@ -35,8 +35,8 @@ if [ $? -eq 0 ]
   then
     echo "build playground-legacy - success"
   else
-    echo "build playground-legacy - error - ERROR-BUFFER" >&2
-    cat buffer-stderr.txt >&2
+    echo "build playground-legacy - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt>&2
     sleep 2
 fi
 
@@ -46,8 +46,8 @@ if [ $? -eq 0 ]
   then
     echo "build playground-lit - success"
   else
-    echo "build playground-lit - error - ERROR-BUFFER" >&2
-    cat buffer-stderr.txt >&2
+    echo "build playground-lit - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt>&2
     sleep 2
 fi
 
@@ -57,8 +57,8 @@ if [ $? -eq 0 ]
   then
     echo "build playground-native - success"
   else
-    echo "build playground-native - error - ERROR-BUFFER" >&2
-    cat buffer-stderr.txt >&2
+    echo "build playground-native - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt>&2
     sleep 2
 fi
 
@@ -68,8 +68,8 @@ if [ $? -eq 0 ]
   then
     echo "build playground-react - success"
   else
-    echo "build playground-react - error - ERROR-BUFFER" >&2
-    cat buffer-stderr.txt >&2
+    echo "build playground-react - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt>&2
     sleep 2
 fi
 
@@ -79,8 +79,8 @@ if [ $? -eq 0 ]
   then
     echo "build libraries - success"
   else
-    echo "build libraries - error - ERROR-BUFFER" >&2
-    cat buffer-stderr.txt >&2
+    echo "build libraries - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt>&2
     sleep 2
 fi
 
@@ -90,7 +90,7 @@ if [ $? -eq 0 ]
   then
     echo "build fat-lib - success"
   else
-    echo "build fat-lib - error - ERROR-BUFFER" >&2
-    cat buffer-stderr.txt >&2
+    echo "build fat-lib - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt>&2
     sleep 2
 fi
