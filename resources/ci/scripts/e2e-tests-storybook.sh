@@ -7,13 +7,13 @@ echo 'RUNNING SCRIPT: e2e-tests-storybook.sh'
 cd uigov-web-components
 
 echo "npm install - no 'ci' to avoid the clean"
-npm install --save-exact 2> error-buffer.txt 1> output-buffer.txt
+npm install --save-exact 2> buffer-stderr.txt 1> buffer-stdout.txt
 if [ $? -eq 0 ]
   then
     echo "npm install - success"
   else
     echo "npm install - error - ERROR-BUFFER" >&2
-    cat error-buffer.txt >&2
+    cat buffer-stderr.txt >&2
     sleep 2
 fi
 
