@@ -27,12 +27,12 @@ checkout-install-and-cache:
     - Git
     - REMOTE_ONLY
   tasks:
+    - clean
     - script: |
         #!/bin/bash
         # avoid git warning
         git config --global init.defaultBranch develop
     - checkout
-    - clean
     - script: |
         # export variables
         export test_token=${bamboo.test_token}
