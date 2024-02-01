@@ -62,9 +62,9 @@ git pull origin ${gitRefName}
 # the git fetch is necessary -> otherwise semantic-release is unaware of the previous version
 # this gives 'does not point to a valid object!' errors - they can be ignored
 echo 'delete all local git tags'
-git tag -d $(git tag -l) > /dev/null
+git tag -d $(git tag -l) &> /dev/null
 echo 'fetch all remote git tags'
-git fetch --all --tags --force > /dev/null
+git fetch --all --tags --force &> /dev/null
 
 GITHUB_USER=kspeltix
 GITHUB_EMAIL=kris.speltincx@vlaanderen.be
