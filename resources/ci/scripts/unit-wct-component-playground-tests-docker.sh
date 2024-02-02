@@ -12,7 +12,7 @@ echo
 echo 'RUNNING SCRIPT: unit-wct-component-playground-tests-docker.sh'
 export BUILD_SCRIPT=uigov-web-components/resources/ci/scripts/unit-wct-component-playground-tests.sh
 cd resources/ci
-docker-compose run build --quiet-pull
+docker compose --quiet-pull run build
 
 echo
 echo ' ------------------------------ '
