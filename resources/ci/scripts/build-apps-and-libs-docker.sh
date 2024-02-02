@@ -12,7 +12,7 @@ echo
 echo 'RUNNING SCRIPT: build-apps-and-libs-docker.sh'
 export BUILD_SCRIPT=uigov-web-components/resources/ci/scripts/build-apps-and-libs.sh
 cd resources/ci
-docker compose run build --quiet-pull
+docker compose run --quiet-pull build
 
 echo
 echo ' ------------------------------ '
