@@ -48,6 +48,7 @@ export { VlMapModifyAction } from './components/action/layer-action/modify-actio
 export { VlMapDrawPointAction } from './components/action/draw-action/draw-point-action/vl-map-draw-point-action';
 export { VlMapDrawLineAction } from './components/action/draw-action/draw-line-action/vl-map-draw-line-action';
 export { VlMapDrawPolygonAction } from './components/action/draw-action/draw-polygon-action/vl-map-draw-polygon-action';
+export { VlMapDrawActionStyle } from './components/action/draw-action/draw-action-style/vl-map-draw-action-style';
 export { VlMapMeasureAction } from './components/action/draw-action/measure-action/vl-map-measure-action';
 export { VlMapLayerStyle } from './components/layer-style/vl-map-layer-style';
 export { VlMapLayerCircleStyle } from './components/layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
