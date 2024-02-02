@@ -54,6 +54,11 @@ build-apps-and-libs:
   requirements: *requirements
   tasks:
     - clean
+    - script: |
+        #!/bin/bash
+        # avoid git warning
+        git config --global init.defaultBranch develop
+    - checkout
     - script: bash ./resources/ci/scripts/build-apps-and-libs-docker.sh
     - script: &dist-artifact |
         # move the folder './dist' to './dist-artifact/dist'
@@ -70,6 +75,11 @@ unit-wct-component-playground-tests:
   requirements: *requirements
   tasks:
     - clean
+    - script: |
+        #!/bin/bash
+        # avoid git warning
+        git config --global init.defaultBranch develop
+    - checkout
     - script: bash ./resources/ci/scripts/unit-wct-component-playground-tests-docker.sh
     - script: *dist-artifact
   artifacts:
@@ -81,6 +91,11 @@ e2e-tests-storybook:
   requirements: *requirements
   tasks:
     - clean
+    - script: |
+        #!/bin/bash
+        # avoid git warning
+        git config --global init.defaultBranch develop
+    - checkout
     - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh
     - script: *dist-artifact
   artifacts:
@@ -93,6 +108,11 @@ release-and-publish:
   requirements: *requirements
   tasks:
     - clean
+    - script: |
+        #!/bin/bash
+        # avoid git warning
+        git config --global init.defaultBranch develop
+    - checkout
     - script: |
         # export variables
         export test_token=${bamboo.test_token}
@@ -111,6 +131,11 @@ verify-release:
   requirements: *requirements
   tasks:
     - clean
+    - script: |
+        #!/bin/bash
+        # avoid git warning
+        git config --global init.defaultBranch develop
+    - checkout
     - script: |
         # export variables
         export acd_repository_debian_login=${bamboo.acd_repository_debian_login}
