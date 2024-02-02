@@ -13,6 +13,6 @@ if [ $? -eq 0 ]
     echo "npm ci - success"
   else
     echo "npm ci - error - buffer-stderr.txt" >&2
-    cat buffer-stderr.txt>&2
+    cat buffer-stderr.txt >&2
     sleep 2
 fi

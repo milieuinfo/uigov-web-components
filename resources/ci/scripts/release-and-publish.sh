@@ -80,6 +80,7 @@ echo 'git config user.email'
 git config user.email ${GITHUB_EMAIL}
 git config user.email
 
+set +e
 echo "npm install - no 'ci' to avoid the clean"
 npm install --save-exact 2> buffer-stderr.txt 1> buffer-stdout.txt
 if [ $? -eq 0 ]
@@ -87,9 +88,10 @@ if [ $? -eq 0 ]
     echo "npm install - success"
   else
     echo "npm install - error - buffer-stderr.txt" >&2
-    cat buffer-stderr.txt>&2
-    sleep 2
+    cat buffer-stderr.txt >&2
+    exit $?
 fi
+set -e
 
 if [[ ${release_branch} == true ]];
   then
@@ -164,53 +166,73 @@ cd ../..
 
 # de feitelijke release actie is afhankelijk van de branch
 
+set +e
 if [[ ${release_branch} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG 'local-npm' repository"
-    cd ./common/utilities && npm publish &> /dev/null
-    cd ../../common/storybook && npm publish &> /dev/null
-    cd ../../elements && npm publish &> /dev/null
-    cd ../components && npm publish &> /dev/null
-    cd ../form && npm publish &> /dev/null
-    cd ../sections && npm publish &> /dev/null
-    cd ../map  && npm publish &> /dev/null
-    cd ../qlik  && npm publish &> /dev/null
-    cd ../support/test-support && npm publish &> /dev/null
+    cd ./common/utilities && npm publish 2> buffer-stderr.txt 1> buffer-stdout.txt
+    cd ../../common/storybook && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../../elements && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../components && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../form && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../sections && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../map  && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../qlik  && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
+    cd ../support/test-support && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../..
 fi
+if [ $? -eq 0 ]
+  then
+    echo "publiceren van de npm packages naar de DOMG 'local-npm' repository - success"
+  else
+    echo "publiceren van de npm packages naar de DOMG 'local-npm' repository - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt >&2
+    exit $?
+fi
+set -e
 
+set +e
 if [[ ${develop_branch} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository"
     cd ./common/utilities
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish &> /dev/null
+    npm publish 2> buffer-stderr.txt 1> buffer-stdout.txt
     cd ../../common/storybook
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../../elements
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../components
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../form
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../sections
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../map
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../qlik
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../support/test-support
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish &> /dev/null
+    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
     cd ../..
 fi
+if [ $? -eq 0 ]
+  then
+    echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository - success"
+  else
+    echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt >&2
+    exit $?
+fi
+set -e
 
 cd ..
 
@@ -238,6 +260,7 @@ fi
 cd ..
 
 # builden van Storybook
+set +e
 echo "build Storybook"
 npm run storybook:build &> /dev/null
 if [ $? -eq 0 ]
@@ -245,9 +268,12 @@ then
   echo "Storybook succesvol gebouwd"
 else
   echo "fout bij het bouwen van Storybook" >&2
+  exit $?
 fi
+set -e
 
 # tgz van Storybook maken
+set +e
 echo "tgz''en van Storybook"
 cd ./dist/apps/storybook
 tar cfz ../storybook-${nextRelease_version}.tgz .
@@ -256,4 +282,6 @@ if [ $? -eq 0 ]
     echo "Storybook succesvol in een tgz gestoken"
   else
     echo "fout bij het tgz''en van Storybook" >&2
+    exit $?
 fi
+set -e
