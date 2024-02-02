@@ -33,6 +33,23 @@ git gc --prune=now
 du -sh .git 
 ```
 
+### Opkuisen Git - old tags
+
+Show all tags
+`git tag`
+`git tag -l "v1.1.0-beta*"`
+`git ls-remote --tags origin -l "v1.0.0-beta*"`
+
+Delete local tags
+`git tag -d $(git tag -l "v1.0.0-beta*")`
+
+Delete remote tags
+`git push -d $(git tag -l "tag_prefix*")`
+
+Fetch all tags
+`git fetch --all --tags --force`
+
+
 ### Semantic Release
 
 notes fetchen
