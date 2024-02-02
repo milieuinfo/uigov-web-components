@@ -12,7 +12,7 @@ echo
 echo 'RUNNING SCRIPT: checkout-install-and-cache-docker.sh'
 export BUILD_SCRIPT=uigov-web-components/resources/ci/scripts/checkout-install-and-cache.sh
 cd resources/ci
-docker compose --quiet-pull run build
+docker compose run build --quiet-pull
 
 echo
 echo ' ------------------------------ '
