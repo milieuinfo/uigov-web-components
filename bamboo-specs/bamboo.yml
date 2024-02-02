@@ -35,7 +35,6 @@ checkout-install-and-cache:
     - checkout
     - script: |
         # export variables
-        export test_token=${bamboo.test_token}
         export secret_github_token=${bamboo.secret_github_token}
         bash ./resources/ci/scripts/checkout-install-and-cache-docker.sh
     - script: |
@@ -115,7 +114,6 @@ release-and-publish:
     - checkout
     - script: |
         # export variables
-        export test_token=${bamboo.test_token}
         export secret_github_token=${bamboo.secret_github_token}
         export acd_repository_debian_login=${bamboo.acd_repository_debian_login}
         export acd_repository_bamboo_password=${bamboo.acd_repository_bamboo_password}

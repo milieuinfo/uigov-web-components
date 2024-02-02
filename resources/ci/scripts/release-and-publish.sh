@@ -16,13 +16,17 @@ release_branch=false
 
 if [[ ${gitRefName} == *"develop"* ]] || [[ ${gitRefName} == *"bugfix"* ]];
   then
+    echo "--------------------------------------"
     echo "develop branch detected - beta release"
+    echo "--------------------------------------"
     develop_branch=true
 fi
 
 if [[ ${gitRefName} == *"release"* ]];
   then
+    echo "---------------------------------"
     echo "release branch detected - release"
+    echo "---------------------------------"
     release_branch=true
 fi
 
@@ -69,12 +73,12 @@ git fetch --all --tags --force &> /dev/null
 
 GITHUB_USER=kspeltix
 GITHUB_EMAIL=kris.speltincx@vlaanderen.be
-#GITHUB_TOKEN=ghp_
+echo 'git config user.name'
 git config user.name ${GITHUB_USER}
 git config user.name
+echo 'git config user.email'
 git config user.email ${GITHUB_EMAIL}
 git config user.email
-echo using ${GITHUB_TOKEN} as GITHUB_TOKEN
 
 echo "npm install - no 'ci' to avoid the clean"
 npm install --save-exact 2> buffer-stderr.txt 1> buffer-stdout.txt
@@ -89,13 +93,13 @@ fi
 
 if [[ ${release_branch} == true ]];
   then
-    echo "semantic-release - voorbereiding"
+    echo "semantic-release - '.releaserc-release' script wordt gebruikt"
     cp .releaserc-release .releaserc
 fi
 
 if [[ ${develop_branch} == true ]];
   then
-    echo "semantic-develop - voorbereiding"
+    echo "semantic-release - '.releaserc-develop' script wordt gebruikt"
     cp .releaserc-develop .releaserc
 fi
 
@@ -105,12 +109,6 @@ npx semantic-release --no-ci
 echo "variabelen bepalen en zetten"
 nextRelease_version=$(npm pkg get version | sed 's/"//g')
 echo using $nextRelease_version as nextRelease_version
-
-#rootsemver=$(echo $nextRelease_version | cut -d '.' -f1-3)
-#echo using $rootsemver as rootsemver
-
-#pagesSubPath=$gitRefName/$nextRelease_version
-#echo using $pagesSubPath as pagesSubPath
 
 # releasen van de packages
 cd dist/libs
@@ -136,32 +134,32 @@ sed -i "s,$toReplace,$nextRelease_version," ./*/*/package.json
 #  -> dus expliciet specifieren van alle files in minimum 1 subfolder + eventueel de 'andere' root-files
 echo "sideEffects zetten in de package.json bestanden"
 cd ./common/utilities
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../../common/storybook
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**", "./stories.helper.*"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**", "./stories.helper.*"]' --json &> /dev/null
 cd ../../elements
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../components
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../form
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../sections
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../map
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**", "./vl-map.*"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**", "./vl-map.*"]' --json &> /dev/null
 cd ../qlik
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../support/test-support
-npm pkg delete type --json
-npm pkg set sideEffects='["./*/**"]' --json
+npm pkg delete type --json &> /dev/null
+npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
 cd ../..
 
 # de feitelijke release actie is afhankelijk van de branch
@@ -169,15 +167,15 @@ cd ../..
 if [[ ${release_branch} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG 'local-npm' repository"
-    cd ./common/utilities && npm publish
-    cd ../../common/storybook && npm publish
-    cd ../../elements && npm publish
-    cd ../components && npm publish
-    cd ../form && npm publish
-    cd ../sections && npm publish
-    cd ../map  && npm publish
-    cd ../qlik  && npm publish
-    cd ../support/test-support && npm publish
+    cd ./common/utilities && npm publish &> /dev/null
+    cd ../../common/storybook && npm publish &> /dev/null
+    cd ../../elements && npm publish &> /dev/null
+    cd ../components && npm publish &> /dev/null
+    cd ../form && npm publish &> /dev/null
+    cd ../sections && npm publish &> /dev/null
+    cd ../map  && npm publish &> /dev/null
+    cd ../qlik  && npm publish &> /dev/null
+    cd ../support/test-support && npm publish &> /dev/null
     cd ../..
 fi
 
@@ -185,32 +183,32 @@ if [[ ${develop_branch} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository"
     cd ./common/utilities
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish &> /dev/null
     cd ../../common/storybook
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish &> /dev/null
     cd ../../elements
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish &> /dev/null
     cd ../components
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish &> /dev/null
     cd ../form
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish &> /dev/null
     cd ../sections
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish &> /dev/null
     cd ../map
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish &> /dev/null
     cd ../qlik
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish &> /dev/null
     cd ../support/test-support
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
-    npm publish
+    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
+    npm publish &> /dev/null
     cd ../..
 fi
 
@@ -250,7 +248,7 @@ else
 fi
 
 # tgz van Storybook maken
-echo "maak een tgz van Storybook"
+echo "tgz''en van Storybook"
 cd ./dist/apps/storybook
 tar cfz ../storybook-${nextRelease_version}.tgz .
 if [ $? -eq 0 ]

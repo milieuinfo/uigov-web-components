@@ -5,7 +5,7 @@ set -e
 
 echo
 echo ' ------------------------------ '
-echo '| CUSTOM BUILD SCRIPTS - START |'
+echo '| CUSTOM BUILD SCRIPTS - BEGIN |'
 echo ' ------------------------------ '
 echo
 

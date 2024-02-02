@@ -17,7 +17,8 @@ if [ $? -eq 0 ]
     sleep 2
 fi
 
-echo 'BUILDING'
+echo 'BUILDING - BEGIN'
+
 echo "build storybook"
 npx nx build-storybook storybook 2> buffer-stderr.txt 1> buffer-stdout.txt
 if [ $? -eq 0 ]
@@ -94,3 +95,5 @@ if [ $? -eq 0 ]
     cat buffer-stderr.txt>&2
     sleep 2
 fi
+
+echo 'BUILDING - BEGIN'
