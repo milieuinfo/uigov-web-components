@@ -52,12 +52,13 @@ fi
 
 # the remote set by Bamboo is not authenticated, so remove the remote and add one with authentication
 echo 'git remote rm origin'
-git remote rm origin
+git remote rm origin &> /dev/null
 echo 'git remote add origin https://${secret_github_token}@github.com/milieuinfo/uigov-web-components.git'
-git remote add origin https://${secret_github_token}@github.com/milieuinfo/uigov-web-components.git
+git remote add origin https://${secret_github_token}@github.com/milieuinfo/uigov-web-components.git &> /dev/null
 echo 'git fetch --prune origin'
-git fetch --prune origin
+git fetch --prune origin &> /dev/null
 echo 'git pull origin ${gitRefName}'
+git config pull.ff only
 git pull origin ${gitRefName}
 # the git fetch is necessary -> otherwise semantic-release is unaware of the previous version
 # this gives 'does not point to a valid object!' errors - they can be ignored
