@@ -96,4 +96,4 @@ if [ $? -eq 0 ]
     sleep 2
 fi
 
-echo 'BUILDING - BEGIN'
+echo 'BUILDING - END'
