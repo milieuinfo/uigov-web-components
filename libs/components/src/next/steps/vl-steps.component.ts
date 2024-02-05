@@ -1,8 +1,8 @@
 import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
-import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { CSSResult, TemplateResult, html } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { stepsStyle } from '@domg/govflanders-style/component';
 import { VlStepComponent } from './vl-step.component';
@@ -11,10 +11,14 @@ import { VlDurationStepComponent } from './vl-duration-step.component';
 @customElement('vl-steps-next')
 export class VlStepsComponent extends BaseLitElement {
     // Attributen
-    private line = false;
-    private timeline = false;
-    private simpleTimeline = false;
-    private lastStepNoLine = false;
+    @property({ type: Boolean, attribute: 'data-vl-line', reflect: true })
+    accessor line = false;
+    @property({ type: Boolean, attribute: 'data-vl-timeline', reflect: true })
+    accessor timeline = false;
+    @property({ type: Boolean, attribute: 'data-vl-simple-timeline', reflect: true })
+    accessor simpleTimeline = false;
+    @property({ type: Boolean, attribute: 'data-vl-last-step-no-line', reflect: true })
+    accessor lastStepNoLine = false;
 
     // Private properties
     private observer: MutationObserver | null = null;
@@ -25,15 +29,6 @@ export class VlStepsComponent extends BaseLitElement {
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, vlElementsStyle, stepsStyle];
-    }
-
-    static get properties(): PropertyDeclarations {
-        return {
-            line: { type: Boolean, attribute: 'data-vl-line', reflect: true },
-            timeline: { type: Boolean, attribute: 'data-vl-timeline', reflect: true },
-            simpleTimeline: { type: Boolean, attribute: 'data-vl-simple-timeline', reflect: true },
-            lastStepNoLine: { type: Boolean, attribute: 'data-vl-last-step-no-line', reflect: true },
-        };
     }
 
     connectedCallback(): void {
@@ -119,7 +114,7 @@ export class VlStepsComponent extends BaseLitElement {
                 bottom: calc(-5rem + 0.4rem);
                 left: -5rem;
             }
-                
+
             @media screen and (max-width: 767px) {
                 .vl-step::before {
                     top: 3.9rem;
@@ -134,7 +129,7 @@ export class VlStepsComponent extends BaseLitElement {
             styles += `
                 .vl-step::before {
                     display: none !important;
-                }    
+                }
             `;
         }
 

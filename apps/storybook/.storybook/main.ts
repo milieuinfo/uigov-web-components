@@ -48,6 +48,9 @@ const config: StorybookConfig = {
                             dynamicImport: true,
                         },
                         loose: true,
+                        transform: {
+                            decoratorVersion: '2022-03',
+                        },
                     },
                 },
             },
