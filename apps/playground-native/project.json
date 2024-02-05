@@ -11,7 +11,7 @@
             "defaultConfiguration": "production",
             "options": {
                 "outputPath": "dist/apps/playground-native",
-                "compiler": "babel",
+                "compiler": "tsc",
                 "main": "apps/playground-native/src/main.ts",
                 "tsConfig": "apps/playground-native/tsconfig.app.json",
                 "webpackConfig": "apps/playground-native/webpack.config.js",

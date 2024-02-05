@@ -2,8 +2,8 @@ import { BaseLitElement, registerWebComponents, VL } from '@domg-wc/common-utili
 import { vlElementsStyle } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { stepsStyle } from '@domg/govflanders-style/component';
-import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { CSSResult, html, TemplateResult } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { VlAccordionComponent } from '../../accordion/vl-accordion.component';
 import stepUigStyle from './vl-step.uig-css';
@@ -13,11 +13,15 @@ declare const vl: VL;
 @customElement('vl-step-next')
 export class VlStepComponent extends BaseLitElement {
     // Attributen
-    private type: string | null = null;
-    private toggleable = false;
+    @property({ type: String, attribute: 'data-vl-type', reflect: true })
+    accessor type: string | null = null;
+    @property({ type: Boolean, attribute: 'data-vl-toggleable', reflect: true })
+    accessor toggleable = false;
 
     // Private properties
-    private isTitleAnnotationSlotAssigned = true;
+    @property({ attribute: false })
+    accessor isTitleAnnotationSlotAssigned = true;
+
     private customCSSStyleSheet = new CSSStyleSheet();
 
     static {
@@ -26,14 +30,6 @@ export class VlStepComponent extends BaseLitElement {
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, vlElementsStyle, stepsStyle, stepUigStyle];
-    }
-
-    static get properties(): PropertyDeclarations {
-        return {
-            type: { type: String, attribute: 'data-vl-type', reflect: true },
-            toggleable: { type: Boolean, attribute: 'data-vl-toggleable', reflect: true },
-            isTitleAnnotationSlotAssigned: { attribute: false },
-        };
     }
 
     connectedCallback(): void {
