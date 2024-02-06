@@ -92,6 +92,16 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         }
     }
 
+    protected collectFormData(formValues: string[] | Blob[]): FormData | string {
+        const name = this.name;
+        return (
+            formValues?.reduce((formData: FormData, formValue, currentIndex) => {
+                currentIndex ? formData.append(name, formValue) : formData.set(name, formValue);
+                return formData;
+            }, new FormData()) ?? ''
+        );
+    }
+
     private onKeydown(event: KeyboardEvent) {
         if (event.code === 'Enter') {
             if (this.form) {

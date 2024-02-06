@@ -19,7 +19,7 @@ type SubmittedFormData = {
     interesses?: string;
     geboortedatum?: string;
     geboorteplaats?: string;
-    [`hobby's`]?: string;
+    [`hobby's`]?: string | string[];
     leeftijd?: number;
     kinderen?: number;
     adres?: string;
@@ -978,7 +978,15 @@ export class AppElement extends LitElement {
                                 <dt class="vl-properties__label">Geboorteplaats</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData.geboorteplaats}</dd>
                                 <dt class="vl-properties__label">Hobby's</dt>
-                                <dd class="vl-properties__data">${this.submittedFormData[`hobby's`]}</dd>
+                                <dd class="vl-properties__data">
+                                    ${this.submittedFormData[`hobby's`] instanceof Array
+                                        ? html`<ul>
+                                              ${this.submittedFormData[`hobby's`].map(
+                                                  (hobby) => html`<li>${hobby}</li>`
+                                              )}
+                                          </ul>`
+                                        : this.submittedFormData[`hobby's`]}
+                                </dd>
                                 <dt class="vl-properties__label">Leeftijd</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData.leeftijd}</dd>
                                 <dt class="vl-properties__label">Aantal kinderen</dt>
@@ -1008,8 +1016,17 @@ export class AppElement extends LitElement {
 
         const data = new FormData(e.target as HTMLFormElement);
 
-        console.log(Object.fromEntries(data));
-        this.submittedFormData = Object.fromEntries(data);
+        const formData = Array.from(data.keys()).reduce((result, key) => {
+            if (data.getAll(key).length > 1) {
+                return { ...result, [key]: data.getAll(key) };
+            } else {
+                return { ...result, [key]: data.get(key) };
+            }
+        }, {});
+
+        console.log(formData);
+
+        this.submittedFormData = formData;
         this.submittedCount++;
     }
 

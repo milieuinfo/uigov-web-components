@@ -1,6 +1,7 @@
 import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { FormValue } from '@open-wc/form-control/src/types';
 import * as choices from 'choices.js';
 import { Choice, Options, Item } from 'choices.js';
 import { iconStyle, inputFieldStyle } from '@domg/govflanders-style/component';
@@ -53,7 +54,7 @@ export class VlSelectComponent extends FormControl {
     private searchPlaceholder = selectDefaults.searchPlaceholder;
 
     // State
-    private value = '';
+    private value: FormValue = '';
 
     // Variables
     private choices: Choices | null = null;
@@ -75,7 +76,7 @@ export class VlSelectComponent extends FormControl {
             noResultsText: { type: String, attribute: 'no-results-text' },
             noChoicesText: { type: String, attribute: 'no-choices-text' },
             searchPlaceholder: { type: String, attribute: 'search-placeholder' },
-            value: { type: String, state: true },
+            value: { type: FormData, state: true },
         };
     }
 
@@ -243,8 +244,8 @@ export class VlSelectComponent extends FormControl {
                                 tabindex="0"
                                 aria-controls="vl-select__list"
                                 aria-label="${
-                                this.multiple ? 'selecteer één of meerdere opties' : 'selecteer één optie'
-                            }">
+                                    this.multiple ? 'selecteer één of meerdere opties' : 'selecteer één optie'
+                                }">
                             </div>`
                         );
                     },
@@ -264,13 +265,13 @@ export class VlSelectComponent extends FormControl {
                                 >
                                     <span>${data.label}</span>
                                     <button class="vl-pill__close ${
-                                    !this.multiple ? 'vl-vi vl-vi-close' : ''
-                                }" data-button aria-label="verwijder">
+                                        !this.multiple ? 'vl-vi vl-vi-close' : ''
+                                    }" data-button aria-label="verwijder">
                                         ${
-                                    this.multiple
-                                        ? `<span class="vl-pill__close__icon vl-vi vl-vi-close" aria-hidden="true"></span>`
-                                        : ''
-                                }
+                                            this.multiple
+                                                ? `<span class="vl-pill__close__icon vl-vi vl-vi-close" aria-hidden="true"></span>`
+                                                : ''
+                                        }
                                     </button>
                                 </div>`
                             );
@@ -336,8 +337,7 @@ export class VlSelectComponent extends FormControl {
     }
 
     private onChange() {
-        const selectedValues = this.getSelectedValues();
-        this.value = selectedValues.join(';') || '';
+        this.value = this.collectFormData(this.getSelectedValues());
     }
 
     private onClickChoices = (event: Event) => {
