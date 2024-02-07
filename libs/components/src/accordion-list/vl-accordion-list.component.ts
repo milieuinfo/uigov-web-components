@@ -1,33 +1,17 @@
 // import '@webcomponents/custom-elements/src/native-shim.js';
-import { html, TemplateResult, CSSResult, PropertyDeclarations } from 'lit';
-import { accordionStyle } from '@domg/govflanders-style/component';
+import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 import { resetStyle } from '@domg/govflanders-style/common';
 import 'reflect-metadata';
-import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
+import { accordionStyle } from '@domg/govflanders-style/component';
+import { CSSResult, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 
 @webComponent('vl-accordion-list')
 export class VlAccordionListComponent extends BaseLitElement {
-    // private bordered;
-    private observer: MutationObserver | null = null;
-
-    constructor() {
-        super();
-        this.bordered = false;
-    }
-
-    // static get properties(): PropertyDeclarations {
-    //     return {
-    //         bordered: {
-    //             type: Boolean,
-    //             attribute: 'data-vl-bordered',
-    //             reflect: true,
-    //         },
-    //     };
-    // }
-
     @property({ type: Boolean, attribute: 'data-vl-bordered', reflect: true })
-    bordered: boolean = false;
+    accessor bordered = false;
+
+    private observer: MutationObserver | null = null;
 
     static get styles(): CSSResult[] {
         return [resetStyle, accordionStyle];
@@ -53,7 +37,7 @@ export class VlAccordionListComponent extends BaseLitElement {
                     child.setAttribute('slot', name);
                     return html`
                         <li class="vl-accordion-list__item">
-                            <slot name="${name}"> </slot>
+                            <slot name="${name}"></slot>
                         </li>
                     `;
                 })}

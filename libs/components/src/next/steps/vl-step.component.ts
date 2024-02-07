@@ -21,6 +21,7 @@ export class VlStepComponent extends BaseLitElement {
     // Private properties
     @property({ attribute: false })
     accessor isTitleAnnotationSlotAssigned = true;
+
     private customCSSStyleSheet = new CSSStyleSheet();
 
     static {
