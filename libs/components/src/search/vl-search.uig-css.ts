@@ -112,7 +112,6 @@ const styles: CSSResult = css`
     .vl-search--inline slot[name='input']:focus,
     .vl-search--inline .vl-search__input:focus + .vl-search__submit,
     .vl-search--inline slot[name='input']:focus + .vl-search__submit {
-        transition: opacity 0.2s, transform 0.2s;
         z-index: 1;
         opacity: 1;
         transform: translateX(0%);
@@ -128,7 +127,6 @@ const styles: CSSResult = css`
     }
     .vl-search--inline .vl-search__input:focus,
     .vl-search--inline slot[name='input']:focus {
-        transition: width 0.2s;
         width: calc(100% - 4.7rem);
         padding-right: 0;
     }
@@ -237,7 +235,6 @@ const styles: CSSResult = css`
     }
     :host([data-vl-inline]) ::slotted(.is-open),
     :host([data-vl-inline]) ::slotted(.is-focused) {
-        transition: margin-right 0.2s;
         margin-right: 4.7rem !important;
         border: 0.1rem solid #687483 !important;
     }

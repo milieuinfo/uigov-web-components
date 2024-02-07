@@ -1,7 +1,7 @@
 import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import { VlButtonElement, VlIconElement, VlInputFieldElement, VlSelect } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
-import { buttonStyle, inputFieldStyle, searchStyle, selectStyle } from '@domg/govflanders-style/component';
+import { buttonStyle, inputFieldStyle, selectStyle } from '@domg/govflanders-style/component';
 import searchUigStyle from './vl-search.uig-css';
 
 /**
@@ -51,7 +51,6 @@ export class VlSearchComponent extends BaseElementOfType(HTMLElement) {
         ${buttonStyle}
         ${inputFieldStyle}
         ${selectStyle}
-        ${searchStyle}
         ${searchUigStyle}
       </style>
       <div class="vl-search">
@@ -143,6 +142,12 @@ export class VlSearchComponent extends BaseElementOfType(HTMLElement) {
                 this._submit();
             });
         }
+        if (this.__labelElement) {
+            this.__labelElement.addEventListener('click', () => {
+                const slottedInput = this.querySelector(`:scope > [slot=input]`);
+                slottedInput?.querySelector('input')?.click();
+            });
+        }
     }
 
     _submit() {
@@ -210,7 +215,7 @@ export class VlSearchComponent extends BaseElementOfType(HTMLElement) {
                     this.__observeInputSlot((mutations: any) => {
                         const isOpen = (mutation: any) => mutation.target.classList.contains('is-open');
                         const isFocused = (mutation: any) => mutation.target.classList.contains('is-focused');
-                        if (mutations.find((mutation: any) => isOpen(mutation) || isFocused(mutation)) || slot.value) {
+                        if (mutations.find((mutation: any) => isOpen(mutation) || isFocused(mutation))) {
                             this.__inputSlotElement.classList.add('is-open');
                         } else {
                             this.__inputSlotElement.classList.remove('is-open');
