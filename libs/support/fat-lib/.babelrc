@@ -3,10 +3,7 @@
         [
             "@nx/js/babel",
             {
-                "useBuiltIns": "usage",
-                "decorators": {
-                    "version": "2023-05"
-                }
+                "useBuiltIns": "usage"
             }
         ]
     ]
