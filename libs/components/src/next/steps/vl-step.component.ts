@@ -14,13 +14,13 @@ declare const vl: VL;
 export class VlStepComponent extends BaseLitElement {
     // Attributen
     @property({ type: String, attribute: 'data-vl-type', reflect: true })
-    private type: string | null = null;
+    accessor type: string | null = null;
     @property({ type: Boolean, attribute: 'data-vl-toggleable', reflect: true })
-    private toggleable = false;
+    accessor toggleable = false;
 
     // Private properties
     @property({ attribute: false })
-    private isTitleAnnotationSlotAssigned = true;
+    accessor isTitleAnnotationSlotAssigned = true;
     private customCSSStyleSheet = new CSSStyleSheet();
 
     static {

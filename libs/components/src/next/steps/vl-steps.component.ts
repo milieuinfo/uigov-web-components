@@ -12,13 +12,13 @@ import { VlDurationStepComponent } from './vl-duration-step.component';
 export class VlStepsComponent extends BaseLitElement {
     // Attributen
     @property({ type: Boolean, attribute: 'data-vl-line', reflect: true })
-    private line = false;
+    accessor line = false;
     @property({ type: Boolean, attribute: 'data-vl-timeline', reflect: true })
-    private timeline = false;
+    accessor timeline = false;
     @property({ type: Boolean, attribute: 'data-vl-simple-timeline', reflect: true })
-    private simpleTimeline = false;
+    accessor simpleTimeline = false;
     @property({ type: Boolean, attribute: 'data-vl-last-step-no-line', reflect: true })
-    private lastStepNoLine = false;
+    accessor lastStepNoLine = false;
 
     // Private properties
     private observer: MutationObserver | null = null;
