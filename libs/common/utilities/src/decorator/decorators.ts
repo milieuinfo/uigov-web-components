@@ -8,21 +8,16 @@ type Constructor<T> = {
     new (...args: any[]): T;
 };
 
-type CustomElementClass = Omit<typeof HTMLElement, 'new'>;
-
 export type CustomElementDecorator = {
     // legacy
-    (cls: CustomElementClass): void;
+    (cls: any): void;
     // standard
-    (target: CustomElementClass, context: ClassDecoratorContext<Constructor<HTMLElement>>): void;
+    (target: any, context: ClassDecoratorContext<Constructor<HTMLElement>>): void;
 };
 
 export const webComponent =
     (tagName: string, options?: ElementDefinitionOptions): CustomElementDecorator =>
-    (
-        classOrTarget: CustomElementClass | Constructor<HTMLElement>,
-        context?: ClassDecoratorContext<Constructor<HTMLElement>>
-    ) => {
+    (classOrTarget: any | Constructor<HTMLElement>, context?: ClassDecoratorContext<Constructor<HTMLElement>>) => {
         if (context !== undefined) {
             context.addInitializer(() => {
                 defineWebComponent(classOrTarget as CustomElementConstructor, tagName, options);
@@ -35,10 +30,7 @@ export const webComponent =
 // variant waaraan een custom registratie methode wordt meegegeven
 export const webComponentCustom =
     (customRegistration: () => any): CustomElementDecorator =>
-    (
-        classOrTarget: CustomElementClass | Constructor<HTMLElement>,
-        context?: ClassDecoratorContext<Constructor<HTMLElement>>
-    ) => {
+    (classOrTarget: any | Constructor<HTMLElement>, context?: ClassDecoratorContext<Constructor<HTMLElement>>) => {
         if (context !== undefined) {
             context.addInitializer(() => {
                 customRegistration();
@@ -57,10 +49,7 @@ export const webComponentPromised =
         tagName: string,
         options?: ElementDefinitionOptions
     ): CustomElementDecorator =>
-    (
-        classOrTarget: CustomElementClass | Constructor<HTMLElement>,
-        context?: ClassDecoratorContext<Constructor<HTMLElement>>
-    ) => {
+    (classOrTarget: any | Constructor<HTMLElement>, context?: ClassDecoratorContext<Constructor<HTMLElement>>) => {
         if (context !== undefined) {
             context.addInitializer(() => {
                 if (customElements.get(tagName)) {
@@ -91,10 +80,7 @@ export const webComponentPromised =
 //     gebruiken en als ze dus geïmporteerd worden al geregistreerd worden: te testen / verifiëren
 export const webComponentConditional =
     (defined: string, tagName: string, options?: ElementDefinitionOptions): CustomElementDecorator =>
-    (
-        classOrTarget: CustomElementClass | Constructor<HTMLElement>,
-        context?: ClassDecoratorContext<Constructor<HTMLElement>>
-    ) => {
+    (classOrTarget: any | Constructor<HTMLElement>, context?: ClassDecoratorContext<Constructor<HTMLElement>>) => {
         if (context !== undefined) {
             context.addInitializer(() => {
                 if (customElements.get(tagName)) {
