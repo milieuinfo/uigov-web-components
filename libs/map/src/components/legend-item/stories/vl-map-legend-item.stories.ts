@@ -25,7 +25,7 @@ export default {
 
 const MapLegendItemTemplate = story(
     mapLegendItemArgs,
-    ({ layer, iconSlot, labelSlot }) =>
+    ({ layer, iconText, iconSlot, labelSlot }) =>
         html` <vl-map>
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
             <vl-map-action-controls>
@@ -61,14 +61,14 @@ const MapLegendItemTemplate = story(
                     data-vl-text-background-color="rgba(0,0,255,0.2)"
                     data-vl-text-border-color="rgba(0,255,0,1)"
                     data-vl-text-border-size="3"
-                    data-vl-text-color="rgba(255,0,0,1)"
+                    data-vl-text-color="rgba(20,50,100,1)"
                     data-vl-text-offset-x="10"
                     data-vl-text-offset-y="-10"
                     data-vl-text-size="13px"
                 ></vl-map-layer-style>
             </vl-map-features-layer>
             <vl-map-legend>
-                <vl-map-legend-item data-vl-layer=${layer}>
+                <vl-map-legend-item data-vl-layer=${layer} data-vl-icon-text=${iconText}>
                     ${unsafeHTML(labelSlot)} ${unsafeHTML(iconSlot)}
                 </vl-map-legend-item>
             </vl-map-legend>
@@ -90,6 +90,11 @@ MapLegendItemIconLabel.args = {
                 </span>`,
     labelSlot: `<span slot="label">Custom label</span>`,
 };
+MapLegendItemIconLabel.parameters = {
+    controls: {
+        exclude: ['data-vl-icon-text'],
+    },
+};
 
 export const MapLegendItemIcon = MapLegendItemTemplate.bind({});
 MapLegendItemIcon.storyName = 'vl-map-legend-item - icon';
@@ -105,6 +110,11 @@ MapLegendItemIcon.args = {
                     ></div>
                 </span>`,
 };
+MapLegendItemIcon.parameters = {
+    controls: {
+        exclude: ['data-vl-icon-text'],
+    },
+};
 
 export const MapLegendItemLabel = MapLegendItemTemplate.bind({});
 MapLegendItemLabel.storyName = 'vl-map-legend-item - icon';
@@ -112,9 +122,26 @@ MapLegendItemLabel.args = {
     layer: 'Wateroppervlaktes',
     labelSlot: `<span slot="label">Custom label</span>`,
 };
+MapLegendItemLabel.parameters = {
+    controls: {
+        exclude: ['data-vl-icon-text'],
+    },
+};
+
+export const MapLegendItemIconText = MapLegendItemTemplate.bind({});
+MapLegendItemIconText.storyName = 'vl-map-legend-item - icon text';
+MapLegendItemIconText.args = {
+    layer: 'Wateroppervlaktes',
+    iconText: 'W',
+};
 
 export const MapLegendItemDefault = MapLegendItemTemplate.bind({});
 MapLegendItemDefault.storyName = 'vl-map-legend-item - default icon en label';
 MapLegendItemDefault.args = {
     layer: 'Wateroppervlaktes',
+};
+MapLegendItemDefault.parameters = {
+    controls: {
+        exclude: ['data-vl-icon-text'],
+    },
 };

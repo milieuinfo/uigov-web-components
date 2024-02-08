@@ -310,7 +310,11 @@ describe('component vl-map-legend - wfs layer', () => {
             .find(
                 'div.uig-map-legend > div.uig-map-legend-item > div.uig-map-legend-icon-container > div.uig-map-legend-icon'
             )
-            .should('have.attr', 'style', 'border: 1px solid #000; background-color:#ffe615;border-radius: 50%;')
+            .should(
+                'have.attr',
+                'style',
+                'border: 1px solid #000; color:#FFF; background-color:#ffe615; border-radius: 50%;'
+            )
             .its('length')
             .should('eq', 1);
 

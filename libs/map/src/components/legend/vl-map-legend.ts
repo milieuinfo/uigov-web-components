@@ -31,6 +31,7 @@ export interface StyledItem {
     name: string;
     style: VlMapLayerStyle;
     url?: never;
+    iconText?: string;
 }
 
 export interface UrlItem {
@@ -43,6 +44,7 @@ export interface UrlItem {
 export interface CustomItem {
     type: 'custom';
     name: string;
+    iconText?: string;
     styleElement: HTMLElement;
 }
 
@@ -204,7 +206,12 @@ export class VlMapLegend extends BaseLitElement {
         const childNodeList = Array.from(this.childNodes);
         const legendItemsList = childNodeList.filter((child) => child instanceof VlMapLegendItem);
         const legendItems: CustomItem[] = legendItemsList.map((item: VlMapLegendItem) => {
-            return { type: 'custom', name: item.layer, styleElement: item.cloneNode(true) as VlMapLegendItem };
+            return {
+                type: 'custom',
+                name: item.layer,
+                iconText: item.iconText,
+                styleElement: item.cloneNode(true) as VlMapLegendItem,
+            };
         });
         return legendItems;
     }
@@ -238,12 +245,20 @@ export class VlMapLegend extends BaseLitElement {
         if (hasCustomLegendItems) {
             // build a custom map legend from the vl-map-legend-item elements in the vl-map-legend
             this.items = [];
-            this.customItems.forEach((item) => {
-                if (item.styleElement.children.length > 0) {
-                    this.items.push(item);
+            this.customItems.forEach((customItem) => {
+                if (customItem.styleElement.children.length > 0) {
+                    this.items.push(customItem);
                 } else {
-                    const layer = item.name;
-                    const defaultItemsForLayer = defaultItems.filter((item) => item.name === layer);
+                    const layer = customItem.name;
+
+                    const defaultItemsForLayer = defaultItems
+                        .filter((item) => item.name === layer)
+                        .map((defaultItem) => {
+                            if (defaultItem.type === 'styled') {
+                                defaultItem.iconText = customItem.iconText;
+                            }
+                            return defaultItem;
+                        });
                     this.items = this.items.concat(...defaultItemsForLayer);
                 }
             });
@@ -255,6 +270,8 @@ export class VlMapLegend extends BaseLitElement {
     }
 
     render() {
+        const hasIconText = !!this.customItems?.find((item) => item.iconText);
+
         if (!this.items) {
             return null;
         }
@@ -273,7 +290,12 @@ export class VlMapLegend extends BaseLitElement {
                     case 'styled':
                         return html` <div class="uig-map-legend-item">
                             <div class="uig-map-legend-icon-container">
-                                <div class="uig-map-legend-icon" style="${this.generateIconStyle(item.style)}"></div>
+                                <div
+                                    class="uig-map-legend-icon ${hasIconText ? 'uig-map-legend-icon-large' : ''}"
+                                    style="${this.generateIconStyle(item.style)}"
+                                >
+                                    <div class="uig-map-legend-icon-text">${item.iconText}</div>
+                                </div>
                             </div>
                             <span class="uig-map-legend-text">${item.name}</span>
                         </div>`;
@@ -304,7 +326,7 @@ export class VlMapLegend extends BaseLitElement {
             borderRadius = 'border-radius: 50%;';
         }
 
-        return `border: ${item.borderSize}px solid ${item.borderColor}; background-color:${item.color};${borderRadius}`;
+        return `border: ${item.borderSize}px solid ${item.borderColor}; color:${item.textColor}; background-color:${item.color}; ${borderRadius}`;
     }
 }
 

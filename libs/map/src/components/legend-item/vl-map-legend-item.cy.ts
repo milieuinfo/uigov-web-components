@@ -194,4 +194,21 @@ describe('component vl-map-legend-item', () => {
                 .should('have.css', 'background-color', 'rgb(255, 0, 0)');
         });
     });
+
+    it('should display the default style with icon text', () => {
+        const defaultLegendItem = `<vl-map-legend-item data-vl-layer="Beslissing" data-vl-icon-text="B"></vl-map-legend-item>`;
+
+        cy.get('vl-map-legend').then(($legend) => {
+            $legend.append(defaultLegendItem);
+
+            cy.get('vl-map-legend').shadow().find('div.uig-map-legend > vl-map-legend-item').should('have.length', 1);
+
+            cy.get('vl-map-legend')
+                .shadow()
+                .find('div.uig-map-legend-item > div.uig-map-legend-icon-container > div.uig-map-legend-icon')
+                .should('have.css', 'border', '1px solid rgb(0, 0, 0)')
+                .should('have.css', 'background-color', 'rgb(255, 0, 0)')
+                .should('have.contain', 'B');
+        });
+    });
 });
