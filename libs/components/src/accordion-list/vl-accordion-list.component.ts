@@ -1,12 +1,12 @@
 // import '@webcomponents/custom-elements/src/native-shim.js';
-import { BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 import { resetStyle } from '@domg/govflanders-style/common';
 import 'reflect-metadata';
 import { accordionStyle } from '@domg/govflanders-style/component';
 import { CSSResult, html, TemplateResult } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-@customElement('vl-accordion-list')
+@webComponent('vl-accordion-list')
 export class VlAccordionListComponent extends BaseLitElement {
     @property({ type: Boolean, attribute: 'data-vl-bordered', reflect: true })
     accessor bordered = false;

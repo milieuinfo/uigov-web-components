@@ -1,11 +1,11 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-        "target": "es6",
+        "target": "es2022",
         "emitDecoratorMetadata": true,
         "moduleResolution": "node",
-        "experimentalDecorators": true,
-        "useDefineForClassFields": false
+        "experimentalDecorators": false,
+        "useDefineForClassFields": true
     },
     "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
     "include": [

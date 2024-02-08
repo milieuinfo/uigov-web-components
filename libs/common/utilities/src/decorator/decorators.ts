@@ -1,11 +1,41 @@
 import { UigConfig } from '../config/uig-config';
 import { defineWebComponent } from '../util/utils';
 
+type Constructor<T> = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    new (...args: any[]): T;
+};
+type CustomElementClass = Omit<typeof HTMLElement, 'new'>;
+
+export type CustomElementDecorator = {
+    // legacy
+    (cls: CustomElementClass): void;
+    // standard
+    (target: CustomElementClass, context: ClassDecoratorContext<Constructor<HTMLElement>>): void;
+};
+
+// export const webComponent =
+//     (tagName: string, options?: ElementDefinitionOptions) =>
+//     // eslint-disable-next-line @typescript-eslint/ban-types
+//     (constructor: Function): any => {
+//         defineWebComponent(constructor, tagName, options);
+//     };
+
 export const webComponent =
-    (tagName: string, options?: ElementDefinitionOptions) =>
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    (constructor: Function): any => {
-        defineWebComponent(constructor, tagName, options);
+    (tagName: string): CustomElementDecorator =>
+    (
+        classOrTarget: CustomElementClass | Constructor<HTMLElement>,
+        context?: ClassDecoratorContext<Constructor<HTMLElement>>
+    ) => {
+        if (context !== undefined) {
+            context.addInitializer(() => {
+                // customElements.define(tagName, classOrTarget as CustomElementConstructor);
+                defineWebComponent(classOrTarget as CustomElementConstructor, tagName);
+            });
+        } else {
+            // customElements.define(tagName, classOrTarget as CustomElementConstructor);
+            defineWebComponent(classOrTarget as CustomElementConstructor, tagName);
+        }
     };
 
 // variant waaraan een custom registratie methode wordt meegegeven
