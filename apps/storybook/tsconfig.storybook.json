@@ -4,7 +4,7 @@
         "target": "es2022",
         "emitDecoratorMetadata": false,
         "moduleResolution": "node",
-        "experimentalDecorators": false,
+        "experimentalDecorators": true,
         "useDefineForClassFields": true
     },
     "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
