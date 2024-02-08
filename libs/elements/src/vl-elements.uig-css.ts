@@ -1,5 +1,5 @@
 import 'construct-style-sheets-polyfill';
-import { defineWebComponent, UigConfig } from '@domg-wc/common-utilities';
+import { UigConfig } from '@domg-wc/common-utilities';
 import { CSSResult } from 'lit';
 
 // @govflanders common styles
@@ -138,31 +138,9 @@ class RegisterStyles {
     }
 }
 
-type Constructor<T> = {
-    new (...args: any[]): T;
-};
-
-export type CustomElementDecorator = {
-    // legacy
-    (cls: any): void;
-    // standard
-    (target: any, context: ClassDecoratorContext<Constructor<HTMLElement>>): void;
-};
-
-// export const elementStyles =
-//     () =>
-//     // eslint-disable-next-line @typescript-eslint/ban-types
-//     (constructor: Function): any => {
-//         RegisterStyles.registerElementsStyles();
-//     };
 export const elementStyles =
-    (): CustomElementDecorator =>
-    (classOrTarget: any | Constructor<HTMLElement>, context?: ClassDecoratorContext<Constructor<HTMLElement>>) => {
-        if (context !== undefined) {
-            context.addInitializer(() => {
-                RegisterStyles.registerElementsStyles();
-            });
-        } else {
-            RegisterStyles.registerElementsStyles();
-        }
+    () =>
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    (constructor: Function): any => {
+        RegisterStyles.registerElementsStyles();
     };
