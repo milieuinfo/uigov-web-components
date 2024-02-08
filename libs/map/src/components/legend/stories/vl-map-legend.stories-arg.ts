@@ -9,6 +9,7 @@ export const mapLegendArgs = {
     placement: LEGEND_PLACEMENT.BOTTOM_RIGHT,
     right: '',
     top: '',
+    layoutVertical: false,
 };
 
 export const mapLegendArgTypes: ArgTypes<typeof mapLegendArgs> = {
@@ -74,6 +75,15 @@ export const mapLegendArgTypes: ArgTypes<typeof mapLegendArgs> = {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: mapLegendArgs.top },
+        },
+    },
+    layoutVertical: {
+        name: 'data-vl-layout-vertical',
+        description: 'Zet de layout van de legende in verticale positie.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapLegendArgs.layoutVertical },
         },
     },
 };

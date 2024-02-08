@@ -12,7 +12,7 @@ import '../vl-map-legend';
 import '../../legend-item/vl-map-legend-item';
 import { mapLegendArgs } from './vl-map-legend.stories-arg';
 
-export default story(mapLegendArgs, ({ bottom, left, placement, right, top }) => {
+export default story(mapLegendArgs, ({ bottom, left, placement, right, top, layoutVertical }) => {
     const features1 = {
         type: 'FeatureCollection',
         features: [
@@ -147,7 +147,14 @@ export default story(mapLegendArgs, ({ bottom, left, placement, right, top }) =>
                 data-vl-text-size="bold 14px"
             ></vl-map-layer-circle-style>
         </vl-map-features-layer>
-        <vl-map-legend data-vl-placement=${placement} bottom=${bottom} top=${top} right=${right} left=${left}>
+        <vl-map-legend
+            data-vl-placement=${placement}
+            data-vl-layout-vertical=${layoutVertical}
+            bottom=${bottom}
+            top=${top}
+            right=${right}
+            left=${left}
+        >
             <vl-map-legend-item data-vl-layer="Openbare onderzoeken">
                 <span slot="label">Custom Openbare onderzoeken 1</span>
                 <span slot="icon"

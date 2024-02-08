@@ -168,6 +168,14 @@ describe('component vl-map-legend - features layer - multiple styles', () => {
             .should('have.css', 'top', '10px')
             .should('have.css', 'right', '10px');
     });
+
+    it('should display the legend items vertically when the layout-vertical attribute is set', () => {
+        cy.get('vl-map-legend').shadow().find('div.uig-map-legend').should('have.css', 'flex-direction', 'row');
+
+        cy.get('vl-map-legend').invoke('attr', 'data-vl-layout-vertical', 'true');
+
+        cy.get('vl-map-legend').shadow().find('div.uig-map-legend').should('have.css', 'flex-direction', 'column');
+    });
 });
 
 describe('component vl-map-legend - features layer - multiple styles', () => {

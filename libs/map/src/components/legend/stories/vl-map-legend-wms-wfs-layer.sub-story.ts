@@ -9,7 +9,7 @@ import { mapLegendArgs } from './vl-map-legend.stories-arg';
 
 export default story(
     mapLegendArgs,
-    ({ bottom, left, placement, right, top }) => html`
+    ({ bottom, left, placement, right, top, layoutVertical }) => html`
         <vl-map>
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
             <vl-map-tiled-wms-layer
@@ -32,6 +32,7 @@ export default story(
             </vl-map-wfs-layer>
             <vl-map-legend
                 data-vl-placement=${placement}
+                data-vl-layout-vertical=${layoutVertical}
                 bottom=${bottom}
                 top=${top}
                 right=${right}
