@@ -176,6 +176,18 @@ describe('component vl-map-legend - features layer - multiple styles', () => {
 
         cy.get('vl-map-legend').shadow().find('div.uig-map-legend').should('have.css', 'flex-direction', 'column');
     });
+
+    it('should be able to hide the title', () => {
+        cy.get('vl-map-legend').invoke('attr', 'data-vl-hide-title', 'true');
+        cy.get('vl-map-legend').should(($el) => {
+            expect($el.attr('data-vl-hide-title')).to.equal('true');
+        });
+
+        cy.get('vl-map-legend')
+            .shadow()
+            .find('div.uig-map-legend > div > span.uig-map-legend-text.uig-map-legend-title')
+            .should('not.exist');
+    });
 });
 
 describe('component vl-map-legend - features layer - multiple styles', () => {

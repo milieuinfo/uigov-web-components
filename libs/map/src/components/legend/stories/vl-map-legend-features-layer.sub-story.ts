@@ -7,7 +7,7 @@ import '../../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import '../vl-map-legend';
 import { mapLegendArgs } from './vl-map-legend.stories-arg';
 
-export default story(mapLegendArgs, ({ bottom, left, placement, right, top, layoutVertical }) => {
+export default story(mapLegendArgs, ({ bottom, left, placement, right, top, layoutVertical, hideTitle }) => {
     const features = {
         type: 'FeatureCollection',
         features: [
@@ -42,6 +42,7 @@ export default story(mapLegendArgs, ({ bottom, left, placement, right, top, layo
         <vl-map-legend
             data-vl-placement=${placement}
             data-vl-layout-vertical=${layoutVertical}
+            data-vl-hide-title=${hideTitle}
             bottom=${bottom}
             top=${top}
             right=${right}

@@ -57,6 +57,7 @@ export class VlMapLegend extends BaseLitElement {
     right: string;
     bottom: string;
     layoutVertical: boolean;
+    hideTitle: boolean;
     private placement: string;
     private mapElement: VlMap;
     private items: Item[] = [];
@@ -93,7 +94,10 @@ export class VlMapLegend extends BaseLitElement {
             placement: {
                 type: String,
                 attribute: 'data-vl-placement',
-                reflect: true,
+            },
+            hideTitle: {
+                type: Boolean,
+                attribute: 'data-vl-hide-title',
             },
         };
     }
@@ -263,9 +267,11 @@ export class VlMapLegend extends BaseLitElement {
             class=${`uig-map-legend ${this.layoutVertical ? 'uig-map-legend--vertical' : ''}`}
             style="${this.generateItemStyle()}"
         >
-            <div>
-                <span class="uig-map-legend-text uig-map-legend-title">Legende: </span>
-            </div>
+        ${this.hideTitle
+                ? ''
+                : html`<div>
+                      <span class="uig-map-legend-text uig-map-legend-title">Legende: </span>
+                  </div>`}
             ${this.items.map((item) => {
                 switch (item.type) {
                     case 'custom':

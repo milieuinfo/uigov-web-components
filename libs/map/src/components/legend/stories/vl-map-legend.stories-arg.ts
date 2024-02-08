@@ -17,6 +17,7 @@ export const mapLegendArgs = {
     right: '',
     top: '',
     layoutVertical: false,
+    hideTitle: false,
 };
 
 export const mapLegendArgTypes: ArgTypes<typeof mapLegendArgs> = {
@@ -81,6 +82,15 @@ export const mapLegendArgTypes: ArgTypes<typeof mapLegendArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: mapLegendArgs.layoutVertical },
+        }
+    },
+    hideTitle: {
+        name: 'data-vl-hide-title',
+        description: 'Laat de "Legende" titel weg.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapLegendArgs.hideTitle },
         },
     },
 };
