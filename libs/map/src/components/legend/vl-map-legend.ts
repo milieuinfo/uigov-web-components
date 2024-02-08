@@ -56,6 +56,7 @@ export class VlMapLegend extends BaseLitElement {
     left: string;
     right: string;
     bottom: string;
+    layoutVertical: boolean;
     private placement: string;
     private mapElement: VlMap;
     private items: Item[] = [];
@@ -84,6 +85,11 @@ export class VlMapLegend extends BaseLitElement {
             top: { type: String, reflect: true },
             right: { type: String, reflect: true },
             bottom: { type: String, reflect: true },
+            layoutVertical: {
+                type: Boolean,
+                attribute: 'data-vl-layout-vertical',
+                reflect: true,
+            },
             placement: {
                 type: String,
                 attribute: 'data-vl-placement',
@@ -182,12 +188,14 @@ export class VlMapLegend extends BaseLitElement {
 
     private legendUrl(wmsLayer: VlMapWmsLayer) {
         const layerUrl = new URL(wmsLayer.dataset.vlUrl);
+        const layout = this.layoutVertical ? 'layout:vertical' : 'layout:horizontal';
+
         const legendSearchParams = new URLSearchParams({
             service: 'WMS',
             request: 'GetLegendGraphic',
             format: 'image/png',
             layer: wmsLayer.dataset.vlLayers,
-            legend_options: 'layout:horizontal',
+            legend_options: layout,
         });
         return new URL(`?${legendSearchParams}`, layerUrl);
     }
@@ -251,7 +259,10 @@ export class VlMapLegend extends BaseLitElement {
             return null;
         }
 
-        return html` <div class="uig-map-legend" style="${this.generateItemStyle()}">
+        return html` <div
+            class=${`uig-map-legend ${this.layoutVertical ? 'uig-map-legend--vertical' : ''}`}
+            style="${this.generateItemStyle()}"
+        >
             <div>
                 <span class="uig-map-legend-text uig-map-legend-title">Legende: </span>
             </div>

@@ -9,7 +9,7 @@ import '../vl-map-legend';
 import { mapLegendArgs } from './vl-map-legend.stories-arg';
 import { linkStylesToFeatures } from './vl-map-legend.stories-util';
 
-export default story(mapLegendArgs, ({ bottom, left, placement, right, top }) => {
+export default story(mapLegendArgs, ({ bottom, left, placement, right, top, layoutVertical }) => {
     const features = {
         type: 'FeatureCollection',
         features: [
@@ -93,6 +93,7 @@ export default story(mapLegendArgs, ({ bottom, left, placement, right, top }) =>
         </vl-map-features-layer>
         <vl-map-legend
             data-vl-placement=${placement}
+            data-vl-layout-vertical=${layoutVertical}
             bottom=${bottom}
             top=${top}
             right=${right}

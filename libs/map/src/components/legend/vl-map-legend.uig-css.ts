@@ -327,5 +327,18 @@ const mapLegendStyles: CSSResult = css`
         display: flex;
         align-items: center;
     }
+
+    div.uig-map-legend--vertical {
+        flex-direction: column;
+    }
+
+    div.uig-map-legend--vertical div.uig-map-legend-icon-container {
+        margin-left: 0.2em;
+        margin-right: 0.2em;
+    }
+
+    div.uig-map-legend--vertical div.uig-map-legend-item {
+        line-height: normal;
+    }
 `;
 export default [mapLegendStyles, ...vlElementsStyle, olOlStyles, mapActionsStyle] as CSSResult[];
