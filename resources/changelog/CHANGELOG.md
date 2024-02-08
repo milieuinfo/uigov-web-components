@@ -1,3 +1,22 @@
+# [1.26.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.25.0...v1.26.0) (2024-02-08)
+
+
+### Bug Fixes
+
+* .only vergetelheid verwijderd in test bestanden ([1fdffc4](https://github.com/milieuinfo/uigov-web-components/commit/1fdffc4eda781207ea47504750d363a452ebce29))
+* UIG-2828 - vl-qlik-dashboard - multiselect attributen verwijderd ([8d39f68](https://github.com/milieuinfo/uigov-web-components/commit/8d39f689a3aa172bd89dca75b902cf9aaf5c190b))
+* UIG-2831 - vl-select - web-dev-server (rollup) fout met choices import ([10810c2](https://github.com/milieuinfo/uigov-web-components/commit/10810c23541cae6672d9c91179172ec9c94d0cfe))
+
+
+### Features
+
+* exporteer VlMapDrawActionStyle uit map/index.ts ([4d12688](https://github.com/milieuinfo/uigov-web-components/commit/4d12688f97b0c31e105e86db0fcaf7de3bfd99c4))
+* UIG-2710 - vl-upload-next - introductie component ([70ac442](https://github.com/milieuinfo/uigov-web-components/commit/70ac442773887bf529833c0274a7ae45ee758e4b))
+* UIG-2808 - vl-select-next - verbeteringen ([15ea070](https://github.com/milieuinfo/uigov-web-components/commit/15ea070ea8811fbee799374aa7139c1ad865617d))
+* UIG-2810 - form - algemene verbeteringen ([cbd210d](https://github.com/milieuinfo/uigov-web-components/commit/cbd210de61656bab94f714653054d2fd5f20d8ce))
+* UIG-2827 - vl-document - target attribuut toegevoegd ([072c404](https://github.com/milieuinfo/uigov-web-components/commit/072c404713fdb7fafba197a02c8357e9f7d5d485))
+* UIG-2832 - build verbeteringen ([1e51576](https://github.com/milieuinfo/uigov-web-components/commit/1e515761e99d8ec876f06474bbd354bbd48c387e))
+
 # [1.25.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.24.0...v1.25.0) (2024-01-29)
 
 
