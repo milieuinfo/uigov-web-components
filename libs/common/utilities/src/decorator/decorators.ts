@@ -1,10 +1,13 @@
 import { UigConfig } from '../config/uig-config';
 import { defineWebComponent } from '../util/utils';
 
+// types en opzet overgenomen van Lit
+//  -> https://github.com/lit/lit/blob/main/packages/reactive-element/src/decorators/custom-element.ts
+
 type Constructor<T> = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     new (...args: any[]): T;
 };
+
 type CustomElementClass = Omit<typeof HTMLElement, 'new'>;
 
 export type CustomElementDecorator = {
@@ -14,51 +17,72 @@ export type CustomElementDecorator = {
     (target: CustomElementClass, context: ClassDecoratorContext<Constructor<HTMLElement>>): void;
 };
 
-// export const webComponent =
-//     (tagName: string, options?: ElementDefinitionOptions) =>
-//     // eslint-disable-next-line @typescript-eslint/ban-types
-//     (constructor: Function): any => {
-//         defineWebComponent(constructor, tagName, options);
-//     };
-
 export const webComponent =
-    (tagName: string): CustomElementDecorator =>
+    (tagName: string, options?: ElementDefinitionOptions): CustomElementDecorator =>
     (
         classOrTarget: CustomElementClass | Constructor<HTMLElement>,
         context?: ClassDecoratorContext<Constructor<HTMLElement>>
     ) => {
         if (context !== undefined) {
             context.addInitializer(() => {
-                // customElements.define(tagName, classOrTarget as CustomElementConstructor);
-                defineWebComponent(classOrTarget as CustomElementConstructor, tagName);
+                defineWebComponent(classOrTarget as CustomElementConstructor, tagName, options);
             });
         } else {
-            // customElements.define(tagName, classOrTarget as CustomElementConstructor);
-            defineWebComponent(classOrTarget as CustomElementConstructor, tagName);
+            defineWebComponent(classOrTarget as CustomElementConstructor, tagName, options);
         }
     };
 
 // variant waaraan een custom registratie methode wordt meegegeven
 export const webComponentCustom =
-    (customRegistration: () => any) =>
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    (constructor: Function): any => {
-        customRegistration();
+    (customRegistration: () => any): CustomElementDecorator =>
+    (
+        classOrTarget: CustomElementClass | Constructor<HTMLElement>,
+        context?: ClassDecoratorContext<Constructor<HTMLElement>>
+    ) => {
+        if (context !== undefined) {
+            context.addInitializer(() => {
+                customRegistration();
+            });
+        } else {
+            customRegistration();
+        }
     };
 
 // TODO: deze Promised variant zou niet nodig moeten zijn
 //  -> misschien is het ook niet meer nodig omdat kind-web-componenten nu ook @webComponent
 //     gebruiken en als ze dus geïmporteerd worden al geregistreerd worden: te testen / verifiëren
 export const webComponentPromised =
-    <T>(promises: Iterable<T | PromiseLike<T>>, tagName: string, options?: ElementDefinitionOptions) =>
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    (constructor: Function): any => {
-        if (customElements.get(tagName)) {
-            if (UigConfig.getPreferences().logWebComponentRegistration) {
-                console.debug(`${tagName} werd reeds geregistreerd`);
-            }
+    <T>(
+        promises: Iterable<T | PromiseLike<T>>,
+        tagName: string,
+        options?: ElementDefinitionOptions
+    ): CustomElementDecorator =>
+    (
+        classOrTarget: CustomElementClass | Constructor<HTMLElement>,
+        context?: ClassDecoratorContext<Constructor<HTMLElement>>
+    ) => {
+        if (context !== undefined) {
+            context.addInitializer(() => {
+                if (customElements.get(tagName)) {
+                    if (UigConfig.getPreferences().logWebComponentRegistration) {
+                        console.debug(`${tagName} werd reeds geregistreerd`);
+                    }
+                } else {
+                    Promise.all(promises).then(() =>
+                        defineWebComponent(classOrTarget as CustomElementConstructor, tagName, options)
+                    );
+                }
+            });
         } else {
-            Promise.all(promises).then(() => defineWebComponent(constructor, tagName, options));
+            if (customElements.get(tagName)) {
+                if (UigConfig.getPreferences().logWebComponentRegistration) {
+                    console.debug(`${tagName} werd reeds geregistreerd`);
+                }
+            } else {
+                Promise.all(promises).then(() =>
+                    defineWebComponent(classOrTarget as CustomElementConstructor, tagName, options)
+                );
+            }
         }
     };
 
@@ -66,14 +90,32 @@ export const webComponentPromised =
 //  -> misschien is het ook niet meer nodig omdat kind-web-componenten nu ook @webComponent
 //     gebruiken en als ze dus geïmporteerd worden al geregistreerd worden: te testen / verifiëren
 export const webComponentConditional =
-    (defined: string, tagName: string, options?: ElementDefinitionOptions) =>
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    (constructor: Function): any => {
-        if (customElements.get(tagName)) {
-            if (UigConfig.getPreferences().logWebComponentRegistration) {
-                console.debug(`${tagName} werd reeds geregistreerd`);
-            }
+    (defined: string, tagName: string, options?: ElementDefinitionOptions): CustomElementDecorator =>
+    (
+        classOrTarget: CustomElementClass | Constructor<HTMLElement>,
+        context?: ClassDecoratorContext<Constructor<HTMLElement>>
+    ) => {
+        if (context !== undefined) {
+            context.addInitializer(() => {
+                if (customElements.get(tagName)) {
+                    if (UigConfig.getPreferences().logWebComponentRegistration) {
+                        console.debug(`${tagName} werd reeds geregistreerd`);
+                    }
+                } else {
+                    window.customElements
+                        .whenDefined(defined)
+                        .then(() => defineWebComponent(classOrTarget as CustomElementConstructor, tagName, options));
+                }
+            });
         } else {
-            window.customElements.whenDefined(defined).then(() => defineWebComponent(constructor, tagName, options));
+            if (customElements.get(tagName)) {
+                if (UigConfig.getPreferences().logWebComponentRegistration) {
+                    console.debug(`${tagName} werd reeds geregistreerd`);
+                }
+            } else {
+                window.customElements
+                    .whenDefined(defined)
+                    .then(() => defineWebComponent(classOrTarget as CustomElementConstructor, tagName, options));
+            }
         }
     };
