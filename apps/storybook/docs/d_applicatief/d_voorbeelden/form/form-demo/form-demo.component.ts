@@ -11,6 +11,7 @@ import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
 import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio-group';
 import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 import { VlUploadComponent } from '@domg-wc/form/next/upload';
+import { parseFormData } from '@domg-wc/form/utils';
 
 @customElement('vl-form-demo')
 export class FormDemoComponent extends LitElement {
@@ -276,8 +277,8 @@ export class FormDemoComponent extends LitElement {
     private onSubmit(event: Event): void {
         event.preventDefault();
 
-        const data = new FormData(event.target as HTMLFormElement);
-        console.log(Object.fromEntries(data));
+        const data = parseFormData(event.target as HTMLFormElement);
+        console.log(data);
     }
 }
 

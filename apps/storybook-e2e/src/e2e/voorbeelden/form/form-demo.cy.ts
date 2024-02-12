@@ -1,3 +1,5 @@
+import { parseFormData } from '@domg-wc/form/utils';
+
 const formDemoUrl = 'http://localhost:8080/iframe.html?viewMode=story&id=applicatief-voorbeelden-form-demo--demo';
 
 const getFormControl = ({ selector = '', shadow = true } = {}) => {
@@ -98,7 +100,7 @@ const fillInForm = () => {
     getWaarheidsGetrouwCheckbox().find('input').check({ force: true });
 };
 
-const setupMockedUploadFormData = (submittedFormData: unknown & { foto: File }) => {
+const setupMockedUploadFormData = (submittedFormData: unknown & { foto: File[] }) => {
     cy.readFile('src/fixtures/upload/cat.jpeg', 'base64').then((fileContent) => {
         const blob = Cypress.Blob.base64StringToBlob(fileContent);
         const lastModified = new Date().getTime();
@@ -119,7 +121,7 @@ const setupMockedUploadFormData = (submittedFormData: unknown & { foto: File }) 
                     type: 'image/jpeg',
                     lastModified,
                 });
-                submittedFormData.foto = fileToTest;
+                submittedFormData.foto = [fileToTest];
             });
     });
     cy.fixture('upload/cat.jpeg', null).as('catFoto');
@@ -252,7 +254,7 @@ describe('composition - form demo', () => {
             rrn: '12.34.56-789.12',
             geboortedatum: '26.09.1991',
             geboorteplaats: 'hasselt',
-            hobbies: 'padel;dans',
+            hobbies: ['padel', 'dans'],
             interesses: 'Vanalles en nog wat',
             leeftijd: '32',
             contactmethode: 'telefoon',
@@ -271,7 +273,7 @@ describe('composition - form demo', () => {
             .shadow()
             .find('form')
             .then(($el) => {
-                const formData = Object.fromEntries(new FormData($el.get(0) as HTMLFormElement));
+                const formData = parseFormData($el.get(0) as HTMLFormElement, ['hobbies', 'foto']);
                 expect(formData).to.deep.equal(submittedFormData);
             });
     });
@@ -282,7 +284,7 @@ describe('composition - form demo', () => {
             rrn: '12345678912',
             geboortedatum: '26.09.1991',
             geboorteplaats: 'hasselt',
-            hobbies: 'padel;dans',
+            hobbies: ['padel', 'dans'],
             interesses: 'Vanalles en nog wat',
             leeftijd: '32',
             contactmethode: 'telefoon',
@@ -302,7 +304,7 @@ describe('composition - form demo', () => {
             .shadow()
             .find('form')
             .then(($el) => {
-                const formData = Object.fromEntries(new FormData($el.get(0) as HTMLFormElement));
+                const formData = parseFormData($el.get(0) as HTMLFormElement, ['hobbies', 'foto']);
                 expect(formData).to.deep.equal(submittedFormData);
             });
     });
@@ -313,11 +315,11 @@ describe('composition - form demo', () => {
             rrn: '',
             geboortedatum: '',
             geboorteplaats: '',
-            hobbies: '',
+            hobbies: [],
             interesses: '',
             leeftijd: '',
             contactmethode: '',
-            foto: '',
+            foto: [],
             waarheidsgetrouw: '',
         };
 
@@ -340,7 +342,7 @@ describe('composition - form demo', () => {
             .shadow()
             .find('form')
             .then(($el) => {
-                const formData = Object.fromEntries(new FormData($el.get(0) as HTMLFormElement));
+                const formData = parseFormData($el.get(0) as HTMLFormElement, ['hobbies', 'foto']);
                 expect(formData).to.deep.equal(submittedFormData);
             });
     });

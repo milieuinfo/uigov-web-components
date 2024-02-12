@@ -420,18 +420,18 @@ describe('component - vl-select-next - single', () => {
         cy.checkA11y('vl-select-next');
     });
 
-    it('should return selected value when calling getSelectedValues()', () => {
+    it('should return selected value when calling getSelected()', () => {
         cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options} deletable></vl-select-next>`);
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
         cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelectedValues()).to.be.empty;
+            expect(component.getSelected()).to.be.empty;
         });
         cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
         cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelectedValues()).to.have.members(['hasselt']);
+            expect(component.getSelected()).to.equal('hasselt');
         });
         cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next')
@@ -441,7 +441,7 @@ describe('component - vl-select-next - single', () => {
             .contains('Turnhout')
             .click();
         cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelectedValues()).to.have.members(['turnhout']);
+            expect(component.getSelected()).to.equal('turnhout');
         });
         cy.get('vl-select-next')
             .shadow()
@@ -450,7 +450,7 @@ describe('component - vl-select-next - single', () => {
             .find('.vl-pill__close')
             .click();
         cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelectedValues()).to.be.empty;
+            expect(component.getSelected()).to.be.empty;
         });
         cy.checkA11y('vl-select-next');
     });
@@ -502,12 +502,12 @@ describe('component - vl-select-next - multiple', () => {
         cy.get('@vl-select')
             .should('have.been.calledOnce')
             .its('firstCall.args.0.detail')
-            .should('deep.equal', { value: 'padel' });
+            .should('deep.equal', { value: ['padel'] });
         cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
         cy.get('@vl-select')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
-            .should('deep.equal', { value: 'padel;dans' });
+            .should('deep.equal', { value: ['padel', 'dans'] });
         cy.get('vl-select-next')
             .shadow()
             .find('.vl-input-field')
@@ -515,7 +515,9 @@ describe('component - vl-select-next - multiple', () => {
             .find('.vl-pill__close')
             .click();
         cy.get('@vl-select').its('callCount').should('eq', 3);
-        cy.get('@vl-select').its('lastCall.args.0.detail').should('deep.equal', { value: 'dans' });
+        cy.get('@vl-select')
+            .its('lastCall.args.0.detail')
+            .should('deep.equal', { value: ['dans'] });
         cy.checkA11y('vl-select-next');
     });
 
@@ -600,23 +602,23 @@ describe('component - vl-select-next - multiple', () => {
         cy.checkA11y('vl-select-next');
     });
 
-    it('should return selected values when calling getSelectedValues()', () => {
+    it('should return selected values when calling getSelected()', () => {
         cy.mount(html`<vl-select-next label="hobby's" multiple .options=${options} deletable></vl-select-next>`);
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
         cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelectedValues()).to.be.empty;
+            expect(component.getSelected()).to.be.empty;
         });
         cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
         cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelectedValues()).to.have.members(['padel']);
+            expect(component.getSelected()).to.have.members(['padel']);
         });
         cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
         cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelectedValues()).to.have.members(['padel', 'dans']);
+            expect(component.getSelected()).to.have.members(['padel', 'dans']);
         });
         cy.get('vl-select-next')
             .shadow()
@@ -625,7 +627,7 @@ describe('component - vl-select-next - multiple', () => {
             .find('.vl-pill__close')
             .click();
         cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelectedValues()).to.have.members(['dans']);
+            expect(component.getSelected()).to.have.members(['dans']);
         });
         cy.checkA11y('vl-select-next');
     });
