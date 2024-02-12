@@ -12,6 +12,7 @@ import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 import { VlUploadComponent } from '@domg-wc/form/next/upload';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import appElementStyle from './app.element.css';
+import { parseFormData } from '@domg-wc/form/utils';
 
 type SubmittedFormData = {
     voornaam?: string;
@@ -20,7 +21,7 @@ type SubmittedFormData = {
     interesses?: string;
     geboortedatum?: string;
     geboorteplaats?: string;
-    [`hobby's`]?: string;
+    [`hobby's`]?: string[];
     leeftijd?: number;
     kinderen?: number;
     adres?: string;
@@ -1053,7 +1054,11 @@ export class AppElement extends LitElement {
                                 <dt class="vl-properties__label">Geboorteplaats</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData.geboorteplaats}</dd>
                                 <dt class="vl-properties__label">Hobby's</dt>
-                                <dd class="vl-properties__data">${this.submittedFormData[`hobby's`]}</dd>
+                                <dd class="vl-properties__data">
+                                    ${this.submittedFormData[`hobby's`] instanceof Array
+                                        ? this.submittedFormData[`hobby's`].map((hobby) => hobby).join(', ')
+                                        : this.submittedFormData[`hobby's`]}
+                                </dd>
                                 <dt class="vl-properties__label">Leeftijd</dt>
                                 <dd class="vl-properties__data">${this.submittedFormData.leeftijd}</dd>
                                 <dt class="vl-properties__label">Aantal kinderen</dt>
@@ -1071,7 +1076,7 @@ export class AppElement extends LitElement {
                                 <dt class="vl-properties__label">Pasfoto's</dt>
                                 <dd class="vl-properties__data">
                                     ${this.submittedFormData.fotos instanceof Array
-                                        ? this.submittedFormData.fotos.map((foto) => foto.name).join(';')
+                                        ? this.submittedFormData.fotos.map((foto) => foto.name).join(', ')
                                         : this.submittedFormData.fotos?.name}
                                 </dd>
                                 <dt class="vl-properties__label">Waarheidsgetrouw</dt>
@@ -1087,17 +1092,9 @@ export class AppElement extends LitElement {
     private onSubmit(e: Event): void {
         e.preventDefault();
 
-        const data = new FormData(e.target as HTMLFormElement);
+        const formData = parseFormData(e.target as HTMLFormElement);
 
-        const formData = Array.from(data.keys()).reduce((result, key) => {
-            if (data.getAll(key).length > 1) {
-                return { ...result, [key]: data.getAll(key) };
-            } else {
-                return { ...result, [key]: data.get(key) };
-            }
-        }, {});
-
-        console.log(formData);
+        console.log('FormData na submit:', formData);
 
         this.submittedFormData = formData;
         this.submittedCount++;
@@ -1179,7 +1176,13 @@ export class AppElement extends LitElement {
     private onSelectBirthplace(e: CustomEvent): void {
         const birthplaces: SelectOption[] = this.birthplaces.map((birthplaceGroup) => {
             birthplaceGroup.choices = birthplaceGroup.choices?.map((birthplace) => {
-                birthplace.selected = birthplace.value === e.detail.value;
+                const value = e.detail.value;
+                if (value instanceof FormData) {
+                    const values = value.getAll('geboorteplaats');
+                    birthplace.selected = values.includes(birthplace.value);
+                } else {
+                    birthplace.selected = birthplace.value === e.detail.value;
+                }
                 return birthplace;
             });
             return birthplaceGroup;
@@ -1237,12 +1240,18 @@ export class AppElement extends LitElement {
     private onSelectHobbies(e: CustomEvent): void {
         const hobbies: SelectOption[] = [
             ...this.hobbies.map((hobby) => {
-                hobby.selected = e.detail.value.includes(hobby.value);
+                const value = e.detail.value;
+                if (value instanceof FormData) {
+                    const values = value.getAll("hobby's");
+                    hobby.selected = values.includes(hobby.value);
+                } else {
+                    hobby.selected = e.detail.value.includes(hobby.value);
+                }
                 return hobby;
             }),
         ];
 
-        this.hobbies = hobbies;
+        this.hobbies = [...hobbies];
     }
 
     private toggleHobbiesReadonly(): void {

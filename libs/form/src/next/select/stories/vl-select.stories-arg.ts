@@ -114,9 +114,9 @@ export const selectArgTypes: ArgTypes<SelectArgs> = {
     onVlSelect: {
         name: 'vl-select',
         description:
-            'Event dat afgevuurd wordt als er een optie selecteerd of verwijderd wordt.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect worden de waarden van de geselecteerde opties gescheiden door een `;`.',
+            'Event dat afgevuurd wordt als er een optie selecteerd of verwijderd wordt.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect bevat het detail object een array van waarden van de geselecteerde opties.',
         table: {
-            type: { summary: '{ value: string }' },
+            type: { summary: '{ value: string | string[] }' },
             category: CATEGORIES.EVENTS,
         },
     },
@@ -131,9 +131,9 @@ export const selectArgTypes: ArgTypes<SelectArgs> = {
     onVlValid: {
         name: 'vl-valid',
         description:
-            'Event dat afgevuurd wordt als de select valid is.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect worden de waarden van de geselecteerde opties gescheiden door een `;`.',
+            'Event dat afgevuurd wordt als de select valid is.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect bevat het detail object een array van waarden van de geselecteerde opties.',
         table: {
-            type: { summary: '{ value: string }' },
+            type: { summary: '{ value: string | string[] }' },
             category: CATEGORIES.EVENTS,
         },
     },

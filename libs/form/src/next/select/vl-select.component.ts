@@ -1,7 +1,9 @@
 import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import * as choices from 'choices.js';
 import { Choice, Options, Item } from 'choices.js';
+import { FormValue } from '@open-wc/form-control/src/types';
 import { iconStyle, inputFieldStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import selectUigStyle from './styles/vl-select.uig-css';
@@ -55,7 +57,7 @@ export class VlSelectComponent extends FormControl {
     private searchPlaceholder = selectDefaults.searchPlaceholder;
 
     // State
-    private value = '';
+    private value: FormValue = '';
 
     // Variables
     private choices: Choices | null = null;
@@ -77,7 +79,18 @@ export class VlSelectComponent extends FormControl {
             noResultsText: { type: String, attribute: 'no-results-text' },
             noChoicesText: { type: String, attribute: 'no-choices-text' },
             searchPlaceholder: { type: String, attribute: 'search-placeholder' },
-            value: { type: String, state: true },
+            value: {
+                type: FormData,
+                state: true,
+                hasChanged: (value: FormValue, oldValue: FormValue) => {
+                    if (value instanceof FormData && oldValue instanceof FormData) {
+                        // We vergelijken de letterlijke inhoud van de entries van dit FormData object, omdat default FormData vergelijking niet voldoet
+                        return JSON.stringify([...value.entries()]) !== JSON.stringify([...oldValue.entries()]);
+                    } else {
+                        return value !== oldValue;
+                    }
+                },
+            },
         };
     }
 
@@ -124,7 +137,7 @@ export class VlSelectComponent extends FormControl {
         }
 
         if (changedProperties.has('value')) {
-            const detail = { value: this.value };
+            const detail = { value: this.getSelected() };
 
             this.setValue(this.value);
             this.dispatchEvent(new CustomEvent('vl-select', { bubbles: true, composed: true, detail }));
@@ -191,7 +204,11 @@ export class VlSelectComponent extends FormControl {
         this.options = [...this.initialOptions];
     }
 
-    getSelectedValues(): string[] {
+    getSelected(): string | string[] {
+        return this.multiple ? this.getSelectedValues() : this.getSelectedValues()[0] || '';
+    }
+
+    private getSelectedValues(): string[] {
         const selectedOptions = (this.validationTarget! as HTMLSelectElement).selectedOptions;
         return (
             Array.from(selectedOptions)
@@ -199,6 +216,17 @@ export class VlSelectComponent extends FormControl {
                 .filter((option) => option.value)
                 .map((option) => option.value)
         );
+    }
+
+    private collectFormData(): FormData | string {
+        const name = this.name || this.id;
+        const selectedValues = this.getSelectedValues();
+        return selectedValues?.length
+            ? selectedValues.reduce((formData: FormData, string, currentIndex) => {
+                  currentIndex ? formData.append(name, string) : formData.set(name, string);
+                  return formData;
+              }, new FormData())
+            : '';
     }
 
     private getChoicesElement(): HTMLElement | null {
@@ -344,8 +372,7 @@ export class VlSelectComponent extends FormControl {
     }
 
     private onChange() {
-        const selectedValues = this.getSelectedValues();
-        this.value = selectedValues.join(';') || '';
+        this.value = this.collectFormData();
     }
 
     private onClickChoices = (event: Event) => {

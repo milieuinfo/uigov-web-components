@@ -29,10 +29,10 @@ import { VlSelectComponent } from '@domg-wc/form/next/select';
 
 <FormControlPublicMethods />
 
-### getSelectedValues(): string[]
+### getSelected(): string | string[]
 
 Geeft de geselecteerde values terug.<br/>
-Bij de single select geeft deze methode een array met 1 value terug.
+Bij de single select geeft deze methode een string terug en bij de multi select een array van strings.
 
 ## Styles
 
@@ -42,8 +42,9 @@ Hierdoor breekt de CSP compliance tenzij je alle `data:` attributen whitelist, w
 
 ## Select event
 
-Bij het selecteren of verwijderen van een optie wordt het `vl-select` event afgevuurd, het detail object van dit event bevat de value van de geselecteerde optie als string.
-Bij het gebruik van de multiselect worden meerdere values gescheiden door een `;`.
+Bij het selecteren of verwijderen van een optie wordt het `vl-select` event afgevuurd, het detail object van dit event bevat de value van de geselecteerde opties.
+
+Gelijkaardig aan de `getSelected()`-methode, bevat de value bij de single select 1 string en bij de multi select een array van strings.
 
 ## Accessibility
 
