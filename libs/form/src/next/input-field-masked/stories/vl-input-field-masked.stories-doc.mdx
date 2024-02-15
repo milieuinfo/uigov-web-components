@@ -7,8 +7,6 @@ import FormControlPublicMethods from '../../form-control/stories/form-control.pu
 Gebruik de `input-field-masked-next` component om een input veld met een mask toe te voegen aan een pagina.<br/>
 Zie het [form demo](/docs/applicatief-voorbeelden-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.
 
-Dit component erft over van de [input-field-next](/docs/form-next-input-field--documentatie) component.
-
 ## Voorbeeld
 
 ```js
@@ -19,11 +17,11 @@ import { VlInputFieldMaskedComponent } from '@domg-wc/form/next/input-field-mask
 <vl-input-field-masked-next></vl-input-field-masked-next>
 ```
 
-<Canvas of={VlInputFieldMaskedStories.InputFieldMaskedDefault} />
+<Canvas of={VlInputFieldMaskedStories.InputFieldMaskedIban} />
 
 ## Configuratie
 
-<ArgTypes of={VlInputFieldMaskedStories.InputFieldMaskedDefault} />
+<ArgTypes of={VlInputFieldMaskedStories.InputFieldMaskedIban} />
 
 ## Publieke methodes
 
@@ -36,10 +34,93 @@ Bij het `price` mask wordt de prefix weggelaten.
 
 ## Validatie
 
-- Bij het gebruik in een form wordt er automatisch mask validatie toegevoegd aan het input veld.
-- De `patternMismatch` ValidityState key wordt gebruikt voor de mask validatie.
-- Het 'pattern' attribuut wordt uitgeschakeld omdat het mask deze werking overneemt, gelieve dit attribuut niet te gebruiken.
-- Het is mogelijk om de mask validatie te combineren met andere validaties (bv. `required`).
+- Er wordt automatisch mask validatie toegevoegd aan het input veld, je kan dit uitschakelen met het `disable-mask-validation` attribuut.
+- Bij de mask validatie wordt er gebruik gemaakt van een regex, deze kan je overschrijven met de `regex` property.
+- Bij het testen van de regex wordt altijd de raw value van het input veld gebruikt.
+- De `patternMismatch` ValidityState key wordt gebruikt voor de mask validatie error.
+- Het is mogelijk om de mask validatie te combineren met andere validaties, bv. `required`, `min`, `max`.
+
+## Masks
+
+### Iban
+
+- Enkel nummers
+- Prefix: `BE`
+- Formaat: `BE00 0000 0000 0000`
+- Regex: `/^[A-Z]{2}[0-9]{14}$/`
+
+<Canvas of={VlInputFieldMaskedStories.InputFieldMaskedIban} />
+
+### Rijksregisternummer
+
+- Enkel nummers
+- Formaat: `00.00.00-000.00`
+- Regex: `/^[0-9]{11}$/`
+
+<Canvas of={VlInputFieldMaskedStories.InputFieldMaskedRrn} />
+
+### UUID
+
+- Enkel hexadecimale karakters
+- Formaat: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
+- Regex: `/^[0-9a-fA-F]{32}$/`
+
+<Canvas of={VlInputFieldMaskedStories.InputFieldMaskedUuid} />
+
+### Date
+
+- Enkel nummers
+- Formaat: `dd.mm.yyyy`
+- Regex: `/^[0-9]{8}$/`
+
+<Canvas of={VlInputFieldMaskedStories.InputFieldMaskedDate} />
+
+### Numerical
+
+- Enkel nummers
+- 2 decimalen
+- Decimaal karakter: `,`
+- Duizendtal karakter: `.`
+- Regex: `/^[0-9]+(.[0-9]+)?$/`
+
+<Canvas of={VlInputFieldMaskedStories.InputFieldMaskedNumerical} />
+
+### Price
+
+- Enkel nummers
+- 2 decimalen
+- Prefix: `€`
+- Decimaal karakter: `,`
+- Duizendtal karakter: `.`
+- Regex: `/^[0-9]+(.[0-9]+)?$/`
+- De prefix wordt weggelaten bij de raw value.
+
+<Canvas of={VlInputFieldMaskedStories.InputFieldMaskedPrice} />
+
+### Phone
+
+- Enkel nummers
+- Prefix: `+32`
+- Formaat: `+32 00 00 00 00`
+- Regex: `/^\+[0-9]{10}$/`
+
+<Canvas of={VlInputFieldMaskedStories.InputFieldMaskedPhone} />
+
+### Phone international
+
+- Enkel nummers
+- Regex: `/^[0-9]*$/`
+
+<Canvas of={VlInputFieldMaskedStories.InputFieldMaskedPhoneInternational} />
+
+### Mobile
+
+- Enkel nummers
+- Prefix: `+32`
+- Formaat: `+32 000 00 00 00`
+- Regex: `/^\+[0-9]{11}$/`
+
+<Canvas of={VlInputFieldMaskedStories.InputFieldMaskedMobile} />
 
 ## Referenties
 

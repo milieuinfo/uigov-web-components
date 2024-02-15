@@ -3,8 +3,10 @@ import { ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 import { radioDefaults } from '../vl-radio.component';
 
-export const radioArgs: typeof defaultArgs &
-    typeof radioDefaults & { defaultSlot: string; onVlChecked: () => void; onVlValid: () => void } = {
+type RadioArgs = typeof defaultArgs &
+    typeof radioDefaults & { defaultSlot: string; onVlChecked: () => void; onVlValid: () => void };
+
+export const radioArgs: RadioArgs = {
     ...defaultArgs,
     ...radioDefaults,
     defaultSlot: '',
@@ -12,7 +14,7 @@ export const radioArgs: typeof defaultArgs &
     onVlValid: action('vl-valid'),
 };
 
-export const radioArgTypes: ArgTypes<typeof radioArgs> = {
+export const radioArgTypes: ArgTypes<RadioArgs> = {
     ...defaultArgTypes(true),
     id: {
         name: 'id',

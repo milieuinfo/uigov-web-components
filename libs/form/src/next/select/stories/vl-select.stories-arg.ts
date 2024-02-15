@@ -1,13 +1,13 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, TYPES, getSelectControlOptions } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
 import { SelectPosition, selectDefaults } from '../vl-select.component';
 import { action } from '@storybook/addon-actions';
 
-type selectArgsType = typeof formControlArgs &
+type SelectArgs = typeof formControlArgs &
     typeof selectDefaults & { onVlSelect: () => void; onVlSelectSearch: () => void; onVlValid: () => void };
 
-export const selectArgs: selectArgsType = {
+export const selectArgs: SelectArgs = {
     ...formControlArgs,
     ...selectDefaults,
     onVlSelect: action('vl-select'),
@@ -15,7 +15,7 @@ export const selectArgs: selectArgsType = {
     onVlValid: action('vl-valid'),
 };
 
-export const selectArgTypes: ArgTypes<typeof selectArgs> = {
+export const selectArgTypes: ArgTypes<SelectArgs> = {
     ...formControlArgTypes,
     placeholder: {
         name: 'placeholder',
@@ -57,9 +57,10 @@ export const selectArgTypes: ArgTypes<typeof selectArgs> = {
     position: {
         name: 'position',
         description: 'De positie van de dropdown.<br>Dit attribuut is niet reactief.',
-        control: { type: 'select', options: Object.values(SelectPosition) },
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(SelectPosition),
         table: {
-            type: { summary: 'VlSelectPosition' },
+            type: { summary: getSelectControlOptions(Object.values(SelectPosition)) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: selectArgs.position },
         },

@@ -1,20 +1,20 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
 import { inputFieldDefaults } from '../vl-input-field.component';
 import { action } from '@storybook/addon-actions';
 
-type InputFieldArgsType = typeof formControlArgs &
+type InputFieldArgs = typeof formControlArgs &
     typeof inputFieldDefaults & { onVlInput: () => void; onVlValid: () => void };
 
-export const inputFieldArgs: InputFieldArgsType = {
+export const inputFieldArgs: InputFieldArgs = {
     ...formControlArgs,
     ...inputFieldDefaults,
     onVlInput: action('vl-input'),
     onVlValid: action('vl-valid'),
 };
 
-export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
+export const inputFieldArgTypes: ArgTypes<InputFieldArgs> = {
     ...formControlArgTypes,
     block: {
         name: 'block',
@@ -73,7 +73,7 @@ export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
     minLength: {
         name: 'min-length',
         description: 'Het minimum aantal karakters dat je kan ingeven.',
-        control: { type: 'number' },
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
@@ -83,7 +83,7 @@ export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
     maxLength: {
         name: 'max-length',
         description: 'Het maximum aantal karakters dat je kan ingeven.',
-        control: { type: 'number' },
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
@@ -93,7 +93,7 @@ export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
     min: {
         name: 'min',
         description: 'De minimum waarde die je kan ingeven.',
-        control: { type: 'number' },
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
@@ -103,20 +103,50 @@ export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
     max: {
         name: 'max',
         description: 'De maximum waarde die je kan ingeven.',
-        control: { type: 'number' },
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldArgs.max },
         },
     },
+    minExclusive: {
+        name: 'min-exclusive',
+        description: 'Bij het gebruik van het min attribuut moet de waarde hoger zijn dan de min waarde.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: inputFieldArgs.minExclusive },
+        },
+    },
+    maxExclusive: {
+        name: 'max-exclusive',
+        description: 'Bij het gebruik van het max attribuut moet de waarde lager zijn dan de max waarde.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: inputFieldArgs.maxExclusive },
+        },
+    },
     pattern: {
         name: 'pattern',
-        description: 'Het patroon dat je moet volgen bij het ingeven van een waarde.',
+        description:
+            'Het patroon dat je moet volgen bij het ingeven van een waarde.<br>Dit kan gebruikt worden voor eenvoudige validatie.<br>Gebruik de `regex` property voor complexe validatie.',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldArgs.pattern },
+        },
+    },
+    regex: {
+        name: 'regex',
+        description:
+            'Het patroon dat je moet volgen bij het ingeven van een waarde.<br>Dit kan gebruikt worden voor complexe validatie.',
+        control: false,
+        table: {
+            type: { summary: TYPES.REGEX },
+            category: CATEGORIES.PROPERTIES,
+            defaultValue: { summary: inputFieldArgs.regex },
         },
     },
     onVlInput: {

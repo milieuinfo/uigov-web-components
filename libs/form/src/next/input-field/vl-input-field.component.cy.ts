@@ -134,6 +134,26 @@ describe('component - vl-input-field-next', () => {
         cy.get('vl-input-field-next').shadow().find('input').should('have.attr', 'pattern', 'Van(.*)');
     });
 
+    it('should set min-exlusive', () => {
+        cy.mount(html`<vl-input-field-next min-exclusive></vl-input-field-next>`);
+
+        cy.get('vl-input-field-next').should('have.attr', 'min-exclusive', '');
+        cy.runTestFor<VlInputFieldComponent>('vl-input-field-next', (component) => {
+            // @ts-ignore: negeer aanspreken van private property
+            expect(component.minExclusive).to.be.true;
+        });
+    });
+
+    it('should set max-exlusive', () => {
+        cy.mount(html`<vl-input-field-next max-exclusive></vl-input-field-next>`);
+
+        cy.get('vl-input-field-next').should('have.attr', 'max-exclusive', '');
+        cy.runTestFor<VlInputFieldComponent>('vl-input-field-next', (component) => {
+            // @ts-ignore: negeer aanspreken van private property
+            expect(component.maxExclusive).to.be.true;
+        });
+    });
+
     it('should dispatch vl-input event on input', () => {
         cy.mount(html`<vl-input-field-next></vl-input-field-next>`);
         cy.createStubForEvent('vl-input-field-next', 'vl-input');

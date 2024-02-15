@@ -29,6 +29,39 @@ import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
 
 <FormControlPublicMethods/>
 
+## Pattern validatie
+
+Pattern validatie kan op 2 manieren gebeuren:
+- Via het `pattern` attribuut
+- Via de `regex` property
+
+Het `pattern` attribuut kan gebruikt worden voor eenvoudige validatie.<br/>
+De `regex` property kan gebruikt worden voor complexere validatie.
+
+### E-mail
+
+Voor envoudige e-mailadres validatie kan je gebruik maken van het `pattern` attribuut.
+```
+.+@vlaanderen.be$
+```
+Voor complexere e-mailadres validatie kan je gebruik maken van de `regex` property.<br/>
+Zie [emailregex.com](https://emailregex.com/) voor een uitgebreid voorbeeld, zie hieronder voor één van de simpelere voorbeelden.
+```
+/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+```
+
+### Integer
+
+Voor het valideren van een integer kan je gebruik maken van het `pattern` attribuut.<br/>
+Je gebruikt dit best in combinatie met `type="number"`.
+```
+^[0-9]*$
+```
+
+### Masks
+
+Voor mask validatie kan je gebruik maken van de [vl-input-field-masked-next](/docs/form-next-input-field-masked--documentatie) component.
+
 ## Referenties
 
 ### Digitaal Vlaanderen

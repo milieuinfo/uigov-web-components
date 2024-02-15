@@ -1,5 +1,4 @@
 import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import * as choices from 'choices.js';
 import { Choice, Options, Item } from 'choices.js';
@@ -9,6 +8,7 @@ import selectUigStyle from './styles/vl-select.uig-css';
 import selectStyle from './styles/vl-select.css';
 import multiselectStyle from './styles/vl-multiselect.css';
 import { FormControl, formControlDefaults } from '../form-control/form-control';
+import { webComponent } from '@domg-wc/common-utilities';
 
 // web-dev-server (rollup) fix: ambiguous indirect export
 const DEFAULT_CLASSNAMES = choices.DEFAULT_CLASSNAMES;
@@ -38,10 +38,12 @@ export const selectDefaults = {
     searchPlaceholder: 'Zoek item' as string,
 } as const;
 
-@customElement('vl-select-next')
+@webComponent('vl-select-next')
 export class VlSelectComponent extends FormControl {
     // Properties
-    private options = selectDefaults.options;
+    options = selectDefaults.options;
+
+    // Attributes
     private placeholder = selectDefaults.placeholder;
     private deletable = selectDefaults.deletable;
     private multiple = selectDefaults.multiple;
@@ -160,8 +162,8 @@ export class VlSelectComponent extends FormControl {
 
         return html`
             <select
-                id=${this.id}
-                name=${this.name || this.id}
+                id=${this.id || nothing}
+                name=${this.name || nothing}
                 class=${classMap(classes)}
                 aria-label=${this.label || nothing}
                 ?required=${this.required}
@@ -243,8 +245,8 @@ export class VlSelectComponent extends FormControl {
                                 tabindex="0"
                                 aria-controls="vl-select__list"
                                 aria-label="${
-                                this.multiple ? 'selecteer één of meerdere opties' : 'selecteer één optie'
-                            }">
+                                    this.multiple ? 'selecteer één of meerdere opties' : 'selecteer één optie'
+                                }">
                             </div>`
                         );
                     },
@@ -264,13 +266,13 @@ export class VlSelectComponent extends FormControl {
                                 >
                                     <span>${data.label}</span>
                                     <button class="vl-pill__close ${
-                                    !this.multiple ? 'vl-vi vl-vi-close' : ''
-                                }" data-button aria-label="verwijder">
+                                        !this.multiple ? 'vl-vi vl-vi-close' : ''
+                                    }" data-button aria-label="verwijder">
                                         ${
-                                    this.multiple
-                                        ? `<span class="vl-pill__close__icon vl-vi vl-vi-close" aria-hidden="true"></span>`
-                                        : ''
-                                }
+                                            this.multiple
+                                                ? `<span class="vl-pill__close__icon vl-vi vl-vi-close" aria-hidden="true"></span>`
+                                                : ''
+                                        }
                                     </button>
                                 </div>`
                             );

@@ -1,12 +1,11 @@
 import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { customElement } from 'lit/decorators.js';
 import { inputFieldStyle } from '@domg/govflanders-style/component';
 import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { maxValueValidator, minValueValidator } from './validators';
-import { patternValidator } from '@open-wc/form-control';
+import { maxValueValidator, minValueValidator, patternValidator } from './validators';
 import { FormControl, formControlDefaults } from '../form-control/form-control';
+import { webComponent } from '@domg-wc/common-utilities';
 
 export const inputFieldDefaults = {
     ...formControlDefaults,
@@ -20,12 +19,18 @@ export const inputFieldDefaults = {
     maxLength: null as number | null,
     min: null as number | null,
     max: null as number | null,
+    minExclusive: false as boolean,
+    maxExclusive: false as boolean,
     pattern: '' as string,
+    regex: null as RegExp | null,
 } as const;
 
-@customElement('vl-input-field-next')
+@webComponent('vl-input-field-next')
 export class VlInputFieldComponent extends FormControl {
     // Properties
+    regex = inputFieldDefaults.regex; // Wordt enkel gebruikt in de pattern validator
+
+    // Attributes
     private block = inputFieldDefaults.block;
     private readonly = inputFieldDefaults.readonly;
     private type = inputFieldDefaults.type;
@@ -36,6 +41,8 @@ export class VlInputFieldComponent extends FormControl {
     private maxLength = inputFieldDefaults.maxLength;
     private min = inputFieldDefaults.min;
     private max = inputFieldDefaults.max;
+    private minExclusive = inputFieldDefaults.minExclusive; // Wordt enkel gebruikt in de min validator
+    private maxExclusive = inputFieldDefaults.maxExclusive; // Wordt enkel gebruikt in de max validator
     private pattern = inputFieldDefaults.pattern;
 
     // Variables
@@ -64,7 +71,10 @@ export class VlInputFieldComponent extends FormControl {
             maxLength: { type: Number, attribute: 'max-length' },
             min: { type: Number },
             max: { type: Number },
+            minExclusive: { type: Boolean, attribute: 'min-exclusive' },
+            maxExclusive: { type: Boolean, attribute: 'max-exclusive' },
             pattern: { type: String },
+            regex: { type: Object },
         };
     }
 
@@ -93,15 +103,15 @@ export class VlInputFieldComponent extends FormControl {
 
         return html`
             <input
-                id=${this.id}
-                name=${this.name || this.id}
+                id=${this.id || nothing}
+                name=${this.name || nothing}
                 class=${classMap(classes)}
+                type=${this.type}
                 aria-label=${this.label || nothing}
                 ?required=${this.required}
                 ?disabled=${this.disabled}
                 ?error=${this.error}
                 ?readonly=${this.readonly}
-                type=${this.type}
                 .value=${live(this.value)}
                 placeholder=${this.placeholder || nothing}
                 autocomplete=${this.autocomplete || nothing}
@@ -109,7 +119,7 @@ export class VlInputFieldComponent extends FormControl {
                 maxlength=${this.maxLength ?? nothing}
                 min=${this.min ?? nothing}
                 max=${this.max ?? nothing}
-                pattern=${this.pattern || nothing}
+                pattern=${this.pattern}
                 @input=${this.onInput}
             />
         `;

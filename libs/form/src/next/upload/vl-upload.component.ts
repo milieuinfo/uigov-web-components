@@ -45,7 +45,7 @@ export const uploadDefaults = {
 
 @webComponent('vl-upload-next')
 export class VlUploadComponent extends FormControl {
-    // Properties
+    // Attributes
     private readonly = uploadDefaults.readonly;
     private acceptedFiles = uploadDefaults.acceptedFiles;
     private autoProcess = uploadDefaults.autoProcess;
@@ -59,11 +59,11 @@ export class VlUploadComponent extends FormControl {
     private mainTitle = uploadDefaults.mainTitle;
     private url = uploadDefaults.url;
 
-    // Variables
-    private dropzoneInstance: Dropzone | undefined | null;
-
     // State
     private value: FormValue = '';
+
+    // Variables
+    private dropzoneInstance: Dropzone | undefined | null;
 
     static formControlValidators = [...FormControl.formControlValidators, dropzoneValidator];
 
@@ -562,8 +562,8 @@ export class VlUploadComponent extends FormControl {
 
     private async detectDuplicate(files: File[], fileToCheck: File): Promise<boolean> {
         if (files) {
-            let filesLength = files.length;
-            let ref = files.slice();
+            const filesLength = files.length;
+            const ref = files.slice();
 
             for (let i = 0; i < filesLength - 1; i++) {
                 if (ref[i] && fileToCheck) {

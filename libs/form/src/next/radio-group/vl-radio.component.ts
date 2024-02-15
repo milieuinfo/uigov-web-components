@@ -1,12 +1,11 @@
 import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult, LitElement } from 'lit';
-import { customElement } from 'lit/decorators.js';
 import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { radioStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import radioUigStyle from './vl-radio.component.uig-css';
-import { BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 
 export const radioDefaults = {
     id: 'radio' as string,
@@ -21,9 +20,9 @@ export const radioDefaults = {
     checked: false as boolean,
 } as const;
 
-@customElement('vl-radio-next')
+@webComponent('vl-radio-next')
 export class VlRadioComponent extends BaseLitElement {
-    // Properties
+    // Attributes
     id = radioDefaults.id;
     private name = radioDefaults.name;
     private value = radioDefaults.value;
@@ -86,11 +85,11 @@ export class VlRadioComponent extends BaseLitElement {
         return html`
             <label id="radio-label" class=${classMap(classes)} for=${this.id}>
                 <input
-                    id=${this.id}
-                    name=${this.name || this.id}
+                    id=${this.id || nothing}
+                    name=${this.name || nothing}
                     class="vl-radio__toggle"
-                    aria-label=${this.label || nothing}
                     type="radio"
+                    aria-label=${this.label || nothing}
                     .value=${live(this.value)}
                     .checked=${this.checked}
                     ?disabled=${this.disabled}

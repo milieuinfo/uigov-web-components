@@ -20,7 +20,7 @@ export default {
     },
 } as Meta<typeof inputFieldArgs>;
 
-export const InputFieldDefault = story(
+const InputFieldTemplate = story(
     inputFieldArgs,
     ({
         id,
@@ -40,7 +40,10 @@ export const InputFieldDefault = story(
         maxLength,
         min,
         max,
+        minExclusive,
+        maxExclusive,
         pattern,
+        regex,
         onVlInput,
         onVlReset,
         onVlValid,
@@ -63,11 +66,22 @@ export const InputFieldDefault = story(
             max-length=${maxLength}
             min=${min}
             max=${max}
+            min-exclusive=${minExclusive}
+            max-exclusive=${maxExclusive}
             pattern=${pattern}
+            .regex=${regex}
             @vl-input=${onVlInput}
             @vl-reset=${onVlReset}
             @vl-valid=${onVlValid}
         ></vl-input-field-next>`;
     }
 );
+
+export const InputFieldDefault = InputFieldTemplate.bind({});
 InputFieldDefault.storyName = 'vl-input-field-next - default';
+
+export const InputFieldNumber = InputFieldTemplate.bind({});
+InputFieldNumber.storyName = 'vl-input-field-next - number';
+InputFieldNumber.args = {
+    type: 'number',
+};

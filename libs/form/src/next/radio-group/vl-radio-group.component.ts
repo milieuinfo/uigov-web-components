@@ -1,11 +1,11 @@
 import { CSSResult, html, PropertyDeclarations, PropertyValues, TemplateResult } from 'lit';
-import { customElement } from 'lit/decorators.js';
 import { radioStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import radioUigStyle from './vl-radio.component.uig-css';
 import { VlRadioComponent } from './vl-radio.component';
 import { FormControl, formControlDefaults } from '../form-control/form-control';
+import { webComponent } from '@domg-wc/common-utilities';
 
 export const radioGroupDefaults = {
     ...formControlDefaults,
@@ -13,9 +13,9 @@ export const radioGroupDefaults = {
     value: '' as string,
 };
 
-@customElement('vl-radio-group-next')
+@webComponent('vl-radio-group-next')
 export class VlRadioGroupComponent extends FormControl {
-    // Properties
+    // Attributes
     private readonly = radioGroupDefaults.readonly;
     private value = radioGroupDefaults.value;
 
@@ -28,10 +28,9 @@ export class VlRadioGroupComponent extends FormControl {
 
     static get properties(): PropertyDeclarations {
         return {
-            value: { type: String, reflect: true },
-            required: { type: Boolean },
-            block: { type: Boolean },
             readonly: { type: Boolean },
+            value: { type: String, reflect: true },
+            block: { type: Boolean },
         };
     }
 

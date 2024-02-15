@@ -1,72 +1,44 @@
 import { PropertyDeclarations } from 'lit';
-import { customElement } from 'lit/decorators.js';
 import Cleave from 'cleave.js';
 import { masks } from './masks';
 import { VlInputFieldComponent, inputFieldDefaults } from '../input-field/vl-input-field.component';
 import { CleaveInstance, MaskOptions } from './vl-input-field-masked.model';
-import { Validator } from '@open-wc/form-control';
-
-const maskValidator: Validator = {
-    key: 'patternMismatch',
-    message(): string {
-        return `Value does not meet the given mask pattern.`;
-    },
-    isValid(
-        instance: HTMLElement & {
-            disableValidation: boolean;
-            validationRegex: RegExp;
-            maskOptions: MaskOptions;
-            cleaveInstance: CleaveInstance;
-        },
-        value: string
-    ): boolean {
-        const { disableValidation } = instance;
-        const validationRegex = instance.validationRegex || instance.maskOptions?.validationRegex;
-        const cleaveInstance = instance.cleaveInstance;
-
-        if (disableValidation || !value || !validationRegex || !cleaveInstance) {
-            return true;
-        }
-
-        const rawValue = cleaveInstance.getRawValue();
-        const regExp = new RegExp(validationRegex);
-
-        return !!regExp.exec(rawValue);
-    },
-};
+import { webComponent } from '@domg-wc/common-utilities';
+import { maskValidator, minValueValidator, maxValueValidator } from './validators';
 
 export const inputFieldMaskedDefaults = {
     ...inputFieldDefaults,
     mask: '' as string,
     maskPrefix: '' as string,
     rawValue: false as boolean,
-    disableValidation: false as boolean,
-    validationRegex: null as RegExp | null,
+    disableMaskValidation: false as boolean,
 } as const;
 
-@customElement('vl-input-field-masked-next')
+@webComponent('vl-input-field-masked-next')
 export class VlInputFieldMaskedComponent extends VlInputFieldComponent {
-    // Properties
+    // Attributes
     private mask = inputFieldMaskedDefaults.mask;
     private maskPrefix = inputFieldMaskedDefaults.maskPrefix;
     private rawValue = inputFieldMaskedDefaults.rawValue;
-    // Ongebruikt in dit component, maar wel nodig voor de maskValidator.
-    private disableValidation = inputFieldMaskedDefaults.disableValidation;
-    private validationRegex = inputFieldMaskedDefaults.validationRegex;
+    private disableMaskValidation = inputFieldMaskedDefaults.disableMaskValidation; // Wordt enkel gebruikt in de mask validator
 
     // Variables
     private maskOptions: MaskOptions | null = null;
     private cleaveInstance: CleaveInstance | null = null;
 
-    static formControlValidators = [...VlInputFieldComponent.formControlValidators, maskValidator];
+    static formControlValidators = [
+        ...VlInputFieldComponent.formControlValidators,
+        maskValidator,
+        minValueValidator,
+        maxValueValidator,
+    ];
 
     static get properties(): PropertyDeclarations {
         return {
             mask: { type: String },
             maskPrefix: { type: String, attribute: 'mask-prefix' },
             rawValue: { type: Boolean, attribute: 'raw-value' },
-            disableValidation: { type: Boolean, attribute: 'disable-validation' },
-            validationRegex: { type: Object },
+            disableMaskValidation: { type: Boolean, attribute: 'disable-mask-validation' },
         };
     }
 

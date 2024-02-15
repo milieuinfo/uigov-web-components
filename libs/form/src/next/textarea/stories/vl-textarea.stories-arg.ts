@@ -1,20 +1,19 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
 import { action } from '@storybook/addon-actions';
 import { textareaDefaults } from '../vl-textarea.component';
 
-type textareaArgsType = typeof formControlArgs &
-    typeof textareaDefaults & { onVlInput: () => void; onVlValid: () => void };
+type TextareaArgs = typeof formControlArgs & typeof textareaDefaults & { onVlInput: () => void; onVlValid: () => void };
 
-export const textareaArgs: textareaArgsType = {
+export const textareaArgs: TextareaArgs = {
     ...formControlArgs,
     ...textareaDefaults,
     onVlInput: action('vl-input'),
     onVlValid: action('vl-valid'),
 };
 
-export const textareaArgTypes: ArgTypes<typeof textareaArgs> = {
+export const textareaArgTypes: ArgTypes<TextareaArgs> = {
     ...formControlArgTypes,
     block: {
         name: 'block',
@@ -64,7 +63,7 @@ export const textareaArgTypes: ArgTypes<typeof textareaArgs> = {
     minLength: {
         name: 'min-length',
         description: 'Het minimum aantal karakters dat je kan ingeven.',
-        control: { type: 'number' },
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
@@ -74,7 +73,7 @@ export const textareaArgTypes: ArgTypes<typeof textareaArgs> = {
     maxLength: {
         name: 'max-length',
         description: 'Het maximum aantal karakters dat je kan ingeven.',
-        control: { type: 'number' },
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
@@ -84,7 +83,7 @@ export const textareaArgTypes: ArgTypes<typeof textareaArgs> = {
     rows: {
         name: 'rows',
         description: 'Het aantal rijen van het textarea veld.',
-        control: { type: 'number' },
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
@@ -94,7 +93,7 @@ export const textareaArgTypes: ArgTypes<typeof textareaArgs> = {
     cols: {
         name: 'cols',
         description: 'Het aantal kolommen van het textarea veld.',
-        control: { type: 'number' },
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,

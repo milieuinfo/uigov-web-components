@@ -4,17 +4,17 @@ import { formControlArgs, formControlArgTypes } from '../../form-control/stories
 import { radioGroupDefaults } from '../vl-radio-group.component';
 import { action } from '@storybook/addon-actions';
 
-type radioGroupArgsType = typeof formControlArgs &
+type RadioGroupArgs = typeof formControlArgs &
     typeof radioGroupDefaults & { onVlChecked: () => void; onVlValid: () => void };
 
-export const radioGroupArgs: radioGroupArgsType = {
+export const radioGroupArgs: RadioGroupArgs = {
     ...formControlArgs,
     ...radioGroupDefaults,
     onVlChecked: action('vl-checked'),
     onVlValid: action('vl-valid'),
 };
 
-export const radioGroupArgTypes: ArgTypes<typeof radioGroupArgs> = {
+export const radioGroupArgTypes: ArgTypes<RadioGroupArgs> = {
     ...formControlArgTypes,
     readonly: {
         name: 'readonly',

@@ -10,16 +10,17 @@ import {
 import { patternValidator } from '@open-wc/form-control';
 import datepickerUigStyle from './vl-datepicker.uig-css';
 import { CSSResult, html, nothing, TemplateResult } from 'lit';
-import { customElement } from 'lit/decorators.js';
 import { Options } from 'flatpickr/dist/types/options';
 import { Instance } from 'flatpickr/dist/types/instance';
 import flatpickr from 'flatpickr';
 import Dutch from 'flatpickr/dist/l10n/nl.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import { VlButtonInputAddon, VlIconElement } from '@domg-wc/elements';
 import { live } from 'lit/directives/live.js';
 import { FormControl, formControlDefaults } from '../form-control/form-control';
+
+export const DATEPICKER_TYPES = ['date', 'range', 'time', 'date-time'] as const;
 
 export const datepickerDefaults = {
     ...formControlDefaults,
@@ -28,7 +29,7 @@ export const datepickerDefaults = {
     value: '' as string,
     placeholder: '' as string,
     autocomplete: '' as string,
-    type: '' as '' | 'range' | 'time' | 'date-time',
+    type: 'date' as (typeof DATEPICKER_TYPES)[number],
     format: 'd.m.Y' as string,
     amPm: false as boolean,
     minDate: '' as string,
@@ -38,9 +39,9 @@ export const datepickerDefaults = {
     pattern: '' as string,
 } as const;
 
-@customElement('vl-datepicker-next')
+@webComponent('vl-datepicker-next')
 export class VlDatepickerComponent extends FormControl {
-    // Properties
+    // Attributes
     private block = datepickerDefaults.block;
     private readonly = datepickerDefaults.readonly;
     private value = datepickerDefaults.value;
@@ -162,11 +163,11 @@ export class VlDatepickerComponent extends FormControl {
         return html`
             <div class="vl-input-group" id="datepicker-wrapper">
                 <input
-                    id=${this.id}
-                    name=${this.name || this.id}
+                    id=${this.id || nothing}
+                    name=${this.name || nothing}
+                    class=${classMap(inputClasses)}
                     type="text"
                     aria-label=${this.label || nothing}
-                    class=${classMap(inputClasses)}
                     ?required=${this.required}
                     ?disabled=${this.disabled}
                     ?error=${this.error}
