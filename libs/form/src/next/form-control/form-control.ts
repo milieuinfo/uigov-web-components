@@ -22,7 +22,7 @@ export const formControlDefaults = {
 } as const;
 
 export abstract class FormControl extends FormControlMixin(BaseLitElement) {
-    // Properties
+    // Attributes
     id = formControlDefaults.id;
     protected name = formControlDefaults.name;
     protected label = formControlDefaults.label;

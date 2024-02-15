@@ -1,36 +1,25 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, TYPES, getSelectControlOptions } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { inputFieldMaskedDefaults } from '../vl-input-field-masked.component';
 import { inputFieldArgTypes, inputFieldArgs } from '../../input-field/stories/vl-input-field.stories-arg';
 import { masks } from '../masks';
 
-type InputFieldMaskedArgsType = typeof inputFieldArgs & typeof inputFieldMaskedDefaults;
+type InputFieldMaskedArgs = typeof inputFieldArgs & typeof inputFieldMaskedDefaults;
 
-export const inputFieldMaskedArgs: InputFieldMaskedArgsType = {
+export const inputFieldMaskedArgs: InputFieldMaskedArgs = {
     ...inputFieldArgs,
     ...inputFieldMaskedDefaults,
 };
 
-export const inputFieldMaskedArgTypes: ArgTypes<typeof inputFieldMaskedArgs> = {
+export const inputFieldMaskedArgTypes: ArgTypes<InputFieldMaskedArgs> = {
     ...inputFieldArgTypes,
-    pattern: {
-        name: 'pattern',
-        description:
-            'Dit attribuut wordt uitgeschakeld bij de input-field-masked component omdat het mask deze werking overneemt.<br/>Gelieve dit attribuut niet te gebruiken.',
-        control: { type: null },
-        table: {
-            type: { summary: TYPES.STRING },
-            category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: inputFieldMaskedArgs.pattern },
-        },
-    },
     mask: {
         name: 'mask',
-        description: 'Het mask van het input veld.<br/>Dit attribuut is niet reactief.',
-        control: { type: 'select' },
+        description: 'Het mask dat gebruikt moet worden.<br/>Dit attribuut is niet reactief.',
+        control: { type: CONTROLS.SELECT },
         options: Object.keys(masks),
         table: {
-            type: { summary: Object.keys(masks) },
+            type: { summary: getSelectControlOptions(Object.keys(masks)) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldMaskedArgs.mask },
         },
@@ -38,7 +27,7 @@ export const inputFieldMaskedArgTypes: ArgTypes<typeof inputFieldMaskedArgs> = {
     maskPrefix: {
         name: 'mask-prefix',
         description:
-            'Het mask prefix van het input veld.<br/>De prefix wordt automatisch toegevoegd aan de value van het input veld indien de value niet begint met de prefix.<br/>Dit attribuut is niet reactief.',
+            'Zet de prefix van het mask.<br/>De prefix wordt automatisch toegevoegd aan de value van het input veld indien de value niet begint met de prefix.<br/>Dit attribuut is niet reactief.',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
@@ -47,30 +36,31 @@ export const inputFieldMaskedArgTypes: ArgTypes<typeof inputFieldMaskedArgs> = {
     },
     rawValue: {
         name: 'raw-value',
-        description:
-            'Geeft de raw value terug bij het submitten van een form.<br/>Bij het price mask wordt de prefix weggelaten.',
+        description: 'Geeft de raw value terug bij het submitten van een form.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: inputFieldMaskedArgs.rawValue },
         },
     },
-    disableValidation: {
-        name: 'disable-validation',
-        description: 'Schakelt de automatische validatie uit bij het gebruik in een form.',
+    disableMaskValidation: {
+        name: 'disable-mask-validation',
+        description: 'Schakelt de automatische mask validatie uit.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: inputFieldMaskedArgs.disableValidation },
+            defaultValue: { summary: inputFieldMaskedArgs.disableMaskValidation },
         },
     },
-    validationRegex: {
-        name: 'validation-regex',
-        description: 'Overschrijft de regex die gebruikt wordt tijdens het valideren bij het gebruik in een form.',
+    regex: {
+        name: 'regex',
+        description:
+            'Overschrijft de regex die gebruikt wordt bij de mask validatie.<br/>Bij het testen van de regex wordt altijd de raw value gebruikt.',
+        control: false,
         table: {
             type: { summary: TYPES.REGEX },
             category: CATEGORIES.PROPERTIES,
-            defaultValue: { summary: inputFieldMaskedArgs.validationRegex },
+            defaultValue: { summary: inputFieldMaskedArgs.regex },
         },
     },
 };

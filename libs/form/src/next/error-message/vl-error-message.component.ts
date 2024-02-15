@@ -1,32 +1,33 @@
-import { customElement } from 'lit/decorators.js';
-import { BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
 import { formMessageStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
+import errorMessageUigStyle from './vl-error-message.uig-css';
 
 export const ERROR_MESSAGE_CUSTOM_TAG = 'vl-error-message-next';
 
 export const errorMessageDefaults = {
-    for: '' as string,
-    state: null as keyof ValidityState | null,
     show: false as boolean,
+    for: null as string | null,
+    state: null as keyof ValidityState | null,
 } as const;
 
-@customElement(ERROR_MESSAGE_CUSTOM_TAG)
+@webComponent(ERROR_MESSAGE_CUSTOM_TAG)
 export class VlErrorMessageComponent extends BaseLitElement {
-    for = errorMessageDefaults.for;
-    state = errorMessageDefaults.state;
-    show = errorMessageDefaults.show;
+    // Attributes
+    private show = errorMessageDefaults.show;
+    private for = errorMessageDefaults.for; // Wordt enkel gebruikt in de form-control basis klasse
+    private state = errorMessageDefaults.state; // Wordt enkel gebruikt in de form-control basis klasse
 
     static get styles(): CSSResult[] {
-        return [resetStyle, formMessageStyle];
+        return [resetStyle, formMessageStyle, errorMessageUigStyle];
     }
 
     static get properties(): PropertyDeclarations {
         return {
+            show: { type: Boolean, reflect: true },
             for: { type: String },
             state: { type: String },
-            show: { type: Boolean, reflect: true },
         };
     }
 

@@ -14,13 +14,14 @@ export default {
     args: inputFieldMaskedArgs,
     argTypes: inputFieldMaskedArgTypes,
     parameters: {
+        controls: { exclude: ['pattern', 'type'] },
         docs: {
             page: inputFieldMaskedDocs,
         },
     },
 } as Meta<typeof inputFieldMaskedArgs>;
 
-export const InputFieldMaskedDefault = story(
+const InputFieldMaskedTemplate = story(
     inputFieldMaskedArgs,
     ({
         id,
@@ -32,7 +33,6 @@ export const InputFieldMaskedDefault = story(
         success,
         block,
         readonly,
-        type,
         value,
         placeholder,
         autocomplete,
@@ -40,52 +40,112 @@ export const InputFieldMaskedDefault = story(
         maxLength,
         min,
         max,
+        minExclusive,
+        maxExclusive,
         mask,
         maskPrefix,
         rawValue,
-        disableValidation,
-        validationRegex,
+        disableMaskValidation,
+        regex,
         onVlInput,
         onVlReset,
         onVlValid,
     }) => {
         return html`
-            <div>
-                <label class="vl-form__label vl-form__label--block" for="rrn">Rijksregisternummer</label>
-                <vl-input-field-masked-next
-                    id=${id}
-                    name=${name}
-                    label=${label}
-                    ?required=${required}
-                    ?disabled=${disabled}
-                    ?error=${error}
-                    ?success=${success}
-                    ?block=${block}
-                    ?readonly=${readonly}
-                    type=${type}
-                    value=${value}
-                    placeholder=${placeholder}
-                    autocomplete=${autocomplete}
-                    min-length=${minLength}
-                    max-length=${maxLength}
-                    min=${min}
-                    max=${max}
-                    mask=${mask}
-                    mask-prefix=${maskPrefix}
-                    ?raw-value=${rawValue}
-                    ?disable-validation=${disableValidation}
-                    .validationRegex=${validationRegex}
-                    @vl-input=${onVlInput}
-                    @vl-reset=${onVlReset}
-                    @vl-valid=${onVlValid}
-                ></vl-input-field-masked-next>
-            </div>
+            <vl-input-field-masked-next
+                id=${id}
+                name=${name}
+                label=${label}
+                ?required=${required}
+                ?disabled=${disabled}
+                ?error=${error}
+                ?success=${success}
+                ?block=${block}
+                ?readonly=${readonly}
+                value=${value}
+                placeholder=${placeholder}
+                autocomplete=${autocomplete}
+                min-length=${minLength}
+                max-length=${maxLength}
+                min=${min}
+                max=${max}
+                min-exclusive=${minExclusive}
+                max-exclusive=${maxExclusive}
+                mask=${mask}
+                mask-prefix=${maskPrefix}
+                ?raw-value=${rawValue}
+                ?disable-mask-validation=${disableMaskValidation}
+                .regex=${regex}
+                @vl-input=${onVlInput}
+                @vl-reset=${onVlReset}
+                @vl-valid=${onVlValid}
+            ></vl-input-field-masked-next>
         `;
     }
 );
-InputFieldMaskedDefault.storyName = 'vl-input-field-masked-next - default';
-InputFieldMaskedDefault.args = {
-    id: 'rrn',
-    name: 'rrn',
+
+const labelDecorator = (label: string) => (story: () => unknown) =>
+    html` <div><label class="vl-form__label vl-form__label--block">${label}</label>${story()}</div> `;
+
+export const InputFieldMaskedIban = InputFieldMaskedTemplate.bind({});
+InputFieldMaskedIban.storyName = 'vl-input-field-masked-next - iban';
+InputFieldMaskedIban.decorators = [labelDecorator('IBAN')];
+InputFieldMaskedIban.args = {
+    mask: 'iban',
+};
+
+export const InputFieldMaskedRrn = InputFieldMaskedTemplate.bind({});
+InputFieldMaskedRrn.storyName = 'vl-input-field-masked-next - rrn';
+InputFieldMaskedRrn.decorators = [labelDecorator('Rijkregisternummer')];
+InputFieldMaskedRrn.args = {
     mask: 'rrn',
+};
+
+export const InputFieldMaskedUuid = InputFieldMaskedTemplate.bind({});
+InputFieldMaskedUuid.storyName = 'vl-input-field-masked-next - uuid';
+InputFieldMaskedUuid.decorators = [labelDecorator('UUID')];
+InputFieldMaskedUuid.args = {
+    mask: 'uuid',
+};
+
+export const InputFieldMaskedDate = InputFieldMaskedTemplate.bind({});
+InputFieldMaskedDate.storyName = 'vl-input-field-masked-next - date';
+InputFieldMaskedDate.decorators = [labelDecorator('Date')];
+InputFieldMaskedDate.args = {
+    mask: 'date',
+};
+
+export const InputFieldMaskedNumerical = InputFieldMaskedTemplate.bind({});
+InputFieldMaskedNumerical.storyName = 'vl-input-field-masked-next - numerical';
+InputFieldMaskedNumerical.decorators = [labelDecorator('Numerical')];
+InputFieldMaskedNumerical.args = {
+    mask: 'numerical',
+};
+
+export const InputFieldMaskedPrice = InputFieldMaskedTemplate.bind({});
+InputFieldMaskedPrice.storyName = 'vl-input-field-masked-next - price';
+InputFieldMaskedPrice.decorators = [labelDecorator('Price')];
+InputFieldMaskedPrice.args = {
+    mask: 'price',
+};
+
+export const InputFieldMaskedPhone = InputFieldMaskedTemplate.bind({});
+InputFieldMaskedPhone.storyName = 'vl-input-field-masked-next - phone';
+InputFieldMaskedPhone.decorators = [labelDecorator('Phone')];
+InputFieldMaskedPhone.args = {
+    mask: 'phone',
+};
+
+export const InputFieldMaskedPhoneInternational = InputFieldMaskedTemplate.bind({});
+InputFieldMaskedPhoneInternational.storyName = 'vl-input-field-masked-next - phoneinternational';
+InputFieldMaskedPhoneInternational.decorators = [labelDecorator('Phone international')];
+InputFieldMaskedPhoneInternational.args = {
+    mask: 'phoneinternational',
+};
+
+export const InputFieldMaskedMobile = InputFieldMaskedTemplate.bind({});
+InputFieldMaskedMobile.storyName = 'vl-input-field-masked-next - mobile';
+InputFieldMaskedMobile.decorators = [labelDecorator('Mobile')];
+InputFieldMaskedMobile.args = {
+    mask: 'mobile',
 };

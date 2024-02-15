@@ -14,7 +14,6 @@ export interface MaskOptions {
     numeralDecimalMark?: string;
     date?: boolean;
     datePattern?: string[];
-    stripLeadingZeroes?: boolean;
-    validationRegex?: RegExp;
+    regex?: RegExp;
     customTransformFn?: (value: string) => string;
 }

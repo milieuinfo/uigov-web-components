@@ -1,11 +1,11 @@
 import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
-import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { checkboxStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import checkboxUigStyle from './vl-checkbox.component.uig-css';
 import { FormControl, formControlDefaults } from '../form-control/form-control';
+import { webComponent } from '@domg-wc/common-utilities';
 
 export const checkboxDefaults = {
     ...formControlDefaults,
@@ -15,9 +15,9 @@ export const checkboxDefaults = {
     isSwitch: false as boolean,
 } as const;
 
-@customElement('vl-checkbox-next')
+@webComponent('vl-checkbox-next')
 export class VlCheckboxComponent extends FormControl {
-    // Properties
+    // Attributes
     private block = checkboxDefaults.block;
     private value = checkboxDefaults.value;
     private checked = checkboxDefaults.checked;
@@ -88,10 +88,10 @@ export class VlCheckboxComponent extends FormControl {
         return html`
             <label class=${classMap(classes)}>
                 <input
-                    id=${this.id}
-                    name=${this.name || this.id}
-                    type="checkbox"
+                    id=${this.id || nothing}
+                    name=${this.name || nothing}
                     class="vl-checkbox__toggle"
+                    type="checkbox"
                     aria-label=${this.label || nothing}
                     ?required=${this.required}
                     ?disabled=${this.disabled}

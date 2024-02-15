@@ -4,10 +4,10 @@ import { checkboxDefaults } from '../vl-checkbox.component';
 import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
 import { action } from '@storybook/addon-actions';
 
-type CheckboxArgsType = typeof formControlArgs &
+type CheckboxArgs = typeof formControlArgs &
     typeof checkboxDefaults & { contentSlot: string; onVlChecked: () => void; onVlValid: () => void };
 
-export const checkboxArgs: CheckboxArgsType = {
+export const checkboxArgs: CheckboxArgs = {
     ...formControlArgs,
     ...checkboxDefaults,
     contentSlot: '',
@@ -15,7 +15,7 @@ export const checkboxArgs: CheckboxArgsType = {
     onVlValid: action('vl-valid'),
 };
 
-export const checkboxArgTypes: ArgTypes<typeof checkboxArgs> = {
+export const checkboxArgTypes: ArgTypes<CheckboxArgs> = {
     ...formControlArgTypes,
     block: {
         name: 'block',

@@ -1,10 +1,10 @@
 import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { customElement } from 'lit/decorators.js';
 import { textareaStyle } from '@domg/govflanders-style/component';
 import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { FormControl, formControlDefaults } from '../form-control/form-control';
+import { webComponent } from '@domg-wc/common-utilities';
 
 export const textareaDefaults = {
     ...formControlDefaults,
@@ -19,9 +19,9 @@ export const textareaDefaults = {
     cols: null as number | null,
 } as const;
 
-@customElement('vl-textarea-next')
+@webComponent('vl-textarea-next')
 export class VlTextareaComponent extends FormControl {
-    // Properties
+    // Attributes
     private block = textareaDefaults.block;
     private readonly = textareaDefaults.readonly;
     private value = textareaDefaults.value;
@@ -84,8 +84,8 @@ export class VlTextareaComponent extends FormControl {
 
         return html`
             <textarea
-                id=${this.id}
-                name=${this.name || this.id}
+                id=${this.id || nothing}
+                name=${this.name || nothing}
                 class=${classMap(classes)}
                 aria-label=${this.label || nothing}
                 ?required=${this.required}

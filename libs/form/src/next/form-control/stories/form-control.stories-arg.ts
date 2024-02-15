@@ -3,15 +3,15 @@ import { ArgTypes } from '@storybook/web-components';
 import { formControlDefaults } from '../form-control';
 import { action } from '@storybook/addon-actions';
 
-type FormControlArgsType = typeof defaultArgs & typeof formControlDefaults & { onVlReset: () => void };
+type FormControlArgs = typeof defaultArgs & typeof formControlDefaults & { onVlReset: () => void };
 
-export const formControlArgs: FormControlArgsType = {
+export const formControlArgs: FormControlArgs = {
     ...defaultArgs,
     ...formControlDefaults,
     onVlReset: action('vl-reset'),
 };
 
-export const formControlArgTypes: ArgTypes<typeof formControlArgs> = {
+export const formControlArgTypes: ArgTypes<FormControlArgs> = {
     ...defaultArgTypes(true),
     id: {
         name: 'id',

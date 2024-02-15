@@ -23,8 +23,14 @@ export const TYPES = {
     URL: 'url',
     FUNCTION: 'function',
     XML: 'xml',
-    REGEX: 'regex'
+    REGEX: 'regex',
 } as const;
+
+export const CONTROLS = {
+    SELECT: 'select',
+    NUMBER: 'number',
+    DATE: 'date',
+};
 
 export const filterOutClasses = (input: string) => {
     return input?.replace(/ class=".*?"/, '');
@@ -48,6 +54,12 @@ export const formatHTML = (input: string) => {
         // geeft de originele input terug als het formatteren mislukt is
         return input;
     }
+};
+
+export const getSelectControlOptions = (options: string[]) => {
+    return options.reduce((result, key, currentIndex) => {
+        return result + `"${key}"${currentIndex === options.length - 1 ? '' : ' | '}`;
+    }, '');
 };
 
 // Logt het event in zowel in Storybook als in de developer console.
