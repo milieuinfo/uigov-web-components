@@ -239,7 +239,7 @@ export class BaseHTMLElement extends HTMLElement {
      * @param {String} html - HTML literal
      * @return {HTMLTemplateElement}
      */
-    _template(html: any): any {
+    _template(html: string): DocumentFragment {
         const template = document.createElement('template');
         template.innerHTML = html;
         return template.content;

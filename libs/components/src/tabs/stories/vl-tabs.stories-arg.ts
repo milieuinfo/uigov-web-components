@@ -1,6 +1,14 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+    TYPES,
+} from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
+import { DISPLAY_STYLE } from '../vl-tabs.component';
 
 export const tabsArgs = {
     ...defaultArgs,
@@ -10,7 +18,7 @@ export const tabsArgs = {
     responsiveLabel: '',
     id: '',
     title: '',
-    tabListStyle: '',
+    displayStyle: 'default',
     observeTitle: false,
     onChangeActiveTab: action('change'),
 };
@@ -74,12 +82,16 @@ export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {
             category: CATEGORIES.CHILD_ATTRIBUTES,
         },
     },
-    tabListStyle: {
-        name: 'data-vl-tab-list-style',
-        description: 'De stijl van de tab list.',
+    displayStyle: {
+        name: 'data-vl-display-style',
+        description:
+            'Geeft aan op welke manier de tabs getoond worden.<br>Standaard gedrag (`default`) is responsief; bij een breedte groter dan 768px is stijl de `tabs` stijl, anders is het de `collapsed` stijl.<br>Je kan ook expliciet de `tabs` of `collapsed` stijl kiezen die respectievelijk altijd de tabs of altijd de collapsed stijl toont.',
+        control: CONTROLS.SELECT,
+        options: Object.values(DISPLAY_STYLE),
         table: {
-            type: { summary: ['auto', 'collapsed', 'expanded'] },
+            type: { summary: getSelectControlOptions(Object.values(DISPLAY_STYLE)) },
             category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: tabsArgs.displayStyle },
         },
     },
     observeTitle: {

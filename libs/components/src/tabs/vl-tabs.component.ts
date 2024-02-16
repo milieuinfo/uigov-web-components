@@ -1,4 +1,4 @@
-import { type VL, awaitUntil, BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { type VL, awaitUntil, registerWebComponents, webComponent, BaseHTMLElement } from '@domg-wc/common-utilities';
 import '@govflanders/vl-ui-util/dist/js/util.js'; // Moet expliciet geïmporteerd worden om de cy test te laten slagen - de vl object is nodig
 import './vl-tabs.lib.js';
 import { VlTabComponent } from './vl-tab.component';
@@ -10,9 +10,19 @@ import tabsUigStyle from './vl-tabs.uig-css';
 
 declare const vl: VL;
 declare const window: Window;
+export const DISPLAY_STYLE = {
+    DEFAULT: 'default',
+    TABS: 'tabs',
+    COLLAPSED: 'collapsed',
+} as const;
+export type DisplayStyle = (typeof DISPLAY_STYLE)[keyof typeof DISPLAY_STYLE];
 
 @webComponent('vl-tabs')
-export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
+export class VlTabsComponent extends BaseHTMLElement {
+    private _observer: MutationObserver | undefined;
+    private abortController = new AbortController();
+    private disconnectedSignal = this.abortController.signal;
+
     static {
         registerWebComponents([VlTabComponent, VlTabSectionComponent, VlTabsPaneComponent]);
     }
@@ -29,29 +39,28 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
             'href',
             'disable-links',
             'within-functional-header',
-            'tab-list-style', // 'auto' | 'collapsed' | 'expanded'
+            'display-style', // 'default' | 'tabs' | 'collapsed'
         ];
     }
 
     constructor() {
         super(`
-    <style>
-      ${resetStyle}
-      ${tabsStyle}
-      ${tabsUigStyle}
-      ${baseStyle}
-      ${elementStyle}
-    </style>
-    <div id="tabs" data-vl-tabs data-vl-tabs-responsive-label="Navigatie">
-      <div id="tabs-wrapper" class="vl-tabs__wrapper">
-        <ul id="tab-list" class="vl-tabs" data-vl-tabs-list role="tablist" aria-label="tabs"></ul>
-        <button type="button" data-vl-tabs-toggle class="vl-tabs__toggle" data-vl-close="false">
-          <span id="data-vl-tabs-responsive-label">Navigatie</span>
-        </button>
-      </div>
-    </div>`);
-
-        this.__tabListStyle = 'auto';
+        <style>
+          ${resetStyle}
+          ${tabsStyle}
+          ${tabsUigStyle}
+          ${baseStyle}
+          ${elementStyle}
+        </style>
+        <div id="tabs" data-vl-tabs data-vl-tabs-responsive-label="Navigatie">
+          <div id="tabs-wrapper" class="vl-tabs__wrapper">
+            <ul id="tab-list" class="vl-tabs" data-vl-tabs-list role="tablist" aria-label="tabs"></ul>
+            <button type="button" data-vl-tabs-toggle class="vl-tabs__toggle" data-vl-close="false">
+              <span id="data-vl-tabs-responsive-label">Navigatie</span>
+            </button>
+          </div>
+        </div>
+      `);
     }
 
     connectedCallback() {
@@ -64,32 +73,27 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         }
 
         this.__dress();
-        this._observer = this.__observeTabPanes((mutations: any) => this.__processTabPane(mutations));
-
-        const debouncedResizeHandler: ResizeObserverCallback = vl.util.debounce((entries: any, observer: any) => {
-            this.__processResize(entries, observer);
-        }, 0);
-        this._resizeObserver = this.__observeResize(debouncedResizeHandler);
+        this._observer = this.__observeTabPanes((mutations: MutationRecord[]) => this.__processTabPane(mutations));
     }
 
     disconnectedCallback() {
-        this._observer.disconnect();
-        this._resizeObserver.disconnect();
+        this._observer?.disconnect();
+        this.abortController.abort('disconnectedCallback');
     }
 
-    get _dressed() {
+    get _dressed(): boolean {
         return this.hasAttribute(VlTabsComponent._dressedAttributeName);
     }
 
-    static get _dressedAttributeName() {
+    static get _dressedAttributeName(): string {
         return 'data-vl-tabs-dressed';
     }
 
-    async __dress(forced?: boolean) {
+    async __dress(forced?: boolean): Promise<void> {
         if (!this._dressed || forced) {
             await customElements.whenDefined('vl-tab');
             await customElements.whenDefined('vl-tab-section');
-            vl.tabs.dress(this.shadowRoot);
+            vl.tabs.dress(this);
             this.setAttribute(VlTabsComponent._dressedAttributeName, '');
         }
     }
@@ -99,28 +103,28 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
      *
      * @return {Promise}
      */
-    async ready() {
+    async ready(): Promise<void> {
         return awaitUntil(() => this._dressed);
     }
 
-    get __tabs() {
-        return this.shadowRoot.getElementById('tabs');
+    get __tabs(): HTMLDivElement {
+        return this.shadowRoot?.getElementById('tabs') as HTMLDivElement;
     }
 
-    get __tabList() {
-        return this.shadowRoot.getElementById('tab-list');
+    get __tabList(): HTMLUListElement {
+        return this.shadowRoot?.getElementById('tab-list') as HTMLUListElement;
     }
 
-    get __tabsToggle() {
-        return this.shadowRoot.querySelector('.vl-tabs__toggle');
+    get __tabsToggle(): HTMLButtonElement {
+        return this.shadowRoot?.querySelector('.vl-tabs__toggle') as HTMLButtonElement;
     }
 
-    get __responsiveLabel() {
-        return this.shadowRoot.getElementById('data-vl-tabs-responsive-label');
+    get __responsiveLabel(): HTMLSpanElement {
+        return this.shadowRoot?.getElementById('data-vl-tabs-responsive-label') as HTMLSpanElement;
     }
 
-    get __tabPanes() {
-        return [...this.querySelectorAll(VlTabsPaneComponent.is)];
+    get __tabPanes(): VlTabsPaneComponent[] {
+        return [...this.querySelectorAll<VlTabsPaneComponent & Element>(VlTabsPaneComponent.is)];
     }
 
     __getTabTemplate({ id, title }: { id: string; title: string }) {
@@ -139,7 +143,7 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         `);
     }
 
-    __getTabSectionTemplate({ id }: any) {
+    __getTabSectionTemplate({ id }: { id: string }) {
         return this._template(`
             <section id="${id}-pane" is="vl-tab-section">
                 <slot name="${id}-slot"></slot>
@@ -147,49 +151,53 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         `);
     }
 
-    _addTab({ tabPane, index }: any) {
-        const { paneId, paneTitle } = tabPane;
-        const element = this.__getTabTemplate({ id: paneId, title: paneTitle });
+    _addTab({ tabPane, index }: { tabPane: VlTabsPaneComponent; index?: number }) {
+        const element = this.__getTabTemplate({
+            id: tabPane.getAttribute('data-vl-id'),
+            title: tabPane.getAttribute('data-vl-title'),
+        });
         if (index && index >= 0) {
-            this.__tabList.insertBefore(element, this.__tabList.children[index]);
+            this.__tabList?.insertBefore(element, this.__tabList.children[index]);
         } else {
-            this.__tabList.appendChild(element);
+            this.__tabList?.appendChild(element);
         }
     }
 
     _removeTab(id: string) {
-        const element = this.__tabList.querySelector(`[data-vl-id="${id}"]`);
+        const element = this.__tabList?.querySelector(`[data-vl-id="${id}"]`);
         if (element) {
-            this.__tabList.removeChild(element);
+            this.__tabList?.removeChild(element);
         }
     }
 
-    _addTabSection({ id, index }: any) {
+    _addTabSection({ id, index }: { id: string; index: number }) {
         this.__tabPanes[index].setAttribute('slot', `${id}-slot`);
         const element = this.__getTabSectionTemplate({ id });
         if (index && index >= 0) {
-            this.__tabs.insertBefore(element, this.__tabs.children[++index]);
+            this.__tabs?.insertBefore(element, this.__tabs.children[++index]);
         } else {
-            this.__tabs.appendChild(element);
+            this.__tabs?.appendChild(element);
         }
     }
 
     _removeTabSection(id: string) {
-        const element = this.__tabs.querySelector(`#${id}-pane`);
+        const element = this.__tabs?.querySelector(`#${id}-pane`);
         if (element) {
-            this.__tabs.removeChild(element);
+            this.__tabs?.removeChild(element);
         }
     }
 
     _renderTabs() {
-        this.__tabList.innerHTML = '';
+        if (this.__tabList) this.__tabList.innerHTML = '';
         this.__tabPanes.forEach((tabPane) => {
-            this._addTab({ tabPane });
+            this._addTab({ tabPane: tabPane as Element & VlTabsPaneComponent });
         });
     }
 
     _renderSections() {
-        this.__tabPanes.forEach((tabPane, index) => this._addTabSection({ id: tabPane.paneId, index }));
+        this.__tabPanes.forEach((tabPane, index) =>
+            this._addTabSection({ id: tabPane.getAttribute('data-vl-id'), index })
+        );
     }
 
     _altChangedCallback(oldValue: string, newValue: string) {
@@ -206,9 +214,9 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         this.__responsiveLabel.innerHTML = value;
     }
 
-    async _activeTabChangedCallback(oldValue: string, newValue: string) {
+    async _activeTabChangedCallback(oldValue: string, newValue: string): Promise<void> {
         await this.ready();
-        const tab = [...this.__tabList.children].find((tab) => tab.id == newValue);
+        const tab = [...this.__tabList.children].find((tab) => tab.id == newValue) as VlTabComponent & Element;
         if (tab && !tab.isActive) {
             tab.activate();
             if (this.__tabsToggle && this.__tabList.getAttribute('data-vl-show') === 'true') {
@@ -226,16 +234,11 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         }
     }
 
-    _hrefChangedCallback(oldValue: string, newValue: string) {
+    _hrefChangedCallback() {
         this.__updateHrefs();
     }
 
-    _tabListStyleChangedCallback(oldValue: string, newValue: string) {
-        this.__tabListStyle = newValue || 'auto';
-        this.__setTabListStyle();
-    }
-
-    get __href() {
+    get __href(): string {
         return this.getAttribute('data-vl-href') || window.location.pathname + window.location.search;
     }
 
@@ -243,75 +246,41 @@ export class VlTabsComponent extends BaseElementOfType(HTMLElement) {
         [...this.__tabList.children].forEach((tab) => tab.setAttribute('data-vl-href', `${this.__href}#${tab.id}`));
     }
 
-    __observeTabPanes(callback: MutationCallback) {
+    __observeTabPanes(callback: MutationCallback): MutationObserver {
         const node = this as unknown as Node;
         const observer = new MutationObserver(callback);
         observer.observe(node, { childList: true });
         return observer;
     }
 
-    __processTabPane(mutations: any) {
+    __processTabPane(mutations: MutationRecord[]) {
         const tabPanesToAdd = mutations
-            .flatMap((mutation: any) => [...mutation.addedNodes])
-            .filter((node: any) => node instanceof VlTabsPaneComponent);
-        tabPanesToAdd.forEach((tabPane: any) => this.__addTabAndSection(tabPane));
+            .flatMap((mutation: MutationRecord) => [...mutation.addedNodes])
+            .filter((node) => node instanceof VlTabsPaneComponent);
+        tabPanesToAdd.forEach((tabPane) => this.__addTabAndSection(tabPane as Element & VlTabsPaneComponent));
 
         const tabPanesToDelete = mutations
-            .flatMap((mutation: any) => [...mutation.removedNodes])
-            .filter((node: any) => node instanceof VlTabsPaneComponent);
-        tabPanesToDelete.forEach((tabPane: any) => this.__removeTabAndSection(tabPane));
+            .flatMap((mutation: MutationRecord) => [...mutation.removedNodes])
+            .filter((node) => node instanceof VlTabsPaneComponent);
+        tabPanesToDelete.forEach((tabPane) => this.__removeTabAndSection(tabPane as Element & VlTabsPaneComponent));
 
         this.__dress(true);
     }
 
-    __observeResize(callback: ResizeObserverCallback) {
-        const observer = new ResizeObserver(callback);
-        observer.observe(this.__tabs);
-        return observer;
-    }
-
-    __processResize: ResizeObserverCallback = (entries) => {
-        const tab = this as unknown as VlTabComponent;
-        for (const entry of entries) {
-            if (entry.target === tab.__tabs) {
-                tab.__setTabListStyle();
-            }
-        }
-    };
-
-    __setTabListStyle() {
-        const width = this.__tabs.getBoundingClientRect().width;
-        let collapsed = width <= 767;
-
-        if (this.__tabListStyle === 'collapsed') {
-            collapsed = true;
-        }
-
-        if (this.__tabListStyle === 'expanded') {
-            collapsed = false;
-        }
-
-        if (collapsed) {
-            this.setAttribute('data-vl-collapsed', '');
-        } else {
-            this.removeAttribute('data-vl-collapsed');
-        }
-    }
-
-    __addTabAndSection(tabPane: any) {
+    __addTabAndSection(tabPane: VlTabsPaneComponent & Element) {
         const index = this.__tabPanes.indexOf(tabPane);
         this._addTab({ tabPane, index });
 
         if (!this.hasAttribute('within-functional-header')) {
-            this._addTabSection({ id: tabPane.paneId, index });
+            this._addTabSection({ id: tabPane.getAttribute('data-vl-id') || '', index });
         }
     }
 
-    __removeTabAndSection(tabPane: any) {
-        this._removeTab(tabPane.paneId);
+    __removeTabAndSection(tabPane: VlTabsPaneComponent) {
+        this._removeTab(tabPane.getAttribute('data-vl-id'));
 
         if (!this.hasAttribute('within-functional-header')) {
-            this._removeTabSection(tabPane.paneId);
+            this._removeTabSection(tabPane.getAttribute('data-vl-id'));
         }
     }
 }

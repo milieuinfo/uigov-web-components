@@ -20,10 +20,10 @@ export default {
 
 export const TabsDefault = story(
     tabsArgs,
-    ({ activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab, observeTitle, tabListStyle }) => html`
+    ({ activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab, observeTitle, displayStyle }) => html`
         <vl-tabs
             data-vl-active-tab=${activeTab}
-            data-vl-tab-list-style=${tabListStyle}
+            data-vl-display-style=${displayStyle}
             ?data-vl-alt=${alt}
             data-vl-responsive-label=${responsiveLabel}
             ?data-vl-disable-links=${disableLinks}
@@ -55,9 +55,10 @@ TabsDefault.args = {
 
 export const TabsWithoutActiveTab = story(
     tabsArgs,
-    ({ alt, disableLinks, responsiveLabel, onChangeActiveTab, observeTitle }) => html`
+    ({ alt, disableLinks, responsiveLabel, onChangeActiveTab, observeTitle, displayStyle }) => html`
         <vl-tabs
             ?data-vl-alt=${alt}
+            data-vl-display-style=${displayStyle}
             data-vl-responsive-label=${responsiveLabel}
             ?data-vl-disable-links=${disableLinks}
             @change=${(event: CustomEvent) => onChangeActiveTab(event.detail)}
@@ -87,12 +88,13 @@ TabsWithoutActiveTab.args = {
 
 export const TabsDynamic = story(
     tabsArgs,
-    ({ activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab }) => html`
+    ({ activeTab, alt, disableLinks, responsiveLabel, onChangeActiveTab, displayStyle }) => html`
         <div>
             <button is="vl-button" id="add-pane-button" @click=${addPane}>Pane toevoegen</button>
             <vl-tabs
                 id="tabs"
                 data-vl-active-tab=${activeTab}
+                data-vl-display-style=${displayStyle}
                 ?data-vl-alt=${alt}
                 data-vl-responsive-label=${responsiveLabel}
                 ?data-vl-disable-links=${disableLinks}

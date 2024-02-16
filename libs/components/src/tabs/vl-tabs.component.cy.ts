@@ -3,7 +3,7 @@ import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlTabSectionComponent } from './vl-tab-section.component';
 import { VlTabsPaneComponent } from './vl-tabs-pane.component';
 import { VlTabComponent } from './vl-tab.component';
-import { VlTabsComponent } from './vl-tabs.component';
+import { DisplayStyle, VlTabsComponent } from './vl-tabs.component';
 import { VlIconElement } from '@domg-wc/elements';
 
 registerWebComponents([VlTabsComponent, VlTabComponent, VlTabsPaneComponent, VlTabSectionComponent, VlIconElement]);
@@ -36,7 +36,7 @@ type MountDefaultProps = {
     title?: string;
     responsiveLabel?: string;
     observeTitle?: boolean;
-    tabListStyle?: string;
+    displayStyle?: DisplayStyle;
     onChangeActiveTab: (activeTab: string) => void;
 };
 
@@ -51,7 +51,7 @@ const props: MountDefaultProps = {
     onChangeActiveTab: (activeTab) => {
         console.log(activeTab);
     },
-    tabListStyle: '',
+    displayStyle: 'default',
 };
 
 const mountDefault = ({
@@ -61,32 +61,34 @@ const mountDefault = ({
     disableLinks,
     onChangeActiveTab,
     observeTitle,
-    tabListStyle,
+    displayStyle,
 }: MountDefaultProps) => {
-    return cy.mount(html` <div><vl-tabs
-        data-vl-active-tab=${activeTab}
-        ?data-vl-alt=${alt}
-        data-vl-responsive-label=${responsiveLabel}
-        ?data-vl-disable-links=${disableLinks}
-        data-vl-tab-list-style=${tabListStyle}
-        @change=${(event: CustomEvent) => onChangeActiveTab(event.detail)}
-    >
-        <vl-tabs-pane data-vl-id="trein" data-vl-title="Trein" ?data-vl-observe-title=${observeTitle}>
-            Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat
-            porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Integer posuere erat a ante venenatis
-            dapibus posuere velit aliquet.
-        </vl-tabs-pane>
-        <vl-tabs-pane data-vl-id="metro" data-vl-title="Metro, tram en bus" ?data-vl-observe-title=${observeTitle}>
-            Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem
-            malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit.
-        </vl-tabs-pane>
-        <vl-tabs-pane data-vl-id="fiets" data-vl-title="Fiets" ?data-vl-observe-title=${observeTitle}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean eu
-            leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras justo odio, dapibus ac facilisis
-            in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-        </vl-tabs-pane>
-    </vl-tabs></div>`);
+    return cy.mount(html` <div>
+        <vl-tabs
+            data-vl-active-tab=${activeTab}
+            ?data-vl-alt=${alt}
+            data-vl-responsive-label=${responsiveLabel}
+            ?data-vl-disable-links=${disableLinks}
+            data-vl-display-style=${displayStyle}
+            @change=${(event: CustomEvent) => onChangeActiveTab(event.detail)}
+        >
+            <vl-tabs-pane data-vl-id="trein" data-vl-title="Trein" ?data-vl-observe-title=${observeTitle}>
+                Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat
+                porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Integer posuere erat a ante
+                venenatis dapibus posuere velit aliquet.
+            </vl-tabs-pane>
+            <vl-tabs-pane data-vl-id="metro" data-vl-title="Metro, tram en bus" ?data-vl-observe-title=${observeTitle}>
+                Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Etiam porta sem
+                malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit.
+            </vl-tabs-pane>
+            <vl-tabs-pane data-vl-id="fiets" data-vl-title="Fiets" ?data-vl-observe-title=${observeTitle}>
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean
+                eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras justo odio, dapibus ac
+                facilisis in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            </vl-tabs-pane>
+        </vl-tabs>
+    </div>`);
 };
 
 describe('component vl-tabs', () => {
@@ -124,10 +126,11 @@ describe('component vl-tabs - accessibility', () => {
 });
 
 describe('component vl-tabs - attributes', () => {
-    it('should render the expanded view for containers with width > 767', () => {
+    it('should render tabs view for containers with width > 767', () => {
         mountDefault({ ...props });
-        document.querySelector('div')?.setAttribute('style', 'width:768px');
-        cy.get('vl-tabs').should('not.have.attr', 'data-vl-collapsed');
+        cy.viewport(1920, 1080);
+
+        cy.get('vl-tabs').find('vl-tabs-pane');
         cy.get('vl-tabs')
             .shadow()
             .find('div#tabs > div#tabs-wrapper > ul#tab-list > li')
@@ -136,10 +139,10 @@ describe('component vl-tabs - attributes', () => {
             });
     });
 
-    it('should render the collapsed view for containers with width <= 767', () => {
+    it('should render collapsed view for containers with width <= 767', () => {
         mountDefault({ ...props });
-        document.querySelector('div')?.setAttribute('style', 'width:767px');
-        cy.get('vl-tabs').should('have.attr', 'data-vl-collapsed');
+        cy.viewport(767, 500);
+
         cy.get('vl-tabs')
             .shadow()
             .find('div#tabs > div#tabs-wrapper > ul#tab-list > li')
@@ -148,10 +151,10 @@ describe('component vl-tabs - attributes', () => {
             });
     });
 
-    it('should render the collapsed view for containers with width > 767 when data-vl-tab-list-style is set to collapsed', () => {
-        mountDefault({ ...props, tabListStyle: 'collapsed' });
-        document.querySelector('div')?.setAttribute('style', 'width:768px');
-        cy.get('vl-tabs').should('have.attr', 'data-vl-collapsed');
+    it('should render the collapsed view for containers with width > 767 with collapsed display style', () => {
+        mountDefault({ ...props, displayStyle: 'collapsed' });
+        cy.viewport(1920, 1080);
+
         cy.get('vl-tabs')
             .shadow()
             .find('div#tabs > div#tabs-wrapper > ul#tab-list > li')
@@ -160,10 +163,10 @@ describe('component vl-tabs - attributes', () => {
             });
     });
 
-    it('should render the expanded view for containers with width <= 767 when data-vl-tab-list-style is set to expanded', () => {
-        mountDefault({ ...props, tabListStyle: 'expanded' });
-        document.querySelector('div')?.setAttribute('style', 'width:767px');
-        cy.get('vl-tabs').should('not.have.attr', 'data-vl-collapsed');
+    it('should render tabs view for containers with width <= 767 with tabs display style', () => {
+        mountDefault({ ...props, displayStyle: 'tabs' });
+        cy.viewport(767, 500);
+
         cy.get('vl-tabs')
             .shadow()
             .find('div#tabs > div#tabs-wrapper > ul#tab-list > li')
@@ -171,6 +174,7 @@ describe('component vl-tabs - attributes', () => {
                 expect($el.css('display')).to.eq('inline-block');
             });
     });
+
     it('should not have an <activeTab> selected', () => {
         mountDefault({ ...props, activeTab: '' });
 
@@ -207,8 +211,6 @@ describe('component vl-tabs - attributes', () => {
 
         cy.get('vl-tabs').should('have.attr', 'data-vl-disable-links');
     });
-
-
 });
 
 describe('component vl-tabs-pane - functionality on larger devices', () => {
