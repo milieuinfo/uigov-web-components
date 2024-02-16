@@ -1,6 +1,7 @@
 // Er zijn wijzigingen in deze file toegepast tov de originele file van Digitaal Vlaanderen v14.0.2.
 // Er staat een comment bij alle wijzigingen beginnend met het ticket nummer waar de wijziging voor doorgevoerd is (UIG-...).
 // Verder is de dressAll() methode en alle calls hiernaar verwijderd aangezien deze methode niet nodig is.
+import Breakpoint from '@govflanders/vl-ui-util/src/js/breakpoint';
 
 // Private Variables
 const tabActiveClass = `${vl.ns}tab--active`,
@@ -12,6 +13,10 @@ const tabActiveClass = `${vl.ns}tab--active`,
     tabShowAtt = `data-${vl.ns}show`,
     tabCloseAtt = `data-${vl.ns}close`,
     tabsAtt = `data-${vl.ns}tabs`;
+
+const breakpoint = new Breakpoint();
+
+breakpoint.dress();
 
 class Tabs {
     constructor() {
@@ -72,18 +77,37 @@ class Tabs {
         }
     }
 
-    setupResponsiveToggleBtnForTabsContainer(tabsContainer) {
-        const toggleBtnEl = tabsContainer.querySelector(`[${tabToggleAtt}]`);
+    setupResponsiveToggleBtnForTabsContainer(tabsComponent) {
+        const tabsContainer = tabsComponent.shadowRoot;
+        const toggleBtnEl = tabsContainer?.querySelector(`[${tabToggleAtt}]`);
+        const displayStyle = tabsComponent.getAttribute('data-vl-display-style');
+        const bp = breakpoint._getBreakpoint();
 
-        // UIG-2210: click event listener voor toggle button altijd enabled. Mobile view van de tabs hangt niet meer
-        // af van de screen width maar van de breedte van de tabs component.
         // setup responsive toggle btn
-        toggleBtnEl.addEventListener('click', this.clickEvent, false);
+        // UIG-2218: Event listener voor click event op toggle button enkel breakpoint afhankelijk toevoegen
+        // wanneer default behavior van toepassing is.
+        if (toggleBtnEl && (bp === 'xsmall' || bp === 'small' || displayStyle === 'collapsed')) {
+            toggleBtnEl.addEventListener('click', this.clickEvent, { signal: tabsComponent.disconnectedSignal });
+        }
     }
 
-    dress(tabsContainer) {
-        this.setupResponsiveToggleBtnForTabsContainer(tabsContainer);
+    setupResponsiveToggle = (tabsComponent) => {
+        const tabsContainer = tabsComponent.shadowRoot;
 
+        vl.util.debounce(() => {
+            const bp = breakpoint._getBreakpoint();
+            const toggleBtnEl = tabsContainer.querySelector(`[${tabToggleAtt}]`);
+            toggleBtnEl.removeEventListener('click', this.clickEvent, false);
+
+            // setup responsive toggle btn
+            if (bp === 'xsmall' || bp === 'small') {
+                this.setupResponsiveToggleBtnForTabsContainer(tabsComponent);
+            }
+        }, 0);
+    };
+
+    dress(tabsComponent) {
+        const tabsContainer = tabsComponent.shadowRoot;
         const tabs = tabsContainer.querySelectorAll(`${dataTab}`);
         const tabPanes = tabsContainer.querySelectorAll(`${dataTabPane}`);
         const currentTabHash = window.location.hash;
@@ -107,9 +131,7 @@ class Tabs {
 
                 // set responsive button label
                 this.updateResponsiveBtnLabelForTabsContainerWithTab(tabsContainer, tab);
-
                 const toggleBtnEl = tabsContainer.querySelector(`[${tabToggleAtt}]`);
-
                 toggleBtnEl.click();
             });
         });
@@ -153,9 +175,30 @@ class Tabs {
                     break;
             }
         });
-        // UIG-2210: click event listener voor toggle button altijd enabled. Mobile view van de tabs hangt niet meer af
-        // van de screen width maar van de breedte van de tabs component.
-        this.setupResponsiveToggleBtnForTabsContainer(tabsContainer);
+
+        const displayStyle = tabsComponent.getAttribute('data-vl-display-style');
+
+        // UIG-2830: we zetten de responsive toggle button op omdat tabs kan opstarten in een breakpoint
+        // waarbij de toggle button nodig is zonder dat een resize event heeft plaatsgevonden
+        this.setupResponsiveToggleBtnForTabsContainer(tabsComponent);
+
+        // UIG-2830: Event listener voor window resize toevoegen wanneer default behavior van toepassing is
+        if (displayStyle !== 'tabs' || displayStyle !== 'collapsed') {
+            window.addEventListener(
+                'resize',
+                vl.util.debounce(() => {
+                    const bp = breakpoint._getBreakpoint();
+                    const toggleBtnEl = tabsContainer.querySelector(`[${tabToggleAtt}]`);
+                    toggleBtnEl.removeEventListener('click', this.clickEvent, false);
+
+                    // setup responsive toggle btn
+                    if (bp === 'xsmall' || bp === 'small') {
+                        this.setupResponsiveToggleBtnForTabsContainer(tabsComponent);
+                    }
+                }, 0),
+                { signal: tabsComponent.disconnectedSignal }
+            );
+        }
     }
 }
 

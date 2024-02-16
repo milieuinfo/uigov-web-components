@@ -54,7 +54,7 @@ const shouldSetTitleText = () => {
         .contains('School en studietoelagen');
 };
 
-describe('story vl-functional-header default', () => {
+describe('story - vl-functional-header', () => {
     it('should have default back text', () => {
         cy.visit(functionalHeaderUrl);
 
@@ -104,7 +104,7 @@ describe('story vl-functional-header default', () => {
     });
 });
 
-describe('story vl-functional-header actions', () => {
+describe('story - vl-functional-header - actions', () => {
     it('should have default back text', () => {
         cy.visit(functionalHeaderActionsUrl);
 
@@ -174,7 +174,7 @@ describe('story vl-functional-header actions', () => {
     });
 });
 
-describe('story vl-functional-header tabs', () => {
+describe('story - vl-functional-header - tabs', () => {
     it('should set title link', () => {
         cy.visit(`${functionalHeaderTabsUrl}&args=link:test`);
 
@@ -219,7 +219,7 @@ describe('story vl-functional-header tabs', () => {
         cy.visit(functionalHeaderTabsUrl);
 
         cy.createStubForEvent('vl-tabs', 'change');
-        cy.get('vl-tabs').shadow().find('button[data-vl-tabs-toggle]').click();
+        cy.get('vl-tabs').shadow().find('button[data-vl-tabs-toggle]').click({ force: true });
         cy.get('vl-tabs').shadow().find('a#trein').click();
         cy.get('@change').should('have.been.calledOnce');
     });
@@ -240,7 +240,7 @@ describe('story vl-functional-header tabs', () => {
     });
 });
 
-describe('story vl-functional-header breadcrumb', () => {
+describe('story - vl-functional-header - breadcrumb', () => {
     it('should set title link', () => {
         cy.visit(`${functionalHeaderBreadcrumbUrl}&args=link:test`);
 
@@ -288,7 +288,7 @@ describe('story vl-functional-header breadcrumb', () => {
     });
 });
 
-describe('story vl-functional-header slots', () => {
+describe('story - vl-functional-header - slots', () => {
     it('should set title slot', () => {
         cy.visit(functionalHeaderSlotsUrl);
 
