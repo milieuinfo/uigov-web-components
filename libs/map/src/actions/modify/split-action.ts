@@ -9,7 +9,7 @@ import { VlDrawAction } from '../draw/draw-action';
 export class VlSplitAction extends VlBaseMapAction {
     private selectAction: any;
     private drawAction: any;
-    override map: any;
+
     constructor(layer, onSplit, options) {
         const reader = new jsts.io.OL3Parser();
         reader.inject(Point, LineString, LinearRing, Polygon, MultiPoint, MultiLineString, MultiPolygon);
@@ -70,8 +70,8 @@ export class VlSplitAction extends VlBaseMapAction {
     }
 
     activate() {
-        this.map.addAction(this.selectAction);
-        this.map.addAction(this.drawAction);
+        (this.map as any).addAction(this.selectAction);
+        (this.map as any).addAction(this.drawAction);
         this.selectAction.activate();
     }
 
