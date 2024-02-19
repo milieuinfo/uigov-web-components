@@ -9,7 +9,7 @@
             "outputs": ["{options.outputPath}"],
             "defaultConfiguration": "production",
             "options": {
-                "compiler": "babel",
+                "compiler": "tsc",
                 "outputPath": "dist/apps/playground-react",
                 "index": "apps/playground-react/src/index.html",
                 "baseHref": "/",
