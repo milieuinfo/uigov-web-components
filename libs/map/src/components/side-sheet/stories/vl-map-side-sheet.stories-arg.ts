@@ -1,4 +1,11 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+    TYPES,
+} from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapSideSheetArgs = {
@@ -56,12 +63,10 @@ export const mapSideSheetArgTypes: ArgTypes<typeof mapSideSheetArgs> = {
     iconPlacement: {
         name: 'data-vl-icon-placement',
         description: 'De positie van het icoon van de toggle button.<br>Dit attribuut is niet reactief.',
-        control: {
-            type: 'select',
-            options: ['before', 'after'],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: ['before', 'after'],
         table: {
-            type: { summary: 'before | after' },
+            type: { summary: getSelectControlOptions(['before', 'after']) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: mapSideSheetArgs.iconPlacement },
         },

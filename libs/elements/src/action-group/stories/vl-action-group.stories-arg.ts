@@ -1,3 +1,5 @@
+import { CATEGORIES, CONTROLS } from '@domg-wc/common-storybook';
+
 export const actionGroupArgs = {
     align: '',
     spaceBetween: false,
@@ -14,12 +16,10 @@ export const actionGroupArgTypes = {
         type: {
             summary: 'string',
         },
-        control: {
-            type: 'select',
-            options: ['left', 'center', 'right'],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: ['left', 'center', 'right'],
         table: {
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'left' },
         },
         description: 'Sets the alignment of the action group',
@@ -27,7 +27,7 @@ export const actionGroupArgTypes = {
     spaceBetween: {
         name: 'data-vl-space-between',
         table: {
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
         type: { summary: 'boolean' },
@@ -36,7 +36,7 @@ export const actionGroupArgTypes = {
     bordered: {
         name: 'data-vl-bordered',
         table: {
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
         type: { summary: 'boolean' },
@@ -48,7 +48,7 @@ export const actionGroupArgTypes = {
     collapseL: {
         name: 'data-vl-collapse-l',
         table: {
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
         type: { summary: 'boolean' },
@@ -58,7 +58,7 @@ export const actionGroupArgTypes = {
     collapseM: {
         name: 'data-vl-collapse-m',
         table: {
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
         type: { summary: 'boolean' },
@@ -68,7 +68,7 @@ export const actionGroupArgTypes = {
     collapseS: {
         name: 'data-vl-collapse-s',
         table: {
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
         type: { summary: 'boolean' },
@@ -78,7 +78,7 @@ export const actionGroupArgTypes = {
     collapseXs: {
         name: 'data-vl-collapse-xs',
         table: {
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
         type: { summary: 'boolean' },

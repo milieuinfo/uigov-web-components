@@ -1,5 +1,12 @@
 import { CAPTION_FORMAT, GROUP_BY } from '../vl-autocomplete.model';
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+    TYPES,
+} from '@domg-wc/common-storybook';
 import { DEFAULT_CAPTION_FORMAT, DEFAULT_MAX_MATCHES, DEFAULT_MIN_CHARS } from '../vl-autocomplete.component';
 import { ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
@@ -73,7 +80,7 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
         name: 'data-vl-min-chars',
         description:
             'Attribuut wordt gebruikt om te bepalen hoeveel karakters de gebruiker moet ingeven alvorens de suggesties getoond worden.',
-        control: { type: 'range', min: 1, max: 10, step: 1 },
+        control: { type: CONTROLS.RANGE, min: 1, max: 10, step: 1 },
         table: {
             type: { summary: TYPES.NUMBER, required: false },
             category: CATEGORIES.ATTRIBUTES,
@@ -83,7 +90,7 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
     maxSuggestions: {
         name: 'data-vl-max-suggestions',
         description: 'Attribuut wordt gebruikt om het maximum aantal suggesties dat moet getoond worden te bepalen.',
-        control: { type: 'range', min: 1, max: 20, step: 1 },
+        control: { type: CONTROLS.RANGE, min: 1, max: 20, step: 1 },
         table: {
             type: { summary: TYPES.NUMBER, required: false },
             category: CATEGORIES.ATTRIBUTES,
@@ -93,24 +100,13 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
     captionFormat: {
         name: 'data-vl-caption-format',
         description: 'Attribuut bepaalt wat er hoe moet getoond worden voor ieder item in de suggestielijst.',
-        control: {
-            type: 'select',
-            options: [
-                CAPTION_FORMAT.TITLE,
-                CAPTION_FORMAT.SUBTITLE,
-                CAPTION_FORMAT.VALUE,
-                CAPTION_FORMAT.TITLE_SUBTITLE_HORIZONTAL,
-                CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL,
-                CAPTION_FORMAT.SUBTITLE_TITLE_HORIZONTAL,
-            ],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(CAPTION_FORMAT),
         table: {
             category: CATEGORIES.ATTRIBUTES,
             type: {
                 defaultValue: { summary: DEFAULT_CAPTION_FORMAT },
-                summary: `${CAPTION_FORMAT.TITLE} | ${CAPTION_FORMAT.SUBTITLE} | ${CAPTION_FORMAT.VALUE}
-        | ${CAPTION_FORMAT.TITLE_SUBTITLE_HORIZONTAL} | ${CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL}
-        | ${CAPTION_FORMAT.SUBTITLE_TITLE_HORIZONTAL}`,
+                summary: getSelectControlOptions(Object.values(CAPTION_FORMAT)),
                 required: false,
             },
         },
@@ -118,13 +114,11 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
     groupBy: {
         name: 'data-vl-group-by',
         description: 'Attribuut bepaalt hoe de items in de lijst gegroepeerd moeten worden.',
-        control: {
-            type: 'select',
-            options: [GROUP_BY.TITLE, GROUP_BY.SUBTITLE],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: [GROUP_BY.TITLE, GROUP_BY.SUBTITLE],
         table: {
             type: {
-                summary: `${GROUP_BY.TITLE} | ${GROUP_BY.SUBTITLE}`,
+                summary: getSelectControlOptions(Object.values(GROUP_BY)),
                 required: false,
             },
             category: CATEGORIES.ATTRIBUTES,
@@ -170,7 +164,7 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
     },
     items: {
         description: 'Use this property when you want to use a static list of items.',
-        control: { type: 'object' },
+        control: { type: CONTROLS.OBJECT },
         table: {
             category: CATEGORIES.PROPERTIES,
             type: { summary: TYPES.ARRAY },

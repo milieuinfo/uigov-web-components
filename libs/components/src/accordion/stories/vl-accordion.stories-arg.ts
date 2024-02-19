@@ -1,7 +1,14 @@
 import { ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 import { PADDINGS } from '@domg-wc/common-utilities';
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+    TYPES,
+} from '@domg-wc/common-storybook';
 
 export const accordionArgs = {
     ...defaultArgs,
@@ -45,12 +52,10 @@ export const accordionArgTypes: ArgTypes<typeof accordionArgs> = {
         name: 'data-vl-content-padding',
         description:
             'De grootte van de padding van de content.<br>Deze padding wordt toegepast op zowel desktop als mobile.',
-        control: {
-            type: 'select',
-            options: [...Object.keys(PADDINGS)],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: [...Object.keys(PADDINGS)],
         table: {
-            type: { summary: Object.keys(PADDINGS) },
+            type: { summary: getSelectControlOptions(Object.keys(PADDINGS)) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: accordionArgs.contentPadding },
         },

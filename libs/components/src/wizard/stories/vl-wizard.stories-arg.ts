@@ -1,4 +1,4 @@
-import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { CONTROLS, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 
 export const wizardArgs = {
@@ -15,7 +15,7 @@ export const wizardArgTypes = {
     activeStep: {
         name: 'data-vl-active-step',
         description: 'Zet de actieve stap.',
-        control: { type: 'range', min: 1, max: 2, step: 1 },
+        control: { type: CONTROLS.RANGE, min: 1, max: 2, step: 1 },
         table: {
             type: {
                 summary: 'Number',
@@ -27,7 +27,7 @@ export const wizardArgTypes = {
     hideLabels: {
         name: 'data-vl-hide-labels',
         description: 'Bepaalt of de labels van de stappen verborgen moeten worden.',
-        control: { type: 'boolean' },
+        control: { type: CONTROLS.BOOLEAN },
         table: {
             type: {
                 summary: 'Boolean',

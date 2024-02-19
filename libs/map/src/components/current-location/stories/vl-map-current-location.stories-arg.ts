@@ -1,4 +1,4 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { DEFAULT_TOOLTIP, DEFAULT_ZOOM } from '../vl-map-current-location';
 
@@ -22,7 +22,7 @@ export const mapCurrentLocationArgTypes: ArgTypes<typeof mapCurrentLocationArgs>
     zoom: {
         name: 'data-vl-zoom',
         description: 'Bepaalt hoever er ingezoomd wordt bij het klikken op de huidige locatie knop.',
-        control: { type: 'range', min: 1, max: 13, step: 1 },
+        control: { type: CONTROLS.RANGE, min: 1, max: 13, step: 1 },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,

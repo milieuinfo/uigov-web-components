@@ -1,5 +1,5 @@
 import { VALIDATION_TYPE } from '../vl-form-validation.model';
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, getSelectControlOptions, TYPES } from '@domg-wc/common-storybook';
 
 export const formValidationArgs = {
     validationType: '',
@@ -21,23 +21,12 @@ export const formValidationArgTypes = {
         description: 'Bepaalt het validatie type.',
         table: {
             type: {
-                summary: `${VALIDATION_TYPE.EMAIL} | ${VALIDATION_TYPE.DATE} | ${VALIDATION_TYPE.RRN} | ${VALIDATION_TYPE.UUID} | ${VALIDATION_TYPE.PHONE} | ${VALIDATION_TYPE.IBAN} | ${VALIDATION_TYPE.SELECT} | ${VALIDATION_TYPE.NUMERICAL}`,
+                summary: getSelectControlOptions(Object.values(VALIDATION_TYPE)),
             },
             category: CATEGORIES.ATTRIBUTES,
         },
-        control: {
-            type: 'select',
-            options: [
-                VALIDATION_TYPE.EMAIL,
-                VALIDATION_TYPE.DATE,
-                VALIDATION_TYPE.RRN,
-                VALIDATION_TYPE.UUID,
-                VALIDATION_TYPE.PHONE,
-                VALIDATION_TYPE.IBAN,
-                VALIDATION_TYPE.SELECT,
-                VALIDATION_TYPE.NUMERICAL,
-            ],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(VALIDATION_TYPE),
     },
     required: {
         name: 'data-vl-required',

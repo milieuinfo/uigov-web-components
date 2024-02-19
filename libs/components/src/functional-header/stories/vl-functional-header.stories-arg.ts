@@ -1,4 +1,11 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+    TYPES,
+} from '@domg-wc/common-storybook';
 import { MARGINS } from '@domg-wc/common-utilities';
 import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
@@ -84,14 +91,10 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
     marginBottom: {
         name: 'data-vl-margin-bottom',
         description: 'De grootte van de margin onder de functional header.',
-        control: {
-            type: 'select',
-            options: [...Object.keys(MARGINS)],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: [...Object.keys(MARGINS)],
         table: {
-            type: {
-                summary: Object.keys(MARGINS),
-            },
+            type: { summary: getSelectControlOptions(Object.keys(MARGINS)) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: functionalHeaderArgs.marginBottom },
         },

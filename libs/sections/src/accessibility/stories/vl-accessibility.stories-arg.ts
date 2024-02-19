@@ -1,5 +1,5 @@
 import { COMPLIANCE_STATUS, EVALUATION_STATUS } from '../vl-accessibility.model';
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, getSelectControlOptions, TYPES } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 
@@ -29,20 +29,10 @@ export const accessibilityArgTypes: ArgTypes<typeof accessibilityArgs> = {
     compliance: {
         name: 'data-vl-compliance',
         description: 'De nalevingsstatus van de verklaring.',
-        control: {
-            type: 'select',
-            options: [
-                COMPLIANCE_STATUS.FULLY_COMPLIANT,
-                COMPLIANCE_STATUS.PARTIALLY_COMPLIANT,
-                COMPLIANCE_STATUS.NOT_COMPLIANT,
-            ],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(COMPLIANCE_STATUS),
         table: {
-            type: {
-                summary: `"${COMPLIANCE_STATUS.FULLY_COMPLIANT}" |
-                "${COMPLIANCE_STATUS.PARTIALLY_COMPLIANT}" |
-                "${COMPLIANCE_STATUS.NOT_COMPLIANT}"`,
-            },
+            type: getSelectControlOptions(Object.values(COMPLIANCE_STATUS)),
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: accessibilityArgs.compliance },
         },
@@ -77,19 +67,11 @@ export const accessibilityArgTypes: ArgTypes<typeof accessibilityArgs> = {
     evaluation: {
         name: 'data-vl-evaluation',
         description: 'De evaluatiestatus van de verklaring.',
-        control: {
-            type: 'select',
-            options: [
-                EVALUATION_STATUS.EXPERT_EVALUATED,
-                EVALUATION_STATUS.SELF_EVALUATED,
-                EVALUATION_STATUS.NOT_EVALUATED,
-            ],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(EVALUATION_STATUS),
         table: {
             type: {
-                summary: `"${EVALUATION_STATUS.EXPERT_EVALUATED}" |
-                    "${EVALUATION_STATUS.SELF_EVALUATED}" |
-                    "${EVALUATION_STATUS.NOT_EVALUATED}"`,
+                summary: getSelectControlOptions(Object.values(EVALUATION_STATUS)),
             },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: accessibilityArgs.evaluation },

@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, getSelectControlOptions, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { SELECT_POSITION } from '../vl-select.element';
 import { action } from '@storybook/addon-actions';
@@ -63,12 +63,10 @@ export const selectArgTypes: ArgTypes<typeof selectArgs> = {
     position: {
         name: 'data-vl-position',
         description: 'De positie naar waar de uitgebreide select geopend wordt.<br>Dit attribuut is niet reactief.',
-        control: {
-            type: 'select',
-            options: Object.values(SELECT_POSITION),
-        },
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(SELECT_POSITION),
         table: {
-            type: { summary: Object.values(SELECT_POSITION) },
+            type: { summary: getSelectControlOptions(Object.values(SELECT_POSITION)) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: selectArgs.position },
         },

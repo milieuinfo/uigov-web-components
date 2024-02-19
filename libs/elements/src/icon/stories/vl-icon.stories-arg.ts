@@ -1,4 +1,5 @@
 import '../vl-icon.element';
+import { CONTROLS, getSelectControlOptions } from '@domg-wc/common-storybook';
 
 export const iconArgs = {
     icon: 'calendar',
@@ -14,25 +15,22 @@ export const iconArgs = {
 export const iconArgTypes = {
     icon: {
         name: 'data-vl-icon',
-        control: {
-            type: 'select',
-            options: ['calendar', 'chat-help', 'key'],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: ['calendar', 'chat-help', 'key'],
         description: 'Attribuut wordt gebruikt om aan te geven welk icoon getoond moet worden.',
         table: {
             defaultValue: { summary: '' },
+            type: { summary: getSelectControlOptions(['calendar', 'chat-help', 'key', '']) },
         },
     },
     size: {
         name: 'data-vl-size',
-        control: {
-            type: 'select',
-            options: ['small', 'large'],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: ['small', 'large'],
         description:
             'Attribuut wordt gebruikt om het icoon te verkleinen (80%) of te vergroten (120%) ten opzichte van de parent.',
         table: {
-            type: { summary: 'string' },
+            type: { summary: getSelectControlOptions(['small', 'large', '']) },
             defaultValue: { summary: '' },
         },
     },

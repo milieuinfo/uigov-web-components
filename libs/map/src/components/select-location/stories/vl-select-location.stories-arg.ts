@@ -1,4 +1,11 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, logStorybookEvent, TYPES } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    defaultArgs,
+    defaultArgTypes,
+    logStorybookEvent,
+    TYPES,
+} from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const selectLocationArg = {
@@ -63,7 +70,7 @@ export const selectLocationArgTypes: ArgTypes<typeof selectLocationArg> = {
     selectSearchResultLimit: {
         name: 'data-vl-select-search-result-limit',
         description: 'Limiteert het aantal zoekresultaten.<br>Dit attribuut is niet reactief.',
-        control: { type: 'number' },
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,

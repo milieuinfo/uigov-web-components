@@ -1,4 +1,4 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapLayerArgs = {
@@ -24,7 +24,7 @@ export const mapLayerArgTypes: ArgTypes<typeof mapLayerArgs> = {
     opacity: {
         name: 'data-vl-opacity',
         description: 'De opacity van de kaartlaag. Getal tussen 0 en 1.',
-        control: { type: 'range', min: 0, max: 1, step: 0.01 },
+        control: { type: CONTROLS.RANGE, min: 0, max: 1, step: 0.01 },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,

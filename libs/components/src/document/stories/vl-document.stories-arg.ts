@@ -1,4 +1,11 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+    TYPES,
+} from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const documentArgs = {
@@ -23,11 +30,12 @@ export const documentArgTypes: ArgTypes<typeof documentArgs> = {
     },
     target: {
         name: 'data-vl-target',
+        control: { type: CONTROLS.SELECT },
         options: ['_blank', '_self', '_parent', '_top', 'timeline', 'question'],
         description:
             'Bepaalt waar de link geopend wordt. Mogelijke waarden zijn `_blank`, `_self`, `_parent` en `_top`.',
         table: {
-            type: { summary: TYPES.STRING },
+            type: { summary: getSelectControlOptions(['_blank', '_self', '_parent', '_top', 'timeline', 'question']) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: documentArgs.target },
         },

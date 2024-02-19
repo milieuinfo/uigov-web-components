@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, TYPES } from '@domg-wc/common-storybook';
 import { mapLayerStyleArg, mapLayerStyleArgTypes } from '../../stories/vl-map-layer-style.stories-arg';
 import { ArgTypes } from '@storybook/web-components';
 
@@ -34,7 +34,7 @@ export const mapLayerCircleStyleArgTypes: ArgTypes<typeof mapLayerCircleStyleArg
     clusterMultiplier: {
         name: 'data-vl-cluster-multiplier',
         description: 'Bepaalt de verhouding van de vergroting voor clusters tegenover ingestelde `data-vl-size`.',
-        control: { type: 'number', step: 0.1 },
+        control: { type: CONTROLS.NUMBER, step: 0.1 },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,

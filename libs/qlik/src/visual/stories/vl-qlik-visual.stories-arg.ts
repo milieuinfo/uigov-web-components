@@ -1,10 +1,11 @@
 import { ArgTypes } from '@storybook/web-components';
 import {
     CATEGORIES,
+    CONTROLS,
     defaultArgs,
     defaultArgTypes,
     logStorybookEvent,
-    TYPES
+    TYPES,
 } from '@domg-wc/common-storybook';
 import { TYPES as NEBULA_TYPES } from '@domg/qlik-lib';
 
@@ -25,10 +26,8 @@ export const qlikVisualArgTypes: ArgTypes<typeof qlikVisualArgs> = {
     type: {
         name: 'type',
         description: 'Het type visualisatie.',
-        control: {
-            type: 'select',
-            options: NEBULA_TYPES.map((t) => t.name),
-        },
+        control: { type: CONTROLS.SELECT },
+        options: NEBULA_TYPES.map((t) => t.name),
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
