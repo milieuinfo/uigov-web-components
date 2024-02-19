@@ -5,7 +5,7 @@
         "emitDecoratorMetadata": false,
         "moduleResolution": "node",
         "experimentalDecorators": true,
-        "useDefineForClassFields": true
+        "useDefineForClassFields": false
     },
     "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
     "include": [
