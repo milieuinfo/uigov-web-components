@@ -1,4 +1,4 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 
@@ -17,7 +17,7 @@ export const progressBarArgTypes: ArgTypes<typeof progressBarArgs> = {
     activeStep: {
         name: 'data-vl-active-step',
         description: 'Markeert een stap als de actieve.',
-        control: { type: 'range', min: 1, max: 3, step: 1 },
+        control: { type: CONTROLS.RANGE, min: 1, max: 3, step: 1 },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
@@ -53,7 +53,7 @@ export const progressBarArgTypes: ArgTypes<typeof progressBarArgs> = {
     },
     steps: {
         description: 'Lijst met omschrijvingen per stap.',
-        control: { type: 'object', required: true },
+        control: { type: CONTROLS.OBJECT, required: true },
         table: {
             type: { summary: TYPES.ARRAY },
             category: CATEGORIES.PROPERTIES,

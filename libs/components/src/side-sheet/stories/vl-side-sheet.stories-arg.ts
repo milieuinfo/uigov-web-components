@@ -1,5 +1,5 @@
 import { ArgTypes } from '@storybook/web-components';
-import { defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import { CONTROLS, defaultArgs, defaultArgTypes, getSelectControlOptions, TYPES } from '@domg-wc/common-storybook';
 
 export const sideSheetArgs = {
     ...defaultArgs,
@@ -76,12 +76,10 @@ export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
     iconPlacement: {
         name: 'data-vl-icon-placement',
         description: 'Positie van icon bepalen. Standaard bevindt die zich voor de tekst.',
-        control: {
-            type: 'select',
-            options: ['before', 'after'],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: ['before', 'after'],
         table: {
-            type: { summary: TYPES.STRING },
+            type: { summary: getSelectControlOptions(['before', 'after']) },
             defaultValue: { summary: sideSheetArgs.iconPlacement },
         },
     },

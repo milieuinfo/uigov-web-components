@@ -27,9 +27,12 @@ export const TYPES = {
 } as const;
 
 export const CONTROLS = {
-    SELECT: 'select',
-    NUMBER: 'number',
+    BOOLEAN: 'boolean',
     DATE: 'date',
+    OBJECT: 'object',
+    SELECT: 'select',
+    RANGE: 'range',
+    NUMBER: 'number',
 };
 
 export const filterOutClasses = (input: string) => {

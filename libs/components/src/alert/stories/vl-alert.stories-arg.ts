@@ -1,4 +1,12 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, logStorybookEvent, TYPES } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+    logStorybookEvent,
+    TYPES,
+} from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { ALERT_ICON, ALERT_SIZE, ALERT_TYPE, VlAlertClosedEvent } from '../vl-alert.model';
 
@@ -51,12 +59,10 @@ export const alertArgTypes: ArgTypes<typeof alertArgs> = {
         name: 'data-vl-icon',
         description:
             'Icon van de waarschuwing.<br>Het icoon kan gekozen worden uit de lijst op https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon.',
-        control: {
-            type: 'select',
-            options: [ALERT_ICON.WARNING, ALERT_ICON.CHECK, ALERT_ICON.INFO_CIRCLE],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(ALERT_ICON),
         table: {
-            type: { summary: TYPES.STRING },
+            type: { summary: getSelectControlOptions(Object.values(ALERT_ICON)) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: alertArgs.icon },
         },
@@ -74,10 +80,8 @@ export const alertArgTypes: ArgTypes<typeof alertArgs> = {
     size: {
         name: 'data-vl-size',
         description: 'Kleine variant van de waarschuwing.',
-        control: {
-            type: 'select',
-            options: [ALERT_SIZE.SMALL],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: [ALERT_SIZE.SMALL],
         table: {
             type: { summary: `${ALERT_SIZE.SMALL}` },
             category: CATEGORIES.ATTRIBUTES,
@@ -87,13 +91,11 @@ export const alertArgTypes: ArgTypes<typeof alertArgs> = {
     type: {
         name: 'data-vl-type',
         description: 'Soort van de waarschuwing, foutmelding, probleemmelding of succesmelding.',
-        control: {
-            type: 'select',
-            options: [ALERT_TYPE.INFO, ALERT_TYPE.SUCCESS, ALERT_TYPE.WARNING, ALERT_TYPE.ERROR],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(ALERT_TYPE),
         table: {
             type: {
-                summary: `${ALERT_TYPE.INFO} | ${ALERT_TYPE.SUCCESS} | ${ALERT_TYPE.WARNING} | ${ALERT_TYPE.ERROR}`,
+                summary: getSelectControlOptions(Object.values(ALERT_TYPE)),
             },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: alertArgs.type },

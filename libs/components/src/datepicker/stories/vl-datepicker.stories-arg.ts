@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, getSelectControlOptions, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const datepickerArgs = {
@@ -22,12 +22,10 @@ export const datepickerArgTypes: ArgTypes = {
     type: {
         name: 'data-vl-type',
         description: "Type van de datepicker; range | time | date-time | '' (default)",
+        control: { type: CONTROLS.SELECT },
         options: ['range', 'time', 'date-time', ''],
-        control: {
-            type: 'select',
-        },
         table: {
-            type: { summary: TYPES.STRING },
+            type: { summary: getSelectControlOptions(['range', 'time', 'date-time', '']) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: datepickerArgs.type },
         },

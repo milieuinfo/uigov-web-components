@@ -1,4 +1,11 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+    TYPES,
+} from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { SIZE } from '../vl-spotlight.model';
 
@@ -41,16 +48,14 @@ export const spotlightArgTypes: ArgTypes = {
         description: 'Dit attribuut bepaalt de grootte van de component.',
         table: {
             type: {
-                summary: `${SIZE.XS} | ${SIZE.S} | ${SIZE.L}`,
+                summary: getSelectControlOptions(Object.values(SIZE)),
                 required: false,
             },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: `${SIZE.S}` },
         },
-        control: {
-            type: 'select',
-            options: [SIZE.XS, SIZE.S, SIZE.L],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(SIZE),
     },
     imgSrc: {
         name: 'data-vl-img-src',

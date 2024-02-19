@@ -1,4 +1,4 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const mapBaselayerArgs = {
@@ -41,10 +41,8 @@ export const mapBaselayerArgTypes: ArgTypes<typeof mapBaselayerArgs> = {
     type: {
         name: 'data-vl-type',
         description: 'Het type van de kaartlaag.<br>Dit attribuut is niet reactief.',
-        control: {
-            type: 'select',
-            options: ['wmts', 'wfs'],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: ['wmts', 'wfs'],
         table: {
             type: { summary: 'wmts | wfs' },
             category: CATEGORIES.ATTRIBUTES,

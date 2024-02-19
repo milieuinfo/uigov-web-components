@@ -1,4 +1,4 @@
-import { CATEGORIES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, getSelectControlOptions } from '@domg-wc/common-storybook';
 
 export const linkBaseArgs = {
     block: false,
@@ -95,21 +95,21 @@ export const linkDefaultArgTypes = {
 export const linkIconArgTypes = {
     type: {
         name: 'type (for demo purposes)',
-        control: {
-            type: 'select',
-            options: ['before', 'after'],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: ['before', 'after'],
         table: {
             category: CATEGORIES.PROPERTIES,
+            type: { summary: getSelectControlOptions(['before', 'after']) },
         },
     },
     icon: {
         name: 'icon (for demo purposes)',
         type: 'select',
+        control: { type: CONTROLS.SELECT },
         options: ['arrow-right-fat', 'external'],
         table: {
             category: CATEGORIES.PROPERTIES,
-            type: { summary: 'string' },
+            type: { summary: getSelectControlOptions(['arrow-right-fat', 'external']) },
         },
     },
 };

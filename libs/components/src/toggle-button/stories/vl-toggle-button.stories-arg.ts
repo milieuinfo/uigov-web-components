@@ -1,7 +1,7 @@
 // TODO: te bekijken of dit nuttig is: remove from here and reuse from "vl-button.stories-helper.ts" instead.
 // import { sharedButtonArgs, sharedButtonArgTypes } from '@domg-wc/elements';
 
-import { defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import { CONTROLS, defaultArgs, defaultArgTypes, getSelectControlOptions, TYPES } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 import { ICON_PLACEMENT } from '../vl-toggle-button.model';
@@ -129,14 +129,12 @@ export const toggleButtonArgTypes: ArgTypes<typeof toggleButtonArgs> = {
         name: 'data-vl-icon-placement',
         description: 'Determines where the icon should be rendered before or after the text.',
         table: {
-            type: { summary: `${ICON_PLACEMENT.BEFORE} | ${ICON_PLACEMENT.AFTER}` },
+            type: { summary: getSelectControlOptions(Object.values(ICON_PLACEMENT)) },
             category: 'Attributes',
             defaultValue: { summary: ICON_PLACEMENT.AFTER },
         },
-        control: {
-            type: 'select',
-            options: [ICON_PLACEMENT.BEFORE, ICON_PLACEMENT.AFTER],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(ICON_PLACEMENT),
     },
     textHidden: {
         name: 'data-vl-text-hidden',

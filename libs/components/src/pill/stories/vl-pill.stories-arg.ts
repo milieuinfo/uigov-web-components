@@ -1,4 +1,4 @@
-import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { CONTROLS, defaultArgs, defaultArgTypes, getSelectControlOptions } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 
 export const pillArgs = {
@@ -46,14 +46,10 @@ export const pillArgTypes = {
     type: {
         name: 'data-vl-type',
         description: 'The attribute that determines the type. ',
-        control: {
-            type: 'select',
-            options: ['success', 'warning', 'error'],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: ['success', 'warning', 'error'],
         table: {
-            type: {
-                summary: `${'success'} | ${'warning'} | ${'error'}`,
-            },
+            type: { summary: getSelectControlOptions(['success', 'warning', 'error']) },
             category: 'Attributes',
             defaultValue: { summary: '' },
         },

@@ -1,4 +1,11 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+    TYPES,
+} from '@domg-wc/common-storybook';
 import { PADDINGS } from '@domg-wc/common-utilities';
 import { ArgTypes } from '@storybook/web-components';
 
@@ -57,7 +64,7 @@ export const popoverArgTypes: ArgTypes = {
     distance: {
         name: 'distance',
         description: 'Afstand van popover tegenover trigger element.',
-        control: { type: 'range', min: 0, max: 100, step: 1 },
+        control: { type: CONTROLS.RANGE, min: 0, max: 100, step: 1 },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
@@ -68,12 +75,10 @@ export const popoverArgTypes: ArgTypes = {
         name: 'content-padding',
         description:
             'De grootte van de padding van de content.<br>Deze padding wordt toegepast op zowel desktop als mobile.',
-        control: {
-            type: 'select',
-            options: [...Object.keys(PADDINGS)],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: [...Object.keys(PADDINGS)],
         table: {
-            type: { summary: Object.keys(PADDINGS) },
+            type: { summary: getSelectControlOptions(Object.keys(PADDINGS)) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: popoverDefaultArgs.contentPadding },
         },

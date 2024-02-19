@@ -1,4 +1,4 @@
-import { defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, defaultArgs, defaultArgTypes, getSelectControlOptions } from '@domg-wc/common-storybook';
 
 export const buttonPillArgs = {
     ...defaultArgs,
@@ -10,15 +10,13 @@ export const buttonPillArgTypes = {
     type: {
         name: 'data-vl-type',
         description: 'The attribute that determines the type. ',
-        control: {
-            type: 'select',
-            options: ['success', 'warning', 'error'],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: ['success', 'warning', 'error'],
         table: {
             type: {
-                summary: `${'success'} | ${'warning'} | ${'error'}`,
+                summary: getSelectControlOptions(['success', 'warning', 'error']),
             },
-            category: 'Attributes',
+            category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: '' },
         },
     },

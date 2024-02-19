@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const gridColumnArgs = {
@@ -40,7 +40,7 @@ export const gridColumnArgTypes: ArgTypes<typeof gridColumnArgs> = {
         name: 'data-vl-push',
         description:
             'Het aantal (teller) van het maximum (noemer) partities te verschuiven bij grote schermen, typisch desktop.',
-        control: 'number',
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
@@ -70,7 +70,7 @@ export const gridColumnArgTypes: ArgTypes<typeof gridColumnArgs> = {
         name: 'data-vl-medium-push',
         description:
             'Het aantal (teller) van het maximum (noemer) partities te verschuiven bij medium schermen, typisch tablet.',
-        control: 'number',
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
@@ -100,7 +100,7 @@ export const gridColumnArgTypes: ArgTypes<typeof gridColumnArgs> = {
         name: 'data-vl-small-push',
         description:
             'Het aantal (teller) van het maximum (noemer) partities te verschuiven bij kleine schermen, typisch mobiel.',
-        control: 'number',
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
@@ -128,7 +128,7 @@ export const gridColumnArgTypes: ArgTypes<typeof gridColumnArgs> = {
     extraSmallPush: {
         name: 'data-vl-extra-small-push',
         description: 'Het aantal (teller) van het maximum (noemer) partities te verschuiven bij zeer kleine schermen.',
-        control: 'number',
+        control: { type: CONTROLS.NUMBER },
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,

@@ -1,3 +1,5 @@
+import { CONTROLS } from '@domg-wc/common-storybook';
+
 export const gridBaseArgs = {
     stacked: true,
     stackedSmall: false,
@@ -155,7 +157,7 @@ export const gridDefaultArgTypes = {
     },
     columnsAmount: {
         name: 'amount of columns (for demo purposes)',
-        control: { type: 'range', min: 1, max: 12, step: 1 },
+        control: { type: CONTROLS.RANGE, min: 1, max: 12, step: 1 },
         table: {
             type: { summary: 'string' },
             category: 'Attributes',

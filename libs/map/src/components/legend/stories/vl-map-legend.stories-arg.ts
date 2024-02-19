@@ -1,4 +1,11 @@
-import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+    TYPES,
+} from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { LEGEND_PLACEMENT } from '../vl-map-legend';
 
@@ -37,21 +44,11 @@ export const mapLegendArgTypes: ArgTypes<typeof mapLegendArgs> = {
     placement: {
         name: 'data-vl-placement',
         description: 'Bepaalt de plaats van de legende op de kaart.',
-        control: {
-            type: 'select',
-            options: [
-                LEGEND_PLACEMENT.TOP_LEFT,
-                LEGEND_PLACEMENT.TOP_RIGHT,
-                LEGEND_PLACEMENT.BOTTOM_LEFT,
-                LEGEND_PLACEMENT.BOTTOM_RIGHT,
-            ],
-        },
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(LEGEND_PLACEMENT),
         table: {
             type: {
-                summary: `"${LEGEND_PLACEMENT.TOP_LEFT}" |
-                "${LEGEND_PLACEMENT.TOP_RIGHT}" |
-                "${LEGEND_PLACEMENT.BOTTOM_LEFT}" |
-                "${LEGEND_PLACEMENT.BOTTOM_RIGHT}"`,
+                summary: getSelectControlOptions(Object.values(LEGEND_PLACEMENT)),
             },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: mapLegendArgs.placement },
