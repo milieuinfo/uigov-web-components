@@ -1,6 +1,4 @@
-import { PropertyDeclarations } from 'lit';
-import { property } from 'lit/decorators';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import Cleave from 'cleave.js';
 import { masks } from './masks';
 import { VlInputFieldComponent, inputFieldDefaults } from '../input-field/vl-input-field.component';

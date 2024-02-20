@@ -1,5 +1,5 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { CSSResult, TemplateResult, html, nothing } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import { textareaStyle } from '@domg/govflanders-style/component';
 import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
@@ -22,35 +22,38 @@ export const textareaDefaults = {
 @customElement('vl-textarea-next')
 export class VlTextareaComponent extends FormControl {
     // Properties
-    private block = textareaDefaults.block;
-    private readonly = textareaDefaults.readonly;
-    private value = textareaDefaults.value;
-    private placeholder = textareaDefaults.placeholder;
-    private autocomplete = textareaDefaults.autocomplete;
-    private minLength = textareaDefaults.minLength;
-    private maxLength = textareaDefaults.maxLength;
-    private rows = textareaDefaults.rows;
-    private cols = textareaDefaults.cols;
+    @property({ type: Boolean })
+    accessor block = textareaDefaults.block;
+
+    @property({ type: Boolean })
+    accessor readonly = textareaDefaults.readonly;
+
+    @property({ type: String, reflect: true })
+    accessor value = textareaDefaults.value;
+
+    @property({ type: String })
+    accessor placeholder = textareaDefaults.placeholder;
+
+    @property({ type: String })
+    accessor autocomplete = textareaDefaults.autocomplete;
+
+    @property({ type: Number, attribute: 'min-length' })
+    accessor minLength = textareaDefaults.minLength;
+
+    @property({ type: Number, attribute: 'max-length' })
+    accessor maxLength = textareaDefaults.maxLength;
+
+    @property({ type: Number })
+    accessor rows = textareaDefaults.rows;
+
+    @property({ type: Number })
+    accessor cols = textareaDefaults.cols;
 
     // Variables
     private initialValue = '';
 
     static get styles(): CSSResult[] {
         return [resetStyle, baseStyle, textareaStyle];
-    }
-
-    static get properties(): PropertyDeclarations {
-        return {
-            block: { type: Boolean },
-            readonly: { type: Boolean },
-            value: { type: String, reflect: true },
-            placeholder: { type: String },
-            autocomplete: { type: String },
-            minLength: { type: Number, attribute: 'min-length' },
-            maxLength: { type: Number, attribute: 'max-length' },
-            rows: { type: Number },
-            cols: { type: Number },
-        };
     }
 
     connectedCallback() {

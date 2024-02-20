@@ -1,5 +1,5 @@
-import { CSSResult, html, PropertyDeclarations, PropertyValues, TemplateResult } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { CSSResult, html, PropertyValues, TemplateResult } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import { radioStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
@@ -9,30 +9,28 @@ import { FormControl, formControlDefaults } from '../form-control/form-control';
 
 export const radioGroupDefaults = {
     ...formControlDefaults,
-    readonly: false as boolean,
     value: '' as string,
+    readonly: false as boolean,
+    block: false as boolean,
 };
 
 @customElement('vl-radio-group-next')
 export class VlRadioGroupComponent extends FormControl {
     // Properties
-    private readonly = radioGroupDefaults.readonly;
-    private value = radioGroupDefaults.value;
+    @property({ type: String, reflect: true })
+    accessor value = radioGroupDefaults.value;
+
+    @property({ type: Boolean })
+    accessor readonly = radioGroupDefaults.readonly;
+
+    @property({ type: Boolean })
+    accessor block = radioGroupDefaults.block;
 
     // Variables
     private initialValue = '';
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, baseStyle, vlElementsStyle, radioStyle, radioUigStyle];
-    }
-
-    static get properties(): PropertyDeclarations {
-        return {
-            value: { type: String, reflect: true },
-            required: { type: Boolean },
-            block: { type: Boolean },
-            readonly: { type: Boolean },
-        };
     }
 
     connectedCallback() {

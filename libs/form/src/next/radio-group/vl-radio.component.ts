@@ -1,5 +1,5 @@
-import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult, LitElement } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { CSSResult, html, nothing, TemplateResult, LitElement } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { radioStyle } from '@domg/govflanders-style/component';
@@ -24,36 +24,40 @@ export const radioDefaults = {
 @customElement('vl-radio-next')
 export class VlRadioComponent extends BaseLitElement {
     // Properties
-    id = radioDefaults.id;
-    private name = radioDefaults.name;
-    private value = radioDefaults.value;
-    private label = radioDefaults.label;
-    private block = radioDefaults.block;
-    private readonly = radioDefaults.readonly;
-    private disabled = radioDefaults.disabled;
-    private error = radioDefaults.error;
-    private success = radioDefaults.success;
-    private checked = radioDefaults.checked;
+    @property({ type: String })
+    accessor id = radioDefaults.id;
+
+    @property({ type: String })
+    accessor name = radioDefaults.name;
+
+    @property({ type: String })
+    accessor value = radioDefaults.value;
+
+    @property({ type: String })
+    accessor label = radioDefaults.label;
+
+    @property({ type: Boolean })
+    accessor block = radioDefaults.block;
+
+    @property({ type: Boolean })
+    accessor readonly = radioDefaults.readonly;
+
+    @property({ type: Boolean })
+    accessor disabled = radioDefaults.disabled;
+
+    @property({ type: Boolean })
+    accessor error = radioDefaults.error;
+
+    @property({ type: Boolean })
+    accessor success = radioDefaults.success;
+
+    @property({ type: Boolean, reflect: true })
+    accessor checked = radioDefaults.checked;
 
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, baseStyle, vlElementsStyle, radioStyle, radioUigStyle];
-    }
-
-    static get properties(): PropertyDeclarations {
-        return {
-            id: { type: String },
-            name: { type: String },
-            value: { type: String },
-            label: { type: String },
-            disabled: { type: Boolean },
-            readonly: { type: Boolean },
-            error: { type: Boolean },
-            success: { type: Boolean },
-            block: { type: Boolean },
-            checked: { type: Boolean, reflect: true },
-        };
     }
 
     updated(changedProperties: Map<string, unknown>) {

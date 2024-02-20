@@ -1,5 +1,5 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { CSSResult, TemplateResult, html, nothing } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import * as choices from 'choices.js';
 import { Choice, Options, Item } from 'choices.js';
@@ -41,18 +41,37 @@ export const selectDefaults = {
 @customElement('vl-select-next')
 export class VlSelectComponent extends FormControl {
     // Properties
-    private options = selectDefaults.options;
-    private placeholder = selectDefaults.placeholder;
-    private deletable = selectDefaults.deletable;
-    private multiple = selectDefaults.multiple;
-    private search = selectDefaults.search;
-    private position = selectDefaults.position;
-    private resultLimit = selectDefaults.resultLimit;
-    private noResultsText = selectDefaults.noResultsText;
-    private noChoicesText = selectDefaults.noChoicesText;
-    private searchPlaceholder = selectDefaults.searchPlaceholder;
+    @property({ type: Array })
+    accessor options = selectDefaults.options;
 
-    // State
+    @property({ type: String })
+    accessor placeholder = selectDefaults.placeholder;
+
+    @property({ type: Boolean })
+    accessor deletable = selectDefaults.deletable;
+
+    @property({ type: Boolean })
+    accessor multiple = selectDefaults.multiple;
+
+    @property({ type: Boolean })
+    accessor search = selectDefaults.search;
+
+    @property({ type: String })
+    accessor position = selectDefaults.position;
+
+    @property({ type: Number, attribute: 'result-limit' })
+    accessor resultLimit = selectDefaults.resultLimit;
+
+    @property({ type: String, attribute: 'no-results-text' })
+    accessor noResultsText = selectDefaults.noResultsText;
+
+    @property({ type: String, attribute: 'no-choices-text' })
+    accessor noChoicesText = selectDefaults.noChoicesText;
+
+    @property({ type: String, attribute: 'search-placeholder' })
+    accessor searchPlaceholder = selectDefaults.searchPlaceholder;
+
+    @property({ type: String, state: true })
     private value = '';
 
     // Variables
@@ -61,22 +80,6 @@ export class VlSelectComponent extends FormControl {
 
     static get styles(): CSSResult[] {
         return [resetStyle, baseStyle, inputFieldStyle, selectStyle, multiselectStyle, iconStyle, selectUigStyle];
-    }
-
-    static get properties(): PropertyDeclarations {
-        return {
-            options: { type: Array },
-            placeholder: { type: String },
-            deletable: { type: Boolean },
-            multiple: { type: Boolean },
-            search: { type: Boolean },
-            position: { type: String },
-            resultLimit: { type: Number, attribute: 'result-limit' },
-            noResultsText: { type: String, attribute: 'no-results-text' },
-            noChoicesText: { type: String, attribute: 'no-choices-text' },
-            searchPlaceholder: { type: String, attribute: 'search-placeholder' },
-            value: { type: String, state: true },
-        };
     }
 
     firstUpdated(changedProperties: Map<string, unknown>) {
@@ -243,8 +246,8 @@ export class VlSelectComponent extends FormControl {
                                 tabindex="0"
                                 aria-controls="vl-select__list"
                                 aria-label="${
-                                this.multiple ? 'selecteer één of meerdere opties' : 'selecteer één optie'
-                            }">
+                                    this.multiple ? 'selecteer één of meerdere opties' : 'selecteer één optie'
+                                }">
                             </div>`
                         );
                     },
@@ -264,13 +267,13 @@ export class VlSelectComponent extends FormControl {
                                 >
                                     <span>${data.label}</span>
                                     <button class="vl-pill__close ${
-                                    !this.multiple ? 'vl-vi vl-vi-close' : ''
-                                }" data-button aria-label="verwijder">
+                                        !this.multiple ? 'vl-vi vl-vi-close' : ''
+                                    }" data-button aria-label="verwijder">
                                         ${
-                                    this.multiple
-                                        ? `<span class="vl-pill__close__icon vl-vi vl-vi-close" aria-hidden="true"></span>`
-                                        : ''
-                                }
+                                            this.multiple
+                                                ? `<span class="vl-pill__close__icon vl-vi vl-vi-close" aria-hidden="true"></span>`
+                                                : ''
+                                        }
                                     </button>
                                 </div>`
                             );
