@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs';
+import { Canvas } from '@storybook/blocks';
+import * as PopoverMenuStories from './popover-menu.stories'
+
+<Meta of={PopoverMenuStories} />
+
+# Popover Menu
+
+Een popover menu is een UI-element dat wordt gebruikt om extra navigatieopties weer te geven die niet direct zichtbaar
+zijn. Het wordt vaak weergegeven als een pictogram, zoals een hamburger menu, kebab menu, of een ander herkenbaar
+symbool.
+
+
+## Gebruik
+
+- Het popover menu wordt gebruikt wanneer er beperkte ruimte is op het scherm en niet alle menu-opties direct kunnen
+  worden weergegeven.
+
+
+## Ontwerp
+
+- Pictogram: Het popover menu wordt meestal weergegeven als een pictogram, zoals een hamburger menu (drie horizontale
+  lijnen), kebab menu (drie verticale punten), of een ander herkenbaar symbool.
+
+- Plaatsing: Het menu kan worden geplaatst in de linkerbovenhoek, rechterbovenhoek of elders op de pagina, afhankelijk
+  van het ontwerp en de context.
+
+- Interactie: Door op het pictogram te klikken of tikken, wordt het menu geopend en worden de extra navigatieopties
+  zichtbaar. Het menu kan worden gesloten door opnieuw op het pictogram te klikken of door ergens buiten het menu te
+  klikken.
+
+
+## Voorbeeld
+
+### Hamburger Menu
+
+<Canvas of={PopoverMenuStories.HamburgerMenu} />

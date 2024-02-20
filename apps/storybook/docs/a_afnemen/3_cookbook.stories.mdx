@@ -212,8 +212,8 @@ VlButtonElement;
 M.b.v. de statische klasse `UigConfig` kunnen voorkeuren gewijzigd worden.
 
 De defaults zijn:
-    - autoRegisterStyles: true
-    - logWebComponentRegistration: false
+- autoRegisterStyles: true
+- logWebComponentRegistration: false
 
 
 ### Afname via de npm-packages
@@ -288,17 +288,6 @@ class RegisterStyles {
 Indien gewenst kan je de automatische registratie van globale (document) styling de-activeren via de
 `autoRegisterStyles` property (zie hierboven onder Configuratie).
 
-### Custom CSS
-
-Voor de componenten onder `map` en `components` is het mogelijk om een custom CSS-string mee te geven aan het
-attribuut `data-vl-custom-css`. Deze CSS wordt dan toegevoegd aan de adoptedStyleSheets van de shadow DOM van
-de desbetreffende component.
-
-> Opgelet bij het gebruik hiervan, hierdoor kan je de styling van DV breken!
-
-```html
-<vl-accordion-list data-vl-custom-css=".vl-accordion-list {border: 10px solid lightblue}">
-```
 
 ### 4 background css classes
 
