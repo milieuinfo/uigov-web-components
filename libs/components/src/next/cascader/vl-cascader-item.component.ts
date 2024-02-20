@@ -1,9 +1,11 @@
-import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
 import { BaseLitElement } from '@domg-wc/common-utilities';
-import { customElement } from 'lit/decorators.js';
-import { resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
+import { resetStyle } from '@domg/govflanders-style/common';
+import { CSSResult, html, TemplateResult } from 'lit';
+import { property } from 'lit/decorators';
+import { customElement } from 'lit/decorators.js';
 import cascaderItemUigStyle from './vl-cascader-item.uig-css';
+import { VlCascaderComponent } from './vl-cascader.component';
 import { CASCADER_MESSAGES, CASCADER_SLOTS, CascaderItem } from './vl-cascader.model';
 import {
     defaultItemActionTemplate,
@@ -11,24 +13,19 @@ import {
     getNodesForSlot,
     getTemplateFunctionForType,
 } from './vl-cascader.utils';
-import { VlCascaderComponent } from './vl-cascader.component';
 
 @customElement('vl-cascader-item')
 export class VlCascaderItemComponent extends BaseLitElement {
-    item: CascaderItem = { label: CASCADER_MESSAGES.LABEL_MISSING };
-    label = CASCADER_MESSAGES.LABEL_MISSING;
-    templateType: string | undefined;
-    cascaderRef: VlCascaderComponent | undefined;
-    annotation: string | undefined;
+    @property({ type: Object })
+    accessor item: CascaderItem = { label: CASCADER_MESSAGES.LABEL_MISSING };
+    @property({ type: String })
+    accessor label = CASCADER_MESSAGES.LABEL_MISSING;
+    @property({ type: String, attribute: 'template-type' })
+    accessor templateType: string | undefined;
+    @property({ type: String })
+    accessor annotation: string | undefined;
 
-    static get properties(): PropertyDeclarations {
-        return {
-            label: { type: String },
-            templateType: { type: String, attribute: 'template-type' },
-            item: { type: Object },
-            annotation: { type: String },
-        };
-    }
+    cascaderRef: VlCascaderComponent | undefined;
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, vlElementsStyle, cascaderItemUigStyle];
@@ -58,10 +55,12 @@ export class VlCascaderItemComponent extends BaseLitElement {
             templateResultForNode = getDefaultItemTemplate(this.item, cascaderRef, hasLabelSlot);
         }
         return cascaderRef && templateResultForNode
-            ? html`${templateResultForNode} ${html`<slot name="content"></<slot>`}`
-            : html`${
-                  !hasLabelSlot ? defaultItemActionTemplate(this.item) : html`<slot name="label"></slot>`
-              }<slot name="content"></<slot>`;
+            ? html`${templateResultForNode} ${html`
+                <slot name="content"></
+                <slot>`}`
+            : html`${!hasLabelSlot ? defaultItemActionTemplate(this.item) : html` <slot name="label"></slot>`}
+            <slot name="content"></
+            <slot>`;
     }
 }
 

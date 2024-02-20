@@ -1,5 +1,6 @@
-import { CSSResult, html, nothing, PropertyDeclarations, PropertyValues, TemplateResult } from 'lit';
+import { CSSResult, html, nothing, PropertyValues, TemplateResult } from 'lit';
 import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { property } from 'lit/decorators';
 import { customElement } from 'lit/decorators.js';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
@@ -19,37 +20,31 @@ import { VlCascaderItemComponent } from './vl-cascader-item.component';
 
 @customElement('vl-cascader')
 export class VlCascaderComponent extends BaseLitElement {
-    itemListFn: ItemListFn | undefined;
-    templates: Map<string, TemplateFn> | undefined;
-
     // Stack to keep track of the navigation hierarchy history
     private navigationLevelStack: CascaderItem[][] = [];
-    private nodeData: CascaderItem[] = [];
     private breadCrumbHistory: { label: string; index: number }[] = [];
     private slidingIn = false;
     private slidingOut = false;
-    private hideBreadcrumb = false;
-    private level = 0;
-    private isLoading = false;
-    private loadingMessage = CASCADER_MESSAGES.LOADING;
-    private declarativeMode = false;
-    private headerText: string | undefined;
+
+    @property({ type: String, attribute: 'header-text', reflect: true })
+    accessor headerText: string | undefined;
+    @property({ type: Boolean, attribute: 'hide-breadcrumb', reflect: true })
+    accessor hideBreadcrumb = false;
+    @property({ type: Number, attribute: 'level', reflect: true })
+    accessor level = 0;
+    @property({ type: Boolean, attribute: 'loading', reflect: true })
+    accessor isLoading = false;
+    @property({ type: String, attribute: 'loading-message', reflect: true })
+    accessor loadingMessage = CASCADER_MESSAGES.LOADING;
+    @property({ type: Function })
+    accessor itemListFn: ItemListFn | undefined;
+    @property({ type: Array, state: true })
+    accessor nodeData: CascaderItem[] = [];
+    @property({ type: Map })
+    accessor templates: Map<string, TemplateFn> | undefined;
 
     static {
         registerWebComponents([VlCascaderItemComponent]);
-    }
-
-    static get properties(): PropertyDeclarations {
-        return {
-            headerText: { type: String, attribute: 'header-text', reflect: true },
-            level: { type: Number, attribute: 'level', reflect: true },
-            hideBreadcrumb: { type: Boolean, attribute: 'hide-breadcrumb', reflect: true },
-            loadingMessage: { type: String, attribute: 'loading-message', reflect: true },
-            isLoading: { type: Boolean, attribute: 'loading', reflect: true },
-            itemListFn: { type: Function },
-            nodeData: { type: Array, state: true },
-            templates: { type: Map },
-        };
     }
 
     static get styles(): (CSSResult | CSSResult[])[] {
