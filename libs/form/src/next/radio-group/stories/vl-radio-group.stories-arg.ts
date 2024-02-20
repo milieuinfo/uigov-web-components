@@ -1,4 +1,5 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { textareaArgs } from '@domg-wc/form/next/textarea/stories/vl-textarea.stories-arg';
 import { ArgTypes } from '@storybook/web-components';
 import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
 import { radioGroupDefaults } from '../vl-radio-group.component';
@@ -16,6 +17,15 @@ export const radioGroupArgs: radioGroupArgsType = {
 
 export const radioGroupArgTypes: ArgTypes<typeof radioGroupArgs> = {
     ...formControlArgTypes,
+    value: {
+        name: 'value',
+        description: 'De value van de radio.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: radioGroupArgs.value },
+        },
+    },
     readonly: {
         name: 'readonly',
         description: 'Duidt aan dat het veld enkel leesbaar is.',
@@ -25,13 +35,13 @@ export const radioGroupArgTypes: ArgTypes<typeof radioGroupArgs> = {
             defaultValue: { summary: radioGroupArgs.readonly },
         },
     },
-    value: {
-        name: 'value',
-        description: 'De value van de radio.',
+    block: {
+        name: 'block',
+        description: 'Duidt aan dat de component de volledige breedte van zijn parent mag innemen.',
         table: {
-            type: { summary: TYPES.STRING },
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: radioGroupArgs.value },
+            defaultValue: { summary: textareaArgs.block },
         },
     },
     onVlChecked: {

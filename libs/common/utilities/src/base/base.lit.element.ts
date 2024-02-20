@@ -1,16 +1,15 @@
-import { LitElement, PropertyDeclarations } from 'lit';
+import { LitElement } from 'lit';
+import { property } from 'lit/decorators.js';
 
 export class BaseLitElement extends LitElement {
-    protected allowCustomCSS = true;
-    private customCSS: string | null = null;
-    private customCSSPrefix: string | null = null;
+    // Properties
+    @property({ type: String, attribute: 'custom-css', reflect: true })
+    accessor customCSS: string | null = null;
+    @property({ type: String, attribute: 'data-vl-custom-css', reflect: true })
+    accessor customCSSPrefix: string | null = null;
 
-    static get properties(): PropertyDeclarations {
-        return {
-            customCSS: { type: String, attribute: 'custom-css', reflect: true },
-            customCSSPrefix: { type: String, attribute: 'data-vl-custom-css', reflect: true },
-        };
-    }
+    // Variables
+    protected allowCustomCSS = true;
 
     connectedCallback(): void {
         super.connectedCallback();
