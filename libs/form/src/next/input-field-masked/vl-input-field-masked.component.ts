@@ -1,4 +1,5 @@
 import { PropertyDeclarations } from 'lit';
+import { property } from 'lit/decorators';
 import { customElement } from 'lit/decorators.js';
 import Cleave from 'cleave.js';
 import { masks } from './masks';
@@ -47,28 +48,27 @@ export const inputFieldMaskedDefaults = {
 @customElement('vl-input-field-masked-next')
 export class VlInputFieldMaskedComponent extends VlInputFieldComponent {
     // Properties
-    private mask = inputFieldMaskedDefaults.mask;
-    private maskPrefix = inputFieldMaskedDefaults.maskPrefix;
-    private rawValue = inputFieldMaskedDefaults.rawValue;
+    @property({ type: String })
+    accessor mask = inputFieldMaskedDefaults.mask;
+
+    @property({ type: String, attribute: 'mask-prefix' })
+    accessor maskPrefix = inputFieldMaskedDefaults.maskPrefix;
+
+    @property({ type: Boolean, attribute: 'raw-value' })
+    accessor rawValue = inputFieldMaskedDefaults.rawValue;
+
     // Ongebruikt in dit component, maar wel nodig voor de maskValidator.
-    private disableValidation = inputFieldMaskedDefaults.disableValidation;
-    private validationRegex = inputFieldMaskedDefaults.validationRegex;
+    @property({ type: Boolean, attribute: 'disable-validation' })
+    accessor disableValidation = inputFieldMaskedDefaults.disableValidation;
+
+    @property({ type: Object })
+    accessor validationRegex = inputFieldMaskedDefaults.validationRegex;
 
     // Variables
     private maskOptions: MaskOptions | null = null;
     private cleaveInstance: CleaveInstance | null = null;
 
     static formControlValidators = [...VlInputFieldComponent.formControlValidators, maskValidator];
-
-    static get properties(): PropertyDeclarations {
-        return {
-            mask: { type: String },
-            maskPrefix: { type: String, attribute: 'mask-prefix' },
-            rawValue: { type: Boolean, attribute: 'raw-value' },
-            disableValidation: { type: Boolean, attribute: 'disable-validation' },
-            validationRegex: { type: Object },
-        };
-    }
 
     connectedCallback(): void {
         super.connectedCallback();

@@ -1,7 +1,6 @@
 import { CSSResult, html, nothing, PropertyValues, TemplateResult } from 'lit';
 import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
-import { property } from 'lit/decorators';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { breadcrumbStyle } from '@domg/govflanders-style/component';
@@ -20,28 +19,36 @@ import { VlCascaderItemComponent } from './vl-cascader-item.component';
 
 @customElement('vl-cascader')
 export class VlCascaderComponent extends BaseLitElement {
-    // Stack to keep track of the navigation hierarchy history
-    private navigationLevelStack: CascaderItem[][] = [];
+    // Properties
+    @property({ type: String, attribute: 'header-text', reflect: true })
+    accessor headerText: string | undefined;
+
+    @property({ type: Boolean, attribute: 'hide-breadcrumb', reflect: true })
+    accessor hideBreadcrumb = false;
+
+    @property({ type: Number, attribute: 'level', reflect: true })
+    accessor level = 0;
+
+    @property({ type: Boolean, attribute: 'loading', reflect: true })
+    accessor isLoading = false;
+
+    @property({ type: String, attribute: 'loading-message', reflect: true })
+    accessor loadingMessage = CASCADER_MESSAGES.LOADING;
+
+    @property({ type: Function })
+    accessor itemListFn: ItemListFn | undefined;
+
+    @property({ type: Array, state: true })
+    accessor nodeData: CascaderItem[] = [];
+
+    @property({ type: Map })
+    accessor templates: Map<string, TemplateFn> | undefined;
+
+    // Variables
+    private navigationLevelStack: CascaderItem[][] = []; // Stack to keep track of the navigation hierarchy history
     private breadCrumbHistory: { label: string; index: number }[] = [];
     private slidingIn = false;
     private slidingOut = false;
-
-    @property({ type: String, attribute: 'header-text', reflect: true })
-    accessor headerText: string | undefined;
-    @property({ type: Boolean, attribute: 'hide-breadcrumb', reflect: true })
-    accessor hideBreadcrumb = false;
-    @property({ type: Number, attribute: 'level', reflect: true })
-    accessor level = 0;
-    @property({ type: Boolean, attribute: 'loading', reflect: true })
-    accessor isLoading = false;
-    @property({ type: String, attribute: 'loading-message', reflect: true })
-    accessor loadingMessage = CASCADER_MESSAGES.LOADING;
-    @property({ type: Function })
-    accessor itemListFn: ItemListFn | undefined;
-    @property({ type: Array, state: true })
-    accessor nodeData: CascaderItem[] = [];
-    @property({ type: Map })
-    accessor templates: Map<string, TemplateFn> | undefined;
 
     static {
         registerWebComponents([VlCascaderItemComponent]);

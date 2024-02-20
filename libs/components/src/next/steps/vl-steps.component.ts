@@ -10,17 +10,20 @@ import { VlDurationStepComponent } from './vl-duration-step.component';
 
 @customElement('vl-steps-next')
 export class VlStepsComponent extends BaseLitElement {
-    // Attributen
+    // Properties
     @property({ type: Boolean, attribute: 'data-vl-line', reflect: true })
     accessor line = false;
+
     @property({ type: Boolean, attribute: 'data-vl-timeline', reflect: true })
     accessor timeline = false;
+
     @property({ type: Boolean, attribute: 'data-vl-simple-timeline', reflect: true })
     accessor simpleTimeline = false;
+
     @property({ type: Boolean, attribute: 'data-vl-last-step-no-line', reflect: true })
     accessor lastStepNoLine = false;
 
-    // Private properties
+    // Variables
     private observer: MutationObserver | null = null;
 
     static {

@@ -10,7 +10,7 @@ import {
 import { patternValidator } from '@open-wc/form-control';
 import datepickerUigStyle from './vl-datepicker.uig-css';
 import { CSSResult, html, nothing, TemplateResult } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import { Options } from 'flatpickr/dist/types/options';
 import { Instance } from 'flatpickr/dist/types/instance';
 import flatpickr from 'flatpickr';
@@ -41,19 +41,44 @@ export const datepickerDefaults = {
 @customElement('vl-datepicker-next')
 export class VlDatepickerComponent extends FormControl {
     // Properties
-    private block = datepickerDefaults.block;
-    private readonly = datepickerDefaults.readonly;
-    private value = datepickerDefaults.value;
-    private placeholder = datepickerDefaults.placeholder;
-    private autocomplete = datepickerDefaults.autocomplete;
-    private type = datepickerDefaults.type;
-    private format = datepickerDefaults.format;
-    private amPm = datepickerDefaults.amPm;
-    private minDate = datepickerDefaults.minDate;
-    private maxDate = datepickerDefaults.maxDate;
-    private minTime = datepickerDefaults.minTime;
-    private maxTime = datepickerDefaults.maxTime;
-    private pattern = datepickerDefaults.pattern;
+    @property({ type: Boolean })
+    accessor block = datepickerDefaults.block;
+
+    @property({ type: Boolean })
+    accessor readonly = datepickerDefaults.readonly;
+
+    @property({ type: String, reflect: true })
+    accessor value = datepickerDefaults.value;
+
+    @property({ type: String })
+    accessor placeholder = datepickerDefaults.placeholder;
+
+    @property({ type: String })
+    accessor autocomplete = datepickerDefaults.autocomplete;
+
+    @property({ type: String })
+    accessor type = datepickerDefaults.type;
+
+    @property({ type: String })
+    accessor format = datepickerDefaults.format;
+
+    @property({ type: Boolean, attribute: 'am-pm' })
+    accessor amPm = datepickerDefaults.amPm;
+
+    @property({ type: String, attribute: 'min-date' })
+    accessor minDate = datepickerDefaults.minDate;
+
+    @property({ type: String, attribute: 'max-date' })
+    accessor maxDate = datepickerDefaults.maxDate;
+
+    @property({ type: String, attribute: 'min-time' })
+    accessor minTime = datepickerDefaults.minTime;
+
+    @property({ type: String, attribute: 'max-time' })
+    accessor maxTime = datepickerDefaults.maxTime;
+
+    @property({ type: String })
+    accessor pattern = datepickerDefaults.pattern;
 
     // Variables
     private instance: Instance | null = null;
@@ -77,24 +102,6 @@ export class VlDatepickerComponent extends FormControl {
             datepickerStyle,
             datepickerUigStyle,
         ];
-    }
-
-    static get properties() {
-        return {
-            block: { type: Boolean },
-            readonly: { type: Boolean },
-            value: { type: String, reflect: true },
-            placeholder: { type: String },
-            autocomplete: { type: String },
-            type: { type: String },
-            format: { type: String },
-            amPm: { type: Boolean, attribute: 'am-pm' },
-            minDate: { type: String, attribute: 'min-date' },
-            maxDate: { type: String, attribute: 'max-date' },
-            minTime: { type: String, attribute: 'min-time' },
-            maxTime: { type: String, attribute: 'max-time' },
-            pattern: { type: String },
-        };
     }
 
     connectedCallback() {

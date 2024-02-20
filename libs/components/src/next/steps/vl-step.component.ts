@@ -12,16 +12,17 @@ declare const vl: VL;
 
 @customElement('vl-step-next')
 export class VlStepComponent extends BaseLitElement {
-    // Attributen
+    // Properties
     @property({ type: String, attribute: 'data-vl-type', reflect: true })
     accessor type: string | null = null;
+
     @property({ type: Boolean, attribute: 'data-vl-toggleable', reflect: true })
     accessor toggleable = false;
 
-    // Private properties
     @property({ attribute: false })
     accessor isTitleAnnotationSlotAssigned = true;
 
+    // Variables
     private customCSSStyleSheet = new CSSStyleSheet();
 
     static {

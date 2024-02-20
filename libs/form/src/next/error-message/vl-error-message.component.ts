@@ -1,6 +1,6 @@
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import { BaseLitElement } from '@domg-wc/common-utilities';
-import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
+import { CSSResult, TemplateResult, html } from 'lit';
 import { formMessageStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
 
@@ -14,20 +14,18 @@ export const errorMessageDefaults = {
 
 @customElement(ERROR_MESSAGE_CUSTOM_TAG)
 export class VlErrorMessageComponent extends BaseLitElement {
-    for = errorMessageDefaults.for;
-    state = errorMessageDefaults.state;
-    show = errorMessageDefaults.show;
+    // Properties
+    @property({ type: String })
+    accessor for = errorMessageDefaults.for;
+
+    @property({ type: String })
+    accessor state = errorMessageDefaults.state;
+
+    @property({ type: Boolean, reflect: true })
+    accessor show = errorMessageDefaults.show;
 
     static get styles(): CSSResult[] {
         return [resetStyle, formMessageStyle];
-    }
-
-    static get properties(): PropertyDeclarations {
-        return {
-            for: { type: String },
-            state: { type: String },
-            show: { type: Boolean, reflect: true },
-        };
     }
 
     render(): TemplateResult {

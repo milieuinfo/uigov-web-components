@@ -1,11 +1,11 @@
-import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { checkboxStyle } from '@domg/govflanders-style/component';
-import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
-import checkboxUigStyle from './vl-checkbox.component.uig-css';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { checkboxStyle } from '@domg/govflanders-style/component';
+import { CSSResult, html, nothing, TemplateResult } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { FormControl, formControlDefaults } from '../form-control/form-control';
+import checkboxUigStyle from './vl-checkbox.component.uig-css';
 
 export const checkboxDefaults = {
     ...formControlDefaults,
@@ -18,10 +18,17 @@ export const checkboxDefaults = {
 @customElement('vl-checkbox-next')
 export class VlCheckboxComponent extends FormControl {
     // Properties
-    private block = checkboxDefaults.block;
-    private value = checkboxDefaults.value;
-    private checked = checkboxDefaults.checked;
-    private isSwitch = checkboxDefaults.isSwitch;
+    @property({ type: Boolean })
+    accessor block = checkboxDefaults.block;
+
+    @property({ type: String })
+    accessor value = checkboxDefaults.value;
+
+    @property({ type: Boolean, reflect: true })
+    accessor checked = checkboxDefaults.checked;
+
+    @property({ type: Boolean, attribute: 'switch' })
+    accessor isSwitch = checkboxDefaults.isSwitch;
 
     // Variables
     private initialValue = '';
@@ -29,15 +36,6 @@ export class VlCheckboxComponent extends FormControl {
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, baseStyle, vlElementsStyle, checkboxStyle, checkboxUigStyle];
-    }
-
-    static get properties(): PropertyDeclarations {
-        return {
-            block: { type: Boolean },
-            value: { type: String },
-            checked: { type: Boolean, reflect: true },
-            isSwitch: { type: Boolean, attribute: 'switch' },
-        };
     }
 
     connectedCallback() {

@@ -1,5 +1,5 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { CSSResult, TemplateResult, html, nothing } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import { inputFieldStyle } from '@domg/govflanders-style/component';
 import { live } from 'lit/directives/live.js';
 import { classMap } from 'lit/directives/class-map.js';
@@ -26,17 +26,38 @@ export const inputFieldDefaults = {
 @customElement('vl-input-field-next')
 export class VlInputFieldComponent extends FormControl {
     // Properties
-    private block = inputFieldDefaults.block;
-    private readonly = inputFieldDefaults.readonly;
-    private type = inputFieldDefaults.type;
-    protected value = inputFieldDefaults.value;
-    private placeholder = inputFieldDefaults.placeholder;
-    private autocomplete = inputFieldDefaults.autocomplete;
-    private minLength = inputFieldDefaults.minLength;
-    private maxLength = inputFieldDefaults.maxLength;
-    private min = inputFieldDefaults.min;
-    private max = inputFieldDefaults.max;
-    private pattern = inputFieldDefaults.pattern;
+    @property({ type: Boolean })
+    accessor block = inputFieldDefaults.block;
+
+    @property({ type: Boolean })
+    accessor readonly = inputFieldDefaults.readonly;
+
+    @property({ type: String })
+    accessor type = inputFieldDefaults.type;
+
+    @property({ type: String, reflect: true })
+    accessor value = inputFieldDefaults.value;
+
+    @property({ type: String })
+    accessor placeholder = inputFieldDefaults.placeholder;
+
+    @property({ type: String })
+    accessor autocomplete = inputFieldDefaults.autocomplete;
+
+    @property({ type: Number, attribute: 'min-length' })
+    accessor minLength = inputFieldDefaults.minLength;
+
+    @property({ type: Number, attribute: 'max-length' })
+    accessor maxLength = inputFieldDefaults.maxLength;
+
+    @property({ type: Number })
+    accessor min = inputFieldDefaults.min;
+
+    @property({ type: Number })
+    accessor max = inputFieldDefaults.max;
+
+    @property({ type: String })
+    accessor pattern = inputFieldDefaults.pattern;
 
     // Variables
     protected initialValue = '';
@@ -50,22 +71,6 @@ export class VlInputFieldComponent extends FormControl {
 
     static get styles(): CSSResult[] {
         return [resetStyle, baseStyle, inputFieldStyle];
-    }
-
-    static get properties(): PropertyDeclarations {
-        return {
-            block: { type: Boolean },
-            readonly: { type: Boolean },
-            type: { type: String },
-            value: { type: String, reflect: true },
-            placeholder: { type: String },
-            autocomplete: { type: String },
-            minLength: { type: Number, attribute: 'min-length' },
-            maxLength: { type: Number, attribute: 'max-length' },
-            min: { type: Number },
-            max: { type: Number },
-            pattern: { type: String },
-        };
     }
 
     connectedCallback() {

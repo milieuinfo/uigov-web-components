@@ -2,8 +2,7 @@ import { BaseLitElement } from '@domg-wc/common-utilities';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { CSSResult, html, TemplateResult } from 'lit';
-import { property } from 'lit/decorators';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import cascaderItemUigStyle from './vl-cascader-item.uig-css';
 import { VlCascaderComponent } from './vl-cascader.component';
 import { CASCADER_MESSAGES, CASCADER_SLOTS, CascaderItem } from './vl-cascader.model';
@@ -16,15 +15,20 @@ import {
 
 @customElement('vl-cascader-item')
 export class VlCascaderItemComponent extends BaseLitElement {
+    // Properties
     @property({ type: Object })
     accessor item: CascaderItem = { label: CASCADER_MESSAGES.LABEL_MISSING };
+
     @property({ type: String })
     accessor label = CASCADER_MESSAGES.LABEL_MISSING;
+
     @property({ type: String, attribute: 'template-type' })
     accessor templateType: string | undefined;
+
     @property({ type: String })
     accessor annotation: string | undefined;
 
+    // Variables
     cascaderRef: VlCascaderComponent | undefined;
 
     static get styles(): (CSSResult | CSSResult[])[] {
