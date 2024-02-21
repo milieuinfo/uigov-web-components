@@ -5,9 +5,8 @@ import {
     programmaticValidator,
     requiredValidator,
 } from '@open-wc/form-control';
-import { LitElement } from 'lit';
+import { LitElement, PropertyDeclarations } from 'lit';
 import { submit } from '@open-wc/form-helpers';
-import { property } from 'lit/decorators.js';
 import { ERROR_MESSAGE_CUSTOM_TAG } from '../error-message/vl-error-message.component';
 import { BaseLitElement } from '@domg-wc/common-utilities';
 import 'reflect-metadata';
@@ -24,33 +23,33 @@ export const formControlDefaults = {
 
 export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     // Properties
-    @property({ type: String })
-    accessor id = formControlDefaults.id;
+    id = formControlDefaults.id;
+    protected name = formControlDefaults.name;
+    protected label = formControlDefaults.label;
+    protected required = formControlDefaults.required;
+    protected disabled = formControlDefaults.disabled;
+    protected error = formControlDefaults.error;
+    protected success = formControlDefaults.success;
 
-    @property({ type: String })
-    accessor name = formControlDefaults.name;
-
-    @property({ type: String })
-    accessor label = formControlDefaults.label;
-
-    @property({ type: Boolean })
-    accessor required = formControlDefaults.required;
-
-    @property({ type: Boolean })
-    accessor disabled = formControlDefaults.disabled;
-
-    @property({ type: Boolean })
-    accessor error = formControlDefaults.error;
-
-    @property({ type: Boolean })
-    accessor success = formControlDefaults.success;
-
-    @property({ type: Boolean, state: true })
-    accessor isInvalid = false;
+    // State
+    protected isInvalid = false;
 
     static formControlValidators = [requiredValidator, minLengthValidator, maxLengthValidator, programmaticValidator];
 
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
+
+    static get properties(): PropertyDeclarations {
+        return {
+            id: { type: String },
+            name: { type: String },
+            label: { type: String },
+            required: { type: Boolean },
+            disabled: { type: Boolean },
+            error: { type: Boolean },
+            success: { type: Boolean },
+            isInvalid: { type: Boolean, state: true },
+        };
+    }
 
     connectedCallback() {
         super.connectedCallback();
