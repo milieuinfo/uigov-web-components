@@ -31,6 +31,8 @@ export const HeaderDefault = story(
         skeleton,
         simple,
         switchCapacityUrl,
+        rejectLogout,
+        logoutCallback,
         applicationLinks,
         onReady,
     }) => html`
@@ -45,8 +47,10 @@ export const HeaderDefault = story(
                 ?data-vl-simple=${simple}
                 ?data-vl-skeleton=${skeleton}
                 data-vl-switch-capacity-url=${switchCapacityUrl}
+                ?data-vl-reject-logout=${rejectLogout}
+                .logoutCallback=${logoutCallback}
                 .applicationLinks=${applicationLinks}
-                @ready=${(event: CustomEvent) => onReady(event)}
+                @ready=${onReady}
             ></vl-header>
         </div>
     `

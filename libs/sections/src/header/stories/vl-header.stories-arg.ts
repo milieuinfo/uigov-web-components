@@ -1,31 +1,16 @@
 import { action } from '@storybook/addon-actions';
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
+import { headerDefaults } from '../vl-header.section';
 
-export const headerArgs = {
-    authenticatedUserUrl: '/sso/ingelogde_gebruiker',
-    skeleton: false,
-    development: false,
-    identifier: '',
-    loginRedirectUrl: '/',
-    loginUrl: '/sso/aanmelden',
-    logoutUrl: '/sso/afgemeld',
-    simple: false,
-    switchCapacityUrl: '/sso/wissel_organisatie',
-    applicationLinks: [],
+type HeaderArgs = typeof headerDefaults & { onReady: () => void };
+
+export const headerArgs: HeaderArgs = {
+    ...headerDefaults,
     onReady: action('ready'),
 };
 
-export const headerArgTypes: ArgTypes<typeof headerArgs> = {
-    skeleton: {
-        name: 'data-vl-skeleton',
-        description: 'Geeft aan of de header een skeleton mag tonen voordat het rendert.',
-        table: {
-            type: { summary: TYPES.BOOLEAN },
-            category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: headerArgs.skeleton },
-        },
-    },
+export const headerArgTypes: ArgTypes<HeaderArgs> = {
     authenticatedUserUrl: {
         name: 'data-vl-authenticated-user-url',
         description: 'De url die wordt opgeroepen om te zien of een gebruiker is ingelogd.',
@@ -92,6 +77,15 @@ export const headerArgTypes: ArgTypes<typeof headerArgs> = {
             defaultValue: { summary: headerArgs.simple },
         },
     },
+    skeleton: {
+        name: 'data-vl-skeleton',
+        description: 'Geeft aan of de header een skeleton moet tonen voordat het rendert.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: headerArgs.skeleton },
+        },
+    },
     switchCapacityUrl: {
         name: 'data-vl-switch-capacity-url',
         description:
@@ -100,6 +94,26 @@ export const headerArgTypes: ArgTypes<typeof headerArgs> = {
             type: { summary: TYPES.URL },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: headerArgs.switchCapacityUrl },
+        },
+    },
+    rejectLogout: {
+        name: 'data-vl-reject-logout',
+        description:
+            'Geeft aan of het logout request moet worden afgewezen.<br/>Een logout request door de gebruiker wordt nooit afgewezen.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: headerArgs.rejectLogout },
+        },
+    },
+    logoutCallback: {
+        name: 'logoutCallback',
+        description: `De callback die aangeroepen wordt bij een logout request.<br/>De logout reason wordt meegegeven aan de callback, door een boolean promise terug te geven kan je het logout request accepteren of afwijzen.<br/>De mogelijke reasons zijn: 'inactivity' en 'expired'.<br/>Een logout request door de gebruiker wordt nooit afgewezen.`,
+        control: false,
+        table: {
+            type: { summary: '(reason: string) => Promise<boolean>' },
+            category: CATEGORIES.PROPERTIES,
+            defaultValue: { summary: headerArgs.logoutCallback },
         },
     },
     applicationLinks: {
