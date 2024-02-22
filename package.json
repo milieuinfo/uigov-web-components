@@ -159,7 +159,7 @@
         "verdaccio": "5.29.0"
     },
     "dependencies": {
-        "@domg/govflanders-style": "21.1.0",
+        "@domg/govflanders-style": "21.2.0",
         "@domg/qlik-lib": "1.0.12",
         "@floating-ui/dom": "1.5.4",
         "@govflanders/vl-ui-accordion": "21.0.2",
