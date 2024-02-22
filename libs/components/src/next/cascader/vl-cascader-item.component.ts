@@ -59,9 +59,10 @@ export class VlCascaderItemComponent extends BaseLitElement {
         }
         return cascaderRef && templateResultForNode
             ? html`${templateResultForNode} ${html`<slot name="content"></<slot>`}`
-            : html`${
-                  !hasLabelSlot ? defaultItemActionTemplate(this.item) : html`<slot name="label"></slot>`
-              }<slot name="content"></<slot>`;
+            : html`
+                  ${!hasLabelSlot ? defaultItemActionTemplate(this.item) : html`<slot name="label"></slot>`}
+                  <slot name="content"></slot>
+              `;
     }
 }
 
