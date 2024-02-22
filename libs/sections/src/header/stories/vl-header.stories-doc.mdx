@@ -26,18 +26,34 @@ import { VlHeader } from '@domg-wc/sections';
 <ArgTypes of={VlHeaderStories.HeaderDefault} />
 
 
-## Extra info
+## Sessies
 
-Bij het aanpassen van volgende attributen wordt achterliggend de session.configure() methode van DV opnieuw aangeroepen:
+### Configuratie
+
+Bij het aanpassen van volgende attributen wordt achterliggend de `session.configure()` methode van DV opnieuw aangeroepen:
 
 -   `data-vl-login-url`
 -   `data-vl-login-redirect-url`
 -   `data-vl-logout-url`
 -   `data-vl-switch-capacity-url`
 
-Zie ook:<br/>
-https://vlaamseoverheid.atlassian.net/wiki/spaces/IKPubliek/pages/6336119448/Aanmelden+met+eenvoudig+of+gekoppeld+toegangsbeheer#De-endpoints-overschrijven
+Zie ook: [Endpoints overschrijven](https://vlaamseoverheid.atlassian.net/wiki/spaces/IKPubliek/pages/6336119448/Aanmelden+met+eenvoudig+of+gekoppeld+toegangsbeheer#De-endpoints-overschrijven)
 
+
+### Logout request
+
+Bij het gebruik maken van sessies kan het logout request afgehandeld worden.<br/>
+Dit kan handig zijn als je wilt dat de gebruiker niet automatisch wordt uitgelogd bv. bij inactiviteit of als de sessie verlopen is.
+
+Door gebruik te maken van het `data-vl-reject-logout` attribuut worden alle logout requests afgewezen, behalve een logout request door de gebruiker.
+
+Met de `logoutCallback` property kan je een callback functie meegeven die wordt aangeroepen bij een logout request.<br/>
+De logout reason wordt meegegeven aan de callback, door een boolean promise terug te geven kan je de logout accepteren of afwijzen.<br/>
+De mogelijke reasons zijn: `inactivity` en `expired`.<br/>
+Een logout request door de gebruiker wordt nooit afgewezen.
+
+
+Zie ook: [De aanvragen voor applicatie logout afhandelen via JavaScript](https://vlaamseoverheid.atlassian.net/wiki/spaces/IKPubliek/pages/6336119448/Aanmelden+met+eenvoudig+of+gekoppeld+toegangsbeheer#De-aanvragen-voor-applicatie-logout-afhandelen-via-JavaScript)
 
 ## Referenties
 
