@@ -1,3 +1,23 @@
+# [1.27.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.26.0...v1.27.0) (2024-02-23)
+
+
+### Bug Fixes
+
+* UIG-2784 - storybook - dropdown controls in storybook hersteld ([002fa65](https://github.com/milieuinfo/uigov-web-components/commit/002fa65dcc56d9f6a361e9dbffdb7f866110729d))
+* UIG-2888 - vl-cascader-item - typfout in render methode rechtgezet ([3771055](https://github.com/milieuinfo/uigov-web-components/commit/37710559d28a33357de603d5549fc2e136f97f9c))
+
+
+### Features
+
+* UIG-2664 - vl-search - visualisatie zoekveld aangepast ([5d59b8a](https://github.com/milieuinfo/uigov-web-components/commit/5d59b8a0b0ed1a00b46a7ef2e74791926b7fec61))
+* UIG-2809 - form - validatie verbeteringen ([76452c4](https://github.com/milieuinfo/uigov-web-components/commit/76452c41993dbd7d7d1a7575a43b31193870a89b))
+* UIG-2825 - vl-data-table - werking uitklapbare rijen verbeterd ([3c16243](https://github.com/milieuinfo/uigov-web-components/commit/3c1624387e79b53508e4b920b60d21046ad0850a))
+* UIG-2830 - vl-tabs - weergave gedrag verbeterd ([58307b2](https://github.com/milieuinfo/uigov-web-components/commit/58307b28c61aee6b716d2ebab2e18b90a8d6b6fa))
+* UIG-2839 - vl-map-legend-item - icon-text attribuut toegevoegd ([0352858](https://github.com/milieuinfo/uigov-web-components/commit/03528588395c1eb27021eeac9a36f3ef1767779d))
+* UIG-2841 - vl-map-legend - data-vl-hide-title toegevoegd ([39c10d2](https://github.com/milieuinfo/uigov-web-components/commit/39c10d24d47c5b288a4a8619c9c283ee118b20d5))
+* UIG-2843 - vl-map-legend - layout-vertical attribuut toegevoegd ([46b9b97](https://github.com/milieuinfo/uigov-web-components/commit/46b9b97662401a551fab300010f443ac6a0f59d0))
+* UIG-2892 - vl-ui-search@3.12.33 verwijderd ([109151b](https://github.com/milieuinfo/uigov-web-components/commit/109151b840ac9592bc504de405e99c7b5759cbb6))
+
 # [1.26.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.25.0...v1.26.0) (2024-02-08)
 
 
