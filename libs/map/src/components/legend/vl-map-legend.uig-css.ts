@@ -353,6 +353,8 @@ const mapLegendStyles: CSSResult = css`
 
     div.uig-map-legend--vertical div.uig-map-legend-item {
         line-height: normal;
+    }
+
     div.uig-map-legend-icon-text {
         font-size: 0.9em;
         font-weight: bolder;
