@@ -5,7 +5,6 @@
     "publishConfig": {
         "registry": "https://repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/"
     },
-    "type": "module",
     "dependencies": {
         "axe-webdriverjs": "^2.3.0",
         "selenium-webdriver": "^4.2.0",
