@@ -28,9 +28,11 @@ export const HeaderDefault = story(
         loginRedirectUrl,
         loginUrl,
         logoutUrl,
+        switchCapacityUrl,
         skeleton,
         simple,
-        switchCapacityUrl,
+        rejectLogout,
+        logoutCallback,
         onReady,
     }) => html`
         <div is="vl-body">
@@ -41,10 +43,12 @@ export const HeaderDefault = story(
                 data-vl-login-redirect-url=${loginRedirectUrl}
                 data-vl-login-url=${loginUrl}
                 data-vl-logout-url=${logoutUrl}
+                data-vl-switch-capacity-url=${switchCapacityUrl}
                 ?data-vl-simple=${simple}
                 ?data-vl-skeleton=${skeleton}
-                data-vl-switch-capacity-url=${switchCapacityUrl}
-                @ready=${(event: CustomEvent) => onReady(event)}
+                ?data-vl-reject-logout=${rejectLogout}
+                .logoutCallback=${logoutCallback}
+                @ready=${onReady}
             ></vl-header>
         </div>
     `
