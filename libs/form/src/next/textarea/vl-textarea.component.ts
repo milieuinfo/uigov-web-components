@@ -22,18 +22,18 @@ export const textareaDefaults = {
 @webComponent('vl-textarea-next')
 export class VlTextareaComponent extends FormControl {
     // Attributes
-    private block = textareaDefaults.block;
-    private readonly = textareaDefaults.readonly;
-    private value = textareaDefaults.value;
-    private placeholder = textareaDefaults.placeholder;
-    private autocomplete = textareaDefaults.autocomplete;
-    private minLength = textareaDefaults.minLength;
-    private maxLength = textareaDefaults.maxLength;
-    private rows = textareaDefaults.rows;
-    private cols = textareaDefaults.cols;
+    protected block = textareaDefaults.block;
+    protected readonly = textareaDefaults.readonly;
+    protected value = textareaDefaults.value;
+    protected placeholder = textareaDefaults.placeholder;
+    protected autocomplete = textareaDefaults.autocomplete;
+    protected minLength = textareaDefaults.minLength;
+    protected maxLength = textareaDefaults.maxLength;
+    protected rows = textareaDefaults.rows;
+    protected cols = textareaDefaults.cols;
 
     // Variables
-    private initialValue = '';
+    protected initialValue = '';
 
     static get styles(): CSSResult[] {
         return [resetStyle, baseStyle, textareaStyle];
