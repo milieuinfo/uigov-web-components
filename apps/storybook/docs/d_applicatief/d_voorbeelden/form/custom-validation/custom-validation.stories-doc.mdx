@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/addon-docs';
 import { Canvas, Source } from '@storybook/blocks';
 import * as customValidationStories from './custom-validation.stories';
-import customValidationSource from './custom-validation.component.raw-ts?raw';
+import customValidationSource from '!!raw-loader!./custom-validation.component';
 
 <Meta of={customValidationStories} />
 
