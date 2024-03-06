@@ -254,16 +254,13 @@ export class VlMapLegend extends BaseLitElement {
                     this.items.push(customItem);
                 } else {
                     const layer = customItem.name;
+                    const defaultItemForLayer = defaultItems.find((item) => item.name === layer);
 
-                    const defaultItemsForLayer = defaultItems
-                        .filter((item) => item.name === layer)
-                        .map((defaultItem) => {
-                            if (defaultItem.type === 'styled') {
-                                defaultItem.iconText = customItem.iconText;
-                            }
-                            return defaultItem;
-                        });
-                    this.items = this.items.concat(...defaultItemsForLayer);
+                    if (defaultItemForLayer && defaultItemForLayer.type === 'styled') {
+                        defaultItemForLayer.iconText = customItem.iconText;
+                    }
+
+                    this.items.push(defaultItemForLayer);
                 }
             });
         } else {
@@ -290,6 +287,8 @@ export class VlMapLegend extends BaseLitElement {
                       <span class="uig-map-legend-text uig-map-legend-title">Legende: </span>
                   </div>`}
             ${this.items.map((item) => {
+                if (!item) return '';
+
                 switch (item.type) {
                     case 'custom':
                         return html` ${item.styleElement} `;
