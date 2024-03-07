@@ -34,6 +34,9 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     // State
     protected isInvalid = false;
 
+    // Variables
+    protected submitFormOnEnter = true;
+
     static formControlValidators = [requiredValidator, minLengthValidator, maxLengthValidator, programmaticValidator];
 
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
@@ -94,7 +97,7 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
 
     private onKeydown(event: KeyboardEvent) {
         if (event.code === 'Enter') {
-            if (this.form) {
+            if (this.form && this.submitFormOnEnter) {
                 submit(this.form);
             }
         }

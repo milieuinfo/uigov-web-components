@@ -81,6 +81,12 @@ export class VlSelectComponent extends FormControl {
         };
     }
 
+    constructor() {
+        super();
+
+        this.submitFormOnEnter = false;
+    }
+
     firstUpdated(changedProperties: Map<string, unknown>) {
         super.firstUpdated(changedProperties);
 
