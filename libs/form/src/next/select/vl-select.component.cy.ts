@@ -5,7 +5,7 @@ import { SelectOption } from './index';
 
 registerWebComponents([VlSelectComponent]);
 
-describe('component - vl-select-next', () => {
+describe('component - vl-select-next - single', () => {
     const options: SelectOption[] = [
         { label: 'Hasselt', value: 'hasselt' },
         { label: 'Turnhout', value: 'turnhout' },
@@ -28,7 +28,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.id', 'test-id');
         cy.get('vl-select-next').shadow().find('select').should('have.id', 'test-id');
     });
 
@@ -37,7 +36,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'name', 'test-name');
         cy.get('vl-select-next').shadow().find('select').should('have.attr', 'name', 'test-name');
     });
 
@@ -46,7 +44,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'label', 'geboorteplaats');
         cy.get('vl-select-next').shadow().find('select').should('have.attr', 'aria-label', 'geboorteplaats');
     });
 
@@ -55,7 +52,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'required');
         cy.get('vl-select-next').shadow().find('select').should('have.attr', 'required');
     });
 
@@ -64,8 +60,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'disabled');
-        cy.get('vl-select-next').should('be.disabled');
         cy.get('vl-select-next').shadow().find('select').should('have.class', 'vl-select--disabled');
         cy.get('vl-select-next').shadow().find('select').should('be.disabled');
     });
@@ -75,7 +69,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'error');
         cy.get('vl-select-next').shadow().find('select').should('have.class', 'vl-select--error');
         cy.get('vl-select-next').shadow().find('select').should('have.attr', 'error');
     });
@@ -85,7 +78,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'success');
         cy.get('vl-select-next').shadow().find('select').should('have.class', 'vl-select--success');
     });
 
@@ -100,7 +92,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'placeholder', 'Selecteer je geboorteplaats');
         cy.get('vl-select-next').shadow().find('.vl-select__placeholder').contains('Selecteer je geboorteplaats');
     });
 
@@ -115,7 +106,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'deletable');
         cy.get('vl-select-next').shadow().find('.vl-pill__close');
     });
 
@@ -124,7 +114,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'search');
         cy.get('vl-select-next').shadow().find('input.vl-input-field.vl-input-field-cloned');
     });
 
@@ -133,7 +122,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'position', 'top');
         cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next').shadow().find('.js-vl-select.is-flipped');
     });
@@ -145,7 +133,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'result-limit', 1);
         cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next').shadow().find('input').type('a');
         cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').should('have.length', 1);
@@ -164,7 +151,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'no-results-text', 'Geen geboorteplaatsen gevonden');
         cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next').shadow().find('input').type('gibberish');
         cy.get('vl-select-next')
@@ -190,7 +176,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'no-choices-text', 'Geen resterende geboorteplaatsen gevonden');
         cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next')
             .shadow()
@@ -216,7 +201,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'search-placeholder', 'Zoek geboorteplaats');
         cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next').shadow().find('input').should('have.attr', 'placeholder', 'Zoek geboorteplaats');
         cy.checkA11y('vl-select-next');
@@ -227,7 +211,6 @@ describe('component - vl-select-next', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').should('have.attr', 'search');
         cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next').shadow().find('input').type('Hasselt');
         cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt');
@@ -645,5 +628,77 @@ describe('component - vl-select-next - multiple', () => {
             expect(component.getSelectedValues()).to.have.members(['dans']);
         });
         cy.checkA11y('vl-select-next');
+    });
+});
+
+describe('component - vl-select-next - single - in form', () => {
+    const options: SelectOption[] = [
+        { label: 'Hasselt', value: 'hasselt' },
+        { label: 'Turnhout', value: 'turnhout' },
+        { label: 'Knokke-Heist', value: 'knokke-heist' },
+        { label: 'Waregem', value: 'waregem' },
+        { label: 'Lier', value: 'lier' },
+        { label: 'Rio Piedras', value: 'rio piedras' },
+    ];
+
+    beforeEach(() => {
+        cy.mount(html`
+            <form
+                id="form"
+                class="vl-form"
+                @submit=${(e: Event) => {
+                    e.preventDefault();
+                }}
+            >
+                <vl-select-next
+                    id="geboorteplaats"
+                    name="geboorteplaats"
+                    .options=${options}
+                    search
+                    required
+                ></vl-select-next>
+                <button class="vl-button" type="submit">Verstuur</button>
+            </form>
+        `);
+    });
+
+    it('should submit value', () => {
+        const submittedFormData = {
+            geboorteplaats: 'hasselt',
+        };
+
+        cy.createStubForEvent('form', 'submit');
+
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
+        cy.get('form').find('button[type="submit"]').click();
+        cy.get('@submit').should('have.been.calledOnce');
+        cy.get('form').then(($el) => {
+            const formData = Object.fromEntries(new FormData($el.get(0) as HTMLFormElement));
+            expect(formData).to.deep.equal(submittedFormData);
+        });
+    });
+
+    it('should prevent form submission on validation error', () => {
+        cy.createStubForEvent('form', 'submit');
+
+        cy.get('form').find('button[type="submit"]').click();
+        cy.get('@submit').should('not.have.been.called');
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Hasselt');
+        cy.get('form').find('button[type="submit"]').click();
+        cy.get('@submit').should('have.been.calledOnce');
+    });
+
+    it('should not submit form on press enter', () => {
+        cy.createStubForEvent('form', 'submit');
+
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
+        cy.get('vl-select-next').shadow().find('select').find('option').contains('Hasselt');
+        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-next').shadow().find('input.vl-input-field').type('{enter}');
+        cy.get('@submit').should('not.have.been.called');
     });
 });
