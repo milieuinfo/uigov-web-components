@@ -1,6 +1,18 @@
 import { css, CSSResult } from 'lit';
 
 const styles: CSSResult = css`
+    :is(input[name='vl-autocomplete-1-input-name'][show-clear=''].vl-input-field) {
+        padding-right: 3rem;
+
+        &:hover {
+            padding-right: 2.9rem;
+        }
+
+        &:hover:focus {
+            padding-right: 3rem;
+        }
+    }
+
     label.small {
         font-size: 14px;
     }
