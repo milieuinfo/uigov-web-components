@@ -490,6 +490,7 @@ export class VlAutocomplete extends BaseLitElement {
                             name="vl-autocomplete-1-input-name"
                             id="${this.defaultInputId}"
                             placeholder="${this.placeholder}"
+                            ?show-clear="${this.showClear}"
                             class="vl-input-field vl-input-field--block"
                             aria-describedby="vl-autocomplete-1-hint"
                             autocomplete="off"
