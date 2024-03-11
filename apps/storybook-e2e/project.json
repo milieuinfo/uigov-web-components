@@ -13,9 +13,8 @@
         },
         "lint": {
             "executor": "@nx/eslint:lint",
-            "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["apps/storybook-e2e/**/*.{js,ts}"]
+                "lintFilePatterns": ["{projectRoot}/**/*.{js,ts}"]
             }
         }
     },

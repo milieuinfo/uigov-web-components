@@ -30,9 +30,8 @@
         },
         "lint": {
             "executor": "@nx/eslint:lint",
-            "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["libs/qlik/**/*.ts", "libs/qlik/package.json"]
+                "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/package.json"]
             }
         },
         "test": {
