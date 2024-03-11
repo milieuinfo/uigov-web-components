@@ -64,9 +64,8 @@
         },
         "lint": {
             "executor": "@nx/eslint:lint",
-            "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["apps/playground-react/**/*.{ts,tsx,js,jsx}"]
+                "lintFilePatterns": ["{projectRoot}/**/*.{ts,tsx,js,jsx}"]
             }
         },
         "test": {

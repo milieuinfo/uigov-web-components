@@ -34,6 +34,19 @@ if [ $? -eq 0 ]
 fi
 set -e
 
+echo "build integrator"
+set +e
+npx nx build integrator 2> buffer-stderr.txt 1> buffer-stdout.txt
+if [ $? -eq 0 ]
+  then
+    echo "build integrator - success"
+  else
+    echo "build integrator - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt >&2
+    exit $?
+fi
+set -e
+
 echo "build playground-legacy"
 set +e
 npx nx build playground-legacy 2> buffer-stderr.txt 1> buffer-stdout.txt

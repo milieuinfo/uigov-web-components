@@ -52,9 +52,8 @@
         },
         "lint": {
             "executor": "@nx/eslint:lint",
-            "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["apps/playground-native/**/*.ts"]
+                "lintFilePatterns": ["{projectRoot}/**/*.ts"]
             }
         },
         "test": {
