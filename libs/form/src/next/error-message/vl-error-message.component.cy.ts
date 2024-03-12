@@ -35,13 +35,19 @@ describe('component - vl-error-message-next', () => {
     it('should set for', () => {
         cy.mount(html`<vl-error-message-next for="test-input">Test error message</vl-error-message-next>`);
 
-        cy.get('vl-error-message-next').should('have.attr', 'for', 'test-input');
+        cy.runTestFor<VlErrorMessageComponent>('vl-error-message-next', (component) => {
+            // @ts-ignore: negeer aanspreken van private property
+            expect(component.for).to.equal('test-input');
+        });
     });
 
     it('should set state', () => {
         cy.mount(html`<vl-error-message-next state="missingValue">Test error message</vl-error-message-next>`);
 
-        cy.get('vl-error-message-next').should('have.attr', 'state', 'missingValue');
+        cy.runTestFor<VlErrorMessageComponent>('vl-error-message-next', (component) => {
+            // @ts-ignore: negeer aanspreken van private property
+            expect(component.state).to.equal('missingValue');
+        });
     });
 
     it('should set content', () => {

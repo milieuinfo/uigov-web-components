@@ -56,10 +56,6 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
 
         this.addEventListener('keydown', this.onKeydown);
         this.addEventListener('invalid', this.onInvalid);
-
-        if (!this.label) {
-            this.label = this.internals.labels[0]?.innerText || '';
-        }
     }
 
     disconnectedCallback() {

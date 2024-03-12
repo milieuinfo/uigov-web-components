@@ -1,6 +1,7 @@
 import { CSSResult, html, LitElement, PropertyDeclarations, TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { vlElementsStyle } from '@domg-wc/elements';
+import { VlFormLabelComponent } from '@domg-wc/form/next/form-label';
 import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
 import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
 import { VlInputFieldMaskedComponent } from '@domg-wc/form/next/input-field-masked';
@@ -130,6 +131,7 @@ export class AppElement extends LitElement {
     static {
         registerWebComponents([
             VlErrorMessageComponent,
+            VlFormLabelComponent,
             VlInputFieldComponent,
             VlInputFieldMaskedComponent,
             VlTextareaComponent,
@@ -236,9 +238,11 @@ export class AppElement extends LitElement {
                 <form id="form" class="vl-form" @submit=${this.onSubmit} @reset=${this.onReset}>
                     <div class="vl-form-grid vl-form-grid--is-stacked">
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="voornaam"
-                                >Voornaam${this.firstNameRequired ? ' *' : ''}</label
-                            >
+                            <vl-form-label-next
+                                for="voornaam"
+                                label="Voornaam${this.firstNameRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-input-field-next
@@ -300,9 +304,11 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="achternaam"
-                                >Achternaam${this.lastNameRequired ? ' *' : ''}</label
-                            >
+                            <vl-form-label-next
+                                for="achternaam"
+                                label="Achternaam${this.lastNameRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-input-field-next
@@ -364,9 +370,11 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="rrn"
-                                >Rijksregisternummer${this.rrnRequired ? ' *' : ''}</label
-                            >
+                            <vl-form-label-next
+                                for="rrn"
+                                label="Rijksregisternummer${this.rrnRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-input-field-masked-next
@@ -420,9 +428,11 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="interesses"
-                                >Interesses${this.interestsRequired ? ' *' : ''}</label
-                            >
+                            <vl-form-label-next
+                                for="interesses"
+                                label="Interesses${this.interestsRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-textarea-next
@@ -481,9 +491,11 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="geboortedatum">
-                                Geboortedatum${this.birthdateRequired ? ' *' : ''}
-                            </label>
+                            <vl-form-label-next
+                                for="geboortedatum"
+                                label="Geboortedatum${this.birthdateRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-datepicker-next
@@ -538,9 +550,11 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="geboorteplaats"
-                                >Geboorteplaats${this.birthplaceRequired ? ' *' : ''}</label
-                            >
+                            <vl-form-label-next
+                                for="geboorteplaats"
+                                label="Geboorteplaats${this.birthplaceRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-select-next
@@ -595,9 +609,11 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="hobby's"
-                                >Hobby's${this.hobbiesRequired ? ' *' : ''}</label
-                            >
+                            <vl-form-label-next
+                                for="hobby's"
+                                label="Hobby's${this.hobbiesRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-select-next
@@ -647,9 +663,11 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="leeftijd"
-                                >Leeftijd${this.ageRequired ? ' *' : ''}</label
-                            >
+                            <vl-form-label-next
+                                for="leeftijd"
+                                label="Leeftijd${this.ageRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-input-field-next
@@ -708,9 +726,11 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="kinderen"
-                                >Aantal kinderen${this.kidsRequired ? ' *' : ''}</label
-                            >
+                            <vl-form-label-next
+                                for="kinderen"
+                                label="Aantal kinderen${this.kidsRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-input-field-next
@@ -767,9 +787,11 @@ export class AppElement extends LitElement {
                         ${this.showAddressField
                             ? html`
                                   <div class="vl-col--2-12">
-                                      <label class="vl-form__label vl-form__label--block" for="adres"
-                                          >Adres${this.addressFieldRequired ? ' *' : ''}</label
-                                      >
+                                      <vl-form-label-next
+                                          for="adres"
+                                          label="Adres${this.addressFieldRequired ? ' *' : ''}"
+                                          block
+                                      ></vl-form-label-next>
                                   </div>
                                   <div class="vl-col--4-12">
                                       <vl-input-field-next
@@ -827,9 +849,11 @@ export class AppElement extends LitElement {
                               `
                             : ''}
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="contactmethode">
-                                Voorkeurscontactmethode${this.preferredContactMethodRequired ? ' *' : ''}
-                            </label>
+                            <vl-form-label-next
+                                for="contactmethode"
+                                label="Voorkeurscontactmethode${this.preferredContactMethodRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-radio-group-next
@@ -891,9 +915,11 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="fotos">
-                                Pasfoto's${this.photosRequired ? ' *' : ''}
-                            </label>
+                            <vl-form-label-next
+                                for="fotos"
+                                label="Pasfoto's${this.photosRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-upload-next
@@ -956,9 +982,11 @@ export class AppElement extends LitElement {
                             </div>
                         </div>
                         <div class="vl-col--2-12">
-                            <label class="vl-form__label vl-form__label--block" for="waarheidsgetrouw">
-                                Waarheidsgetrouw${this.filledInTruthfullyRequired ? ' *' : ''}
-                            </label>
+                            <vl-form-label-next
+                                for="waarheidsgetrouw"
+                                label="Waarheidsgetrouw${this.filledInTruthfullyRequired ? ' *' : ''}"
+                                block
+                            ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
                             <vl-checkbox-next

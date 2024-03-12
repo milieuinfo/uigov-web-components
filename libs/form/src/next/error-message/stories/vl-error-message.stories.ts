@@ -22,9 +22,11 @@ export default {
 } as Meta<typeof errorMessageArgs>;
 
 export const ErrorMessageDefault = story(errorMessageArgs, ({ for: forValue, state, show, defaultSlot }) => {
-    return html` <vl-error-message-next for=${forValue} state=${state} ?show=${show}
-        >${unsafeHTML(defaultSlot)}</vl-error-message-next
-    >`;
+    return html`
+        <vl-error-message-next for=${forValue} state=${state} ?show=${show}
+            >${unsafeHTML(defaultSlot)}</vl-error-message-next
+        >
+    `;
 });
 ErrorMessageDefault.storyName = 'vl-error-message-next - default';
 ErrorMessageDefault.args = {

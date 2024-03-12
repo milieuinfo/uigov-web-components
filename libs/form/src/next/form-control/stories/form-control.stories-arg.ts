@@ -34,7 +34,7 @@ export const formControlArgTypes: ArgTypes<FormControlArgs> = {
     label: {
         name: 'label',
         description:
-            'Het label van het veld.<br>Standaard wordt de tekst van het bijhorende label element gebruikt, indien dit niet aanwezig is of geen tekst bevat kan je dit attribuut gebruiken om het label te definiëren.',
+            'Vult het aria-label attribuut van het veld in.<br/>Kan gebruikt worden als er geen bijhorend label element of vl-form-label component is.',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
