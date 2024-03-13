@@ -1,7 +1,7 @@
 import { ArgTypes, Canvas } from '@storybook/blocks';
 import * as VlHeaderStories from './vl-header.stories';
 
-# Header
+# Digitaal Vlaanderen Header
 
 Injecteert de global header widget van Digitaal Vlaanderen.
 Default wordt de header geïnjecteerd in de body, bij het gebruik van het vl-body element wordt de header geïnjecteerd in
@@ -35,9 +35,23 @@ Bij het aanpassen van volgende attributen wordt achterliggend de session.configu
 -   `data-vl-logout-url`
 -   `data-vl-switch-capacity-url`
 
-Zie ook:<br/>
-https://vlaamseoverheid.atlassian.net/wiki/spaces/IKPubliek/pages/6336119448/Aanmelden+met+eenvoudig+of+gekoppeld+toegangsbeheer#De-endpoints-overschrijven
 
+Zie [Digitaal Vlaanderen - De endpoints overschrijven](https://vlaamseoverheid.atlassian.net/wiki/spaces/IKPubliek/pages/6336119448/Aanmelden+met+eenvoudig+of+gekoppeld+toegangsbeheer#De-endpoints-overschrijven) voor meer informatie.
+
+## Applicatieve Links
+
+Je kan applicatieve links toevoegen aan de header door gebruik te maken van de `applicationLinks` property.<br/>
+Deze property verwacht een array met objecten van het volgende type:
+
+```js
+export type ApplicationLink = {
+    label: string;
+    href: string;
+    icon?: string;
+    target?: string;
+};
+```
+Zie [Digitaal Vlaanderen - Header applicatieve links](https://vlaamseoverheid.atlassian.net/wiki/spaces/IKPubliek/pages/6508874105/Aanmeldmenu#Applicatieve-links) voor meer informatie.
 
 ## Referenties
 

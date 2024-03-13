@@ -31,6 +31,7 @@ export const HeaderDefault = story(
         skeleton,
         simple,
         switchCapacityUrl,
+        applicationLinks,
         onReady,
     }) => html`
         <div is="vl-body">
@@ -44,6 +45,7 @@ export const HeaderDefault = story(
                 ?data-vl-simple=${simple}
                 ?data-vl-skeleton=${skeleton}
                 data-vl-switch-capacity-url=${switchCapacityUrl}
+                .applicationLinks=${applicationLinks}
                 @ready=${(event: CustomEvent) => onReady(event)}
             ></vl-header>
         </div>
@@ -54,4 +56,5 @@ HeaderDefault.storyName = 'vl-header - default';
 HeaderDefault.args = {
     development: true,
     identifier: '59188ff6-662b-45b9-b23a-964ad48c2bfb',
+    simple: true,
 };

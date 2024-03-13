@@ -19,6 +19,13 @@ const customRegistration = () =>
             customElements.define('vl-header', VlHeader);
         });
 
+export type ApplicationLink = {
+    label: string;
+    href: string;
+    icon?: string;
+    target?: string;
+};
+
 @webComponentCustom(customRegistration)
 export class VlHeader extends BaseLitElement {
     // Attributen
@@ -31,6 +38,9 @@ export class VlHeader extends BaseLitElement {
     private simple = false;
     private skeleton = false;
     private switchCapacityUrl = '/sso/wissel_organisatie';
+
+    // Properties
+    applicationLinks: ApplicationLink[] = [];
 
     // Private properties
     private observer: MutationObserver | null = null;
@@ -48,6 +58,7 @@ export class VlHeader extends BaseLitElement {
             simple: { type: Boolean, attribute: 'data-vl-simple', reflect: true },
             skeleton: { type: Boolean, attribute: 'data-vl-skeleton', reflect: true },
             switchCapacityUrl: { type: String, attribute: 'data-vl-switch-capacity-url', reflect: true },
+            applicationLinks: { type: Array },
         };
     }
 
@@ -170,6 +181,19 @@ export class VlHeader extends BaseLitElement {
                 return widget;
             })
             .then((widget: any) => {
+                if (this.applicationLinks.length > 0) {
+                    const links = this.applicationLinks.map((link) => {
+                        return {
+                            type: 'link',
+                            ...link,
+                        };
+                    });
+
+                    widget.getExtension('citizen_profile').then((extension: any) => {
+                        extension.getMenu().getGroup('application').addMultiple(links);
+                    });
+                }
+
                 if (this.simple) {
                     return;
                 }
