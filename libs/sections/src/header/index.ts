@@ -1,1 +1,1 @@
-export { VlHeader } from './vl-header.section';
+export { VlHeader, ApplicationLink } from './vl-header.section';

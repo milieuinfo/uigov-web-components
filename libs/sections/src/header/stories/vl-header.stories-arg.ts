@@ -12,6 +12,7 @@ export const headerArgs = {
     logoutUrl: '/sso/afgemeld',
     simple: false,
     switchCapacityUrl: '/sso/wissel_organisatie',
+    applicationLinks: [],
     onReady: action('ready'),
 };
 
@@ -99,6 +100,15 @@ export const headerArgTypes: ArgTypes<typeof headerArgs> = {
             type: { summary: TYPES.URL },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: headerArgs.switchCapacityUrl },
+        },
+    },
+    applicationLinks: {
+        name: 'applicationLinks',
+        description: 'De links die getoond worden in de header.<br/>Zie de documentatie pagina voor meer informatie.',
+        table: {
+            type: { summary: 'ApplicationLink[]' },
+            category: CATEGORIES.PROPERTIES,
+            defaultValue: { summary: '[]' },
         },
     },
     onReady: {
