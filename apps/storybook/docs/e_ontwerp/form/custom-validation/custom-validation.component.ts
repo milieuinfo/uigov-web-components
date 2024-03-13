@@ -4,6 +4,7 @@ import { CSSResult, LitElement, PropertyDeclarations, html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
 import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
+import { VlFormLabelComponent } from '@domg-wc/form/next/form-label';
 import { vlElementsStyle } from '@domg-wc/elements';
 
 const fooValidator: Validator = {
@@ -32,7 +33,7 @@ export class FormCustomValidationComponent extends LitElement {
     private success = false;
 
     static {
-        registerWebComponents([VlInputFieldWithFooValidatorComponent, VlErrorMessageComponent]);
+        registerWebComponents([VlInputFieldWithFooValidatorComponent, VlFormLabelComponent, VlErrorMessageComponent]);
     }
 
     static get styles(): (CSSResult | CSSResult[])[] {
@@ -50,7 +51,7 @@ export class FormCustomValidationComponent extends LitElement {
             <form class="vl-form" @submit=${this.onSubmit} @reset=${this.onReset}>
                 <div class="vl-form-grid vl-form-grid--is-stacked">
                     <div class="vl-col--2-12">
-                        <label class="vl-form__label vl-form__label--block" for="waarde">Waarde *</label>
+                        <vl-form-label-next for="waarde" label="Waarde *" block></vl-form-label-next>
                     </div>
                     <div class="vl-col--4-12">
                         <vl-input-field-with-foo-validator

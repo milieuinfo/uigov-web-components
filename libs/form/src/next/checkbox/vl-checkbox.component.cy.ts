@@ -167,7 +167,6 @@ describe('component - vl-checkbox-next', () => {
     });
 });
 
-// TODO: testen migreren naar playgrounds-e2e
 describe('component - vl-checkbox-next - in form', () => {
     it('should mount', () => {
         mountCheckboxInForm();
@@ -240,7 +239,9 @@ describe('component - vl-checkbox-next - switch', () => {
     });
 
     it('should be accessible', () => {
-        cy.mount(html` <vl-checkbox-next value=${value} switch label="test-label">Bevestig.</vl-checkbox-next> `);
+        cy.mount(
+            html` <vl-checkbox-next id="test-id" value=${value} switch label="test-label">Bevestig.</vl-checkbox-next> `
+        );
         cy.injectAxe();
 
         cy.checkA11y('vl-checkbox-next');
@@ -301,7 +302,6 @@ describe('component - vl-checkbox-next - switch', () => {
     });
 });
 
-// TODO: testen migreren naar playgrounds-e2e
 describe('component - vl-checkbox-next - switch in form', () => {
     it('should mount', () => {
         mountCheckboxInForm({ isSwitch: true });

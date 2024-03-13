@@ -51,12 +51,7 @@ describe('component - vl-datepicker-next', () => {
     });
 
     it('should be accessible', () => {
-        cy.mount(
-            html`
-                <label id="label-for-date" for="date">Datum: </label>
-                <vl-datepicker-next id="date" name="date" label="date"></vl-datepicker-next>
-            `
-        );
+        cy.mount(html` <vl-datepicker-next id="date" name="date" label="date"></vl-datepicker-next> `);
         cy.injectAxe();
 
         cy.checkA11y('vl-datepicker-next');
@@ -335,6 +330,7 @@ const mountDatepickerInForm = ({ value, disabled, block, required }: typeof date
                         <vl-datepicker-next
                             id="geboortedatum"
                             name="geboortedatum"
+                            label="Geboortedatum"
                             ?block=${block}
                             ?required=${required}
                             ?disabled=${disabled}

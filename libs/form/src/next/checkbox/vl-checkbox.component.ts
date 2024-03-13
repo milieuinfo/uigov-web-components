@@ -92,7 +92,6 @@ export class VlCheckboxComponent extends FormControl {
                     name=${this.name || nothing}
                     class="vl-checkbox__toggle"
                     type="checkbox"
-                    aria-label=${this.label || nothing}
                     ?required=${this.required}
                     ?disabled=${this.disabled}
                     ?error=${this.error}
@@ -122,18 +121,17 @@ export class VlCheckboxComponent extends FormControl {
         return html`
             <div class=${classMap(classes)}>
                 <input
-                    id=${this.id}
-                    name=${this.name}
+                    id=${this.id || nothing}
+                    name=${this.name || nothing}
                     type="checkbox"
                     class="vl-checkbox--switch"
-                    aria-label=${this.label || nothing}
                     ?required=${this.required}
                     ?disabled=${this.disabled}
                     ?error=${this.error}
                     .value=${this.value}
                     .checked=${this.checked}
                 />
-                <label class="vl-checkbox__label" @click=${this.toggle}>
+                <label for=${this.id} class="vl-checkbox__label" @click=${this.toggle}>
                     <span class="vl-checkbox--switch__label">
                         <span aria-hidden="true"></span>
                     </span>
