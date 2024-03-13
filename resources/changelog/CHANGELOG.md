@@ -1,3 +1,24 @@
+# [1.28.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.27.0...v1.28.0) (2024-03-13)
+
+
+### Bug Fixes
+
+* UIG-2905 - vl-map-legend - verwijder dubbele custom items ([9b2d6c3](https://github.com/milieuinfo/uigov-web-components/commit/9b2d6c3d94b8af168d5564158d1a8c771df16f39))
+
+
+### Features
+
+* storybook - documentatie structuur aangepast ([99841b0](https://github.com/milieuinfo/uigov-web-components/commit/99841b06cc9aca762ae9a68f3b17afd163e7b4d7))
+* UIG-2428 - vl-autocomplete - witruimte voor clear button verbeterd ([849022a](https://github.com/milieuinfo/uigov-web-components/commit/849022a777904f3a11a53013c2363b0ec1968faf))
+* UIG-2758 - vl-textarea-rich-next - introductie component ([3fa3dc7](https://github.com/milieuinfo/uigov-web-components/commit/3fa3dc78e318323e60fc4cd0b60895a9a2dd5ae0))
+* UIG-2824 - raw-loader ([b902cf4](https://github.com/milieuinfo/uigov-web-components/commit/b902cf4588b5b63d4d7af28e3f7a593bfa29de9e))
+* UIG-2836 - vl-form-label-next - introductie component ([7c7c8e2](https://github.com/milieuinfo/uigov-web-components/commit/7c7c8e255da153eb88695bcb2e7d67607340bfee))
+* UIG-2840 - vl-select-next - multiple form values ondersteuning toegevoegd ([e22a295](https://github.com/milieuinfo/uigov-web-components/commit/e22a295adfe52919d6b1a4f54ee3dac49b1c01b2))
+* UIG-2870 - vl-header - applicatieve links ([faa5f00](https://github.com/milieuinfo/uigov-web-components/commit/faa5f00cb13c14c51144cb36dc4e9eb25e4e554d))
+* UIG-2894 - 'type: module' behouden in de package.json van de npm packages ([9115b31](https://github.com/milieuinfo/uigov-web-components/commit/9115b3189efe27e1af20e2ee7fbe385135b39722))
+* UIG-2901 - vl-select-next - submit form niet op enter ([6c65576](https://github.com/milieuinfo/uigov-web-components/commit/6c65576d22035edf87eaa746900cd689050b89c8))
+* UIG-2902 - integration-lib en integrator-app ([bb5673f](https://github.com/milieuinfo/uigov-web-components/commit/bb5673f7cafc7a1a8126e9b6704f60dec466175a))
+
 # [1.27.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.26.0...v1.27.0) (2024-02-23)
 
 
