@@ -42,16 +42,16 @@ Wij gebruiken node via volta, de historiek van de versies die wij gebruiken is a
 
 ## Afname artifact's
 
-Als UIG team hebben wij geen productie toepassing. Wij hebben wel de 'AllianceApp' die we gebruiken om manueel te testen, hiervoor
+Als UIG team hebben wij geen productie toepassing. Wij hebben wel de 'ConsumerApp' die we gebruiken om manueel te testen, hiervoor
 zijn er nog geen automatische testen in de build.
-De 'AllianceApp' is een native toepassing die gebundeld en geserved wordt m.b.v. webpack en devserver. We testen zowel de gewone
+De 'ConsumerApp' is een native toepassing die gebundeld en geserved wordt m.b.v. webpack en devserver. We testen zowel de gewone
 artifacts als de fat-js na upgrades of gemelde problemen.
 
 M.b.t. het gemelde 'import' probleem van Decibel
 
 - er is geen verschil in afname tussen node v16.18.1 en v20.11.0 
 - de artifacts zijn afneembaar zonder de 'type: module' specificatie in de package.json
-- er moet geen '.js' suffix gespecifieerd worden, niet voor code in de 'AllianceApp' en ook niet voor '@domg-wc' componenten
+- er moet geen '.js' suffix gespecifieerd worden, niet voor code in de 'ConsumerApp' en ook niet voor '@domg-wc' componenten
   het kan ook geen kwaad om de '.js' suffix te specifiëren, beide werken
 
 

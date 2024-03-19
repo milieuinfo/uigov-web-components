@@ -1,5 +1,7 @@
 import '@domg-wc/elements';
 import '@domg-wc/components';
+import '@domg-wc/components/next/cascader';
+import '@domg-wc/components/next/steps';
 import '@domg-wc/form/next/checkbox';
 import '@domg-wc/form/next/datepicker';
 import '@domg-wc/form/next/error-message';
