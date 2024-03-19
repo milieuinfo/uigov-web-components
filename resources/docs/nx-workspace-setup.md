@@ -8,12 +8,7 @@ Dit document beschrijft (in grote lijnen) de stappen utgevoerd om de UIG repo op
     -   [applications | web-components] / apps [an empty workspace with no plugins with a layout that works best for building apps]
     -   no distributed caching
 
-## Setup - applications
-
--   npm install -D @nx/web
--   npx nx g @nx/web:application alliance
-
-## Setup - web-components
+## Setup - libs & apps
 
 -   npx create-nx-workspace@latest
     -   [applications | web-components] / apps [an empty workspace with no plugins with a layout that works best for building apps]
@@ -36,6 +31,7 @@ Dit document beschrijft (in grote lijnen) de stappen utgevoerd om de UIG repo op
 -   npx nx g @nx/react:application playground-react --e2eTestRunner=none
 -   npx nx g @nx/web:application storybook
 -   npx nx g @nx/web:application integrator
+-   npx nx g @nx/web:application consumer
 
 ## Storybook
 

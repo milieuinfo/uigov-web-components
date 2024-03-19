@@ -1,0 +1,114 @@
+{
+    "name": "consumer",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/consumer/src",
+    "tags": [],
+    "targets": {
+        "build-named": {
+            "executor": "@nx/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "target": "web",
+                "outputPath": "dist/apps/consumer/named",
+                "compiler": "swc",
+                "main": "apps/consumer/src/app-named/main.ts",
+                "tsConfig": "apps/consumer/tsconfig.app.json",
+                "webpackConfig": "apps/consumer/webpack.config.js",
+                "assets": ["apps/consumer/src/favicon.ico"],
+                "index": "apps/consumer/src/app-named/index.html",
+                "baseHref": "/",
+                "styles": ["apps/consumer/src/styles.scss"],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "extractLicenses": true,
+                    "vendorChunk": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/consumer/src/environments/environment.ts",
+                            "with": "apps/consumer/src/environments/environment.prod.ts"
+                        }
+                    ]
+                }
+            }
+        },
+        "build-side-effect": {
+            "executor": "@nx/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "target": "web",
+                "outputPath": "dist/apps/consumer/side-effect",
+                "compiler": "swc",
+                "main": "apps/consumer/src/app-side-effect/main.ts",
+                "tsConfig": "apps/consumer/tsconfig.app.json",
+                "webpackConfig": "apps/consumer/webpack.config.js",
+                "assets": ["apps/consumer/src/favicon.ico"],
+                "index": "apps/consumer/src/app-side-effect/index.html",
+                "baseHref": "/",
+                "styles": ["apps/consumer/src/styles.scss"],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "extractLicenses": true,
+                    "vendorChunk": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/consumer/src/environments/environment.ts",
+                            "with": "apps/consumer/src/environments/environment.prod.ts"
+                        }
+                    ]
+                }
+            }
+        },
+        "serve-named": {
+            "executor": "@nx/webpack:dev-server",
+            "options": {
+                "buildTarget": "consumer:build-named",
+                "host": "127.0.0.1",
+                "port": 4212
+            },
+            "configurations": {
+                "production": {
+                    "buildTarget": "consumer:build-named:production"
+                }
+            }
+        },
+        "serve-side-effect": {
+            "executor": "@nx/webpack:dev-server",
+            "options": {
+                "buildTarget": "consumer:build-side-effect",
+                "host": "127.0.0.1",
+                "port": 4213
+            },
+            "configurations": {
+                "production": {
+                    "buildTarget": "consumer:build-side-effect:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/consumer/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    }
+}
