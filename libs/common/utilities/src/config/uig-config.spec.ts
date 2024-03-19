@@ -4,6 +4,9 @@ describe('uig-config preferences', () => {
     beforeEach(() => {
         // foefel om te zorgen dat elke test met niet geïnitialiseerde preferences start
         UigConfig['preferences'] = null;
+        // console logging afzetten
+        jest.spyOn(console, 'info').mockImplementation(() => {});
+        jest.spyOn(console, 'error').mockImplementation(() => {});
     });
 
     it('should use the default preferences', () => {

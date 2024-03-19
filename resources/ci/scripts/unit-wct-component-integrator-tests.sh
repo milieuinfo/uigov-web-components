@@ -39,3 +39,7 @@ npx cypress run --component
 
 echo "run the integrator e2e tests"
 npm run integrator:test
+
+echo "run the consumer e2e tests"
+npm run consumer:install
+npm run consumer:ci-test
