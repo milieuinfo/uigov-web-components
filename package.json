@@ -33,7 +33,7 @@
         "build:elements": "npx nx build-with-js elements",
         "build:components": "npx nx build-with-js components",
         "build:form": "npx nx build-with-js form",
-        "build:integration": "npx nx build integration",
+        "build:integration": "npx nx build-with-js integration",
         "build:map": "npx nx build-with-js map",
         "build:qlik": "npx nx build-with-js qlik",
         "build:sections": "npx nx build-with-js sections",
