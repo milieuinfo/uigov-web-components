@@ -1,7 +1,7 @@
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlPopoverActionListComponent, VlPopoverComponent } from './index';
 import { html, nothing } from 'lit';
-import { VlPopoverActionComponent } from '@domg-wc/components';
+import { VlPopoverActionComponent } from './vl-popover-action.component';
 import { action } from '@storybook/addon-actions';
 
 registerWebComponents([VlPopoverComponent, VlPopoverActionComponent, VlPopoverActionListComponent]);

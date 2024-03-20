@@ -1,4 +1,4 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
+import { CSSResult, TemplateResult, html } from 'lit';
 import { BaseLitElement } from '@domg-wc/common-utilities';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
