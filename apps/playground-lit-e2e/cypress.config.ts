@@ -4,8 +4,6 @@ export default defineConfig({
     fileServerFolder: '.',
     fixturesFolder: './src/fixtures',
     modifyObstructiveCode: false,
-    video: true,
-    videosFolder: '../../dist/cypress/apps/playground-lit-e2e/videos',
     screenshotsFolder: '../../dist/cypress/apps/playground-lit-e2e/screenshots',
     chromeWebSecurity: false,
     retries: 3,

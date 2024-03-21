@@ -19,5 +19,9 @@ if [ $? -eq 0 ]
 fi
 set -e
 
+echo "create dist folder with emtpy text file"
+mkdir dist
+touch dist/empty.txt
+
 echo "run the e2e tests"
 npm run storybook:ci-test

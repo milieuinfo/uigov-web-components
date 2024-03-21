@@ -81,10 +81,9 @@ unit-wct-component-integrator-tests:
         git config --global init.defaultBranch develop
     - checkout
     - script: bash ./resources/ci/scripts/unit-wct-component-integrator-tests-docker.sh
-    - script: *dist-artifact
   artifacts:
     - name: dist-unit-wct-component-integrator-tests
-      location: dist-artifact
+      location: dist
       pattern: '**/*.*'
 
 e2e-tests-storybook:
@@ -97,12 +96,10 @@ e2e-tests-storybook:
         git config --global init.defaultBranch develop
     - checkout
     - script: bash ./resources/ci/scripts/e2e-tests-storybook-docker.sh
-    - script: *dist-artifact
   artifacts:
     - name: dist-e2e-tests-storybook
-      location: dist-artifact
+      location: dist
       pattern: '**/*.*'
-      shared: true
 
 release-and-publish:
   requirements: *requirements

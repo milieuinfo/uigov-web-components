@@ -5,8 +5,6 @@ export default defineConfig({
     fileServerFolder: '.',
     fixturesFolder: './src/fixtures',
     modifyObstructiveCode: false,
-    video: true,
-    videosFolder: '../../dist/cypress/apps/storybook-e2e/videos',
     screenshotsFolder: '../../dist/cypress/apps/storybook-e2e/screenshots',
     chromeWebSecurity: false,
     retries: 3,

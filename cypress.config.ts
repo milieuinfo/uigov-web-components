@@ -2,7 +2,6 @@ import { defineConfig } from 'cypress';
 import path from 'path';
 
 export default defineConfig({
-    videosFolder: './dist/cypress/videos',
     screenshotsFolder: './dist/cypress/screenshots',
     retries: 3,
     component: {
