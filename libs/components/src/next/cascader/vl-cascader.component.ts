@@ -274,7 +274,9 @@ export class VlCascaderComponent extends BaseLitElement {
         const nodesForThisLevel: CascaderItem[] = [];
         nodes.forEach((node) => {
             const children = this.traverseTreeAndMapItems(node);
-            node.item.children = children;
+            if (node.item) {
+                node.item.children = children;
+            }
             node.cascaderRef = this;
             nodesForThisLevel.push({
                 ...node.item,
