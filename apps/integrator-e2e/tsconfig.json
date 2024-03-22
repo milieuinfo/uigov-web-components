@@ -4,7 +4,7 @@
         "allowJs": true,
         "outDir": "../../dist/out-tsc",
         "module": "ES2022",
-        "types": ["cypress", "node"],
+        "types": ["cypress", "cypress-axe", "node"],
         "sourceMap": false
     },
     "include": ["**/*.ts", "**/*.js", "cypress.config.ts", "**/*.cy.ts", "**/*.cy.js", "**/*.d.ts"]
