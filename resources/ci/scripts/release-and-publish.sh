@@ -89,6 +89,8 @@ if [ $? -eq 0 ]
   else
     echo "npm install - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
@@ -178,6 +180,8 @@ if [ $? -eq 0 ]
   else
     echo "publiceren van de npm packages naar de DOMG 'local-npm' repository - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
@@ -221,6 +225,8 @@ if [ $? -eq 0 ]
   else
     echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
@@ -259,6 +265,7 @@ then
   echo "Storybook succesvol gebouwd"
 else
   echo "fout bij het bouwen van Storybook" >&2
+  set -e
   exit $?
 fi
 set -e
@@ -273,6 +280,7 @@ if [ $? -eq 0 ]
     echo "Storybook succesvol in een tgz gestoken"
   else
     echo "fout bij het tgz''en van Storybook" >&2
+    set -e
     exit $?
 fi
 set -e

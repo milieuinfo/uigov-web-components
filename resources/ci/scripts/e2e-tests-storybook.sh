@@ -15,6 +15,8 @@ if [ $? -eq 0 ]
   else
     echo "npm install - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e

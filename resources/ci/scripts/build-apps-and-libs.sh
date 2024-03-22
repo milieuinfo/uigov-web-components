@@ -15,6 +15,8 @@ if [ $? -eq 0 ]
   else
     echo "npm install - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
@@ -30,6 +32,8 @@ if [ $? -eq 0 ]
   else
     echo "build storybook - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
@@ -43,6 +47,8 @@ if [ $? -eq 0 ]
   else
     echo "build integrator - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
@@ -56,6 +62,8 @@ if [ $? -eq 0 ]
   else
     echo "build playground-legacy - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
@@ -69,6 +77,8 @@ if [ $? -eq 0 ]
   else
     echo "build playground-lit - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
@@ -82,6 +92,8 @@ if [ $? -eq 0 ]
   else
     echo "build playground-native - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
@@ -95,6 +107,8 @@ if [ $? -eq 0 ]
   else
     echo "build playground-react - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
@@ -108,6 +122,8 @@ if [ $? -eq 0 ]
   else
     echo "build libraries - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
@@ -121,6 +137,8 @@ if [ $? -eq 0 ]
   else
     echo "build fat-lib - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
     exit $?
 fi
 set -e
