@@ -1,15 +1,15 @@
-const playgroundLitUrl = 'http://localhost:4202';
+const formDemoUrl = 'http://localhost:4204';
 
-describe('integration Form - Lit', () => {
+describe('integrator - form demo', () => {
     it('should be accessible', () => {
-        cy.visitWithA11y(playgroundLitUrl);
+        cy.visitWithA11y(formDemoUrl);
 
         cy.checkA11y('app-element');
     });
 
     it('should be CSP compliant', () => {
         cy.intercept('/csp-report', cy.spy().as('cspReport'));
-        cy.visit(playgroundLitUrl);
+        cy.visit(formDemoUrl);
 
         // eslint-disable-next-line cypress/no-unnecessary-waiting
         cy.wait(500);
@@ -18,7 +18,7 @@ describe('integration Form - Lit', () => {
 
     it('should report CSP violation', () => {
         cy.intercept('/csp-report', cy.spy().as('cspReport'));
-        cy.visit(playgroundLitUrl);
+        cy.visit(formDemoUrl);
 
         cy.get('html')
             .find('head')
