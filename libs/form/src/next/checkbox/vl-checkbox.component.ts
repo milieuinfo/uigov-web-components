@@ -118,6 +118,7 @@ export class VlCheckboxComponent extends FormControl {
                     name=${this.name || nothing}
                     type="checkbox"
                     class="vl-checkbox--switch"
+                    role="switch"
                     ?required=${this.required}
                     ?disabled=${this.disabled}
                     ?error=${this.error}
