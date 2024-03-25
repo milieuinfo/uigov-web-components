@@ -98,7 +98,7 @@ export class VlFormDemoComponent extends LitElement {
                             pattern="^[a-zA-Z ]*$"
                             min-length=${2}
                             max-length=${20}
-                            placeholder="Vul je naam in"
+                            placeholder="bv. Jo"
                         ></vl-input-field-next>
                         <vl-error-message-next for="naam" state="valueMissing"
                             >Gelieve een naam in te vullen.
@@ -123,7 +123,7 @@ export class VlFormDemoComponent extends LitElement {
                             block
                             required
                             mask="rrn"
-                            placeholder="Vul je rijksregisternummer in"
+                            placeholder="bv. 86-12-31-123-45"
                         ></vl-input-field-masked-next>
                         <vl-error-message-next for="rrn" state="valueMissing"
                             >Gelieve een rijksregisternummer in te vullen.</vl-error-message-next
@@ -139,9 +139,10 @@ export class VlFormDemoComponent extends LitElement {
                         <vl-datepicker-next
                             id="geboortedatum"
                             name="geboortedatum"
+                            autocomplete="bday"
+                            placeholder="bv. 31.12.1992"
                             block
                             required
-                            placeholder="Vul je geboortedatum in"
                         >
                         </vl-datepicker-next>
                         <vl-error-message-next for="geboortedatum" state="valueMissing">
@@ -163,7 +164,7 @@ export class VlFormDemoComponent extends LitElement {
                             deletable
                             .options=${this.geboorteplaatsen}
                             result-limit="2"
-                            placeholder="Selecteer je geboorteplaats"
+                            placeholder="bv. Smeerebbe-Vloerzegem"
                             no-results-text="Geen geboorteplaatsen gevonden"
                             search-placeholder="Zoek geboorteplaats"
                         >
@@ -183,7 +184,7 @@ export class VlFormDemoComponent extends LitElement {
                             multiple
                             deletable
                             .options=${this.hobbies}
-                            placeholder="Selecteer je hobbies"
+                            placeholder="bv. Boardgames"
                             no-results-text="Geen hobbies gevonden"
                             no-choices-text="Geen resterende hobbies gevonden"
                         >
@@ -201,7 +202,7 @@ export class VlFormDemoComponent extends LitElement {
                             name="kinderen"
                             block
                             deletable
-                            placeholder="Selecteer je aantal kinderen"
+                            placeholder="bv. 1"
                             required
                             .options=${this.kinderenOpties}
                         ></vl-select-next>
@@ -221,7 +222,7 @@ export class VlFormDemoComponent extends LitElement {
                             min-length=${5}
                             max-length=${100}
                             rows=${10}
-                            placeholder="Vul je interesses in"
+                            placeholder="bv. Ik ben geïnteresseerd in..."
                         ></vl-textarea-next>
                         <vl-error-message-next for="interesses" state="valueMissing"
                             >Gelieve je interesses in te vullen.
@@ -243,7 +244,7 @@ export class VlFormDemoComponent extends LitElement {
                             type="number"
                             block
                             required
-                            placeholder="Vul je leeftijd in"
+                            placeholder="bv. 35"
                             min=${0}
                             max=${99}
                         ></vl-input-field-next>
