@@ -137,6 +137,9 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         }
 
         errorMessage?.setAttribute('show', '');
+
+        // Voeg de error message toe aan de aria-describedby van het form control
+        if (errorMessage?.id) this.addAriaDescribedById(errorMessage.id);
     }
 
     private hideErrorMessages() {
@@ -144,6 +147,25 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
 
         errorMessages?.forEach((errorMessage) => {
             errorMessage.removeAttribute('show');
+            this.removeAriaDescribedById(errorMessage.id);
         });
+    }
+
+    private addAriaDescribedById(id: string) {
+        const ariaDescribedByIds = this.getAttribute('aria-describedby')?.split(' ') || [];
+        if (!ariaDescribedByIds.includes(id)) {
+            ariaDescribedByIds.push(id);
+        } else {
+            return;
+        }
+        this.setAttribute('aria-describedby', ariaDescribedByIds.join(' '));
+    }
+
+    private removeAriaDescribedById(id: string) {
+        const ariaDescribedByIds = this.getAttribute('aria-describedby')?.split(' ') || [];
+        const index = ariaDescribedByIds.indexOf(id);
+        if (index === -1) return;
+        ariaDescribedByIds.splice(index, 1);
+        this.setAttribute('aria-describedby', ariaDescribedByIds.join(' '));
     }
 }

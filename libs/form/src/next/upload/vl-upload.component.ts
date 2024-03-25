@@ -310,7 +310,7 @@ export class VlUploadComponent extends FormControl {
     private getUploadElementTemplate(): TemplateResult {
         return html`
             <template id="uploadTemplate">
-                <button type="button" class="vl-upload__element__button vl-link" aria-label="upload-button">
+                <button type="button" class="vl-upload__element__button vl-link" aria-label="bestandkiezer">
                     <i class="vl-vi vl-vi-paperclip" aria-hidden="true"></i>
                     <span class="vl-upload__element__button__container" id="title"></span>
                     <span class="vl-upload__element__button__container" id="slotted-title">

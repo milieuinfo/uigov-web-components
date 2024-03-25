@@ -59,6 +59,7 @@ export class VlDatepickerComponent extends FormControl {
     // Variables
     private instance: Instance | null = null;
     private initialValue = '';
+    private inputHasFocus = false;
 
     static {
         registerWebComponents([VlButtonInputAddon, VlIconElement]);
@@ -95,6 +96,7 @@ export class VlDatepickerComponent extends FormControl {
             minTime: { type: String, attribute: 'min-time' },
             maxTime: { type: String, attribute: 'max-time' },
             pattern: { type: String },
+            inputHasFocus: { type: Boolean, state: true },
         };
     }
 
@@ -176,6 +178,8 @@ export class VlDatepickerComponent extends FormControl {
                     placeholder=${this.placeholder || nothing}
                     autocomplete=${this.autocomplete || nothing}
                     pattern=${this.pattern || nothing}
+                    @focus="${this.onInputFocus}"
+                    @blur="${this.onInputBlur}"
                     @input=${this.onInput}
                 />
                 <button
@@ -183,7 +187,9 @@ export class VlDatepickerComponent extends FormControl {
                     type="button"
                     class=${classMap(buttonClasses)}
                     ?disabled=${this.disabled}
-                    aria-label="toggle calendar"
+                    aria-label="datumkiezer"
+                    aria-expanded=${this.instance?.isOpen}
+                    aria-controls=${this.id || nothing}
                     @click=${this.toggleCalendar}
                 >
                     <span class="vl-icon vl-icon--small vl-vi vl-vi-calendar" aria-hidden="true"></span>
@@ -227,7 +233,7 @@ export class VlDatepickerComponent extends FormControl {
 
         const defaultDate = this.parseDate(this.initialValue);
         return {
-            allowInput: !(this.disabled || this.readonly),
+            allowInput: this.inputHasFocus && !(this.disabled || this.readonly),
             dateFormat: this.format,
             defaultHour: defaultHour,
             defaultMinute: defaultMinute,
@@ -292,7 +298,18 @@ export class VlDatepickerComponent extends FormControl {
     }
 
     private toggleCalendar = () => {
+        console.log('instance', this.instance);
         this.instance?.toggle();
+    };
+
+    private onInputFocus = () => {
+        console.log('onFocus');
+        this.inputHasFocus = true;
+    };
+
+    private onInputBlur = () => {
+        console.log('onBlur');
+        this.inputHasFocus = false;
     };
 
     private onInput = (event: Event & { target: HTMLInputElement }) => {

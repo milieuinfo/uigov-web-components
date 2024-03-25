@@ -20,6 +20,29 @@ import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
 
 <Canvas of={VlErrorMessageStories.ErrorMessageDefault} />
 
+## Gebruik
+
+Als je een foutmelding toont, vermeld specifieke suggesties hoe de fout op te lossen.
+
+*NIET*: "Formaat van het telefoonnummer is ongeldig."
+*WEL*: "Formaat van het telefoonnummer is ongeldig. Gebruik bv. het formaat +32 123 45 67 89."
+
+## Accessibility
+
+### aria-describedby
+
+Het `aria-describedby` attribuut van een HTML element kan gebruikt worden om een beschrijving van het element te geven. Dit attribuut kan een of meerdere id's van andere HTML elementen bevatten. Screenreaders zullen de tekst van deze elementen voorlezen wanneer het element focus krijgt.
+Zie [MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute) voor meer informatie.
+
+We voorzien dat de form controls dit automatisch doen, als je de error message component een id geeft:
+- De id van de error message component wordt dan toegevoegd aan het `aria-describedby` attribuut van de form control.
+- Wanneer de desbetreffende error message niet van toepassing is, word die id verwijderd uit het `aria-describedby` attribuut.
+
+```html
+<vl-input-field-next aria-describedby="error-name-required" id="naam" name="naam"></vl-input-field-next>
+<vl-error-message-next id="error-name-required" for="naam" state="valueMissing">Naam is niet ingevuld. Gelieve uw naam in te vullen.</vl-error-message-next>
+```
+
 ## Configuratie
 
 <ArgTypes of={VlErrorMessageStories.ErrorMessageDefault} />
