@@ -75,5 +75,6 @@ export const UploadDefault = story(
 );
 UploadDefault.storyName = 'vl-upload-next - default';
 UploadDefault.args = {
+    label: 'bestand uploaden',
     url: 'http://httpbin.org/post',
 };

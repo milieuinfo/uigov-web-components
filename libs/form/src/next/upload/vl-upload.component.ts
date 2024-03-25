@@ -168,6 +168,11 @@ export class VlUploadComponent extends FormControl {
             const input = this.getInput();
 
             this.label ? input?.setAttribute('aria-label', this.label) : input?.removeAttribute('aria-label');
+
+            this.getUploadButton()?.setAttribute(
+                'aria-label',
+                (this.label ? this.label + ', ' : '') + this.mainTitle ?? ''
+            );
         }
 
         if (changedProperties.has('autoProcess')) {
@@ -214,27 +219,23 @@ export class VlUploadComponent extends FormControl {
 
         return html`
             ${this.getUploadElementTemplate()} ${this.getPreviewTemplate()}
-            <div class="vl-upload__files">
-                <div class="vl-upload__files__container"></div>
-                <div class="vl-upload__files__input__container"></div>
-                <button class="vl-upload__files__close vl-link vl-link--icon">
-                    <span class="vl-link__icon vl-vi vl-vi-trash" aria-hidden="true"></span>
-                    Verwijder alle bestanden
-                </button>
-            </div>
-            <div class=${classMap(uploadClasses)} aria-label=${this.label}>
+            <div class=${classMap(uploadClasses)}>
                 <div class="vl-upload__element">
                     <div class="vl-upload__overlay">
                         <p class="vl-upload__overlay__text">
                             <span class="vl-link__icon vl-vi vl-vi-paperclip" aria-hidden="true"></span>
                         </p>
                     </div>
-                    <div
-                        id="dropzone-container"
-                        class=${classMap(dropzoneContainerClasses)}
-                        aria-label=${this.label}
-                    ></div>
+                    <div id="dropzone-container" class=${classMap(dropzoneContainerClasses)}></div>
                 </div>
+            </div>
+            <div class="vl-upload__files">
+                <ul class="vl-upload__files__container"></ul>
+                <div class="vl-upload__files__input__container"></div>
+                <button class="vl-upload__files__close vl-link vl-link--icon">
+                    <span class="vl-link__icon vl-vi vl-vi-trash" aria-hidden="true"></span>
+                    Verwijder alle bestanden
+                </button>
             </div>
         `;
     }
@@ -312,7 +313,7 @@ export class VlUploadComponent extends FormControl {
     private getUploadElementTemplate(): TemplateResult {
         return html`
             <template id="uploadTemplate">
-                <button type="button" class="vl-upload__element__button vl-link" aria-label="upload-button">
+                <button type="button" class="vl-upload__element__button vl-link">
                     <i class="vl-vi vl-vi-paperclip" aria-hidden="true"></i>
                     <span class="vl-upload__element__button__container" id="title"></span>
                     <span class="vl-upload__element__button__container" id="slotted-title">
@@ -330,7 +331,7 @@ export class VlUploadComponent extends FormControl {
     private getPreviewTemplate(): TemplateResult {
         return html`
             <template id="previewTemplate">
-                <div class="vl-upload__file">
+                <li class="vl-upload__file">
                     <p class="vl-upload__file__name">
                         <span class="vl-upload__file__name__icon vl-vi vl-vi-document" aria-hidden="true"></span>
                         <span data-dz-name></span>
@@ -342,7 +343,7 @@ export class VlUploadComponent extends FormControl {
                     <button type="button" class="vl-upload__file__close vl-link vl-link--icon" data-dz-remove>
                         <span class="vl-vi vl-vi-cross" aria-hidden="true"></span>
                     </button>
-                </div>
+                </li>
             </template>
         `;
     }

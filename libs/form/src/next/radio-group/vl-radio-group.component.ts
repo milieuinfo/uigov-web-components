@@ -96,7 +96,12 @@ export class VlRadioGroupComponent extends FormControl {
     }
 
     render(): TemplateResult {
-        return html` <slot></slot> `;
+        return html`
+            <fieldset>
+                <legend class="vl-u-visually-hidden">${this.label}</legend>
+                <slot></slot>
+            </fieldset>
+        `;
     }
 
     resetFormControl() {
