@@ -13,7 +13,7 @@ import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 import { VlUploadComponent } from '@domg-wc/form/next/upload';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import appElementStyle from './app.element.css';
-import { parseFormData } from '@domg-wc/form/util/utils';
+import { parseFormData } from '@domg-wc/form/utils';
 
 type SubmittedFormData = {
     voornaam?: string;
