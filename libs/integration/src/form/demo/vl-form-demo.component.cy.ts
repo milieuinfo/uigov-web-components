@@ -1,8 +1,7 @@
-// import { parseFormData } from '@domg-wc/form/utils';
 import { html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlFormDemoComponent } from './vl-form-demo.component';
-import { parseFormData } from '@domg-wc/form/util/utils';
+import { parseFormData } from '@domg-wc/form/utils';
 
 registerWebComponents([VlFormDemoComponent]);
 

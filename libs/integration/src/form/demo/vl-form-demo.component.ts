@@ -11,7 +11,7 @@ import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
 import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio-group';
 import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 import { VlUploadComponent } from '@domg-wc/form/next/upload';
-import { parseFormData } from '@domg-wc/form/util/utils';
+import { parseFormData } from '@domg-wc/form/utils';
 
 @webComponent('vl-form-demo')
 export class VlFormDemoComponent extends LitElement {
