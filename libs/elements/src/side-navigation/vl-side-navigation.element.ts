@@ -1,4 +1,4 @@
-import { BaseElementOfType, debounce, unwrap, VL, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, unwrap, VL, webComponent } from '@domg-wc/common-utilities';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import './vl-side-navigation.lib.js';
 import { elementStyles } from '../vl-elements.uig-css';
@@ -17,12 +17,17 @@ declare const vl: VL;
 @elementStyles()
 @webComponent('vl-side-navigation', { extends: 'nav' })
 export class VlSideNavigation extends BaseElementOfType(HTMLElement) {
+    static get _observedAttributes() {
+        return ['side-navigation-id'];
+    }
+
+    static initializedSideNavigationId = '';
+
     constructor() {
         super();
         this._processAttributes();
         this._processClasses();
         this._rerender();
-        this.addEventListener('resize', debounce(this._rerender, 200));
     }
 
     _dress(): void {
@@ -31,10 +36,28 @@ export class VlSideNavigation extends BaseElementOfType(HTMLElement) {
     }
 
     _rerender() {
-        setTimeout(() => {
+        const sideNavigationId = this.getAttribute('side-navigation-id');
+
+        /* 
+            Hack voor UIG-2897
+            Proza messages werden niet afgebeeld tot er een resize van de window gebeurde.
+            Door de undress() - dress() niet in een timeout te wrappen is dit probleem opgelost.
+            Dit zorgt echter voor andere problemen als de side navigation overgaat van desktop naar mobile view.
+            Omdat dit component bij elke resize volledig afgebroken en opnieuw opgebouwd wordt, is het onmogelijk om state bij te houden als er geresized wordt.
+            Als oplossing moet de afnemer een uniek side-navigation-id attribuut meegeven, dit id stoppen we in een static variabele. 
+            Als de static variabele nog niet is ingevuld of is ingevuld met het id van een andere side-navigation,
+            kunnen we er van uitgaan dat dit de eerste keer is dat deze side-navigation rendert en de correcte code uitvoeren.
+        */
+        if (sideNavigationId && VlSideNavigation.initializedSideNavigationId !== sideNavigationId) {
+            VlSideNavigation.initializedSideNavigationId = sideNavigationId;
             this._undress();
             this._dress();
-        }, 200);
+        } else {
+            setTimeout(() => {
+                this._undress();
+                this._dress();
+            }, 200);
+        }
     }
 
     /**
