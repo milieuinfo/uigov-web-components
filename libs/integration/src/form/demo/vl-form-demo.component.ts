@@ -11,7 +11,7 @@ import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
 import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio-group';
 import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 import { VlUploadComponent } from '@domg-wc/form/next/upload';
-import { parseFormData } from '@domg-wc/form/util/utils';
+import { parseFormData } from '@domg-wc/form/utils';
 
 @webComponent('vl-form-demo')
 export class VlFormDemoComponent extends LitElement {
@@ -123,13 +123,7 @@ export class VlFormDemoComponent extends LitElement {
                         <vl-form-label-next for="geboortedatum" label="Geboortedatum *" block></vl-form-label-next>
                     </div>
                     <div class="vl-form-col--8-12">
-                        <vl-datepicker-next
-                            id="geboortedatum"
-                            name="geboortedatum"
-                            pattern="^(0?[1-9]|[12][0-9]|3[01])\\.(0?[1-9]|1[012])\\.([0-9]{4})$"
-                            block
-                            required
-                        >
+                        <vl-datepicker-next id="geboortedatum" name="geboortedatum" block required>
                         </vl-datepicker-next>
                         <vl-error-message-next for="geboortedatum" state="valueMissing">
                             Gelieve een geboortedatum in te vullen.

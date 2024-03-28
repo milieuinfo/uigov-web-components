@@ -2,7 +2,7 @@
 import { html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlFormDemoComponent } from './vl-form-demo.component';
-import { parseFormData } from '@domg-wc/form/util/utils';
+import { parseFormData } from '@domg-wc/form/utils';
 
 registerWebComponents([VlFormDemoComponent]);
 
@@ -307,7 +307,7 @@ const fillInForm = () => {
     getHobbiesSelect().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
     getHobbiesSelect().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
     // Sluit de hobby dropdown
-    cy.get('body').click(0, 0);
+    cy.get('body').click(0, 0, { force: true });
     getInteressesTextarea().find('textarea').click().type('Vanalles en nog wat');
     getLeeftijdInput().find('input').click().type('32');
     getContactMethodeRadioGroup({ shadow: false })
@@ -317,14 +317,14 @@ const fillInForm = () => {
         // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
         // Zoek een andere manier moest deze test flaky zijn hierdoor.
         .check({ force: true });
-    getFotosUpload().find('input[type="file"]').selectFile('src/fixtures/upload/cat.jpeg', { force: true });
+    getFotosUpload().find('input[type="file"]').selectFile('cypress/fixtures/upload/cat.jpeg', { force: true });
     // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
     // Zoek een andere manier moest deze test flaky zijn hierdoor.
     getWaarheidsGetrouwCheckbox().find('input').check({ force: true });
 };
 
 const setupMockedUploadFormData = (submittedFormData: unknown & { foto: File[] | null }) => {
-    cy.readFile('src/fixtures/upload/cat.jpeg', 'base64').then((fileContent) => {
+    cy.readFile('cypress/fixtures/upload/cat.jpeg', 'base64').then((fileContent) => {
         const blob = Cypress.Blob.base64StringToBlob(fileContent);
         const lastModified = new Date().getTime();
         const fileToAdd = new File([blob], 'cat.jpeg', {

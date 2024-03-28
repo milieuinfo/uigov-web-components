@@ -39,6 +39,20 @@ In onderstaand voorbeeld wordt de datumnotatie expliciet ingesteld op `d/m/Y`.
 <vl-datepicker-next format="d/m/Y"></vl-datepicker-next>
 ```
 
+## Validatie
+
+### Mask Validatie
+
+- Er wordt automatisch mask validatie toegevoegd aan de datepicker met type `date` (standaard) of type `time`.
+- De mask wordt opgebouwd op basis van het `format` attribuut.
+- Je kan automatische mask validatie uitschakelen met het `disable-mask-validation` attribuut.
+- De `patternMismatch` ValidityState key wordt gebruikt voor de mask validatie error.
+
+### Pattern Validatie
+
+- Als de mask validatie is uitgeschakeld, kan je met het `pattern` attribuut een regex patroon instellen. Je kan ook de `regex` property gebruiken voor complexere validatie.
+- De `patternMismatch` ValidityState key wordt gebruikt voor de pattern validatie error.
+
 ## Conversie
 
 Wanneer je een ander formaat wil gebruiken dan het formaat dat aan de gebruiker wordt getoond, moet je deze zelf omzetten.<br/>
@@ -52,7 +66,10 @@ function convertDate(date: Date, format: string) {
 }
 ```
 
-Meer documentatie over `flatpickr`-formaten kan je terugvinden in de [Flatpickr documentatie](https://flatpickr.js.org/formatting/).
+## Gekende Beperkingen
+
+- De datepicker is niet toegankelijk voor gebruikers die enkel met het toetsenbord navigeren. Ze kunnen wel manueel een datum invullen.
+- Voor datepicker met type `datetime` & `range` is er geen automatische mask validatie voorzien gezien `cleave.js` hiervoor geen ondersteuning biedt.
 
 ## Referenties
 
