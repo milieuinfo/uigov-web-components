@@ -1,4 +1,4 @@
-import { MaskOptions } from './vl-input-field-masked.model';
+import { MaskOptions } from '../../models/cleave.model';
 
 // Deze maskers zijn gebaseerd op de maskers van Cleave.js, uitgebreid met de properties 'customTransformFn' en 'regex'.
 // De 'customTransformFn' wordt gebruikt om features die Cleave.js niet ondersteunt toe te voegen, bv. het verwijderen van niet hexadecimale karakters.

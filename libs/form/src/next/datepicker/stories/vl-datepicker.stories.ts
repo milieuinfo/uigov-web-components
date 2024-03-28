@@ -44,6 +44,7 @@ export const DatepickerDefault = story(
         autocomplete,
         label,
         pattern,
+        regex,
         name,
         onVlInput,
         onVlReset,
@@ -72,6 +73,7 @@ export const DatepickerDefault = story(
                     max-time=${maxTime}
                     am-pm=${amPm}
                     pattern=${pattern}
+                    .regex=${regex}
                     @vl-input=${onVlInput}
                     @vl-reset=${onVlReset}
                     @vl-valid=${onVlValid}

@@ -75,7 +75,7 @@ export const datepickerArgTypes: ArgTypes<DatepickerArgs> = {
     format: {
         name: 'format',
         description:
-            "Het formaat van de datum/tijd waarde, standaard 'd.m.Y' (-> 31.12.2019). Bv. 'l d M Y' geeft dinsdag 03 jan 2023.",
+            'Het formaat van de datum/tijd waarde. Voor een datum is het standaard formaat `d.m.Y` (-> 31.12.2019).<br>Voor tijd, is `H:i` het standaard formaat (-> 23:59).',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
@@ -131,13 +131,34 @@ export const datepickerArgTypes: ArgTypes<DatepickerArgs> = {
             defaultValue: { summary: datepickerArgs.amPm },
         },
     },
+    disableMaskValidation: {
+        name: 'disable-mask-validation',
+        description: 'Schakelt de automatische mask validatie uit.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: datepickerArgs.disableMaskValidation },
+        },
+    },
     pattern: {
         name: 'pattern',
-        description: 'Het patroon dat je moet volgen bij het ingeven van een waarde.',
+        description:
+            'Het patroon dat je moet volgen bij het ingeven van een waarde.<br>Dit kan gebruikt worden voor eenvoudige validatie.<br>Gebruik de `regex` property voor complexe validatie.',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: datepickerArgs.pattern },
+        },
+    },
+    regex: {
+        name: 'regex',
+        description:
+            'Het patroon dat je moet volgen bij het ingeven van een waarde.<br>Dit kan gebruikt worden voor complexe validatie.',
+        control: false,
+        table: {
+            type: { summary: TYPES.REGEX },
+            category: CATEGORIES.PROPERTIES,
+            defaultValue: { summary: datepickerArgs.regex },
         },
     },
     onVlInput: {
