@@ -1,3 +1,23 @@
+# [1.29.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.28.0...v1.29.0) (2024-03-28)
+
+
+### Bug Fixes
+
+* build was kapot door een fout in playground-lit, wat niet gezien werd door een bug in de build scripts ([b239940](https://github.com/milieuinfo/uigov-web-components/commit/b239940f695dd5ed50ca95c6102b0e5da8eeaf58))
+* UIG-2897 - side-navigation - proza messages ([1dcd668](https://github.com/milieuinfo/uigov-web-components/commit/1dcd668fce57306cb55a64d2b7ef14f0c6e8c7d3))
+* UIG-2959 - vl-cascader - null check toegevoegd bij het instellen van children ([0196a14](https://github.com/milieuinfo/uigov-web-components/commit/0196a140541cd9ace05e853a7af0f8aa0714fcc9))
+* UIG-2961 - storybook - ontwerp docs ([5bcb746](https://github.com/milieuinfo/uigov-web-components/commit/5bcb746af220b83649f75c3620b8c1914b735959))
+* UIG-2962 - form - de import voor parseFormData is gewijzigd door de hernoeming van de utils folder ([19a3f6d](https://github.com/milieuinfo/uigov-web-components/commit/19a3f6d34ed85c55ef301d244ad2e6a9bcdb0618))
+
+
+### Features
+
+* UIG-2900 - storybook - focus beperking van Safari gedocumenteerd ([513a554](https://github.com/milieuinfo/uigov-web-components/commit/513a55420ad66a839a217189f14e11265148dd9a))
+* UIG-2939 - integration lib - componenten ([dcd0777](https://github.com/milieuinfo/uigov-web-components/commit/dcd077713a8450b99dc0daa6040cdaca63af07d0))
+* UIG-2941 - integrator - csp test form-demo ([44144f9](https://github.com/milieuinfo/uigov-web-components/commit/44144f9e9b006a7792fac14768aec2d11c1786c8))
+* UIG-2958 - Cypress videos uitgezet ([a965194](https://github.com/milieuinfo/uigov-web-components/commit/a9651940efe726b5df03377b0b1f2725a5f065fd))
+* UIG-2963 - consumer-app - applicatie om te verifiëren dat de gereleasde artifacts afneembaar zijn ([1158b63](https://github.com/milieuinfo/uigov-web-components/commit/1158b63c822deb7dd061949a7eb8838c65198e16))
+
 # [1.28.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.27.0...v1.28.0) (2024-03-13)
 
 
