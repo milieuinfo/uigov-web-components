@@ -4,7 +4,7 @@ import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
 import { SelectOption, VlSelectComponent } from '@domg-wc/form/next/select';
-import { parseFormData } from '@domg-wc/form/util/utils';
+import { parseFormData } from '@domg-wc/form/utils';
 import { VlFormLabelComponent } from '@domg-wc/form/next/form-label';
 
 @webComponent('vl-form-data')
