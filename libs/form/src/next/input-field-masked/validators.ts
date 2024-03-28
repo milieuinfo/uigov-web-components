@@ -1,5 +1,5 @@
 import { Validator } from '@open-wc/form-control';
-import { CleaveInstance, MaskOptions } from './vl-input-field-masked.model';
+import { CleaveInstance, MaskOptions } from '../../models/cleave.model';
 
 export const maskValidator: Validator = {
     key: 'patternMismatch',
