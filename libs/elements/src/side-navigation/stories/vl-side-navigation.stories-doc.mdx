@@ -53,6 +53,14 @@ Dit gebeurt op de volgende manier (we gebruiken content 1 als voorbeeld):
 2. Plaats op het VlSideNavigationToggle element het attribuut `data-vl-child="content-1"`
 3. Plaats op de child links het attribuut `data-vl-parent="content-1"`
 
+## Gekende beperkingen
+
+### Proza messages
+
+Door de complexiteit van de side-navigation kan het zijn dat er problemen optreden met het renderen van Proza messages.<br/>
+Proza messages renderen regelmatig niet tot er een resize van de window optreedt.<br/>
+Om dit op te lossen kan je gebruik maken van het `data-vl-side-navigation-id` attribuut, aan dit attribuut geef je een unieke string mee.<br/>
+Deze manier van werken is een tijdelijke quick-fix, in de nieuwe versie van de side-navigation gaat dit probleem niet voorkomen.
 
 ## Referenties
 
