@@ -14,6 +14,12 @@ export interface MaskOptions {
     numeralDecimalMark?: string;
     date?: boolean;
     datePattern?: string[];
+    dateMin?: string;
+    dateMax?: string;
+    time?: boolean;
+    timePattern?: string[];
+    timeFormat?: string;
+    onValueChanged?: (event: { target: { value: string; rawValue: string } }) => void;
     regex?: RegExp;
     customTransformFn?: (value: string) => string;
 }
