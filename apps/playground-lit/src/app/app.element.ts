@@ -502,7 +502,6 @@ export class AppElement extends LitElement {
                             <vl-datepicker-next
                                 id="geboortedatum"
                                 name="geboortedatum"
-                                pattern="^(0?[1-9]|[12][0-9]|3[01])\\.(0?[1-9]|1[012])\\.([0-9]{4})$"
                                 block
                                 value=${this.birthdate}
                                 ?required=${this.birthdateRequired}

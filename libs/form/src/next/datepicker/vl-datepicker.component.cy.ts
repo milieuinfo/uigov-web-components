@@ -5,44 +5,6 @@ import { html, nothing } from 'lit';
 
 registerWebComponents([VlDatepickerComponent, VlErrorMessageComponent]);
 
-/**
- * Deze functie maakt een datumstring aan in het formaat Y-m-d, d-m-Y of d/m/Y.
- * @param selectedYear
- * @param selectedDay
- * @param selectedMonth
- * @param format
- */
-const createDateString = ({
-    selectedYear,
-    selectedDay,
-    selectedMonth,
-    format,
-}: {
-    selectedYear?: number;
-    selectedMonth?: number;
-    selectedDay?: number;
-    format?: 'Y-m-d' | 'd-m-Y' | 'd/m/Y';
-}) => {
-    const date = new Date();
-    const year = selectedYear ? selectedYear : date.getFullYear();
-    const month = selectedMonth ? selectedMonth : date.getMonth() + 1;
-    const day = selectedDay ? selectedDay : date.getDate();
-    // als de dag kleiner is dan 10, voeg een 0 toe voor de dag
-    const dayString = day < 10 ? `0${day}` : `${day}`;
-    const monthString = month < 10 ? `0${month}` : `${month}`;
-
-    switch (format) {
-        case 'Y-m-d':
-            return `${year}-${monthString}-${dayString}`;
-        case 'd-m-Y':
-            return `${dayString}-${monthString}-${year}`;
-        case 'd/m/Y':
-            return `${dayString}/${monthString}/${year}`;
-        default:
-            return `${dayString}.${monthString}.${year}`;
-    }
-};
-
 describe('component - vl-datepicker-next', () => {
     it('should mount', () => {
         cy.mount(html`<vl-datepicker-next></vl-datepicker-next>`);
@@ -245,12 +207,14 @@ describe('component - vl-datepicker-next', () => {
             .shadow()
             .find('.flatpickr-calendar')
             .find('.numInput.flatpickr-hour')
-            .should('have.value', '16');
+            .should('have.value', '12');
         cy.get('vl-datepicker-next')
             .shadow()
             .find('.flatpickr-calendar')
             .find('.numInput.flatpickr-minute')
-            .should('have.value', '45');
+            .should('have.value', '00');
+
+        cy.get('vl-datepicker-next').invoke('attr', 'value', '16:45');
 
         cy.get('vl-datepicker-next')
             .shadow()
@@ -316,43 +280,6 @@ describe('component - vl-datepicker-next', () => {
     });
 });
 
-const mountDatepickerInForm = ({ value, disabled, block, required }: typeof datepickerDefaults) => {
-    cy.mount(html`
-        <div class="container">
-            <form id="form" class="vl-form">
-                <div class="vl-form-grid vl-form-grid--is-stacked">
-                    <div class="vl-col--3-12">
-                        <label class="vl-form__label vl-form__label--block" for="geboortedatum">
-                            Geboortedatum: *
-                        </label>
-                    </div>
-                    <div class="vl-col--9-12">
-                        <vl-datepicker-next
-                            id="geboortedatum"
-                            name="geboortedatum"
-                            label="Geboortedatum"
-                            ?block=${block}
-                            ?required=${required}
-                            ?disabled=${disabled}
-                            value=${value || nothing}
-                        >
-                        </vl-datepicker-next>
-                        <vl-error-message-next input="geboortedatum" state="valueMissing">
-                            Gelieve een geboortedatum in te vullen.
-                        </vl-error-message-next>
-                    </div>
-                    <div class="vl-col--9-12 vl-push--3-12">
-                        <div class="vl-action-group">
-                            <button class="vl-button" type="submit">Verstuur</button>
-                            <button class="vl-button" type="reset">Reset</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    `);
-};
-
 describe('component - vl-datepicker-next - in form', () => {
     it('should reset datepicker with initial value', () => {
         const initialValue = '02.12.2023';
@@ -400,6 +327,172 @@ describe('component - vl-datepicker-next - in form', () => {
         cy.checkA11y('vl-datepicker-next');
     });
 
+    it('should validate date pattern by default', () => {
+        mountDatepickerInForm({ ...datepickerDefaults });
+        cy.get('form').then((form$) => {
+            form$.on('submit', (e) => {
+                e.preventDefault();
+            });
+        });
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow().find('input').should('not.have.class', 'vl-input-field--error');
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('151220');
+        cy.get('button[type="submit"]').click({ force: true });
+
+        cy.get('vl-error-message-next[state="valueMissing"]').should('not.be.visible');
+        cy.get('vl-error-message-next[state="patternMismatch"]')
+            .should('be.visible')
+            .and('have.text', 'Gelieve het juiste formaat te gebruiken.');
+        cy.checkA11y('vl-datepicker-next');
+
+        cy.get('button[type="reset"]').click();
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('15122023');
+        cy.get('button[type="submit"]').click();
+        cy.get('vl-error-message-next[state="patternMismatch"]').should('not.be.visible');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
+    it('should validate alternative date pattern', () => {
+        mountDatepickerInForm({ ...datepickerDefaults, format: 'd/m/Y' });
+        cy.get('form').then((form$) => {
+            form$.on('submit', (e) => {
+                e.preventDefault();
+            });
+        });
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow().find('input').should('not.have.class', 'vl-input-field--error');
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('1512202');
+        cy.get('button[type="submit"]').click({ force: true });
+
+        cy.get('vl-error-message-next[state="valueMissing"]').should('not.be.visible');
+        cy.get('vl-error-message-next[state="patternMismatch"]')
+            .should('be.visible')
+            .and('have.text', 'Gelieve het juiste formaat te gebruiken.');
+        cy.checkA11y('vl-datepicker-next');
+
+        cy.get('button[type="reset"]').click();
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('15122023');
+        cy.get('button[type="submit"]').click();
+        cy.get('vl-error-message-next[state="patternMismatch"]').should('not.be.visible');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
+    it('should disable automatic mask validation', () => {
+        mountDatepickerInForm({ ...datepickerDefaults, disableMaskValidation: true });
+        cy.get('form').then((form$) => {
+            form$.on('submit', (e) => {
+                e.preventDefault();
+            });
+        });
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow().find('input').should('not.have.class', 'vl-input-field--error');
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('hello');
+        cy.get('vl-datepicker-next').should('have.value', 'hello');
+        cy.get('button[type="submit"]').click({ force: true });
+
+        cy.get('vl-error-message-next[state="valueMissing"]').should('not.be.visible');
+        cy.get('vl-error-message-next[state="patternMismatch"]').should('not.be.visible');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
+    it('should validate pattern with disabled automatic mask validation', () => {
+        mountDatepickerInForm({
+            ...datepickerDefaults,
+            disableMaskValidation: true,
+            pattern: '^(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).([0-9]{4})$',
+        });
+        cy.get('form').then((form$) => {
+            form$.on('submit', (e) => {
+                e.preventDefault();
+            });
+        });
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow().find('input').should('not.have.class', 'vl-input-field--error');
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('1512202');
+        cy.get('button[type="submit"]').click({ force: true });
+
+        cy.get('vl-error-message-next[state="valueMissing"]').should('not.be.visible');
+        cy.get('vl-error-message-next[state="patternMismatch"]')
+            .should('be.visible')
+            .and('have.text', 'Gelieve het juiste formaat te gebruiken.');
+        cy.checkA11y('vl-datepicker-next');
+
+        cy.get('button[type="reset"]').click();
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('15.12.2023');
+        cy.get('button[type="submit"]').click();
+        cy.get('vl-error-message-next[state="patternMismatch"]').should('not.be.visible');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
+    it('should validate time pattern by default with mask', () => {
+        mountDatepickerInForm({ ...datepickerDefaults, type: 'time' });
+        cy.get('form').then((form$) => {
+            form$.on('submit', (e) => {
+                e.preventDefault();
+            });
+        });
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow().find('input').should('not.have.class', 'vl-input-field--error');
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('9');
+        cy.get('vl-datepicker-next').should('have.value', '09:');
+
+        cy.get('button[type="submit"]').click({ force: true });
+
+        cy.get('vl-error-message-next[state="valueMissing"]').should('not.be.visible');
+        cy.get('vl-error-message-next[state="patternMismatch"]')
+            .should('be.visible')
+            .and('have.text', 'Gelieve het juiste formaat te gebruiken.');
+        cy.checkA11y('vl-datepicker-next');
+
+        cy.get('button[type="reset"]').click();
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('99');
+        cy.get('vl-datepicker-next').should('have.value', '09:09');
+        cy.get('button[type="submit"]').click();
+        cy.get('vl-error-message-next[state="patternMismatch"]').should('not.be.visible');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
+    it('should validate alternative time pattern with mask', () => {
+        mountDatepickerInForm({ ...datepickerDefaults, type: 'time', format: 'H:i:S' });
+        cy.get('form').then((form$) => {
+            form$.on('submit', (e) => {
+                e.preventDefault();
+            });
+        });
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow().find('input').should('not.have.class', 'vl-input-field--error');
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('9');
+        cy.get('vl-datepicker-next').should('have.value', '09:');
+
+        cy.get('button[type="submit"]').click({ force: true });
+
+        cy.get('vl-error-message-next[state="valueMissing"]').should('not.be.visible');
+        cy.get('vl-error-message-next[state="patternMismatch"]')
+            .should('be.visible')
+            .and('have.text', 'Gelieve het juiste formaat te gebruiken.');
+        cy.checkA11y('vl-datepicker-next');
+
+        cy.get('button[type="reset"]').click();
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('999');
+        cy.get('vl-datepicker-next').should('have.value', '09:09:09');
+        cy.get('button[type="submit"]').click();
+        cy.get('vl-error-message-next[state="patternMismatch"]').should('not.be.visible');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
     it('should process disabled validation', () => {
         mountDatepickerInForm({ ...datepickerDefaults, disabled: true });
         cy.get('form').then((form$) => {
@@ -425,3 +518,94 @@ describe('component - vl-datepicker-next - in form', () => {
         cy.checkA11y('vl-datepicker-next');
     });
 });
+
+/**
+ * Deze functie maakt een datumstring aan in het formaat Y-m-d, d-m-Y of d/m/Y.
+ * @param selectedYear
+ * @param selectedDay
+ * @param selectedMonth
+ * @param format
+ */
+const createDateString = ({
+    selectedYear,
+    selectedDay,
+    selectedMonth,
+    format,
+}: {
+    selectedYear?: number;
+    selectedMonth?: number;
+    selectedDay?: number;
+    format?: 'Y-m-d' | 'd-m-Y' | 'd/m/Y';
+}) => {
+    const date = new Date();
+    const year = selectedYear ? selectedYear : date.getFullYear();
+    const month = selectedMonth ? selectedMonth : date.getMonth() + 1;
+    const day = selectedDay ? selectedDay : date.getDate();
+    // als de dag kleiner is dan 10, voeg een 0 toe voor de dag
+    const dayString = day < 10 ? `0${day}` : `${day}`;
+    const monthString = month < 10 ? `0${month}` : `${month}`;
+
+    switch (format) {
+        case 'Y-m-d':
+            return `${year}-${monthString}-${dayString}`;
+        case 'd-m-Y':
+            return `${dayString}-${monthString}-${year}`;
+        case 'd/m/Y':
+            return `${dayString}/${monthString}/${year}`;
+        default:
+            return `${dayString}.${monthString}.${year}`;
+    }
+};
+
+const mountDatepickerInForm = ({
+    value,
+    disabled,
+    block,
+    required,
+    type,
+    format,
+    pattern,
+    disableMaskValidation,
+}: typeof datepickerDefaults) => {
+    cy.mount(html`
+        <div class="container">
+            <form id="form" class="vl-form">
+                <div class="vl-form-grid vl-form-grid--is-stacked">
+                    <div class="vl-col--3-12">
+                        <label class="vl-form__label vl-form__label--block" for="geboortedatum">
+                            Geboortedatum: *
+                        </label>
+                    </div>
+                    <div class="vl-col--9-12">
+                        <vl-datepicker-next
+                            id="geboortedatum"
+                            name="geboortedatum"
+                            label="Geboortedatum"
+                            ?block=${block}
+                            ?required=${required}
+                            ?disabled=${disabled}
+                            ?disable-mask-validation=${disableMaskValidation}
+                            pattern=${pattern || nothing}
+                            format=${format || nothing}
+                            type=${type || nothing}
+                            value=${value || nothing}
+                        >
+                        </vl-datepicker-next>
+                        <vl-error-message-next for="geboortedatum" state="valueMissing">
+                            Gelieve een geboortedatum in te vullen.
+                        </vl-error-message-next>
+                        <vl-error-message-next for="geboortedatum" state="patternMismatch"
+                            >Gelieve het juiste formaat te gebruiken.</vl-error-message-next
+                        >
+                    </div>
+                    <div class="vl-col--9-12 vl-push--3-12">
+                        <div class="vl-action-group">
+                            <button class="vl-button" type="submit">Verstuur</button>
+                            <button class="vl-button" type="reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    `);
+};
