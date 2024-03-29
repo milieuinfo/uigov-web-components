@@ -1,3 +1,10 @@
+## [1.29.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.29.0...v1.29.1) (2024-03-29)
+
+
+### Bug Fixes
+
+* de lib.js bestanden zaten niet meer in de artifacts ([3067e8b](https://github.com/milieuinfo/uigov-web-components/commit/3067e8b6aa641b45890ccf05ed4b032cc262ed22))
+
 # [1.29.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.28.0...v1.29.0) (2024-03-28)
 
 
