@@ -113,21 +113,6 @@ if [ $? -eq 0 ]
 fi
 set -e
 
-echo "build libraries"
-set +e
-npm run build:all 2> buffer-stderr.txt 1> buffer-stdout.txt
-if [ $? -eq 0 ]
-  then
-    echo "build libraries - success"
-  else
-    echo "build libraries - error - buffer-stderr.txt" >&2
-    cat buffer-stderr.txt >&2
-    cat buffer-stdout.txt >&2
-    set -e
-    exit $?
-fi
-set -e
-
 echo "build fat-lib"
 set +e
 npm run build-fat-lib 2> buffer-stderr.txt 1> buffer-stdout.txt
@@ -136,6 +121,21 @@ if [ $? -eq 0 ]
     echo "build fat-lib - success"
   else
     echo "build fat-lib - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
+    exit $?
+fi
+set -e
+
+echo "build libraries"
+set +e
+npm run build:all 2> buffer-stderr.txt 1> buffer-stdout.txt
+if [ $? -eq 0 ]
+  then
+    echo "build libraries - success"
+  else
+    echo "build libraries - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
     cat buffer-stdout.txt >&2
     set -e
