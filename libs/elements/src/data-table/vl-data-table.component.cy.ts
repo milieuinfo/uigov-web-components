@@ -1,5 +1,4 @@
 import { html } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { dataTableDefaults, VlDataTable } from '../data-table/vl-data-table.element';
 
