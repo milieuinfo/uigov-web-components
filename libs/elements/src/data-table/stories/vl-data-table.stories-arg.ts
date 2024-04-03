@@ -10,7 +10,7 @@ export const dataTableArgTypes: ArgTypes<typeof dataTableArgs> = {
     hover: {
         name: 'data-vl-hover',
         description:
-            'Attribuut wordt gebruikt om een rij te highlighten waneer de gebruiker erover hovert met muiscursor.',
+            'Attribuut wordt gebruikt om een rij te highlighten wanneer de gebruiker erover hovert met muiscursor.',
         table: {
             category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN },
@@ -39,7 +39,7 @@ export const dataTableArgTypes: ArgTypes<typeof dataTableArgs> = {
     zebra: {
         name: 'data-vl-zebra',
         description:
-            'Variant waarin de rijen afwisslend een andere achtergrondkleur krijgen. Dit maakt de tabel makkelijker leesbaar. ' +
+            'Variant waarin de rijen afwisselend een andere achtergrondkleur krijgen. Dit maakt de tabel makkelijker leesbaar. ' +
             'Deze zebra werkt niet voor tabellen met detail rijen, gebruik hiervoor data-vl-uig-zebra.',
         table: {
             category: CATEGORIES.ATTRIBUTES,
@@ -50,7 +50,7 @@ export const dataTableArgTypes: ArgTypes<typeof dataTableArgs> = {
     uigZebra: {
         name: 'data-vl-uig-zebra',
         description:
-            'Variant waarin de rijen afwisslend een andere achtergrondkleur krijgen. Dit maakt de tabel makkelijker leesbaar. Deze zebra werkt voor tabellen met en zonder detail rijen.',
+            'Variant waarin de rijen afwisselend een andere achtergrondkleur krijgen. Dit maakt de tabel makkelijker leesbaar. Deze zebra werkt voor tabellen met en zonder detail rijen.',
         table: {
             category: CATEGORIES.ATTRIBUTES,
             type: { summary: TYPES.BOOLEAN },

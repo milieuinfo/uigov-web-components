@@ -9,6 +9,7 @@ import { VlDataTable } from '../vl-data-table.element';
 export default {
     title: 'Elements/data-table',
     tags: ['autodocs'],
+    args: dataTableArgs,
     argTypes: dataTableArgTypes,
     parameters: {
         docs: { page: dataTableDoc },
@@ -65,7 +66,6 @@ export const DataTableDefault = story(
     `
 );
 DataTableDefault.storyName = 'vl-data-table - default';
-DataTableDefault.args = dataTableArgs;
 
 export const DataTableJoinedRowTitles = story(
     dataTableArgs,
@@ -134,7 +134,6 @@ export const DataTableJoinedRowTitles = story(
     `
 );
 DataTableJoinedRowTitles.storyName = 'vl-data-table - joined row titles';
-DataTableJoinedRowTitles.args = dataTableArgs;
 
 export const DataTableExpandable = story(
     dataTableArgs,
