@@ -158,14 +158,18 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         } else {
             return;
         }
-        this.setAttribute('aria-describedby', ariaDescribedByIds.join(' '));
+        this.setAttribute('aria-describedby', ariaDescribedByIds.filter((id) => !!id).join(' '));
     }
 
     private removeAriaDescribedById(id: string) {
         const ariaDescribedByIds = this.getAttribute('aria-describedby')?.split(' ') || [];
         const index = ariaDescribedByIds.indexOf(id);
         if (index === -1) return;
-        ariaDescribedByIds.splice(index, 1);
-        this.setAttribute('aria-describedby', ariaDescribedByIds.join(' '));
+        const ariaDescribedByIdsResult = ariaDescribedByIds.filter((_id) => _id !== id && _id).join(' ');
+        if (ariaDescribedByIdsResult === '') {
+            this.removeAttribute('aria-describedby');
+        } else {
+            this.setAttribute('aria-describedby', ariaDescribedByIdsResult);
+        }
     }
 }

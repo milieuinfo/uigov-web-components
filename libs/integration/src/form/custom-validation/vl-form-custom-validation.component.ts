@@ -71,10 +71,10 @@ export class VlFormCustomValidationComponent extends LitElement {
                                 this.success = false;
                             }}
                         ></vl-input-field-with-foo-validator>
-                        <vl-error-message-next for="waarde" state="valueMissing"
+                        <vl-error-message-next id="waarde-value-missing" for="waarde" state="valueMissing"
                             >Gelieve een waarde in te vullen.</vl-error-message-next
                         >
-                        <vl-error-message-next for="waarde" state="customError"
+                        <vl-error-message-next id="waarde-custom-error" for="waarde" state="customError"
                             >Gelieve 'foo' als waarde in te vullen.</vl-error-message-next
                         >
                     </div>

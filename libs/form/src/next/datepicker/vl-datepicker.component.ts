@@ -60,6 +60,7 @@ export class VlDatepickerComponent extends FormControl {
     private instance: Instance | null = null;
     private initialValue = '';
     private inputHasFocus = false;
+    private isOpen: boolean | undefined;
 
     static {
         registerWebComponents([VlButtonInputAddon, VlIconElement]);
@@ -97,6 +98,7 @@ export class VlDatepickerComponent extends FormControl {
             maxTime: { type: String, attribute: 'max-time' },
             pattern: { type: String },
             inputHasFocus: { type: Boolean, state: true },
+            isOpen: { type: Boolean, state: true },
         };
     }
 
@@ -188,7 +190,7 @@ export class VlDatepickerComponent extends FormControl {
                     class=${classMap(buttonClasses)}
                     ?disabled=${this.disabled}
                     aria-label="datumkiezer"
-                    aria-expanded=${this.instance?.isOpen}
+                    aria-expanded=${this.isOpen}
                     aria-controls=${this.id || nothing}
                     @click=${this.toggleCalendar}
                 >
@@ -235,8 +237,8 @@ export class VlDatepickerComponent extends FormControl {
         return {
             allowInput: this.inputHasFocus && !(this.disabled || this.readonly),
             dateFormat: this.format,
-            defaultHour: defaultHour,
-            defaultMinute: defaultMinute,
+            defaultHour: defaultHour ?? 0,
+            defaultMinute: defaultMinute ?? 0,
             maxDate: this.maxDate,
             minDate: this.minDate,
             defaultDate: defaultDate,
@@ -261,6 +263,8 @@ export class VlDatepickerComponent extends FormControl {
             positionElement: datepickerButton,
             static: true,
             appendTo: datepicker,
+            onOpen: () => (this.isOpen = true),
+            onClose: () => (this.isOpen = false),
         };
 
         const options = {
