@@ -61,6 +61,7 @@ export class VlUploadComponent extends FormControl {
 
     // State
     private value: FormValue = '';
+    private multiple = false;
 
     // Variables
     private dropzoneInstance: Dropzone | undefined | null;
@@ -87,6 +88,7 @@ export class VlUploadComponent extends FormControl {
             url: { type: String },
             readonly: { type: Boolean },
             value: { type: Object, state: true },
+            multiple: { type: Boolean, reflect: true },
         };
     }
 
@@ -183,6 +185,7 @@ export class VlUploadComponent extends FormControl {
 
         if (changedProperties.has('maxFiles')) {
             if (this.dropzoneInstance) this.dropzoneInstance.options.maxFiles = this.maxFiles;
+            this.multiple = this.maxFiles > 1;
         }
     }
 
