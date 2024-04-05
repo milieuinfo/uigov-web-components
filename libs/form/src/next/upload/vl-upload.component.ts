@@ -1,7 +1,8 @@
 import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
 import { iconStyle, linkStyle, uploadStyle } from '@domg/govflanders-style/component';
 import { classMap } from 'lit/directives/class-map.js';
-import Dropzone from 'dropzone';
+// @ts-ignore Dropzone heeft een default export
+import { Dropzone, DropzoneFile } from 'dropzone';
 import { Validator } from '@open-wc/form-control';
 import { FormValue } from '@open-wc/form-control/src/types';
 import { accessibilityStyle, baseStyle, resetStyle } from '@domg/govflanders-style/common';
@@ -14,7 +15,7 @@ import uploadUigStyle from './vl-upload.uig-css';
  */
 const dropzoneValidator: Validator = {
     key: 'customError',
-    message: 'Something went wrong when adding a file',
+    message: `Something went wrong when adding a file`,
     isValid(_instance: VlUploadComponent): boolean {
         let hasDropzoneError = false;
         _instance.getFiles().forEach((file) => {
@@ -261,7 +262,7 @@ export class VlUploadComponent extends FormControl {
         this.dropzoneInstance?.off(event, callback);
     }
 
-    getFiles(): Dropzone.DropzoneFile[] {
+    getFiles(): DropzoneFile[] {
         return this.dropzoneInstance?.getAcceptedFiles() || [];
     }
 
@@ -273,7 +274,7 @@ export class VlUploadComponent extends FormControl {
             if (this.autoProcess) {
                 this.dropzoneInstance.options.autoProcessQueue = false;
             }
-            this.dropzoneInstance.addFile(<Dropzone.DropzoneFile>file);
+            this.dropzoneInstance.addFile(<DropzoneFile>file);
             this.dropzoneInstance.emit('complete', file);
             if (this.autoProcess) {
                 this.dropzoneInstance.options.autoProcessQueue = true;
@@ -357,7 +358,7 @@ export class VlUploadComponent extends FormControl {
             : this.getInput()?.removeAttribute(attribute);
     }
 
-    private async updateFileList(dropzone: Dropzone, file?: Dropzone.DropzoneFile) {
+    private async updateFileList(dropzone: Dropzone, file?: DropzoneFile) {
         const fileList = this.shadowRoot?.querySelector(`.vl-upload__files`);
 
         if (dropzone.files.length) {
@@ -471,7 +472,7 @@ export class VlUploadComponent extends FormControl {
         this.dropzoneInstance.off('drop', this.handleDragLeave);
     }
 
-    private updateValue(detail: { type: string; file?: Dropzone.DropzoneFile; value: FormValue }) {
+    private updateValue(detail: { type: string; file?: DropzoneFile; value: FormValue }) {
         this.value = this.collectFormData();
         this.dispatchEvent(
             new CustomEvent('vl-input', {
@@ -497,17 +498,17 @@ export class VlUploadComponent extends FormControl {
             : '';
     }
 
-    private handleAddedFile = async (file: Dropzone.DropzoneFile): Promise<void> => {
+    private handleAddedFile = async (file: DropzoneFile): Promise<void> => {
         await this.updateFileList(this.dropzoneInstance!, file);
         this.updateValue({ type: 'addedfile', file: file, value: this.value });
     };
 
-    private handleRemovedFile = async (file: Dropzone.DropzoneFile): Promise<void> => {
+    private handleRemovedFile = async (file: DropzoneFile): Promise<void> => {
         await this.updateFileList(this.dropzoneInstance!);
         this.updateValue({ type: 'removedfile', file: file, value: this.value });
     };
 
-    private handleError = (file: Dropzone.DropzoneFile, errorMessage: string) => {
+    private handleError = (file: DropzoneFile, errorMessage: string) => {
         this.dispatchEvent(
             new CustomEvent('vl-error', {
                 composed: true,
