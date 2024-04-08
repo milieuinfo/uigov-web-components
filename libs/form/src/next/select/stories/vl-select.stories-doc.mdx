@@ -46,9 +46,21 @@ Bij het selecteren of verwijderen van een optie wordt het `vl-select` event afge
 
 Gelijkaardig aan de `getSelected()`-methode, bevat de value bij de single select 1 string en bij de multi select een array van strings.
 
+## Select opties
+
+De `options` property bevat een array van objecten die de opties van de select component bevatten.
+
+Als de referentie van deze array verandert, wordt de Lit lifecycle getriggerd en wordt de select opnieuw opgebouwd op basis van de nieuwe opties.<br/>
+Hierdoor is het noodzakelijk om de opties door te geven aan de select component met behulp van een variabele, en de opties niet direct in de template te zetten.<br/>
+Indien je de opties direct in de template zet, zal bij elke render de select opnieuw opgebouwd worden en de gekozen opties verwijderd worden.
+
+Dit betekent ook dat als je programmatorisch een optie wil veranderen, toevoegen of verwijderen, je de referentie van de array moet aanpassen.<br/>
+Dit kan je doen door de opties de spreaden in een nieuwe array (`[...options]`).
+
 ## Accessibility
 
-Door de complexiteit van dit component is het niet mogelijk om het WCAG-compliant aan te bieden.
+Door de complexiteit van dit component is het niet mogelijk om het WCAG-compliant aan te bieden.<br/>
+We raden aan waar mogelijk gebruik te maken van checkboxes of radio buttons, zeker als er minder dan 7 opties zijn.<br/>
 
 ## Varianten
 
