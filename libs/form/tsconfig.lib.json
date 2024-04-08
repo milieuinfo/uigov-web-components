@@ -5,7 +5,6 @@
         "sourceMap": true,
         "inlineSources": true,
         "declaration": true,
-        "allowSyntheticDefaultImports": true,
         "types": ["cypress", "cypress-axe"]
     },
     "exclude": ["jest.config.ts", "**/*.spec.ts"]
