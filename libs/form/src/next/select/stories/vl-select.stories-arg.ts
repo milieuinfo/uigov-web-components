@@ -104,7 +104,7 @@ export const selectArgTypes: ArgTypes<SelectArgs> = {
     },
     options: {
         name: 'options',
-        description: 'De opties die je kan selecteren.',
+        description: 'De opties die geselecteerd kunnen worden.<br>Zie de documentatie pagina voor meer info.',
         table: {
             type: { summary: 'SelectOption' },
             category: CATEGORIES.PROPERTIES,
