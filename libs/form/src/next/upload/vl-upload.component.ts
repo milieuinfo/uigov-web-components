@@ -60,7 +60,6 @@ export class VlUploadComponent extends FormControl {
 
     // State
     private value: FormValue = '';
-    private multiple = false;
 
     // Variables
     private dropzoneInstance: Dropzone | undefined | null;
@@ -87,7 +86,6 @@ export class VlUploadComponent extends FormControl {
             url: { type: String },
             readonly: { type: Boolean },
             value: { type: Object, state: true },
-            multiple: { type: Boolean, reflect: true },
         };
     }
 
@@ -184,7 +182,6 @@ export class VlUploadComponent extends FormControl {
 
         if (changedProperties.has('maxFiles')) {
             if (this.dropzoneInstance) this.dropzoneInstance.options.maxFiles = this.maxFiles;
-            this.multiple = this.maxFiles > 1;
         }
     }
 
@@ -261,7 +258,7 @@ export class VlUploadComponent extends FormControl {
         this.dropzoneInstance?.off(event, callback);
     }
 
-    getFiles(): Dropzone.DropzoneFile[] {
+    getFiles() {
         return this.dropzoneInstance?.getAcceptedFiles() || [];
     }
 
@@ -273,7 +270,7 @@ export class VlUploadComponent extends FormControl {
             if (this.autoProcess) {
                 this.dropzoneInstance.options.autoProcessQueue = false;
             }
-            this.dropzoneInstance.addFile(<Dropzone.DropzoneFile>file);
+            this.dropzoneInstance.addFile(file as any);
             this.dropzoneInstance.emit('complete', file);
             if (this.autoProcess) {
                 this.dropzoneInstance.options.autoProcessQueue = true;
@@ -357,7 +354,7 @@ export class VlUploadComponent extends FormControl {
             : this.getInput()?.removeAttribute(attribute);
     }
 
-    private async updateFileList(dropzone: Dropzone, file?: Dropzone.DropzoneFile) {
+    private async updateFileList(dropzone: Dropzone, file?: any) {
         const fileList = this.shadowRoot?.querySelector(`.vl-upload__files`);
 
         if (dropzone.files.length) {
@@ -471,7 +468,7 @@ export class VlUploadComponent extends FormControl {
         this.dropzoneInstance.off('drop', this.handleDragLeave);
     }
 
-    private updateValue(detail: { type: string; file?: Dropzone.DropzoneFile; value: FormValue }) {
+    private updateValue(detail: { type: string; file?: any; value: FormValue }) {
         this.value = this.collectFormData();
         this.dispatchEvent(
             new CustomEvent('vl-input', {
@@ -497,17 +494,17 @@ export class VlUploadComponent extends FormControl {
             : '';
     }
 
-    private handleAddedFile = async (file: Dropzone.DropzoneFile): Promise<void> => {
+    private handleAddedFile = async (file: any): Promise<void> => {
         await this.updateFileList(this.dropzoneInstance!, file);
         this.updateValue({ type: 'addedfile', file: file, value: this.value });
     };
 
-    private handleRemovedFile = async (file: Dropzone.DropzoneFile): Promise<void> => {
+    private handleRemovedFile = async (file: any): Promise<void> => {
         await this.updateFileList(this.dropzoneInstance!);
         this.updateValue({ type: 'removedfile', file: file, value: this.value });
     };
 
-    private handleError = (file: Dropzone.DropzoneFile, errorMessage: string) => {
+    private handleError = (file: any, errorMessage: string) => {
         this.dispatchEvent(
             new CustomEvent('vl-error', {
                 composed: true,
