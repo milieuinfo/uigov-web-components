@@ -263,7 +263,7 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
     set _filter(filter: any) {
         if (filter && this.__searchFilter) {
             const form = this.__searchFilter.querySelector('form');
-            if (Boolean(form) && form !== null) {
+            if (form) {
                 filter.forEach((entry: { value: string; name: number }) => {
                     const formElements = form.elements;
                     // should be > formElements.namedItem(entry.name)
@@ -358,13 +358,11 @@ export class VlRichData extends BaseElementOfType(HTMLElement) {
             this.__pager.setAttribute('data-vl-align-right', String(true));
             this.__pager.addEventListener('change', (e: any) => {
                 this.__onStateChange(e, { paging: true });
-                if (this.__contentSlot.assignedNodes()[0] !== undefined) {
+                if (this.__contentSlot.assignedNodes()[0]) {
                     const firstAssignedNode: any = this.__contentSlot.assignedNodes()[0];
                     // const firstAssignedNode = this.__contentSlot.assignedNodes()[0];
                     // should be childNodes (on Node) but children here? TODO debug
-                    if (firstAssignedNode.children[0].querySelector('a') !== undefined) {
-                        firstAssignedNode.children[0].querySelector('a').focus();
-                    }
+                    firstAssignedNode.children[0]?.querySelector('a')?.focus();
                 }
             });
         }
