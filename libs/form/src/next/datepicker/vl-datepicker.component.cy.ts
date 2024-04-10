@@ -109,26 +109,67 @@ describe('component - vl-datepicker-next', () => {
     });
 
     it('should set date in format', () => {
-        const format = 'Y-m-d';
+        const format = 'd-m-Y';
         cy.mount(html`<vl-datepicker-next format=${format}></vl-datepicker-next>`);
 
-        const testDate = createDateString({ selectedDay: 15, format: format });
+        const testDate = createDateString({ day: 15, format: format });
         cy.get('vl-datepicker-next').shadow().find('button#toggle-calendar').click();
         cy.get('vl-datepicker-next').shadow().find('.flatpickr-calendar').find('.flatpickr-day').contains('15').click();
-        cy.get('vl-datepicker-next').should('have.value', testDate);
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', testDate);
+        cy.get('vl-datepicker-next').should('have.value', createIsoDateString({ day: 15 }));
     });
 
-    it('should set prefilled date', () => {
-        const date = '01.11.2021';
-        cy.mount(html`<vl-datepicker-next value=${date} label="startdatum"></vl-datepicker-next>`);
+    it('should set initial date', () => {
+        const date = '2021-11-01';
+        cy.mount(html`<vl-datepicker-next value=${date} label="date"></vl-datepicker-next>`);
         cy.injectAxe();
 
-        cy.get('vl-datepicker-next').should('have.value', date);
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', '01.11.2021');
+        cy.get('vl-datepicker-next').should('have.value', '2021-11-01');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
+    it('should set initial time', () => {
+        const value = '09:06';
+        cy.mount(html`<vl-datepicker-next value=${value} type="time" label="time"></vl-datepicker-next>`);
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', '09:06');
+        cy.get('vl-datepicker-next').should('have.value', '09:06');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
+    it('should set initial date-time', () => {
+        const date = '2024-04-17T09:06:35';
+        cy.mount(html`<vl-datepicker-next value=${date} type="date-time" label="date-time"></vl-datepicker-next>`);
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', '17.04.2024 09:06');
+        cy.get('vl-datepicker-next').should('have.value', '2024-04-17T09:06');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
+    it('should set initial date in long ISO format', () => {
+        const date = '2024-04-17T09:06:35';
+        cy.mount(html`<vl-datepicker-next value=${date} label="date"></vl-datepicker-next>`);
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', '17.04.2024');
+        cy.get('vl-datepicker-next').should('have.value', '2024-04-17');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
+    it("should set today's date", () => {
+        cy.mount(html`<vl-datepicker-next value="today" label="startdatum"></vl-datepicker-next>`);
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', createDateString({}));
+        cy.get('vl-datepicker-next').should('have.value', createIsoDateString({}));
         cy.checkA11y('vl-datepicker-next');
     });
 
     it('should set min date', () => {
-        const minDate = createDateString({ selectedDay: 15 });
+        const minDate = createDateString({ day: 15 });
         cy.mount(html`<vl-datepicker-next min-date=${minDate}></vl-datepicker-next>`);
 
         cy.get('vl-datepicker-next').shadow().find('button#toggle-calendar').click();
@@ -141,7 +182,7 @@ describe('component - vl-datepicker-next', () => {
     });
 
     it('should set max date', () => {
-        const maxDate = createDateString({ selectedDay: 20 });
+        const maxDate = createDateString({ day: 20 });
         cy.mount(html`<vl-datepicker-next max-date=${maxDate}></vl-datepicker-next>`);
 
         cy.get('vl-datepicker-next').shadow().find('button#toggle-calendar').click();
@@ -245,16 +286,45 @@ describe('component - vl-datepicker-next', () => {
         cy.mount(html`<vl-datepicker-next type="range"></vl-datepicker-next>`);
         cy.injectAxe();
 
-        const startDate = createDateString({ selectedDay: 15 });
-        const endDate = createDateString({ selectedDay: 25 });
+        const startDate = createDateString({ day: 15 });
+        const endDate = createDateString({ day: 25 });
 
         cy.get('vl-datepicker-next').shadow().find('button#toggle-calendar').click();
         cy.get('vl-datepicker-next').shadow().find('.flatpickr-calendar').find('.flatpickr-day').contains('15').click();
         cy.get('vl-datepicker-next').shadow().find('.flatpickr-calendar').find('.flatpickr-day').contains('25').click();
 
-        cy.get('vl-datepicker-next').should('have.value', `${startDate} tot en met ${endDate}`);
+        cy.get('vl-datepicker-next')
+            .shadow()
+            .find('input.vl-input-field')
+            .should('have.value', `${startDate} tot en met ${endDate}`);
+
+        cy.get('vl-datepicker-next').should(
+            'have.value',
+            `${createIsoDateString({ day: 15 })}/${createIsoDateString({ day: 25 })}`
+        );
     });
 
+    it('should set range by manual input', () => {
+        cy.mount(html`<vl-datepicker-next type="range"></vl-datepicker-next>`);
+        cy.injectAxe();
+
+        const startDate = createDateString({ day: 15 });
+        const endDate = createDateString({ day: 25 });
+
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type(`${startDate} tot en met ${endDate}`);
+
+        cy.get('vl-datepicker-next')
+            .shadow()
+            .find('input.vl-input-field')
+            .should('have.value', `${startDate} tot en met ${endDate}`);
+
+        cy.get('vl-datepicker-next').should(
+            'have.value',
+            `${createIsoDateString({ day: 15 })}/${createIsoDateString({ day: 25 })}`
+        );
+    });
+
+    // deze test slaagt in Electron/Firefox, maar niet in Chromium browsers gezien verschil in event werking
     it('should dispatch vl-input event on input', () => {
         cy.mount(html`<vl-datepicker-next></vl-datepicker-next>`);
         cy.createStubForEvent('vl-datepicker-next', 'vl-input');
@@ -264,9 +334,10 @@ describe('component - vl-datepicker-next', () => {
         cy.get('@vl-input')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
-            .should('deep.equal', { value: createDateString({ selectedDay: 15 }) });
+            .should('deep.equal', { value: createIsoDateString({ day: 15 }) });
     });
 
+    // deze test slaagt in Electron/Firefox, maar niet in Chromium browsers gezien verschil in event werking
     it('should dispatch vl-valid event on valid input', () => {
         cy.mount(html`<vl-datepicker-next required></vl-datepicker-next>`);
         cy.createStubForEvent('vl-datepicker-next', 'vl-valid');
@@ -276,13 +347,14 @@ describe('component - vl-datepicker-next', () => {
         cy.get('@vl-valid')
             .should('have.been.calledOnce')
             .its('firstCall.args.0.detail')
-            .should('deep.equal', { value: createDateString({ selectedDay: 15 }) });
+            .should('deep.equal', { value: createIsoDateString({ day: 15 }) });
     });
 });
 
 describe('component - vl-datepicker-next - in form', () => {
     it('should reset datepicker with initial value', () => {
-        const initialValue = '02.12.2023';
+        const initialValue = createIsoDateString({ day: 2, month: 12, year: 2021 });
+
         mountDatepickerInForm({ ...datepickerDefaults, value: initialValue, block: true });
         cy.get('form').then((form$) => {
             form$.on('submit', (e) => {
@@ -293,13 +365,17 @@ describe('component - vl-datepicker-next - in form', () => {
 
         cy.get('vl-datepicker-next').shadow();
         cy.get('vl-datepicker-next').should('have.value', initialValue);
+        cy.get('vl-datepicker-next').shadow().find('input').should('have.value', '02.12.2021');
         cy.checkA11y('vl-datepicker-next');
 
-        cy.get('vl-datepicker-next').invoke('attr', 'value', '21.12.2023');
-        cy.get('vl-datepicker-next').should('have.value', '21.12.2023');
+        const value = createIsoDateString({ day: 21, month: 12, year: 2023 });
+        cy.get('vl-datepicker-next').invoke('attr', 'value', value);
+        cy.get('vl-datepicker-next').should('have.value', value);
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', '21.12.2023');
 
         cy.get('button[type="reset"]').click();
         cy.get('vl-datepicker-next').should('have.value', initialValue);
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', '02.12.2021');
         cy.checkA11y('vl-datepicker-next');
     });
 
@@ -320,7 +396,11 @@ describe('component - vl-datepicker-next - in form', () => {
 
         cy.get('vl-datepicker-next').shadow().find('button#toggle-calendar').click();
         cy.get('vl-datepicker-next').shadow().find('.flatpickr-calendar').find('.flatpickr-day').contains('15').click();
-        cy.get('vl-datepicker-next').should('have.value', createDateString({ selectedDay: 15 }));
+        cy.get('vl-datepicker-next').should('have.value', createIsoDateString({ day: 15 }));
+        cy.get('vl-datepicker-next')
+            .shadow()
+            .find('input')
+            .should('have.value', createDateString({ day: 15 }));
 
         cy.get('button[type="submit"]').click();
         cy.get('vl-datepicker-next').shadow().find('input').should('not.have.class', 'vl-input-field--error');
@@ -400,6 +480,24 @@ describe('component - vl-datepicker-next - in form', () => {
         cy.checkA11y('vl-datepicker-next');
     });
 
+    it('should disable automatic mask validation with invalid initial value', () => {
+        mountDatepickerInForm({ ...datepickerDefaults, disableMaskValidation: true, value: 'hello' });
+        cy.get('form').then((form$) => {
+            form$.on('submit', (e) => {
+                e.preventDefault();
+            });
+        });
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow().find('input').should('not.have.class', 'vl-input-field--error');
+        cy.get('vl-datepicker-next').should('have.value', 'hello');
+        cy.get('button[type="submit"]').click({ force: true });
+
+        cy.get('vl-error-message-next[state="valueMissing"]').should('not.be.visible');
+        cy.get('vl-error-message-next[state="patternMismatch"]').should('not.be.visible');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
     it('should validate pattern with disabled automatic mask validation', () => {
         mountDatepickerInForm({
             ...datepickerDefaults,
@@ -415,6 +513,7 @@ describe('component - vl-datepicker-next - in form', () => {
 
         cy.get('vl-datepicker-next').shadow().find('input').should('not.have.class', 'vl-input-field--error');
         cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('1512202');
+        // cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('1');
         cy.get('button[type="submit"]').click({ force: true });
 
         cy.get('vl-error-message-next[state="valueMissing"]').should('not.be.visible');
@@ -487,6 +586,7 @@ describe('component - vl-datepicker-next - in form', () => {
         cy.get('button[type="reset"]').click();
 
         cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').type('999');
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', '09:09:09');
         cy.get('vl-datepicker-next').should('have.value', '09:09:09');
         cy.get('button[type="submit"]').click();
         cy.get('vl-error-message-next[state="patternMismatch"]').should('not.be.visible');
@@ -527,33 +627,69 @@ describe('component - vl-datepicker-next - in form', () => {
  * @param format
  */
 const createDateString = ({
-    selectedYear,
-    selectedDay,
-    selectedMonth,
+    year,
+    day,
+    month,
     format,
+    date = new Date(),
 }: {
-    selectedYear?: number;
-    selectedMonth?: number;
-    selectedDay?: number;
-    format?: 'Y-m-d' | 'd-m-Y' | 'd/m/Y';
+    year?: number;
+    month?: number;
+    day?: number;
+    format?: 'Y-m-d' | 'd-m-Y' | 'd/m/Y' | 'Z';
+    date?: Date;
 }) => {
-    const date = new Date();
-    const year = selectedYear ? selectedYear : date.getFullYear();
-    const month = selectedMonth ? selectedMonth : date.getMonth() + 1;
-    const day = selectedDay ? selectedDay : date.getDate();
+    const selectedYear = year ? year : date.getFullYear();
+    const selectedMonth = month ? month : date.getMonth() + 1;
+    const selectedDay = day ? day : date.getDate();
     // als de dag kleiner is dan 10, voeg een 0 toe voor de dag
-    const dayString = day < 10 ? `0${day}` : `${day}`;
-    const monthString = month < 10 ? `0${month}` : `${month}`;
-
+    const dayString = selectedDay < 10 ? `0${selectedDay}` : `${selectedDay}`;
+    const monthString = selectedMonth < 10 ? `0${selectedMonth}` : `${selectedMonth}`;
     switch (format) {
         case 'Y-m-d':
-            return `${year}-${monthString}-${dayString}`;
+            return `${selectedYear}-${monthString}-${dayString}`;
         case 'd-m-Y':
-            return `${dayString}-${monthString}-${year}`;
+            return `${dayString}-${monthString}-${selectedYear}`;
         case 'd/m/Y':
-            return `${dayString}/${monthString}/${year}`;
+            return `${dayString}/${monthString}/${selectedYear}`;
         default:
-            return `${dayString}.${monthString}.${year}`;
+            return `${dayString}.${monthString}.${selectedYear}`;
+    }
+};
+
+const createIsoDateString = ({
+    year = 0,
+    month = 0,
+    day = 0,
+    hours = 0,
+    minutes = 0,
+    seconds = 0,
+    offset = true,
+    type = 'date',
+}: {
+    year?: number;
+    month?: number;
+    day?: number;
+    hours?: number;
+    minutes?: number;
+    seconds?: number;
+    offset?: boolean;
+    type?: 'date' | 'time' | 'date-time' | 'range';
+}) => {
+    const timezoneOffset = new Date().getTimezoneOffset() * 60000; //offset in milliseconds
+    const localTodayDate = new Date(new Date().setHours(hours, minutes, seconds, 0) - (offset ? timezoneOffset : 0));
+    if (day) localTodayDate.setDate(day);
+    if (month) localTodayDate.setMonth(month - 1);
+    if (year) localTodayDate.setFullYear(year);
+    switch (type) {
+        case 'date':
+            return localTodayDate.toISOString().substring(0, 10);
+        case 'date-time':
+            return localTodayDate.toISOString().substring(0, 16);
+        case 'time':
+            return localTodayDate.toTimeString().substring(0, 5);
+        case 'range':
+            return `${localTodayDate.toISOString()} tot en met ${localTodayDate.toISOString()}`;
     }
 };
 
