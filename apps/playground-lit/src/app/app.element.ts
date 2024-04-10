@@ -552,7 +552,7 @@ export class AppElement extends LitElement {
                                 <button
                                     class="vl-button vl-button--secondary"
                                     type="button"
-                                    @click=${() => (this.birthdate = '31.12.1976')}
+                                    @click=${() => (this.birthdate = '1976-12-31')}
                                 >
                                     Select '31.12.1976'
                                 </button>

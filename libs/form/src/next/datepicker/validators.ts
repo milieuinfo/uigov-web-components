@@ -11,10 +11,11 @@ export const maskValidator: Validator = {
             regex: RegExp;
             maskOptions: MaskOptions;
             cleaveInstance: CleaveInstance;
+            inputValue: string;
         },
         value: string
     ): boolean {
-        const { disableMaskValidation, cleaveInstance } = instance;
+        const { disableMaskValidation, cleaveInstance, inputValue } = instance;
         const regex = instance.regex || instance.pattern;
         if (!value || (!regex && (!cleaveInstance || disableMaskValidation))) {
             return true;
@@ -25,7 +26,8 @@ export const maskValidator: Validator = {
             return regExp.test(rawValue);
         } else {
             const regExp = new RegExp(regex);
-            return regExp.test(value);
+            // we testen de inputValue gezien dit de waarde is die de gebruiker ingeeft
+            return regExp.test(inputValue);
         }
     },
 };

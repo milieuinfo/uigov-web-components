@@ -32,20 +32,36 @@ import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 ## Formaat
 
 Je kan het `format` attribuut gebruiken om de datumnotatie te wijzigen. Het default formaat is `d.m.Y`.<br/>
-In onderstaand voorbeeld wordt de datumnotatie expliciet ingesteld op `d/m/Y`.
-> `format="d/m/Y"` zal de datum tonen als `31/12/2023`
 
+In het onderstaande voorbeeld wordt de datumnotatie expliciet ingesteld op `d/m/Y`.
+
+> `format="d/m/Y"` zal de gekozen datum weergeven als `31/12/2023`
 ```html
 <vl-datepicker-next format="d/m/Y"></vl-datepicker-next>
+```
+
+## Waarde
+
+Je kan de datum instellen met het `value` attribuut. De waarde moet conform het [ISO-formaat](https://en.wikipedia.org/wiki/ISO_8601) zijn.
+
+De uitgelezen waarde volgt eveneens het [ISO-formaat](https://en.wikipedia.org/wiki/ISO_8601). Per type datepicker wordt de waarde standaard als volgt weergegeven:
+- `date`: `2023-12-31`
+- `time`: `23:59`
+- `date-time`: `2023-12-31T23:59`
+- `range`: `2023-12-31/2023-12-31`
+
+> `value="2023-12-31"` zal de ingestelde datum weergeven als `31.12.2023`
+```html
+<vl-datepicker-next value="2023-12-31"></vl-datepicker-next>
 ```
 
 ## Validatie
 
 ### Mask Validatie
 
-- Er wordt automatisch mask validatie toegevoegd aan de datepicker met type `date` (standaard) of type `time`.
+- Er wordt standaard mask validatie toegevoegd aan de datepicker met type `date` (standaard) of type `time`.
 - De mask wordt opgebouwd op basis van het `format` attribuut.
-- Je kan automatische mask validatie uitschakelen met het `disable-mask-validation` attribuut.
+- Je kan standaard mask validatie uitschakelen met het `disable-mask-validation` attribuut.
 - De `patternMismatch` ValidityState key wordt gebruikt voor de mask validatie error.
 
 ### Pattern Validatie
@@ -53,23 +69,10 @@ In onderstaand voorbeeld wordt de datumnotatie expliciet ingesteld op `d/m/Y`.
 - Als de mask validatie is uitgeschakeld, kan je met het `pattern` attribuut een regex patroon instellen. Je kan ook de `regex` property gebruiken voor complexere validatie.
 - De `patternMismatch` ValidityState key wordt gebruikt voor de pattern validatie error.
 
-## Conversie
-
-Wanneer je een ander formaat wil gebruiken dan het formaat dat aan de gebruiker wordt getoond, moet je deze zelf omzetten.<br/>
-Hiervoor kan je gebruik maken van de `flatpickr`-functie `formatDate`.
-
-```ts
-import flatpickr from 'flatpickr';
-
-function convertDate(date: Date, format: string) {
-  return flatpickr.formatDate(date, format);
-}
-```
-
 ## Gekende Beperkingen
 
 - De datepicker is niet toegankelijk voor gebruikers die enkel met het toetsenbord navigeren. Ze kunnen wel manueel een datum invullen.
-- Voor datepicker met type `datetime` & `range` is er geen automatische mask validatie voorzien gezien `cleave.js` hiervoor geen ondersteuning biedt.
+- Voor datepicker met type `date-time` & `range` is er geen standaard mask validatie voorzien gezien `cleave.js` hiervoor geen ondersteuning biedt.
 
 ## Referenties
 

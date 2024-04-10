@@ -133,7 +133,7 @@ describe('integration - form demo', () => {
         const submittedFormData = {
             naam: 'Kristof Spaas',
             rrn: '12.34.56-789.12',
-            geboortedatum: '26.09.1991',
+            geboortedatum: '1991-09-26',
             geboorteplaats: 'hasselt',
             hobbies: ['padel', 'dans'],
             kinderen: '0',
@@ -164,7 +164,7 @@ describe('integration - form demo', () => {
         const submittedFormData = {
             naam: 'Kristof Spaas',
             rrn: '12345678912',
-            geboortedatum: '26.09.1991',
+            geboortedatum: '1991-09-26',
             geboorteplaats: 'hasselt',
             hobbies: ['padel', 'dans'],
             kinderen: '0',
