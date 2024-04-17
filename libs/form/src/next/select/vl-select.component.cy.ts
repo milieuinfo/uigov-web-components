@@ -5,16 +5,16 @@ import { SelectOption } from './index';
 
 registerWebComponents([VlSelectComponent]);
 
-describe('component - vl-select-next - single', () => {
-    const options: SelectOption[] = [
-        { label: 'Hasselt', value: 'hasselt' },
-        { label: 'Turnhout', value: 'turnhout' },
-        { label: 'Knokke-Heist', value: 'knokke-heist' },
-        { label: 'Waregem', value: 'waregem' },
-        { label: 'Lier', value: 'lier' },
-        { label: 'Rio Piedras', value: 'rio piedras' },
-    ];
+const options: SelectOption[] = [
+    { label: 'Hasselt', value: 'hasselt' },
+    { label: 'Turnhout', value: 'turnhout' },
+    { label: 'Knokke-Heist', value: 'knokke-heist' },
+    { label: 'Waregem', value: 'waregem' },
+    { label: 'Lier', value: 'lier' },
+    { label: 'Rio Piedras', value: 'rio piedras' },
+];
 
+describe('component - vl-select-next', () => {
     it('should mount', () => {
         cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
         cy.injectAxe();
@@ -106,194 +106,25 @@ describe('component - vl-select-next - single', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-pill__close');
+        cy.get('vl-select-next').shadow().find('button.vl-select__button span.vl-icon.vl-vi.vl-vi-close');
     });
 
-    it('should set search', () => {
-        cy.mount(html`<vl-select-next label="geboorteplaats" search .options=${options}></vl-select-next>`);
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('input.vl-input-field.vl-input-field-cloned');
-    });
-
-    it('should set position', () => {
-        cy.mount(html`<vl-select-next label="geboorteplaats" position="top" .options=${options}></vl-select-next>`);
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.js-vl-select.is-flipped');
-    });
-
-    it('should set result limit', () => {
+    it('should set autocomplete', () => {
         cy.mount(
-            html`<vl-select-next label="geboorteplaats" result-limit="1" search .options=${options}></vl-select-next>`
+            html`<vl-select-next label="geboorteplaats" autocomplete="name" .options=${options}></vl-select-next>`
         );
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('input').type('a');
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').should('have.length', 1);
-        cy.checkA11y('vl-select-next');
+        cy.get('vl-select-next').shadow().find('select').should('have.attr', 'autocomplete', 'name');
     });
 
-    it('should set no results text', () => {
-        cy.mount(
-            html`<vl-select-next
-                label="geboorteplaats"
-                no-results-text="Geen geboorteplaatsen gevonden"
-                search
-                .options=${options}
-            ></vl-select-next>`
-        );
+    it('should set block', () => {
+        cy.mount(html`<vl-select-next label="geboorteplaats" block .options=${options}></vl-select-next>`);
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('input').type('gibberish');
-        cy.get('vl-select-next')
-            .shadow()
-            .find('.vl-select__list')
-            .find('.vl-select__item.has-no-results')
-            .contains('Geen geboorteplaatsen gevonden');
-
-        // Hack om de select dropdown te sluiten zodat de a11y check slaagt
-        // TODO: Dit komt omdat Choices.js het aria-activedescendant attribuut niet weghaalt van het input veld als er geen opties zijn, kijk of er een betere oplossing is.
-        cy.get('body').click(0, 0);
-        cy.checkA11y('vl-select-next');
-    });
-
-    it('should set no choices text', () => {
-        cy.mount(
-            html`<vl-select-next
-                label="geboorteplaats"
-                no-choices-text="Geen resterende geboorteplaatsen gevonden"
-                search
-            ></vl-select-next>`
-        );
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next')
-            .shadow()
-            .find('.vl-select__list')
-            .find('.vl-select__item.has-no-choices')
-            .contains('Geen resterende geboorteplaatsen gevonden');
-
-        // Hack om de select dropdown te sluiten zodat de a11y check slaagt
-        // TODO: Dit komt omdat Choices.js het aria-activedescendant attribuut niet weghaalt van het input veld als er geen opties zijn, kijk of er een betere oplossing is.
-        cy.get('body').click(0, 0);
-        cy.checkA11y('vl-select-next');
-    });
-
-    it('should set search placeholder', () => {
-        cy.mount(
-            html`<vl-select-next
-                label="geboorteplaats"
-                search-placeholder="Zoek geboorteplaats"
-                search
-                .options=${options}
-            ></vl-select-next>`
-        );
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('input').should('have.attr', 'placeholder', 'Zoek geboorteplaats');
-        cy.checkA11y('vl-select-next');
-    });
-
-    it('should search', () => {
-        cy.mount(html`<vl-select-next label="geboorteplaats" search .options=${options}></vl-select-next>`);
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('input').type('Hasselt');
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt');
-        cy.get('vl-select-next')
-            .shadow()
-            .find('.vl-select__list')
-            .find('.vl-select__item')
-            .contains('Turnhout')
-            .should('not.exist');
-        cy.checkA11y('vl-select-next');
-    });
-
-    it('should disable option', () => {
-        const options: SelectOption[] = [
-            { label: 'Hasselt', value: 'hasselt', disabled: true },
-            { label: 'Turnhout', value: 'turnhout' },
-            { label: 'Knokke-Heist', value: 'knokke-heist' },
-            { label: 'Waregem', value: 'waregem' },
-            { label: 'Lier', value: 'lier' },
-            { label: 'Rio Piedras', value: 'rio piedras' },
-        ];
-
-        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next')
-            .shadow()
-            .find('.vl-select__list')
-            .find('.vl-select__item.vl-select__item--disabled')
-            .contains('Hasselt');
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next')
-            .shadow()
-            .find('.vl-select__list')
-            .find('.vl-select__item')
-            .contains('Turnhout')
-            .click();
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Hasselt').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Turnhout');
-        cy.checkA11y('vl-select-next');
-    });
-
-    it('should use groups', () => {
-        const options: SelectOption[] = [
-            {
-                label: 'België',
-                value: '',
-                choices: [
-                    { label: 'Hasselt', value: 'hasselt' },
-                    { label: 'Turnhout', value: 'turnhout' },
-                    { label: 'Knokke-Heist', value: 'knokke-heist' },
-                    { label: 'Waregem', value: 'waregem' },
-                    { label: 'Lier', value: 'lier' },
-                ],
-            },
-            {
-                label: 'Puerto Rico',
-                value: '',
-                choices: [{ label: 'Rio Piedras', value: 'rio piedras' }],
-            },
-        ];
-
-        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__group').contains('België');
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__group').contains('Puerto Rico');
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt');
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Turnhout');
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Knokke-Heist');
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Waregem');
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Lier');
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Rio Piedras');
-
-        // Hack om de select dropdown te sluiten zodat de a11y check slaagt
-        // TODO: Dit komt omdat Choices.js het role="treeitem" attribuut zet op opties bij het gebruik van groups ipv role="option", kijk of er een betere oplossing is.
-        cy.get('body').click(0, 0);
-        cy.checkA11y('vl-select-next');
+        cy.get('vl-select-next').shadow().find('select').should('have.class', 'vl-select--block');
     });
 
     it('should dispatch vl-select event on select and delete option', () => {
@@ -302,39 +133,13 @@ describe('component - vl-select-next - single', () => {
 
         cy.createStubForEvent('vl-select-next', 'vl-select');
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
+        cy.get('vl-select-next').shadow().find('select').select('hasselt').trigger('change');
         cy.get('@vl-select')
             .should('have.been.calledOnce')
             .its('firstCall.args.0.detail')
             .should('deep.equal', { value: 'hasselt' });
-        cy.get('vl-select-next')
-            .shadow()
-            .find('.vl-input-field')
-            .find('.vl-select__item')
-            .find('.vl-pill__close')
-            .click();
+        cy.get('vl-select-next').shadow().find('button.vl-select__button').click();
         cy.get('@vl-select')
-            .should('have.been.calledTwice')
-            .its('secondCall.args.0.detail')
-            .should('deep.equal', { value: '' });
-        cy.checkA11y('vl-select-next');
-    });
-
-    it('should dispatch vl-select-search event on input search value', () => {
-        cy.mount(html`<vl-select-next label="geboorteplaats" search .options=${options}></vl-select-next>`);
-        cy.injectAxe();
-        cy.createStubForEvent('vl-select-next', 'vl-select-search');
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('input').type('t');
-        cy.get('@vl-select-search')
-            .should('have.been.calledOnce')
-            .its('firstCall.args.0.detail')
-            .should('deep.equal', { value: 't' });
-        cy.get('vl-select-next').shadow().find('input').clear();
-        cy.get('@vl-select-search')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
             .should('deep.equal', { value: '' });
@@ -347,18 +152,12 @@ describe('component - vl-select-next - single', () => {
 
         cy.createStubForEvent('vl-select-next', 'vl-valid');
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
+        cy.get('vl-select-next').shadow().find('select').select('hasselt').trigger('change');
         cy.get('@vl-valid')
             .should('have.been.calledOnce')
             .its('firstCall.args.0.detail')
             .should('deep.equal', { value: 'hasselt' });
-        cy.get('vl-select-next')
-            .shadow()
-            .find('.vl-input-field')
-            .find('.vl-select__item')
-            .find('.vl-pill__close')
-            .click();
+        cy.get('vl-select-next').shadow().find('button.vl-select__button').click();
         cy.get('@vl-valid').should('have.been.calledOnce');
         cy.checkA11y('vl-select-next');
     });
@@ -368,14 +167,43 @@ describe('component - vl-select-next - single', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Hasselt');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Turnhout').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Knokke-Heist').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Waregem').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Lier').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Rio Piedras').should('not.exist');
+        cy.get('vl-select-next').shadow().find('select').select('hasselt').trigger('change');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('option')
+            .contains('Hasselt')
+            .should('have.attr', 'selected');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('option')
+            .contains('Turnhout')
+            .should('not.have.attr', 'selected');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('option')
+            .contains('Knokke-Heist')
+            .should('not.have.attr', 'selected');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('option')
+            .contains('Waregem')
+            .should('not.have.attr', 'selected');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('option')
+            .contains('Lier')
+            .should('not.have.attr', 'selected');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('option')
+            .contains('Rio Piedras')
+            .should('not.have.attr', 'selected');
         cy.checkA11y('vl-select-next');
     });
 
@@ -384,16 +212,20 @@ describe('component - vl-select-next - single', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Hasselt');
+        cy.get('vl-select-next').shadow().find('select').select('hasselt').trigger('change');
         cy.get('vl-select-next')
             .shadow()
-            .find('.vl-input-field')
-            .find('.vl-select__item')
-            .find('.vl-pill__close')
-            .click();
-        cy.get('vl-select-next').shadow().find('select').find('option').should('not.exist');
+            .find('select')
+            .find('option')
+            .contains('Hasselt')
+            .should('have.attr', 'selected');
+        cy.get('vl-select-next').shadow().find('button.vl-select__button').click();
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('option')
+            .contains('Hasselt')
+            .should('not.have.attr', 'selected');
         cy.checkA11y('vl-select-next');
     });
 
@@ -411,238 +243,99 @@ describe('component - vl-select-next - single', () => {
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Hasselt');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Turnhout').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Knokke-Heist').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Waregem').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Lier').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Rio Piedras').should('not.exist');
-        cy.checkA11y('vl-select-next');
-    });
-
-    it('should return selected value when calling getSelected()', () => {
-        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options} deletable></vl-select-next>`);
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelected()).to.be.empty;
-        });
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
-        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelected()).to.equal('hasselt');
-        });
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-next')
             .shadow()
-            .find('.vl-select__list')
-            .find('.vl-select__item')
+            .find('select')
+            .find('option')
+            .contains('Hasselt')
+            .should('have.attr', 'selected');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('option')
             .contains('Turnhout')
-            .click();
-        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelected()).to.equal('turnhout');
-        });
+            .should('not.have.attr', 'selected');
         cy.get('vl-select-next')
             .shadow()
-            .find('.vl-input-field')
-            .find('.vl-select__item')
-            .find('.vl-pill__close')
-            .click();
-        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelected()).to.be.empty;
-        });
-        cy.checkA11y('vl-select-next');
-    });
-});
-
-describe('component - vl-select-next - multiple', () => {
-    const options: SelectOption[] = [
-        { label: 'Padel', value: 'padel' },
-        { label: 'Dans', value: 'dans' },
-        { label: 'Drummen', value: 'drummen' },
-        { label: 'Zwemmen', value: 'zwemmen' },
-        { label: 'Boardgames', value: 'boardgames' },
-        { label: 'Fietsen', value: 'fietsen' },
-    ];
-
-    it('should mount', () => {
-        cy.mount(html`<vl-select-next label="hobby's" multiple .options=${options}></vl-select-next>`);
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('select');
-    });
-
-    it('should search', () => {
-        cy.mount(html`<vl-select-next label="hobby's" multiple .options=${options}></vl-select-next>`);
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('input').type('Padel');
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Padel');
+            .find('select')
+            .find('option')
+            .contains('Knokke-Heist')
+            .should('not.have.attr', 'selected');
         cy.get('vl-select-next')
             .shadow()
-            .find('.vl-select__list')
-            .find('.vl-select__item')
-            .contains('Dans')
-            .should('not.exist');
+            .find('select')
+            .find('option')
+            .contains('Waregem')
+            .should('not.have.attr', 'selected');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('option')
+            .contains('Lier')
+            .should('not.have.attr', 'selected');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('option')
+            .contains('Rio Piedras')
+            .should('not.have.attr', 'selected');
         cy.checkA11y('vl-select-next');
     });
 
-    it('should dispatch vl-select event on select and delete option', () => {
-        cy.mount(html`<vl-select-next label="hobby's" multiple deletable .options=${options}></vl-select-next>`);
-        cy.injectAxe();
-
-        cy.createStubForEvent('vl-select-next', 'vl-select');
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
-        cy.get('@vl-select')
-            .should('have.been.calledOnce')
-            .its('firstCall.args.0.detail')
-            .should('deep.equal', { value: ['padel'] });
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
-        cy.get('@vl-select')
-            .should('have.been.calledTwice')
-            .its('secondCall.args.0.detail')
-            .should('deep.equal', { value: ['padel', 'dans'] });
-        cy.get('vl-select-next')
-            .shadow()
-            .find('.vl-input-field')
-            .find('.vl-select__item[data-value="padel"]')
-            .find('.vl-pill__close')
-            .click();
-        cy.get('@vl-select').its('callCount').should('eq', 3);
-        cy.get('@vl-select')
-            .its('lastCall.args.0.detail')
-            .should('deep.equal', { value: ['dans'] });
-        cy.checkA11y('vl-select-next');
-    });
-
-    it('should select multiple options', () => {
-        cy.mount(html`<vl-select-next label="hobby's" multiple .options=${options}></vl-select-next>`);
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Drummen').click();
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Padel');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Dans');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Drummen');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Zwemmen').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Boardgames').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Fietsen').should('not.exist');
-        cy.checkA11y('vl-select-next');
-    });
-
-    it('should delete multiple options', () => {
-        cy.mount(html`<vl-select-next label="hobby's" multiple .options=${options} deletable></vl-select-next>`);
-        cy.injectAxe();
-
-        cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Drummen').click();
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Padel');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Dans');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Drummen');
-        cy.get('vl-select-next')
-            .shadow()
-            .find('.vl-input-field')
-            .find('.vl-select__item[data-value="padel"]')
-            .find('.vl-pill__close')
-            .click();
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Padel').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Dans');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Drummen');
-        cy.get('vl-select-next')
-            .shadow()
-            .find('.vl-input-field')
-            .find('.vl-select__item[data-value="dans"]')
-            .find('.vl-pill__close')
-            .click();
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Padel').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Dans').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Drummen');
-        cy.get('vl-select-next')
-            .shadow()
-            .find('.vl-input-field')
-            .find('.vl-select__item[data-value="drummen"]')
-            .find('.vl-pill__close')
-            .click();
-        cy.get('vl-select-next').shadow().find('select').find('option').should('not.exist');
-        cy.checkA11y('vl-select-next');
-    });
-
-    it('should select multiple options programmatically', () => {
+    it('should disable option programmatically', () => {
         const options: SelectOption[] = [
-            { label: 'Padel', value: 'padel', selected: true },
-            { label: 'Dans', value: 'dans', selected: true },
-            { label: 'Drummen', value: 'drummen', selected: true },
-            { label: 'Zwemmen', value: 'zwemmen' },
-            { label: 'Boardgames', value: 'boardgames' },
-            { label: 'Fietsen', value: 'fietsen' },
+            { label: 'Hasselt', value: 'hasselt', disabled: true },
+            { label: 'Turnhout', value: 'turnhout' },
+            { label: 'Knokke-Heist', value: 'knokke-heist' },
+            { label: 'Waregem', value: 'waregem' },
+            { label: 'Lier', value: 'lier' },
+            { label: 'Rio Piedras', value: 'rio piedras' },
         ];
 
-        cy.mount(html`<vl-select-next label="hobby's" multiple .options=${options}></vl-select-next>`);
+        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Padel');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Dans');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Drummen');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Zwemmen').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Boardgames').should('not.exist');
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Fietsen').should('not.exist');
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('option')
+            .contains('Hasselt')
+            .should('have.attr', 'disabled');
         cy.checkA11y('vl-select-next');
     });
 
-    it('should return selected values when calling getSelected()', () => {
-        cy.mount(html`<vl-select-next label="hobby's" multiple .options=${options} deletable></vl-select-next>`);
+    it('should use groups', () => {
+        const options: SelectOption[] = [
+            { label: 'Hasselt', value: 'hasselt', group: 'België' },
+            { label: 'Turnhout', value: 'turnhout', group: 'België' },
+            { label: 'Knokke-Heist', value: 'knokke-heist', group: 'België' },
+            { label: 'Waregem', value: 'waregem', group: 'België' },
+            { label: 'Lier', value: 'lier', group: 'België' },
+            { label: 'Rio Piedras', value: 'rio piedras', group: 'Puerto Rico' },
+        ];
+
+        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');
-        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelected()).to.be.empty;
-        });
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
-        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelected()).to.have.members(['padel']);
-        });
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
-        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelected()).to.have.members(['padel', 'dans']);
-        });
         cy.get('vl-select-next')
             .shadow()
-            .find('.vl-input-field')
-            .find('.vl-select__item[data-value="padel"]')
-            .find('.vl-pill__close')
-            .click();
-        cy.runTestFor<VlSelectComponent>('vl-select-next', (component) => {
-            expect(component.getSelected()).to.have.members(['dans']);
-        });
+            .find('select')
+            .find('optgroup[label="België"]')
+            .find('option')
+            .should('have.length', 5);
+        cy.get('vl-select-next')
+            .shadow()
+            .find('select')
+            .find('optgroup[label="Puerto Rico"]')
+            .find('option')
+            .should('have.length', 1);
         cy.checkA11y('vl-select-next');
     });
 });
 
-describe('component - vl-select-next - single - in form', () => {
-    const options: SelectOption[] = [
-        { label: 'Hasselt', value: 'hasselt' },
-        { label: 'Turnhout', value: 'turnhout' },
-        { label: 'Knokke-Heist', value: 'knokke-heist' },
-        { label: 'Waregem', value: 'waregem' },
-        { label: 'Lier', value: 'lier' },
-        { label: 'Rio Piedras', value: 'rio piedras' },
-    ];
-
+describe('component - vl-select-next - in form', () => {
     beforeEach(() => {
         cy.mount(html`
             <form
@@ -652,13 +345,7 @@ describe('component - vl-select-next - single - in form', () => {
                     e.preventDefault();
                 }}
             >
-                <vl-select-next
-                    id="geboorteplaats"
-                    name="geboorteplaats"
-                    .options=${options}
-                    search
-                    required
-                ></vl-select-next>
+                <vl-select-next id="geboorteplaats" name="geboorteplaats" .options=${options} required></vl-select-next>
                 <button class="vl-button" type="submit">Verstuur</button>
             </form>
         `);
@@ -671,8 +358,7 @@ describe('component - vl-select-next - single - in form', () => {
 
         cy.createStubForEvent('form', 'submit');
 
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
+        cy.get('vl-select-next').shadow().find('select').select('hasselt').trigger('change');
         cy.get('form').find('button[type="submit"]').click();
         cy.get('@submit').should('have.been.calledOnce');
         cy.get('form').then(($el) => {
@@ -682,25 +368,20 @@ describe('component - vl-select-next - single - in form', () => {
     });
 
     it('should prevent form submission on validation error', () => {
+        const submittedFormData = {
+            geboorteplaats: 'hasselt',
+        };
+
         cy.createStubForEvent('form', 'submit');
 
         cy.get('form').find('button[type="submit"]').click();
         cy.get('@submit').should('not.have.been.called');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Hasselt');
+        cy.get('vl-select-next').shadow().find('select').select('hasselt', { force: true }).trigger('change');
         cy.get('form').find('button[type="submit"]').click();
         cy.get('@submit').should('have.been.calledOnce');
-    });
-
-    it('should not submit form on press enter', () => {
-        cy.createStubForEvent('form', 'submit');
-
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
-        cy.get('vl-select-next').shadow().find('select').find('option').contains('Hasselt');
-        cy.get('vl-select-next').shadow().find('.vl-select__inner').click();
-        cy.get('vl-select-next').shadow().find('input.vl-input-field').type('{enter}');
-        cy.get('@submit').should('not.have.been.called');
+        cy.get('form').then(($el) => {
+            const formData = Object.fromEntries(new FormData($el.get(0) as HTMLFormElement));
+            expect(formData).to.deep.equal(submittedFormData);
+        });
     });
 });

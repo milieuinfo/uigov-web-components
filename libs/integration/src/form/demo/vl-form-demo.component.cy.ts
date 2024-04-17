@@ -18,8 +18,9 @@ describe('integration - form demo', () => {
         getNaamInput();
         getRrnInput();
         getGeboortedatumDatepicker();
-        getGeboortePlaatsSelect();
-        getHobbiesSelect();
+        getGeboortePlaatsSelectRich();
+        getHobbiesSelectRich();
+        getKinderenSelect();
         getInteressesTextarea();
         getLeeftijdInput();
         getContactMethodeRadioGroup();
@@ -60,11 +61,14 @@ describe('integration - form demo', () => {
         getSubmitButton().click();
         getErrorMessages({ forAttr: 'geboortedatum', state: 'patternMismatch' });
 
-        // Geboorteplaats select error messages
+        // Geboorteplaats select rich error messages
         getErrorMessages({ forAttr: 'geboorteplaats', state: 'valueMissing' });
 
-        // Hobbies select error messages
+        // Hobbies select rich error messages
         getErrorMessages({ forAttr: 'hobbies', state: 'valueMissing' });
+
+        // Kinderen select error messages
+        getErrorMessages({ forAttr: 'kinderen', state: 'valueMissing' });
 
         // Interesses textarea error messages
         getErrorMessages({ forAttr: 'interesses', state: 'valueMissing' });
@@ -110,9 +114,10 @@ describe('integration - form demo', () => {
         getNaamInput().find('input').should('have.value', '');
         getRrnInput().find('input#rrn').should('have.value', '');
         getGeboortedatumDatepicker().find('input#geboortedatum').should('have.value', '');
-        getGeboortePlaatsSelect().find('select').find('option[value="hasselt"]').should('not.exist');
-        getHobbiesSelect().find('select').find('option[value="padel"]').should('not.exist');
-        getHobbiesSelect().find('select').find('option[value="dans"]').should('not.exist');
+        getGeboortePlaatsSelectRich().find('select').find('option[value="hasselt"]').should('not.exist');
+        getHobbiesSelectRich().find('select').find('option[value="padel"]').should('not.exist');
+        getHobbiesSelectRich().find('select').find('option[value="dans"]').should('not.exist');
+        getKinderenSelect().find('select').find('option[value="0"]').should('not.have.attr', 'selected');
         getInteressesTextarea().find('textarea').should('have.value', '');
         getLeeftijdInput().find('input').should('have.value', '');
         getContactMethodeRadioGroup({ shadow: false })
@@ -131,6 +136,7 @@ describe('integration - form demo', () => {
             geboortedatum: '26.09.1991',
             geboorteplaats: 'hasselt',
             hobbies: ['padel', 'dans'],
+            kinderen: '0',
             interesses: 'Vanalles en nog wat',
             leeftijd: '32',
             contactmethode: 'telefoon',
@@ -161,6 +167,7 @@ describe('integration - form demo', () => {
             geboortedatum: '26.09.1991',
             geboorteplaats: 'hasselt',
             hobbies: ['padel', 'dans'],
+            kinderen: '0',
             interesses: 'Vanalles en nog wat',
             leeftijd: '32',
             contactmethode: 'telefoon',
@@ -192,6 +199,7 @@ describe('integration - form demo', () => {
             geboortedatum: '',
             geboorteplaats: '',
             hobbies: [],
+            kinderen: '',
             interesses: '',
             leeftijd: '',
             contactmethode: '',
@@ -205,8 +213,9 @@ describe('integration - form demo', () => {
         getNaamInput({ shadow: false }).invoke('removeAttr', 'required');
         getRrnInput({ shadow: false }).invoke('removeAttr', 'required');
         getGeboortedatumDatepicker({ shadow: false }).invoke('removeAttr', 'required');
-        getGeboortePlaatsSelect({ shadow: false }).invoke('removeAttr', 'required');
-        getHobbiesSelect({ shadow: false }).invoke('removeAttr', 'required');
+        getGeboortePlaatsSelectRich({ shadow: false }).invoke('removeAttr', 'required');
+        getHobbiesSelectRich({ shadow: false }).invoke('removeAttr', 'required');
+        getKinderenSelect({ shadow: false }).invoke('removeAttr', 'required');
         getInteressesTextarea({ shadow: false }).invoke('removeAttr', 'required');
         getLeeftijdInput({ shadow: false }).invoke('removeAttr', 'required');
         getContactMethodeRadioGroup({ shadow: false }).invoke('removeAttr', 'required');
@@ -244,12 +253,16 @@ const getGeboortedatumDatepicker = ({ shadow = true } = {}) => {
     return getFormControl({ selector: 'vl-datepicker-next#geboortedatum', shadow });
 };
 
-const getGeboortePlaatsSelect = ({ shadow = true } = {}) => {
-    return getFormControl({ selector: 'vl-select-next#geboorteplaats', shadow });
+const getGeboortePlaatsSelectRich = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-select-rich-next#geboorteplaats', shadow });
 };
 
-const getHobbiesSelect = ({ shadow = true } = {}) => {
-    return getFormControl({ selector: 'vl-select-next#hobbies', shadow });
+const getHobbiesSelectRich = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-select-rich-next#hobbies', shadow });
+};
+
+const getKinderenSelect = ({ shadow = true } = {}) => {
+    return getFormControl({ selector: 'vl-select-next#kinderen', shadow });
 };
 
 const getInteressesTextarea = ({ shadow = true } = {}) => {
@@ -300,13 +313,14 @@ const fillInForm = () => {
     getNaamInput().find('input').type('Kristof Spaas');
     getRrnInput().find('input#rrn').click().type('12345678912');
     getGeboortedatumDatepicker().find('input#geboortedatum').click().type('26.09.1991');
-    getGeboortePlaatsSelect().find('.vl-select__inner').click();
-    getGeboortePlaatsSelect().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
-    getHobbiesSelect().find('.vl-select__inner').click();
-    getHobbiesSelect().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
-    getHobbiesSelect().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
+    getGeboortePlaatsSelectRich().find('.vl-select__inner').click();
+    getGeboortePlaatsSelectRich().find('.vl-select__list').find('.vl-select__item').contains('Hasselt').click();
+    getHobbiesSelectRich().find('.vl-select__inner').click();
+    getHobbiesSelectRich().find('.vl-select__list').find('.vl-select__item').contains('Padel').click();
+    getHobbiesSelectRich().find('.vl-select__list').find('.vl-select__item').contains('Dans').click();
     // Sluit de hobby dropdown
     cy.get('body').click(0, 0, { force: true });
+    getKinderenSelect().find('select').select('0');
     getInteressesTextarea().find('textarea').click().type('Vanalles en nog wat');
     getLeeftijdInput().find('input').click().type('32');
     getContactMethodeRadioGroup({ shadow: false })

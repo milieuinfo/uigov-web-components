@@ -1,4 +1,3 @@
-// import { parseFormData } from '@domg-wc/form/utils';
 import { html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlFormDataComponent } from './vl-form-data.component';
@@ -16,10 +15,10 @@ describe('integration - form data', () => {
         cy.mount(html`<vl-form-data></vl-form-data>`);
 
         cy.get('vl-form-data').shadow().find('vl-input-field-next').shadow().find('input').type('John Doe');
-        cy.get('vl-form-data').shadow().find('vl-select-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-form-data').shadow().find('vl-select-rich-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-form-data')
             .shadow()
-            .find('vl-select-next')
+            .find('vl-select-rich-next')
             .shadow()
             .find('.vl-select__list')
             .find('.vl-select__item')
@@ -27,7 +26,7 @@ describe('integration - form data', () => {
             .click();
         cy.get('vl-form-data')
             .shadow()
-            .find('vl-select-next')
+            .find('vl-select-rich-next')
             .shadow()
             .find('.vl-select__list')
             .find('.vl-select__item')

@@ -5,6 +5,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { FormControl, formControlDefaults } from '../form-control/form-control';
 import { webComponent } from '@domg-wc/common-utilities';
+import { maxLengthValidator, minLengthValidator } from '@open-wc/form-control';
 
 export const textareaDefaults = {
     ...formControlDefaults,
@@ -34,6 +35,8 @@ export class VlTextareaComponent extends FormControl {
 
     // Variables
     protected initialValue = '';
+
+    static formControlValidators = [...FormControl.formControlValidators, minLengthValidator, maxLengthValidator];
 
     static get styles(): CSSResult[] {
         return [resetStyle, baseStyle, textareaStyle];

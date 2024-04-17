@@ -1,8 +1,8 @@
 // Dit zijn de aangepaste vl-multiselect styles van DV.
 // DV maakt gebruik van een 'data:' attribuut om een nav-down svg op te halen van w3.org.
 // Hierdoor breekt CSP tenzij we alle 'data:' attributen gaan whitelisten, wat niet de bedoeling is.
-// Deze 'data:' attributen zijn in comment gezet zodat we toch CSP compliant kunnen zijn, zie comments gemarkeerd met ticketnummer UIG-2707.
-// In de vl-select.uig-css.ts staan de vervangende styles voor de nav-down svg.
+// Deze 'data:' attributen zijn verwijderd zodat we toch CSP compliant kunnen zijn.
+// In de vl-select-rich.uig-css.ts staan de vervangende styles voor de nav-down svg.
 // De iconen van DV zijn ook uit deze file verwijderd aangezien deze ook voorkomen in de vl-select styles van DV.
 
 import { css } from 'lit';
@@ -346,21 +346,6 @@ const style = css`
         text-align: center;
         transition: transform 0.2s ease;
     }
-    // UIG-2707: styles verwijderd voor CSP compliance
-    // .vl-multiselect .multiselect__select::before {
-    //     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8.07' height='4.74' viewBox='0 0 8.07 4.74'%3E%3Cpolyline points='7.57 0.5 4.04 4.04 0.5 0.5' fill='none' stroke='%236d7884' stroke-linecap='round'/%3E%3C/svg%3E");
-    //     background-repeat: no-repeat;
-    //     background-size: 9px 5px;
-    //     background-position: calc(100% - 1.5rem) center;
-    //     appearance: none;
-    //     position: absolute;
-    //     display: block;
-    //     right: 0;
-    //     top: 0;
-    //     bottom: 0;
-    //     content: '';
-    //     width: 100%;
-    // }
     .vl-multiselect .multiselect__placeholder {
         display: inline-block;
         padding: 0 0 0 5px;

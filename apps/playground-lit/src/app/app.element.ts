@@ -6,11 +6,12 @@ import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
 import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
 import { VlInputFieldMaskedComponent } from '@domg-wc/form/next/input-field-masked';
 import { VlTextareaComponent } from '@domg-wc/form/next/textarea';
-import { VlSelectComponent, SelectOption } from '@domg-wc/form/next/select';
+import { VlSelectRichComponent, SelectRichOption } from '@domg-wc/form/next/select-rich';
 import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
 import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio-group';
 import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 import { VlUploadComponent } from '@domg-wc/form/next/upload';
+import { VlSelectComponent, SelectOption } from '@domg-wc/form/next/select';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import appElementStyle from './app.element.css';
 import { parseFormData } from '@domg-wc/form/utils';
@@ -24,7 +25,7 @@ type SubmittedFormData = {
     geboorteplaats?: string;
     [`hobby's`]?: string[];
     leeftijd?: number;
-    kinderen?: number;
+    kinderen?: string;
     adres?: string;
     contactmethode?: string;
     fotos?: File | File[];
@@ -88,7 +89,7 @@ export class AppElement extends LitElement {
     private rrn = '';
     private interests = '';
     private birthdate = '';
-    private birthplaces: SelectOption[] = [
+    private birthplaces: SelectRichOption[] = [
         {
             label: 'België',
             value: '',
@@ -106,7 +107,7 @@ export class AppElement extends LitElement {
             choices: [{ label: 'Rio Piedras', value: 'rio piedras' }],
         },
     ];
-    private hobbies: SelectOption[] = [
+    private hobbies: SelectRichOption[] = [
         { label: 'Padel', value: 'padel' },
         { label: 'Dans', value: 'dans' },
         { label: 'Drummen', value: 'drummen' },
@@ -115,7 +116,14 @@ export class AppElement extends LitElement {
         { label: 'Fietsen', value: 'fietsen' },
     ];
     private age: number = null;
-    private kids: number = null;
+    private kidsOptions: SelectOption[] = [
+        { label: '0', value: '0' },
+        { label: '1', value: '1' },
+        { label: '2', value: '2' },
+        { label: '3', value: '3' },
+        { label: '4', value: '4' },
+        { label: '5 of meer', value: '5 of meer' },
+    ];
     private address = '';
     private filledInTruthfully = false;
     private filledInTruthfullyValue = '';
@@ -136,12 +144,13 @@ export class AppElement extends LitElement {
             VlInputFieldComponent,
             VlInputFieldMaskedComponent,
             VlTextareaComponent,
-            VlSelectComponent,
+            VlSelectRichComponent,
             VlCheckboxComponent,
             VlRadioComponent,
             VlRadioGroupComponent,
             VlDatepickerComponent,
             VlUploadComponent,
+            VlSelectComponent,
         ]);
     }
 
@@ -198,7 +207,7 @@ export class AppElement extends LitElement {
             birthplaces: { type: Array, state: true },
             hobbies: { type: Array, state: true },
             age: { type: Number, state: true },
-            kids: { type: Number, state: true },
+            kidsOptions: { type: Array, state: true },
             address: { type: String, state: true },
             upload: { type: String, state: true },
             preferredContactMethod: { type: String, state: true },
@@ -557,7 +566,7 @@ export class AppElement extends LitElement {
                             ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
-                            <vl-select-next
+                            <vl-select-rich-next
                                 id="geboorteplaats"
                                 name="geboorteplaats"
                                 ?required=${this.birthplaceRequired}
@@ -569,9 +578,8 @@ export class AppElement extends LitElement {
                                 placeholder="Selecteer je geboorteplaats"
                                 no-results-text="Geen geboorteplaatsen gevonden"
                                 search-placeholder="Zoek geboorteplaats"
-                                @vl-select=${this.onSelectBirthplace}
                             >
-                            </vl-select-next>
+                            </vl-select-rich-next>
                             <vl-error-message-next for="geboorteplaats" state="valueMissing"
                                 >Gelieve een geboorteplaats te selecteren.
                             </vl-error-message-next>
@@ -616,7 +624,7 @@ export class AppElement extends LitElement {
                             ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
-                            <vl-select-next
+                            <vl-select-rich-next
                                 id="hobby's"
                                 name="hobby's"
                                 ?required=${this.hobbiesRequired}
@@ -627,9 +635,8 @@ export class AppElement extends LitElement {
                                 placeholder="Selecteer je hobby's"
                                 no-results-text="Geen hobbies gevonden"
                                 no-choices-text="Geen resterende hobbies gevonden"
-                                @vl-select=${this.onSelectHobbies}
                             >
-                            </vl-select-next>
+                            </vl-select-rich-next>
                             <vl-error-message-next for="hobby's" state="valueMissing"
                                 >Gelieve een hobby te selecteren.
                             </vl-error-message-next>
@@ -733,23 +740,18 @@ export class AppElement extends LitElement {
                             ></vl-form-label-next>
                         </div>
                         <div class="vl-col--4-12">
-                            <vl-input-field-next
+                            <vl-select-next
                                 id="kinderen"
                                 name="kinderen"
-                                type="number"
                                 block
+                                deletable
+                                placeholder="Selecteer je aantal kinderen"
                                 ?required=${this.kidsRequired}
                                 ?disabled=${this.kidsDisabled}
-                                ?readonly=${this.kidsReadonly}
-                                min=${0}
-                                value=${this.kids}
-                                @vl-input=${(e: CustomEvent) => (this.kids = e.detail.value)}
-                            ></vl-input-field-next>
+                                .options=${this.kidsOptions}
+                            ></vl-select-next>
                             <vl-error-message-next for="kinderen" state="valueMissing"
-                                >Gelieve een aantal kinderen in te vullen.
-                            </vl-error-message-next>
-                            <vl-error-message-next for="kinderen" state="rangeUnderflow"
-                                >Het minimum aantal kinderen is 0.
+                                >Gelieve een aantal kinderen te kiezen.
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
@@ -771,16 +773,16 @@ export class AppElement extends LitElement {
                                 <button
                                     class="vl-button ${!this.kidsReadonly ? 'vl-button--secondary' : ''}"
                                     type="button"
-                                    @click=${() => (this.kidsReadonly = !this.kidsReadonly)}
+                                    @click=${this.toggleKidsReadonly}
                                 >
                                     Readonly
                                 </button>
                                 <button
                                     class="vl-button vl-button--secondary"
                                     type="button"
-                                    @click=${() => (this.kids = 0)}
+                                    @click=${this.selectKidsOption}
                                 >
-                                    Set '0'
+                                    Select '0'
                                 </button>
                             </div>
                         </div>
@@ -1136,7 +1138,7 @@ export class AppElement extends LitElement {
         this.birthdate = '';
         this.resetHobbies();
         this.age = null;
-        this.kids = null;
+        this.resetKidsOptions();
         this.address = '';
         this.photos = null;
         this.preferredContactMethod = '';
@@ -1189,27 +1191,9 @@ export class AppElement extends LitElement {
     }
 
     private selectBirthplace(): void {
-        const birthplaces: SelectOption[] = this.birthplaces.map((birthplaceGroup) => {
+        const birthplaces: SelectRichOption[] = this.birthplaces.map((birthplaceGroup) => {
             birthplaceGroup.choices = birthplaceGroup.choices?.map((birthplace) => {
                 birthplace.selected = birthplace.value === 'turnhout';
-                return birthplace;
-            });
-            return birthplaceGroup;
-        });
-
-        this.birthplaces = birthplaces;
-    }
-
-    private onSelectBirthplace(e: CustomEvent): void {
-        const birthplaces: SelectOption[] = this.birthplaces.map((birthplaceGroup) => {
-            birthplaceGroup.choices = birthplaceGroup.choices?.map((birthplace) => {
-                const value = e.detail.value;
-                if (value instanceof FormData) {
-                    const values = value.getAll('geboorteplaats');
-                    birthplace.selected = values.includes(birthplace.value);
-                } else {
-                    birthplace.selected = birthplace.value === e.detail.value;
-                }
                 return birthplace;
             });
             return birthplaceGroup;
@@ -1221,7 +1205,7 @@ export class AppElement extends LitElement {
     private toggleBirthplaceReadonly(): void {
         this.birthplaceReadonly = !this.birthplaceReadonly;
 
-        const birthplaces: SelectOption[] = this.birthplaces.map((birthplaceGroup) => {
+        const birthplaces: SelectRichOption[] = this.birthplaces.map((birthplaceGroup) => {
             birthplaceGroup.choices = birthplaceGroup.choices?.map((birthplace) => {
                 birthplace.disabled = this.birthplaceReadonly;
                 return birthplace;
@@ -1254,37 +1238,18 @@ export class AppElement extends LitElement {
     }
 
     private selectHobby(): void {
-        const hobbies: SelectOption[] = [
-            ...this.hobbies.map((hobby) => {
-                hobby.selected = hobby.value === 'boardgames';
-                return hobby;
-            }),
-        ];
+        const hobbies: SelectRichOption[] = this.hobbies.map((hobby) => {
+            hobby.selected = hobby.value === 'boardgames';
+            return hobby;
+        });
 
         this.hobbies = hobbies;
-    }
-
-    private onSelectHobbies(e: CustomEvent): void {
-        const hobbies: SelectOption[] = [
-            ...this.hobbies.map((hobby) => {
-                const value = e.detail.value;
-                if (value instanceof FormData) {
-                    const values = value.getAll("hobby's");
-                    hobby.selected = values.includes(hobby.value);
-                } else {
-                    hobby.selected = e.detail.value.includes(hobby.value);
-                }
-                return hobby;
-            }),
-        ];
-
-        this.hobbies = [...hobbies];
     }
 
     private toggleHobbiesReadonly(): void {
         this.hobbiesReadonly = !this.hobbiesReadonly;
 
-        const hobbies: SelectOption[] = this.hobbies.map((hobby) => {
+        const hobbies: SelectRichOption[] = this.hobbies.map((hobby) => {
             hobby.disabled = this.hobbiesReadonly;
             return hobby;
         });
@@ -1300,6 +1265,37 @@ export class AppElement extends LitElement {
             { label: 'Zwemmen', value: 'zwemmen' },
             { label: 'Boardgames', value: 'boardgames' },
             { label: 'Fietsen', value: 'fietsen' },
+        ];
+    }
+
+    private selectKidsOption(): void {
+        const kidsOptions: SelectOption[] = this.kidsOptions.map((option) => {
+            option.selected = option.value === '0';
+            return option;
+        });
+
+        this.kidsOptions = kidsOptions;
+    }
+
+    private toggleKidsReadonly(): void {
+        this.kidsReadonly = !this.kidsReadonly;
+
+        const kidsOptions: SelectOption[] = this.kidsOptions.map((option) => {
+            option.disabled = this.kidsReadonly;
+            return option;
+        });
+
+        this.kidsOptions = kidsOptions;
+    }
+
+    private resetKidsOptions(): void {
+        this.kidsOptions = [
+            { label: '0', value: '0' },
+            { label: '1', value: '1' },
+            { label: '2', value: '2' },
+            { label: '3', value: '3' },
+            { label: '4', value: '4' },
+            { label: '5', value: '5' },
         ];
     }
 }
