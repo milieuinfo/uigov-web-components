@@ -6,6 +6,7 @@ import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { maxValueValidator, minValueValidator, patternValidator } from './validators';
 import { FormControl, formControlDefaults } from '../form-control/form-control';
 import { webComponent } from '@domg-wc/common-utilities';
+import { maxLengthValidator, minLengthValidator } from '@open-wc/form-control';
 
 export const inputFieldDefaults = {
     ...formControlDefaults,
@@ -50,6 +51,8 @@ export class VlInputFieldComponent extends FormControl {
 
     static formControlValidators = [
         ...FormControl.formControlValidators,
+        minLengthValidator,
+        maxLengthValidator,
         minValueValidator,
         maxValueValidator,
         patternValidator,

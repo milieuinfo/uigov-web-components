@@ -6,6 +6,7 @@ import { vlElementsStyle } from '@domg-wc/elements';
 import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
 import { VlInputFieldMaskedComponent } from '@domg-wc/form/next/input-field-masked';
 import { VlTextareaComponent } from '@domg-wc/form/next/textarea';
+import { SelectRichOption, VlSelectRichComponent } from '@domg-wc/form/next/select-rich';
 import { SelectOption, VlSelectComponent } from '@domg-wc/form/next/select';
 import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
 import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio-group';
@@ -15,7 +16,7 @@ import { parseFormData } from '@domg-wc/form/utils';
 
 @webComponent('vl-form-demo')
 export class VlFormDemoComponent extends LitElement {
-    private geboorteplaatsen: SelectOption[] = [
+    private geboorteplaatsen: SelectRichOption[] = [
         {
             label: 'België',
             value: '',
@@ -34,13 +35,22 @@ export class VlFormDemoComponent extends LitElement {
         },
     ];
 
-    private hobbies: SelectOption[] = [
+    private hobbies: SelectRichOption[] = [
         { label: 'Padel', value: 'padel' },
         { label: 'Dans', value: 'dans' },
         { label: 'Drummen', value: 'drummen' },
         { label: 'Zwemmen', value: 'zwemmen' },
         { label: 'Boardgames', value: 'boardgames' },
         { label: 'Fietsen', value: 'fietsen' },
+    ];
+
+    private kinderenOpties: SelectOption[] = [
+        { label: '0', value: '0' },
+        { label: '1', value: '1' },
+        { label: '2', value: '2' },
+        { label: '3', value: '3' },
+        { label: '4', value: '4' },
+        { label: '5 of meer', value: '5 of meer' },
     ];
 
     static {
@@ -50,6 +60,7 @@ export class VlFormDemoComponent extends LitElement {
             VlInputFieldMaskedComponent,
             VlTextareaComponent,
             VlDatepickerComponent,
+            VlSelectRichComponent,
             VlSelectComponent,
             VlRadioGroupComponent,
             VlRadioComponent,
@@ -87,6 +98,7 @@ export class VlFormDemoComponent extends LitElement {
                             pattern="^[a-zA-Z ]*$"
                             min-length=${2}
                             max-length=${20}
+                            placeholder="Vul je naam in"
                         ></vl-input-field-next>
                         <vl-error-message-next for="naam" state="valueMissing"
                             >Gelieve een naam in te vullen.
@@ -111,6 +123,7 @@ export class VlFormDemoComponent extends LitElement {
                             block
                             required
                             mask="rrn"
+                            placeholder="Vul je rijksregisternummer in"
                         ></vl-input-field-masked-next>
                         <vl-error-message-next for="rrn" state="valueMissing"
                             >Gelieve een rijksregisternummer in te vullen.</vl-error-message-next
@@ -123,7 +136,13 @@ export class VlFormDemoComponent extends LitElement {
                         <vl-form-label-next for="geboortedatum" label="Geboortedatum *" block></vl-form-label-next>
                     </div>
                     <div class="vl-form-col--8-12">
-                        <vl-datepicker-next id="geboortedatum" name="geboortedatum" block required>
+                        <vl-datepicker-next
+                            id="geboortedatum"
+                            name="geboortedatum"
+                            block
+                            required
+                            placeholder="Vul je geboortedatum in"
+                        >
                         </vl-datepicker-next>
                         <vl-error-message-next for="geboortedatum" state="valueMissing">
                             Gelieve een geboortedatum in te vullen.
@@ -136,7 +155,7 @@ export class VlFormDemoComponent extends LitElement {
                         <vl-form-label-next for="geboorteplaats" label="Geboorteplaats *" block></vl-form-label-next>
                     </div>
                     <div class="vl-form-col--8-12">
-                        <vl-select-next
+                        <vl-select-rich-next
                             id="geboorteplaats"
                             name="geboorteplaats"
                             required
@@ -148,7 +167,7 @@ export class VlFormDemoComponent extends LitElement {
                             no-results-text="Geen geboorteplaatsen gevonden"
                             search-placeholder="Zoek geboorteplaats"
                         >
-                        </vl-select-next>
+                        </vl-select-rich-next>
                         <vl-error-message-next for="geboorteplaats" state="valueMissing"
                             >Gelieve een geboorteplaats te selecteren.
                         </vl-error-message-next>
@@ -157,7 +176,7 @@ export class VlFormDemoComponent extends LitElement {
                         <vl-form-label-next for="hobbies" label="Hobbies *" block></vl-form-label-next>
                     </div>
                     <div class="vl-form-col--8-12">
-                        <vl-select-next
+                        <vl-select-rich-next
                             id="hobbies"
                             name="hobbies"
                             required
@@ -168,9 +187,26 @@ export class VlFormDemoComponent extends LitElement {
                             no-results-text="Geen hobbies gevonden"
                             no-choices-text="Geen resterende hobbies gevonden"
                         >
-                        </vl-select-next>
+                        </vl-select-rich-next>
                         <vl-error-message-next for="hobbies" state="valueMissing"
                             >Gelieve een hobby te selecteren.
+                        </vl-error-message-next>
+                    </div>
+                    <div class="vl-col--4-12">
+                        <vl-form-label-next for="kinderen" label="Aantal kinderen *" block></vl-form-label-next>
+                    </div>
+                    <div class="vl-col--8-12">
+                        <vl-select-next
+                            id="kinderen"
+                            name="kinderen"
+                            block
+                            deletable
+                            placeholder="Selecteer je aantal kinderen"
+                            required
+                            .options=${this.kinderenOpties}
+                        ></vl-select-next>
+                        <vl-error-message-next for="kinderen" state="valueMissing"
+                            >Gelieve een aantal kinderen te kiezen.
                         </vl-error-message-next>
                     </div>
                     <div class="vl-form-col--4-12">
@@ -185,6 +221,7 @@ export class VlFormDemoComponent extends LitElement {
                             min-length=${5}
                             max-length=${100}
                             rows=${10}
+                            placeholder="Vul je interesses in"
                         ></vl-textarea-next>
                         <vl-error-message-next for="interesses" state="valueMissing"
                             >Gelieve je interesses in te vullen.
@@ -206,6 +243,7 @@ export class VlFormDemoComponent extends LitElement {
                             type="number"
                             block
                             required
+                            placeholder="Vul je leeftijd in"
                             min=${0}
                             max=${99}
                         ></vl-input-field-next>

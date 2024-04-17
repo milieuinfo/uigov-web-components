@@ -1,21 +1,12 @@
 // Dit zijn de aangepaste vl-select styles van DV.
 // DV maakt gebruik van een 'data:' attribuut om een nav-down svg op te halen van w3.org.
 // Hierdoor breekt CSP tenzij we alle 'data:' attributen gaan whitelisten, wat niet de bedoeling is.
-// Deze 'data:' attributen zijn in comment gezet zodat we toch CSP compliant kunnen zijn, zie comments gemarkeerd met ticketnummer UIG-2707.
-// In de vl-select.uig-css.ts staan de vervangende styles voor de nav-down svg.
-// Er stonden ook een aantal dubbele styles in deze file, deze zijn verwijderd.
+// Deze 'data:' attributen zijn verwijderd zodat we toch CSP compliant kunnen zijn.
+// In de vl-select-rich.uig-css.ts staan de vervangende styles voor de nav-down svg.
+// Er stonden ook een aantal dubbele styles in deze file, deze zijn ook verwijderd.
 
 import { css } from 'lit';
 const style = css`
-    :root {
-        --vl-theme-primary-color: #ffe615;
-        --vl-theme-primary-color-60: #fff073;
-        --vl-theme-primary-color-70: #ffee5b;
-        --vl-theme-primary-color-rgba-30: rgba(255, 230, 21, 0.3);
-        --vl-theme-fg-color: #333332;
-        --vl-theme-fg-color-60: #858584;
-        --vl-theme-fg-color-70: #707070;
-    }
     .vl-select:focus::-ms-value {
         background: inherit;
         color: inherit;

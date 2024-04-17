@@ -1,1 +1,1 @@
-export { VlSelectComponent, type SelectOption, SelectPosition } from './vl-select.component';
+export { VlSelectComponent, SelectOption } from './vl-select.component';
