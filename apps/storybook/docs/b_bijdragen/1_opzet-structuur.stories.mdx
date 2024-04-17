@@ -11,7 +11,7 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Opzet
 
-De code van de web-componenten bibliotheek zit in GitHub onder de
+De **code van de** web-componenten bibliotheek zit in GitHub onder de
 [uigov-web-components](https://github.com/milieuinfo/uigov-web-components) repository. Het is een monorepo, opgezet met
 [Nx](https://nx.dev/). Nx (wat staat voor Nrwl Extensions) is een 'Smart, Fast and Extensible Build System' dat
 open-source ontwikkeld wordt door [Nrwl](https://github.com/nrwl), een start-up die groeide uit Google.
@@ -26,17 +26,11 @@ Naast de web-componenten bibliotheek zijn er nog [andere repositories](/docs/beh
 Hieronder staat de projectstructuur van de [uigov-web-components](https://github.com/milieuinfo/uigov-web-components)
 repo beschreven, achter de pijltjes staan de artifacts gespecifieerd die uit de sub-projecten komen.
 
-Er zitten 4 applicaties in de repo: **Storybook** en **3 Playgrounds**.
-Storybook (deze documentatie) streeft naar het aanbieden van zo correct mogelijke informatie en documentatie.
-De Playground applicaties zijn bedoeld om integraties en combinaties van componenten in verschillende frameworks te testen.
-De playground-legacy applicatie is de vorige versie van de playground applicaties en is behouden voor historische redenen.
-
-De feitelijke componenten zitten opgesplitst in een aantal bibliotheken onder de libs folder. Ze worden aangeboden
-als [npm packages](/docs/afnemen-artifacts--documentatie).
-
 ```
 ─ uigov-web-components/
   ├─ apps/
+  │  ├─ consumer/
+  │  ├─ consumer-e2e/
   │  ├─ integrator/
   │  ├─ integrator-e2e/ (Cypress CSP testen)
   │  ├─ playground-legacy/
@@ -58,8 +52,10 @@ als [npm packages](/docs/afnemen-artifacts--documentatie).
   │  │   -> @domg-wc/elements
   │  ├─ form/
   │  │   -> @domg-wc/form
-  │  ├─ map/
-  │  │   -> @domg-wc/map
+  │  ├─ form/
+  │  │   -> @domg-wc/form
+  │  ├─ integration/
+  │  │   -> geen artifact, enkel voor intern gebruik in de integrator-app
   │  ├─ qlik/
   │  │   -> @domg-wc/qlik
   │  ├─ sections
@@ -71,3 +67,30 @@ als [npm packages](/docs/afnemen-artifacts--documentatie).
   │  │  │   -> @domg-wc/test-support
   ├─ resources/
 ```
+
+Er zitten verschillende applicaties en libs in de repo.
+
+### Storybook
+
+Storybook (deze documentatie) streeft naar het aanbieden van zo correct mogelijke informatie en documentatie.
+
+### Playground's
+
+De verschillende Playground applicaties zijn bedoeld om integraties en combinaties van componenten in verschillende
+frameworks te testen. De playground-legacy applicatie is de vorige versie van de playground applicaties en is nog
+behouden om historische redenen.
+
+### Consumer
+
+Consumer is de toepassing om te verifiëren dat de gereleasde artifacts afneembaar zijn. Er zitten afnames in
+met named-imports, side-effect-imports en imports van de fat-js.
+
+### Integrator
+
+Integrator wordt gebruikt om integraties te voorzien die ruimer zijn dan 1 component of die technisch nodig zijn
+om getest te kunnen worden, het wordt bvb. voor CSP verificatie gebruikt.
+
+### Libs
+
+De feitelijke componenten zitten opgesplitst in een aantal bibliotheken onder de libs folder. Ze worden aangeboden
+als [npm packages](/docs/afnemen-artifacts--documentatie).

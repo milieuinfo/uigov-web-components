@@ -4,18 +4,16 @@ import {Meta} from '@storybook/addon-docs';
 
 # Content Security Policy (WIP)
 
-Zie ook https://www.milieuinfo.be/confluence/display/FEO/CSP+compliance<br/>
+Zie ook de [Confluence pagina](https://www.milieuinfo.be/confluence/display/FEO/CSP+compliance) over dit onderwerp<br/>
 &nbsp;&nbsp;-> op te nemen op of naast deze pagina en te verwijderen uit confluence
 
 ## Inleiding
 
-Tot op heden (begin 2023) wordt er door UIG niets gespecifieerd rond [CSP](https://content-security-policy.com/).
-Volgende zaken zijn al gebeurd m.b.t. CSP:
+Volgende zaken zijn er al gedaan m.b.t. CSP:
 
 ### januari 2023
 
-In het kader van ticket [UIG-2207](https://www.milieuinfo.be/jira/browse/UIG-2207) zijn er beperkt zaken bekeken,
-er is nog geen actie ondernomen (zie ook de opmerkingen in het ticket).
+In het kader van ticket [UIG-2207](https://www.milieuinfo.be/jira/browse/UIG-2207) zijn er beperkt zaken bekeken.
 
 ### maart 2023
 
@@ -36,6 +34,16 @@ Hierbij zijn er volgende vragen / bemerkingen:
   niet zinvol, veel toepassingen zullen dan niet meer werken
 - CSP activatie zou applicatie per applicatie moeten doorgevoerd worden, omdat dit een grote doorlooptijd
   (maanden / jaren) zal hebben zouden statistieken per sub-domein uitgesplitst moeten worden om impact te kunnen zien
+
+### november 2023
+
+Sinds eind 2023 worden de form componenten herschreven. We streven er naar die ineens CSP compliant te maken. We
+doen dit o.a. door de CSP compliancy af te testen in de integrator-app.
+
+### april 2024
+
+In de 2e helft van 2024 worden alle elementen omgezet naar volwaardige componenten. Ook deze nieuw code wordt ineens
+CSP compliant gemaakt.
 
 
 ## CSP en XSS

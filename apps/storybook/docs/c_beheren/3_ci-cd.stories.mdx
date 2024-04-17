@@ -25,26 +25,27 @@ De verschillende releases zijn terug te vinden op de
 
 ## Bamboo Configuratie
 
-De build configuratie zit in een `bamboo.yml` bestand in de root folder `bamboo-specs`. In Bamboo bestaat een
+De build configuratie zit in het `bamboo.yml` bestand in de root folder `bamboo-specs`. In Bamboo bestaat een
 build-plan uit stages die sequentieel lopen, de volgende stage start pas als de vorige stage succesvol gelopen heeft.
 Een stage bestaat zelf uit 1 of meerdere jobs, de jobs binnen een stage kunnen parallel lopen. Volgende stages en jobs
 zijn gedefinieerd:
 
 1. __Checkout, Install and Cache Stage__ - met de job
     * __checkout-install-and-cache__: checkout van de repo, npm installatie, caching van de node_modules en Cypress
-2. __build-apps-and-libs__ - met de volgende jobs die parallel lopen:
+2. __Build and Test Stage__ - met de volgende jobs die parallel lopen:
     * __build-apps-and-libs__ (de build),
-    * __perform-all-unit-tests__ (de unit-testen)
-    * __e2e-tests-storybook__ (de e2e-testen)
-3. __Report, Release and Publish Stage__ - met de jobs
-    * __report-e2e-tests-storybook__: van het resultaat van de e2e-testen wordt een rapport gemaakt (e2e-report-storybook)
+    * __unit-wct-component-integrator-tests__ (verschillende testen)
+    * __e2e-tests-storybook__ (Stroybook e2e-testen)
+3. __Release and Publish Stage__ - met de jobs
     * __release-and-publish__: deze loopt niet voor feature branches, er is een licht verschillende flow voor release
       en pre-release branches
+4. __Verify Release Stage__ - met de job
+    * __verify-release__: verifieert dat de ge-releaste artifacts afneembaar zijn
 
 
 ## Bamboo Release
 
-Een release vindt plaats in de laatste stap van de build: __release-and-publish__ en wordt gestuurd door
+Een release vindt plaats in de __release-and-publish__ job en wordt gestuurd door
 [semantic-release](https://github.com/semantic-release/semantic-release). De configuratie van die plugin is te vinden
 in de root folder en zit in 2 bestanden: `.releaserc-develop` en `.releaserc-release`. De develop variant loopt voor de
 pre-release branches ('develop' en 'develop-xyz'), de release variant voor de 'release' en 'release-x.y' branches.
@@ -52,9 +53,9 @@ pre-release branches ('develop' en 'develop-xyz'), de release variant voor de 'r
 In die __release-and-publish__ stap gebeurd het volgende:
 
 - semantic-release bepaalt het nieuwe versie nummer a.d.h.v. de commits (fix / feat / breaking-change) - met een
-  -beta suffix voor develop branches
+  `-develop` suffix voor develop branches
 - de te publiceren artifacts krijgen het versie nummer
 - er wordt een tag gelegd met het versie nummer
 - de artifacts worden gepushed naar [Artifactory](https://repo.omgeving.vlaanderen.be/ui/packages)
 - in het geval van een release wordt er een changelog aangemaakt en een
-[GitHub release](https://github.com/milieuinfo/uigov-web-components/releases) gedaan
+[GitHub release](https://github.com/milieuinfo/uigov-web-components/releases) uitgevoerd
