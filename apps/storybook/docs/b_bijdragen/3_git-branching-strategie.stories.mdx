@@ -121,11 +121,17 @@ van de branch vermeld, approvers kunnen dan snel verifieren dat de build in orde
 
 ## Team Branching Strategie
 
-Artefacts worden enkel gebouwd voor pre-release en release branches. Teams die ontwikkeling doen aan de component
-bibliotheek doen dat meestal in de context van aanpassingen voor een concrete eindtoepassing. Vaak is dat werk
-experimenteler van aard, om dat in goede banen te leiden is er per team een branch voorzien waaruit ook
-artefacts gegenereerd worden. Op die manier kunnen ze integreren met eigen beta-artefacts, pas als hun werk
-definitief is moeten ze squashen, rebasen en een PR indienen om hun code te integreren.
+Artefacts worden enkel gebouwd voor de develop en release branches.
+
+Teams die ontwikkeling doen aan de component bibliotheek doen dat meestal in de context van aanpassingen voor een
+concrete eindtoepassing. Vaak is dat werk experimenteler van aard, je kan daarvoor ook snapshot-artifacts genereren zodat
+je kan integreren, je dient daarvoor de code te integreren met een branch die begint met `develop-`, bvb. `develop-xyz`.
+Op die manier kan de code afgenomen en geverifieerd worden, als het werk definitief is moet het wel nog steeds
+ge-squashed, rebased en via een PR geïntegreerd worden!
+
+De snapshot-releases kan je terugvinden op artifactory onder de
+[snapshot-npm](https://repo.omgeving.vlaanderen.be/ui/repos/tree/General/snapshot-npm). Je dient van alle artifacts
+steeds dezelfde versie af te nemen!
 
 De aanpak van deze specifieke branching strategy wordt verduidelijkt in onderstaand diagram.
 

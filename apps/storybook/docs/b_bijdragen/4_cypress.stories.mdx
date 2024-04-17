@@ -96,10 +96,9 @@ cy.get('[is="vl-data-table"]')
   voor mensen met een beperking
 
 Het doel is in de testen (een deel van) de WCAG-compliancy te verifiëren. Daarvoor voorzien we het Cypress
-command `visitWithA11y()`. Indien je dus in een test specifiek accessibility wil verifiëren gebruik je het
+commando `visitWithA11y()`. Indien je dus in een test specifiek accessibility wil verifiëren gebruik je het
 `visitWithA11y()` commando i.p.v. de normale [visit()](https://docs.cypress.io/api/commands/visit) methode.
-De verificatie zelf doe je daarna dan met `cy.checkA11y()`. Achterliggend gebruikt dit commando
-[axe-core](https://github.com/dequelabs/axe-core).
+De verificatie zelf doe je daarna met `cy.checkA11y()`. Achterliggend gebruikt dit commando [axe-core](https://github.com/dequelabs/axe-core).
 
 bvb.:
 ```ts

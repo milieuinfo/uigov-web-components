@@ -37,23 +37,26 @@ tot de artifactory van Departement Omgeving! Om node versie problemen te vermijd
     },
     "private": true,
     "devDependencies": {
-        "cypress": "12.8.1",
-        "eslint": "8.36.0",
-        "jest": "29.5.0",
-        "nx": "15.8.6",
-        "prettier": "2.8.4",
-        "typescript": "4.9.5"
+        "cypress": "13.6.6",
+        "eslint": "8.57.0",
+        "jest": "29.7.0",
+        "nx": "18.0.8",
+        "prettier": "2.8.8",
+        "typescript": "5.4.2"
     },
     "dependencies": {
-        "@domg-wc/common-utilities": "1.25.0",
-        "@domg-wc/elements": "1.25.0",
-        "@domg-wc/components": "1.25.0",
-        "@domg-wc/form": "1.25.0",
-        "@domg-wc/sections": "1.25.0",
-        "@domg-wc/map": "1.25.0"
+        "@domg-wc/common-storybook": "1.29.1",
+        "@domg-wc/common-utilities": "1.29.1",
+        "@domg-wc/elements": "1.29.1",
+        "@domg-wc/components": "1.29.1",
+        "@domg-wc/form": "1.29.1",
+        "@domg-wc/sections": "1.29.1",
+        "@domg-wc/map": "1.29.1",
+        "@domg-wc/qlik": "1.29.1",
+        "@domg-wc/test-support": "1.29.1"
     },
     "volta": {
-        "node": "18.15.0"
+        "node": "20.11.0"
     }
 }
 ```
@@ -70,20 +73,20 @@ Alvorens je een web-component kan gebruiken in je html dient hij geregistreerd t
 manieren om dat te doen:
 
 ```
-import '@domg-wc/sections/header';
+import '@domg-wc/components/accordion';
 ```
 
 of
 
 ```
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import { VlHeader } from '@domg-wc/sections';
+import { VlAccordionComponent } from '@domg-wc/components';
 
-registerWebComponents([VlHeader]);
+registerWebComponents([VlAccordionComponent]);
 ```
 
-Nadien kent je browser de tag `<vl-header></vl-header>`, de details van een component (attributen, events, ...) kan je
-terugvinden onder de desbetreffende docs pagina, [vl-header - default](/docs/sections-header--header-default)
+Nadien kent je browser de tag `<vl-accordion></vl-accordion>`, de details van een component (attributen, events, ...)
+kan je terugvinden onder de desbetreffende docs pagina, [vl-accordion - documentatie](/docs/components-accordion--documentatie)
 in dit geval.
 
 
@@ -91,7 +94,7 @@ in dit geval.
 
 Als afnemer dien je niets te doen m.b.t. styling. Componenten met een shadow DOM injecteren hun eigen styling in de
 shadow DOM. Elementen zonder shadow DOM vereisen dat hun css geïnjecteerd wordt in het document, sinds v1.17.0
-zorgen de elementen er zelf voor dat dit gebeurd.
+zorgen de elementen daar zelf voor.
 
 
 ## Documentatie
@@ -99,8 +102,8 @@ zorgen de elementen er zelf voor dat dit gebeurd.
 Technische documentatie is te vinden in deze Storybook waarvan de nieuwste versie terug te vinden is onder
 [uigov-builds](https://milieuinfo.github.io/uigov-builds/release/latest/storybook)
 
-De Storybook documentatie wordt bij elke release verbeterd en aangevuld. Per component vind je onder de 'Docs' tab
-detail informatie, daaronder wordt typisch het volgende vermeld:
+De Storybook documentatie wordt bij elke release verbeterd en aangevuld. Per component vind je onder de
+'documentatie'-node detail informatie, daaronder wordt typisch het volgende vermeld:
 
 - de beschrijving van de component
 - een 'default' voorbeeld, inclusief hoe je de component importeert en integreert

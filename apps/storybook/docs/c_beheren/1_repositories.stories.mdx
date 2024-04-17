@@ -14,7 +14,7 @@ import {Meta} from '@storybook/addon-docs';
 
 ## Overzicht
 
-Er zijn 4 repositories van UIG:
+Er zijn 3 repositories van UIG:
 - uigov-web-components - [https://github.com/milieuinfo/uigov-web-components](https://github.com/milieuinfo/uigov-web-components)
 - uigov-assets - [https://github.com/milieuinfo/uigov-assets](https://github.com/milieuinfo/uigov-assets)
 - uigov-builds - [https://github.com/milieuinfo/uigov-builds](https://github.com/milieuinfo/uigov-builds)
@@ -23,7 +23,7 @@ Er zijn 4 repositories van UIG:
 ## uigov-web-components
 
 De belangrijkste repo die de broncode van de uigov-web-components bevat, de Storybook documentatie en de Playground
-toepassing.<br/>
+toepassingen.<br/>
 Deze repo gebruikt de nrwl/nx opzet.
 
 
@@ -32,11 +32,7 @@ Deze repo gebruikt de nrwl/nx opzet.
 De uigov-web-components hebben externe afhankelijkheden.  Die externe assets worden onder dit project opgenomen en
 gepubliceerd op de CDN van dOMG. Code zal dus gebruik maken van versies gepubliceerd op de CDN.
 
-Volgende assets zitten in deze repo: __domg-wc-sections__, __govflanders-font__, __govflanders-style__, __tinymce__
-
-### domg-wc-sections
-
-TODO: Kris Speltincx
+Volgende assets zitten in deze repo: __govflanders-font__, __govflanders-style__, __tinymce__ en __tinymce-next__
 
 ### govflanders-font
 
@@ -61,7 +57,11 @@ resultaat wordt als geversioneerd artifact aangeboden waarop de uigov-web-compon
 
 [TinyMCE](https://www.tiny.cloud/) - een WYSIWYG editor gebruikt in `vl-textarea` - heeft theming nodig die statisch
 gerefereerd wordt. I.p.v. elke toepassing deze theming apart te laten voorzien wordt die via dit asset geversioneerd
-aangeboden op de CDN.
+aangeboden op de CDN. Bevat de theming voor v5.10.6
+
+### tinymce-next
+
+Gelijkaardig aan tinymce, deze bevat de theming voor v6.8.3
 
 
 ## uigov-builds

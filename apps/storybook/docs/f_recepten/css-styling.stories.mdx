@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Recepten/CSS Styling"/>
+
+# Styling
+
+## Elementen & CSS
+
+Alle `@domg-wc elementen`, zijnde de web-componenten die zich in de package `@domg-wc/elements` bevinden, zorgen
+ervoor dat eenmalig alle css op document niveau geregistreerd wordt. Technisch gebeurd dat door de decorator
+`@elementStyles` die de onderstaande `RegisterStyles.registerElementsStyles()` methode uitvoert:
+
+```
+class RegisterStyles {
+    static elementStylesRegistered = false;
+
+    static registerElementsStyles() {
+        if (UigConfig.getPreferences().autoRegisterStyles && !this.elementStylesRegistered) {
+            document.adoptedStyleSheets = [
+                ...document.adoptedStyleSheets,
+                ...(allElementStyles.map((style) => style.styleSheet) as CSSStyleSheet[]),
+            ];
+            this.elementStylesRegistered = true;
+            console.log('RegisterStyles: element-styling toegevoegd aan het document');
+        }
+    }
+}
+```
+
+
+## Custom CSS
+
+Voor de componenten onder `map`, `form` en `components` is het mogelijk om een custom CSS-string mee te geven aan het
+attribuut `data-vl-custom-css`. Deze CSS wordt dan toegevoegd aan de adoptedStyleSheets van de shadow DOM van
+de desbetreffende component.
+
+> Opgelet bij het gebruik hiervan, hierdoor kan je de styling van DV breken!
+
+```html
+<vl-accordion-list data-vl-custom-css=".vl-accordion-list {border: 10px solid lightblue}">
+```
+
+
+## Deactivatie Globale Styling
+
+Indien gewenst kan je de automatische registratie van globale (document) styling de-activeren via de
+`autoRegisterStyles` property, zie [configuratie](/docs/recepten-configuratie--documentatie).

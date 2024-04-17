@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Recepten/Configuratie"/>
+
+# Configuratie
+
+M.b.v. de statische klasse `UigConfig` kunnen voorkeuren gewijzigd worden.
+
+De defaults zijn:
+- autoRegisterStyles: true
+- logWebComponentRegistration: false
+
+
+## Afname via de npm-packages
+
+Wijzig de defaults als volgt; voordat het eerste element geïmporteerd wordt.
+
+```
+import { UigConfig } from '@domg-wc/common-utilities';
+
+UigConfig.setPreferences({ logWebComponentRegistration: true });
+```
+
+**Opmerking**: ervoor zorgen dat deze code als eerste uitgevoerd wordt (alvorens de eerste component geregistreerd
+wordt) is specifiek aan de opzet en bundeling van de toepassing. Wat altijd zou moeten werken is:
+ - een bestand aanmaken met bovenstaande code in (de import en het setPreferences statement) bvb. in `app.config.ts`
+ - en dan dit bestand via een neven-effect import `import './app/app.config';` als allereerste importeren
+
+
+## Afname via 'fat-js'
+
+Wijzig de defaults m.b.v. het desbetreffende attribuut.
+
+```
+<script type="module"
+        auto-register-styles="false"
+        log-web-component-registration="true"
+        src="https://cdn.omgeving.vlaanderen.be/domg/domg-wc/1.20.1/domg-wc-1.20.1.min.js">
+</script>
+```
