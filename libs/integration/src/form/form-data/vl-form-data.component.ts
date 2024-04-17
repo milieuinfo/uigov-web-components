@@ -3,13 +3,13 @@ import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
-import { SelectOption, VlSelectComponent } from '@domg-wc/form/next/select';
+import { SelectRichOption, VlSelectRichComponent } from '@domg-wc/form/next/select-rich';
 import { parseFormData } from '@domg-wc/form/utils';
 import { VlFormLabelComponent } from '@domg-wc/form/next/form-label';
 
 @webComponent('vl-form-data')
 export class VlFormDataComponent extends LitElement {
-    private hobbies: SelectOption[] = [
+    private hobbies: SelectRichOption[] = [
         { label: 'Padel', value: 'padel' },
         { label: 'Dans', value: 'dans' },
         { label: 'Drummen', value: 'drummen' },
@@ -24,7 +24,7 @@ export class VlFormDataComponent extends LitElement {
         registerWebComponents([
             VlFormLabelComponent,
             VlInputFieldComponent,
-            VlSelectComponent,
+            VlSelectRichComponent,
             VlErrorMessageComponent,
         ]);
     }
@@ -61,7 +61,7 @@ export class VlFormDataComponent extends LitElement {
                         <vl-form-label-next for="hobbies" label="Hobbies *" block></vl-form-label-next>
                     </div>
                     <div class="vl-form-col--8-12">
-                        <vl-select-next
+                        <vl-select-rich-next
                             id="hobbies"
                             name="hobbies"
                             multiple
@@ -71,7 +71,7 @@ export class VlFormDataComponent extends LitElement {
                             no-results-text="Geen hobbies gevonden"
                             no-choices-text="Geen resterende hobbies gevonden"
                         >
-                        </vl-select-next>
+                        </vl-select-rich-next>
                         <vl-error-message-next for="hobbies" state="valueMissing"
                             >Gelieve een hobby te selecteren.
                         </vl-error-message-next>

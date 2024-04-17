@@ -1,25 +1,25 @@
 import { ArgTypes, Canvas, Source } from '@storybook/addon-docs';
-import * as VlSelectStories from './vl-select.stories';
+import * as VlSelectRichStories from './vl-select-rich.stories';
 import FormControlPublicMethods from '../../form-control/stories/form-control.public-methods-doc.mdx'
 
-# Select - next
+# Select Rich - next
 
-Gebruik de `select-next` component om een select veld toe te voegen aan een pagina.<br/>
+Gebruik de `select-rich-next` component om een uitgebreid select of multiselect veld toe te voegen aan een pagina.<br/>
 Zie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.
 
-Dit component is de volgende versie van de [vl-select](/docs/elements-select--documentatie) component, we raden aan op termijn deze versie te gebruiken.
+Dit component is de volgende versie van de [vl-select](/docs/elements-select--documentatie) component en de [vl-multiselect](/docs/elements-multiselect--documentatie) component, we raden aan op termijn deze versie te gebruiken.
 
 ## Voorbeeld
 
 ```js
-import { VlSelectComponent } from '@domg-wc/form/next/select';
+import { VlSelectRichComponent } from '@domg-wc/form/next/select-rich';
 ```
 
 ```html
-<vl-select-next></vl-select-next>
+<vl-select-rich-next></vl-select-rich-next>
 ```
 
-<Canvas of={VlSelectStories.SelectDefault} />
+<Canvas of={VlSelectRichStories.SelectRichDefault} />
 
 <details>
     <summary>options</summary>
@@ -36,11 +36,16 @@ import { VlSelectComponent } from '@domg-wc/form/next/select';
 
 ## Configuratie
 
-<ArgTypes of={VlSelectStories.SelectDefault} />
+<ArgTypes of={VlSelectRichStories.SelectRichDefault} />
 
 ## Publieke methodes
 
 <FormControlPublicMethods />
+
+### getSelected(): string | string[]
+
+Geeft de geselecteerde values terug.<br/>
+Bij de single select geeft deze methode een string terug, bij de multi select een array van strings.
 
 ## Styles
 
@@ -51,6 +56,7 @@ Hierdoor breekt de CSP compliance tenzij je alle `data:` attributen whitelist, w
 ## Select event
 
 Bij het selecteren of verwijderen van een optie wordt het `vl-select` event afgevuurd, het detail object van dit event bevat de value van de geselecteerde opties.<br/>
+Gelijkaardig aan de `getSelected()` methode, bevat de value bij de single select 1 string en bij de multi select een array van strings.
 
 ## Select opties
 
@@ -65,14 +71,34 @@ Dit kan je doen door de opties de spreaden in een nieuwe array (`[...options]`).
 
 ## Accessibility
 
-Dit component is volledig accessible, we raden aan waar mogelijk gebruik te maken van dit component in plaats van de [vl-select-rich](/docs/form-next-select-rich--documentatie).<br/>
+Door de complexiteit van dit component is het niet mogelijk om het WCAG-compliant aan te bieden.<br/>
+We raden aan waar mogelijk gebruik te maken van de [vl-select](/docs/form-next-select--documentatie).<br/>
 Indien er minder dan 7 opties zijn raden we aan checkboxes of radio buttons te gebruiken.
 
 ## Varianten
 
+### Zoekfunctie
+
+De zoekfunctie is standaard geactiveerd voor de multiselect.
+
+<Canvas of={VlSelectRichStories.SelectRichSearch} />
+
+<details>
+    <summary>options</summary>
+    <Source code={`
+    [
+        { label: 'Hasselt', value: 'hasselt' },
+        { label: 'Turnhout', value: 'turnhout' },
+        { label: 'Knokke-Heist', value: 'knokke-heist' },
+        { label: 'Waregem', value: 'waregem' },
+        { label: 'Lier', value: 'lier' },
+        { label: 'Rio Piedras', value: 'rio piedras' }
+]`} language="ts" dark={true} />
+</details>
+
 ### Verwijderbaar
 
-<Canvas of={VlSelectStories.SelectDeletable} />
+<Canvas of={VlSelectRichStories.SelectRichDeletable} />
 
 <details>
     <summary>options</summary>
@@ -89,18 +115,47 @@ Indien er minder dan 7 opties zijn raden we aan checkboxes of radio buttons te g
 
 ### Groepen
 
-<Canvas of={VlSelectStories.SelectGroups} />
+<Canvas of={VlSelectRichStories.SelectRichGroups} />
 
 <details>
     <summary>options</summary>
     <Source code={`
     [
-        { label: 'Hasselt', value: 'hasselt', group: 'België' },
-        { label: 'Turnhout', value: 'turnhout', group: 'België' },
-        { label: 'Knokke-Heist', value: 'knokke-heist', group: 'België' },
-        { label: 'Waregem', value: 'waregem', group: 'België' },
-        { label: 'Lier', value: 'lier', group: 'België' },
-        { label: 'Rio Piedras', value: 'rio piedras', group: 'Puerto Rico' }
+         {
+            label: 'België',
+            value: '',
+            choices: [
+                { label: 'Hasselt', value: 'hasselt' },
+                { label: 'Turnhout', value: 'turnhout' },
+                { label: 'Knokke-Heist', value: 'knokke-heist' },
+                { label: 'Waregem', value: 'waregem' },
+                { label: 'Lier', value: 'lier' },
+            ],
+        },
+        {
+            label: 'Puerto Rico',
+            value: '',
+            choices: [{ label: 'Rio Piedras', value: 'rio piedras' }],
+        }
+]`} language="ts" dark={true} />
+</details>
+
+### Multiselect
+
+De zoekfunctie is standaard geactiveerd voor de multiselect.
+
+<Canvas of={VlSelectRichStories.SelectRichMultiple} />
+
+<details>
+    <summary>options</summary>
+    <Source code={`
+    [
+        { label: 'Padel', value: 'padel' },
+        { label: 'Dans', value: 'dans' },
+        { label: 'Drummen', value: 'drummen' },
+        { label: 'Zwemmen', value: 'zwemmen' },
+        { label: 'Boardgames', value: 'boardgames' },
+        { label: 'Fietsen', value: 'fietsen' }
 ]`} language="ts" dark={true} />
 </details>
 
@@ -108,7 +163,7 @@ Indien er minder dan 7 opties zijn raden we aan checkboxes of radio buttons te g
 
 Als je een optie programmatorisch wil selecteren moet je voor deze optie de 'selected' boolean op true zetten.
 
-<Canvas of={VlSelectStories.SelectSelectedOption} />
+<Canvas of={VlSelectRichStories.SelectRichSelectedOption} />
 
 <details>
     <summary>options</summary>
@@ -127,7 +182,7 @@ Als je een optie programmatorisch wil selecteren moet je voor deze optie de 'sel
 
 Als je een optie programmatorisch wil uitzetten moet je voor deze optie de 'disabled' boolean op true zetten.
 
-<Canvas of={VlSelectStories.SelectDisabledOption} />
+<Canvas of={VlSelectRichStories.SelectRichDisabledOption} />
 
 <details>
     <summary>options</summary>
@@ -147,13 +202,13 @@ Als je een optie programmatorisch wil uitzetten moet je voor deze optie de 'disa
 Als je wil dat de select read only is, moet je voor alle opties de 'disabled' boolean op true zetten.<br/>
 Indien de 'required' boolean op true staat, moet je een value programmatorisch selecteren of je form wordt unsubmittable.
 
-<Canvas of={VlSelectStories.SelectReadOnly} />
+<Canvas of={VlSelectRichStories.SelectRichReadOnly} />
 
 <details>
     <summary>options</summary>
     <Source code={`
     [
-        { label: 'Hasselt', value: 'hasselt', selected: true, disabled: true },
+        { label: 'Hasselt', value: 'hasselt', disabled: true, selected: true },
         { label: 'Turnhout', value: 'turnhout', disabled: true },
         { label: 'Knokke-Heist', value: 'knokke-heist', disabled: true },
         { label: 'Waregem', value: 'waregem', disabled: true },
@@ -164,12 +219,24 @@ Indien de 'required' boolean op true staat, moet je een value programmatorisch s
 
 ## Referenties
 
+### Choices.js
+
+[Documentatie Choices.js](https://github.com/Choices-js/Choices)
+
 ### Digitaal Vlaanderen
 
 [Documentatie Digitaal Vlaanderen - Select](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-select)
 
+[Documentatie Digitaal Vlaanderen - Multiselect](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-multiselect)
+
 ### Legacy Documentatie
+
+[Legacy Storybook - Multiselect](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/legacy-vl-multiselect--default)
 
 [Legacy Documentatie - Select](https://webcomponenten.omgeving.vlaanderen.be/doc/VlSelect.html)
 
+[Legacy Documentatie - Multiselect](https://webcomponenten.omgeving.vlaanderen.be/doc/VlMultiSelect.html)
+
 [Legacy Demo - Select](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-select.html)
+
+[Legacy Demo - Multiselect](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-multiselect.html)

@@ -16,9 +16,6 @@ export default {
     parameters: {
         docs: {
             page: selectDocs,
-            story: {
-                height: '300px',
-            },
         },
     },
 } as Meta<typeof selectArgs>;
@@ -36,17 +33,11 @@ const SelectTemplate = story(
         options,
         placeholder,
         deletable,
-        multiple,
-        search,
-        position,
-        resultLimit,
-        noResultsText,
-        noChoicesText,
-        searchPlaceholder,
+        autocomplete,
+        block,
         onVlSelect,
-        onVlSelectSearch,
-        onVlReset,
         onVlValid,
+        onVlReset,
     }) => {
         return html` <vl-select-next
             id=${id}
@@ -59,17 +50,11 @@ const SelectTemplate = story(
             .options=${options}
             placeholder=${placeholder}
             ?deletable=${deletable}
-            ?multiple=${multiple}
-            ?search=${search}
-            position=${position}
-            result-limit=${resultLimit}
-            no-results-text=${noResultsText}
-            no-choices-text=${noChoicesText}
-            search-placeholder=${searchPlaceholder}
+            ?block=${block}
+            autocomplete=${autocomplete}
             @vl-select=${onVlSelect}
-            @vl-select-search=${onVlSelectSearch}
-            @vl-reset=${onVlReset}
             @vl-valid=${onVlValid}
+            @vl-reset=${onVlReset}
         ></vl-select-next>`;
     }
 );
@@ -80,23 +65,7 @@ SelectDefault.args = {
     id: 'geboorteplaats',
     name: 'geboorteplaats',
     placeholder: 'Kies je geboorteplaats',
-    options: [
-        { label: 'Hasselt', value: 'hasselt' },
-        { label: 'Turnhout', value: 'turnhout' },
-        { label: 'Knokke-Heist', value: 'knokke-heist' },
-        { label: 'Waregem', value: 'waregem' },
-        { label: 'Lier', value: 'lier' },
-        { label: 'Rio Piedras', value: 'rio piedras' },
-    ],
-};
-
-export const SelectSearch = SelectTemplate.bind({});
-SelectSearch.storyName = 'vl-select-next - search';
-SelectSearch.args = {
-    id: 'geboorteplaats',
-    name: 'geboorteplaats',
-    placeholder: 'Kies je geboorteplaats',
-    search: true,
+    // ! Vergeet niet de options op de docs pagina aan te passen als je deze opties aanpast
     options: [
         { label: 'Hasselt', value: 'hasselt' },
         { label: 'Turnhout', value: 'turnhout' },
@@ -114,6 +83,7 @@ SelectDeletable.args = {
     name: 'geboorteplaats',
     placeholder: 'Kies je geboorteplaats',
     deletable: true,
+    // ! Vergeet niet de options op de docs pagina aan te passen als je deze opties aanpast
     options: [
         { label: 'Hasselt', value: 'hasselt' },
         { label: 'Turnhout', value: 'turnhout' },
@@ -130,40 +100,14 @@ SelectGroups.args = {
     id: 'geboorteplaats',
     name: 'geboorteplaats',
     placeholder: 'Kies je geboorteplaats',
+    // ! Vergeet niet de options op de docs pagina aan te passen als je deze opties aanpast
     options: [
-        {
-            label: 'België',
-            value: '',
-            choices: [
-                { label: 'Hasselt', value: 'hasselt' },
-                { label: 'Turnhout', value: 'turnhout' },
-                { label: 'Knokke-Heist', value: 'knokke-heist' },
-                { label: 'Waregem', value: 'waregem' },
-                { label: 'Lier', value: 'lier' },
-            ],
-        },
-        {
-            label: 'Puerto Rico',
-            value: '',
-            choices: [{ label: 'Rio Piedras', value: 'rio piedras' }],
-        },
-    ],
-};
-
-export const SelectMultiple = SelectTemplate.bind({});
-SelectMultiple.storyName = 'vl-select-next - multiple';
-SelectMultiple.args = {
-    id: `hobby's`,
-    name: `hobby's`,
-    placeholder: `Kies je hobby's`,
-    multiple: true,
-    options: [
-        { label: 'Padel', value: 'padel' },
-        { label: 'Dans', value: 'dans' },
-        { label: 'Drummen', value: 'drummen' },
-        { label: 'Zwemmen', value: 'zwemmen' },
-        { label: 'Boardgames', value: 'boardgames' },
-        { label: 'Fietsen', value: 'fietsen' },
+        { label: 'Hasselt', value: 'hasselt', group: 'België' },
+        { label: 'Turnhout', value: 'turnhout', group: 'België' },
+        { label: 'Knokke-Heist', value: 'knokke-heist', group: 'België' },
+        { label: 'Waregem', value: 'waregem', group: 'België' },
+        { label: 'Lier', value: 'lier', group: 'België' },
+        { label: 'Rio Piedras', value: 'rio piedras', group: 'Puerto Rico' },
     ],
 };
 
@@ -173,6 +117,7 @@ SelectSelectedOption.args = {
     id: 'geboorteplaats',
     name: 'geboorteplaats',
     placeholder: 'Kies je geboorteplaats',
+    // ! Vergeet niet de options op de docs pagina aan te passen als je deze opties aanpast
     options: [
         { label: 'Hasselt', value: 'hasselt', selected: true },
         { label: 'Turnhout', value: 'turnhout' },
@@ -189,6 +134,7 @@ SelectDisabledOption.args = {
     id: 'geboorteplaats',
     name: 'geboorteplaats',
     placeholder: 'Kies je geboorteplaats',
+    // ! Vergeet niet de options op de docs pagina aan te passen als je deze opties aanpast
     options: [
         { label: 'Hasselt', value: 'hasselt', disabled: true },
         { label: 'Turnhout', value: 'turnhout' },
@@ -205,6 +151,7 @@ SelectReadOnly.args = {
     id: 'geboorteplaats',
     name: 'geboorteplaats',
     placeholder: 'Kies je geboorteplaats',
+    // ! Vergeet niet de options op de docs pagina aan te passen als je deze opties aanpast
     options: [
         { label: 'Hasselt', value: 'hasselt', disabled: true, selected: true },
         { label: 'Turnhout', value: 'turnhout', disabled: true },
