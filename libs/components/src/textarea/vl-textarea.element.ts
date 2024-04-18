@@ -19,6 +19,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
     }
 
     private initialised = false;
+    private observers: MutationObserver[] = [];
     _editor: Editor | undefined;
 
     connectedCallback() {
@@ -30,6 +31,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
     }
 
     disconnectedCallback() {
+        this.observers?.forEach((observer) => observer?.disconnect());
         if (this.isRich) {
             this._destroyWysiwyg();
         }
@@ -89,6 +91,7 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
                     const targetElm = editor.targetElm as unknown as HTMLTextAreaElement;
                     editor.setContent(targetElm.value);
                 });
+                this.observers.push(observer);
                 observer.observe(node, { childList: true, characterData: true, subtree: true });
                 editor.on('init', () => {
                     this.__disableActiveEditor(this.isDisabled);
@@ -206,7 +209,8 @@ export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTe
      * @param readonly
      */
     __toggleEditorReadonly(readonly: boolean): void {
-        if (tinyMCE) {
+        // null check op body is nodig omdat de editor de modus niet kan instellen zonder body
+        if (tinyMCE?.activeEditor?.getBody()) {
             if (readonly) {
                 tinyMCE.activeEditor?.mode?.set('readonly');
             } else {
