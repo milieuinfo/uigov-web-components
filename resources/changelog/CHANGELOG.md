@@ -1,3 +1,20 @@
+# [1.30.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.29.1...v1.30.0) (2024-04-19)
+
+
+### Bug Fixes
+
+* UIG-2982 - vl-data-table - responsive layout regressie gestroomlijnd ([839612d](https://github.com/milieuinfo/uigov-web-components/commit/839612d4ade262d1cd811ad064ea4a305610d83c))
+* UIG-2983 - storybook - form-demo link correct ingesteld ([e81717e](https://github.com/milieuinfo/uigov-web-components/commit/e81717e282e9d77d30dccd4adbe856140f4c434a))
+* UIG-2991 - vl-rich-data - falsy checks verbeterd ([0ecc8b8](https://github.com/milieuinfo/uigov-web-components/commit/0ecc8b86c0ffafdbc682898dad7160ac6ff04036))
+* UIG-2997 - vl-textarea - null check bij readonly verandering uitgebreid ([748e76f](https://github.com/milieuinfo/uigov-web-components/commit/748e76f5654aee8519829aa509ee21eda0946078))
+
+
+### Features
+
+* UIG-2845 - select - extra uitleg voor options property ([92b7213](https://github.com/milieuinfo/uigov-web-components/commit/92b721364f0c5380e2d49cc0e58d716f948ca7de))
+* UIG-2899 - vl-datepicker-next - mask validatie toegevoegd ([d9012c5](https://github.com/milieuinfo/uigov-web-components/commit/d9012c585003e50d9c9f135dc026243802e73a96))
+* UIG-2974 - native vl-select - introductie component ([1851c16](https://github.com/milieuinfo/uigov-web-components/commit/1851c1678e06f5a689e365cd6e363b0296660490))
+
 ## [1.29.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.29.0...v1.29.1) (2024-03-29)
 
 
