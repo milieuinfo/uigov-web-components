@@ -1,6 +1,7 @@
 import { filterOutClasses, formatHTML } from '@domg-wc/common-storybook';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlIconElement } from '@domg-wc/elements';
+import './styles.css';
 import 'reflect-metadata';
 
 export const parameters = {
