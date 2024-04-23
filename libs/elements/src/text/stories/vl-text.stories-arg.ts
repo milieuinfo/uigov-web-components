@@ -1,21 +1,54 @@
-import { html } from 'lit-html';
 import '../vl-text.element';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { ArgTypes } from '@storybook/web-components';
 
 export const textArgs = {
     hidden: false,
-    content: 'Text',
+    success: false,
+    warning: false,
+    error: false,
+    content: '',
 };
 
-export const textArgTypes = {
+export const textArgTypes: ArgTypes<typeof textArgs> = {
     hidden: {
         name: 'data-vl-visually-hidden',
-        type: { summary: 'boolean' },
-        description: 'Attribuut wordt gebruikt om de text te verbergen.',
+        description: 'Attribuut wordt gebruikt om de tekst te verbergen.',
         table: {
-            defaultValue: { summary: 'false' },
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: textArgs.hidden },
+        },
+    },
+    success: {
+        name: 'data-vl-success',
+        description: 'Attribuut wordt gebruikt om de tekst te verbergen.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: textArgs.success },
+        },
+    },
+    warning: {
+        name: 'data-vl-warning',
+        description: 'Attribuut wordt gebruikt om de tekst te verbergen.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: textArgs.warning },
+        },
+    },
+    error: {
+        name: 'data-vl-error',
+        description: 'Attribuut wordt gebruikt om de tekst te verbergen.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: textArgs.error },
         },
     },
     content: {
-        name: 'content (for demo purposes)',
+        name: 'content',
+        description: 'De tekst die getoond moet worden (enkel relevant in context van deze story).',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: textArgs.error },
+        },
     },
 };
