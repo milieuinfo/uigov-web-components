@@ -1,3 +1,18 @@
+# [1.31.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.30.0...v1.31.0) (2024-04-24)
+
+
+### Bug Fixes
+
+* UIG-2987 - vl-upload-next - Dropzone import verbeterd ([fbc689b](https://github.com/milieuinfo/uigov-web-components/commit/fbc689b982e24382366e959f5ee215855542f046))
+* UIG-3001 - Storybook - bold font en lijsten in mdx files ([e53a3e4](https://github.com/milieuinfo/uigov-web-components/commit/e53a3e4111191243f794cedd5d505e65389653da))
+
+
+### Features
+
+* UIG-2846 - vl-datepicker-next - standaard waarde veranderd naar ISO-8601 formaat ([43f0306](https://github.com/milieuinfo/uigov-web-components/commit/43f0306d94fb081cfa5c39843db5142b170f4306))
+* UIG-2957 - storybook aanpassingen conform recente beslissingen ([c83bb06](https://github.com/milieuinfo/uigov-web-components/commit/c83bb0626a18530af830e509a34a64ec39c3f2cf))
+* UIG-3002 - vl-text - kleur attributen toegevoegd ([08bb90c](https://github.com/milieuinfo/uigov-web-components/commit/08bb90c3eb8432da5765a1266c42ef7ada7e5bea))
+
 # [1.30.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.29.1...v1.30.0) (2024-04-19)
 
 
