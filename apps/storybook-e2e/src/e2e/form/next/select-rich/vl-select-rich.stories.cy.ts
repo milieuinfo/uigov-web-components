@@ -4,8 +4,8 @@ const selectRichNextDefaultUrl =
 const selectRichNextSearchUrl =
     'http://localhost:8080/iframe.html?id=form-next-select-rich--select-rich-search&viewMode=story';
 
-const selectRichNextDeletableUrl =
-    'http://localhost:8080/iframe.html?id=form-next-select-rich--select-rich-deletable&viewMode=story';
+const selectRichNextNotDeletableUrl =
+    'http://localhost:8080/iframe.html?id=form-next-select-rich--select-rich-not-deletable&viewMode=story';
 
 const selectRichNextGroupsUrl =
     'http://localhost:8080/iframe.html?id=form-next-select-rich--select-rich-groups&viewMode=story';
@@ -38,9 +38,9 @@ describe('story - vl-select-rich-next - search', () => {
     });
 });
 
-describe('story - vl-select-rich-next - deletable', () => {
+describe('story - vl-select-rich-next - not-deletable', () => {
     it('should render', () => {
-        cy.visit(selectRichNextDeletableUrl);
+        cy.visit(selectRichNextNotDeletableUrl);
 
         cy.get('vl-select-rich-next').shadow().find('select');
     });

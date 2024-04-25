@@ -1,6 +1,7 @@
 const selectNextDefaultUrl = 'http://localhost:8080/iframe.html?id=form-next-select--select-default&viewMode=story';
 
-const selectNextDeletableUrl = 'http://localhost:8080/iframe.html?id=form-next-select--select-deletable&viewMode=story';
+const selectNextNotDeletableUrl =
+    'http://localhost:8080/iframe.html?id=form-next-select--select-not-deletable&viewMode=story';
 
 const selectNextGroupsUrl = 'http://localhost:8080/iframe.html?id=form-next-select--select-groups&viewMode=story';
 
@@ -20,9 +21,9 @@ describe('story - vl-select-next - default', () => {
     });
 });
 
-describe('story - vl-select-next - deletable', () => {
+describe('story - vl-select-next - not-deletable', () => {
     it('should render', () => {
-        cy.visit(selectNextDeletableUrl);
+        cy.visit(selectNextNotDeletableUrl);
 
         cy.get('vl-select-next').shadow().find('select');
     });

@@ -103,11 +103,10 @@ describe('component - vl-select-rich-next - single', () => {
         cy.get('vl-select-rich-next').shadow().find('.vl-select__placeholder').contains('Selecteer je geboorteplaats');
     });
 
-    it('should set deletable', () => {
+    it('should be deletable', () => {
         cy.mount(
             html`<vl-select-rich-next
                 label="geboorteplaats"
-                deletable
                 .options=${[{ label: 'Hasselt', value: 'hasselt', selected: true }]}
             ></vl-select-rich-next>`
         );
@@ -115,6 +114,20 @@ describe('component - vl-select-rich-next - single', () => {
 
         cy.checkA11y('vl-select-rich-next');
         cy.get('vl-select-rich-next').shadow().find('.vl-pill__close');
+    });
+
+    it('should set not-deletable', () => {
+        cy.mount(
+            html`<vl-select-rich-next
+                label="geboorteplaats"
+                not-deletable
+                .options=${[{ label: 'Hasselt', value: 'hasselt', selected: true }]}
+            ></vl-select-rich-next>`
+        );
+        cy.injectAxe();
+
+        cy.checkA11y('vl-select-rich-next');
+        cy.get('vl-select-rich-next').shadow().find('.vl-pill__close').should('not.exist');
     });
 
     it('should set search', () => {
@@ -333,9 +346,7 @@ describe('component - vl-select-rich-next - single', () => {
     });
 
     it('should dispatch vl-select event on select and delete option', () => {
-        cy.mount(
-            html`<vl-select-rich-next label="geboorteplaats" deletable .options=${options}></vl-select-rich-next>`
-        );
+        cy.mount(html`<vl-select-rich-next label="geboorteplaats" .options=${options}></vl-select-rich-next>`);
         cy.injectAxe();
 
         cy.createStubForEvent('vl-select-rich-next', 'vl-select');
@@ -385,14 +396,7 @@ describe('component - vl-select-rich-next - single', () => {
     });
 
     it('should dispatch vl-valid event on valid selection', () => {
-        cy.mount(
-            html`<vl-select-rich-next
-                label="geboorteplaats"
-                .options=${options}
-                deletable
-                required
-            ></vl-select-rich-next>`
-        );
+        cy.mount(html`<vl-select-rich-next label="geboorteplaats" .options=${options} required></vl-select-rich-next>`);
         cy.injectAxe();
 
         cy.createStubForEvent('vl-select-rich-next', 'vl-valid');
@@ -450,9 +454,7 @@ describe('component - vl-select-rich-next - single', () => {
     });
 
     it('should delete option', () => {
-        cy.mount(
-            html`<vl-select-rich-next label="geboorteplaats" .options=${options} deletable></vl-select-rich-next>`
-        );
+        cy.mount(html`<vl-select-rich-next label="geboorteplaats" .options=${options}></vl-select-rich-next>`);
         cy.injectAxe();
 
         cy.checkA11y('vl-select-rich-next');
@@ -508,9 +510,7 @@ describe('component - vl-select-rich-next - single', () => {
     });
 
     it('should return selected value when calling getSelected()', () => {
-        cy.mount(
-            html`<vl-select-rich-next label="geboorteplaats" .options=${options} deletable></vl-select-rich-next>`
-        );
+        cy.mount(html`<vl-select-rich-next label="geboorteplaats" .options=${options}></vl-select-rich-next>`);
         cy.injectAxe();
 
         cy.checkA11y('vl-select-rich-next');
@@ -586,9 +586,7 @@ describe('component - vl-select-rich-next - multiple', () => {
     });
 
     it('should dispatch vl-select event on select and delete option', () => {
-        cy.mount(
-            html`<vl-select-rich-next label="hobby's" multiple deletable .options=${options}></vl-select-rich-next>`
-        );
+        cy.mount(html`<vl-select-rich-next label="hobby's" multiple .options=${options}></vl-select-rich-next>`);
         cy.injectAxe();
 
         cy.createStubForEvent('vl-select-rich-next', 'vl-select');
@@ -661,9 +659,7 @@ describe('component - vl-select-rich-next - multiple', () => {
     });
 
     it('should delete multiple options', () => {
-        cy.mount(
-            html`<vl-select-rich-next label="hobby's" multiple .options=${options} deletable></vl-select-rich-next>`
-        );
+        cy.mount(html`<vl-select-rich-next label="hobby's" multiple .options=${options}></vl-select-rich-next>`);
         cy.injectAxe();
 
         cy.checkA11y('vl-select-rich-next');
@@ -741,9 +737,7 @@ describe('component - vl-select-rich-next - multiple', () => {
     });
 
     it('should return selected values when calling getSelected()', () => {
-        cy.mount(
-            html`<vl-select-rich-next label="hobby's" multiple .options=${options} deletable></vl-select-rich-next>`
-        );
+        cy.mount(html`<vl-select-rich-next label="hobby's" multiple .options=${options}></vl-select-rich-next>`);
         cy.injectAxe();
 
         cy.checkA11y('vl-select-rich-next');

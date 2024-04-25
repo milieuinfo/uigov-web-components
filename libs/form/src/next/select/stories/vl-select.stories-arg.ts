@@ -42,13 +42,13 @@ export const selectArgTypes: ArgTypes<SelectArgs> = {
             defaultValue: { summary: selectArgs.autocomplete },
         },
     },
-    deletable: {
-        name: 'deletable',
-        description: 'Duidt aan dat de selectie verwijderbaar is.',
+    notDeletable: {
+        name: 'not-deletable',
+        description: 'Duidt aan dat de selectie niet verwijderbaar is.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: selectArgs.deletable },
+            defaultValue: { summary: selectArgs.notDeletable },
         },
     },
     options: {

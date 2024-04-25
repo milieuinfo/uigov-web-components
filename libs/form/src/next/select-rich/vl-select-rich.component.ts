@@ -29,7 +29,7 @@ export const selectRichDefaults = {
     ...formControlDefaults,
     options: [] as SelectRichOption[],
     placeholder: '' as string,
-    deletable: false as boolean,
+    notDeletable: false as boolean,
     multiple: false as boolean,
     search: false as boolean,
     position: SelectRichPosition.AUTO as SelectRichPosition,
@@ -46,7 +46,7 @@ export class VlSelectRichComponent extends FormControl {
 
     // Attributes
     private placeholder = selectRichDefaults.placeholder;
-    private deletable = selectRichDefaults.deletable;
+    private notDeletable = selectRichDefaults.notDeletable;
     private multiple = selectRichDefaults.multiple;
     private search = selectRichDefaults.search;
     private position = selectRichDefaults.position;
@@ -70,7 +70,7 @@ export class VlSelectRichComponent extends FormControl {
         return {
             options: { type: Array },
             placeholder: { type: String },
-            deletable: { type: Boolean },
+            notDeletable: { type: Boolean, attribute: 'not-deletable' },
             multiple: { type: Boolean },
             search: { type: Boolean },
             position: { type: String },
@@ -151,9 +151,9 @@ export class VlSelectRichComponent extends FormControl {
             }
         }
 
-        if (changedProperties.has('deletable')) {
-            this.choices.config.removeItemButton = this.deletable;
-            this.choices.config.removeItems = this.deletable;
+        if (changedProperties.has('notDeletable')) {
+            this.choices.config.removeItemButton = !this.notDeletable;
+            this.choices.config.removeItems = !this.notDeletable;
         }
 
         if (changedProperties.has('error')) {
@@ -235,8 +235,8 @@ export class VlSelectRichComponent extends FormControl {
     private getChoicesConfig(): Partial<Options> {
         return {
             shouldSort: false,
-            removeItemButton: this.deletable,
-            removeItems: this.deletable,
+            removeItemButton: !this.notDeletable,
+            removeItems: !this.notDeletable,
             searchEnabled: this.search,
             placeholder: !!this.placeholder,
             placeholderValue: this.placeholder,
@@ -284,9 +284,24 @@ export class VlSelectRichComponent extends FormControl {
                         );
                     },
                     item: (_config: Partial<Options>, data: Item) => {
-                        if (this.deletable) {
-                            return template(
-                                `<div class="
+                        if (this.notDeletable) {
+                            return template(`
+                            <div class="vl-select__item
+                                ${data.highlighted ? 'is-highlighted' : 'vl-select__item--selectable'}
+                                ${this.multiple ? 'vl-pill' : ''}
+                                ${data.placeholder ? 'vl-select__placeholder' : ''}"
+                                data-item
+                                data-id="${data.id}"
+                                data-value="${data.value}"
+                                ${data.disabled ? 'aria-disabled="true"' : ''}
+                            >
+                                ${data.label}
+                            </div>
+                        `);
+                        }
+
+                        return template(
+                            `<div class="
                                     vl-select__item
                                     ${data.highlighted ? 'is-highlighted' : ''}
                                     ${!data.disabled ? 'vl-select__item--selectable' : ''}
@@ -308,22 +323,7 @@ export class VlSelectRichComponent extends FormControl {
                                         }
                                     </button>
                                 </div>`
-                            );
-                        }
-
-                        return template(`
-                            <div class="vl-select__item
-                                ${data.highlighted ? 'is-highlighted' : 'vl-select__item--selectable'}
-                                ${this.multiple ? 'vl-pill' : ''}
-                                ${data.placeholder ? 'vl-select__placeholder' : ''}"
-                                data-item
-                                data-id="${data.id}"
-                                data-value="${data.value}"
-                                ${data.disabled ? 'aria-disabled="true"' : ''}
-                            >
-                                ${data.label}
-                            </div>
-                        `);
+                        );
                     },
 
                     itemList: () => {

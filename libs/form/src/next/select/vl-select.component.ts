@@ -22,7 +22,7 @@ export const selectDefaults = {
     block: false as boolean,
     placeholder: '' as string,
     autocomplete: '' as string,
-    deletable: false as boolean,
+    notDeletable: false as boolean,
 } as const;
 
 @webComponent('vl-select-next')
@@ -34,7 +34,7 @@ export class VlSelectComponent extends FormControl {
     private block = selectDefaults.block;
     private placeholder = selectDefaults.placeholder;
     private autocomplete = selectDefaults.autocomplete;
-    private deletable = selectDefaults.deletable;
+    private notDeletable = selectDefaults.notDeletable;
 
     // State
     private value = '';
@@ -54,7 +54,7 @@ export class VlSelectComponent extends FormControl {
             readonly: { type: Boolean },
             placeholder: { type: String },
             autocomplete: { type: String },
-            deletable: { type: Boolean },
+            notDeletable: { type: Boolean, attribute: 'not-deletable' },
             value: { type: String, state: true },
         };
     }
@@ -116,7 +116,7 @@ export class VlSelectComponent extends FormControl {
                     ${this.placeholder ? this.renderPlaceholder(hasValue) : nothing}
                     ${hasGroups ? this.renderGroupedOptions() : this.renderSelectOptions(this.options)}
                 </select>
-                ${hasValue && this.deletable ? this.renderClearButton() : nothing}
+                ${hasValue && !this.notDeletable ? this.renderClearButton() : nothing}
                 <span class="vl-icon vl-vi vl-vi-nav-down"></span>
             </div>
         `;

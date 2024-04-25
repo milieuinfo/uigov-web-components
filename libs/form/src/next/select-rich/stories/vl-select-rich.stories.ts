@@ -35,7 +35,7 @@ const SelectRichTemplate = story(
         success,
         options,
         placeholder,
-        deletable,
+        notDeletable,
         multiple,
         search,
         position,
@@ -58,7 +58,7 @@ const SelectRichTemplate = story(
             ?success=${success}
             .options=${options}
             placeholder=${placeholder}
-            ?deletable=${deletable}
+            ?not-deletable=${notDeletable}
             ?multiple=${multiple}
             ?search=${search}
             position=${position}
@@ -107,13 +107,13 @@ SelectRichSearch.args = {
     ],
 };
 
-export const SelectRichDeletable = SelectRichTemplate.bind({});
-SelectRichDeletable.storyName = 'vl-select-rich-next - deletable';
-SelectRichDeletable.args = {
+export const SelectRichNotDeletable = SelectRichTemplate.bind({});
+SelectRichNotDeletable.storyName = 'vl-select-rich-next - not-deletable';
+SelectRichNotDeletable.args = {
     id: 'geboorteplaats',
     name: 'geboorteplaats',
     placeholder: 'Kies je geboorteplaats',
-    deletable: true,
+    notDeletable: true,
     options: [
         { label: 'Hasselt', value: 'hasselt' },
         { label: 'Turnhout', value: 'turnhout' },
