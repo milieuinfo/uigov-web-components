@@ -26,13 +26,13 @@ export const selectRichArgTypes: ArgTypes<SelectRichArgs> = {
             defaultValue: { summary: selectRichArgs.placeholder },
         },
     },
-    deletable: {
-        name: 'deletable',
-        description: 'Duidt aan dat de selectie verwijderbaar is.',
+    notDeletable: {
+        name: 'not-deletable',
+        description: 'Duidt aan dat de selectie niet-verwijderbaar is.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
-            defaultValue: { summary: selectRichArgs.deletable },
+            defaultValue: { summary: selectRichArgs.notDeletable },
         },
     },
     multiple: {

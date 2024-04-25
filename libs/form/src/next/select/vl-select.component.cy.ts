@@ -95,11 +95,10 @@ describe('component - vl-select-next', () => {
         cy.get('vl-select-next').shadow().find('.vl-select__placeholder').contains('Selecteer je geboorteplaats');
     });
 
-    it('should set deletable', () => {
+    it('should be deletable', () => {
         cy.mount(
             html`<vl-select-next
                 label="geboorteplaats"
-                deletable
                 .options=${[{ label: 'Hasselt', value: 'hasselt', selected: true }]}
             ></vl-select-next>`
         );
@@ -107,6 +106,20 @@ describe('component - vl-select-next', () => {
 
         cy.checkA11y('vl-select-next');
         cy.get('vl-select-next').shadow().find('button.vl-select__button span.vl-icon.vl-vi.vl-vi-close');
+    });
+
+    it('should set not-deletable', () => {
+        cy.mount(
+            html`<vl-select-next
+                label="geboorteplaats"
+                not-deletable
+                .options=${[{ label: 'Hasselt', value: 'hasselt', selected: true }]}
+            ></vl-select-next>`
+        );
+        cy.injectAxe();
+
+        cy.checkA11y('vl-select-next');
+        cy.get('vl-select-next').shadow().find('button.vl-select__button').should('not.exist');
     });
 
     it('should set autocomplete', () => {
@@ -128,7 +141,7 @@ describe('component - vl-select-next', () => {
     });
 
     it('should dispatch vl-select event on select and delete option', () => {
-        cy.mount(html`<vl-select-next label="geboorteplaats" deletable .options=${options}></vl-select-next>`);
+        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
         cy.injectAxe();
 
         cy.createStubForEvent('vl-select-next', 'vl-select');
@@ -147,7 +160,7 @@ describe('component - vl-select-next', () => {
     });
 
     it('should dispatch vl-valid event on valid selection', () => {
-        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options} deletable required></vl-select-next>`);
+        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options} required></vl-select-next>`);
         cy.injectAxe();
 
         cy.createStubForEvent('vl-select-next', 'vl-valid');
@@ -208,7 +221,7 @@ describe('component - vl-select-next', () => {
     });
 
     it('should delete option', () => {
-        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options} deletable></vl-select-next>`);
+        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
         cy.injectAxe();
 
         cy.checkA11y('vl-select-next');

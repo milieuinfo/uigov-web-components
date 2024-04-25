@@ -160,7 +160,6 @@ export class VlFormDemoComponent extends LitElement {
                             name="geboorteplaats"
                             required
                             search
-                            deletable
                             .options=${this.geboorteplaatsen}
                             result-limit="2"
                             placeholder="Selecteer je geboorteplaats"
@@ -181,7 +180,6 @@ export class VlFormDemoComponent extends LitElement {
                             name="hobbies"
                             required
                             multiple
-                            deletable
                             .options=${this.hobbies}
                             placeholder="Selecteer je hobbies"
                             no-results-text="Geen hobbies gevonden"
@@ -200,7 +198,6 @@ export class VlFormDemoComponent extends LitElement {
                             id="kinderen"
                             name="kinderen"
                             block
-                            deletable
                             placeholder="Selecteer je aantal kinderen"
                             required
                             .options=${this.kinderenOpties}

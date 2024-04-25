@@ -32,7 +32,7 @@ const SelectTemplate = story(
         success,
         options,
         placeholder,
-        deletable,
+        notDeletable,
         autocomplete,
         block,
         onVlSelect,
@@ -49,7 +49,7 @@ const SelectTemplate = story(
             ?success=${success}
             .options=${options}
             placeholder=${placeholder}
-            ?deletable=${deletable}
+            ?not-deletable=${notDeletable}
             ?block=${block}
             autocomplete=${autocomplete}
             @vl-select=${onVlSelect}
@@ -76,13 +76,13 @@ SelectDefault.args = {
     ],
 };
 
-export const SelectDeletable = SelectTemplate.bind({});
-SelectDeletable.storyName = 'vl-select-next - deletable';
-SelectDeletable.args = {
+export const SelectNotDeletable = SelectTemplate.bind({});
+SelectNotDeletable.storyName = 'vl-select-next - not-deletable';
+SelectNotDeletable.args = {
     id: 'geboorteplaats',
     name: 'geboorteplaats',
     placeholder: 'Kies je geboorteplaats',
-    deletable: true,
+    notDeletable: true,
     // ! Vergeet niet de options op de docs pagina aan te passen als je deze opties aanpast
     options: [
         { label: 'Hasselt', value: 'hasselt' },

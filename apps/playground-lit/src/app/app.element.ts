@@ -571,7 +571,7 @@ export class AppElement extends LitElement {
                                 name="geboorteplaats"
                                 ?required=${this.birthplaceRequired}
                                 ?disabled=${this.birthplaceDisabled}
-                                ?deletable=${!this.birthplaceReadonly}
+                                ?not-deletable=${this.birthplaceReadonly}
                                 search
                                 .options=${this.birthplaces}
                                 result-limit="2"
@@ -629,7 +629,7 @@ export class AppElement extends LitElement {
                                 name="hobby's"
                                 ?required=${this.hobbiesRequired}
                                 ?disabled=${this.hobbiesDisabled}
-                                ?deletable=${!this.hobbiesReadonly}
+                                ?not-deletable=${this.hobbiesReadonly}
                                 multiple
                                 .options=${this.hobbies}
                                 placeholder="Selecteer je hobby's"
@@ -744,7 +744,6 @@ export class AppElement extends LitElement {
                                 id="kinderen"
                                 name="kinderen"
                                 block
-                                deletable
                                 placeholder="Selecteer je aantal kinderen"
                                 ?required=${this.kidsRequired}
                                 ?disabled=${this.kidsDisabled}
