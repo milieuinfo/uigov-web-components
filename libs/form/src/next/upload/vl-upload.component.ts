@@ -61,7 +61,7 @@ export class VlUploadComponent extends FormControl {
 
     // State
     private value: FormValue = null;
-    private multiple = false;
+    private multiple = false; // Wordt gebruikt in form.util om aan te duiden dat dit een multiple form control is.
 
     // Variables
     private dropzoneInstance: DropzoneInstance | undefined | null;
@@ -217,8 +217,15 @@ export class VlUploadComponent extends FormControl {
             'vl-upload__element__label': true,
         };
 
+        // als er meer dan 1 bestand getoond wordt, is het beter een lijst te tonen.
+        // Dit verbetert toegankelijkheid voor gebruikers die een screenreader gebruiken
+        // Echter, als er maar 1 bestand kan upgeload worden, dan is het beter geen lijst te gebruiken
+        // omdat een lijst 4 extra onnodige stappen geeft in de screenreader
+        const shouldShowPreviewList = this.maxFiles <= 1;
+
         return html`
-            ${this.getUploadElementTemplate()} ${this.getPreviewTemplate()}
+            ${this.getUploadElementTemplate()}
+            ${shouldShowPreviewList ? this.getPreviewTemplate() : this.getPreviewTemplateListItem()}
             <div class=${classMap(uploadClasses)}>
                 <div class="vl-upload__element">
                     <div class="vl-upload__overlay">
@@ -230,7 +237,9 @@ export class VlUploadComponent extends FormControl {
                 </div>
             </div>
             <div class="vl-upload__files">
-                <ul class="vl-upload__files__container"></ul>
+                ${shouldShowPreviewList
+                    ? html`<div class="vl-upload__files__container"></div>`
+                    : html`<ul class="vl-upload__files__container"></ul>`}
                 <div class="vl-upload__files__input__container"></div>
                 <button class="vl-upload__files__close vl-link vl-link--icon">
                     <span class="vl-link__icon vl-vi vl-vi-trash" aria-hidden="true"></span>
@@ -329,6 +338,26 @@ export class VlUploadComponent extends FormControl {
     }
 
     private getPreviewTemplate(): TemplateResult {
+        return html`
+            <template id="previewTemplate">
+                <div class="vl-upload__file">
+                    <p class="vl-upload__file__name">
+                        <span class="vl-upload__file__name__icon vl-vi vl-vi-document" aria-hidden="true"></span>
+                        <span data-dz-name></span>
+                        <span class="vl-upload__file__size"> (<span data-dz-size></span>) </span>
+                    </p>
+                    <div class="dz-error-message">
+                        <span data-dz-errormessage></span>
+                    </div>
+                    <button type="button" class="vl-upload__file__close vl-link vl-link--icon" data-dz-remove>
+                        <span class="vl-vi vl-vi-cross" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </template>
+        `;
+    }
+
+    private getPreviewTemplateListItem(): TemplateResult {
         return html`
             <template id="previewTemplate">
                 <li class="vl-upload__file">
