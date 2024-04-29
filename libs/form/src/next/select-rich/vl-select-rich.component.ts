@@ -159,6 +159,10 @@ export class VlSelectRichComponent extends FormControl {
         if (changedProperties.has('error')) {
             (this.internals as ElementInternals).setValidity({ customError: this.error }, 'custom-error');
         }
+
+        if (changedProperties.has('resultLimit')) {
+            this.choices.config.searchResultLimit = this.resultLimit;
+        }
     }
 
     disconnectedCallback() {
@@ -241,7 +245,6 @@ export class VlSelectRichComponent extends FormControl {
             placeholder: !!this.placeholder,
             placeholderValue: this.placeholder,
             position: this.position,
-            searchResultLimit: this.resultLimit,
             noResultsText: this.noResultsText,
             noChoicesText: this.noChoicesText,
             searchPlaceholderValue: this.searchPlaceholder,
