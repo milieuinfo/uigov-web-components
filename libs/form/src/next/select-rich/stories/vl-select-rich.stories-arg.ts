@@ -67,7 +67,7 @@ export const selectRichArgTypes: ArgTypes<SelectRichArgs> = {
     },
     resultLimit: {
         name: 'result-limit',
-        description: 'Het maximum aantal resultaten dat getoond wordt.<br>Dit attribuut is niet reactief.',
+        description: 'Het maximum aantal resultaten dat getoond wordt.',
         table: {
             type: { summary: TYPES.NUMBER },
             category: CATEGORIES.ATTRIBUTES,
