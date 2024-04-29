@@ -26,23 +26,23 @@ const shouldRemoveFile = () => {
 };
 
 const shouldHaveUploadFiles = (number: number) => {
-    cy.get('vl-upload-next').shadow().find('div.vl-upload__file').its('length').should('eq', number);
+    cy.get('vl-upload-next').shadow().find('li.vl-upload__file').its('length').should('eq', number);
 };
 const shouldHaveValidUploadFiles = (number: number) => {
-    cy.get('vl-upload-next').shadow().find('div.vl-upload__file').not('.dz-error').its('length').should('eq', number);
+    cy.get('vl-upload-next').shadow().find('li.vl-upload__file').not('.dz-error').its('length').should('eq', number);
 };
 const shouldHaveUploadFilesWithNoSuccess = (number: number) => {
-    cy.get('vl-upload-next').shadow().find('div.vl-upload__file').not('.dz-success').its('length').should('eq', number);
+    cy.get('vl-upload-next').shadow().find('li.vl-upload__file').not('.dz-success').its('length').should('eq', number);
 };
 
 const shouldHaveSuccessUploadFiles = (number: number) => {
-    cy.get('vl-upload-next').shadow().find('div.dz-success').its('length').should('eq', number);
+    cy.get('vl-upload-next').shadow().find('.dz-success').its('length').should('eq', number);
 };
 
 const shouldOnlyHaveUnprocessedUploadFiles = (number: number) => {
     cy.get('vl-upload-next')
         .shadow()
-        .find('div.vl-upload__file')
+        .find('li.vl-upload__file')
         .not('.dz-error')
         .not('.dz-success')
         .its('length')
