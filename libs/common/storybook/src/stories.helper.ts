@@ -91,7 +91,7 @@ export const defaultArgTypes = (next = false) => ({
     customCSS: {
         name: !next ? 'data-vl-custom-css' : 'custom-css',
         description:
-            'Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets van de shadow DOM van het component.',
+            'Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component.',
         control: { type: null },
         table: {
             type: { summary: TYPES.STRING },

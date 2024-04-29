@@ -18,6 +18,8 @@ const styles: CSSResult = css`
         --vl-error-color--hover: #aa2729;
 
         --vl-focus-color: #0055cca6; /* --vl-action-color 65% opacity */
+
+        --vl-label-color: #687483;
     }
 `;
 
