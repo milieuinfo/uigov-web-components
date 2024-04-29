@@ -108,6 +108,7 @@ export class VlSelectComponent extends FormControl {
                     aria-label=${this.label || nothing}
                     ?required=${this.required}
                     ?disabled=${this.disabled}
+                    ?aria-disabled=${this.disabled}
                     ?error=${this.error}
                     .value=${live(this.value)}
                     autocomplete=${this.autocomplete || nothing}
@@ -117,7 +118,7 @@ export class VlSelectComponent extends FormControl {
                     ${hasGroups ? this.renderGroupedOptions() : this.renderSelectOptions(this.options)}
                 </select>
                 ${hasValue && !this.notDeletable ? this.renderClearButton() : nothing}
-                <span class="vl-icon vl-vi vl-vi-nav-down"></span>
+                <span class="vl-icon vl-vi vl-vi-nav-down" aria-hidden="true"></span>
             </div>
         `;
     }
@@ -129,9 +130,15 @@ export class VlSelectComponent extends FormControl {
     }
 
     renderClearButton(): TemplateResult {
-        return html`<button class="vl-select__button" aria-label="Verwijder keuze" @click=${this.clearValue}>
-            <span class="vl-icon vl-vi vl-vi-close"></span>
-        </button>`;
+        return html`
+            <button
+                class="vl-select__button"
+                aria-label=${`Verwijder ${this.label} keuze ${this.getSelectedOption()?.label || this.value || ''}`}
+                @click=${this.clearValue}
+            >
+                <span class="vl-icon vl-vi vl-vi-close" aria-hidden="true"></span>
+            </button>
+        `;
     }
 
     renderGroupedOptions(): TemplateResult[] {

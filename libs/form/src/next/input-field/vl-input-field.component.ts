@@ -76,6 +76,7 @@ export class VlInputFieldComponent extends FormControl {
             max: { type: Number },
             minExclusive: { type: Boolean, attribute: 'min-exclusive' },
             maxExclusive: { type: Boolean, attribute: 'max-exclusive' },
+            inputMode: { type: String, state: true },
             pattern: { type: String },
             regex: { type: Object },
         };
@@ -123,6 +124,7 @@ export class VlInputFieldComponent extends FormControl {
                 min=${this.min ?? nothing}
                 max=${this.max ?? nothing}
                 pattern=${this.pattern}
+                inputmode=${this.inputMode}
                 @input=${this.onInput}
             />
         `;
