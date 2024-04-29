@@ -48,7 +48,17 @@ export class VlInputFieldMaskedComponent extends VlInputFieldComponent {
         if (!this.maskOptions) {
             return;
         } else {
-            this.inputMode = this.maskOptions.numericOnly ? 'numeric' : 'text';
+            if (this.maskOptions.numericOnly) {
+                this.inputMode = 'numeric';
+            } else {
+                switch (this.mask) {
+                    case 'date':
+                        this.inputMode = 'decimal';
+                        break;
+                    default:
+                        this.inputMode = 'text';
+                }
+            }
         }
 
         if (this.maskPrefix) {
