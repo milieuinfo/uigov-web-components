@@ -48,7 +48,11 @@ export class VlLinkComponent extends BaseLitElement {
         };
         const target = this.external ? '_blank' : nothing;
 
-        return html` <a class=${classMap(classes)} href=${this.href} target=${target}><slot></slot></a> `;
+        return html`
+            <a class=${classMap(classes)} href=${this.href} target=${target}>
+                <slot></slot>
+            </a>
+        `;
     }
 }
 

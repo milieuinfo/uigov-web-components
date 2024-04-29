@@ -27,3 +27,5 @@ export {
     findDeepestElementThroughShadowRoot,
     findNodesForSlot,
 } from './util/utils';
+export { onChildListChange } from './util/mutation-utils';
+export { buildSpan, buildDiv, buildLabel, buildData } from './util/html-element.builder';
