@@ -8,7 +8,7 @@ const styles: CSSResult = css`
     button {
         cursor: pointer;
     }
-    .vl-input-field {
+    .vl-input-field:not(input[type='date']) {
         border-radius: 0.3rem 0 0 0.3rem;
         border-right-width: 0;
     }
@@ -29,8 +29,13 @@ const styles: CSSResult = css`
         z-index: 1000 !important;
     }
 
-    .flatpickr-wrapper--block {
+    .flatpickr-wrapper--block,
+    input[block] {
         width: 100%;
+    }
+
+    input[type='date'] {
+        border-radius: 0.3rem !important;
     }
 `;
 export default styles;

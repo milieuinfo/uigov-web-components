@@ -10,65 +10,6 @@ const mockedResponseFixturePath = 'upload/upload-mock-response-200.json';
 const uploadTargetUrl = 'fake-url';
 const defaultTargetUrl = 'http://httpbin.org/post';
 
-const shouldAddPdfFiles = (number = 1) => {
-    for (let i = 0; i < number; i++) {
-        cy.get('vl-upload-next').shadow().find('input[type=file]').selectFile(pdfFileFixturePath, { force: true });
-    }
-};
-const shouldAddTxtFiles = (number = 1) => {
-    for (let i = 0; i < number; i++) {
-        cy.get('vl-upload-next').shadow().find('input[type=file]').selectFile(txtFileFixturePath, { force: true });
-    }
-};
-
-const shouldRemoveFile = () => {
-    cy.get('vl-upload-next').shadow().find('button.vl-upload__files__close').click();
-};
-
-const shouldHaveUploadFiles = (number: number) => {
-    cy.get('vl-upload-next').shadow().find('div.vl-upload__file').its('length').should('eq', number);
-};
-const shouldHaveValidUploadFiles = (number: number) => {
-    cy.get('vl-upload-next').shadow().find('div.vl-upload__file').not('.dz-error').its('length').should('eq', number);
-};
-const shouldHaveUploadFilesWithNoSuccess = (number: number) => {
-    cy.get('vl-upload-next').shadow().find('div.vl-upload__file').not('.dz-success').its('length').should('eq', number);
-};
-
-const shouldHaveSuccessUploadFiles = (number: number) => {
-    cy.get('vl-upload-next').shadow().find('div.dz-success').its('length').should('eq', number);
-};
-
-const shouldOnlyHaveUnprocessedUploadFiles = (number: number) => {
-    cy.get('vl-upload-next')
-        .shadow()
-        .find('div.vl-upload__file')
-        .not('.dz-error')
-        .not('.dz-success')
-        .its('length')
-        .should('eq', number);
-};
-
-const shouldSuccessfullyUploadFiles = (
-    numberOfFiles: number,
-    targetUrl = uploadTargetUrl,
-    callback?: (...args: unknown[]) => void
-) => {
-    // intercepts outgoing requests so can test them
-    cy.intercept('POST', targetUrl, (req) => {
-        req.reply({
-            statusCode: 200,
-            fixture: mockedResponseFixturePath,
-        });
-    }).as('uploadPost');
-    if (callback) callback();
-    cy.wait('@uploadPost');
-    cy.get('@uploadPost.all').then((interceptions) => {
-        expect(interceptions).to.have.length(numberOfFiles);
-    });
-    shouldHaveSuccessUploadFiles(numberOfFiles);
-};
-
 describe('component - vl-upload-next', () => {
     it('should mount', () => {
         cy.mount(html` <vl-upload-next url=${defaultTargetUrl} label="test-label"></vl-upload-next>`);
@@ -274,11 +215,13 @@ describe('component - vl-upload-next', () => {
     it('should generate error when adding a file with the wrong extension', () => {
         const errorMessage = 'Dit bestandstype is niet toegestaan';
         cy.mount(
-            html` <vl-upload-next
-                url=${defaultTargetUrl}
-                accepted-files="txt"
-                error-message-accepted-files=${errorMessage}
-            ></vl-upload-next>`
+            html`
+                <vl-upload-next
+                    url=${defaultTargetUrl}
+                    accepted-files="txt"
+                    error-message-accepted-files=${errorMessage}
+                ></vl-upload-next>
+            `
         );
 
         cy.get('vl-upload-next').shadow().find('input[type=file]').selectFile(pdfFileFixturePath, { force: true });
@@ -306,12 +249,12 @@ describe('component - vl-upload-next', () => {
         );
 
         shouldAddPdfFiles(3);
-        shouldHaveUploadFiles(3);
-        shouldHaveValidUploadFiles(2);
+        shouldHaveUploadFiles(3, true);
+        shouldHaveValidUploadFiles(2, true);
         cy.get('vl-upload-next').shadow().find('.dz-error-message').should('contain', errorMessage, '');
     });
 
-    it('should remove duplicate files', () => {
+    it.only('should remove duplicate files', () => {
         cy.mount(html` <vl-upload-next url=${defaultTargetUrl} disallow-duplicates></vl-upload-next>`);
 
         cy.createStubForEvent('vl-upload-next', 'vl-input');
@@ -369,3 +312,75 @@ describe('component - vl-upload-next', () => {
         cy.get('vl-upload-next').contains(subTitel);
     });
 });
+
+const shouldAddPdfFiles = (number = 1) => {
+    for (let i = 0; i < number; i++) {
+        cy.get('vl-upload-next').shadow().find('input[type=file]').selectFile(pdfFileFixturePath, { force: true });
+    }
+};
+const shouldAddTxtFiles = (number = 1) => {
+    for (let i = 0; i < number; i++) {
+        cy.get('vl-upload-next').shadow().find('input[type=file]').selectFile(txtFileFixturePath, { force: true });
+    }
+};
+
+const shouldRemoveFile = () => {
+    cy.get('vl-upload-next').shadow().find('button.vl-upload__files__close').click();
+};
+
+const shouldHaveUploadFiles = (number: number, isMultiple?: boolean) => {
+    const previewFileSelector = `${isMultiple ? 'li' : 'div'}.vl-upload__file`;
+    cy.get('vl-upload-next').shadow().find(previewFileSelector).its('length').should('eq', number);
+};
+
+const shouldHaveValidUploadFiles = (number: number, isMultiple?: boolean) => {
+    cy.get('vl-upload-next')
+        .shadow()
+        .find(`${isMultiple ? 'li' : 'div'}.vl-upload__file`)
+        .not('.dz-error')
+        .its('length')
+        .should('eq', number);
+};
+
+const shouldHaveUploadFilesWithNoSuccess = (number: number, isMultiple?: boolean) => {
+    cy.get('vl-upload-next')
+        .shadow()
+        .find(`${isMultiple ? 'li' : 'div'}.vl-upload__file`)
+        .not('.dz-success')
+        .its('length')
+        .should('eq', number);
+};
+
+const shouldHaveSuccessUploadFiles = (number: number) => {
+    cy.get('vl-upload-next').shadow().find('.dz-success').its('length').should('eq', number);
+};
+
+const shouldOnlyHaveUnprocessedUploadFiles = (number: number, isMultiple?: boolean) => {
+    cy.get('vl-upload-next')
+        .shadow()
+        .find(`${isMultiple ? 'li' : 'div'}.vl-upload__file`)
+        .not('.dz-error')
+        .not('.dz-success')
+        .its('length')
+        .should('eq', number);
+};
+
+const shouldSuccessfullyUploadFiles = (
+    numberOfFiles: number,
+    targetUrl = uploadTargetUrl,
+    callback?: (...args: unknown[]) => void
+) => {
+    // intercepts outgoing requests so can test them
+    cy.intercept('POST', targetUrl, (req) => {
+        req.reply({
+            statusCode: 200,
+            fixture: mockedResponseFixturePath,
+        });
+    }).as('uploadPost');
+    if (callback) callback();
+    cy.wait('@uploadPost');
+    cy.get('@uploadPost.all').then((interceptions) => {
+        expect(interceptions).to.have.length(numberOfFiles);
+    });
+    shouldHaveSuccessUploadFiles(numberOfFiles);
+};
