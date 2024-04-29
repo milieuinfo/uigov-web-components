@@ -87,6 +87,8 @@ describe('component - vl-datepicker-next', () => {
 
         cy.get('vl-datepicker-next').should('have.attr', 'readonly');
         cy.get('vl-datepicker-next').shadow().find('input').should('have.attr', 'readonly');
+        cy.get('vl-datepicker-next').shadow().find('button').should('have.attr', 'disabled');
+
         cy.checkA11y('vl-datepicker-next');
     });
 
