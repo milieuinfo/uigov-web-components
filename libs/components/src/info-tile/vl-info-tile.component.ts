@@ -70,24 +70,24 @@ export class VlInfoTile extends BaseHTMLElement {
 
     get isOpen() {
         if (this.isToggleable) {
-            return this._element.classList.contains('js-vl-accordion--open');
+            return this._element?.classList.contains('js-vl-accordion--open');
         }
         return true;
     }
 
-    get _headerWrapperElement() {
-        return this._element.querySelector('#wrapper');
+    get _headerWrapperElement(): HTMLDivElement | null {
+        return this._element?.querySelector('#wrapper');
     }
 
-    get _titleElement() {
-        return this._headerWrapperElement.querySelector('#title');
+    get _titleElement(): HTMLHeadingElement | undefined | null {
+        return this._headerWrapperElement?.querySelector('#title');
     }
 
     get _titleSlot(): HTMLSlotElement | undefined | null {
         return this.querySelector<HTMLSlotElement>(":scope > slot[name='title']");
     }
 
-    get _titleLabelSlot() {
+    get _titleLabelSlot(): Element | undefined | null {
         return this.querySelector("[slot='title-label']");
     }
 
@@ -95,8 +95,8 @@ export class VlInfoTile extends BaseHTMLElement {
         return this._titleElement?.querySelector('[name="title-label"]');
     }
 
-    get _buttonElement() {
-        return this._element.querySelector('button');
+    get _buttonElement(): HTMLButtonElement | undefined | null {
+        return this._element?.querySelector('button');
     }
 
     toggle() {
@@ -129,9 +129,9 @@ export class VlInfoTile extends BaseHTMLElement {
 
     _centerChangedCallback(oldValue: string, newValue: string) {
         if (newValue === null) {
-            this._element.classList.remove('vl-info-tile--center');
+            this._element?.classList.remove('vl-info-tile--center');
         } else {
-            this._element.classList.add('vl-info-tile--center');
+            this._element?.classList.add('vl-info-tile--center');
         }
     }
 
@@ -148,19 +148,20 @@ export class VlInfoTile extends BaseHTMLElement {
     }
 
     __prepareAccordionElements() {
-        this._element.classList.add('js-vl-accordion');
+        this._element?.classList.add('js-vl-accordion');
         const button = this._template(`
           <button class="vl-toggle vl-link vl-link--bold js-vl-accordion__toggle">
             <i class="vl-link__icon vl-link__icon--before vl-toggle__icon vl-vi vl-vi-arrow-right-fat" aria-hidden="true"></i>
           </button>
         `).firstElementChild;
-        button?.appendChild(this._titleElement);
-        this._headerWrapperElement.prepend(button);
+        if (this._titleElement) button?.appendChild(this._titleElement);
+        if (button) this._headerWrapperElement?.prepend(button);
     }
 
     __removeAccordionElements() {
-        this._element.classList.remove('js-vl-accordion');
-        this._headerWrapperElement.replaceChild(this._titleElement, this._buttonElement);
+        this._element?.classList.remove('js-vl-accordion');
+        if (this._titleElement && this._buttonElement)
+            this._headerWrapperElement?.replaceChild(this._titleElement, this._buttonElement);
     }
 
     __preventContentClickPropagation() {
@@ -191,9 +192,9 @@ export class VlInfoTile extends BaseHTMLElement {
         if (!this._titleLabelSlot) {
             this._titleLabelSlotElement?.remove();
         }
-        this._titleElement.addEventListener('click', (event: Event) => {
+        this._titleElement?.addEventListener('click', (event: Event) => {
             event.stopPropagation();
-            this._buttonElement.click();
+            this._buttonElement?.click();
         });
     }
 }
