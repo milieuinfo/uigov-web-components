@@ -13,7 +13,7 @@ import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 import { VlUploadComponent } from '@domg-wc/form/next/upload';
 import { VlSelectComponent, SelectOption } from '@domg-wc/form/next/select';
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import appElementStyle from './app.element.css';
+import formStyle from './form.css';
 import { parseFormData } from '@domg-wc/form/utils';
 
 type SubmittedFormData = {
@@ -32,8 +32,8 @@ type SubmittedFormData = {
     waarheidsgetrouw?: boolean;
 };
 
-@customElement('app-element')
-export class AppElement extends LitElement {
+@customElement('form-container')
+export class FormContainer extends LitElement {
     // Required state values
     private firstNameRequired = false;
     private lastNameRequired = false;
@@ -155,7 +155,7 @@ export class AppElement extends LitElement {
     }
 
     static get styles(): (CSSResult | CSSResult[])[] {
-        return [vlElementsStyle, appElementStyle];
+        return [vlElementsStyle, formStyle];
     }
 
     static get properties(): PropertyDeclarations {

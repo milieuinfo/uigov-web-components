@@ -1,0 +1,52 @@
+import { ArgTypes, Canvas } from '@storybook/addon-docs';
+import * as VlLinkStories from './vl-link.stories';
+
+# Link - next
+
+Gebruik de `link-next` component om een link af te beelden op een pagina.<br/>
+
+Dit component is de volgende versie van de [vl-link](/docs/elements-link-link--documentatie) component.
+
+## Voorbeeld
+
+```js
+import { VlLinkComponent } from '@domg-wc/components/next/link';
+```
+
+```html
+<vl-link-next></vl-link-next>
+```
+
+<Canvas of={VlLinkStories.LinkDefault} />
+
+## Configuratie
+
+<ArgTypes of={VlLinkStories.LinkDefault} />
+
+## Varianten
+
+### Bold
+
+<Canvas of={VlLinkStories.LinkBold} />
+
+### Small
+
+<Canvas of={VlLinkStories.LinkSmall} />
+
+### Large
+
+<Canvas of={VlLinkStories.LinkLarge} />
+
+### Error
+
+<Canvas of={VlLinkStories.LinkError} />
+
+### External
+
+<Canvas of={VlLinkStories.LinkExternal} />
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+[Documentatie Digitaal Vlaanderen - Link](https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-link)
