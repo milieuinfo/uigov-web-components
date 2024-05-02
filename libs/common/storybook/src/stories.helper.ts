@@ -31,6 +31,7 @@ export const CONTROLS = {
     DATE: 'date',
     OBJECT: 'object',
     SELECT: 'select',
+    INLINE_RADIO: 'inline-radio',
     RANGE: 'range',
     NUMBER: 'number',
 };
