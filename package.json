@@ -105,7 +105,6 @@
         "@swc/cli": "0.3.10",
         "@swc/core": "1.4.6",
         "@swc/jest": "0.2.36",
-        "@types/dropzone": "5.7.8",
         "@types/jest": "29.5.12",
         "@types/node": "20.11.26",
         "@types/prettier": "2.7.3",
