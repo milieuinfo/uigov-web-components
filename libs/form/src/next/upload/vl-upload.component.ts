@@ -417,8 +417,7 @@ export class VlUploadComponent extends FormControl {
         };
 
         if (dropzoneContainer) {
-            // @ts-ignore omdat Dropzone.default niet herkend wordt door typescript
-            this.dropzoneInstance = new Dropzone.default(dropzoneContainer, dropzoneOptions);
+            this.dropzoneInstance = new Dropzone(dropzoneContainer, dropzoneOptions);
         }
     }
 
