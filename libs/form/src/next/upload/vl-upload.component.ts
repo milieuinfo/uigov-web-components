@@ -417,8 +417,12 @@ export class VlUploadComponent extends FormControl {
         };
 
         if (dropzoneContainer) {
-            // tslint-disable-next-line import/no-internal-modules
-            this.dropzoneInstance = new Dropzone(dropzoneContainer, dropzoneOptions);
+            try {
+                // tslint-disable-next-line import/no-internal-modules
+                this.dropzoneInstance = new Dropzone.default(dropzoneContainer, dropzoneOptions);
+            } catch (error) {
+                this.dropzoneInstance = new Dropzone(dropzoneContainer, dropzoneOptions);
+            }
         }
     }
 
