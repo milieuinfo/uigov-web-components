@@ -1,7 +1,7 @@
 import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
 import { iconStyle, linkStyle, uploadStyle } from '@domg/govflanders-style/component';
 import { classMap } from 'lit/directives/class-map.js';
-import { Dropzone } from 'dropzone';
+import Dropzone from 'dropzone';
 import { Validator } from '@open-wc/form-control';
 import { FormValue } from '@open-wc/form-control/src/types';
 import { accessibilityStyle, baseStyle, resetStyle } from '@domg/govflanders-style/common';
@@ -417,6 +417,7 @@ export class VlUploadComponent extends FormControl {
         };
 
         if (dropzoneContainer) {
+            // tslint-disable-next-line import/no-internal-modules
             this.dropzoneInstance = new Dropzone(dropzoneContainer, dropzoneOptions);
         }
     }
