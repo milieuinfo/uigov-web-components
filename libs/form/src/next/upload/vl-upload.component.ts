@@ -417,12 +417,14 @@ export class VlUploadComponent extends FormControl {
         };
 
         if (dropzoneContainer) {
+            let constructorMethod = '[vl-upload-next] new Dropzone()';
             try {
-                // tslint-disable-next-line import/no-internal-modules
-                this.dropzoneInstance = new Dropzone.default(dropzoneContainer, dropzoneOptions);
-            } catch (error) {
                 this.dropzoneInstance = new Dropzone(dropzoneContainer, dropzoneOptions);
+            } catch (error) {
+                constructorMethod = '[vl-upload-next] new Dropzone.default';
+                this.dropzoneInstance = new Dropzone.default(dropzoneContainer, dropzoneOptions);
             }
+            console.log(constructorMethod);
         }
     }
 
