@@ -12,12 +12,13 @@ import popoverUigStyle from './vl-popover.uig-css';
 
 @customElement('vl-popover')
 export class VlPopoverComponent extends BaseLitElement {
+    open = false;
+
     private popup!: FloatingController;
     private for = ''; // html id van het referentie-element
     private trigger = 'click';
     private placement: Placement = 'bottom';
     private distance = 10; // afstand van referentie-element in px
-    open = false;
     private hideArrow = false;
     private contentPadding: 'none' | 'small' | 'medium' | 'large' = 'small';
     private hideOnClick = false;
@@ -32,14 +33,14 @@ export class VlPopoverComponent extends BaseLitElement {
 
     static get properties(): PropertyDeclarations {
         return {
-            for: { type: String, attribute: 'for', reflect: true },
-            contentPadding: { type: String, attribute: 'content-padding', reflect: true },
+            for: { type: String, attribute: 'for' },
+            contentPadding: { type: String, attribute: 'content-padding' },
             open: { type: Boolean, attribute: 'open', reflect: true },
-            trigger: { type: String, attribute: 'trigger', reflect: true },
+            trigger: { type: String, attribute: 'trigger' },
             placement: { type: String, attribute: 'placement', reflect: true },
-            distance: { type: Number, attribute: 'distance', reflect: true },
-            hideArrow: { type: Boolean, attribute: 'hide-arrow', reflect: true },
-            hideOnClick: { type: Boolean, attribute: 'hide-on-click', reflect: true },
+            distance: { type: Number, attribute: 'distance' },
+            hideArrow: { type: Boolean, attribute: 'hide-arrow' },
+            hideOnClick: { type: Boolean, attribute: 'hide-on-click' },
         };
     }
 

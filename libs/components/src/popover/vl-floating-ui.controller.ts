@@ -42,12 +42,7 @@ export default class FloatingController implements ReactiveController {
         const referenceId = `#${this.options.reference}`;
         const hostRootNode = this.host.getRootNode() as Element;
         const referenceElement = document.querySelector(referenceId) || hostRootNode.querySelector(referenceId);
-        if (referenceElement) {
-            return referenceElement as HTMLElement;
-        } else {
-            console.warn(this.host.tagName, ' could not find reference element with id: #', referenceId);
-            return null;
-        }
+        return referenceElement ? (referenceElement as HTMLElement) : null;
     }
 
     private getArrowElement(): HTMLElement {
@@ -71,6 +66,7 @@ export default class FloatingController implements ReactiveController {
 
     async updatePosition(): Promise<void> {
         if (!this.getReferenceElement) {
+            console.warn(this.host.tagName, ' could not find reference element with id: #', this.options?.reference);
             return;
         }
 
@@ -134,22 +130,28 @@ export default class FloatingController implements ReactiveController {
 
     private removeEventListeners(): void {
         const referenceElement = this.getReferenceElement();
-        referenceElement?.removeEventListener('keydown', this.handleKeyDown);
+
+        if (!referenceElement) {
+            console.warn(this.host.tagName, ' could not find reference element with id: #', this.options?.reference);
+            return;
+        }
+
+        referenceElement.removeEventListener('keydown', this.handleKeyDown);
 
         if (this.hasTrigger('click')) {
-            referenceElement?.removeEventListener('click', this.handleClick);
+            referenceElement.removeEventListener('click', this.handleClick);
             document.removeEventListener('click', this.handleClickOutside, true);
             this.host.removeEventListener('click', this.host.hide);
         }
 
         if (this.hasTrigger('hover')) {
-            referenceElement?.removeEventListener('mouseover', this.handleMouseOver);
-            referenceElement?.removeEventListener('mouseout', this.handleMouseOut);
+            referenceElement.removeEventListener('mouseover', this.handleMouseOver);
+            referenceElement.removeEventListener('mouseout', this.handleMouseOut);
         }
 
         if (this.hasTrigger('focus')) {
-            referenceElement?.removeEventListener('focusin', this.handleFocusIn, true);
-            referenceElement?.removeEventListener('focusout', this.handleFocusOut, true);
+            referenceElement.removeEventListener('focusin', this.handleFocusIn, true);
+            referenceElement.removeEventListener('focusout', this.handleFocusOut, true);
         }
 
         window.removeEventListener('resize', this.handleResize);
