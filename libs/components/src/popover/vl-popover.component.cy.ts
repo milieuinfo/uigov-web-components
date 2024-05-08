@@ -2,7 +2,6 @@ import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlPopoverActionListComponent, VlPopoverComponent } from './index';
 import { html, nothing } from 'lit';
 import { VlPopoverActionComponent } from './vl-popover-action.component';
-import { action } from '@storybook/addon-actions';
 
 registerWebComponents([VlPopoverComponent, VlPopoverActionComponent, VlPopoverActionListComponent]);
 
@@ -35,12 +34,7 @@ const mountDefault = ({
             distance=${distance || nothing}
             content-padding=${contentPadding || nothing}
         >
-            <vl-popover-action-list
-                @click=${(event: CustomEvent) => {
-                    const actionElement = event.target as VlPopoverActionComponent;
-                    action('click')('vl-popover-action clicked > ' + actionElement.action);
-                }}
-            >
+            <vl-popover-action-list>
                 <vl-popover-action icon="search" .action=${'search'}>Zoeken</vl-popover-action>
                 <vl-popover-action icon="bell" .action=${'report'}>Rapportenoverzicht</vl-popover-action>
                 <vl-popover-action icon="pin" .action=${'locate'}>Vind locatie</vl-popover-action>
