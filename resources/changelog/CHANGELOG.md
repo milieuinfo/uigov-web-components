@@ -1,3 +1,20 @@
+# [1.32.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.31.0...v1.32.0) (2024-05-13)
+
+
+### Bug Fixes
+
+* UIG-3006 - vl-info-file - null checks toegevoegd ([4cc536c](https://github.com/milieuinfo/uigov-web-components/commit/4cc536ca02f6766acad3867bbe036b594a875cf2))
+* UIG-3007 - vl-upload - Dropzone initialisatie aangepast ([19627a0](https://github.com/milieuinfo/uigov-web-components/commit/19627a08070a9fe552fddde3498b790366d15245))
+
+
+### Features
+
+* UIG-2797 - vl-modal - uitlijning van de knoppen verbeterd ([f9daff0](https://github.com/milieuinfo/uigov-web-components/commit/f9daff06e6998a86586360108287186b3ed9cdbc))
+* UIG-2924 - vl-link-next - introductie component ([0c01edc](https://github.com/milieuinfo/uigov-web-components/commit/0c01edcb4a22d6642813b6940a0f7f7a54f35c81))
+* UIG-2993 - vl-select-next - not-deletable attribuut, deletable is de default ([26a7ef7](https://github.com/milieuinfo/uigov-web-components/commit/26a7ef707c28a645b099a62bc914cec312484314))
+* UIG-2999 - vl-popover - waarschuwing aangepast wanneer referentie-element niet wordt gevonden ([3b196f1](https://github.com/milieuinfo/uigov-web-components/commit/3b196f1d843711f4449ed025b160a915474b9797))
+* UIG-3003 - vl-select-rich-next - result-limit attribuut reactief gemaakt ([d0181c5](https://github.com/milieuinfo/uigov-web-components/commit/d0181c5fcea58d8257fadef80ba1843b611ca6eb))
+
 # [1.31.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.30.0...v1.31.0) (2024-04-24)
 
 
