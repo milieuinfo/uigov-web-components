@@ -83,7 +83,7 @@ export class VlTextareaRichComponent extends VlTextareaComponent {
         }
 
         if (changedProperties.has('isInvalid')) {
-            this.editor?.getBody().classList.toggle('error', this.isInvalid || this.error);
+            this.editor?.getBody()?.classList?.toggle('error', this.isInvalid || this.error);
         }
     }
 
@@ -158,31 +158,31 @@ export class VlTextareaRichComponent extends VlTextareaComponent {
     }
 
     private setEditorSuccess() {
-        this.editor?.getBody().classList.toggle('success', this.success);
+        this.editor?.getBody()?.classList?.toggle('success', this.success);
     }
 
     private setEditorError() {
-        this.editor?.getBody().classList.toggle('error', this.error);
+        this.editor?.getBody()?.classList?.toggle('error', this.error);
     }
 
     private setEditorReadonly() {
         const shouldDisableEditor = this.shouldDisableEditor();
 
-        this.editor?.mode.set(shouldDisableEditor ? 'readonly' : 'design');
+        this.editor?.mode?.set(shouldDisableEditor ? 'readonly' : 'design');
     }
 
     private setEditorDisabled() {
         const shouldDisableEditor = this.shouldDisableEditor();
 
-        this.editor?.mode.set(shouldDisableEditor ? 'readonly' : 'design');
-        this.editor?.getBody().classList.toggle('vl-textarea--disabled', this.disabled);
+        this.editor?.mode?.set(shouldDisableEditor ? 'readonly' : 'design');
+        this.editor?.getBody()?.classList?.toggle('vl-textarea--disabled', this.disabled);
     }
 
     private setEditorPreview() {
         const shouldDisableEditor = this.shouldDisableEditor();
 
         this.editor?.mode.set(shouldDisableEditor ? 'readonly' : 'design');
-        this.editor?.getContainer().querySelector('.tox-editor-header')?.classList.toggle('hidden', this.preview);
+        this.editor?.getContainer()?.querySelector('.tox-editor-header')?.classList.toggle('hidden', this.preview);
     }
 
     private shouldDisableEditor() {
