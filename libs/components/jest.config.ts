@@ -11,6 +11,7 @@ export default {
             },
         ],
     },
+    transformIgnorePatterns: [],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
     coverageDirectory: '../../coverage/libs/components',
 };
