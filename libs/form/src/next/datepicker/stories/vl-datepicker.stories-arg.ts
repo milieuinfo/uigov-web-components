@@ -65,7 +65,8 @@ export const datepickerArgTypes: ArgTypes<DatepickerArgs> = {
     },
     autocomplete: {
         name: 'autocomplete',
-        description: 'De autocomplete van het veld.',
+        description:
+            'De autocomplete van het veld. Dit moet een waarde zijn die door de browser ondersteund wordt.<br>Een lijst van waarden kan je vinden op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values).',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,

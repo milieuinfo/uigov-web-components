@@ -36,7 +36,8 @@ export const inputFieldArgTypes: ArgTypes<InputFieldArgs> = {
     },
     type: {
         name: 'type',
-        description: 'Het type van het input veld.',
+        description:
+            'Het type van het input veld.<br>Voor meer informatie over de mogelijke types kan je terecht op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types).',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
@@ -63,7 +64,8 @@ export const inputFieldArgTypes: ArgTypes<InputFieldArgs> = {
     },
     autocomplete: {
         name: 'autocomplete',
-        description: 'De autocomplete van het veld.',
+        description:
+            'De autocomplete van het veld. Dit moet een waarde zijn die door de browser ondersteund wordt.<br>Een lijst van waarden kan je vinden op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values).',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,

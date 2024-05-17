@@ -53,7 +53,8 @@ export const textareaArgTypes: ArgTypes<TextareaArgs> = {
     },
     autocomplete: {
         name: 'autocomplete',
-        description: 'De autocomplete van het textarea veld.',
+        description:
+            'De autocomplete van het textarea veld. Dit moet een waarde zijn die door de browser ondersteund wordt.<br>Een lijst van waarden kan je vinden op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values).',
         table: {
             type: { summary: TYPES.STRING },
             category: CATEGORIES.ATTRIBUTES,
