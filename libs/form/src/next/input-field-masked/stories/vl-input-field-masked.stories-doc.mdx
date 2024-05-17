@@ -33,12 +33,14 @@ Geeft de raw value van de input terug (zonder mask).<br/>
 Bij het `price` mask wordt de prefix weggelaten.
 
 ## Validatie
+> Meer info over validatie binnen onze form componenten vind je hier: [Form - Validatie](/docs/ontwerp-form-validation--documentatie)
 
 - Er wordt automatisch mask validatie toegevoegd aan het input veld, je kan dit uitschakelen met het `disable-mask-validation` attribuut.
 - Bij de mask validatie wordt er gebruik gemaakt van een regex, deze kan je overschrijven met de `regex` property.
 - Bij het testen van de regex wordt altijd de raw value van het input veld gebruikt.
 - De `patternMismatch` ValidityState key wordt gebruikt voor de mask validatie error.
 - Het is mogelijk om de mask validatie te combineren met andere validaties, bv. `required`, `min`, `max`.
+- We voorzien momenteel enkel validatie voor de `text` input type.
 
 ## Masks
 

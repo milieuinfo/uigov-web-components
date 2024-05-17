@@ -25,11 +25,32 @@ import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
 
 <ArgTypes of={VlInputFieldStories.InputFieldDefault} />
 
+## Varianten
+
+### Number
+
+<Canvas of={VlInputFieldStories.InputFieldNumber} />
+
+## Type
+
+Momenteel ondersteunen we volgende [input types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types):
+- `text`
+- `number`
+
+Daarnaast voorzien voor enkele andere types ook een eigen component:
+- `date`: [vl-datepicker-next](/docs/form-next-datepicker--documentatie)
+- `file`: [vl-upload-next](/docs/form-next-upload--documentatie)
+- `checkbox`: [vl-checkbox-next](/docs/form-next-checkbox--documentatie)
+- `radio-group`: [vl-radio-group-next](/docs/form-next-radio-group--documentatie)
+
+De andere types instellen kan onverwachte gevolgen hebben op vlak van validatie.
+
 ## Publieke methodes
 
 <FormControlPublicMethods/>
 
 ## Pattern validatie
+> Meer info over validatie binnen onze form componenten vind je hier: [Form - Validatie](/docs/ontwerp-form-validation--documentatie)
 
 Pattern validatie kan op 2 manieren gebeuren:
 - Via het `pattern` attribuut
@@ -67,11 +88,3 @@ Voor mask validatie kan je gebruik maken van de [vl-input-field-masked-next](/do
 ### Digitaal Vlaanderen
 
 [Documentatie Digitaal Vlaanderen - Input field](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-input-field)
-
-### Legacy Documentatie
-
-[Legacy Storybook - Input field](https://webcomponenten.omgeving.vlaanderen.be/storybook/?path=/docs/native-elements-vl-input-field--default)
-
-[Legacy Documentatie - Input field](https://webcomponenten.omgeving.vlaanderen.be/doc/VlInputField.html)
-
-[Legacy Demo - Input field](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-input-field.html)

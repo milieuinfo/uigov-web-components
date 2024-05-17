@@ -1,8 +1,8 @@
-import { Meta } from '@storybook/addon-docs';
 import { Canvas } from '@storybook/blocks';
 import * as formDataStories from './form-data.stories';
 
 # Form - Data
+> Meer info over validatie binnen onze form componenten vind je hier: [Form - Validatie](/docs/ontwerp-form-validation--documentatie)
 
 Om de form data te verzamelen, kan je de [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) API gebruiken.
 
@@ -19,15 +19,32 @@ We hebben een helper functie voorzien om de form data te parsen naar een object 
 
 Deze functie aanvaard 2 parameters:
 - `formElement: Form`: het Form element waarvan je de data wil parsen
-- `multiFormControlNames?: string[]`: een array van form control namen die meerdere waardes kunnen hebben. Als deze parameter niet wordt meegegeven, dan wordt er gezocht naar alle form controls die meerdere waardes kunnen hebben.
+- `multiFormControlNames?: string[]`: een array van form control namen die meerdere waardes kunnen hebben.
+Als deze parameter niet wordt meegegeven, dan wordt er gezocht naar alle form controls die meerdere waardes kunnen hebben aan de hand van het `multiple` attribuut.
 
 ### Gebruik
 
-```typescript
+```js
 import { parseFormData } from "@domg-wc/form/utils";
+```
 
-const form = document.querySelector('form');
-const data = parseFormData(form);
+```html
+<form @submit=${this.onSubmit}>
+  ...
+</form>
+```
+
+```typescript
+onSubmit(event: Event): void {
+    // voorkomt het standaardgedrag van het formulier,
+    // zodat we de formulierinzending zelf kunnen afhandelen.
+    event.preventDefault();
+
+    // parse de form data
+    const data = parseFormData(event.target as HTMLFormElement);
+    // print de form data in de console
+    console.log(data);
+}
 ```
 
 ### Voorbeeld

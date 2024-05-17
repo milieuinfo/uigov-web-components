@@ -24,6 +24,22 @@ import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
 
 <ArgTypes of={VlErrorMessageStories.ErrorMessageDefault} />
 
+## Gebruik
+
+### Volgorde
+
+We raden aan 1 error message per validatie te tonen. Als er meerdere validaties zijn, toon de belangrijkste eerst.
+De volgorde waarin de error messages getoond worden volgt dezelfde volgorde van `vl-error-message-next` componenten in de DOM. Een voorbeeld hiervan kan je vinden in onze [form demo](/docs/ontwerp-form-demo--documentatie).
+
+### Success
+
+Als je expliciet wil aantonen dat de form-control correct is ingevuld, kan je het `success` attribuut gebruiken op de gerelateerde form-control.
+
+## Validatie
+> Meer info over validatie binnen onze form componenten vind je hier: [Form - Validatie](/docs/ontwerp-form-validation--documentatie)
+
+De `vl-error-message` componenten worden getoond afhankelijk van de validatie status van onze form controls. De validatie status wordt bepaald door de `validity` property die afhangt van gebruikersinteractie.
+
 ## Referenties
 
 ### Digitaal Vlaanderen
