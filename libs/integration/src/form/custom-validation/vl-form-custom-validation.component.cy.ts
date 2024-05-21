@@ -15,7 +15,12 @@ describe('integration - form custom validation', () => {
     it('should validate', () => {
         cy.mount(html`<vl-form-custom-validation></vl-form-custom-validation>`);
 
-        cy.get('vl-form-custom-validation').shadow().find('button[type="submit"]').click();
+        cy.get('vl-form-custom-validation')
+            .shadow()
+            .find('vl-button-next[type="submit"]')
+            .shadow()
+            .find('button')
+            .click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         cy.get('vl-form-custom-validation')
             .shadow()
             .find('vl-error-message-next[state="valueMissing"]')
@@ -26,7 +31,12 @@ describe('integration - form custom validation', () => {
             .shadow()
             .find('input')
             .type('test');
-        cy.get('vl-form-custom-validation').shadow().find('button[type="submit"]').click();
+        cy.get('vl-form-custom-validation')
+            .shadow()
+            .find('vl-button-next[type="submit"]')
+            .shadow()
+            .find('button')
+            .click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         cy.get('vl-form-custom-validation')
             .shadow()
             .find('vl-error-message-next[state="customError"]')
@@ -38,7 +48,12 @@ describe('integration - form custom validation', () => {
             .find('input')
             .clear()
             .type('foo');
-        cy.get('vl-form-custom-validation').shadow().find('button[type="submit"]').click();
+        cy.get('vl-form-custom-validation')
+            .shadow()
+            .find('vl-button-next[type="submit"]')
+            .shadow()
+            .find('button')
+            .click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         cy.get('vl-form-custom-validation')
             .shadow()
             .find('vl-error-message-next[state="customError"]')

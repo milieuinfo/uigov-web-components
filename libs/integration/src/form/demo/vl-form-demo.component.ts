@@ -12,6 +12,7 @@ import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
 import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radio-group';
 import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 import { VlUploadComponent } from '@domg-wc/form/next/upload';
+import { VlButtonComponent } from '@domg-wc/components/next/button';
 import { parseFormData } from '@domg-wc/form/utils';
 
 @webComponent('vl-form-demo')
@@ -67,6 +68,7 @@ export class VlFormDemoComponent extends LitElement {
             VlUploadComponent,
             VlCheckboxComponent,
             VlErrorMessageComponent,
+            VlButtonComponent,
         ]);
     }
 
@@ -77,6 +79,12 @@ export class VlFormDemoComponent extends LitElement {
                 form {
                     margin-top: 1rem;
                     max-width: 800px;
+                }
+
+                .form-buttons {
+                    vl-button-next:not(:last-child) {
+                        margin-right: 1.4rem;
+                    }
                 }
             `,
         ];
@@ -298,9 +306,9 @@ export class VlFormDemoComponent extends LitElement {
                         </vl-error-message-next>
                     </div>
                     <div class="vl-form-col--6-12 vl-push--4-12">
-                        <div class="vl-action-group">
-                            <button class="vl-button" type="submit">Verstuur</button>
-                            <button class="vl-button" type="reset">Reset</button>
+                        <div class="form-buttons">
+                            <vl-button-next type="submit">Verstuur</vl-button-next>
+                            <vl-button-next type="reset" secondary>Reset</vl-button-next>
                         </div>
                     </div>
                 </div>

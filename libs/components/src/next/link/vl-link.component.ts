@@ -21,7 +21,7 @@ export class VlLinkComponent extends BaseLitElement {
     private small = linkDefaults.small;
     private large = linkDefaults.large;
     private error = linkDefaults.error;
-    private external = false;
+    private external = linkDefaults.external;
 
     static get styles(): CSSResult[] {
         return [linkStyle];

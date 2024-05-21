@@ -33,32 +33,32 @@ describe('integration - form demo', () => {
         createStubForSubmitEvent();
 
         getErrorMessages().should('have.length', 0);
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
 
         // Naam input error messages
         getErrorMessages({ forAttr: 'naam', state: 'valueMissing' });
         getNaamInput().find('input').type('a');
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getErrorMessages({ forAttr: 'naam', state: 'tooShort' });
         getNaamInput().find('input').clear();
         getNaamInput({ shadow: false }).invoke('attr', 'value', 'aaaaaaaaaaaaaaaaaaaaaaaaa');
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getErrorMessages({ forAttr: 'naam', state: 'tooLong' });
         getNaamInput().find('input').clear();
         getNaamInput().find('input').type('!');
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getErrorMessages({ forAttr: 'naam', state: 'patternMismatch' });
 
         // Rrn input error messages
         getErrorMessages({ forAttr: 'rrn', state: 'valueMissing' });
         getRrnInput().find('input').click().type('1');
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getErrorMessages({ forAttr: 'rrn', state: 'patternMismatch' });
 
         // Geboortedatum datepicker error messages
         getErrorMessages({ forAttr: 'geboortedatum', state: 'valueMissing' });
         getGeboortedatumDatepicker().find('input#geboortedatum').click().type('1');
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getErrorMessages({ forAttr: 'geboortedatum', state: 'patternMismatch' });
 
         // Geboorteplaats select rich error messages
@@ -73,23 +73,23 @@ describe('integration - form demo', () => {
         // Interesses textarea error messages
         getErrorMessages({ forAttr: 'interesses', state: 'valueMissing' });
         getInteressesTextarea().find('textarea').click().type('a');
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getErrorMessages({ forAttr: 'interesses', state: 'tooShort' });
         getInteressesTextarea({ shadow: false }).invoke(
             'attr',
             'value',
             'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
         );
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getErrorMessages({ forAttr: 'interesses', state: 'tooLong' });
 
         // Leeftijd input error messages
         getErrorMessages({ forAttr: 'leeftijd', state: 'valueMissing' });
         getLeeftijdInput().find('input').click().type('-1');
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getErrorMessages({ forAttr: 'leeftijd', state: 'rangeUnderflow' });
         getLeeftijdInput().find('input').click().clear().type('100');
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getErrorMessages({ forAttr: 'leeftijd', state: 'rangeOverflow' });
 
         // Contact methode error messages
@@ -101,7 +101,7 @@ describe('integration - form demo', () => {
         // Waarheidsgetrouw error messages
         getErrorMessages({ forAttr: 'waarheidsgetrouw', state: 'valueMissing' });
 
-        getResetButton().click();
+        getResetButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getErrorMessages().should('have.length', 0);
         cy.get('@submit').should('not.have.been.called');
     });
@@ -110,7 +110,7 @@ describe('integration - form demo', () => {
         cy.mount(html`<vl-form-demo></vl-form-demo>`);
 
         fillInForm();
-        getResetButton().click();
+        getResetButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getNaamInput().find('input').should('have.value', '');
         getRrnInput().find('input#rrn').should('have.value', '');
         getGeboortedatumDatepicker().find('input#geboortedatum').should('have.value', '');
@@ -149,7 +149,7 @@ describe('integration - form demo', () => {
         setupMockedUploadFormData(submittedFormData);
 
         fillInForm();
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         cy.get('@submit').should('have.been.calledOnce');
         cy.get('vl-form-demo')
             .shadow()
@@ -181,7 +181,7 @@ describe('integration - form demo', () => {
 
         getRrnInput({ shadow: false }).invoke('attr', 'raw-value', '');
         fillInForm();
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         cy.get('@submit').should('have.been.calledOnce');
         cy.get('vl-form-demo')
             .shadow()
@@ -221,7 +221,7 @@ describe('integration - form demo', () => {
         getContactMethodeRadioGroup({ shadow: false }).invoke('removeAttr', 'required');
         getFotosUpload({ shadow: false }).invoke('removeAttr', 'required');
         getWaarheidsGetrouwCheckbox({ shadow: false }).invoke('removeAttr', 'required');
-        getSubmitButton().click();
+        getSubmitButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         cy.get('@submit').should('have.been.calledOnce');
         cy.get('vl-form-demo')
             .shadow()
@@ -286,11 +286,11 @@ const getWaarheidsGetrouwCheckbox = ({ shadow = true } = {}) => {
 };
 
 const getSubmitButton = () => {
-    return cy.get('vl-form-demo').shadow().find('button[type="submit"]');
+    return cy.get('vl-form-demo').shadow().find('vl-button-next[type="submit"]').shadow().find('button');
 };
 
 const getResetButton = () => {
-    return cy.get('vl-form-demo').shadow().find('button[type="reset"]');
+    return cy.get('vl-form-demo').shadow().find('vl-button-next[type="reset"]').shadow().find('button');
 };
 
 const getErrorMessages = ({ forAttr, state }: { forAttr?: string; state?: string } = {}) => {

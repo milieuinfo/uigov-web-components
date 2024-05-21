@@ -34,7 +34,12 @@ describe('integration - form data', () => {
             .click();
         // Sluit de hobby dropdown
         cy.get('vl-form-data').shadow().find('vl-input-field-next').click();
-        cy.get('vl-form-data').shadow().find('button[type="submit"]').click();
+        cy.get('vl-form-data')
+            .shadow()
+            .find('vl-button-next[type="submit"]')
+            .shadow()
+            .find('button')
+            .click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.)
         cy.get('vl-form-data').then((form) => {
             // @ts-ignore: negeer private property
             const parsedFormData = form[0].parsedFormData;
