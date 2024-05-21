@@ -4,7 +4,7 @@ import { VlLinkComponent } from './vl-link.component';
 
 registerWebComponents([VlLinkComponent]);
 
-describe('component - vl-link', () => {
+describe('component - vl-link-next', () => {
     it('should mount', () => {
         cy.mount(html`<vl-link-next></vl-link-next>`);
 

@@ -6,6 +6,7 @@ import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
 import { SelectRichOption, VlSelectRichComponent } from '@domg-wc/form/next/select-rich';
 import { parseFormData } from '@domg-wc/form/utils';
 import { VlFormLabelComponent } from '@domg-wc/form/next/form-label';
+import { VlButtonComponent } from '@domg-wc/components/next/button';
 
 @webComponent('vl-form-data')
 export class VlFormDataComponent extends LitElement {
@@ -26,6 +27,7 @@ export class VlFormDataComponent extends LitElement {
             VlInputFieldComponent,
             VlSelectRichComponent,
             VlErrorMessageComponent,
+            VlButtonComponent,
         ]);
     }
 
@@ -42,6 +44,12 @@ export class VlFormDataComponent extends LitElement {
                 form {
                     margin-top: 1rem;
                     max-width: 800px;
+                }
+
+                .form-buttons {
+                    vl-button-next:not(:last-child) {
+                        margin-right: 1.4rem;
+                    }
                 }
             `,
         ];
@@ -77,9 +85,9 @@ export class VlFormDataComponent extends LitElement {
                         </vl-error-message-next>
                     </div>
                     <div class="vl-form-col--6-12 vl-push--4-12">
-                        <div class="vl-action-group">
-                            <button class="vl-button" type="submit">Verstuur</button>
-                            <button class="vl-button" type="reset">Reset</button>
+                        <div class="form-buttons">
+                            <vl-button-next type="submit">Verstuur</vl-button-next>
+                            <vl-button-next type="reset" secondary>Reset</vl-button-next>
                         </div>
                     </div>
                     ${this.parsedFormData

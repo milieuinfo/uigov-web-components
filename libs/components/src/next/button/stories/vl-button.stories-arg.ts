@@ -1,0 +1,160 @@
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { ArgTypes } from '@storybook/web-components';
+import { buttonDefaults } from '../vl-button.component';
+import { action } from '@storybook/addon-actions';
+
+type ButtonArgs = typeof buttonDefaults & { defaultSlot: string; onVlClick: () => void; onVlToggle: () => void };
+
+export const buttonArgs: ButtonArgs = {
+    ...buttonDefaults,
+    defaultSlot: '',
+    onVlClick: action('vl-click'),
+    onVlToggle: action('vl-toggle'),
+};
+
+export const buttonArgTypes: ArgTypes<ButtonArgs> = {
+    type: {
+        name: 'type',
+        description: 'Het type van de button.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.type },
+        },
+    },
+    disabled: {
+        name: 'disabled',
+        description: 'Duidt aan dat de button uitgeschakeld is.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.disabled },
+        },
+    },
+    error: {
+        name: 'error',
+        description: 'Beeldt de button af als een error button.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.error },
+        },
+    },
+    block: {
+        name: 'block',
+        description: 'Duidt aan dat de button de volledige breedte van zijn parent mag innemen.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.block },
+        },
+    },
+    large: {
+        name: 'large',
+        description: 'Beeldt de button groot af.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.large },
+        },
+    },
+    wide: {
+        name: 'wide',
+        description: 'Beeldt de button breed af.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.wide },
+        },
+    },
+    narrow: {
+        name: 'narrow',
+        description: 'Beeldt de button smal af.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.narrow },
+        },
+    },
+    secondary: {
+        name: 'secondary',
+        description: 'Beeldt de button af als een secondary button.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.secondary },
+        },
+    },
+    tertiary: {
+        name: 'tertiary',
+        description: 'Beeldt de button af als een tertiary button.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.tertiary },
+        },
+    },
+    loading: {
+        name: 'loading',
+        description:
+            'Beeldt de button af als een loading button.<br/>We raden aan dit enkel te gebruiken voor primary buttons.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.loading },
+        },
+    },
+    toggle: {
+        name: 'toggle',
+        description: 'Beeldt de button af als een toggle button.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.toggle },
+        },
+    },
+    on: {
+        name: 'on',
+        description:
+            'Duidt aan dat de toggle button aan staat.<br>Te gebruiken in combinatie met het `toggle` attribuut.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.on },
+        },
+    },
+    controlled: {
+        name: 'controlled',
+        description:
+            'Duidt aan dat de state van de toggle button gecontroleerd wordt door een parent component.<br>De button zal zijn eigen `on` attribuut niet veranderen.<br>Te gebruiken in combinatie met het `toggle` attribuut.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.controlled },
+        },
+    },
+    defaultSlot: {
+        name: '[default]',
+        description: 'De content van de button.',
+        table: {
+            type: { summary: TYPES.HTML },
+            category: CATEGORIES.SLOTS,
+            defaultValue: { summary: buttonArgs.defaultSlot },
+        },
+    },
+    onVlClick: {
+        name: 'vl-click',
+        description: 'Event dat afgevuurd wordt bij het klikken op de button.',
+        table: {
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlToggle: {
+        name: 'vl-toggle',
+        description: 'Event dat afgevuurd wordt als het `on` attribuut van de button verandert.',
+        table: {
+            type: { summary: '{ on: boolean }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+};

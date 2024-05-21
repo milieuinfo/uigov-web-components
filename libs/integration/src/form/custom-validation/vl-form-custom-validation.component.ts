@@ -4,6 +4,7 @@ import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
 import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
 import { VlFormLabelComponent } from '@domg-wc/form/next/form-label';
+import { VlButtonComponent } from '@domg-wc/components/next/button';
 import { vlElementsStyle } from '@domg-wc/elements';
 
 const fooValidator: Validator = {
@@ -32,7 +33,12 @@ export class VlFormCustomValidationComponent extends LitElement {
     private success = false;
 
     static {
-        registerWebComponents([VlInputFieldWithFooValidatorComponent, VlFormLabelComponent, VlErrorMessageComponent]);
+        registerWebComponents([
+            VlInputFieldWithFooValidatorComponent,
+            VlFormLabelComponent,
+            VlErrorMessageComponent,
+            VlButtonComponent,
+        ]);
     }
 
     static override get styles(): (CSSResult | CSSResult[])[] {
@@ -42,6 +48,12 @@ export class VlFormCustomValidationComponent extends LitElement {
                 form {
                     margin-top: 1rem;
                     max-width: 800px;
+                }
+
+                .form-buttons {
+                    vl-button-next:not(:last-child) {
+                        margin-right: 1.4rem;
+                    }
                 }
             `,
         ];
@@ -79,9 +91,9 @@ export class VlFormCustomValidationComponent extends LitElement {
                         >
                     </div>
                     <div class="vl-col--6-12 vl-push--4-12">
-                        <div class="vl-action-group">
-                            <button class="vl-button" type="submit">Verstuur</button>
-                            <button class="vl-button" type="reset">Reset</button>
+                        <div class="form-buttons">
+                            <vl-button-next type="submit">Verstuur</vl-button-next>
+                            <vl-button-next type="reset" secondary>Reset</vl-button-next>
                         </div>
                     </div>
                 </div>

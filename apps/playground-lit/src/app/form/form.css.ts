@@ -5,15 +5,13 @@ const styles: CSSResult = css`
         padding: 50px;
     }
 
-    .vl-button {
-        border: 0.2rem solid #05c;
+    .form-buttons {
+        vl-button-next:not(:last-child) {
+            margin-right: 1.4rem;
+        }
     }
 
-    .vl-button:hover {
-        border: 0.2rem solid #003bb0;
-    }
-
-    .vl-action-group__top {
+    .form-buttons-top {
         margin-bottom: 50px;
         border: 1px solid #ccc;
         padding: 10px;

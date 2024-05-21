@@ -2,7 +2,7 @@ import { CSSResult, css } from 'lit';
 
 const styles: CSSResult = css`
     :root {
-        --vl-focus-outline: 3px solid var(--vl-focus-color);
+        --vl-border-radius: 0.3rem;
     }
 `;
 

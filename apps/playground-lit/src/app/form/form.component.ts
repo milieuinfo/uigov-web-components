@@ -12,6 +12,7 @@ import { VlRadioComponent, VlRadioGroupComponent } from '@domg-wc/form/next/radi
 import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 import { VlUploadComponent } from '@domg-wc/form/next/upload';
 import { VlSelectComponent, SelectOption } from '@domg-wc/form/next/select';
+import { VlButtonComponent } from '@domg-wc/components/next/button';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import formStyle from './form.css';
 import { parseFormData } from '@domg-wc/form/utils';
@@ -32,8 +33,8 @@ type SubmittedFormData = {
     waarheidsgetrouw?: boolean;
 };
 
-@customElement('form-container')
-export class FormContainer extends LitElement {
+@customElement('form-component')
+export class FormComponent extends LitElement {
     // Required state values
     private firstNameRequired = false;
     private lastNameRequired = false;
@@ -151,6 +152,7 @@ export class FormContainer extends LitElement {
             VlDatepickerComponent,
             VlUploadComponent,
             VlSelectComponent,
+            VlButtonComponent,
         ]);
     }
 
@@ -222,11 +224,12 @@ export class FormContainer extends LitElement {
     render(): TemplateResult {
         return html`
             <div class="container">
-                <div class="vl-action-group vl-action-group__top">
-                    <button
-                        class="vl-button  ${!this.showAddressField ? 'vl-button--secondary' : ''}"
-                        type="button"
-                        @click=${() => {
+                <div class="form-buttons form-buttons-top">
+                    <vl-button-next
+                        toggle
+                        controlled
+                        ?on=${this.showAddressField}
+                        @vl-click=${() => {
                             this.showAddressField = !this.showAddressField;
 
                             if (!this.showAddressField) {
@@ -236,14 +239,15 @@ export class FormContainer extends LitElement {
                         }}
                     >
                         Address field
-                    </button>
-                    <button
-                        class="vl-button ${!this.resetEverything ? 'vl-button--secondary' : ''}"
-                        type="button"
-                        @click=${() => (this.resetEverything = !this.resetEverything)}
+                    </vl-button-next>
+                    <vl-button-next
+                        toggle
+                        controlled
+                        ?on=${this.resetEverything}
+                        @vl-click=${() => (this.resetEverything = !this.resetEverything)}
                     >
                         Reset everything
-                    </button>
+                    </vl-button-next>
                 </div>
                 <form id="form" class="vl-form" @submit=${this.onSubmit} @reset=${this.onReset}>
                     <div class="vl-form-grid vl-form-grid--is-stacked">
@@ -282,35 +286,34 @@ export class FormContainer extends LitElement {
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.firstNameRequired ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.firstNameRequired = !this.firstNameRequired)}
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.firstNameRequired}
+                                    @vl-click=${() => (this.firstNameRequired = !this.firstNameRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.firstNameDisabled ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.firstNameDisabled = !this.firstNameDisabled)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.firstNameDisabled}
+                                    @vl-click=${() => (this.firstNameDisabled = !this.firstNameDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.firstNameReadonly ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.firstNameReadonly = !this.firstNameReadonly)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.firstNameReadonly}
+                                    @vl-click=${() => (this.firstNameReadonly = !this.firstNameReadonly)}
                                 >
                                     Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${() => (this.firstName = 'Karim')}
-                                >
+                                </vl-button-next>
+                                <vl-button-next secondary @vl-click=${() => (this.firstName = 'Karim')}>
                                     Set 'Karim'
-                                </button>
+                                </vl-button-next>
                             </div>
                         </div>
                         <div class="vl-col--2-12">
@@ -348,35 +351,34 @@ export class FormContainer extends LitElement {
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.lastNameRequired ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.lastNameRequired = !this.lastNameRequired)}
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.lastNameRequired}
+                                    @vl-click=${() => (this.lastNameRequired = !this.lastNameRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.lastNameDisabled ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.lastNameDisabled = !this.lastNameDisabled)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.lastNameDisabled}
+                                    @vl-click=${() => (this.lastNameDisabled = !this.lastNameDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.lastNameReadonly ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.lastNameReadonly = !this.lastNameReadonly)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.lastNameReadonly}
+                                    @vl-click=${() => (this.lastNameReadonly = !this.lastNameReadonly)}
                                 >
                                     Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${() => (this.lastName = 'Spaas')}
-                                >
+                                </vl-button-next>
+                                <vl-button-next secondary @vl-click=${() => (this.lastName = 'Spaas')}>
                                     Set 'Spaas'
-                                </button>
+                                </vl-button-next>
                             </div>
                         </div>
                         <div class="vl-col--2-12">
@@ -406,35 +408,34 @@ export class FormContainer extends LitElement {
                             >
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.rrnRequired ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.rrnRequired = !this.rrnRequired)}
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.rrnRequired}
+                                    @vl-click=${() => (this.rrnRequired = !this.rrnRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.rrnDisabled ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.rrnDisabled = !this.rrnDisabled)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.rrnDisabled}
+                                    @vl-click=${() => (this.rrnDisabled = !this.rrnDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.rrnReadonly ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.rrnReadonly = !this.rrnReadonly)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.rrnReadonly}
+                                    @vl-click=${() => (this.rrnReadonly = !this.rrnReadonly)}
                                 >
                                     Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${() => (this.rrn = '85.01.05-123.45')}
-                                >
+                                </vl-button-next>
+                                <vl-button-next secondary @vl-click=${() => (this.rrn = '85.01.05-123.45')}>
                                     Set '85.01.05-123.45'
-                                </button>
+                                </vl-button-next>
                             </div>
                         </div>
                         <div class="vl-col--2-12">
@@ -469,35 +470,34 @@ export class FormContainer extends LitElement {
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.interestsRequired ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.interestsRequired = !this.interestsRequired)}
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.interestsRequired}
+                                    @vl-click=${() => (this.interestsRequired = !this.interestsRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.interestsDisabled ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.interestsDisabled = !this.interestsDisabled)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.interestsDisabled}
+                                    @vl-click=${() => (this.interestsDisabled = !this.interestsDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.interestsReadonly ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.interestsReadonly = !this.interestsReadonly)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.interestsReadonly}
+                                    @vl-click=${() => (this.interestsReadonly = !this.interestsReadonly)}
                                 >
                                     Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${() => (this.interests = 'Coding, spreadsheets')}
-                                >
+                                </vl-button-next>
+                                <vl-button-next secondary @vl-click=${() => (this.interests = 'Coding, spreadsheets')}>
                                     Set 'Coding, spreadsheets'
-                                </button>
+                                </vl-button-next>
                             </div>
                         </div>
                         <div class="vl-col--2-12">
@@ -527,35 +527,34 @@ export class FormContainer extends LitElement {
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.birthdateRequired ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.birthdateRequired = !this.birthdateRequired)}
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.birthdateRequired}
+                                    @vl-click=${() => (this.birthdateRequired = !this.birthdateRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.birthdateDisabled ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.birthdateDisabled = !this.birthdateDisabled)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.birthdateDisabled}
+                                    @vl-click=${() => (this.birthdateDisabled = !this.birthdateDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.birthdateReadonly ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.birthdateReadonly = !this.birthdateReadonly)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.birthdateReadonly}
+                                    @vl-click=${() => (this.birthdateReadonly = !this.birthdateReadonly)}
                                 >
                                     Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${() => (this.birthdate = '1976-12-31')}
-                                >
+                                </vl-button-next>
+                                <vl-button-next secondary @vl-click=${() => (this.birthdate = '1976-12-31')}>
                                     Select '31.12.1976'
-                                </button>
+                                </vl-button-next>
                             </div>
                         </div>
                         <div class="vl-col--2-12">
@@ -585,35 +584,34 @@ export class FormContainer extends LitElement {
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.birthplaceRequired ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.birthplaceRequired = !this.birthplaceRequired)}
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.birthplaceRequired}
+                                    @vl-click=${() => (this.birthplaceRequired = !this.birthplaceRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.birthplaceDisabled ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.birthplaceDisabled = !this.birthplaceDisabled)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.birthplaceDisabled}
+                                    @vl-click=${() => (this.birthplaceDisabled = !this.birthplaceDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.birthplaceReadonly ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${this.toggleBirthplaceReadonly}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.birthplaceReadonly}
+                                    @vl-click=${this.toggleBirthplaceReadonly}
                                 >
                                     Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${this.selectBirthplace}
-                                >
+                                </vl-button-next>
+                                <vl-button-next secondary @vl-click=${this.selectBirthplace}>
                                     Select 'Turnhout'
-                                </button>
+                                </vl-button-next>
                             </div>
                         </div>
                         <div class="vl-col--2-12">
@@ -642,31 +640,34 @@ export class FormContainer extends LitElement {
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.hobbiesRequired ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.hobbiesRequired = !this.hobbiesRequired)}
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.hobbiesRequired}
+                                    @vl-click=${() => (this.hobbiesRequired = !this.hobbiesRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.hobbiesDisabled ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.hobbiesDisabled = !this.hobbiesDisabled)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.hobbiesDisabled}
+                                    @vl-click=${() => (this.hobbiesDisabled = !this.hobbiesDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.hobbiesReadonly ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${this.toggleHobbiesReadonly}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.hobbiesReadonly}
+                                    @vl-click=${this.toggleHobbiesReadonly}
                                 >
                                     Readonly
-                                </button>
-                                <button class="vl-button vl-button--secondary" type="button" @click=${this.selectHobby}>
+                                </vl-button-next>
+                                <vl-button-next secondary @vl-click=${this.selectHobby}>
                                     Select 'Boardgames'
-                                </button>
+                                </vl-button-next>
                             </div>
                         </div>
                         <div class="vl-col--2-12">
@@ -701,35 +702,32 @@ export class FormContainer extends LitElement {
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.ageRequired ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.ageRequired = !this.ageRequired)}
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.ageRequired}
+                                    @vl-click=${() => (this.ageRequired = !this.ageRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.ageDisabled ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.ageDisabled = !this.ageDisabled)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.ageDisabled}
+                                    @vl-click=${() => (this.ageDisabled = !this.ageDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.ageReadonly ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.ageReadonly = !this.ageReadonly)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.ageReadonly}
+                                    @vl-click=${() => (this.ageReadonly = !this.ageReadonly)}
                                 >
                                     Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${() => (this.age = 40)}
-                                >
-                                    Set '40'
-                                </button>
+                                </vl-button-next>
+                                <vl-button-next secondary @vl-click=${() => (this.age = 40)}> Set '40' </vl-button-next>
                             </div>
                         </div>
                         <div class="vl-col--2-12">
@@ -754,35 +752,34 @@ export class FormContainer extends LitElement {
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.kidsRequired ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.kidsRequired = !this.kidsRequired)}
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.kidsRequired}
+                                    @vl-click=${() => (this.kidsRequired = !this.kidsRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.kidsDisabled ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.kidsDisabled = !this.kidsDisabled)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.kidsDisabled}
+                                    @vl-click=${() => (this.kidsDisabled = !this.kidsDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.kidsReadonly ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${this.toggleKidsReadonly}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.kidsReadonly}
+                                    @vl-click=${this.toggleKidsReadonly}
                                 >
                                     Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${this.selectKidsOption}
-                                >
+                                </vl-button-next>
+                                <vl-button-next secondary @vl-click=${this.selectKidsOption}>
                                     Select '0'
-                                </button>
+                                </vl-button-next>
                             </div>
                         </div>
                         ${this.showAddressField
@@ -810,41 +807,40 @@ export class FormContainer extends LitElement {
                                       </vl-error-message-next>
                                   </div>
                                   <div class="vl-col--6-12">
-                                      <div class="vl-action-group">
-                                          <button
-                                              class="vl-button ${!this.addressFieldRequired
-                                                  ? 'vl-button--secondary'
-                                                  : ''}"
-                                              type="button"
-                                              @click=${() => (this.addressFieldRequired = !this.addressFieldRequired)}
+                                      <div class="form-buttons">
+                                          <vl-button-next
+                                              toggle
+                                              controlled
+                                              ?on=${this.addressFieldRequired}
+                                              @vl-click=${() =>
+                                                  (this.addressFieldRequired = !this.addressFieldRequired)}
                                           >
                                               Required
-                                          </button>
-                                          <button
-                                              class="vl-button ${!this.addressFieldDisabled
-                                                  ? 'vl-button--secondary'
-                                                  : ''}"
-                                              type="button"
-                                              @click=${() => (this.addressFieldDisabled = !this.addressFieldDisabled)}
+                                          </vl-button-next>
+                                          <vl-button-next
+                                              toggle
+                                              controlled
+                                              ?on=${this.addressFieldDisabled}
+                                              @vl-click=${() =>
+                                                  (this.addressFieldDisabled = !this.addressFieldDisabled)}
                                           >
                                               Disabled
-                                          </button>
-                                          <button
-                                              class="vl-button ${!this.addressFieldReadonly
-                                                  ? 'vl-button--secondary'
-                                                  : ''}"
-                                              type="button"
-                                              @click=${() => (this.addressFieldReadonly = !this.addressFieldReadonly)}
+                                          </vl-button-next>
+                                          <vl-button-next
+                                              toggle
+                                              controlled
+                                              ?on=${this.addressFieldReadonly}
+                                              @vl-click=${() =>
+                                                  (this.addressFieldReadonly = !this.addressFieldReadonly)}
                                           >
                                               Readonly
-                                          </button>
-                                          <button
-                                              class="vl-button vl-button--secondary"
-                                              type="button"
-                                              @click=${() => (this.address = 'Koning Albert II-laan 20')}
+                                          </vl-button-next>
+                                          <vl-button-next
+                                              secondary
+                                              @vl-click=${() => (this.address = 'Koning Albert II-laan 20')}
                                           >
                                               Set 'Koning Albert II-laan 20'
-                                          </button>
+                                          </vl-button-next>
                                       </div>
                                   </div>
                               `
@@ -875,44 +871,37 @@ export class FormContainer extends LitElement {
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.preferredContactMethodRequired
-                                        ? 'vl-button--secondary'
-                                        : ''}"
-                                    type="button"
-                                    @click=${() =>
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.preferredContactMethodRequired}
+                                    @vl-click=${() =>
                                         (this.preferredContactMethodRequired = !this.preferredContactMethodRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.preferredContactMethodDisabled
-                                        ? 'vl-button--secondary'
-                                        : ''}"
-                                    type="button"
-                                    @click=${() =>
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.preferredContactMethodDisabled}
+                                    @vl-click=${() =>
                                         (this.preferredContactMethodDisabled = !this.preferredContactMethodDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.preferredContactMethodReadonly
-                                        ? 'vl-button--secondary'
-                                        : ''}"
-                                    type="button"
-                                    @click=${() =>
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.preferredContactMethodReadonly}
+                                    @vl-click=${() =>
                                         (this.preferredContactMethodReadonly = !this.preferredContactMethodReadonly)}
                                 >
                                     Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${() => (this.preferredContactMethod = 'post')}
-                                >
+                                </vl-button-next>
+                                <vl-button-next secondary @vl-click=${() => (this.preferredContactMethod = 'post')}>
                                     Set 'post'
-                                </button>
+                                </vl-button-next>
                             </div>
                         </div>
                         <div class="vl-col--2-12">
@@ -941,32 +930,34 @@ export class FormContainer extends LitElement {
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.photosRequired ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.photosRequired = !this.photosRequired)}
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.photosRequired}
+                                    @vl-click=${() => (this.photosRequired = !this.photosRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.photosDisabled ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.photosDisabled = !this.photosDisabled)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.photosDisabled}
+                                    @vl-click=${() => (this.photosDisabled = !this.photosDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.photosReadonly ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.photosReadonly = !this.photosReadonly)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.photosReadonly}
+                                    @vl-click=${() => (this.photosReadonly = !this.photosReadonly)}
                                 >
                                     Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${() => {
+                                </vl-button-next>
+                                <vl-button-next
+                                    secondary
+                                    @vl-click=${() => {
                                         const vlUpload = this.shadowRoot?.querySelector('vl-upload-next');
                                         if (vlUpload) {
                                             const pasfoto = new File([''], 'pasfoto.jpg', { type: 'image/jpg' });
@@ -979,7 +970,7 @@ export class FormContainer extends LitElement {
                                     }}
                                 >
                                     Set 'pasfoto.jpg'
-                                </button>
+                                </vl-button-next>
                             </div>
                         </div>
                         <div class="vl-col--2-12">
@@ -1014,48 +1005,52 @@ export class FormContainer extends LitElement {
                             </vl-error-message-next>
                         </div>
                         <div class="vl-col--6-12">
-                            <div class="vl-action-group">
-                                <button
-                                    class="vl-button ${!this.filledInTruthfullyRequired ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.filledInTruthfullyRequired = !this.filledInTruthfullyRequired)}
+                            <div class="form-buttons">
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.filledInTruthfullyRequired}
+                                    @vl-click=${() =>
+                                        (this.filledInTruthfullyRequired = !this.filledInTruthfullyRequired)}
                                 >
                                     Required
-                                </button>
-                                <button
-                                    class="vl-button ${!this.filledInTruthfullyDisabled ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.filledInTruthfullyDisabled = !this.filledInTruthfullyDisabled)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.filledInTruthfullyDisabled}
+                                    @vl-click=${() =>
+                                        (this.filledInTruthfullyDisabled = !this.filledInTruthfullyDisabled)}
                                 >
                                     Disabled
-                                </button>
-                                <button
-                                    class="vl-button ${!this.filledInTruthfullyReadonly ? 'vl-button--secondary' : ''}"
-                                    type="button"
-                                    @click=${() => (this.filledInTruthfullyReadonly = !this.filledInTruthfullyReadonly)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    toggle
+                                    controlled
+                                    ?on=${this.filledInTruthfullyReadonly}
+                                    @vl-click=${() =>
+                                        (this.filledInTruthfullyReadonly = !this.filledInTruthfullyReadonly)}
                                 >
                                     Readonly
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${() => (this.filledInTruthfullyValue = 'Een waarheid als een koe')}
+                                </vl-button-next>
+                                <vl-button-next
+                                    secondary
+                                    @vl-click=${() => (this.filledInTruthfullyValue = 'Een waarheid als een koe')}
                                 >
                                     Set 'Een waarheid als een koe'
-                                </button>
-                                <button
-                                    class="vl-button vl-button--secondary"
-                                    type="button"
-                                    @click=${() => (this.filledInTruthfully = !this.filledInTruthfully)}
+                                </vl-button-next>
+                                <vl-button-next
+                                    secondary
+                                    @vl-click=${() => (this.filledInTruthfully = !this.filledInTruthfully)}
                                 >
                                     Toggle checked
-                                </button>
+                                </vl-button-next>
                             </div>
                         </div>
                         <div class="vl-col--6-12 vl-push--2-12">
-                            <div class="vl-action-group">
-                                <button class="vl-button" type="submit">Verstuur</button>
-                                <button class="vl-button" type="reset">Reset</button>
+                            <div class="form-buttons">
+                                <vl-button-next type="submit">Verstuur</vl-button-next>
+                                <vl-button-next type="reset" secondary>Reset</vl-button-next>
                             </div>
                         </div>
                     </div>
