@@ -9,3 +9,13 @@ ol {
 strong {
     font-weight: bold !important;
 }
+
+.sb-story {
+    ol, ul {
+        list-style: none !important;
+    }
+    
+    strong {
+        font-weight: 500 !important;
+    }
+}
