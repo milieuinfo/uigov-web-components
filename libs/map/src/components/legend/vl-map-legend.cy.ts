@@ -1,12 +1,11 @@
-import { html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import { VlMapLegend } from './vl-map-legend';
+import { html } from 'lit';
 import { VlMap } from '../../vl-map';
-import { VlMapWfsLayer } from '../layer/vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
 import { VlMapBaseLayerGRBGray } from '../baselayer/vl-map-base-layer-grb-gray/vl-map-base-layer-grb-gray';
 import { VlMapLayerCircleStyle } from '../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import { VlMapFeaturesLayer } from '../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
-import { LEGEND_PLACEMENT } from './vl-map-legend';
+import { VlMapWfsLayer } from '../layer/vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
+import { LEGEND_PLACEMENT, VlMapLegend } from './vl-map-legend';
 
 registerWebComponents([
     VlMapLegend,
@@ -58,7 +57,7 @@ describe('component vl-map-legend - features layer - multiple styles', () => {
                         data-vl-text-size="13px"
                     ></vl-map-layer-style>
                 </vl-map-features-layer>
-                <vl-map-legend bottom="10px" right=${'12px'}> </vl-map-legend>
+                <vl-map-legend bottom="10px" right=${'12px'}></vl-map-legend>
             </vl-map>
         `);
     });
@@ -234,7 +233,7 @@ describe('component vl-map-legend - features layer - multiple styles', () => {
                         data-vl-text-size="bold 14px"
                     ></vl-map-layer-circle-style>
                 </vl-map-features-layer>
-                <vl-map-legend bottom="10px" right=${'12px'}> </vl-map-legend>
+                <vl-map-legend bottom="10px" right=${'12px'}></vl-map-legend>
             </vl-map>
         `);
     });
@@ -294,7 +293,7 @@ describe('component vl-map-legend - wfs layer', () => {
                         data-vl-border-size="1"
                     ></vl-map-layer-circle-style>
                 </vl-map-wfs-layer>
-                <vl-map-legend bottom="10px" right=${'12px'}> </vl-map-legend>
+                <vl-map-legend bottom="10px" right=${'12px'}></vl-map-legend>
             </vl-map>
         `);
     });
@@ -360,7 +359,7 @@ describe('component vl-map-legend - wfs and wms layers', () => {
                         data-vl-border-size="1"
                     ></vl-map-layer-circle-style>
                 </vl-map-wfs-layer>
-                <vl-map-legend bottom="10px" right=${'12px'}> </vl-map-legend>
+                <vl-map-legend bottom="10px" right=${'12px'}></vl-map-legend>
             </vl-map>
         `);
     });
@@ -410,5 +409,38 @@ describe('component vl-map-legend - wfs and wms layers', () => {
             .shadow()
             .find('div.uig-map-legend > div.uig-map-legend-item.uig-map-legend-image > img')
             .should('have.attr', 'class', 'uig-map-legend-icon');
+    });
+});
+
+describe.only('component vl-map-legend - wms layer that requires a version', () => {
+    const mapLegendWithVersion = (version: string) => html`
+        <vl-map>
+            <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+            <vl-map-tiled-wms-layer
+                data-vl-name="overstromingsgevoelige_gebieden_vanuit_de_zee"
+                data-vl-layers="0"
+                data-vl-url="https://inspirepub.waterinfo.be/arcgis/services/informatieplicht/overstromingsgevoelige_gebieden_vanuit_de_zee/MapServer/WMSServer"
+                data-vl-is-layer="true"
+            ></vl-map-tiled-wms-layer>
+            <vl-map-legend data-vl-version=${version}></vl-map-legend>
+        </vl-map>
+    `;
+
+    it('should show the legend when a version is provided', () => {
+        cy.mount(mapLegendWithVersion('1.3.0'));
+        cy.get('vl-map-legend')
+            .shadow()
+            .find('div .uig-map-legend-image img')
+            .invoke('width')
+            .should('be.greaterThan', 300);
+    });
+
+    it('should show no legend when no version is provided', () => {
+        cy.mount(mapLegendWithVersion(null));
+        cy.get('vl-map-legend')
+            .shadow()
+            .find('div .uig-map-legend-image img')
+            .invoke('width')
+            .should('be.lessThan', 300);
     });
 });

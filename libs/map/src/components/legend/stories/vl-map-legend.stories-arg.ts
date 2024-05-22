@@ -18,6 +18,7 @@ export const mapLegendArgs = {
     top: '',
     layoutVertical: false,
     hideTitle: false,
+    version: null,
 };
 
 export const mapLegendArgTypes: ArgTypes<typeof mapLegendArgs> = {
@@ -82,7 +83,7 @@ export const mapLegendArgTypes: ArgTypes<typeof mapLegendArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: mapLegendArgs.layoutVertical },
-        }
+        },
     },
     hideTitle: {
         name: 'data-vl-hide-title',
@@ -91,6 +92,15 @@ export const mapLegendArgTypes: ArgTypes<typeof mapLegendArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: mapLegendArgs.hideTitle },
+        },
+    },
+    version: {
+        name: 'data-vl-version',
+        description: 'Voeg een "version" parameter toe aan de legende url.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapLegendArgs.version },
         },
     },
 };
