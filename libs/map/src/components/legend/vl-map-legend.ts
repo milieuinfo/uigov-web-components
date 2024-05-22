@@ -60,6 +60,7 @@ export class VlMapLegend extends BaseLitElement {
     bottom: string;
     layoutVertical: boolean;
     hideTitle: boolean;
+    version: string;
     private placement: string;
     private mapElement: VlMap;
     private items: Item[] = [];
@@ -100,6 +101,10 @@ export class VlMapLegend extends BaseLitElement {
             hideTitle: {
                 type: Boolean,
                 attribute: 'data-vl-hide-title',
+            },
+            version: {
+                type: String,
+                attribute: 'data-vl-version',
             },
         };
     }
@@ -195,7 +200,6 @@ export class VlMapLegend extends BaseLitElement {
     private legendUrl(wmsLayer: VlMapWmsLayer) {
         const layerUrl = new URL(wmsLayer.dataset.vlUrl);
         const layout = this.layoutVertical ? 'layout:vertical' : 'layout:horizontal';
-
         const legendSearchParams = new URLSearchParams({
             service: 'WMS',
             request: 'GetLegendGraphic',
@@ -203,6 +207,8 @@ export class VlMapLegend extends BaseLitElement {
             layer: wmsLayer.dataset.vlLayers,
             legend_options: layout,
         });
+        if (this.version) legendSearchParams.set('version', this.version);
+
         return new URL(`?${legendSearchParams}`, layerUrl);
     }
 
@@ -281,9 +287,9 @@ export class VlMapLegend extends BaseLitElement {
             class=${`uig-map-legend ${this.layoutVertical ? 'uig-map-legend--vertical' : ''}`}
             style="${this.generateItemStyle()}"
         >
-        ${this.hideTitle
+            ${this.hideTitle
                 ? ''
-                : html`<div>
+                : html` <div>
                       <span class="uig-map-legend-text uig-map-legend-title">Legende: </span>
                   </div>`}
             ${this.items.map((item) => {
@@ -305,7 +311,7 @@ export class VlMapLegend extends BaseLitElement {
                             <span class="uig-map-legend-text">${item.name}</span>
                         </div>`;
                     case 'url':
-                        return html`<div class="uig-map-legend-item uig-map-legend-image">
+                        return html` <div class="uig-map-legend-item uig-map-legend-image">
                             <img alt="map legend image" class="uig-map-legend-icon" src="${item.url}" />
                         </div>`;
                     default:
