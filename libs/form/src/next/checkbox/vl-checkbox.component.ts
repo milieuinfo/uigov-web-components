@@ -154,7 +154,8 @@ export class VlCheckboxComponent extends FormControl {
         this.value = this.initialValue;
     }
 
-    private toggle() {
+    private toggle(event: Event) {
+        event.stopPropagation();
         this.checked = !this.checked;
     }
 }

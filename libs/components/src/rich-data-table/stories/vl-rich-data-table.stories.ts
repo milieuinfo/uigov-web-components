@@ -27,15 +27,50 @@ export default {
 
 const TemplateBase = story(richDataTableArgs, ({ collapsedM, collapsedS, collapsedXS }) => {
     const data =
-        '{"data": [{ "id" : 0, "name" : "Project #1" , "owner" : "Jan Jansens" }, { "id" : 1, "name" : "Project #2" , "owner" : "Marie Vermeersch" }]}';
+        '{"data": [{ "id" : 0, "name" : "Project #1" , "owner" : "Jan Jansens" }, { "id" : 1, "name" : "Project #2" , "owner" : "Marie Vermeersch" }, { "id" : 2, "name" : "Project #3" , "owner" : "Tanja Vancompernolle" }, { "id" : 3, "name" : "Project #4" , "owner" : "Joris Korneel" }, { "id" : 4, "name" : "Project #5" , "owner" : "Jan Pieters" }]}';
 
+    const checkUncheckRows = (checked: boolean, rowIndexes: number[]) => {
+        const table = document.querySelector('vl-rich-data-table') as HTMLTableElement | null;
+        if (table) {
+            const checkboxes = table?.shadowRoot?.querySelectorAll('vl-checkbox-next');
+            checkboxes?.forEach((checkbox, index) => {
+                if (rowIndexes.includes(index)) {
+                    if (checked) {
+                        checkbox.setAttribute('checked', '');
+                    } else {
+                        checkbox.removeAttribute('checked');
+                    }
+                }
+            });
+        }
+    };
     return html`
         <vl-rich-data-table
-            data-vl-data="${data}"
+            data-vl-data=${data}
             ?data-vl-collapsed-m=${collapsedM}
             ?data-vl-collapsed-s=${collapsedS}
             ?data-vl-collapsed-xs=${collapsedXS}
         >
+            <vl-rich-data-field
+                data-vl-name="checked"
+                .renderer=${(td: HTMLTableCellElement, rowData: unknown, rowIndex: number) => {
+                    const checkbox = document.createElement('vl-checkbox-next');
+                    checkbox.innerText = rowIndex?.toString();
+                    checkbox.addEventListener('click', (event: Event) => {
+                        event.stopImmediatePropagation();
+                        const allRowIndexes = JSON.parse(data)?.data?.map((row: unknown, index: number) => index);
+                        checkUncheckRows(
+                            Boolean(checkbox?.getAttribute('checked') ?? true),
+                            // alle onderstaande checkboxes aanklikken // > allRowIndexes.slice(rowIndex + 1)
+                            // alle bovenstaande checkboxes aanklikken
+                            allRowIndexes.slice(0, rowIndex)
+                        );
+                    });
+                    td.appendChild(checkbox);
+                }}
+            >
+                <template slot="label"> Eigenaar </template>
+            </vl-rich-data-field>
             <vl-rich-data-field data-vl-name="id" data-vl-label="ID" data-vl-selector="id"></vl-rich-data-field>
             <vl-rich-data-field data-vl-name="name" data-vl-label="Naam" data-vl-selector="name"></vl-rich-data-field>
             <vl-rich-data-field data-vl-name="owner" data-vl-selector="owner">

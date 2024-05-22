@@ -1,10 +1,11 @@
 import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import { VlRichDataSorter } from './vl-rich-data-sorter.component';
+import { VlCheckboxComponent } from '@domg-wc/form/next/checkbox';
 
 @webComponent('vl-rich-data-field')
 export class VlRichDataField extends BaseElementOfType(HTMLElement) {
     static {
-        registerWebComponents([VlRichDataSorter]);
+        registerWebComponents([VlRichDataSorter, VlCheckboxComponent]);
     }
 
     static get headerAttributes(): string[] {
@@ -35,16 +36,18 @@ export class VlRichDataField extends BaseElementOfType(HTMLElement) {
         return th;
     }
 
-    valueTemplate(rowData: unknown): HTMLTableCellElement {
+    valueTemplate(rowData: unknown, index?: number): HTMLTableCellElement {
         const td = document.createElement('td');
         if (this.label) {
             td.setAttribute('data-title', this.label);
         }
         const element = this.__getValueContentElement(rowData);
+        console.log('[valueTemplate] _renderer', this._renderer);
+        console.log('[valueTemplate]', rowData);
         if (element) {
             td.appendChild(element);
         } else if (this._renderer) {
-            this._renderer(td, rowData);
+            this._renderer(td, rowData, index);
         }
         return td;
     }

@@ -227,10 +227,10 @@ export class VlRichDataTable extends VlRichData {
         const { __tableBody, data } = this;
         if (data && data.data && __tableBody) {
             __tableBody.innerHTML = '';
-            this.data.data.forEach((rowData) => {
+            this.data.data.forEach((rowData, rowIndex) => {
                 const rowTemplate = this._template(`<tr></tr>`).firstElementChild;
                 this.__richDataFields.map((field) => {
-                    rowTemplate.appendChild(field.valueTemplate(rowData));
+                    rowTemplate.appendChild(field.valueTemplate(rowData, rowIndex));
                 });
                 __tableBody.appendChild(rowTemplate);
             });
