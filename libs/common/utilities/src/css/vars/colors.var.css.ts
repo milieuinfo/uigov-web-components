@@ -8,8 +8,12 @@ const styles: CSSResult = css`
 
         --vl-background-color: var(--vl-white);
         --vl-map-background-color: #ffffff;
+        --vl-background-alt-color: #f7f9fc;
 
         --vl-text-color: #333332;
+        --vl-text-alt-color: #687483;
+
+        --vl-border-color: #8695a8;
 
         --vl-action-color: #0055cc;
         --vl-action-color--hover: #003bb0;

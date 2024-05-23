@@ -20,6 +20,7 @@ export {
     awaitUntil,
     unwrap,
     debounce,
+    throttle,
     returnNotEmptyString,
     returnNumber,
     ifDefinedString,

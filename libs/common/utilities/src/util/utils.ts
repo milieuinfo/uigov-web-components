@@ -143,6 +143,21 @@ export const debounce = (func: any, ms: number) => {
     };
 };
 
+/**
+ * @param func - de aan te roepen functie
+ * @param delay - het interval in aantal milliseconden dat er gewacht wordt tussen het aanroepen van de functie
+ */
+export const throttle = (func: any, delay: number) => {
+    let previous = performance.now();
+    return (...args: unknown[]): void => {
+        const now = performance.now();
+        if (now - previous > delay) {
+            previous = now;
+            func(args);
+        }
+    };
+};
+
 export const returnNotEmptyString = (s: string) => (s && s !== '' ? s : undefined);
 export const returnNumber = (n: number) => (!isNaN(n) ? n : undefined);
 export const ifDefinedString = (s: string) => ifDefined(returnNotEmptyString(s));
