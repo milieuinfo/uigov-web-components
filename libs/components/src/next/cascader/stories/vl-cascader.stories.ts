@@ -4,7 +4,7 @@ import { nothing } from 'lit';
 import { html } from 'lit-html';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import '../vl-cascader.component';
-import { cascaderArgs, cascaderArgTypes } from './vl-cascader.stories-arg';
+import { CascaderArgs, cascaderArgs, cascaderArgTypes } from './vl-cascader.stories-arg';
 import cascaderDoc from './vl-cascader.stories-doc.mdx';
 import { nodeData } from './vl-cascader.stories-util.data';
 import { getItemList } from './vl-cascader.stories-util.item-list-function';
@@ -20,7 +20,7 @@ export default {
             page: cascaderDoc,
         },
     },
-} as Meta<typeof cascaderArgs>;
+} as Meta<CascaderArgs>;
 
 const mediumWidthDecorator = (story: () => unknown) => {
     return html` <div style="width: 600px;margin: auto auto;">${story()}</div>`;
@@ -28,7 +28,7 @@ const mediumWidthDecorator = (story: () => unknown) => {
 
 export const CascaderDefault = story(
     cascaderArgs,
-    ({ level, loadingMessage, loading, hideBreadcrumb, headerSlot, headerText }) => {
+    ({ level, loadingMessage, loading, hideBreadcrumb, headerSlot, headerText, onVlClickBreadcrumb }) => {
         return html`
             <vl-cascader
                 level="${level}"
@@ -36,6 +36,7 @@ export const CascaderDefault = story(
                 loading="${loading}"
                 loading-message="${loadingMessage}"
                 header-text="${headerText}"
+                @vl-click-breadcrumb="${onVlClickBreadcrumb}"
             >
                 ${headerSlot ? unsafeHTML(headerSlot) : nothing}
                 <vl-cascader-item label="Provincie: West-Vlaanderen" annotation="Ondertitel West-Vlaanderen">
@@ -66,7 +67,7 @@ CascaderDefault.parameters = {
 
 export const CascaderSideSheet = story(
     cascaderArgs,
-    ({ breadcrumbPlaceholder, level, loadingMessage, loading, hideBreadcrumb, homeSlot }) => {
+    ({ breadcrumbPlaceholder, level, loadingMessage, loading, hideBreadcrumb, homeSlot, onVlClickBreadcrumb }) => {
         return html`
             <vl-side-sheet
                 data-vl-left
@@ -78,6 +79,7 @@ export const CascaderSideSheet = story(
                     hide-breadcrumb="${hideBreadcrumb}"
                     loading="${loading}"
                     loading-message="${loadingMessage}"
+                    @vl-click-breadcrumb="${onVlClickBreadcrumb}"
                 >
                     ${homeSlot ? unsafeHTML(homeSlot) : nothing}
                     ${breadcrumbPlaceholder ? unsafeHTML(breadcrumbPlaceholder) : nothing}
@@ -111,7 +113,7 @@ CascaderSideSheet.parameters = {
 };
 export const CascaderDynamicTemplating = story(
     cascaderArgs,
-    ({ level, loadingMessage, loading, hideBreadcrumb, templates }) => {
+    ({ level, loadingMessage, loading, hideBreadcrumb, templates, onVlClickBreadcrumb }) => {
         return html`
             <vl-cascader
                 level="${level}"
@@ -119,6 +121,7 @@ export const CascaderDynamicTemplating = story(
                 loading="${loading}"
                 loading-message="${loadingMessage}"
                 .templates=${templates}
+                @vl-click-breadcrumb="${onVlClickBreadcrumb}"
             >
                 <vl-cascader-item label="Provincie: West-Vlaanderen" template-type="provincie">
                     <vl-info-tile data-vl-toggleable="" slot="content">
@@ -200,29 +203,28 @@ CascaderPropertyBinding.parameters = {
         exclude: ['content', 'label', 'labelSlot'],
     },
 };
-export const CascaderItemSlots = story(cascaderArgs, ({ annotation, breadcrumbPlaceholder, contentSlot, homeSlot, label, labelSlot }) => {
-    return html`
-        <vl-cascader>
-            ${homeSlot ? unsafeHTML(homeSlot) : nothing}
-            ${breadcrumbPlaceholder ? unsafeHTML(breadcrumbPlaceholder) : nothing}
-            <vl-cascader-item label=${label} annotation=${annotation}>
-                ${unsafeHTML(labelSlot)} ${unsafeHTML(contentSlot)}
-                <vl-cascader-item label="Gemeente">
-                    <vl-cascader-item label="Stad"></vl-cascader-item>
+export const CascaderItemSlots = story(
+    cascaderArgs,
+    ({ annotation, breadcrumbPlaceholder, contentSlot, homeSlot, label, labelSlot, onVlClickBreadcrumb }) => {
+        return html`
+            <vl-cascader>
+                ${homeSlot ? unsafeHTML(homeSlot) : nothing}
+                ${breadcrumbPlaceholder ? unsafeHTML(breadcrumbPlaceholder) : nothing}
+                @vl-click-breadcrumb="${onVlClickBreadcrumb}"
+                <vl-cascader-item label=${label} annotation=${annotation}>
+                    ${unsafeHTML(labelSlot)} ${unsafeHTML(contentSlot)}
+                    <vl-cascader-item label="Gemeente">
+                        <vl-cascader-item label="Stad"></vl-cascader-item>
+                    </vl-cascader-item>
                 </vl-cascader-item>
-            </vl-cascader-item>
-        </vl-cascader>
-    `;
-});
+            </vl-cascader>
+        `;
+    }
+);
 CascaderItemSlots.storyName = 'vl-cascader-item - slots';
-CascaderItemSlots.parameters = {
-    controls: {
-        include: ['breadcrumbPlaceholder', 'content', 'homeSlot', 'label', 'labelSlot', 'annotation', 'headerSlot'],
-    },
-};
 CascaderItemSlots.args = {
     breadcrumbPlaceholder:
-        '<vl-breadcrumb slot="breadcrumb-placeholder"><vl-breadcrumb-item>Vlaanderen</vl-breadcrumb-item>',
+        '<vl-breadcrumb slot="breadcrumb-placeholder"><vl-breadcrumb-item>Vlaanderen</vl-breadcrumb-item></vl-breadcrumb>',
     contentSlot:
         '<p slot="content"> Het is de meest westelijk gelegen provincie van Vlaanderen en België en is de enige Belgische provincie die aan de Noordzee ligt. De provincie heeft een oppervlakte van 3.197 km² en telt ruim 1,2 miljoen inwoners. De hoofdstad van West-Vlaanderen is Brugge. </p>',
     homeSlot: '<p slot="home">Vlaanderen</p>',

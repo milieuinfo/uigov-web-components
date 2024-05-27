@@ -10,77 +10,6 @@ import { VlAccordionComponent } from '../../accordion';
 
 registerWebComponents([VlCascaderComponent, VlCascaderItemComponent, VlAccordionComponent, VlInfoTile]);
 
-const defaultCascaderTemplate = html`
-    <vl-cascader header-text="header tekst">
-        <vl-cascader-item label="West-Vlaanderen" annotation="ondertitel">
-            <vl-cascader-item label="Gemeente: Damme">
-                <vl-cascader-item label="Deelgemeente - Moerkerke">
-                    <vl-cascader-item label="Dorp - Moerkerke"></vl-cascader-item>
-                    <vl-cascader-item label="Dorp - Sint-Rita"></vl-cascader-item>
-                </vl-cascader-item>
-                <vl-cascader-item label="Deelgemeente - Sint-Kruis"></vl-cascader-item>
-            </vl-cascader-item>
-            <vl-cascader-item label="Gemeente: Brugge"></vl-cascader-item>
-        </vl-cascader-item>
-        <vl-cascader-item label="Oost-Vlaanderen">
-            <vl-cascader-item label="Gemeente: Gent"></vl-cascader-item>
-            <vl-cascader-item label="Gemeente: Lokeren"></vl-cascader-item>
-        </vl-cascader-item>
-    </vl-cascader>
-`;
-
-const mountDefault = () => {
-    cy.mount(defaultCascaderTemplate);
-};
-
-const mountSideSheet = () => {
-    cy.mount(html` <vl-side-sheet data-vl-open=""> ${defaultCascaderTemplate} </vl-side-sheet> `);
-};
-
-const tekstWestVlaanderen =
-    'Het is de meest westelijk gelegen provincie van Vlaanderen en België en is de enige Belgische provincie die aan de Noordzee ligt. De provincie heeft een oppervlakte van 3.197 km² en telt ruim 1,2 miljoen inwoners. De hoofdstad van West-Vlaanderen is Brugge.';
-
-const mountWithTemplates = (templates: Map<string, TemplateFn>) => {
-    cy.mount(html`
-        <vl-cascader .templates=${templates}>
-            <vl-cascader-item label="Provincie: West-Vlaanderen" template-type="provincie">
-                <vl-info-tile data-vl-toggleable="" slot="content">
-                    <span slot="title">Meer Info</span>
-                    <span slot="subtitle">Provincie Beschrijving</span>
-                    <div slot="content">${tekstWestVlaanderen}</div>
-                </vl-info-tile>
-                <vl-cascader-item label="Gemeente: Damme">
-                    <vl-cascader-item label="Deelgemeente - Moerkerke">
-                        <vl-cascader-item label="Dorp - Moerkerke"></vl-cascader-item>
-                        <vl-cascader-item label="Dorp - Sint-Rita"></vl-cascader-item>
-                    </vl-cascader-item>
-                </vl-cascader-item>
-                <vl-cascader-item label="Gemeente: Brugge">
-                    <vl-cascader-item label="Deelgemeente - Sint-Kruis"></vl-cascader-item>
-                </vl-cascader-item>
-                <vl-cascader-item label="Gemeente: Kortrijk">
-                    <vl-cascader-item label="Dorp - Waereghem"></vl-cascader-item>
-                </vl-cascader-item>
-            </vl-cascader-item>
-            <vl-cascader-item label="Provincie: Oost-Vlaanderen" template-type="provincie">
-                <h3 is="vl-h3" slot="label">Provincie: Oost-Vlaanderen</h3>
-                <vl-info-tile data-vl-toggleable="" slot="content">
-                    <span slot="title">Meer Info</span>
-                    <span slot="subtitle">Provincie Beschrijving</span>
-                    <div slot="content">
-                        Zij grenst in het westen aan de provincie West-Vlaanderen, in het noorden aan de Nederlandse
-                        provincie Zeeland met Zeeuws-Vlaanderen, in het oosten aan de provincies Antwerpen en
-                        Vlaams-Brabant, en in het zuiden aan het Waalse Henegouwen. Zij ligt dus niet in het oosten van
-                        de huidige Belgische deelstaat Vlaanderen die pas na 1830 ontstond.
-                    </div>
-                </vl-info-tile>
-                <vl-cascader-item label="Gemeente: Gent"></vl-cascader-item>
-                <vl-cascader-item label="Gemeente: Lokeren"></vl-cascader-item>
-            </vl-cascader-item>
-        </vl-cascader>
-    `);
-};
-
 const mountWithSlots = (
     placeholderText: string,
     homeSlotText: string,
@@ -183,12 +112,16 @@ describe('component vl-cascader default', () => {
     });
 
     it('should navigate backwards', () => {
+        cy.createStubForEvent('vl-cascader', 'vl-click-breadcrumb');
+
         navigate3levelsForward();
 
         getBreadcrumbItemByText('Gemeente: Damme').click();
         cy.get('vl-cascader').should('have.attr', 'level', '2');
+        cy.get('@vl-click-breadcrumb').should('have.been.calledOnce');
         getBreadcrumbItemByText('West-Vlaanderen').click();
         cy.get('vl-cascader').should('have.attr', 'level', '1');
+        cy.get('@vl-click-breadcrumb').should('have.been.calledTwice');
     });
 
     it('should hide bread crumb', () => {
@@ -236,12 +169,16 @@ describe('component vl-cascader in vl-side-sheet', () => {
     });
 
     it('should navigate backwards', () => {
+        cy.createStubForEvent('vl-cascader', 'vl-click-breadcrumb');
+
         navigate3levelsForward();
 
         getBreadcrumbItemByText('Gemeente: Damme').click();
         cy.get('vl-cascader').should('have.attr', 'level', '2');
+        cy.get('@vl-click-breadcrumb').should('have.been.calledOnce');
         getBreadcrumbItemByText('West-Vlaanderen').click();
         cy.get('vl-cascader').should('have.attr', 'level', '1');
+        cy.get('@vl-click-breadcrumb').should('have.been.calledTwice');
     });
 
     it('should hide bread crumb', () => {
@@ -417,3 +354,74 @@ describe('component vl-cascader - property binding', () => {
         getCascaderItemByLabel(requestParams as string);
     });
 });
+
+const defaultCascaderTemplate = html`
+    <vl-cascader header-text="header tekst">
+        <vl-cascader-item label="West-Vlaanderen" annotation="ondertitel">
+            <vl-cascader-item label="Gemeente: Damme">
+                <vl-cascader-item label="Deelgemeente - Moerkerke">
+                    <vl-cascader-item label="Dorp - Moerkerke"></vl-cascader-item>
+                    <vl-cascader-item label="Dorp - Sint-Rita"></vl-cascader-item>
+                </vl-cascader-item>
+                <vl-cascader-item label="Deelgemeente - Sint-Kruis"></vl-cascader-item>
+            </vl-cascader-item>
+            <vl-cascader-item label="Gemeente: Brugge"></vl-cascader-item>
+        </vl-cascader-item>
+        <vl-cascader-item label="Oost-Vlaanderen">
+            <vl-cascader-item label="Gemeente: Gent"></vl-cascader-item>
+            <vl-cascader-item label="Gemeente: Lokeren"></vl-cascader-item>
+        </vl-cascader-item>
+    </vl-cascader>
+`;
+
+const mountDefault = () => {
+    cy.mount(defaultCascaderTemplate);
+};
+
+const mountSideSheet = () => {
+    cy.mount(html` <vl-side-sheet data-vl-open=""> ${defaultCascaderTemplate} </vl-side-sheet> `);
+};
+
+const tekstWestVlaanderen =
+    'Het is de meest westelijk gelegen provincie van Vlaanderen en België en is de enige Belgische provincie die aan de Noordzee ligt. De provincie heeft een oppervlakte van 3.197 km² en telt ruim 1,2 miljoen inwoners. De hoofdstad van West-Vlaanderen is Brugge.';
+
+const mountWithTemplates = (templates: Map<string, TemplateFn>) => {
+    cy.mount(html`
+        <vl-cascader .templates=${templates}>
+            <vl-cascader-item label="Provincie: West-Vlaanderen" template-type="provincie">
+                <vl-info-tile data-vl-toggleable="" slot="content">
+                    <span slot="title">Meer Info</span>
+                    <span slot="subtitle">Provincie Beschrijving</span>
+                    <div slot="content">${tekstWestVlaanderen}</div>
+                </vl-info-tile>
+                <vl-cascader-item label="Gemeente: Damme">
+                    <vl-cascader-item label="Deelgemeente - Moerkerke">
+                        <vl-cascader-item label="Dorp - Moerkerke"></vl-cascader-item>
+                        <vl-cascader-item label="Dorp - Sint-Rita"></vl-cascader-item>
+                    </vl-cascader-item>
+                </vl-cascader-item>
+                <vl-cascader-item label="Gemeente: Brugge">
+                    <vl-cascader-item label="Deelgemeente - Sint-Kruis"></vl-cascader-item>
+                </vl-cascader-item>
+                <vl-cascader-item label="Gemeente: Kortrijk">
+                    <vl-cascader-item label="Dorp - Waereghem"></vl-cascader-item>
+                </vl-cascader-item>
+            </vl-cascader-item>
+            <vl-cascader-item label="Provincie: Oost-Vlaanderen" template-type="provincie">
+                <h3 is="vl-h3" slot="label">Provincie: Oost-Vlaanderen</h3>
+                <vl-info-tile data-vl-toggleable="" slot="content">
+                    <span slot="title">Meer Info</span>
+                    <span slot="subtitle">Provincie Beschrijving</span>
+                    <div slot="content">
+                        Zij grenst in het westen aan de provincie West-Vlaanderen, in het noorden aan de Nederlandse
+                        provincie Zeeland met Zeeuws-Vlaanderen, in het oosten aan de provincies Antwerpen en
+                        Vlaams-Brabant, en in het zuiden aan het Waalse Henegouwen. Zij ligt dus niet in het oosten van
+                        de huidige Belgische deelstaat Vlaanderen die pas na 1830 ontstond.
+                    </div>
+                </vl-info-tile>
+                <vl-cascader-item label="Gemeente: Gent"></vl-cascader-item>
+                <vl-cascader-item label="Gemeente: Lokeren"></vl-cascader-item>
+            </vl-cascader-item>
+        </vl-cascader>
+    `);
+};

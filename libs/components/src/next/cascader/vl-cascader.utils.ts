@@ -2,10 +2,6 @@ import { CascaderItem, VlCascaderComponent } from './index';
 import { html, TemplateResult, nothing } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 
-export const getNodesForSlot = (element: HTMLElement, slotName: string) => {
-    return element?.querySelectorAll<Element>(`:scope > [slot=${slotName}]`);
-};
-
 export const getTemplateFunctionForType = (
     item: CascaderItem,
     cascader: VlCascaderComponent
