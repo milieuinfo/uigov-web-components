@@ -1,12 +1,12 @@
 import { CSSResult, html, nothing, PropertyDeclarations, PropertyValues, TemplateResult } from 'lit';
-import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { BaseLitElement, findNodesForSlot, registerWebComponents } from '@domg-wc/common-utilities';
 import { customElement } from 'lit/decorators.js';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { breadcrumbStyle } from '@domg/govflanders-style/component';
 import cascaderUigStyle from './vl-cascader.uig-css';
 import { classMap } from 'lit/directives/class-map.js';
-import { getDefaultItemTemplate, getNodesForSlot, getTemplateFunctionForType } from './vl-cascader.utils';
+import { getDefaultItemTemplate, getTemplateFunctionForType } from './vl-cascader.utils';
 import {
     CASCADER_MESSAGES,
     CASCADER_SLOTS,
@@ -17,23 +17,41 @@ import {
 } from './vl-cascader.model';
 import { VlCascaderItemComponent } from './vl-cascader-item.component';
 
+export const cascaderDefaults = {
+    annotation: '' as string,
+    breadcrumbPlaceholder: '' as string,
+    level: 0 as number,
+    hideBreadcrumb: false as boolean,
+    loading: false as boolean,
+    itemListFn: null as unknown as ItemListFn,
+    items: [] as CascaderItem[],
+    label: CASCADER_MESSAGES.LABEL_MISSING as string,
+    loadingMessage: CASCADER_MESSAGES.LOADING as string,
+    templates: null as unknown as Map<string, TemplateFn>,
+    headerText: '',
+};
+
 @customElement('vl-cascader')
 export class VlCascaderComponent extends BaseLitElement {
+    // Properties
     itemListFn: ItemListFn | undefined;
     templates: Map<string, TemplateFn> | undefined;
 
-    // Stack to keep track of the navigation hierarchy history
-    private navigationLevelStack: CascaderItem[][] = [];
+    // Attributes
+    private hideBreadcrumb = cascaderDefaults.hideBreadcrumb;
+    private level = cascaderDefaults.level;
+    private loadingMessage = cascaderDefaults.loadingMessage;
+    private headerText = cascaderDefaults.headerText;
+    private loading = cascaderDefaults.loading;
+
+    // State
     private nodeData: CascaderItem[] = [];
+
+    // Variables
+    private navigationLevelStack: CascaderItem[][] = []; // Stack to keep track of the navigation hierarchy history
     private breadCrumbHistory: { label: string; index: number }[] = [];
     private slidingIn = false;
     private slidingOut = false;
-    private hideBreadcrumb = false;
-    private level = 0;
-    private isLoading = false;
-    private loadingMessage = CASCADER_MESSAGES.LOADING;
-    private declarativeMode = false;
-    private headerText: string | undefined;
 
     static {
         registerWebComponents([VlCascaderItemComponent]);
@@ -41,14 +59,14 @@ export class VlCascaderComponent extends BaseLitElement {
 
     static get properties(): PropertyDeclarations {
         return {
-            headerText: { type: String, attribute: 'header-text', reflect: true },
-            level: { type: Number, attribute: 'level', reflect: true },
-            hideBreadcrumb: { type: Boolean, attribute: 'hide-breadcrumb', reflect: true },
-            loadingMessage: { type: String, attribute: 'loading-message', reflect: true },
-            isLoading: { type: Boolean, attribute: 'loading', reflect: true },
+            headerText: { type: String, attribute: 'header-text' },
+            level: { type: Number, reflect: true },
+            hideBreadcrumb: { type: Boolean, attribute: 'hide-breadcrumb' },
+            loadingMessage: { type: String, attribute: 'loading-message' },
+            loading: { type: Boolean, reflect: true },
             itemListFn: { type: Function },
-            nodeData: { type: Array, state: true },
             templates: { type: Map },
+            nodeData: { type: Array, state: true },
         };
     }
 
@@ -113,7 +131,7 @@ export class VlCascaderComponent extends BaseLitElement {
      * @param item: CascaderItem
      */
     processNarrowDown: NarrowDownFn = async (item: CascaderItem) => {
-        if (this.isLoading) return;
+        if (this.loading) return;
         const { label, children, narrowDown } = item;
         if (children?.length) {
             this.pushItemStack(label, this.nodeData);
@@ -121,18 +139,18 @@ export class VlCascaderComponent extends BaseLitElement {
             this.slidingIn = true;
             this.requestUpdate();
         } else if (narrowDown && this.itemListFn) {
-            this.isLoading = true;
+            this.loading = true;
             this.pushItemStack(label, this.nodeData);
             this.requestUpdate();
             this.nodeData = await this.itemListFn(item);
-            this.isLoading = false;
+            this.loading = false;
             this.slidingIn = true;
             this.requestUpdate();
         }
     };
 
     private goBack() {
-        if (this.isLoading) return;
+        if (this.loading) return;
         if (this.navigationLevelStack.length > 0) {
             this.slidingOut = true;
             this.popItemStack();
@@ -140,8 +158,14 @@ export class VlCascaderComponent extends BaseLitElement {
         this.requestUpdate();
     }
 
+    private handleBreadcrumbClick = (index: number, label?: string) => {
+        this.jumpToLevel(index);
+        const detail = { levelClicked: index, label };
+        this.dispatchEvent(new CustomEvent('vl-click-breadcrumb', { composed: true, bubbles: true, detail }));
+    };
+
     private jumpToLevel(index: number): void {
-        if (this.isLoading) return;
+        if (this.loading) return;
         const length = this.navigationLevelStack.length;
         const regressionNumber = length - index;
         if (regressionNumber > 0) {
@@ -152,7 +176,7 @@ export class VlCascaderComponent extends BaseLitElement {
     }
 
     private renderHeader(): TemplateResult<1> | typeof nothing {
-        return getNodesForSlot(this, 'header')?.length
+        return findNodesForSlot(this, 'header')?.length
             ? html`
                   <header>
                       <slot name="header"></slot>
@@ -168,7 +192,7 @@ export class VlCascaderComponent extends BaseLitElement {
     }
 
     private renderBreadcrumbHome = () => {
-        const hasBreadcrumbPlaceholderSlot = Boolean(getNodesForSlot(this, CASCADER_SLOTS.HOME)?.length);
+        const hasBreadcrumbPlaceholderSlot = Boolean(findNodesForSlot(this, CASCADER_SLOTS.HOME)?.length);
         return html`
             <li class="vl-breadcrumb__list__item">
                 <span class="vl-breadcrumb__list__item__separator" aria-hidden="true"></span>
@@ -179,12 +203,12 @@ export class VlCascaderComponent extends BaseLitElement {
                                   is="vl-icon"
                                   data-vl-icon="places-home"
                                   class="vl-breadcrumb__list__item__cta"
-                                  @click=${() => this.jumpToLevel(0)}
+                                  @click=${() => this.handleBreadcrumbClick(0)}
                               ></span>
                           `
                         : html`
                               <span
-                                  @click=${() => this.jumpToLevel(0)}
+                                  @click=${() => this.handleBreadcrumbClick(0)}
                                   class="vl-breadcrumb__list__item__cta vl-breadcrumb-home-slot"
                               >
                                   <slot name="home"></slot>
@@ -205,7 +229,9 @@ export class VlCascaderComponent extends BaseLitElement {
         return html`
             <li class="vl-breadcrumb__list__item ${classMap(breadCrumbItemClasses)}">
                 <span class="vl-breadcrumb__list__item__separator" aria-hidden="true"></span>
-                <span class="vl-breadcrumb__list__item__cta" @click=${() => this.jumpToLevel(index)}>${label}</span>
+                <span class="vl-breadcrumb__list__item__cta" @click=${() => this.handleBreadcrumbClick(index, label)}
+                    >${label}</span
+                >
             </li>
         `;
     };
@@ -213,7 +239,7 @@ export class VlCascaderComponent extends BaseLitElement {
     private renderBreadcrumb(): TemplateResult {
         const historyLength = this.breadCrumbHistory?.length;
         const hasBreadcrumbPlaceholderSlot = Boolean(
-            getNodesForSlot(this, CASCADER_SLOTS.BREADCRUMB_PLACEHOLDER)?.length
+            findNodesForSlot(this, CASCADER_SLOTS.BREADCRUMB_PLACEHOLDER)?.length
         );
         return html`
             ${historyLength && !this.hideBreadcrumb
@@ -298,7 +324,7 @@ export class VlCascaderComponent extends BaseLitElement {
                 ${this.renderBreadcrumb()} ${this.renderHeader()}
                 <div class="content">
                     <section class=${classMap(navSectionClasses)} @animationend=${this.handleAnimationEnd}>
-                        ${!this.isLoading
+                        ${!this.loading
                             ? this.nodeData?.map(this.renderItem)
                             : html` <vl-loader data-vl-text=${this.loadingMessage}></vl-loader> `}
                     </section>

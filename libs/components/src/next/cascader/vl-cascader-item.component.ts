@@ -1,16 +1,11 @@
 import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
-import { BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement, findNodesForSlot } from '@domg-wc/common-utilities';
 import { customElement } from 'lit/decorators.js';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import cascaderItemUigStyle from './vl-cascader-item.uig-css';
 import { CASCADER_MESSAGES, CASCADER_SLOTS, CascaderItem } from './vl-cascader.model';
-import {
-    defaultItemActionTemplate,
-    getDefaultItemTemplate,
-    getNodesForSlot,
-    getTemplateFunctionForType,
-} from './vl-cascader.utils';
+import { defaultItemActionTemplate, getDefaultItemTemplate, getTemplateFunctionForType } from './vl-cascader.utils';
 import { VlCascaderComponent } from './vl-cascader.component';
 
 @customElement('vl-cascader-item')
@@ -49,7 +44,7 @@ export class VlCascaderItemComponent extends BaseLitElement {
 
     protected render(): TemplateResult {
         const cascaderRef = this.cascaderRef;
-        const hasLabelSlot = Boolean(getNodesForSlot(this, CASCADER_SLOTS.LABEL)?.length);
+        const hasLabelSlot = Boolean(findNodesForSlot(this, CASCADER_SLOTS.LABEL)?.length);
         const { templateType } = this.item;
         let templateResultForNode;
         if (templateType && cascaderRef) {

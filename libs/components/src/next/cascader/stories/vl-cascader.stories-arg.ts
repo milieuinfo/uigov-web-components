@@ -1,27 +1,29 @@
 import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { CASCADER_MESSAGES, CASCADER_SLOTS, CascaderItem, ItemListFn, TemplateFn } from '../vl-cascader.model';
+import { CASCADER_SLOTS } from '../vl-cascader.model';
+import { action } from '@storybook/addon-actions';
+import { cascaderDefaults } from '../vl-cascader.component';
 
-export const cascaderArgs = {
+export type CascaderArgs = typeof cascaderDefaults &
+    typeof defaultArgs & {
+        contentSlot: string;
+        labelSlot: string;
+        homeSlot: string;
+        headerSlot: string;
+        onVlClickBreadcrumb: () => void;
+    };
+
+export const cascaderArgs: CascaderArgs = {
     ...defaultArgs,
-    annotation: '',
-    breadcrumbPlaceholder: '',
-    level: 0,
+    ...cascaderDefaults,
     contentSlot: '',
-    homeSlot: '',
-    hideBreadcrumb: false,
-    loading: false,
-    itemListFn: null as unknown as ItemListFn,
-    items: null as unknown as CascaderItem[],
-    label: CASCADER_MESSAGES.LABEL_MISSING as string,
     labelSlot: '',
-    loadingMessage: CASCADER_MESSAGES.LOADING as string,
-    templates: null as unknown as Map<string, TemplateFn>,
-    headerText: '',
+    homeSlot: '',
     headerSlot: '',
+    onVlClickBreadcrumb: action('vl-click-breadcrumb'),
 };
 
-export const cascaderArgTypes: ArgTypes<typeof cascaderArgs> = {
+export const cascaderArgTypes: ArgTypes<CascaderArgs> = {
     ...defaultArgTypes(true),
     annotation: {
         name: 'annotation',
@@ -32,7 +34,7 @@ export const cascaderArgTypes: ArgTypes<typeof cascaderArgs> = {
             category: CATEGORIES.CHILD_ATTRIBUTES,
             defaultValue: { summary: cascaderArgs.annotation },
         },
-        type: { name: TYPES.STRING, required: false },
+        type: { name: TYPES.STRING },
     },
     headerText: {
         name: 'header-text',
@@ -171,6 +173,15 @@ export const cascaderArgTypes: ArgTypes<typeof cascaderArgs> = {
             type: { summary: TYPES.MAP },
             category: CATEGORIES.PROPERTIES,
             defaultValue: { summary: cascaderArgs.templates },
+        },
+    },
+    onVlClickBreadcrumb: {
+        name: 'vl-click-breadcrumb',
+        description:
+            'Event dat afgevuurd wordt als op een breadcrumb item wordt geklikt.<br>Het detail object van het event bevat het gekozen niveau en het label van de breadcrumb.',
+        table: {
+            type: { summary: '{ index: number, label?: string }' },
+            category: CATEGORIES.EVENTS,
         },
     },
 };
