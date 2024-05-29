@@ -103,5 +103,7 @@ npx sass ./libs/elements/src/vl-elements.scss > ./dist/libs/elements/src/lib/vl-
 
 https://www.compart.com/en/unicode/category/So
 
+## Bash
 
-
+aantal wctest bestanden 
+find . -type f -name "*.wctest.ts" | wc -l 
