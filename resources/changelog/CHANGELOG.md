@@ -1,3 +1,25 @@
+# [1.33.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.32.0...v1.33.0) (2024-05-30)
+
+
+### Bug Fixes
+
+* UIG-3000 - vl-map-legend - version attribute toegevoegd (voor opvragen van de legende) ([85e0ebc](https://github.com/milieuinfo/uigov-web-components/commit/85e0ebc12a504d9000a99a510a8ec554254d56d4))
+* UIG-3008 - storybook list style ([ad2e222](https://github.com/milieuinfo/uigov-web-components/commit/ad2e222af8ccc8bdff5ea49fecc5c723ed00c006))
+* UIG-3009 - vl-textarea-rich-next - null checks toegevoegd ([618b774](https://github.com/milieuinfo/uigov-web-components/commit/618b774a3711f97f19e02eb50a4021e909448a38))
+* UIG-3011 - Jest testen onder libs/common/utilities en libs/components lopen nu correct ([a7f82bb](https://github.com/milieuinfo/uigov-web-components/commit/a7f82bb3c918213de66cc7c27ad7deca48498a40))
+* UIG-3014 - vl-modal - allow-overflow attribute werking rechtgezet ([85ef27e](https://github.com/milieuinfo/uigov-web-components/commit/85ef27e2c9f2350b8e9e167086f0d68a3bf1a1db))
+
+
+### Features
+
+* UIG-2749 - vl-header - logout request ([13254d8](https://github.com/milieuinfo/uigov-web-components/commit/13254d88492d2ea7878dac0b97c8595916c81bf1))
+* UIG-2815 - vl-cascader - event uitsturing toegevoegd bij het klikken van breadcrumb ([205f7ca](https://github.com/milieuinfo/uigov-web-components/commit/205f7ca4bb06a95d5ff625b41b3e58e89677de86))
+* UIG-2909 - vl-button-next - introductie component ([700618e](https://github.com/milieuinfo/uigov-web-components/commit/700618e33a0677feaa553cd921009e9ab9a19eef))
+* UIG-2919 - vl-infotext-next - introductie component ([88e286c](https://github.com/milieuinfo/uigov-web-components/commit/88e286cd7e1dd61393d4a22eb6458a8db3b89d67))
+* UIG-2928 - vl-properties-next - introductie component ([66171f5](https://github.com/milieuinfo/uigov-web-components/commit/66171f51a0c41d8a27ec47545d24dd0dfdc27b10))
+* UIG-2934 - vl-title-next - introductie component ([37522a3](https://github.com/milieuinfo/uigov-web-components/commit/37522a3f15ef94f86cd254950407decec2e5d5b9))
+* UIG-3013 - starter-app documentatie ([7bbcf99](https://github.com/milieuinfo/uigov-web-components/commit/7bbcf996daaf143bc5421e131b6ea9469a8544e4))
+
 # [1.32.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.31.0...v1.32.0) (2024-05-13)
 
 
