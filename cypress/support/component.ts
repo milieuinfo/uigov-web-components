@@ -1,36 +1,29 @@
 import { LitElement, TemplateResult, render } from 'lit';
 import { getContainerEl } from '@cypress/mount-utils';
 import 'cypress-axe';
+import 'cypress-wait-until';
 
 let componentInstance: LitElement | HTMLElement;
 
 Cypress.on('run:start', () => {
     Cypress.on('test:before:run', () => {
-        const containerEl = getContainerEl();
-
         componentInstance?.remove();
-        containerEl.innerHTML = '';
+        getContainerEl().innerHTML = '';
     });
 });
 
 Cypress.Commands.add('mount', (template: TemplateResult) => {
     return cy.then(() => {
-        const containerEl = getContainerEl();
         const componentNode = document.createElement('div');
-
-        containerEl.append(componentNode);
+        getContainerEl().append(componentNode);
         render(template, componentNode);
-
         return cy
             .wrap(componentNode)
             .children()
             .first()
             .then((element) => {
                 const name = element.prop('tagName').toLowerCase();
-                const el = document.querySelector(`${name}:not([data-cy-root])`)[0];
-
-                componentInstance = el;
-
+                componentInstance = document.querySelector(`${name}:not([data-cy-root])`)[0];
                 return cy.wrap(element);
             });
     });
@@ -65,16 +58,65 @@ Cypress.Commands.add(
 
 Cypress.Commands.add('runTestFor', <T>(selector: string, test: (component: T) => void) => {
     cy.get(selector).then((el) => {
-        const component = el.get(0) as T;
-
-        test(component);
+        test(el.get(0) as T);
     });
 });
+
+Cypress.Commands.add(
+    'runTestFor2',
+    <T, U>(selector1: string, selector2: string, test: (component1: T, component2: U) => void) => {
+        cy.get(selector1).then((el1) => {
+            cy.get(selector2).then((el2) => {
+                test(el1.get(0) as T, el2.get(0) as U);
+            });
+        });
+    }
+);
+
+// runTestFor3 is met array destructuring - leesbaarder als je het kent
+Cypress.Commands.add(
+    'runTestFor3',
+    <T, U, V>(
+        selector1: string,
+        selector2: string,
+        selector3: string,
+        test: (component1: T, component2: U, component3: V) => void
+    ) => {
+        cy.get(selector1).then(([el1]) => {
+            cy.get(selector2).then(([el2]) => {
+                cy.get(selector3).then(([el3]) => {
+                    test(el1 as T, el2 as U, el3 as V);
+                });
+            });
+        });
+    }
+);
+
+// runTestFor4 is met array destructuring - leesbaarder als je het kent
+Cypress.Commands.add(
+    'runTestFor4',
+    <T, U, V, W>(
+        selector1: string,
+        selector2: string,
+        selector3: string,
+        selector4: string,
+        test: (component1: T, component2: U, component3: V, component4: W) => void
+    ) => {
+        cy.get(selector1).then(([el1]) => {
+            cy.get(selector2).then(([el2]) => {
+                cy.get(selector3).then(([el3]) => {
+                    cy.get(selector4).then(([el4]) => {
+                        test(el1 as T, el2 as U, el3 as V, el4 as W);
+                    });
+                });
+            });
+        });
+    }
+);
 
 Cypress.Commands.add('runTest', { prevSubject: true }, <T>(prevSubject, test: (component: T) => void) => {
     const el = prevSubject as JQuery<HTMLElement>;
     const component = el.get(0) as T;
-
     test(component);
     return cy.wrap(component);
 });

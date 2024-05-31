@@ -37,9 +37,7 @@ const shouldHaveFeatureLayerCount = (count: number) => {
 describe('story vl-map-layer-switcher default', () => {
     it('should show/hide layer when clicking the checkbox linked to a layer', () => {
         const layerName = 'Kaartlaag 1';
-
         cy.visit(mapLayerSwitcherDefaultUrl);
-
         shouldHaveVisibleLayerFor(layerName);
         clickLayerSwitcherCheckboxOf(layerName);
         shouldHaveInvisibleLayerFor(layerName);
@@ -52,9 +50,7 @@ describe('story vl-map-layer-switcher dynamic', () => {
     it('should add/remove layers dynamically', () => {
         const layerId = 'zwart';
         const layerName = `Kaartlaag ${layerId}`;
-
         cy.visit(`${mapLayerSwitcherDynamic}`);
-
         shouldHaveFeatureLayerCount(0);
         cy.get(`button#add-${layerId}`).click();
         shouldHaveFeatureLayerCount(1);
