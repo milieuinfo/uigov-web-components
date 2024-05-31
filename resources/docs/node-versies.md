@@ -9,7 +9,6 @@ We gebruiken Nrwl Nx als monorepo opzet. Praktisch gebruiken we (al dan niet via
 - serven van Storybook mbv webpack en devserver (*); specifieke 'Storybook' setup
 - builden van playground-lit, playground-native en playground-react (hier zit webpack achter); we doen hier niets mee tijdens de build maar deze worden actief gebruikt tijdens onze ontwikkeling  
 - runnen van unit testen met Jest
-- runnen van wct testen via open-wc - gebruikt rollup achter de schermen
 - runnen van Cypress testen tov (*) - gebruikt webpack achter de schermen
 - runnen van Cypress component testen - gebruikt webpack achter de schermen
 
@@ -25,7 +24,7 @@ Onze code is opgesplitst in verschillende modules, elke module wordt als aparte 
         - voor imports uit 'lit/decorators.js'; vermoedelijk omdat dat zo in de desbetreffende package.json gespecifiëerd wordt
 - over modules heen importeren we via de barrel files
     * bvb. import { webComponent } from '@domg-wc/common-utilities';
-    * in de 'tsconfig.base.json' (+ waar nodig, ook bvb. bij de wct testen) worden deze 'paths' gespecifieerd
+    * in de 'tsconfig.base.json' worden deze 'paths' gespecifieerd
     * hierdoor kunnen deze paden behouden blijven 'in' de artifacts, want dan verwijzen die imports naar de desbetreffende artifact
 
 

@@ -118,7 +118,6 @@ echo using $nextRelease_version as nextRelease_version
 cd dist/libs
 
 # opkuisen van de packages
-rm -rf ./map/**/*.wctest.*
 rm -rf ./components/**/stories
 rm -rf ./elements/**/stories
 rm -rf ./form/**/stories

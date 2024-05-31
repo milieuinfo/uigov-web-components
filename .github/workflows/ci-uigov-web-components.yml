@@ -70,36 +70,6 @@ jobs:
           path: ./dist
           retention-days: 30
 
-  perform-all-web-tests:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-    needs: checkout-install-and-cache
-    steps:
-      - uses: actions/checkout@v3
-      - name: restore workspace cache
-        id: cache-workspace
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-workspace
-        with:
-          path: |
-            ./node_modules
-            cypress/cache
-          key: ${{ runner.os }}-${{ hashFiles('./package-lock.json') }}
-      - name: uigov-web-components - web-test-runner
-        run: |
-          npm run build:all
-          npx nx wct map
-        continue-on-error: false
-      - name: archive unit-test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist-perform-all-web-tests
-          path: ./dist
-          retention-days: 30
-
   build-apps-libs-and-storybook:
     runs-on: ubuntu-latest
     defaults:
@@ -231,7 +201,7 @@ jobs:
     defaults:
       run:
         shell: bash
-    needs: [perform-all-unit-tests, perform-all-web-tests, build-apps-libs-and-storybook, e2e-report-storybook]
+    needs: [perform-all-unit-tests, build-apps-libs-and-storybook, e2e-report-storybook]
     steps:
       # github-pages-deploy-action gives an error when 'not in a git directory'
       # -> so a checkout instead of a 'restore workspace cache'

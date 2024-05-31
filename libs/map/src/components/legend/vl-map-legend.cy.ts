@@ -412,7 +412,7 @@ describe('component vl-map-legend - wfs and wms layers', () => {
     });
 });
 
-describe.only('component vl-map-legend - wms layer that requires a version', () => {
+describe('component vl-map-legend - wms layer that requires a version', () => {
     const mapLegendWithVersion = (version: string) => html`
         <vl-map>
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
