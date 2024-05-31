@@ -70,3 +70,11 @@ Cypress.Commands.add('runTestFor', <T>(selector: string, test: (component: T) =>
         test(component);
     });
 });
+
+Cypress.Commands.add('runTest', { prevSubject: true }, <T>(prevSubject, test: (component: T) => void) => {
+    const el = prevSubject as JQuery<HTMLElement>;
+    const component = el.get(0) as T;
+
+    test(component);
+    return cy.wrap(component);
+});

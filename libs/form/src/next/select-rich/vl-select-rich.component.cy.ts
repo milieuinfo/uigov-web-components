@@ -371,7 +371,7 @@ describe('component - vl-select-rich-next - single', () => {
         cy.get('@vl-select')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
-            .should('deep.equal', { value: '' });
+            .should('deep.equal', { value: null });
         cy.checkA11y('vl-select-rich-next');
     });
 
@@ -515,7 +515,7 @@ describe('component - vl-select-rich-next - single', () => {
 
         cy.checkA11y('vl-select-rich-next');
         cy.runTestFor<VlSelectRichComponent>('vl-select-rich-next', (component) => {
-            expect(component.getSelected()).to.be.empty;
+            expect(component.getSelected()).to.be.null;
         });
         cy.get('vl-select-rich-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-rich-next')
@@ -544,7 +544,7 @@ describe('component - vl-select-rich-next - single', () => {
             .find('.vl-pill__close')
             .click();
         cy.runTestFor<VlSelectRichComponent>('vl-select-rich-next', (component) => {
-            expect(component.getSelected()).to.be.empty;
+            expect(component.getSelected()).to.be.null;
         });
         cy.checkA11y('vl-select-rich-next');
     });

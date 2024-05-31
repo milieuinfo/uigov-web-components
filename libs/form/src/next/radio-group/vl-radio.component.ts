@@ -10,7 +10,7 @@ import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 export const radioDefaults = {
     id: 'radio' as string,
     name: '' as string,
-    value: '' as string,
+    value: null as string | null,
     label: '' as string,
     block: false as boolean,
     readonly: false as boolean,

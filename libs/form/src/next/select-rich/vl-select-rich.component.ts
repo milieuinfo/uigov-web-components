@@ -56,7 +56,7 @@ export class VlSelectRichComponent extends FormControl {
     private searchPlaceholder = selectRichDefaults.searchPlaceholder;
 
     // State
-    private value: FormValue = '';
+    private value: FormValue = null;
 
     // Variables
     private choices: Choices | null = null;
@@ -114,7 +114,7 @@ export class VlSelectRichComponent extends FormControl {
 
             // Fix voor required validator
             if (!this.value) {
-                this.setValue('');
+                this.setValue(null);
             }
 
             // Fix voor Choices.js search event dat niet afgevuurd wordt als de search value verwijderd wordt.
@@ -207,8 +207,8 @@ export class VlSelectRichComponent extends FormControl {
         this.options = [...this.initialOptions];
     }
 
-    getSelected(): string | string[] {
-        return this.multiple ? this.getSelectedValues() : this.getSelectedValues()[0] || '';
+    getSelected(): string | string[] | null {
+        return this.multiple ? this.getSelectedValues() : this.getSelectedValues()[0] || null;
     }
 
     private getSelectedValues(): string[] {
@@ -221,7 +221,7 @@ export class VlSelectRichComponent extends FormControl {
         );
     }
 
-    private collectFormData(): FormData | string {
+    private collectFormData(): FormData | FormValue {
         const name = this.name || this.id;
         const selectedValues = this.getSelectedValues();
         return selectedValues?.length
@@ -229,7 +229,7 @@ export class VlSelectRichComponent extends FormControl {
                   currentIndex ? formData.append(name, string) : formData.set(name, string);
                   return formData;
               }, new FormData())
-            : '';
+            : null;
     }
 
     private getChoicesElement(): HTMLElement | null {

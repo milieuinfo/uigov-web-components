@@ -217,12 +217,7 @@ describe('component - vl-upload-next', () => {
                 force: true,
             });
         // voor elk individueel bestand wordt er een vl-input event getriggerd van type `addedfile`
-        cy.get('@vl-input')
-            .its('callCount')
-            .should('eq', 4) // 4 addedFile events
-            .then((ddd) => {
-                console.log(ddd);
-            });
+        cy.get('@vl-input').its('callCount').should('eq', 4); // 4 addedFile events
     });
 
     it('should not upload by default when selecting a file to upload', () => {
