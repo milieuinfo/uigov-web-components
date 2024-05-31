@@ -60,7 +60,7 @@ export class VlUploadComponent extends FormControl {
     private url = uploadDefaults.url;
 
     // State
-    private value: FormValue = '';
+    private value: FormValue = null;
     private multiple = false;
 
     // Variables
@@ -101,7 +101,7 @@ export class VlUploadComponent extends FormControl {
         super.updated(changedProperties);
 
         if (changedProperties.has('value')) {
-            this.setValue(this.value ?? '');
+            this.setValue(this.value);
         }
 
         if (changedProperties.has('disabled')) {
@@ -492,14 +492,14 @@ export class VlUploadComponent extends FormControl {
      * functie om FormData object te verzamelen op basis van de lijst met huidige bestanden
      * @private
      */
-    private collectFormData(): FormData | string {
+    private collectFormData(): FormData | FormValue {
         const name = this.name || this.id;
         return this.getFiles()?.length
             ? this.getFiles().reduce((formData: FormData, file, currentIndex) => {
                   currentIndex ? formData.append(name, file, file.name) : formData.set(name, file, file.name);
                   return formData;
               }, new FormData())
-            : '';
+            : null;
     }
 
     private handleAddedFile = async (file: DropzoneFile): Promise<void> => {

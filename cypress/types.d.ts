@@ -16,8 +16,9 @@ declare global {
                 value: string;
                 pseudo?: string;
                 not?: boolean;
-            }): Chainable<any>;
+            }): Chainable<Subject>;
             runTestFor<T>(selector: string, test: (component: T) => void): Chainable<Subject>;
+            runTest<T = HTMLElement>(test: (component: T) => void): Chainable<Subject>;
         }
     }
 }

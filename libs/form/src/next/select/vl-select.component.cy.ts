@@ -155,7 +155,7 @@ describe('component - vl-select-next', () => {
         cy.get('@vl-select')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
-            .should('deep.equal', { value: '' });
+            .should('deep.equal', { value: null });
         cy.checkA11y('vl-select-next');
     });
 
