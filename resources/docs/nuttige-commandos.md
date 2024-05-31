@@ -66,12 +66,12 @@ git notes --ref semantic-release show 2231b72
 
 na een historiek herschrijving een tag opnieuw leggen + de notes toevoegen 
 ```
-git push --delete origin v1.27.0-develop.6
-git tag -d v1.27.0-develop.6
-git tag v1.27.0-develop.6 03528588
-git push origin v1.27.0-develop.6
+git push --delete origin v1.34.0-develop.2
+git tag -d v1.34.0-develop.2
+git tag v1.34.0-develop.2 6d26f683
+git push origin v1.34.0-develop.2
 
-git notes --ref semantic-release add -f -m '{"channels":["develop"]}' v1.27.0-develop.6
+git notes --ref semantic-release add -f -m '{"channels":["develop"]}' v1.34.0-develop.2
 git push --force origin refs/notes/semantic-release
 ```
 
@@ -105,5 +105,5 @@ https://www.compart.com/en/unicode/category/So
 
 ## Bash
 
-aantal wctest bestanden 
-find . -type f -name "*.wctest.ts" | wc -l 
+aantal Cypress testen voor de map 
+find . -type f -name "*map*.cy.ts" | wc -l 

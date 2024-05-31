@@ -12,7 +12,7 @@ stages:
   - Build and Test Stage:
       jobs:
         - build-apps-and-libs
-        - unit-wct-component-integrator-tests
+        - unit-component-integrator-tests
         - e2e-tests-storybook
   - Release and Publish Stage:
       jobs:
@@ -71,7 +71,7 @@ build-apps-and-libs:
       pattern: '**/*.*'
       shared: true
 
-unit-wct-component-integrator-tests:
+unit-component-integrator-tests:
   requirements: *requirements
   tasks:
     - clean
@@ -80,9 +80,9 @@ unit-wct-component-integrator-tests:
         # avoid git warning
         git config --global init.defaultBranch develop
     - checkout
-    - script: bash ./resources/ci/scripts/unit-wct-component-integrator-tests-docker.sh
+    - script: bash ./resources/ci/scripts/unit-component-integrator-tests-docker.sh
   artifacts:
-    - name: dist-unit-wct-component-integrator-tests
+    - name: dist-unit-component-integrator-tests
       location: dist
       pattern: '**/*.*'
 
