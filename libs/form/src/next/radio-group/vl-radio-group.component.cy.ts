@@ -223,6 +223,44 @@ describe('component - vl-radio-group-next - in form', () => {
         cy.get('vl-radio-group-next').find('vl-radio-next[value="lucht"]').should('not.have.attr', 'checked');
     });
 
+    it('should reset to null when the form is reset with no value', () => {
+        cy.mount(html`
+            <form>
+                <vl-radio-group-next id="land-zee" name="land-zee" required>
+                    <vl-radio-next value="land">Land</vl-radio-next>
+                    <vl-radio-next value="zee">Zee</vl-radio-next>
+                    <vl-radio-next value="lucht">Lucht</vl-radio-next>
+                </vl-radio-group-next>
+                <button class="vl-button" type="reset">Reset</button>
+            </form>
+        `);
+        cy.injectAxe();
+
+        cy.get('vl-radio-group-next').runTest((radioGroup) => {
+            // @ts-ignore test private property
+            expect(radioGroup.value).to.be.null;
+        });
+
+        clickRadioWithValue('zee');
+
+        cy.get('vl-radio-group-next').find('vl-radio-next[value="zee"]').should('have.attr', 'checked');
+        cy.get('vl-radio-group-next').find('vl-radio-next[value="land"]').should('not.have.attr', 'checked');
+        cy.get('vl-radio-group-next').find('vl-radio-next[value="lucht"]').should('not.have.attr', 'checked');
+        cy.checkA11y('vl-radio-group-next');
+
+        cy.get('button[type="reset"]').click();
+
+        cy.get('vl-radio-group-next').find('vl-radio-next[value="land"]').should('not.have.attr', 'checked');
+        cy.get('vl-radio-group-next').find('vl-radio-next[value="zee"]').should('not.have.attr', 'checked');
+        cy.get('vl-radio-group-next').find('vl-radio-next[value="lucht"]').should('not.have.attr', 'checked');
+        cy.checkA11y('vl-radio-group-next');
+
+        cy.get('vl-radio-group-next').runTest((radioGroup) => {
+            // @ts-ignore test private property
+            expect(radioGroup.value).to.be.null;
+        });
+    });
+
     it('should reset the value when the form is reset', () => {
         cy.mount(html`
             <form>

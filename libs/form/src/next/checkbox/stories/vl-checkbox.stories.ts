@@ -6,6 +6,7 @@ import { story } from '@domg-wc/common-storybook';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlCheckboxComponent } from '../vl-checkbox.component';
+import { nothing } from 'lit';
 
 registerWebComponents([VlCheckboxComponent]);
 
@@ -120,7 +121,7 @@ export const CheckboxReadonly = story(
         >
             ${unsafeHTML(contentSlot)}
         </vl-checkbox-next>
-        <input type="hidden" name=${name} value=${checked ? value || 'on' : ''} />
+        <input type="hidden" name=${name} value=${checked ? value || 'on' : nothing} />
     `
 );
 CheckboxReadonly.storyName = 'vl-checkbox-next - readonly';

@@ -10,17 +10,17 @@ import { webComponent } from '@domg-wc/common-utilities';
 export const radioGroupDefaults = {
     ...formControlDefaults,
     readonly: false as boolean,
-    value: '' as string,
+    value: null as string | null,
 };
 
 @webComponent('vl-radio-group-next')
 export class VlRadioGroupComponent extends FormControl {
     // Attributes
     private readonly = radioGroupDefaults.readonly;
-    private value = radioGroupDefaults.value;
+    private value: string | null = radioGroupDefaults.value;
 
     // Variables
-    private initialValue = '';
+    private initialValue: string | null = null;
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, baseStyle, vlElementsStyle, radioStyle, radioUigStyle];
@@ -167,7 +167,7 @@ export class VlRadioGroupComponent extends FormControl {
                 radio.removeAttribute('checked');
             } else {
                 if (!radio.hasAttribute('checked')) radio.setAttribute('checked', '');
-                this.value = value ? value : '';
+                this.value = value;
                 this.setValue(value);
             }
         });

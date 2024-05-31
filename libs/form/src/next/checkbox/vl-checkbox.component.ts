@@ -10,7 +10,7 @@ import { webComponent } from '@domg-wc/common-utilities';
 export const checkboxDefaults = {
     ...formControlDefaults,
     block: false as boolean,
-    value: '' as string,
+    value: null as string | null,
     checked: false as boolean,
     isSwitch: false as boolean,
 } as const;
@@ -24,7 +24,7 @@ export class VlCheckboxComponent extends FormControl {
     private isSwitch = checkboxDefaults.isSwitch;
 
     // Variables
-    private initialValue = '';
+    private initialValue: string | null = null;
     private initialCheckedValue = false;
 
     static get styles(): (CSSResult | CSSResult[])[] {
@@ -53,8 +53,8 @@ export class VlCheckboxComponent extends FormControl {
         super.updated(changedProperties);
 
         if (changedProperties.has('checked') || changedProperties.has('value')) {
-            const value = this.checked ? this.value || 'on' : '';
-            const detail: { checked: boolean; value?: string } = { checked: this.checked };
+            const value = this.checked ? this.value || 'on' : null;
+            const detail: { checked: boolean; value?: string | null } = { checked: this.checked };
 
             if (this.checked) {
                 detail.value = value;

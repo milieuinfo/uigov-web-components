@@ -112,21 +112,48 @@ describe('integration - form demo', () => {
         fillInForm();
         getResetButton().click('bottomLeft'); // Hack om click te triggeren op de button, anders werd de click getriggered op de vl-button-next tag.
         getNaamInput().find('input').should('have.value', '');
+        getNaamInput({ shadow: false }).runTest((component) => {
+            // @ts-ignore access private property
+            expect(component.value).to.be.empty;
+        });
         getRrnInput().find('input#rrn').should('have.value', '');
+        getRrnInput({ shadow: false }).runTest((component) => {
+            // @ts-ignore access private property
+            expect(component.value).to.be.empty;
+        });
         getGeboortedatumDatepicker().find('input#geboortedatum').should('have.value', '');
         getGeboortePlaatsSelectRich().find('select').find('option[value="hasselt"]').should('not.exist');
         getHobbiesSelectRich().find('select').find('option[value="padel"]').should('not.exist');
         getHobbiesSelectRich().find('select').find('option[value="dans"]').should('not.exist');
+        getHobbiesSelectRich({ shadow: false }).runTest((component) => {
+            // @ts-ignore access private property
+            expect(component.value).to.be.null;
+        });
         getKinderenSelect().find('select').find('option[value="0"]').should('not.have.attr', 'selected');
         getInteressesTextarea().find('textarea').should('have.value', '');
         getLeeftijdInput().find('input').should('have.value', '');
+        getLeeftijdInput({ shadow: false }).runTest((component) => {
+            // @ts-ignore access private property
+            expect(component.value).to.be.empty;
+        });
         getContactMethodeRadioGroup({ shadow: false })
             .find('vl-radio-next')
             .shadow()
             .find('input[value="telefoon"]')
             .should('not.be.checked');
-        getFotosUpload().find('input[type="file"]').should('have.value', '');
+        getContactMethodeRadioGroup({ shadow: false }).runTest((radioGroup) => {
+            // @ts-ignore access private property
+            expect(radioGroup.value).to.be.null;
+        });
+        getFotosUpload({ shadow: false }).runTest((upload) => {
+            // @ts-ignore access private property
+            expect(upload.value).to.be.null;
+        });
         getWaarheidsGetrouwCheckbox().find('input').should('not.be.checked');
+        getWaarheidsGetrouwCheckbox({ shadow: false }).runTest((component) => {
+            // @ts-ignore access private property
+            expect(component.value).to.be.null;
+        });
     });
 
     it('should submit form', () => {
@@ -196,15 +223,8 @@ describe('integration - form demo', () => {
         const submittedFormData = {
             naam: '',
             rrn: '',
-            geboortedatum: '',
-            geboorteplaats: '',
-            hobbies: [],
-            kinderen: '',
             interesses: '',
             leeftijd: '',
-            contactmethode: '',
-            foto: [],
-            waarheidsgetrouw: '',
         };
 
         cy.mount(html`<vl-form-demo></vl-form-demo>`);
