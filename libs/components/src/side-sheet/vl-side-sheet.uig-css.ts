@@ -65,7 +65,11 @@ const styles: CSSResult = css`
         width: 100%;
         height: 100%;
         padding-top: 43px;
-        z-index: 2;
+        /* 
+            UIG-3004: z-index op dit niveau verwijderd, de z-index staat ook al op de host.
+            Zoek andere oplossing indien dit voor problemen zorgt.
+        */
+        /* z-index: 2; */
         background: white;
         overflow: auto;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
