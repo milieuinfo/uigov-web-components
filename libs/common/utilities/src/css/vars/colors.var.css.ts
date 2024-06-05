@@ -12,6 +12,7 @@ const styles: CSSResult = css`
 
         --vl-text-color: #333332;
         --vl-text-alt-color: #687483;
+        --vl-light-text-color: #8695a8;
 
         --vl-border-color: #8695a8;
 

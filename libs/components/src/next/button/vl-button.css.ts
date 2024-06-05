@@ -22,9 +22,9 @@ const styles: CSSResult = css`
         padding: 0;
 
         /* Button styles - gebaseerd op DV _button.scss */
-        cursor: pointer;
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         min-height: 3.5rem;
         font-family: inherit;
         font-size: var(--vl-font-size--small);
@@ -104,18 +104,16 @@ const styles: CSSResult = css`
                     }
                 `
             )}
-
-            &.button-in-map {
-                background-color: var(--vl-map-background-color);
-            }
         }
 
         &.error {
             background-color: var(--vl-error-color);
+            border-color: var(--vl-error-color);
 
             &:hover,
             &:active {
                 background-color: var(--vl-error-color--hover);
+                border-color: var(--vl-error-color--hover);
             }
 
             &.secondary {
@@ -143,7 +141,6 @@ const styles: CSSResult = css`
 
         &.block {
             display: flex;
-            justify-content: center;
             width: 100%;
         }
 
@@ -229,7 +226,7 @@ const styles: CSSResult = css`
         &.loading {
             color: var(--vl-white);
             background-color: var(--vl-action-background-color--disabled);
-            cursor: default;
+            border-color: var(--vl-action-background-color--disabled);
             padding: var(--vl-spacing--xsmall) 8rem var(--vl-spacing--xsmall) 4rem;
             position: relative;
 
@@ -259,6 +256,19 @@ const styles: CSSResult = css`
             &.disabled {
                 cursor: not-allowed;
             }
+        }
+
+        /* In map styles */
+        &.button-in-map {
+            &.tertiary {
+                background-color: var(--vl-map-background-color);
+            }
+        }
+
+        /* Icon styles */
+        &.icon-only {
+            width: 3.5rem;
+            padding: 0;
         }
     }
 `;

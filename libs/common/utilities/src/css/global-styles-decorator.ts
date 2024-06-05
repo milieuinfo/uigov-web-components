@@ -2,7 +2,7 @@ import colors from './vars/colors.var.css';
 import general from './vars/general.var.css';
 import spacing from './vars/spacing.var.css';
 import typography from './vars/typography.var.css';
-import fonts from './fonts.css';
+import fonts from './font/fonts.css';
 import base from './base.css';
 
 const globalStyles = [colors, general, spacing, typography, fonts, base];

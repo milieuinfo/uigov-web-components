@@ -102,6 +102,11 @@ const styles: CSSResult[] = [
     ...headingList.map(
         (heading) =>
             css`
+                h${heading} {
+                    display: flex;
+                    align-items: center;
+                }
+
                 h${heading}.alt {
                     text-transform: uppercase;
                     font-weight: 500;
@@ -126,11 +131,6 @@ const styles: CSSResult[] = [
                         }
                     `
                 )}
-
-                h${heading} slot {
-                    display: flex;
-                    align-items: center;
-                }
             `
     ),
 ];
