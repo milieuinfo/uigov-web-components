@@ -2,7 +2,7 @@ export { BaseElementOfType } from './base/base.element';
 export { BaseHTMLElement } from './base/base.html.element';
 export { BaseLitElement } from './base/base.lit.element';
 export { UigConfig, type Preferences } from './config/uig-config';
-export { MARGINS, PADDINGS } from './constants/constants';
+export { MARGINS, PADDINGS, ICON_PLACEMENT } from './constants/constants';
 export {
     webComponent,
     webComponentCustom,

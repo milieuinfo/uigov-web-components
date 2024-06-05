@@ -1,8 +1,10 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
+import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
 import buttonStyle from './vl-button.css';
+import iconStyle from '@domg-wc/common-utilities/css/icon/icon.css';
 import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 import { classMap } from 'lit/directives/class-map.js';
 import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-decorator';
+import { ICON_PLACEMENT } from '@domg-wc/common-utilities';
 
 export const buttonDefaults = {
     type: 'button' as 'button' | 'submit' | 'reset',
@@ -15,6 +17,9 @@ export const buttonDefaults = {
     secondary: false as boolean,
     tertiary: false as boolean,
     loading: false as boolean,
+    icon: '' as string,
+    iconPlacement: 'before' as ICON_PLACEMENT,
+    iconOnly: false as boolean,
     toggle: false as boolean,
     on: false as boolean,
     controlled: false as boolean,
@@ -33,12 +38,15 @@ export class VlButtonComponent extends BaseLitElement {
     private secondary = buttonDefaults.secondary;
     private tertiary = buttonDefaults.tertiary;
     private loading = buttonDefaults.loading;
+    private icon = buttonDefaults.icon;
+    private iconPlacement = buttonDefaults.iconPlacement;
+    private iconOnly = buttonDefaults.iconOnly;
     private toggle = buttonDefaults.toggle;
     private on = buttonDefaults.on;
     private controlled = buttonDefaults.controlled;
 
     static get styles(): CSSResult[] {
-        return [buttonStyle];
+        return [buttonStyle, iconStyle];
     }
 
     static get properties(): PropertyDeclarations {
@@ -53,6 +61,9 @@ export class VlButtonComponent extends BaseLitElement {
             secondary: { type: Boolean },
             tertiary: { type: Boolean },
             loading: { type: Boolean },
+            icon: { type: String },
+            iconPlacement: { type: String, attribute: 'icon-placement', reflect: true },
+            iconOnly: { type: Boolean, attribute: 'icon-only' },
             toggle: { type: Boolean },
             on: {
                 type: Boolean,
@@ -71,10 +82,18 @@ export class VlButtonComponent extends BaseLitElement {
     }
 
     updated(changedProperties: Map<string, unknown>) {
+        super.updated(changedProperties);
+
         if (changedProperties.has('on') && this.toggle) {
             this.dispatchEvent(
                 new CustomEvent('vl-toggle', { detail: { on: this.on }, bubbles: true, composed: true })
             );
+        }
+
+        if (changedProperties.has('iconPlacement')) {
+            if (!this.iconPlacement) {
+                this.iconPlacement = buttonDefaults.iconPlacement;
+            }
         }
     }
 
@@ -91,6 +110,7 @@ export class VlButtonComponent extends BaseLitElement {
             secondary: this.secondary,
             tertiary: displayAsTertiaryButton,
             loading: this.loading,
+            'icon-only': this.icon && this.iconOnly,
             'button-in-map': isInMap,
         };
 
@@ -100,8 +120,29 @@ export class VlButtonComponent extends BaseLitElement {
             ?disabled=${this.disabled}
             @click=${this.handleClick}
         >
+            ${this.renderIcon(ICON_PLACEMENT.BEFORE)}
             <slot></slot>
+            ${this.renderIcon(ICON_PLACEMENT.AFTER)}
         </button>`;
+    }
+
+    renderIcon(iconPlacement: ICON_PLACEMENT): TemplateResult | typeof nothing {
+        if (!this.icon) {
+            return nothing;
+        }
+
+        if (iconPlacement !== this.iconPlacement) {
+            return nothing;
+        }
+
+        const classes = {
+            'vl-icon': true,
+            [`vl-icon--${this.icon}`]: true,
+            'vl-icon--right-margin': !this.iconOnly && this.iconPlacement === 'before',
+            'vl-icon--left-margin': !this.iconOnly && this.iconPlacement === 'after',
+        };
+
+        return html`<span class=${classMap(classes)}></span>`;
     }
 
     protected handleClick(event: Event) {

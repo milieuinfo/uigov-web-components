@@ -34,6 +34,9 @@ const ButtonTemplate = story(
         secondary,
         tertiary,
         loading,
+        icon,
+        iconPlacement,
+        iconOnly,
         toggle,
         on,
         controlled,
@@ -52,6 +55,9 @@ const ButtonTemplate = story(
             ?secondary=${secondary}
             ?tertiary=${tertiary}
             ?loading=${loading}
+            icon=${icon}
+            icon-placement=${iconPlacement}
+            ?icon-only=${iconOnly}
             ?toggle=${toggle}
             ?on=${on}
             ?controlled=${controlled}
@@ -130,6 +136,20 @@ ButtonLoading.storyName = 'vl-button-next - loading';
 ButtonLoading.args = {
     defaultSlot: 'Klik op mij',
     loading: true,
+};
+
+export const ButtonIcon = ButtonTemplate.bind({});
+ButtonIcon.storyName = 'vl-button-next - icon';
+ButtonIcon.args = {
+    defaultSlot: 'Klik op mij',
+    icon: 'location',
+};
+
+export const ButtonIconOnly = ButtonTemplate.bind({});
+ButtonIconOnly.storyName = 'vl-button-next - icon only';
+ButtonIconOnly.args = {
+    icon: 'location',
+    iconOnly: true,
 };
 
 export const ButtonToggle = ButtonTemplate.bind({});

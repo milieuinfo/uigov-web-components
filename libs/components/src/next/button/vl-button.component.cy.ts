@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { ICON_PLACEMENT, registerWebComponents } from '@domg-wc/common-utilities';
 import { VlButtonComponent } from './vl-button.component';
 
 registerWebComponents([VlButtonComponent]);
@@ -79,6 +79,43 @@ describe('component - vl-button-next', () => {
 
         cy.get('vl-button-next').should('have.attr', 'loading');
         cy.get('vl-button-next').shadow().find('button').should('have.class', 'loading');
+    });
+
+    it('should set icon', () => {
+        cy.mount(html`<vl-button-next icon="pin">Klik op mij</vl-button-next>`);
+
+        cy.get('vl-button-next').should('have.attr', 'icon', 'pin');
+        cy.get('vl-button-next')
+            .shadow()
+            .find('button')
+            .find('span.vl-icon')
+            .should('have.class', 'vl-icon--pin')
+            .should('have.class', 'vl-icon--right-margin');
+    });
+
+    it('should set icon-placement', () => {
+        cy.mount(html`<vl-button-next icon="pin" icon-placement=${ICON_PLACEMENT.AFTER}>Klik op mij</vl-button-next>`);
+
+        cy.get('vl-button-next').should('have.attr', 'icon', 'pin');
+        cy.get('vl-button-next').should('have.attr', 'icon-placement', ICON_PLACEMENT.AFTER);
+        cy.get('vl-button-next')
+            .shadow()
+            .find('button')
+            .find('span.vl-icon')
+            .should('have.class', 'vl-icon--pin')
+            .should('have.class', 'vl-icon--left-margin');
+    });
+
+    it('should set icon-only', () => {
+        cy.mount(html`<vl-button-next icon="pin" icon-only></vl-button-next>`);
+
+        cy.get('vl-button-next').should('have.attr', 'icon', 'pin');
+        cy.get('vl-button-next').should('have.attr', 'icon-only', '');
+        cy.get('vl-button-next')
+            .shadow()
+            .find('button')
+            .shouldHaveComputedStyle({ style: 'padding', value: '0px' })
+            .shouldHaveComputedStyle({ style: 'width', value: '35px' });
     });
 
     it('should set content', () => {

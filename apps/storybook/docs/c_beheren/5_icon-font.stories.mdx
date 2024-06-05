@@ -1,0 +1,39 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Beheren/Icon Font"/>
+
+# Icon Font
+
+## Inhoudstafel
+
+- [Beschrijving](#beschrijving)
+- [Oude opzet](#oude-opzet)
+- [Huidige opzet](#nieuwe-opzet)
+- [Updaten van font](#updaten-van-font)
+
+
+## Beschrijving
+
+Het icon-font is deel van de uigov-assets repository en wordt geversioneerd gepubliceerd op de CDN van dOMG.<br/>
+De uigov-web-components refereren intern naar dit font via CSS classes die een mapping voorzien tussen de icoon-naam en de unicode waarde van het icoon in het font.
+
+## Oude opzet
+
+In de oude opzet bevatten alle componenten die een icoon nodig hebben de icon-mapping CSS classes.<br/>
+Dit zorgt voor veel duplicatie van CSS code.
+
+## Nieuwe opzet
+
+Er is een centrale plaats in de uigov-web-components repository waar de icon-mapping CSS classes gedefinieerd worden als CSS-in-JS.<br/>
+Elk component dat een icoon nodig heeft importeert dit icon-mapping bestand.<br/>
+Er is geen duplicatie van CSS code omdat overal dezelfde instantie van het CSS-in-JS object gebruikt wordt.<br/>
+Dit icon-mapping bestand wordt gegenereerd door het `generate-icon-files.mjs` script.
+
+## Updaten van font
+
+Volg de volgende stappen om het icon-font te updaten:
+- Plaats de nieuwe versie van het font in de uigov-assets repository
+- Deploy de nieuwe versie van het font geversioneerd op de CDN van dOMG
+- Refereer in de uigov-web-components repository naar de nieuwe versie van het font
+- Voer het `generate-icon-files.mjs` script uit in de uigov-web-components repository
+- Verifieer dat de icon-mapping correct is gegenereerd met behulp van de [Alle Iconen](/docs/ontwerp-iconen-alle-iconen--documentatie) pagina

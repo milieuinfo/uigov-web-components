@@ -1,7 +1,8 @@
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, TYPES, getSelectControlOptions } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { buttonDefaults } from '../vl-button.component';
 import { action } from '@storybook/addon-actions';
+import { ICON_PLACEMENT } from '@domg-wc/common-utilities';
 
 type ButtonArgs = typeof buttonDefaults & { defaultSlot: string; onVlClick: () => void; onVlToggle: () => void };
 
@@ -102,6 +103,36 @@ export const buttonArgTypes: ArgTypes<ButtonArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: buttonArgs.loading },
+        },
+    },
+    icon: {
+        name: 'icon',
+        description: 'Beeldt een icoon af in de button.<br/>Standaard wordt dit icoon voor de tekst afgebeeld.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.icon },
+        },
+    },
+    iconPlacement: {
+        name: 'icon-placement',
+        description: 'De positie van het icoon ten opzichte van de tekst.',
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(ICON_PLACEMENT),
+        table: {
+            type: { summary: getSelectControlOptions(Object.values(ICON_PLACEMENT)) },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.iconPlacement },
+        },
+    },
+    iconOnly: {
+        name: 'icon-only',
+        description:
+            'Beeldt de button correct af als er enkel een icoon is en geen tekst.<br/>Te gebruiken in combinatie met het `icon` attribuut.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.iconOnly },
         },
     },
     toggle: {

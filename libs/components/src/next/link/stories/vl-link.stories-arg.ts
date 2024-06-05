@@ -1,6 +1,14 @@
-import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    TYPES,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+    CONTROLS,
+} from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { linkDefaults } from '../vl-link.component';
+import { ICON_PLACEMENT } from '@domg-wc/common-utilities';
 
 type LinkArgs = typeof defaultArgs & typeof linkDefaults & { defaultSlot: string };
 
@@ -64,6 +72,26 @@ export const linkArgTypes: ArgTypes<LinkArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: linkArgs.external },
+        },
+    },
+    icon: {
+        name: 'icon',
+        description: 'Beeldt een icoon af in de link.<br/>Standaard wordt dit icoon voor de tekst afgebeeld.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: linkArgs.icon },
+        },
+    },
+    iconPlacement: {
+        name: 'icon-placement',
+        description: 'De positie van het icoon ten opzichte van de tekst.',
+        control: { type: CONTROLS.SELECT },
+        options: Object.values(ICON_PLACEMENT),
+        table: {
+            type: { summary: getSelectControlOptions(Object.values(ICON_PLACEMENT)) },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: linkArgs.iconPlacement },
         },
     },
     defaultSlot: {
