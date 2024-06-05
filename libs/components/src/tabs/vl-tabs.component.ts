@@ -4,7 +4,7 @@ import './vl-tabs.lib.js';
 import { VlTabComponent } from './vl-tab.component';
 import { VlTabSectionComponent } from './vl-tab-section.component';
 import { VlTabsPaneComponent } from './vl-tabs-pane.component';
-import { tabsStyle } from '@domg/govflanders-style/component';
+import { linkStyle, tabsStyle } from '@domg/govflanders-style/component';
 import { baseStyle, elementStyle, resetStyle } from '@domg/govflanders-style/common';
 import tabsUigStyle from './vl-tabs.uig-css';
 
@@ -49,6 +49,7 @@ export class VlTabsComponent extends BaseHTMLElement {
           ${resetStyle}
           ${tabsStyle}
           ${tabsUigStyle}
+          ${linkStyle}
           ${baseStyle}
           ${elementStyle}
         </style>
@@ -129,6 +130,7 @@ export class VlTabsComponent extends BaseHTMLElement {
 
     __getTabTemplate({ id, title }: { id: string; title: string }) {
         const disableLinks = this.hasAttribute('disable-links');
+        const withinFunctionalHeader = this.hasAttribute('within-functional-header');
 
         return this._template(`
             <li
@@ -136,6 +138,7 @@ export class VlTabsComponent extends BaseHTMLElement {
                 is="vl-tab"
                 data-vl-id="${id}"
                 data-vl-href="${this.__href}#${id}"
+                ${withinFunctionalHeader ? 'data-vl-within-functional-header' : ''}
                 ${disableLinks ? 'data-vl-disable-link' : ''}
             >
                 <slot name="${id}-title-slot">${title}</slot>
