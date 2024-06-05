@@ -1,0 +1,37 @@
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
+import * as VlDoormatStories from './vl-doormat.stories';
+
+# Doormat
+
+<Alert title="Deprecated">
+    {`Gebruik de [vl-doormat-next](/docs/components-next-doormat--documentatie), in v2.0.0 verdwijnt deze component.`}
+</Alert>
+
+Gebruik het `doormat`-component om een introductie tekst af te beelden op een pagina.
+
+## Voorbeeld
+
+```js
+import { VlDoormatElement } from '@domg-wc/elements';
+```
+
+```html
+<a is="vl-doormat" href="#"></<a is="vl-doormat" href="#">
+```
+
+<Canvas of={VlDoormatStories.DoormatDefault} />
+
+## Configuratie
+
+<ArgTypes of={VlDoormatStories.DoormatDefault} />
+
+## Varianten
+
+### Met afbeelding
+
+<Canvas of={VlDoormatStories.DoormatWithImage} />
+
+
+## Referenties
+
+[Documentatie Digitaal Vlaanderen - Doormat](https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-doormat)

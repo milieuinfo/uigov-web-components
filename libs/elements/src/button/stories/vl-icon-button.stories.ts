@@ -5,7 +5,14 @@ import { iconButtonArgs, iconButtonArgTypes } from './vl-icon-button.stories-arg
 // TODO vl-icon en vl-text
 
 export default {
-    title: 'Elements/button/icon-button',
+    id: 'Elements/button/icon-button',
+    title: 'Elements/button [deprecated]/icon-button',
+    parameters: {
+        templateData: {
+            alertText:
+                'Gebruik [vl-button-next](/docs/components-next-button--documentatie), in v2.0.0 verdwijnt deze component.',
+        },
+    },
     tags: ['autodocs'],
     args: { ...buttonArgs, ...iconButtonArgs },
     argTypes: { ...buttonArgTypes, ...iconButtonArgTypes },

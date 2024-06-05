@@ -1,9 +1,11 @@
 import { html } from 'lit-html';
 import '../vl-icon.element';
 import '../vl-icon-wrapper.element';
+import iconWrapperDocs from './vl-icon-wrapper.stories-doc.mdx';
 
 export default {
-    title: 'Elements/icon/icon-wrapper',
+    id: 'Elements/icon/icon-wrapper',
+    title: 'Elements/icon [deprecated]/icon-wrapper [deprecated]',
     tags: ['autodocs'],
     args: {
         wrappersAmount: 3,
@@ -12,6 +14,11 @@ export default {
         wrappersAmount: {
             name: 'amount of wrappers (for demo purposes)',
             control: { type: 'range', min: 1, max: 12, step: 1 },
+        },
+    },
+    parameters: {
+        docs: {
+            page: iconWrapperDocs,
         },
     },
 };

@@ -3,10 +3,17 @@ import { html } from 'lit-html';
 import { buttonArgs, buttonArgTypes } from './vl-button.stories-arg';
 
 export default {
-    title: 'Elements/button/button',
+    id: 'Elements/button/button',
+    title: 'Elements/button [deprecated]/button',
     tags: ['autodocs'],
     args: buttonArgs,
     argTypes: buttonArgTypes,
+    parameters: {
+        templateData: {
+            alertText:
+                'Gebruik [vl-button-next](/docs/components-next-button--documentatie), in v2.0.0 verdwijnt deze component.',
+        },
+    },
 };
 
 export const buttonDefault = (args: typeof buttonArgs) => html` <button

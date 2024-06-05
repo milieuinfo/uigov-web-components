@@ -3,7 +3,14 @@ import '../vl-link-button.element';
 import { buttonArgs, buttonArgTypes } from './vl-button.stories-arg';
 
 export default {
-    title: 'Elements/button/link-button',
+    id: 'Elements/button/link-button',
+    title: 'Elements/button [deprecated]/link-button',
+    parameters: {
+        templateData: {
+            alertText:
+                'Gebruik [vl-button-next](/docs/components-next-button--documentatie), in v2.0.0 verdwijnt deze component.',
+        },
+    },
     tags: ['autodocs'],
     args: { ...buttonArgs, content: 'Link button' },
     argTypes: buttonArgTypes,

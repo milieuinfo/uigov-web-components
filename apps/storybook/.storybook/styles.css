@@ -28,3 +28,28 @@ strong {
 .story--fixed-width {
     width: 800px;
 }
+
+h2#varianten {
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    border:inherit;
+    font-family: "Nunito Sans", -apple-system, ".SFNSText-Regular", "San Francisco", BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    margin: 20px 0 8px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-overflow-scrolling: touch;
+    cursor: text;
+    position: relative;
+    color: #2E3438;
+    padding: 0 0 4px;
+    border-bottom: 1px solid hsla(203, 50%, 30%, 0.15);
+}
+
+h2#configuratie + div:has(a[href="https://storybook.js.org/docs/react/essentials/controls"]),
+h2#configuratie:has(+ div a[href="https://storybook.js.org/docs/react/essentials/controls"]) {
+    display: none;
+}

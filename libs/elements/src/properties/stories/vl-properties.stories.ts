@@ -10,7 +10,8 @@ import '../vl-property-value.element';
 import { story } from '@domg-wc/common-storybook';
 
 export default {
-    title: 'Elements/properties',
+    id: 'Elements/properties',
+    title: 'Elements/properties [deprecated]',
     tags: ['autodocs'],
     argTypes: propertiesArgTypes,
     parameters: {

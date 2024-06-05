@@ -11,7 +11,8 @@ import formValidationDoc from './vl-form.stories-doc.mdx';
 import { formArgs, formArgTypes } from './vl-form.stories-arg';
 
 export default {
-    title: 'Elements/form',
+    id: 'Elements/form',
+    title: 'Elements/form [deprecated]',
     tags: ['autodocs'],
     args: formArgs,
     argTypes: formArgTypes,

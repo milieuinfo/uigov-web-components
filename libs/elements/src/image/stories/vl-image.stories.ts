@@ -4,6 +4,7 @@ import '../vl-image.element';
 export default {
     title: 'Elements/image',
     tags: ['autodocs'],
+    component: 'vl-image',
     parameters: {
         controls: { hideNoControlsWarning: true },
     },

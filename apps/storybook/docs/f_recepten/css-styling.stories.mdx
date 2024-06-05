@@ -30,11 +30,13 @@ class RegisterStyles {
 
 ## Custom CSS
 
+<Alert type="warning">
+{`Je kan de styling van DV breken bij het gebruik hiervan!`}
+</Alert>
+
 Voor de componenten onder `map`, `form` en `components` is het mogelijk om een custom CSS-string mee te geven aan het
 attribuut `data-vl-custom-css`. Deze CSS wordt dan toegevoegd aan de adoptedStyleSheets van de shadow DOM van
 de desbetreffende component.
-
-> Opgelet bij het gebruik hiervan, hierdoor kan je de styling van DV breken!
 
 ```html
 <vl-accordion-list data-vl-custom-css=".vl-accordion-list {border: 10px solid lightblue}">

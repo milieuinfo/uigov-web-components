@@ -5,7 +5,8 @@ import '../vl-radio.component';
 import { radioArgs, radioArgTypes } from './vl-radio.stories-arg';
 
 export default {
-    title: 'Components/radio',
+    id: 'Components/radio',
+    title: 'Components/radio [deprecated]',
     tags: ['autodocs'],
     args: radioArgs,
     argTypes: radioArgTypes,

@@ -10,8 +10,14 @@ const getLastElement = (element: any) => {
 };
 
 export default {
-    title: 'Components/toggle-button',
+    title: 'Components/toggle-button [deprecated]',
     tags: ['autodocs'],
+    parameters: {
+        templateData: {
+            alertText:
+                'Gebruik [vl-button-next](/docs/components-next-button--documentatie), in v2.0.0 verdwijnt deze component.',
+        },
+    },
     args: toggleButtonArgs,
     argTypes: toggleButtonArgTypes,
 } as Meta<typeof toggleButtonArgs>;

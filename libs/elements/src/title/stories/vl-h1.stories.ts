@@ -3,10 +3,17 @@ import '../vl-h1.element';
 import { titleArgs, titleArgTypes } from './vl-title.stories-arg';
 
 export default {
-    title: 'Elements/title/h1',
+    id: 'Elements/title/h1',
+    title: 'Elements/title [deprecated]/h1',
     tags: ['autodocs'],
     args: titleArgs,
     argTypes: titleArgTypes,
+    parameters: {
+        templateData: {
+            alertText:
+                'Gebruik de [vl-title-next](/docs/components-next-title--documentatie), in v2.0.0 verdwijnt deze component.',
+        },
+    },
 };
 
 export const titleH1 = ({ border, content, sans, alt, noSpaceBottom }: typeof titleArgs) =>

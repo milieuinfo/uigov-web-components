@@ -45,7 +45,7 @@ export const filterOutClasses = (input: string) => {
 };
 
 export const filterOutStoryClasses = (input: string) => {
-    // nieuwe regex: verwijderd allen class attributes van de storybook componenten die beginnen met 'story--'
+    // verwijdert alle class attributes van de storybook componenten die beginnen met 'story--'
     return input?.replace(/ class="story--.*?"/g, '');
 };
 

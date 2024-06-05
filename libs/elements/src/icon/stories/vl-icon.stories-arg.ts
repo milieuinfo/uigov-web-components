@@ -1,9 +1,11 @@
 import '../vl-icon.element';
 import { CONTROLS, getSelectControlOptions } from '@domg-wc/common-storybook';
+import { ArgTypes } from '@storybook/web-components';
 
 export const iconArgs = {
     icon: 'calendar',
     size: '',
+    link: '',
     light: false,
     rotate: false,
     fullRotate: false,
@@ -12,7 +14,7 @@ export const iconArgs = {
     content: 'Lorem ipsum dolor sit amet',
 };
 
-export const iconArgTypes = {
+export const iconArgTypes: ArgTypes<typeof iconArgs> = {
     icon: {
         name: 'data-vl-icon',
         control: { type: CONTROLS.SELECT },
@@ -36,66 +38,66 @@ export const iconArgTypes = {
     },
     light: {
         name: 'data-vl-light',
-        type: { summary: 'boolean' },
         description: 'Attribuut wordt gebruikt om het icoon een lichte kleur te geven.',
         table: {
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
     rotate: {
         name: 'data-vl-90deg',
-        type: { summary: 'boolean' },
         description: 'Attribuut wordt gebruikt om het icoon 90 graden te roteren.',
         table: {
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
     fullRotate: {
         name: 'data-vl-180deg',
-        type: { summary: 'boolean' },
         description: 'Attribuut wordt gebruikt om het icoon 180 graden te roteren.',
         table: {
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
     before: {
         name: 'data-vl-before',
-        type: { summary: 'boolean' },
         description:
             'Attribuut wordt gebruikt wanneer het icoon voor een tekst staat en er wat ruimte tussen het icoon en de tekst getoond moet worden.',
         control: {
             disable: true,
         },
         table: {
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
     after: {
         name: 'data-vl-after',
-        type: { summary: 'boolean' },
         description:
             'Attribuut wordt gebruikt wanneer het icoon achter een tekst staat en er wat ruimte tussen het icoon en de tekst getoond moet worden.',
         control: {
             disable: true,
         },
         table: {
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
     link: {
         name: 'data-vl-link',
-        type: { summary: 'boolean' },
         description:
             'Attribuut moet gebruikt worden wanneer het icoon binnen een a tag gebruikt wordt zodat de stijl goed is.',
         control: {
             disable: true,
         },
         table: {
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
     content: {
         name: 'content (for demo purposes)',
-        type: { summary: 'string' },
+        table: { summary: 'string' },
     },
 };
