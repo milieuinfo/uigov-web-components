@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import '../vl-form-annotation.element';
 
 export default {
-    title: 'Elements/form-message/form-annotation',
+    title: 'Elements/form-message/form-annotation [deprecated]',
     tags: ['autodocs'],
 };
 
