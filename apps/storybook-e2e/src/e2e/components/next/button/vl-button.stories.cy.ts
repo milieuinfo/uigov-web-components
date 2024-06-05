@@ -13,6 +13,9 @@ const buttonNextWideUrl = 'http://localhost:8080/iframe.html?id=components-next-
 const buttonNextNarrowUrl = 'http://localhost:8080/iframe.html?id=components-next-button--button-narrow&viewMode=story';
 const buttonNextLoadingUrl =
     'http://localhost:8080/iframe.html?id=components-next-button--button-loading&viewMode=story';
+const buttonNextIconUrl = 'http://localhost:8080/iframe.html?id=components-next-button--button-icon&viewMode=story';
+const buttonNextIconOnlyUrl =
+    'http://localhost:8080/iframe.html?id=components-next-button--button-icon-only&viewMode=story';
 const buttonNextToggleUrl = 'http://localhost:8080/iframe.html?id=components-next-button--button-toggle&viewMode=story';
 
 describe('story - vl-button-next - default', () => {
@@ -90,6 +93,22 @@ describe('story - vl-button-next - narrow', () => {
 describe('story - vl-button-next - loading', () => {
     it('should render', () => {
         cy.visit(buttonNextLoadingUrl);
+
+        cy.get('vl-button-next').shadow().find('button');
+    });
+});
+
+describe('story - vl-button-next - icon', () => {
+    it('should render', () => {
+        cy.visit(buttonNextIconUrl);
+
+        cy.get('vl-button-next').shadow().find('button');
+    });
+});
+
+describe('story - vl-button-next - icon only', () => {
+    it('should render', () => {
+        cy.visit(buttonNextIconOnlyUrl);
 
         cy.get('vl-button-next').shadow().find('button');
     });

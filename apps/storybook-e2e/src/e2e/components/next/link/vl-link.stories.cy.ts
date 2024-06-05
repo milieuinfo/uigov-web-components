@@ -4,6 +4,7 @@ const linkNextSmallUrl = 'http://localhost:8080/iframe.html?id=components-next-l
 const linkNextLargeUrl = 'http://localhost:8080/iframe.html?id=components-next-link--link-large&viewMode=story';
 const linkNextErrorUrl = 'http://localhost:8080/iframe.html?id=components-next-link--link-error&viewMode=story';
 const linkNextExternalUrl = 'http://localhost:8080/iframe.html?id=components-next-link--link-external&viewMode=story';
+const linkNextIconUrl = 'http://localhost:8080/iframe.html?id=components-next-link--link-icon&viewMode=story';
 
 describe('story - vl-link-next - default', () => {
     it('should render', () => {
@@ -48,6 +49,14 @@ describe('story - vl-link-next - error', () => {
 describe('story - vl-link-next - external', () => {
     it('should render', () => {
         cy.visit(linkNextExternalUrl);
+
+        cy.get('vl-link-next').shadow().find('a');
+    });
+});
+
+describe('story - vl-link-next - icon', () => {
+    it('should render', () => {
+        cy.visit(linkNextIconUrl);
 
         cy.get('vl-link-next').shadow().find('a');
     });

@@ -23,7 +23,7 @@ export default {
 
 const LinkTemplate = story(
     linkArgs,
-    ({ href, bold, small, large, error, external, defaultSlot }) =>
+    ({ href, bold, small, large, error, external, icon, iconPlacement, defaultSlot }) =>
         html`
             <vl-link-next
                 href=${href}
@@ -32,6 +32,8 @@ const LinkTemplate = story(
                 ?large=${large}
                 ?error=${error}
                 ?external=${external}
+                icon=${icon}
+                icon-placement=${iconPlacement}
                 >${unsafeHTML(defaultSlot)}</vl-link-next
             >
         `
@@ -82,4 +84,12 @@ LinkExternal.args = {
     href: 'https://www.vlaanderen.be',
     defaultSlot: 'Vlaanderen',
     external: true,
+};
+
+export const LinkIcon = LinkTemplate.bind({});
+LinkIcon.storyName = 'vl-link-next - icon';
+LinkIcon.args = {
+    href: 'https://www.vlaanderen.be',
+    defaultSlot: 'Vlaanderen',
+    icon: 'arrow-right-fat',
 };

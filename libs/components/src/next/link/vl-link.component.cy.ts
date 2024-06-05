@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { ICON_PLACEMENT, registerWebComponents } from '@domg-wc/common-utilities';
 import { VlLinkComponent } from './vl-link.component';
 
 registerWebComponents([VlLinkComponent]);
@@ -58,6 +58,31 @@ describe('component - vl-link-next', () => {
 
         cy.get('vl-link-next').should('have.attr', 'external');
         cy.get('vl-link-next').shadow().find('a').should('have.attr', 'target', '_blank');
+    });
+
+    it('should set icon', () => {
+        cy.mount(html`<vl-link-next icon="pin">Vlaanderen</vl-link-next>`);
+
+        cy.get('vl-link-next').should('have.attr', 'icon', 'pin');
+        cy.get('vl-link-next')
+            .shadow()
+            .find('a')
+            .find('span.vl-icon')
+            .should('have.class', 'vl-icon--pin')
+            .should('have.class', 'vl-icon--right-margin');
+    });
+
+    it('should set icon-placement', () => {
+        cy.mount(html`<vl-link-next icon="pin" icon-placement=${ICON_PLACEMENT.AFTER}>Vlaanderen</vl-link-next>`);
+
+        cy.get('vl-link-next').should('have.attr', 'icon', 'pin');
+        cy.get('vl-link-next').should('have.attr', 'icon-placement', ICON_PLACEMENT.AFTER);
+        cy.get('vl-link-next')
+            .shadow()
+            .find('a')
+            .find('span.vl-icon')
+            .should('have.class', 'vl-icon--pin')
+            .should('have.class', 'vl-icon--left-margin');
     });
 
     it('should set content', () => {
