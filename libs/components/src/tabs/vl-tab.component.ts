@@ -7,7 +7,7 @@ export class VlTabComponent extends BaseElementOfType(HTMLLIElement) {
     }
 
     static get _observedAttributes() {
-        return ['href', 'id', 'disable-link'];
+        return ['href', 'id', 'disable-link', 'within-functional-header'];
     }
 
     constructor() {
@@ -66,6 +66,14 @@ export class VlTabComponent extends BaseElementOfType(HTMLLIElement) {
 
     _idChangedCallback(oldValue: string, newValue: string) {
         this.__linkElement.id = newValue;
+    }
+
+    _withinFunctionalHeaderChangedCallback(oldValue: string, newValue: string) {
+        if (newValue != undefined) {
+            this.__linkElement.classList.add('vl-link');
+        } else {
+            this.__linkElement.classList.remove('vl-link');
+        }
     }
 }
 
