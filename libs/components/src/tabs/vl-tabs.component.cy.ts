@@ -159,7 +159,7 @@ describe('component vl-tabs - attributes', () => {
             .shadow()
             .find('div#tabs > div#tabs-wrapper > ul#tab-list > li')
             .each(($el) => {
-                expect($el.css('display')).to.eq('block');
+                expect($el.css('display')).to.eq('inline-block');
             });
     });
 
@@ -171,7 +171,7 @@ describe('component vl-tabs - attributes', () => {
             .shadow()
             .find('div#tabs > div#tabs-wrapper > ul#tab-list > li')
             .each(($el) => {
-                expect($el.css('display')).to.eq('inline-block');
+                expect($el.css('display')).to.eq('block');
             });
     });
 
