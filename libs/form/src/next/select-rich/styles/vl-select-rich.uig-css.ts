@@ -67,5 +67,13 @@ const styles: CSSResult = css`
         top: 50%;
         transform: translateY(-50%);
     }
+
+    .js-vl-select.is-disabled .vl-select__list--multiple .vl-select__item {
+        padding-right: 1.4rem;
+
+        .vl-pill__close {
+            display: none;
+        }
+    }
 `;
 export default styles;
