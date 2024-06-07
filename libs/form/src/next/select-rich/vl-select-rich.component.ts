@@ -151,11 +151,6 @@ export class VlSelectRichComponent extends FormControl {
             }
         }
 
-        if (changedProperties.has('notDeletable')) {
-            this.choices.config.removeItemButton = !this.notDeletable;
-            this.choices.config.removeItems = !this.notDeletable;
-        }
-
         if (changedProperties.has('error')) {
             (this.internals as ElementInternals).setValidity({ customError: this.error }, 'custom-error');
         }
@@ -246,6 +241,7 @@ export class VlSelectRichComponent extends FormControl {
             placeholderValue: this.placeholder,
             position: this.position,
             noResultsText: this.noResultsText,
+            searchResultLimit: this.resultLimit,
             noChoicesText: this.noChoicesText,
             searchPlaceholderValue: this.searchPlaceholder,
             classNames: {
