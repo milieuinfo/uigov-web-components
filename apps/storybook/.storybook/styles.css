@@ -3,18 +3,18 @@ ol, ul {
 }
 
 ol {
-    list-style-type: decimal !important; 
+    list-style-type: decimal !important;
 }
 
 strong {
     font-weight: bold !important;
 }
 
-.sb-story {
+.sb-story, #storybook-root {
     ol, ul {
         list-style: none !important;
     }
-    
+
     strong {
         font-weight: 500 !important;
     }
