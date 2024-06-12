@@ -1,6 +1,6 @@
 import { css, CSSResult } from 'lit';
-import { mediaQuerySmall } from '@domg-wc/common-utilities/css/mixin/media-queries.mixin.css';
-import { focusOutline } from '@domg-wc/common-utilities/css/mixin/outline.mixin.css';
+import { focusOutline } from '../mixin/outline.mixin.css';
+import { mediaQuerySmall } from '../mixin/media-queries.mixin.css';
 
 const styles: CSSResult = css`
     a {

@@ -24,3 +24,7 @@ strong {
     display: flex;
     align-items: center;
 }
+
+.story--fixed-width {
+    width: 800px;
+}

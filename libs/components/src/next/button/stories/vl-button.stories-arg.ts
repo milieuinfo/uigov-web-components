@@ -1,12 +1,21 @@
-import { CATEGORIES, CONTROLS, TYPES, getSelectControlOptions } from '@domg-wc/common-storybook';
+import {
+    CATEGORIES,
+    CONTROLS,
+    TYPES,
+    defaultArgs,
+    defaultArgTypes,
+    getSelectControlOptions,
+} from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import { buttonDefaults } from '../vl-button.component';
 import { action } from '@storybook/addon-actions';
 import { ICON_PLACEMENT } from '@domg-wc/common-utilities';
 
-type ButtonArgs = typeof buttonDefaults & { defaultSlot: string; onVlClick: () => void; onVlToggle: () => void };
+type ButtonArgs = typeof defaultArgs &
+    typeof buttonDefaults & { defaultSlot: string; onVlClick: () => void; onVlToggle: () => void };
 
 export const buttonArgs: ButtonArgs = {
+    ...defaultArgs,
     ...buttonDefaults,
     defaultSlot: '',
     onVlClick: action('vl-click'),
@@ -14,6 +23,7 @@ export const buttonArgs: ButtonArgs = {
 };
 
 export const buttonArgTypes: ArgTypes<ButtonArgs> = {
+    ...defaultArgTypes(true),
     type: {
         name: 'type',
         description: 'Het type van de button.',
