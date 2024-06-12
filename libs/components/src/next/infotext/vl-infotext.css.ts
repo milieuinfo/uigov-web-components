@@ -22,7 +22,7 @@ const styles: CSSResult = css`
 
         &.vl-infotext--badge {
             background-color: var(--vl-background-alt-color);
-            border: 1px solid var(--vl-border-color);
+            border: 1px solid var(--vl-alt-border-color);
             border-radius: 50%;
             width: 14rem;
             height: 14rem;

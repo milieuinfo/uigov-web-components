@@ -1,9 +1,9 @@
 import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import linkStyle from './vl-link.css';
-import iconStyle from '@domg-wc/common-utilities/css/icon/icon.css';
-import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 import { classMap } from 'lit/directives/class-map.js';
+import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-decorator';
+import linkStyle from '@domg-wc/common-utilities/css/link/link.css';
+import iconStyle from '@domg-wc/common-utilities/css/icon/icon.css';
 import { ICON_PLACEMENT } from '@domg-wc/common-utilities';
 
 export const linkDefaults = {

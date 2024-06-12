@@ -5,7 +5,7 @@ import { VlLinkComponent } from '../vl-link.component';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { linkArgTypes, linkArgs } from './vl-link.stories-arg';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import linkDoc from './vl-link-stories-doc.mdx';
+import linkDoc from './vl-link.stories-doc.mdx';
 
 registerWebComponents([VlLinkComponent]);
 

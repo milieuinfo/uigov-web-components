@@ -1,103 +1,34 @@
 import { css, CSSResult } from 'lit';
-import { mediaQueryMedium, mediaQuerySmall } from '@domg-wc/common-utilities/css/mixin/media-queries.mixin.css';
+import { mediaQuerySmall } from '@domg-wc/common-utilities/css/mixin/media-queries.mixin.css';
+import { title } from '@domg-wc/common-utilities/css/mixin/title.mixin.css';
 
 const headingList = [1, 2, 3, 4, 5, 6];
 
 const styles: CSSResult[] = [
     css`
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            /* Reset styles (gebaseerd op DV _reset.scss) */
-            margin: 0;
-            border: 0;
-            padding: 0;
-            vertical-align: baseline;
-
-            /* Title styles (gebaseerd op DV vl-ui-titles/src/scss/_titles.scss) */
-            font-weight: 500;
-        }
-
         h1 {
-            font-size: 4.4rem;
-            margin-bottom: 6rem;
-            line-height: 1.18;
+            ${title(1)}
         }
 
         h2 {
-            font-size: 3.2rem;
-            margin-bottom: 2rem;
-            line-height: 1.24;
+            ${title(2)}
         }
 
         h3 {
-            font-size: 2.6rem;
-            margin-bottom: 2rem;
-            line-height: 1.3;
+            ${title(3)}
         }
 
         h4 {
-            font-size: 2.2rem;
-            margin-bottom: 1.8rem;
-            line-height: 1.36;
+            ${title(4)}
         }
 
         h5 {
-            font-size: 2rem;
-            margin-bottom: 1.6rem;
-            line-height: 1.4;
+            ${title(5)}
         }
 
         h6 {
-            font-size: 1.8rem;
-            margin-bottom: 1.4rem;
-            line-height: 1.44;
+            ${title(6)}
         }
-
-        ${mediaQueryMedium(
-            css`
-                h1 {
-                    font-size: 4rem;
-                    margin-bottom: 4.5rem;
-                }
-            `
-        )}
-        ${mediaQuerySmall(
-            css`
-                h1 {
-                    font-size: 3rem;
-                    margin-bottom: 3rem;
-                }
-
-                h2 {
-                    font-size: 2.6rem;
-                    margin-bottom: 1.5rem;
-                }
-
-                h3 {
-                    font-size: 2.2rem;
-                    margin-bottom: 1.5rem;
-                }
-
-                h4 {
-                    font-size: 2rem;
-                    margin-bottom: 1.4rem;
-                }
-
-                h5 {
-                    font-size: 1.8rem;
-                    margin-bottom: 1.2rem;
-                }
-
-                h6 {
-                    font-size: 1.8rem;
-                    margin-bottom: 1rem;
-                }
-            `
-        )}
     `,
     ...headingList.map(
         (heading) =>

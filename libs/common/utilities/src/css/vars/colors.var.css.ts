@@ -9,12 +9,15 @@ const styles: CSSResult = css`
         --vl-background-color: var(--vl-white);
         --vl-map-background-color: #ffffff;
         --vl-background-alt-color: #f7f9fc;
+        --vl-accent-color: #ffe615;
 
         --vl-text-color: #333332;
         --vl-text-alt-color: #687483;
         --vl-light-text-color: #8695a8;
 
-        --vl-border-color: #8695a8;
+        --vl-border-color: #cbd2da;
+        --vl-alt-border-color: #8695a8;
+        --vl-doormat-graphic-border-color: #33333233;
 
         --vl-action-color: #0055cc;
         --vl-action-color--hover: #003bb0;

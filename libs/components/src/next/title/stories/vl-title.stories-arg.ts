@@ -2,7 +2,7 @@ import { CATEGORIES, CONTROLS, defaultArgs, defaultArgTypes, TYPES } from '@domg
 import { ArgTypes } from '@storybook/web-components';
 import { titleDefaults } from '../vl-title.component';
 
-export type TitleArgs = typeof titleDefaults & typeof defaultArgs & { defaultSlot: string };
+export type TitleArgs = typeof defaultArgs & typeof titleDefaults & { defaultSlot: string };
 
 export const titleArgs: TitleArgs = {
     ...defaultArgs,
