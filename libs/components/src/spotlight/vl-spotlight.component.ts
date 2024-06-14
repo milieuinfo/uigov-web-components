@@ -1,11 +1,21 @@
-import { css, html, unsafeCSS } from 'lit';
+import { css, html, nothing, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import styles from './vl-spotlight.uig-css';
 import { SIZE } from './vl-spotlight.model';
 import { BaseLitElement } from '@domg-wc/common-utilities';
+import { classMap } from 'lit/directives/class-map.js';
 
 @customElement('vl-spotlight')
 export class VlSpotlight extends BaseLitElement {
+    // Attributes
+    private link = '';
+    private external = false;
+    private alt = false;
+    private noBorder = false;
+    private size = '';
+    private imgSrc = '';
+    private imgAlt = '';
+
     static get styles() {
         return [
             css`
@@ -14,20 +24,24 @@ export class VlSpotlight extends BaseLitElement {
         ];
     }
 
-    constructor() {
-        super();
-        this.alt = false;
-    }
-
     static get properties() {
         return {
             link: {
                 type: String,
                 attribute: 'data-vl-link',
             },
+            external: {
+                type: Boolean,
+                attribute: 'data-vl-external',
+            },
             alt: {
                 type: Boolean,
                 attribute: 'data-vl-alt',
+                reflect: true,
+            },
+            noBorder: {
+                type: Boolean,
+                attribute: 'data-vl-no-border',
                 reflect: true,
             },
             size: {
@@ -45,12 +59,6 @@ export class VlSpotlight extends BaseLitElement {
             },
         };
     }
-
-    private link = '';
-    private alt = false;
-    private size = '';
-    private imgSrc = '';
-    private imgAlt = '';
 
     __getSlot(slotName: string) {
         return html` <slot name="${slotName}"></slot>`;
@@ -100,28 +108,33 @@ export class VlSpotlight extends BaseLitElement {
     }
 
     render() {
+        const classes = {
+            'vl-spotlight': true,
+            'vl-spotlight--alt': this.alt,
+            'vl-spotlight--xs': this.size === SIZE.XS,
+            'vl-spotlight--s': this.size === SIZE.S,
+            'vl-spotlight--l': this.size === SIZE.L,
+            'vl-spotlight--no-border': this.noBorder,
+        };
         if (this.link) {
-            return html`<a href="${this.link}" class="${this.__applySpotlightStyling()}">
+            return html`<a
+                href="${this.link}"
+                class="${classMap(classes)}"
+                target=${this.external ? '_blank' : nothing}
+            >
                 <article role="none">
                     ${this.__processHeader()} ${this.__processSlotTitle()} ${this.__processSlotSubTitle()}
                     ${this.__processSlotContent()} ${this.__processSlotText()}
                 </article>
             </a>`;
         }
-        return html` <article class="${this.__applySpotlightStyling()}" role="none">
-            ${this.__processHeader()} ${this.__processSlotTitle()} ${this.__processSlotSubTitle()}
-            ${this.__processSlotContent()} ${this.__processSlotText()}
-        </article>`;
+        return html`
+            <article class="${classMap(classes)}" role="none">
+                ${this.__processHeader()} ${this.__processSlotTitle()} ${this.__processSlotSubTitle()}
+                ${this.__processSlotContent()} ${this.__processSlotText()}
+            </article>
+        `;
     }
-
-    __applySpotlightStyling() {
-        const small = this.size === SIZE.S;
-        const xSmall = this.size === SIZE.XS;
-        const large = this.size === SIZE.L;
-        return `vl-spotlight ${this.alt ? 'vl-spotlight--alt' : ''} ${xSmall ? 'vl-spotlight--xs' : ''}
-    ${small ? 'vl-spotlight--s' : ''} ${large ? 'vl-spotlight--l' : ''}`;
-    }
-
     __processHeader() {
         if (!this.imgSrc) return html``;
         return html` <header role="none" class="vl-spotlight__header">
