@@ -3,56 +3,71 @@ import { html } from 'lit-html';
 import '../vl-spotlight.component';
 import { SIZE } from '../vl-spotlight.model';
 import { spotlightArgs, spotlightArgTypes } from './vl-spotlight.stories-arg';
+import { story } from '@domg-wc/common-storybook';
+import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlDocumentComponent } from '../../document/index';
+
+registerWebComponents([VlDocumentComponent]);
 
 export default {
     title: 'components/spotlight',
     tags: ['autodocs'],
     args: spotlightArgs,
     argTypes: spotlightArgTypes,
-    parameters: {
-        controls: {
-            hideNoControlsWarning: true,
-        },
-    },
 } as Meta<typeof spotlightArgs>;
 
-const spotlightTemplate = ({
-    link,
-    alt,
-    size,
-    imgSrc,
-    imgAlt,
-    title,
-    subtitle,
-    text,
-    content,
-}: typeof spotlightArgs) => html`
-    <vl-spotlight
-        data-vl-link=${link}
-        ?data-vl-alt=${alt}
-        data-vl-size=${size}
-        data-vl-img-src=${imgSrc}
-        data-vl-img-alt=${imgAlt}
-    >
-        ${title ? html`<span slot="title"> ${title} </span>` : ``}
-        ${subtitle ? html`<span slot="subtitle"> ${subtitle} </span>` : ``}
-        ${text ? html`<span slot="text"> ${text} </span>` : ``}
-        ${content ? html`<span slot="content"> ${content} </span>` : ``}
-    </vl-spotlight>
-`;
-export const spotLightDefault: any = spotlightTemplate.bind({});
-spotLightDefault.storyName = 'vl-spotlight - default';
-
-export const spotlightWithLink = () => html`
-    <vl-spotlight data-vl-link="http://www.google.com">
-        <span slot="title">
-            Premies voor renovatie
-            <span class="vl-icon vl-icon--light vl-vi vl-vi-external"></span>
-            <span class="vl-u-visually-hidden">Opent in nieuw venster</span>
-        </span>
-    </vl-spotlight>
-`;
-spotlightWithLink.storyName = 'vl-spotlight - with link';
+const spotlightTemplate = story(
+    spotlightArgs,
+    ({
+        link,
+        alt,
+        size,
+        imgSrc,
+        imgAlt,
+        title,
+        subtitle,
+        text,
+        content,
+        external,
+        noBorder,
+    }: typeof spotlightArgs) => html`
+        <vl-spotlight
+            data-vl-link=${link}
+            ?data-vl-alt=${alt}
+            ?data-vl-no-border=${noBorder}
+            ?data-vl-external=${external}
+            data-vl-size=${size}
+            data-vl-img-src=${imgSrc}
+            data-vl-img-alt=${imgAlt}
+        >
+            ${title ? html`<span slot="title"> ${title} </span>` : ``}
+            ${subtitle ? html`<span slot="subtitle"> ${subtitle} </span>` : ``}
+            ${text ? html`<span slot="text"> ${text} </span>` : ``}
+            ${content ? html`<span slot="content"> ${content} </span>` : ``}
+        </vl-spotlight>
+    `
+);
+export const SpotLightDefault = spotlightTemplate.bind({});
+SpotLightDefault.storyName = 'vl-spotlight - default';
+SpotLightDefault.args = { title: 'Premies voor renovatie' };
+export const SpotlightWithLink = story(
+    spotlightArgs,
+    ({ external }: typeof spotlightArgs) => html`
+        <vl-spotlight data-vl-link="http://www.google.com" ?data-vl-external=${external}>
+            <span slot="title">
+                Premies voor renovatie
+                <span class="vl-icon vl-icon--light vl-vi vl-vi-external"></span>
+                <span class="vl-u-visually-hidden">Opent in nieuw venster</span>
+            </span>
+        </vl-spotlight>
+    `
+);
+SpotlightWithLink.storyName = 'vl-spotlight - with link';
+SpotlightWithLink.parameters = {
+    controls: {
+        include: ['data-vl-external'],
+    },
+};
 
 export const spotlightNoLink = () => html`
     <vl-spotlight>
@@ -60,16 +75,11 @@ export const spotlightNoLink = () => html`
     </vl-spotlight>
 `;
 spotlightNoLink.storyName = 'vl-spotlight - no link';
+spotlightNoLink.parameters = { controls: { disable: true } };
 
-export const spotlightWithContent = () => html`
+export const SpotlightWithContent = () => html`
     <vl-spotlight data-vl-link="https://google.be" data-vl-alt data-vl-size="${SIZE.S}">
-        <span slot="title">
-            Verslag bestuursvergadering
-            <br />
-            <br />
-            <br />
-            <br />
-        </span>
+        <span slot="title"> Verslag bestuursvergadering </span>
         <vl-document slot="content">
             <span slot="type">DOCX</span>
             <span slot="title">document</span>
@@ -77,9 +87,10 @@ export const spotlightWithContent = () => html`
         </vl-document>
     </vl-spotlight>
 `;
-spotlightWithContent.storyName = 'vl-spotlight - with content';
+SpotlightWithContent.storyName = 'vl-spotlight - with content';
+SpotlightWithContent.parameters = { controls: { disable: true } };
 
-export const spotlightWithText = () => html`
+export const SpotlightWithText = () => html`
     <vl-spotlight data-vl-link="https://google.be">
         <span slot="title">
             Premies voor renovatie
@@ -92,9 +103,10 @@ export const spotlightWithText = () => html`
         >
     </vl-spotlight>
 `;
-spotlightWithText.storyName = 'vl-spotlight - with text';
+SpotlightWithText.storyName = 'vl-spotlight - with text';
+SpotlightWithText.parameters = { controls: { disable: true } };
 
-export const spotlightWithImage = () => html`
+export const SpotlightWithImage = () => html`
     <vl-spotlight
         data-vl-img-src="//d201gzvprbtpxy.cloudfront.net/sites/default/files/styles/medium/public/images/vla_themateaser_350_dakisolatie.jpg?itok=cKDE21Pe"
         data-vl-img-alt="spotlight image"
@@ -107,9 +119,11 @@ export const spotlightWithImage = () => html`
         >
     </vl-spotlight>
 `;
-spotlightWithImage.storyName = 'vl-spotlight - with image';
+SpotlightWithImage.storyName = 'vl-spotlight - with image';
+SpotlightWithImage.parameters = { controls: { disable: true } };
+SpotlightWithImage.decorators = [(story: () => unknown) => html` <div style="width: 600px;">${story()}</div>`];
 
-export const spotlightWithSubtitle = () => html`
+export const SpotlightWithSubtitle = () => html`
     <vl-spotlight data-vl-link="https://google.be">
         <span slot="title">Communicatiespecialist te Willebroek - contract 1 jaar</span>
         <span slot="subtitle">Niveau A (universitair diploma)</span>
@@ -122,4 +136,5 @@ export const spotlightWithSubtitle = () => html`
         </span>
     </vl-spotlight>
 `;
-spotlightWithSubtitle.storyName = 'vl-spotlight - with subtitle';
+SpotlightWithSubtitle.storyName = 'vl-spotlight - with subtitle';
+SpotlightWithSubtitle.parameters = { controls: { disable: true } };
