@@ -3,7 +3,7 @@
 # exit on error
 set -e
 
-echo 'RUNNING SCRIPT: unit-wct-component-integrator-tests.sh'
+echo 'RUNNING SCRIPT: unit-component-integrator-tests.sh'
 cd uigov-web-components
 
 echo "npm install - no 'ci' to avoid the clean"

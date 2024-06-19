@@ -37,18 +37,6 @@
                 "jestConfig": "libs/map/jest.config.ts",
                 "passWithNoTests": true
             }
-        },
-        "wct": {
-            "executor": "nx:run-commands",
-            "options": {
-                "command": "web-test-runner \"dist/libs/map/**/*.wctest.js\" --playwright --browsers chromium"
-            }
-        },
-        "wctdetail": {
-            "executor": "nx:run-commands",
-            "options": {
-                "command": "web-test-runner \"dist/libs/map/**/*.wctest.js\""
-            }
         }
     },
     "tags": []

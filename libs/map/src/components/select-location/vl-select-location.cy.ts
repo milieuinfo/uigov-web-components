@@ -331,7 +331,7 @@ describe('vl-select-location', () => {
         cy.runTestFor<VlSelectLocation>('select', (vlSelectLocation) => {
             vlSelectLocation.addEventListener('change', () => null);
             vlSelectLocation.dispatchEvent(new CustomEvent('choice'));
-            // zo gemigreerd van wct, maar er wordt hier niets getest
+            // zo gemigreerd van de vorige testen, maar er wordt hier niets getest
         });
     });
 });
