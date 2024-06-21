@@ -1,3 +1,23 @@
+# [1.34.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.33.0...v1.34.0) (2024-06-21)
+
+
+### Bug Fixes
+
+* UIG-2807 - vl-functional-header - tabs styling ([5ed0042](https://github.com/milieuinfo/uigov-web-components/commit/5ed004252f70de8572f2bf4a87041d875060c234))
+* UIG-3004 - vl-textarea-rich-next link popup in vl-side-sheet ([d84a3b3](https://github.com/milieuinfo/uigov-web-components/commit/d84a3b3628ef7c46fc6e77db38c6debb748cb13b))
+* UIG-3008 - storybook - list style verwijderd in canvas tab ([623b17d](https://github.com/milieuinfo/uigov-web-components/commit/623b17dcd4e81f9935b828b92e32eb2c80d7cded))
+
+
+### Features
+
+* UIG-2842 - storybook - form documentatie uitgebreid ([a8d1de3](https://github.com/milieuinfo/uigov-web-components/commit/a8d1de3eec3047e353e8f8673210bf76beb6a15e))
+* UIG-2911 - vl-doormat - introductie component ([50051e1](https://github.com/milieuinfo/uigov-web-components/commit/50051e16dae7d1e4dc5bf5e8dbbb6577cfdcb275))
+* UIG-2917 - vl-icon - introductie component ([6d26f68](https://github.com/milieuinfo/uigov-web-components/commit/6d26f683b3f0e8a20990d438916d6988fd1c3786))
+* UIG-3016 - vl-select-rich - verberg delete knop bij disabled ([51b5501](https://github.com/milieuinfo/uigov-web-components/commit/51b5501e797de15e4d2467b79ae8515a86f2805b))
+* UIG-3018 - form-control - null als default value ingesteld waar relevant ([07297fc](https://github.com/milieuinfo/uigov-web-components/commit/07297fce3270ae3b3b17abd8e183025759ceb273))
+* UIG-3020 - open-wc testen omgezet naar Cypress component testen ([bc28487](https://github.com/milieuinfo/uigov-web-components/commit/bc28487b386209b6b64bd6aa84d92cf87082f025))
+* UIG-3036 - vl-spotlight - external-link en no-border attributen toegevoegd ([56c4228](https://github.com/milieuinfo/uigov-web-components/commit/56c422806c7c492f67019f04b51b17a34e2b9b39))
+
 # [1.33.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.32.0...v1.33.0) (2024-05-30)
 
 
