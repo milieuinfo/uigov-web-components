@@ -379,6 +379,38 @@ describe('component - vl-datepicker-next - in form', () => {
         cy.checkA11y('vl-datepicker-next');
     });
 
+    it('should set empty value', () => {
+        const initialValue = createIsoDateString({ day: 2, month: 12, year: 2021 });
+
+        mountDatepickerInForm({ ...datepickerDefaults, value: initialValue, block: true });
+        cy.get('form').then((form$) => {
+            form$.on('submit', (e) => {
+                e.preventDefault();
+            });
+        });
+        cy.injectAxe();
+
+        cy.get('vl-datepicker-next').shadow();
+        cy.get('vl-datepicker-next').should('have.value', initialValue);
+        cy.get('vl-datepicker-next').shadow().find('input').should('have.value', '02.12.2021');
+        cy.checkA11y('vl-datepicker-next');
+
+        cy.get('vl-datepicker-next').invoke('attr', 'value', '');
+        cy.get('vl-datepicker-next').should('not.have.value');
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', '');
+        cy.checkA11y('vl-datepicker-next');
+
+        cy.get('vl-datepicker-next').invoke('attr', 'value', initialValue);
+        cy.get('vl-datepicker-next').should('have.value', initialValue);
+        cy.get('vl-datepicker-next').shadow().find('input').should('have.value', '02.12.2021');
+        cy.checkA11y('vl-datepicker-next');
+
+        cy.get('vl-datepicker-next').invoke('attr', 'value', '');
+        cy.get('vl-datepicker-next').should('not.have.value');
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', '');
+        cy.checkA11y('vl-datepicker-next');
+    });
+
     it('should process required validation', () => {
         mountDatepickerInForm({ ...datepickerDefaults, required: true });
         cy.get('form').then((form$) => {
