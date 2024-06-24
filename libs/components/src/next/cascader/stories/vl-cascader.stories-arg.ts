@@ -1,8 +1,8 @@
 import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
-import { ArgTypes } from '@storybook/web-components';
-import { CASCADER_SLOTS } from '../vl-cascader.model';
 import { action } from '@storybook/addon-actions';
-import { cascaderDefaults } from '../vl-cascader.component';
+import { ArgTypes } from '@storybook/web-components';
+import { cascaderDefaults } from '../vl-cascader.defaults';
+import { CASCADER_SLOTS } from '../vl-cascader.model';
 
 export type CascaderArgs = typeof cascaderDefaults &
     typeof defaultArgs & {

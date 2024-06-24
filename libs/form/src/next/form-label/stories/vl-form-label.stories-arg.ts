@@ -1,6 +1,6 @@
-import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { formLabelDefaults } from '../vl-form-label.component';
+import { formLabelDefaults } from '../vl-form-label.defaults';
 
 type FormLabelArgs = typeof defaultArgs & typeof formLabelDefaults;
 

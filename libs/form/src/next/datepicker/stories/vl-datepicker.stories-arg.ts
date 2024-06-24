@@ -1,8 +1,9 @@
-import { CATEGORIES, CONTROLS, TYPES, getSelectControlOptions } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, getSelectControlOptions, TYPES } from '@domg-wc/common-storybook';
+import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
-import { DATEPICKER_TYPES, datepickerDefaults } from '../vl-datepicker.component';
-import { action } from '@storybook/addon-actions';
+import { datepickerDefaults } from '../vl-datepicker.defaults';
+import { DATEPICKER_TYPES } from '../vl-datepicker.model';
 
 type DatepickerArgs = typeof formControlArgs &
     typeof datepickerDefaults & { onVlInput: () => void; onVlValid: () => void };

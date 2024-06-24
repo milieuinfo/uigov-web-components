@@ -1,6 +1,6 @@
 import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { propertiesDefaults } from '../vl-properties.component';
+import { propertiesDefaults } from '../vl-properties.defaults';
 
 type PropertiesArgs = typeof defaultArgs & typeof propertiesDefaults;
 

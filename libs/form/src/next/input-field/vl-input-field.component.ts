@@ -1,30 +1,13 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { inputFieldStyle } from '@domg/govflanders-style/component';
-import { live } from 'lit/directives/live.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { maxValueValidator, minValueValidator, patternValidator } from './validators';
-import { FormControl, formControlDefaults } from '../form-control/form-control';
 import { webComponent } from '@domg-wc/common-utilities';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { inputFieldStyle } from '@domg/govflanders-style/component';
 import { maxLengthValidator, minLengthValidator } from '@open-wc/form-control';
-
-export const inputFieldDefaults = {
-    ...formControlDefaults,
-    block: false as boolean,
-    readonly: false as boolean,
-    type: 'text' as string,
-    value: '' as string,
-    placeholder: '' as string,
-    autocomplete: '' as string,
-    minLength: null as number | null,
-    maxLength: null as number | null,
-    min: null as number | null,
-    max: null as number | null,
-    minExclusive: false as boolean,
-    maxExclusive: false as boolean,
-    pattern: '' as string,
-    regex: null as RegExp | null,
-} as const;
+import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import { live } from 'lit/directives/live.js';
+import { FormControl } from '../form-control/form-control';
+import { maxValueValidator, minValueValidator, patternValidator } from './validators';
+import { inputFieldDefaults } from './vl-input-field.defaults';
 
 @webComponent('vl-input-field-next')
 export class VlInputFieldComponent extends FormControl {

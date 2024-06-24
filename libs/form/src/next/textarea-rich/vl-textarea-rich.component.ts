@@ -1,16 +1,9 @@
-import { CSSResult, PropertyDeclarations } from 'lit';
 import { webComponent } from '@domg-wc/common-utilities';
+import { CSSResult, PropertyDeclarations } from 'lit';
 import tinymce, { Editor } from 'tinymce-next';
-import { VlTextareaComponent, textareaDefaults } from '../textarea/vl-textarea.component';
+import { VlTextareaComponent } from '../textarea/vl-textarea.component';
 import textareaRichUigStyle from './vl-textarea-rich.component.uig-css';
-
-export const textareaRichDefaults = {
-    ...textareaDefaults,
-    toolbar: 'undo redo | bold italic underline strikethrough' as string,
-    plugins: '' as string,
-    preview: false as boolean,
-    customConfig: null as Record<string, unknown> | null,
-} as const;
+import { textareaRichDefaults } from './vl-textarea-rich.defaults';
 
 @webComponent('vl-textarea-rich-next')
 export class VlTextareaRichComponent extends VlTextareaComponent {

@@ -1,15 +1,15 @@
 import {
     CATEGORIES,
     CONTROLS,
-    TYPES,
     defaultArgs,
     defaultArgTypes,
     getSelectControlOptions,
+    TYPES,
 } from '@domg-wc/common-storybook';
-import { ArgTypes } from '@storybook/web-components';
-import { buttonDefaults } from '../vl-button.component';
-import { action } from '@storybook/addon-actions';
 import { ICON_PLACEMENT } from '@domg-wc/common-utilities';
+import { action } from '@storybook/addon-actions';
+import { ArgTypes } from '@storybook/web-components';
+import { buttonDefaults } from '../vl-button.defaults';
 
 type ButtonArgs = typeof defaultArgs &
     typeof buttonDefaults & { defaultSlot: string; onVlClick: () => void; onVlToggle: () => void };

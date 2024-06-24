@@ -1,17 +1,12 @@
-import { CSSResult, html, PropertyDeclarations, PropertyValues, TemplateResult } from 'lit';
-import { radioStyle } from '@domg/govflanders-style/component';
-import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { vlElementsStyle } from '@domg-wc/elements';
-import radioUigStyle from './vl-radio.component.uig-css';
-import { VlRadioComponent } from './vl-radio.component';
-import { FormControl, formControlDefaults } from '../form-control/form-control';
 import { webComponent } from '@domg-wc/common-utilities';
-
-export const radioGroupDefaults = {
-    ...formControlDefaults,
-    readonly: false as boolean,
-    value: null as string | null,
-};
+import { vlElementsStyle } from '@domg-wc/elements';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { radioStyle } from '@domg/govflanders-style/component';
+import { CSSResult, html, PropertyDeclarations, PropertyValues, TemplateResult } from 'lit';
+import { FormControl } from '../form-control/form-control';
+import { radioGroupDefaults } from './vl-radio-group.defaults';
+import { VlRadioComponent } from './vl-radio.component';
+import radioUigStyle from './vl-radio.component.uig-css';
 
 @webComponent('vl-radio-group-next')
 export class VlRadioGroupComponent extends FormControl {
