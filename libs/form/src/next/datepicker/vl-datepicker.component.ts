@@ -176,12 +176,22 @@ export class VlDatepickerComponent extends FormControl {
                     case 'date-time':
                     case 'date': {
                         const date = flatpickr.parseDate(this.value, 'Z');
-                        if (date) this.inputValue = flatpickr.formatDate(date, this.format);
+                        if (date) {
+                            this.inputValue = flatpickr.formatDate(date, this.format);
+                        } else if (!date && !this.value) {
+                            this.flatpickrInstance?.clear();
+                            this.inputValue = '';
+                        }
                         break;
                     }
                     case 'time': {
                         const date = flatpickr.parseDate(this.value, this.format);
-                        if (date) this.inputValue = flatpickr.formatDate(date, this.format);
+                        if (date) {
+                            this.inputValue = flatpickr.formatDate(date, this.format);
+                        } else if (!date && !this.value) {
+                            this.flatpickrInstance?.clear();
+                            this.inputValue = '';
+                        }
                         break;
                     }
                     default:
