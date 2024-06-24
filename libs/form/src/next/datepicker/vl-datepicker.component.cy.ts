@@ -1,6 +1,7 @@
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlErrorMessageComponent } from '../error-message';
-import { VlDatepickerComponent, datepickerDefaults } from './vl-datepicker.component';
+import { VlDatepickerComponent } from './vl-datepicker.component';
+import { datepickerDefaults } from './vl-datepicker.defaults';
 import { html, nothing } from 'lit';
 
 registerWebComponents([VlDatepickerComponent, VlErrorMessageComponent]);

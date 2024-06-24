@@ -1,20 +1,10 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { classMap } from 'lit/directives/class-map.js';
 import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-decorator';
 import linkStyle from '@domg-wc/common-utilities/css/link/link.css';
+import { doormatDefaults } from './vl-doormat.defaults';
+import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
 import doormatStyle from './vl-doormat.css';
-
-export const doormatDefaults = {
-    href: '' as string,
-    external: false as boolean,
-    alt: false as boolean,
-    imageSrc: '' as string,
-    imageAlt: '' as string,
-    imageWidth: null as number | null,
-    imageHeight: null as number | null,
-    graphic: false as boolean,
-} as const;
 
 @globalStylesNext()
 @webComponent('vl-doormat-next')
@@ -57,8 +47,12 @@ export class VlDoormatComponent extends BaseLitElement {
             <a class=${classMap(classes)} href=${this.href} target=${target}>
                 ${this.imageSrc ? this.renderImage() : nothing}
                 <div class="vl-doormat__content">
-                    <h2 class="vl-doormat__title"><slot name="title"></slot></h2>
-                    <div class="vl-doormat__text"><slot name="text"></slot></div>
+                    <h2 class="vl-doormat__title">
+                        <slot name="title"></slot>
+                    </h2>
+                    <div class="vl-doormat__text">
+                        <slot name="text"></slot>
+                    </div>
                 </div>
             </a>
         `;

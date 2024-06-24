@@ -1,19 +1,10 @@
+import { formControlDefaults } from './form-control.defaults';
 import { FormControlMixin, programmaticValidator, requiredValidator } from '@open-wc/form-control';
 import { LitElement, PropertyDeclarations } from 'lit';
 import { submit } from '@open-wc/form-helpers';
 import { ERROR_MESSAGE_CUSTOM_TAG } from '../error-message/vl-error-message.component';
 import { BaseLitElement } from '@domg-wc/common-utilities';
 import 'reflect-metadata';
-
-export const formControlDefaults = {
-    id: '' as string,
-    name: '' as string,
-    label: '' as string,
-    required: false as boolean,
-    disabled: false as boolean,
-    error: false as boolean,
-    success: false as boolean,
-} as const;
 
 export abstract class FormControl extends FormControlMixin(BaseLitElement) {
     // Attributes

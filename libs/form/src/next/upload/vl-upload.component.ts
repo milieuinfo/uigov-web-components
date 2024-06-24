@@ -1,14 +1,15 @@
-import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
+import { findNodesForSlot, webComponent } from '@domg-wc/common-utilities';
+import { Dropzone as DropzoneInstance, DropzoneFile } from '@domg-wc/form/dropzone-types';
+import { accessibilityStyle, baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { iconStyle, linkStyle, uploadStyle } from '@domg/govflanders-style/component';
-import { classMap } from 'lit/directives/class-map.js';
-import Dropzone from 'dropzone';
 import { Validator } from '@open-wc/form-control';
 import { FormValue } from '@open-wc/form-control/src/types';
-import { accessibilityStyle, baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { findNodesForSlot, webComponent } from '@domg-wc/common-utilities';
-import { FormControl, formControlDefaults } from '../form-control/form-control';
+import Dropzone from 'dropzone';
+import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import { FormControl } from '../form-control/form-control';
+import { uploadDefaults } from './vl-upload.defaults';
 import uploadUigStyle from './vl-upload.uig-css';
-import { Dropzone as DropzoneInstance, DropzoneFile } from '@domg-wc/form/dropzone-types';
 
 /**
  * valideert of dropzone bij 1 van de bestanden een error heeft
@@ -26,22 +27,6 @@ const dropzoneValidator: Validator = {
         return !hasDropzoneError;
     },
 };
-
-export const uploadDefaults = {
-    ...formControlDefaults,
-    readonly: false as boolean,
-    acceptedFiles: '' as string,
-    autoProcess: false as boolean,
-    disallowDuplicates: false as boolean,
-    errorMessageAcceptedFiles: 'Dit bestandstype is niet toegestaan.' as string,
-    errorMessageFilesize: 'Het bestand mag maximaal {{maxFilesize}} MB zijn.' as string,
-    errorMessageMaxFiles: 'Je kan maximaal {{maxFiles}} bestand(en) uploaden.' as string,
-    maxFiles: 1 as number,
-    maxSize: 2 as number,
-    subTitle: 'Sleep de bijlage naar hier om toe te voegen' as string,
-    mainTitle: 'Bijlage toevoegen' as string,
-    url: '' as string,
-} as const;
 
 @webComponent('vl-upload-next')
 export class VlUploadComponent extends FormControl {
@@ -67,6 +52,7 @@ export class VlUploadComponent extends FormControl {
     private dropzoneInstance: DropzoneInstance | undefined | null;
 
     static formControlValidators = [...FormControl.formControlValidators, dropzoneValidator];
+
     static get styles(): CSSResult[] {
         return [resetStyle, baseStyle, linkStyle, uploadStyle, uploadUigStyle, iconStyle, accessibilityStyle];
     }

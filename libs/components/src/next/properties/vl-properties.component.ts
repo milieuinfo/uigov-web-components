@@ -1,15 +1,11 @@
 import { BaseLitElement, onChildListChange, webComponent } from '@domg-wc/common-utilities';
 import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-decorator';
+import { vlElementsStyle } from '@domg-wc/elements';
 import { CSSResult, html, PropertyDeclarations, PropertyValues, TemplateResult } from 'lit';
 import { buildProperties } from './vl-properties.builder';
 import propertiesStyles, { labelWidthRem } from './vl-properties.css';
+import { propertiesDefaults } from './vl-properties.defaults';
 import { Column, Item, Props } from './vl-properties.model';
-import { vlElementsStyle } from '@domg-wc/elements';
-
-export const propertiesDefaults = {
-    labelWidth: 17,
-    props: [] as Props,
-} as const;
 
 @globalStylesNext()
 @webComponent('vl-properties-next')

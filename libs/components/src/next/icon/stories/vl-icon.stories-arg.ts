@@ -1,6 +1,6 @@
-import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { iconDefaults } from '../vl-icon.component';
+import { iconDefaults } from '../vl-icon.defaults';
 
 type IconArgs = typeof defaultArgs & typeof iconDefaults;
 

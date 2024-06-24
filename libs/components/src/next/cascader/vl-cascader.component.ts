@@ -1,35 +1,15 @@
-import { CSSResult, html, nothing, PropertyDeclarations, PropertyValues, TemplateResult } from 'lit';
 import { BaseLitElement, findNodesForSlot, registerWebComponents } from '@domg-wc/common-utilities';
-import { customElement } from 'lit/decorators.js';
-import { resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
+import { resetStyle } from '@domg/govflanders-style/common';
 import { breadcrumbStyle } from '@domg/govflanders-style/component';
-import cascaderUigStyle from './vl-cascader.uig-css';
+import { CSSResult, html, nothing, PropertyDeclarations, PropertyValues, TemplateResult } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { getDefaultItemTemplate, getTemplateFunctionForType } from './vl-cascader.utils';
-import {
-    CASCADER_MESSAGES,
-    CASCADER_SLOTS,
-    ItemListFn,
-    TemplateFn,
-    NarrowDownFn,
-    CascaderItem,
-} from './vl-cascader.model';
 import { VlCascaderItemComponent } from './vl-cascader-item.component';
-
-export const cascaderDefaults = {
-    annotation: '' as string,
-    breadcrumbPlaceholder: '' as string,
-    level: 0 as number,
-    hideBreadcrumb: false as boolean,
-    loading: false as boolean,
-    itemListFn: null as unknown as ItemListFn,
-    items: [] as CascaderItem[],
-    label: CASCADER_MESSAGES.LABEL_MISSING as string,
-    loadingMessage: CASCADER_MESSAGES.LOADING as string,
-    templates: null as unknown as Map<string, TemplateFn>,
-    headerText: '',
-};
+import { cascaderDefaults } from './vl-cascader.defaults';
+import { CASCADER_SLOTS, CascaderItem, ItemListFn, NarrowDownFn, TemplateFn } from './vl-cascader.model';
+import cascaderUigStyle from './vl-cascader.uig-css';
+import { getDefaultItemTemplate, getTemplateFunctionForType } from './vl-cascader.utils';
 
 @customElement('vl-cascader')
 export class VlCascaderComponent extends BaseLitElement {

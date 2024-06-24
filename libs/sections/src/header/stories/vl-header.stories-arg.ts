@@ -1,7 +1,7 @@
-import { action } from '@storybook/addon-actions';
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
-import { headerDefaults } from '../vl-header.section';
+import { headerDefaults } from '../vl-header.defaults';
 
 type HeaderArgs = typeof headerDefaults & { onReady: () => void };
 

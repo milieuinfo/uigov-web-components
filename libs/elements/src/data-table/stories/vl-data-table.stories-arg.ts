@@ -1,6 +1,6 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { dataTableDefaults } from '../vl-data-table.element';
+import { dataTableDefaults } from '../vl-data-table.defaults';
 
 export const dataTableArgs = {
     ...dataTableDefaults,

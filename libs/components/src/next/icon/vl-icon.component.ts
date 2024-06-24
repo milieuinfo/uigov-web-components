@@ -1,18 +1,9 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
 import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
-import { classMap } from 'lit/directives/class-map.js';
-import iconStyle from '@domg-wc/common-utilities/css/icon/icon.css';
 import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-decorator';
-
-export const iconDefaults = {
-    icon: '' as string,
-    small: false as boolean,
-    large: false as boolean,
-    light: false as boolean,
-    rightMargin: false as boolean,
-    leftMargin: false as boolean,
-    clickable: false as boolean,
-} as const;
+import iconStyle from '@domg-wc/common-utilities/css/icon/icon.css';
+import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import { iconDefaults } from './vl-icon.defaults';
 
 @globalStylesNext()
 @webComponent('vl-icon-next')

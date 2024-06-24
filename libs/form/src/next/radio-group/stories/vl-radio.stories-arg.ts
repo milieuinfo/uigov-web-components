@@ -1,7 +1,7 @@
 import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
-import { ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
-import { radioDefaults } from '../vl-radio.component';
+import { ArgTypes } from '@storybook/web-components';
+import { radioDefaults } from '../vl-radio.defaults';
 
 type RadioArgs = typeof defaultArgs &
     typeof radioDefaults & { defaultSlot: string; onVlChecked: () => void; onVlValid: () => void };
