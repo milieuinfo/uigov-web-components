@@ -7,7 +7,7 @@ import {
     getSelectControlOptions,
     TYPES,
 } from '@domg-wc/common-storybook';
-import { DEFAULT_CAPTION_FORMAT, DEFAULT_MAX_MATCHES, DEFAULT_MIN_CHARS } from '../vl-autocomplete.component';
+import { DEFAULT_CAPTION_FORMAT, DEFAULT_MAX_MATCHES, DEFAULT_MIN_CHARS } from '../vl-autocomplete.defaults';
 import { ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
 

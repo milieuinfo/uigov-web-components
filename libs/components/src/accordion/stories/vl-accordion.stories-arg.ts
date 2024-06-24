@@ -1,6 +1,7 @@
 import { ArgTypes } from '@storybook/web-components';
 import { action } from '@storybook/addon-actions';
-import { PADDINGS } from '@domg-wc/common-utilities';
+// de import is bewust op deze manier om voor de web-types.generator 'binnen' de monorepo geen side-effect te geven
+import { PADDINGS } from '@domg-wc/common-utilities/constants';
 import {
     CATEGORIES,
     CONTROLS,

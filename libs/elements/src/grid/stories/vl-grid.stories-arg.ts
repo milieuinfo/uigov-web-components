@@ -1,4 +1,5 @@
 import { CONTROLS } from '@domg-wc/common-storybook';
+import { ArgTypes } from '@storybook/web-components';
 
 export const gridBaseArgs = {
     stacked: true,
@@ -24,7 +25,7 @@ export const gridDefaultArgs = {
     columnsAmount: 3,
 };
 
-export const gridBaseArgTypes = {
+export const gridBaseArgTypes: ArgTypes<typeof gridBaseArgs> = {
     stacked: {
         name: 'data-vl-is-stacked',
         description: 'Add margin between stacked columns.',
@@ -137,7 +138,7 @@ export const gridBaseArgTypes = {
     },
 };
 
-export const gridDefaultArgTypes = {
+export const gridDefaultArgTypes: ArgTypes<typeof gridDefaultArgs> = {
     ...gridBaseArgTypes,
     content: {
         name: 'content (for demo purposes)',

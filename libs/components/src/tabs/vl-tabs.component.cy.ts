@@ -1,10 +1,11 @@
-import { html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import { VlTabSectionComponent } from './vl-tab-section.component';
-import { VlTabsPaneComponent } from './vl-tabs-pane.component';
-import { VlTabComponent } from './vl-tab.component';
-import { DisplayStyle, VlTabsComponent } from './vl-tabs.component';
 import { VlIconElement } from '@domg-wc/elements';
+import { html } from 'lit';
+import { VlTabSectionComponent } from './vl-tab-section.component';
+import { VlTabComponent } from './vl-tab.component';
+import { VlTabsPaneComponent } from './vl-tabs-pane.component';
+import { VlTabsComponent } from './vl-tabs.component';
+import { DisplayStyle } from './vl-tabs.model';
 
 registerWebComponents([VlTabsComponent, VlTabComponent, VlTabsPaneComponent, VlTabSectionComponent, VlIconElement]);
 

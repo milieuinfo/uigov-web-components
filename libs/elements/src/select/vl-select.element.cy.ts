@@ -1,6 +1,7 @@
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { html } from 'lit';
-import { VlSelect, SELECT_POSITION, type SelectPosition } from './vl-select.element';
+import { VlSelect } from './vl-select.element';
+import { SELECT_POSITION, SelectPosition } from './vl-select.model';
 
 registerWebComponents([VlSelect]);
 

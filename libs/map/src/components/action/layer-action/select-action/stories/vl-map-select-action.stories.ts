@@ -11,6 +11,7 @@ import mapSelectActionDoc from './vl-map-select-action.stories-doc.mdx';
 
 export default {
     title: 'map/action/layer-action/select-action',
+    tags: ['autodocs'],
     args: mapSelectActionArgs,
     argTypes: mapSelectActionArgTypes,
     parameters: {

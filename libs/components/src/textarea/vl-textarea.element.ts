@@ -3,10 +3,9 @@ import { vlFormValidation, vlFormValidationElement } from '@domg-wc/elements';
 import 'tinymce/tinymce';
 import { VlLinkToolbarFactory } from './vl-link-toolbar-factory';
 import { Editor, RawEditorSettings, TinyMCE } from 'tinymce';
+import { defaultTinyMceToolbar } from './vl-textarea.defaults';
 
 declare const tinyMCE: TinyMCE;
-
-export const defaultTinyMceToolbar = 'undo redo | bold italic underline strikethrough';
 
 @webComponentPromised([vlFormValidation.ready()], 'vl-textarea', { extends: 'textarea' })
 export class VlTextarea extends vlFormValidationElement(BaseElementOfType(HTMLTextAreaElement)) {

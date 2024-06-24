@@ -1,4 +1,5 @@
-import { ArgsTable, DocsStory, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ArgTypes, Canvas } from "@storybook/blocks";
+import * as VlMapSelectActionStories from './vl-map-select-action.stories';
 
 # Map Select Action
 
@@ -15,24 +16,29 @@ import { VlMapSelectAction } from '@domg-wc/map';
 <vl-map-select-action></vl-map-select-action>
 ```
 
-<DocsStory id="map-action-layer-action-select-action--map-select-action-default" />
+<Canvas of={VlMapSelectActionStories.MapSelectActionDefault}/>
+
 
 ## Configuratie
 
-<ArgsTable story={PRIMARY_STORY} />
+<ArgTypes of={VlMapSelectActionStories.MapSelectActionDefault}/>
+
 
 ## Varianten
 
 ### Custom Style
 
-<DocsStory id="map-action-layer-action-select-action--map-select-action-custom-style" />
+<Canvas of={VlMapSelectActionStories.MapSelectActionCustomStyle}/>
 
 ### Clustering
 
-Bij clustering kan best een [map-layer-circle-style](/docs/map-layer-style-layer-circle-style--map-layer-circle-style-default) component gebruikt worden binnen de `vl-map-select-action` tag.<br/>
+Bij clustering kan best een [map-layer-circle-style](/docs/map-layer-style-layer-circle-style--map-layer-circle-style-default)
+component gebruikt worden binnen de `vl-map-select-action` tag.<br/>
+
 Dit zorgt ervoor dat de grootte van de select-actie zich aanpast aan het aantal geclusterde features, en dat de stijl-tekst getoond wordt.
 
-<DocsStory id="map-action-layer-action-select-action--map-select-action-clustering" />
+<Canvas of={VlMapSelectActionStories.MapSelectActionClustering}/>
+
 
 ## Referenties
 

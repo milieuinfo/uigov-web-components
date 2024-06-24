@@ -1,6 +1,6 @@
 import { defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { defaultTinyMceToolbar } from '../vl-textarea.element';
+import { defaultTinyMceToolbar } from '../vl-textarea.defaults';
 
 export const textareaArgs = {
     ...defaultArgs,

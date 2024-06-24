@@ -1,6 +1,6 @@
 import { CATEGORIES, CONTROLS, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { DEFAULT_TOOLTIP, DEFAULT_ZOOM } from '../vl-map-current-location';
+import { DEFAULT_TOOLTIP, DEFAULT_ZOOM } from '../vl-map-current-location.defaults';
 
 export const mapCurrentLocationArgs = {
     ...defaultArgs,

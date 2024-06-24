@@ -4,6 +4,7 @@
     "author": "UIG <uig@vlaanderen.be>",
     "license": "MIT",
     "scripts": {
+        "generate-web-types": "cd ./tools/web-types-generator && tsx web-types.generator.ts",
         "test": "npm run test:unit",
         "test:component": "npx cypress run --component",
         "test:component-open": "npx cypress open --component",
@@ -99,6 +100,7 @@
         "@swc/cli": "0.3.10",
         "@swc/core": "1.4.6",
         "@swc/jest": "0.2.36",
+        "@types/fs-extra": "11.0.4",
         "@types/jest": "29.5.12",
         "@types/node": "20.11.26",
         "@types/prettier": "2.7.3",
@@ -114,7 +116,7 @@
         "css-loader": "6.10.0",
         "cypress": "13.6.6",
         "cypress-axe": "1.5.0",
-        "cypress-wait-until": "^3.0.1",
+        "cypress-wait-until": "3.0.1",
         "eslint": "8.57.0",
         "eslint-config-prettier": "9.1.0",
         "eslint-plugin-cypress": "2.15.1",
@@ -131,7 +133,7 @@
         "node-fetch": "3.3.2",
         "nx": "18.0.8",
         "ol": "8.2.0",
-        "raw-loader": "^4.0.2",
+        "raw-loader": "4.0.2",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-refresh": "0.14.0",
@@ -147,6 +149,7 @@
         "ts-jest": "29.1.2",
         "ts-node": "10.9.2",
         "tsconfig-paths-webpack-plugin": "4.1.0",
+        "tsx": "4.15.7",
         "typescript": "5.4.2",
         "url-loader": "4.1.1",
         "verdaccio": "5.29.2"
@@ -184,8 +187,7 @@
         "regenerator-runtime": "0.14.1",
         "swipe-detect": "1.0.1",
         "tinymce": "5.10.6",
-        "tinymce-next": "npm:tinymce@6.8.3",
-        "tslib": "2.6.2"
+        "tinymce-next": "npm:tinymce@6.8.3"
     },
     "overrides": {
         "color-parse": {

@@ -1,5 +1,4 @@
-import '../vl-text.element';
-import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const textArgs = {

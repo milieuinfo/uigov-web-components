@@ -7,7 +7,7 @@ import {
     TYPES,
 } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { LEGEND_PLACEMENT } from '../vl-map-legend';
+import { LEGEND_PLACEMENT } from '../vl-map-legend.defaults';
 
 export const mapLegendArgs = {
     ...defaultArgs,

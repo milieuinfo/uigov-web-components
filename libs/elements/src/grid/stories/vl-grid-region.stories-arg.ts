@@ -1,5 +1,5 @@
-import '../vl-grid.element';
-import { CATEGORIES } from '@domg-wc/common-storybook';
+import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { ArgTypes } from '@storybook/web-components';
 
 export const gridRegionArgs = {
     content:
@@ -14,82 +14,84 @@ export const gridRegionArgs = {
     overlap: true,
 };
 
-export const gridRegionArgTypes = {
+export const gridRegionArgTypes: ArgTypes<typeof gridRegionArgs> = {
     content: {
         name: 'content (for demo purposes)',
-        type: { summary: 'string' },
+        table: {
+            type: { summary: TYPES.STRING },
+        },
     },
     alt: {
         name: 'data-vl-alt',
-        type: { summary: 'boolean' },
         description: 'Maakt de achtergrond lichtgrijs.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
         },
     },
     noSpace: {
         name: 'data-vl-no-space',
-        type: { summary: 'boolean' },
         description: 'Gebruik geen marges.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
         },
     },
     noSpaceBottom: {
         name: 'data-vl-no-space-bottom',
-        type: { summary: 'boolean' },
         description: 'Gebruik geen marges onderaan.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
         },
     },
     noSpaceTop: {
         name: 'data-vl-no-space-top',
-        type: { summary: 'boolean' },
         description: 'Gebruik geen marges bovenaan.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
         },
     },
     small: {
         name: 'data-vl-small',
-        type: { summary: 'boolean' },
         description: 'Gebruik kleinere marges.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
         },
     },
     medium: {
         name: 'data-vl-medium',
-        type: { summary: 'boolean' },
         description: 'Gebruik middelgrote marges.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
         },
     },
     bordered: {
         name: 'data-vl-bordered (deprecated?)',
-        type: { summary: 'boolean' },
         description: 'Teken een rand.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
         },
     },
     overlap: {
         name: 'data-vl-overlap',
-        type: { summary: 'boolean' },
         description: 'Region overlap',
         control: {
             disable: true,
         },
         table: {
+            type: { summary: TYPES.BOOLEAN },
             defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
         },
