@@ -3,17 +3,6 @@ import { elementStyles } from '../vl-elements.uig-css';
 import { VlButtonElement } from '../button/vl-button.element';
 import { VlIconElement } from '../icon/vl-icon.element';
 
-export const dataTableDefaults = {
-    hover: false,
-    matrix: false,
-    grid: false,
-    zebra: false,
-    uigZebra: false,
-    collapsedM: false,
-    collapsedS: false,
-    collapsedXS: false,
-};
-
 /**
  * VlDataTable
  * @class

@@ -1,6 +1,6 @@
 import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { formControlDefaults } from '../form-control.defaults';
 import { ArgTypes } from '@storybook/web-components';
-import { formControlDefaults } from '../form-control';
 import { action } from '@storybook/addon-actions';
 
 type FormControlArgs = typeof defaultArgs & typeof formControlDefaults & { onVlReset: () => void };

@@ -1,5 +1,6 @@
+import { awaitScript, BaseLitElement, webComponentCustom } from '@domg-wc/common-utilities';
 import { CSSResult, PropertyDeclarations } from 'lit';
-import { BaseLitElement, awaitScript, webComponentCustom } from '@domg-wc/common-utilities';
+import { headerDefaults } from './vl-header.defaults';
 import { headerContainerStyles, headerSkeletonStyles } from './vl-header.section.uig-css';
 
 const customRegistration = () =>
@@ -25,21 +26,6 @@ export type ApplicationLink = {
     icon?: string;
     target?: string;
 };
-
-export const headerDefaults = {
-    authenticatedUserUrl: '/sso/ingelogde_gebruiker' as string,
-    development: false as boolean,
-    identifier: '' as string,
-    loginRedirectUrl: '/' as string,
-    loginUrl: '/sso/aanmelden' as string,
-    logoutUrl: '/sso/afgemeld' as string,
-    switchCapacityUrl: '/sso/wissel_organisatie' as string,
-    simple: false as boolean,
-    skeleton: false as boolean,
-    rejectLogout: false as boolean,
-    logoutCallback: null as ((reason: string) => Promise<boolean>) | null,
-    applicationLinks: [] as ApplicationLink[],
-} as const;
 
 @webComponentCustom(customRegistration)
 export class VlHeader extends BaseLitElement {

@@ -1,8 +1,9 @@
-import { CATEGORIES, CONTROLS, TYPES, getSelectControlOptions } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, getSelectControlOptions, TYPES } from '@domg-wc/common-storybook';
+import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
-import { SelectRichPosition, selectRichDefaults } from '../vl-select-rich.component';
-import { action } from '@storybook/addon-actions';
+import { selectRichDefaults } from '../vl-select-rich.defaults';
+import { SelectRichPosition } from '../vl-select-rich.model';
 
 type SelectRichArgs = typeof formControlArgs &
     typeof selectRichDefaults & { onVlSelect: () => void; onVlSelectSearch: () => void; onVlValid: () => void };

@@ -1,3 +1,5 @@
+import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { VlButtonInputAddon, VlIconElement } from '@domg-wc/elements';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import {
     datepickerStyle,
@@ -7,41 +9,20 @@ import {
     inputGroupStyle,
     tooltipStyle,
 } from '@domg/govflanders-style/component';
-import datepickerUigStyle from './vl-datepicker.uig-css';
-import { CSSResult, html, nothing, TemplateResult } from 'lit';
-import { Options } from 'flatpickr/dist/types/options';
-import { Instance } from 'flatpickr/dist/types/instance';
+import Cleave from 'cleave.js';
 import flatpickr from 'flatpickr';
 import Dutch from 'flatpickr/dist/l10n/nl.js';
+import { Instance } from 'flatpickr/dist/types/instance';
+import { Options } from 'flatpickr/dist/types/options';
+import { CSSResult, html, nothing, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
-import { VlButtonInputAddon, VlIconElement } from '@domg-wc/elements';
 import { live } from 'lit/directives/live.js';
-import { FormControl, formControlDefaults } from '../form-control/form-control';
-import { maskValidator } from './validators';
 import { CleaveInstance, MaskOptions } from '../../models/cleave.model';
-import Cleave from 'cleave.js';
+import { FormControl } from '../form-control/form-control';
 import { createDateMask, createTimeMask } from './masks';
-
-export const DATEPICKER_TYPES = ['date', 'range', 'time', 'date-time'] as const;
-export const datepickerDefaults = {
-    ...formControlDefaults,
-    block: false as boolean,
-    readonly: false as boolean,
-    value: '' as string,
-    placeholder: '' as string,
-    autocomplete: '' as string,
-    type: 'date' as (typeof DATEPICKER_TYPES)[number],
-    format: '' as string,
-    amPm: false as boolean,
-    minDate: '' as string,
-    maxDate: '' as string,
-    minTime: '' as string,
-    maxTime: '' as string,
-    disableMaskValidation: false as boolean,
-    pattern: '' as string,
-    regex: null as RegExp | null,
-} as const;
+import { maskValidator } from './validators';
+import { datepickerDefaults } from './vl-datepicker.defaults';
+import datepickerUigStyle from './vl-datepicker.uig-css';
 
 const dateRangeSeparator = ' tot en met ';
 

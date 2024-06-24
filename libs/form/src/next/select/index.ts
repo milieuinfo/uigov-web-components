@@ -1,1 +1,2 @@
-export { VlSelectComponent, type SelectOption } from './vl-select.component';
+export { VlSelectComponent } from './vl-select.component';
+export { type SelectOption } from './vl-select.model';

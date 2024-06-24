@@ -1,8 +1,8 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
-import { ArgTypes } from '@storybook/web-components';
-import { checkboxDefaults } from '../vl-checkbox.component';
-import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
 import { action } from '@storybook/addon-actions';
+import { ArgTypes } from '@storybook/web-components';
+import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { checkboxDefaults } from '../vl-checkbox.defaults';
 
 type CheckboxArgs = typeof formControlArgs &
     typeof checkboxDefaults & { contentSlot: string; onVlChecked: () => void; onVlValid: () => void };

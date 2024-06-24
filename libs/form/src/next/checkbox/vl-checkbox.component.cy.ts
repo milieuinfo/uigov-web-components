@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
-import { VlCheckboxComponent, checkboxDefaults } from './vl-checkbox.component';
+import { VlCheckboxComponent } from './vl-checkbox.component';
+import { checkboxDefaults } from './vl-checkbox.defaults';
 
 registerWebComponents([VlCheckboxComponent]);
 type CheckboxDefaultTypes = Partial<typeof checkboxDefaults>;
@@ -37,8 +38,8 @@ const mountCheckboxInForm = ({ isSwitch, checked, disabled }: CheckboxDefaultTyp
                         Bevestig.
                     </vl-checkbox-next>
                     <vl-error-message-next for="confirmation" state="valueMissing"
-                        >Gelieve je gegevens te bevestigen.</vl-error-message-next
-                    >
+                        >Gelieve je gegevens te bevestigen.
+                    </vl-error-message-next>
                 </div>
                 <div class="vl-col--9-12 vl-push--3-12">
                     <div class="vl-action-group">

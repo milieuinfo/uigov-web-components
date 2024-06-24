@@ -1,8 +1,8 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
-import { ArgTypes } from '@storybook/web-components';
-import { uploadDefaults } from '../vl-upload.component';
-import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
 import { action } from '@storybook/addon-actions';
+import { ArgTypes } from '@storybook/web-components';
+import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
+import { uploadDefaults } from '../vl-upload.defaults';
 
 type UploadArgs = typeof uploadDefaults &
     typeof formControlArgs & {

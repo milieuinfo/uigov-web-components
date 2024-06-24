@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlSelectComponent } from './vl-select.component';
-import { SelectOption } from './index';
+import { SelectOption } from './vl-select.model';
 
 registerWebComponents([VlSelectComponent]);
 

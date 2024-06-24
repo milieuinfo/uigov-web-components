@@ -1,6 +1,6 @@
-import { CATEGORIES, TYPES, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { CATEGORIES, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { infotextDefaults } from '../vl-infotext.component';
+import { infotextDefaults } from '../vl-infotext.defaults';
 
 export type InfotextArgs = typeof defaultArgs & typeof infotextDefaults & { valueSlot: string; textSlot: string };
 

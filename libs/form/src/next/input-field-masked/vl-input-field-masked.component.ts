@@ -1,18 +1,11 @@
-import { PropertyDeclarations } from 'lit';
-import Cleave from 'cleave.js';
-import { masks } from './masks';
-import { VlInputFieldComponent, inputFieldDefaults } from '../input-field/vl-input-field.component';
-import { CleaveInstance, MaskOptions } from '../../models/cleave.model';
 import { webComponent } from '@domg-wc/common-utilities';
-import { maskValidator, minValueValidator, maxValueValidator } from './validators';
-
-export const inputFieldMaskedDefaults = {
-    ...inputFieldDefaults,
-    mask: '' as string,
-    maskPrefix: '' as string,
-    rawValue: false as boolean,
-    disableMaskValidation: false as boolean,
-} as const;
+import Cleave from 'cleave.js';
+import { PropertyDeclarations } from 'lit';
+import { CleaveInstance, MaskOptions } from '../../models/cleave.model';
+import { VlInputFieldComponent } from '../input-field/vl-input-field.component';
+import { masks } from './masks';
+import { maskValidator, maxValueValidator, minValueValidator } from './validators';
+import { inputFieldMaskedDefaults } from './vl-input-field-masked.defaults';
 
 @webComponent('vl-input-field-masked-next')
 export class VlInputFieldMaskedComponent extends VlInputFieldComponent {

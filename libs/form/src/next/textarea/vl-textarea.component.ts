@@ -1,24 +1,12 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { textareaStyle } from '@domg/govflanders-style/component';
-import { live } from 'lit/directives/live.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { FormControl, formControlDefaults } from '../form-control/form-control';
 import { webComponent } from '@domg-wc/common-utilities';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { textareaStyle } from '@domg/govflanders-style/component';
 import { maxLengthValidator, minLengthValidator } from '@open-wc/form-control';
-
-export const textareaDefaults = {
-    ...formControlDefaults,
-    block: false as boolean,
-    readonly: false as boolean,
-    value: '' as string,
-    placeholder: '' as string,
-    autocomplete: '' as string,
-    minLength: null as number | null,
-    maxLength: null as number | null,
-    rows: null as number | null,
-    cols: null as number | null,
-} as const;
+import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import { live } from 'lit/directives/live.js';
+import { FormControl } from '../form-control/form-control';
+import { textareaDefaults } from './vl-textarea.defaults';
 
 @webComponent('vl-textarea-next')
 export class VlTextareaComponent extends FormControl {

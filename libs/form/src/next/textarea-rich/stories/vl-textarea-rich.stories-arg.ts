@@ -1,7 +1,7 @@
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { textareaRichDefaults } from '../vl-textarea-rich.component';
 import { textareaArgs, textareaArgTypes } from '../../textarea/stories/vl-textarea.stories-arg';
+import { textareaRichDefaults } from '../vl-textarea-rich.defaults';
 
 type TextareaRichArgs = typeof textareaArgs & typeof textareaRichDefaults;
 

@@ -1,10 +1,10 @@
 import { story } from '@domg-wc/common-storybook';
-import { textareaArgTypes, textareaArgs } from './vl-textarea.stories-arg';
+import { registerWebComponents } from '@domg-wc/common-utilities';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
-import textareaDocs from './vl-textarea.stories-doc.mdx';
-import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlTextareaComponent } from '../vl-textarea.component';
+import { textareaArgs, textareaArgTypes } from './vl-textarea.stories-arg';
+import textareaDocs from './vl-textarea.stories-doc.mdx';
 
 registerWebComponents([VlTextareaComponent]);
 

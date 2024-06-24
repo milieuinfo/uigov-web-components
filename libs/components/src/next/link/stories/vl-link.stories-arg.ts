@@ -1,14 +1,14 @@
 import {
     CATEGORIES,
-    TYPES,
+    CONTROLS,
     defaultArgs,
     defaultArgTypes,
     getSelectControlOptions,
-    CONTROLS,
+    TYPES,
 } from '@domg-wc/common-storybook';
-import { ArgTypes } from '@storybook/web-components';
-import { linkDefaults } from '../vl-link.component';
 import { ICON_PLACEMENT } from '@domg-wc/common-utilities';
+import { ArgTypes } from '@storybook/web-components';
+import { linkDefaults } from '../vl-link.defaults';
 
 type LinkArgs = typeof defaultArgs & typeof linkDefaults & { defaultSlot: string };
 

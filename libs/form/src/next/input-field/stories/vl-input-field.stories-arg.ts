@@ -1,8 +1,8 @@
 import { CATEGORIES, CONTROLS, TYPES } from '@domg-wc/common-storybook';
+import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 import { formControlArgs, formControlArgTypes } from '../../form-control/stories/form-control.stories-arg';
-import { inputFieldDefaults } from '../vl-input-field.component';
-import { action } from '@storybook/addon-actions';
+import { inputFieldDefaults } from '../vl-input-field.defaults';
 
 type InputFieldArgs = typeof formControlArgs &
     typeof inputFieldDefaults & { onVlInput: () => void; onVlValid: () => void };

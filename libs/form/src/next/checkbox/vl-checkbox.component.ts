@@ -1,19 +1,12 @@
+import { webComponent } from '@domg-wc/common-utilities';
+import { vlElementsStyle } from '@domg-wc/elements';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { checkboxStyle } from '@domg/govflanders-style/component';
 import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-import { checkboxStyle } from '@domg/govflanders-style/component';
-import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { vlElementsStyle } from '@domg-wc/elements';
+import { FormControl } from '../form-control/form-control';
 import checkboxUigStyle from './vl-checkbox.component.uig-css';
-import { FormControl, formControlDefaults } from '../form-control/form-control';
-import { webComponent } from '@domg-wc/common-utilities';
-
-export const checkboxDefaults = {
-    ...formControlDefaults,
-    block: false as boolean,
-    value: null as string | null,
-    checked: false as boolean,
-    isSwitch: false as boolean,
-} as const;
+import { checkboxDefaults } from './vl-checkbox.defaults';
 
 @webComponent('vl-checkbox-next')
 export class VlCheckboxComponent extends FormControl {
