@@ -4,7 +4,7 @@ import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import { VlPropertiesComponent } from '../vl-properties.component';
 import { dummyProps } from './vl-properties.stories-util';
-import propertiesDoc from './vl-properties-stories-doc.mdx';
+import propertiesDoc from './vl-properties.stories-doc.mdx';
 import { propertiesArgs, propertiesArgTypes } from './vl-properties.stories-arg';
 
 registerWebComponents([VlPropertiesComponent]);

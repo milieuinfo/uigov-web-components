@@ -1,12 +1,10 @@
-import { VlIconElement } from '@domg-wc/elements';
 import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { VlIconElement } from '@domg-wc/elements';
 import { css, html, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import proj4 from 'proj4';
+import { DEFAULT_TOOLTIP, DEFAULT_ZOOM } from './vl-map-current-location.defaults';
 import styles from './vl-map-current-location.uig-css';
-
-export const DEFAULT_ZOOM = 10;
-export const DEFAULT_TOOLTIP = 'Huidige locatie';
 
 @customElement('vl-map-current-location')
 export class VlMapCurrentLocation extends BaseLitElement {
@@ -21,7 +19,8 @@ export class VlMapCurrentLocation extends BaseLitElement {
     static get styles() {
         return [
             css`
-                ${unsafeCSS(styles)}}
+                ${unsafeCSS(styles)}
+            }
             `,
         ];
     }

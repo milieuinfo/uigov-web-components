@@ -6,7 +6,8 @@ import {
     getSelectControlOptions,
     TYPES,
 } from '@domg-wc/common-storybook';
-import { ICON_PLACEMENT } from '@domg-wc/common-utilities';
+// de import is bewust op deze manier om voor de web-types.generator 'binnen' de monorepo geen side-effect te geven
+import { ICON_PLACEMENT } from '@domg-wc/common-utilities/constants';
 import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
 import { buttonDefaults } from '../vl-button.defaults';

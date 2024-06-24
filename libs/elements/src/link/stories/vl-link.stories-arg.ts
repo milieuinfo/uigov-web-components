@@ -1,4 +1,5 @@
-import { CATEGORIES, CONTROLS, getSelectControlOptions } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, getSelectControlOptions, TYPES } from '@domg-wc/common-storybook';
+import { ArgTypes } from '@storybook/web-components';
 
 export const linkBaseArgs = {
     block: false,
@@ -19,57 +20,57 @@ export const linkIconArgs = {
     icon: 'arrow-right-fat',
 };
 
-export const linkBaseArgTypes = {
+export const linkBaseArgTypes: ArgTypes<typeof linkBaseArgs> = {
     block: {
         name: 'data-vl-block',
-        type: { summary: 'boolean' },
         description: 'A link that is displayed as a block element, will take the width of the parent container.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
     },
     error: {
         name: 'data-vl-error',
-        type: { summary: 'boolean' },
         description: 'Use the error link to emphasize the importance or the consequence of an action.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
     },
     inline: {
         name: 'data-vl-inline',
-        type: { summary: 'boolean' },
         description: 'A link that is displayed as an inline element, will follow the original flow of content.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
     },
     small: {
         name: 'data-vl-small',
-        type: { summary: 'boolean' },
         description: 'The smaller variant of a link.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
     },
     large: {
         name: 'data-vl-large',
-        type: { summary: 'boolean' },
         description: 'The larger variant of a link.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },
     },
     bold: {
         name: 'data-vl-bold',
-        type: { summary: 'boolean' },
         description: 'The bold variant of a link.',
         table: {
+            type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: 'false' },
         },

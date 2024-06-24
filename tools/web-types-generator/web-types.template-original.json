@@ -1,0 +1,68 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
+    "name": "uigov-web-components",
+    "version": "1.34.0",
+    "js-types-syntax": "typescript",
+    "description-markup": "markdown",
+    "contributions": {
+        "html": {
+            "elements": [
+                {
+                    "name": "vl-properties-next",
+                    "description": "Gebruik de `properties-next` component om properties te tonen op een pagina. Je kan de properties specifiëren als\ninner-html of als json-structuur meegeven aan het `props` attribuut.\n\nDeze component is de nieuwste variant die de (nog als element geschreven)\n[vl-properties](/docs/elements-properties--documentatie) vervangt.\n",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/1.34.0/storybook/?path=/docs/components-next-properties--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.\nWordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "label-width",
+                            "description": "De breedte van de labels, in REM. Heeft geen impact als de properties 'collapsed' worden.",
+                            "default": 17
+                        }
+                    ],
+                    "slots": [
+                        {
+                            "name": "[default]",
+                            "description": "Element dat getoond en verborgen wordt wanneer de gebruiker de accordion opent of sluit.",
+                            "default": ""
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "props",
+                                "type": "array",
+                                "default": "",
+                                "description": "De props in JSON formaat."
+                            }
+                        ]
+                    },
+                    "css": {
+                        "properties": [
+                            {
+                                "name": "--vl-label-color",
+                                "description": "De kleur van het label."
+                            }
+                        ],
+                        "classes": [
+                            {
+                                "name": "column",
+                                "description": "Om properties te groeperen in een kolom om zo tot een 2 kolom layout te komen."
+                            },
+                            {
+                                "name": "column--full-width",
+                                "description": "Om properties te groeperen in 1 kolom die de volledige breedte inneemt."
+                            },
+                            {
+                                "name": "collapsed",
+                                "description": "Om de waardes onder de labels te tonen (ipv ernaast)."
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}

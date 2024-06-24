@@ -21,7 +21,7 @@ import '../components/layer-style/vl-map-layer-circle-style/vl-map-layer-circle-
 import '../components/layer-style/vl-map-layer-style';
 import '../components/layer-switcher/vl-map-layer-switcher';
 import '../components/layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
-import { LEGEND_PLACEMENT } from '../components/legend/vl-map-legend';
+import { LEGEND_PLACEMENT } from '../components/legend/vl-map-legend.defaults';
 import '../components/legend/vl-map-legend';
 import '../components/overview-map/vl-map-overview-map';
 import '../components/side-sheet/vl-map-side-sheet';

@@ -3,16 +3,9 @@ import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
 import './vl-select.lib.js';
 import { elementStyles } from '../vl-elements.uig-css';
+import { SELECT_POSITION } from './vl-select.model';
 
 declare const vl: VL;
-
-export const SELECT_POSITION = {
-    AUTO: 'auto',
-    TOP: 'top',
-    BOTTOM: 'bottom',
-} as const;
-
-export type SelectPosition = (typeof SELECT_POSITION)[keyof typeof SELECT_POSITION];
 
 /**
  * VlSelect
