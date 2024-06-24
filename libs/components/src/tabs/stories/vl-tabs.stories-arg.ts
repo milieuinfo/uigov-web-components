@@ -8,7 +8,7 @@ import {
 } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 import { ArgTypes } from '@storybook/web-components';
-import { DISPLAY_STYLE } from '../vl-tabs.component';
+import { DISPLAY_STYLE } from '../vl-tabs.model';
 
 export const tabsArgs = {
     ...defaultArgs,

@@ -1,6 +1,6 @@
 import { CATEGORIES, CONTROLS, getSelectControlOptions, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { SELECT_POSITION } from '../vl-select.element';
+import { SELECT_POSITION } from '../vl-select.model';
 import { action } from '@storybook/addon-actions';
 
 export const selectArgs = {

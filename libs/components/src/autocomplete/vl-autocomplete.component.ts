@@ -5,12 +5,9 @@ import { autocompleteStyle, inputFieldStyle } from '@domg/govflanders-style/comp
 import { html, PropertyValues } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import 'reflect-metadata';
+import { DEFAULT_CAPTION_FORMAT, DEFAULT_MAX_MATCHES, DEFAULT_MIN_CHARS } from './vl-autocomplete.defaults';
 import { CAPTION_FORMAT } from './vl-autocomplete.model';
 import autocompleteUigStyle from './vl-autocomplete.uig-css';
-
-export const DEFAULT_MAX_MATCHES = 15;
-export const DEFAULT_MIN_CHARS = 3;
-export const DEFAULT_CAPTION_FORMAT = CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL;
 
 @customElement('vl-autocomplete')
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

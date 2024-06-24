@@ -1,9 +1,6 @@
-import '../vl-input-field.element';
-import '../../button/vl-button.element';
-import '../../link/vl-link.element';
-import '../../form-message/vl-form-validation-message.element';
-import { formValidationArgs, formValidationArgTypes } from '../../form-validation/stories/form-validation.stories-arg';
 import { CATEGORIES, TYPES } from '@domg-wc/common-storybook';
+import { ArgTypes } from '@storybook/web-components';
+import { formValidationArgs, formValidationArgTypes } from '../../form-validation/stories/form-validation.stories-arg';
 
 export const inputFieldArgs = {
     block: false,
@@ -14,7 +11,7 @@ export const inputFieldArgs = {
     ...formValidationArgs,
 };
 
-export const inputFieldArgTypes = {
+export const inputFieldArgTypes: ArgTypes<typeof inputFieldArgs> = {
     block: {
         name: 'data-vl-block',
         description: 'Laat het input veld de breedte van zijn parent innemen.',

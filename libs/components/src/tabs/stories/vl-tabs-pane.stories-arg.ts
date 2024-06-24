@@ -10,7 +10,6 @@ export const tabsPaneArgs = {
 
 export const tabsPaneArgTypes: ArgTypes<typeof tabsPaneArgs> = {
     ...defaultArgTypes(),
-
     id: {
         name: 'data-vl-id',
         description: 'De id van de tabs-pane.',

@@ -1,4 +1,5 @@
 import { webComponent } from '@domg-wc/common-utilities';
+import { SelectRichOption } from '@domg-wc/form/next/select-rich/vl-select-rich.model';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { iconStyle, inputFieldStyle } from '@domg/govflanders-style/component';
 import { FormValue } from '@open-wc/form-control/src/types';
@@ -10,7 +11,12 @@ import multiselectStyle from './styles/vl-multiselect.dv-css';
 import selectRichUigStyle from './styles/vl-select-rich.uig-css';
 import selectStyle from './styles/vl-select.dv-css';
 import { selectRichDefaults } from './vl-select-rich.defaults';
-import { Choices, DEFAULT_CLASSNAMES, SelectRichOption } from './vl-select-rich.model';
+import * as choices from 'choices.js';
+
+// web-dev-server (rollup) fix: ambiguous indirect export
+export const DEFAULT_CLASSNAMES = choices.DEFAULT_CLASSNAMES;
+export const Choices = choices.default;
+export type Choices = choices.default;
 
 @webComponent('vl-select-rich-next')
 export class VlSelectRichComponent extends FormControl {

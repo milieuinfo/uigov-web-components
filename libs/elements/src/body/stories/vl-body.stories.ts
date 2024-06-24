@@ -3,6 +3,7 @@ import '../vl-body.element';
 
 export default {
     title: 'Elements/body',
+    tags: ['autodocs'],
     parameters: {
         controls: { hideNoControlsWarning: true },
     },

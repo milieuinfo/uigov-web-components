@@ -6,8 +6,9 @@ import {
     getSelectControlOptions,
     TYPES,
 } from '@domg-wc/common-storybook';
-import { PADDINGS } from '@domg-wc/common-utilities';
 import { ArgTypes } from '@storybook/web-components';
+// de import is bewust op deze manier om voor de web-types.generator 'binnen' de monorepo geen side-effect te geven
+import { PADDINGS } from '@domg-wc/common-utilities/constants';
 
 export const popoverDefaultArgs = {
     ...defaultArgs,

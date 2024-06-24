@@ -10,12 +10,6 @@ import tabsUigStyle from './vl-tabs.uig-css';
 
 declare const vl: VL;
 declare const window: Window;
-export const DISPLAY_STYLE = {
-    DEFAULT: 'default',
-    TABS: 'tabs',
-    COLLAPSED: 'collapsed',
-} as const;
-export type DisplayStyle = (typeof DISPLAY_STYLE)[keyof typeof DISPLAY_STYLE];
 
 @webComponent('vl-tabs')
 export class VlTabsComponent extends BaseHTMLElement {

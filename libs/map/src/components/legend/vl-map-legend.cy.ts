@@ -5,7 +5,8 @@ import { VlMapBaseLayerGRBGray } from '../baselayer/vl-map-base-layer-grb-gray/v
 import { VlMapLayerCircleStyle } from '../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
 import { VlMapFeaturesLayer } from '../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import { VlMapWfsLayer } from '../layer/vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
-import { LEGEND_PLACEMENT, VlMapLegend } from './vl-map-legend';
+import { VlMapLegend } from './vl-map-legend';
+import { LEGEND_PLACEMENT } from './vl-map-legend.defaults';
 
 registerWebComponents([
     VlMapLegend,

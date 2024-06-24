@@ -1,3 +1,5 @@
+import { ArgTypes } from '@storybook/web-components';
+
 export const searchFilterArgs = {
     title: 'Lorem ipsum',
     alt: false,
@@ -6,7 +8,7 @@ export const searchFilterArgs = {
     maxWidth: '800px',
 };
 
-export const searchFilterArgTypes = {
+export const searchFilterArgTypes: ArgTypes<typeof searchFilterArgs> = {
     title: {
         name: 'data-vl-title',
         description: 'The title of this search filter.',

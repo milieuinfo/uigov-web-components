@@ -5,19 +5,13 @@ import { VlMapWmsLayer } from '../layer/wms-layer/vl-map-wms-layer';
 import { VlMapVectorLayer } from '../layer/vector-layer/vl-map-vector-layer';
 import { VlMapWfsLayer } from '../layer/vector-layer/vl-map-wfs-layer/vl-map-wfs-layer';
 import { VlMapLayerCircleStyle } from '../layer-style/vl-map-layer-circle-style/vl-map-layer-circle-style';
+import { LEGEND_PLACEMENT } from './vl-map-legend.defaults';
 import styles from './vl-map-legend.uig-css';
 import { BaseLitElement } from '@domg-wc/common-utilities';
 import { VlMapLayer } from '../layer/vl-map-layer';
 import { VlMapLayerStyle } from '../layer-style/vl-map-layer-style';
 import { VlMapFeaturesLayer } from '../layer/vector-layer/vl-map-features-layer/vl-map-features-layer';
 import { VlMapLegendItem } from '../legend-item/vl-map-legend-item';
-
-export const LEGEND_PLACEMENT = {
-    TOP_LEFT: 'top_left',
-    TOP_RIGHT: 'top_right',
-    BOTTOM_LEFT: 'bottom_left',
-    BOTTOM_RIGHT: 'bottom_right',
-};
 
 export interface Position {
     top: string;
