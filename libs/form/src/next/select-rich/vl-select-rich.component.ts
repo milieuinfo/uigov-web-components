@@ -1,43 +1,16 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { classMap } from 'lit/directives/class-map.js';
-import * as choices from 'choices.js';
-import { Choice, Options, Item } from 'choices.js';
-import { FormValue } from '@open-wc/form-control/src/types';
-import { iconStyle, inputFieldStyle } from '@domg/govflanders-style/component';
+import { webComponent } from '@domg-wc/common-utilities';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { iconStyle, inputFieldStyle } from '@domg/govflanders-style/component';
+import { FormValue } from '@open-wc/form-control/src/types';
+import { Item, Options } from 'choices.js';
+import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import { FormControl } from '../form-control/form-control';
+import multiselectStyle from './styles/vl-multiselect.dv-css';
 import selectRichUigStyle from './styles/vl-select-rich.uig-css';
 import selectStyle from './styles/vl-select.dv-css';
-import multiselectStyle from './styles/vl-multiselect.dv-css';
-import { FormControl, formControlDefaults } from '../form-control/form-control';
-import { webComponent } from '@domg-wc/common-utilities';
-
-// web-dev-server (rollup) fix: ambiguous indirect export
-const DEFAULT_CLASSNAMES = choices.DEFAULT_CLASSNAMES;
-const Choices = choices.default;
-type Choices = choices.default;
-
-export type SelectRichOption = Choice;
-
-export const SelectRichPosition = {
-    AUTO: 'auto',
-    TOP: 'top',
-    BOTTOM: 'bottom',
-} as const;
-export type SelectRichPosition = (typeof SelectRichPosition)[keyof typeof SelectRichPosition];
-
-export const selectRichDefaults = {
-    ...formControlDefaults,
-    options: [] as SelectRichOption[],
-    placeholder: '' as string,
-    notDeletable: false as boolean,
-    multiple: false as boolean,
-    search: false as boolean,
-    position: SelectRichPosition.AUTO as SelectRichPosition,
-    resultLimit: 4 as number,
-    noResultsText: 'Geen resultaten gevonden' as string,
-    noChoicesText: 'Geen resterende opties gevonden' as string,
-    searchPlaceholder: 'Zoek item' as string,
-} as const;
+import { selectRichDefaults } from './vl-select-rich.defaults';
+import { Choices, DEFAULT_CLASSNAMES, SelectRichOption } from './vl-select-rich.model';
 
 @webComponent('vl-select-rich-next')
 export class VlSelectRichComponent extends FormControl {

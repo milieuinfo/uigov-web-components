@@ -1,29 +1,14 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { live } from 'lit/directives/live.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { FormControl, formControlDefaults } from '../form-control/form-control';
 import { webComponent } from '@domg-wc/common-utilities';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { iconStyle } from '@domg/govflanders-style/component';
+import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import { live } from 'lit/directives/live.js';
+import { FormControl } from '../form-control/form-control';
 import selectStyle from './styles/vl-select.dv-css';
 import selectUigStyle from './styles/vl-select.uig-css';
-import { iconStyle } from '@domg/govflanders-style/component';
-
-export type SelectOption = {
-    value: string;
-    label?: string;
-    group?: string;
-    selected?: boolean;
-    disabled?: boolean;
-};
-
-export const selectDefaults = {
-    ...formControlDefaults,
-    options: [] as SelectOption[],
-    block: false as boolean,
-    placeholder: '' as string,
-    autocomplete: '' as string,
-    notDeletable: false as boolean,
-} as const;
+import { selectDefaults } from './vl-select.defaults';
+import { SelectOption } from './vl-select.model';
 
 @webComponent('vl-select-next')
 export class VlSelectComponent extends FormControl {
@@ -123,13 +108,13 @@ export class VlSelectComponent extends FormControl {
     }
 
     renderPlaceholder(hasValue: boolean): TemplateResult {
-        return html`<option class="vl-select__placeholder" value="" ?selected=${!hasValue} disabled>
+        return html` <option class="vl-select__placeholder" value="" ?selected=${!hasValue} disabled>
             ${this.placeholder}
         </option>`;
     }
 
     renderClearButton(): TemplateResult {
-        return html`<button class="vl-select__button" aria-label="Verwijder keuze" @click=${this.clearValue}>
+        return html` <button class="vl-select__button" aria-label="Verwijder keuze" @click=${this.clearValue}>
             <span class="vl-icon vl-vi vl-vi-close"></span>
         </button>`;
     }
@@ -138,13 +123,13 @@ export class VlSelectComponent extends FormControl {
         const groupedOptions = this.getGroupedOptions();
 
         return Object.entries(groupedOptions).map(([group, options]) => {
-            return html`<optgroup label=${group}>${this.renderSelectOptions(options)}</optgroup>`;
+            return html` <optgroup label=${group}>${this.renderSelectOptions(options)}</optgroup>`;
         });
     }
 
     renderSelectOptions(options: SelectOption[]): TemplateResult[] {
         return options.map((option) => {
-            return html`<option
+            return html` <option
                 value=${option.value}
                 ?selected=${this.value === option.value}
                 ?disabled=${option.disabled}

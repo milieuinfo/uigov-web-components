@@ -1,15 +1,9 @@
 import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { formMessageStyle } from '@domg/govflanders-style/component';
-import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
+import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-
-export const formLabelDefaults = {
-    for: '' as string,
-    label: '' as string,
-    block: false as boolean,
-    light: false as boolean,
-} as const;
+import { formLabelDefaults } from './vl-form-label.defaults';
 
 @webComponent('vl-form-label-next')
 export class VlFormLabelComponent extends BaseLitElement {

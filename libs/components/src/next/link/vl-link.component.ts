@@ -1,21 +1,10 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import { classMap } from 'lit/directives/class-map.js';
-import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
+import { BaseLitElement, ICON_PLACEMENT, webComponent } from '@domg-wc/common-utilities';
 import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-decorator';
-import linkStyle from '@domg-wc/common-utilities/css/link/link.css';
 import iconStyle from '@domg-wc/common-utilities/css/icon/icon.css';
-import { ICON_PLACEMENT } from '@domg-wc/common-utilities';
-
-export const linkDefaults = {
-    href: '' as string,
-    bold: false as boolean,
-    small: false as boolean,
-    large: false as boolean,
-    error: false as boolean,
-    external: false as boolean,
-    icon: '' as string,
-    iconPlacement: 'before' as ICON_PLACEMENT,
-} as const;
+import linkStyle from '@domg-wc/common-utilities/css/link/link.css';
+import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import { linkDefaults } from './vl-link.defaults';
 
 @globalStylesNext()
 @webComponent('vl-link-next')
@@ -70,8 +59,7 @@ export class VlLinkComponent extends BaseLitElement {
             <a class=${classMap(classes)} href=${this.href} target=${target}>
                 ${this.renderIcon(ICON_PLACEMENT.BEFORE)}
                 <slot></slot>
-                ${this.renderIcon(ICON_PLACEMENT.AFTER)}
-                ${this.external ? this.renderExternalIcon() : ''}
+                ${this.renderIcon(ICON_PLACEMENT.AFTER)} ${this.external ? this.renderExternalIcon() : ''}
             </a>
         `;
     }

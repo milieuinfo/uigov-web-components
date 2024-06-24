@@ -1,6 +1,6 @@
 import { CATEGORIES, CONTROLS, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
-import { doormatDefaults } from '../vl-doormat.component';
+import { doormatDefaults } from '../vl-doormat.defaults';
 
 export type DoormatArgs = typeof defaultArgs & typeof doormatDefaults & { titleSlot: string; textSlot: string };
 

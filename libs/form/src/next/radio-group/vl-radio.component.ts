@@ -1,24 +1,12 @@
-import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult, LitElement } from 'lit';
-import { live } from 'lit/directives/live.js';
-import { classMap } from 'lit/directives/class-map.js';
-import { radioStyle } from '@domg/govflanders-style/component';
-import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
-import { vlElementsStyle } from '@domg-wc/elements';
-import radioUigStyle from './vl-radio.component.uig-css';
 import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
-
-export const radioDefaults = {
-    id: 'radio' as string,
-    name: '' as string,
-    value: null as string | null,
-    label: '' as string,
-    block: false as boolean,
-    readonly: false as boolean,
-    disabled: false as boolean,
-    error: false as boolean,
-    success: false as boolean,
-    checked: false as boolean,
-} as const;
+import { vlElementsStyle } from '@domg-wc/elements';
+import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { radioStyle } from '@domg/govflanders-style/component';
+import { CSSResult, html, LitElement, nothing, PropertyDeclarations, TemplateResult } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import { live } from 'lit/directives/live.js';
+import radioUigStyle from './vl-radio.component.uig-css';
+import { radioDefaults } from './vl-radio.defaults';
 
 @webComponent('vl-radio-next')
 export class VlRadioComponent extends BaseLitElement {

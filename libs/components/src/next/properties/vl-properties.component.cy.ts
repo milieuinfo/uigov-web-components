@@ -1,7 +1,7 @@
 import { buildData, buildLabel, registerWebComponents } from '@domg-wc/common-utilities';
 import { VlPropertiesComponent } from '@domg-wc/components/next/properties';
 import { dummy2Props, dummyProps } from '@domg-wc/components/next/properties/stories/vl-properties.stories-util';
-import { propertiesDefaults } from '@domg-wc/components/next/properties/vl-properties.component';
+import { propertiesDefaults } from '@domg-wc/components/next/properties/vl-properties.defaults';
 import { html } from 'lit';
 
 registerWebComponents([VlPropertiesComponent]);

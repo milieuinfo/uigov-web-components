@@ -7,10 +7,10 @@ export { VlBreadcrumbComponent, VlBreadcrumbItemComponent } from './breadcrumb';
 export {
     VlCascaderComponent,
     VlCascaderItemComponent,
-    TemplateFn,
-    ItemListFn,
-    NarrowDownFn,
-    CascaderItem,
+    type TemplateFn,
+    type ItemListFn,
+    type NarrowDownFn,
+    type CascaderItem,
 } from './next/cascader';
 export { VlCheckboxComponent } from './checkbox';
 export { VlCodePreviewComponent } from './code-preview';
@@ -47,7 +47,7 @@ export { VlInfoblockComponent } from './infoblock';
 export { VlInputSliderComponent } from './input-slider';
 export { VlLoaderComponent } from './loader';
 export { VlModalComponent } from './modal';
-export { VlPagerComponent, Pagination } from './pager';
+export { VlPagerComponent, type Pagination } from './pager';
 export { VlButtonPillComponent, VlPillComponent, TYPE } from './pill';
 export { VlPopoverComponent, VlPopoverActionComponent, VlPopoverActionListComponent } from './popover';
 export { VlProgressBarComponent } from './progress-bar';

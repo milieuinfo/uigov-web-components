@@ -1,14 +1,9 @@
-import { CSSResult, PropertyDeclarations, TemplateResult, html, nothing } from 'lit';
-import infotextStyle from './vl-infotext.css';
 import { BaseLitElement, throttle, webComponent } from '@domg-wc/common-utilities';
-import { classMap } from 'lit/directives/class-map.js';
 import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-decorator';
-
-export const infotextDefaults = {
-    badge: false as boolean,
-    href: '' as string,
-    external: false as boolean,
-} as const;
+import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import infotextStyle from './vl-infotext.css';
+import { infotextDefaults } from './vl-infotext.defaults';
 
 @globalStylesNext()
 @webComponent('vl-infotext-next')
@@ -67,13 +62,15 @@ export class VlInfotextComponent extends BaseLitElement {
             return html`<a class=${classMap(classes)} href=${this.href} target=${target}>${this.renderContent()}</a>`;
         }
 
-        return html`<div class=${classMap(classes)}>${this.renderContent()}</div>`;
+        return html` <div class=${classMap(classes)}>${this.renderContent()}</div>`;
     }
 
     renderContent(): TemplateResult {
         return html`
             <div class="vl-infotext__value">${this.value}</div>
-            <div class="vl-infotext__text"><slot name="text"></slot></div>
+            <div class="vl-infotext__text">
+                <slot name="text"></slot>
+            </div>
             <slot name="value" hidden></slot>
         `;
     }

@@ -1,16 +1,11 @@
 import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
-import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
-import { formMessageStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
+import { formMessageStyle } from '@domg/govflanders-style/component';
+import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
+import { errorMessageDefaults } from './vl-error-message.defaults';
 import errorMessageUigStyle from './vl-error-message.uig-css';
 
 export const ERROR_MESSAGE_CUSTOM_TAG = 'vl-error-message-next';
-
-export const errorMessageDefaults = {
-    show: false as boolean,
-    for: null as string | null,
-    state: null as keyof ValidityState | null,
-} as const;
 
 @webComponent(ERROR_MESSAGE_CUSTOM_TAG)
 export class VlErrorMessageComponent extends BaseLitElement {
@@ -32,7 +27,11 @@ export class VlErrorMessageComponent extends BaseLitElement {
     }
 
     render(): TemplateResult {
-        return html` <p class="vl-form__error" ?hidden=${!this.show}><slot></slot></p> `;
+        return html`
+            <p class="vl-form__error" ?hidden=${!this.show}>
+                <slot></slot>
+            </p>
+        `;
     }
 }
 
