@@ -90,6 +90,7 @@ export class VlTextareaRichComponent extends VlTextareaComponent {
     disconnectedCallback() {
         super.disconnectedCallback();
 
+        this.editor?.mode?.set('readonly');
         this.editor?.destroy();
     }
 
