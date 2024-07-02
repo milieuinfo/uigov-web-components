@@ -1,5 +1,13 @@
-import { documentStyle, iconListStyle, spotlightStyle } from '@domg/govflanders-style/component';
-import { CSSResult } from 'lit/development';
-import { vlElementsStyle } from '@domg-wc/elements';
+import { css, CSSResult } from 'lit';
 
-export default [...vlElementsStyle, spotlightStyle, documentStyle, iconListStyle] as CSSResult[];
+const styles: CSSResult = css`
+    a.vl-spotlight .vl-spotlight__title {
+        text-decoration: underline;
+    }
+    a.vl-spotlight .vl-spotlight__title:hover,
+    a.vl-spotlight .vl-spotlight__title:focus,
+    a.vl-spotlight .vl-spotlight__title:active {
+        text-decoration: none;
+    }
+`;
+export default styles;
