@@ -31,6 +31,7 @@ export const SideSheetDefault = story(
         customIcon,
         hideToggleButton,
         iconPlacement,
+        open,
     }) => html`
         <vl-side-sheet
             ?data-vl-enable-swipe=${enableSwipe}
@@ -42,6 +43,7 @@ export const SideSheetDefault = story(
             data-vl-custom-icon=${customIcon}
             data-vl-icon-placement=${iconPlacement}
             ?data-vl-hide-toggle-button=${hideToggleButton}
+            ?data-vl-open=${open}
         >
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum urna ante. Integer eu sem
@@ -94,7 +96,18 @@ SideSheetDefault.storyName = 'vl-side-sheet - default';
 
 export const SideSheetToggle = story(
     sideSheetArgs,
-    ({ enableSwipe, absolute, left, toggleText, tooltipText, right, customIcon, hideToggleButton, iconPlacement }) => {
+    ({
+        enableSwipe,
+        absolute,
+        left,
+        toggleText,
+        tooltipText,
+        right,
+        customIcon,
+        hideToggleButton,
+        iconPlacement,
+        open,
+    }) => {
         const { toggleSideSheet, openSideSheet, closeSideSheet } = sideSheetToggleImplementation();
         return html`
             <style>
@@ -147,6 +160,7 @@ export const SideSheetToggle = story(
                 data-vl-custom-icon=${customIcon}
                 data-vl-icon-placement=${iconPlacement}
                 ?data-vl-hide-toggle-button=${hideToggleButton}
+                ?data-vl-open=${open}
             >
                 <button
                     is="vl-button"

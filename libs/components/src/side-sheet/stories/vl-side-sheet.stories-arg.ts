@@ -10,6 +10,7 @@ export const sideSheetArgs = {
     iconPlacement: 'before',
     left: false,
     right: false,
+    open: false,
     toggleText: '',
     tooltipText: '',
 };
@@ -46,6 +47,14 @@ export const sideSheetArgTypes: ArgTypes<typeof sideSheetArgs> = {
         table: {
             type: { summary: TYPES.BOOLEAN },
             defaultValue: { summary: sideSheetArgs.absolute },
+        },
+    },
+    open: {
+        name: 'data-vl-open',
+        description: 'Duidt aan dat de side-sheet open is.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            defaultValue: { summary: sideSheetArgs.open },
         },
     },
     toggleText: {
