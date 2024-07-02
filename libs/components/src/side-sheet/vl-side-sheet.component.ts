@@ -53,6 +53,7 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
             'hide-toggle-button',
             'icon-position',
             'custom-size',
+            'open',
         ];
     }
 
@@ -172,6 +173,9 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
      */
     open() {
         this.setAttribute('data-vl-open', '');
+    }
+
+    _handleOnOpen() {
         this._toggleButton.setAttribute('aria-expanded', 'true');
         let openIcon: string;
         if (!this.customIcon) {
@@ -189,6 +193,10 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
      */
     close() {
         this.removeAttribute('data-vl-open');
+        this._handleOnClose();
+    }
+
+    _handleOnClose() {
         this._toggleButton.setAttribute('aria-expanded', 'false');
         let closeIcon: string;
         if (!this.customIcon) {
@@ -202,6 +210,7 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
         }
     }
 
+    // TODO storybook documentatie
     /**
      * De callback wordt uitgevoerd direct na de afsluiten van een side sheet.
      *
@@ -245,6 +254,14 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
         }
     }
 
+    _openChangedCallback() {
+        if (this.isOpen) {
+            this._handleOnOpen();
+        } else {
+            this._handleOnClose();
+        }
+    }
+
     updateToggleText(value: string): void {
         if (value && value !== '') {
             this._toggleButton.removeAttribute('data-vl-text-hidden');
@@ -259,7 +276,12 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
     }
 
     _tooltipTextChangedCallback(oldValue: any, newValue: any) {
-        this._toggleButton.title = newValue;
+        // we voegen de title toe aan de button behalve als de waarde null / undefined is
+        if (newValue ?? false) {
+            this._toggleButton?.setAttribute('title', newValue);
+        } else {
+            this._toggleButton?.removeAttribute('title');
+        }
     }
 
     _hideToggleButtonChangedCallback(oldValue: any, newValue: any) {
