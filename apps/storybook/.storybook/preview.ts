@@ -1,4 +1,10 @@
-import { filterOutClasses, formatHTML } from '@domg-wc/common-storybook';
+import {
+    filterOutStoryClasses,
+    filterOutClasses,
+    filterOutDataCy,
+    filterOutStoryStyleTags,
+    formatHTML,
+} from '@domg-wc/common-storybook';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlIconElement } from '@domg-wc/elements';
 import './styles.css';
@@ -15,7 +21,17 @@ export const parameters = {
         sort: 'alpha',
     },
     docs: {
-        transformSource: (input: string) => formatHTML(filterOutClasses(input)),
+        transformSource: (input: string, { id }: { id: string }) => {
+            console.log('transformSource storyContext id', id);
+            // if id starts with `styles-` then return the input without any transformation
+            if (id.startsWith('styles-')) {
+                return formatHTML(filterOutStoryStyleTags(filterOutStoryClasses(input)));
+            } else if (id.startsWith('elements-')) {
+                return formatHTML(filterOutDataCy(filterOutClasses(input)));
+            } else {
+                return formatHTML(filterOutStoryClasses(input));
+            }
+        },
     },
 };
 
