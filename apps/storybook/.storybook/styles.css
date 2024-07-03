@@ -20,7 +20,7 @@ strong {
     }
 }
 
-.flex-center {
+.story--flex-center {
     display: flex;
     align-items: center;
 }
@@ -28,6 +28,7 @@ strong {
 .story--fixed-width {
     width: 800px;
 }
+
 
 h2#varianten {
     font-weight: inherit;
