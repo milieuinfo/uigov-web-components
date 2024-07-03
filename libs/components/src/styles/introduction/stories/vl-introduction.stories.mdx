@@ -1,0 +1,62 @@
+import { Preview, Story, Meta, Canvas, Source } from '@storybook/addon-docs';
+import { html, unsafeCSS } from "lit";
+import introductionStyle from '../vl-introduction.css';
+
+<Meta title="Styles/introduction"/>
+
+# Introduction - next
+
+Gebruik de `vl-introduction-next` styles om een introductie tekst af te beelden op een pagina.
+
+Deze CSS klasse is de volgende versie van de [vl-introduction](/docs/elements-introduction-introduction--documentatie) component.
+
+## Voorbeeld
+
+```js
+import { introductionStyle } from '@domg-wc/components/styles';
+```
+
+
+<Canvas>
+    <Story name="vl-introduction - default">
+        {html`
+            <style>
+                ${unsafeCSS(introductionStyle.cssText)}
+            </style>
+            <p class="vl-introduction-next">
+                Nulla vitae elit libero, a pharetra augue. Sed posuere consectetur est at lobortis. Fusce dapibus, tellus ac
+                cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Sed posuere
+                consectetur est at lobortis. Etiam porta sem malesuada magna mollis euismod. Vivamus sagittis lacus vel
+                augue laoreet rutrum faucibus.
+            </p>
+    `}
+    </Story>
+</Canvas>
+
+## Varianten
+
+### Bold
+
+Gebruik `vl-introduction-next--bold`-modifier om de tekst vetgedrukt weer te geven.
+
+<Canvas>
+    <Story name="vl-introduction - bold">
+        {html`
+            <style>
+                ${unsafeCSS(introductionStyle.cssText)}
+            </style>
+            <p class="vl-introduction-next vl-introduction-next--bold">
+                Nulla vitae elit libero, a pharetra augue. Sed posuere consectetur est at lobortis. Fusce dapibus, tellus ac
+                cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Sed posuere
+                consectetur est at lobortis. Etiam porta sem malesuada magna mollis euismod. Vivamus sagittis lacus vel
+                augue laoreet rutrum faucibus.
+            </p>
+    `}
+    </Story>
+</Canvas>
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+[Documentatie Digitaal Vlaanderen - Introduction](https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-introduction)

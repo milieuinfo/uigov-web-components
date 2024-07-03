@@ -30,3 +30,4 @@ export {
 } from './util/utils';
 export { onChildListChange } from './util/mutation-utils';
 export { buildSpan, buildDiv, buildLabel, buildData } from './util/html-element.builder';
+export { extractCSSVariables } from './util/style-utils';

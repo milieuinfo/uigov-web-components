@@ -1,9 +1,11 @@
-import { TemplateResult } from 'lit';
+import { CSSResult, TemplateResult } from 'lit';
 
 declare global {
     namespace Cypress {
         interface Chainable {
             mount(template: TemplateResult): Chainable;
+
+            loadCSSResult(...cssResults: CSSResult[]): Chainable<CSSResult | CSSResult[]>;
 
             createStubForEvent(selector: string, event: string): Chainable<Subject>;
 

@@ -1,4 +1,4 @@
-import { LitElement, TemplateResult, render } from 'lit';
+import { LitElement, TemplateResult, render, CSSResult, unsafeCSS } from 'lit';
 import { getContainerEl } from '@cypress/mount-utils';
 import 'cypress-axe';
 import 'cypress-wait-until';
@@ -27,6 +27,22 @@ Cypress.Commands.add('mount', (template: TemplateResult) => {
                 return cy.wrap(element);
             });
     });
+});
+
+Cypress.Commands.add('loadCSSResult', (...cssResults: CSSResult[]) => {
+    cy.document().then((doc) => {
+        const combinedCSSText = cssResults
+            .map((cssResult) => {
+                const css = unsafeCSS(cssResult);
+                return css.cssText;
+            })
+            .join('\n');
+
+        const style = doc.createElement('style');
+        style.textContent = combinedCSSText;
+        doc.head.appendChild(style);
+    });
+    return cy.wrap(cssResults);
 });
 
 Cypress.Commands.add('createStubForEvent', (selector: string, event: string) => {

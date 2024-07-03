@@ -21,6 +21,7 @@
             "@domg-wc/common-utilities/css/*": ["libs/common/utilities/src/css/*"],
             "@domg-wc/components": ["libs/components/src/index.ts"],
             "@domg-wc/components/next/*": ["libs/components/src/next/*"],
+            "@domg-wc/components/styles": ["libs/components/src/styles/index.ts"],
             "@domg-wc/elements": ["libs/elements/src/index.ts"],
             "@domg-wc/fat-lib": ["libs/support/fat-lib/src/index.ts"],
             "@domg-wc/form/*": ["libs/form/src/*"],
