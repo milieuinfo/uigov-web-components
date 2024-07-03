@@ -13,7 +13,7 @@ const styles: CSSResult = css`
         --vl-font-size--small: 1.6rem;
         --vl-font-size--large: 2rem;
 
-        --vl-line-height: 1.5;
+        --vl-line-height: 1.5; // DV: $vl-base-line-height
         --vl-line-height--mobile: 1.33;
 
         /* Icon font */

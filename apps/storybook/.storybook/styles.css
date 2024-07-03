@@ -20,7 +20,7 @@ strong {
     }
 }
 
-.flex-center {
+.story--flex-center {
     display: flex;
     align-items: center;
 }

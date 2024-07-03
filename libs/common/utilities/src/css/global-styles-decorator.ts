@@ -5,7 +5,7 @@ import typography from './vars/typography.var.css';
 import fonts from './font/fonts.css';
 import base from './base.css';
 
-const globalStyles = [colors, general, spacing, typography, fonts, base];
+export const globalStyles = [colors, general, spacing, typography, fonts, base];
 
 class RegisterGlobalStyles {
     static registered = false;
