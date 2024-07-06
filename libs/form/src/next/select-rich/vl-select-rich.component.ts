@@ -59,7 +59,7 @@ export class VlSelectRichComponent extends FormControl {
             searchPlaceholder: { type: String, attribute: 'search-placeholder' },
             value: {
                 type: FormData,
-                state: true,
+                // state: true,
                 hasChanged: (value: FormValue, oldValue: FormValue) => {
                     if (value instanceof FormData && oldValue instanceof FormData) {
                         // We vergelijken de letterlijke inhoud van de entries van dit FormData object, omdat default FormData vergelijking niet voldoet
@@ -115,9 +115,10 @@ export class VlSelectRichComponent extends FormControl {
         }
 
         if (changedProperties.has('value')) {
-            const detail = { value: this.getSelected() };
-
+            this.updateChoicesForValue(this.value);
             this.setValue(this.value);
+
+            const detail = { value: this.getSelected() };
             this.dispatchEvent(new CustomEvent('vl-select', { bubbles: true, composed: true, detail }));
             this.dispatchEventIfValid(detail);
         }
@@ -183,6 +184,51 @@ export class VlSelectRichComponent extends FormControl {
 
     getSelected(): string | string[] | null {
         return this.multiple ? this.getSelectedValues() : this.getSelectedValues()[0] || null;
+    }
+
+    setSelected(value: FormValue | string[]): void {
+        this.updateChoicesForValue(value);
+    }
+
+    private getStringsForValue(value: FormValue | string[]): string[] {
+        let values: string[] = [];
+        if (value && value instanceof Array) {
+            values = value;
+        } else if (value && value instanceof FormData) {
+            if (this.multiple) {
+                values = value.getAll(this.name)?.map((value) => value && value.toString());
+            } else {
+                values = typeof value.get(this.name) === 'string' ? [value.get(this.name)!.toString()] : [];
+            }
+        } else if (value && typeof value === 'string') {
+            values = [value];
+        }
+        return values;
+    }
+
+    private updateChoicesForValue(value: FormValue | string[]): void {
+        // String waardes van FormControl instantie
+        const values: string[] = this.getStringsForValue(value);
+        // String waardes van choices instantie
+        const choicesValue = this.choices?.getValue(true);
+        // Als de value overeenkomt met de waarde van choices, dan moeten we choices instantie niet bijwerken
+        const doMultiChoicesMatchValue =
+            value instanceof FormData &&
+            choicesValue instanceof Array &&
+            choicesValue.every((value) => typeof value === 'string' && values?.includes(value));
+        const doSingleChoicesMatchValue =
+            values.length && typeof choicesValue === 'string' && values.includes(choicesValue);
+        const areBothChoicesAndValueEmpty =
+            !value && !(choicesValue && choicesValue instanceof Array && choicesValue.length);
+        if (doMultiChoicesMatchValue || doSingleChoicesMatchValue || areBothChoicesAndValueEmpty) {
+            return;
+        }
+        if (values && values.length) {
+            this.choices?.setChoiceByValue(values);
+        } else {
+            // Als de value leeg is / leeg gemaakt wordt dan moeten we de choices instantie leeg maken
+            this.options = [...this.initialOptions];
+        }
     }
 
     private getSelectedValues(): string[] {
