@@ -1,3 +1,18 @@
+# [1.35.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.34.0...v1.35.0) (2024-07-08)
+
+
+### Bug Fixes
+
+* UIG-3021 - vl-textarea-rich-next - tinymce editor afbraak verbeterd ([e6cc0a9](https://github.com/milieuinfo/uigov-web-components/commit/e6cc0a920edfdc2ce028bfec46cbcd355aa6d62b))
+* UIG-3023 - vl-spotlight - link styling toegevoegd ([8d96152](https://github.com/milieuinfo/uigov-web-components/commit/8d96152c9a0664461bd9ffe4ed40881125ac817d))
+* UIG-3024 - vl-side-sheet - werking open-attribuut gestroomlijnd ([3fc0dd9](https://github.com/milieuinfo/uigov-web-components/commit/3fc0dd9db5466650370a106be9beaf7f4f476cd0))
+* UIG-3041 - vl-datepicker-next - lege value wordt nu correct ingesteld ([51931e7](https://github.com/milieuinfo/uigov-web-components/commit/51931e764095998a44c639d8c29858520afe18ad))
+
+
+### Features
+
+* UIG-3058 - vl-textarea-rich - documentatie in verband met plugins & toolbar uitgebreid ([a73c586](https://github.com/milieuinfo/uigov-web-components/commit/a73c586a0e76c82a08b42fdd2ffe62c2a920989f))
+
 # [1.34.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.33.0...v1.34.0) (2024-06-21)
 
 
