@@ -5,6 +5,7 @@ import { alertStyle, iconStyle } from '@domg/govflanders-style/component';
 import { accessibilityStyle, resetStyle, markStyle } from '@domg/govflanders-style/common';
 import { VlAlertClosedEvent } from './vl-alert.model';
 import { classMap } from 'lit/directives/class-map.js';
+import vlAlertUigCss from './vl-alert.uig-css';
 
 @customElement('vl-alert')
 export class VlAlert extends BaseLitElement {
@@ -17,18 +18,18 @@ export class VlAlert extends BaseLitElement {
     closable = false;
 
     static get styles(): CSSResult[] {
-        return [resetStyle, alertStyle, iconStyle, accessibilityStyle, markStyle];
+        return [resetStyle, alertStyle, iconStyle, accessibilityStyle, markStyle, vlAlertUigCss];
     }
 
     static get properties(): PropertyDeclarations {
         return {
-            icon: { type: String, attribute: 'data-vl-icon', reflect: true },
-            title: { type: String, attribute: 'data-vl-title', reflect: true },
-            closable: { type: Boolean, attribute: 'data-vl-closable', reflect: true },
-            type: { type: String, attribute: 'data-vl-type', reflect: true },
-            size: { type: String, attribute: 'data-vl-size', reflect: true },
-            naked: { type: Boolean, attribute: 'data-vl-naked', reflect: true },
-            message: { type: String, attribute: 'data-vl-message', reflect: true },
+            icon: { type: String, attribute: 'data-vl-icon' },
+            title: { type: String, attribute: 'data-vl-title' },
+            closable: { type: Boolean, attribute: 'data-vl-closable' },
+            type: { type: String, attribute: 'data-vl-type' },
+            size: { type: String, attribute: 'data-vl-size' },
+            naked: { type: Boolean, attribute: 'data-vl-naked' },
+            message: { type: String, attribute: 'data-vl-message' },
         };
     }
 
