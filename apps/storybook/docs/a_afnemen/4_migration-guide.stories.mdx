@@ -1,0 +1,200 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Afnemen/Migration Guide"/>
+
+# Migration Guide
+
+## Inhoudstafel
+
+- [Versie v2.0.0](#versie-v200)
+- [Oplijsting vervallen elementen](#oplijsting-vervallen-elementen)
+- [Oplijsting vervallen componenten](#oplijsting-vervallen-componenten)
+
+## Versie v2.0.0
+
+In deze toekomstige versie willen we enkele verbeteringen doorvoeren doorheen de componenten.
+- onder meer is het de bedoeling om de huidige "elements" te laten vervallen.
+- daarnaast willen we ook enkele componenten vervangen door CSS klasses.
+- ook form gerelateerde componenten zullen vervangen worden door `next` componenten.
+
+❗De componenten worden in v2.0.0 vervangen door de huidige `next` versie.
+
+❗De huidige next componenten verliezen na elke major release dan ook de `-next`-suffix uit hun tag.
+
+### Elements vervangen
+
+We willen alle huidige [elements](/docs/afnemen-artifacts--documentatie#domg-wcelements) (`@domg/wc-elements`) laten vervallen. Dit heeft enkele redenen:
+- "customized built-in elements" (custom elements met `is=""`, bv.: `<button is="vl-button">`) is een feature die nooit ondersteund zal worden door Apple & Safari (zie [caniuse](https://caniuse.com/custom-elementsv1), [MDN](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define#browser_compatibility) en [bugs.webkit.com](https://bugs.webkit.org/show_bug.cgi?id=182671))
+- het wordt ook niet ondersteund door Lit
+- voor heel wat elementen is het niet nodig om een eigen component te hebben, CSS klasses zijn voldoende
+- daarnaast maakt dit het ons ook mogelijk om consistentere codebase te verkrijgen, o.a.:
+    - `data-vl`-prefix overal wegwerken (die enkel nodig was voor de `is=""`-feature)
+    - consistentere API (alle componenten kunnen extenden van `LitElement`)
+    - wegwerken van BaseElementOfType / `dress` lifecycle door `Lit`'s lifecycle te gebruiken
+
+### Form herwerking
+> Meer informatie over het gebruik van de nieuwe form componenten kan je terugvinden in de [form demo](/docs/ontwerp-form-demo--documentatie).
+
+Vanaf v2.0.0 zullen de huidige form gerelateerde componenten niet meer ondersteund worden.
+
+De huidige form gerelateerde componenten zullen vervangen worden door `next` componenten, reeds beschikbaar onder de [form package](/docs/afnemen-artifacts--documentatie#domg-wcform) (`@domg-wc/form`).
+Het heeft de voorkeur om daar waar mogelijk, zeker in nieuwe toepassingen, alvast de `next` componenten te gebruiken.
+
+## Oplijsting vervallen elementen
+> Deze componenten uit de [`@domg-wc/elements`-package](/docs/afnemen-artifacts--documentatie#domg-wcelements) worden vervangen door `next`-varianten
+
+### Vervangen door Lit component
+
+<table>
+    <tr>
+        <th>Element</th>
+        <th>Vroeger</th>
+        <th>Next documentatie</th>
+        <th>Nu</th>
+    </tr>
+    <tr>
+        <td>VlInputFieldElement</td>
+        <td><code>{`<input [is="vl-input-field"]>`}</code></td>
+        <td>[vl-input-field-next](/docs/form-next-input-field--documentatie)</td>
+        <td><code>{`<vl-input-field-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlSelect</td>
+        <td><code>{`<select [is="vl-select"]>`}</code></td>
+        <td>[vl-select-next](/docs/form-next-select--documentatie)</td>
+        <td><code>{`<vl-select-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlSelect</td>
+        <td><code>{`<select [is="vl-select"]>`}</code></td>
+        <td>[vl-select-rich-next](/docs/form-next-select-rich--documentatie)</td>
+        <td><code>{`<vl-select-rich-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlMultiSelect</td>
+        <td><code>{`<select [is="vl-multiselect"]>`}</code></td>
+                <td>[vl-select-rich-next](/docs/form-next-select-rich--documentatie)</td>
+        <td><code>{`<vl-select-rich-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlTextarea</td>
+        <td><code>{`<textarea [is="vl-textarea"]>`}</code></td>
+        <td>[vl-textarea-next](/docs/form-next-textarea--documentatie)</td>
+        <td><code>{`<vl-textarea-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlTextarea</td>
+        <td><code>{`<textarea [is="vl-textarea"]>`}</code></td>
+        <td>[vl-textarea-rich-next](/docs/form-next-textarea-rich--documentatie)</td>
+        <td><code>{`<vl-textarea-rich-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlIconElement</td>
+        <td><code>{`<span [is="vl-icon"]>`}</code></td>
+        <td>[vl-icon-next](/docs/components-next-icon--documentatie)</td>
+        <td><code>{`<vl-icon-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlButtonElement</td>
+        <td><code>{`<button [is="vl-button"]>`}</code></td>
+        <td>[vl-button-next](/docs/components-next-button--documentatie)</td>
+        <td><code>{`<vl-button-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlLinkElement</td>
+        <td><code>{`<a [is="vl-link"]>`}</code></td>
+        <td>[vl-link-next](/docs/components-next-link--documentatie)</td>
+        <td><code>{`<vl-link-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlTitleElement</td>
+        <td><code>{`<h1 [is="vl-title"]>`}</code></td>
+        <td>[vl-title-next](/docs/components-next-title--documentatie)</td>
+        <td><code>{`<vl-title-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlDoormatElement</td>
+        <td><code>{`<div [is="vl-doormat"]>`}</code></td>
+        <td>[vl-doormat-next](/docs/components-next-doormat--documentatie)</td>
+        <td><code>{`<vl-doormat-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlFormValidationMessage</td>
+        <td><code>{`<span [is="vl-form-validation-message"]>`}</code></td>
+        <td>[vl-error-message-next](/docs/form-next-error-message--documentatie)</td>
+        <td><code>{`<vl-error-message-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlFormLabel</td>
+        <td><code>{`<label [is="vl-form-label"]>`}</code></td>
+        <td>[vl-form-label-next](/docs/form-next-form-label--documentatie)</td>
+        <td><code>{`<vl-form-label-next>`}</code></td>
+    </tr>
+</table>
+
+### Vervangen door CSS klasses
+
+<table>
+    <tr>
+        <th>Element</th>
+        <th>Vroeger</th>
+        <th>Next documentatie</th>
+        <th>Nu</th>
+    </tr>
+    <tr>
+        <td>VlIntroductionElement</td>
+        <td><code>{`<p [is="vl-introduction"]>`}</code></td>
+        <td>[vl-introduction-next](/docs/styles-introduction--documentatie)</td>
+        <td><code>{`<p class="vl-introduction-next">`}</code></td>
+    </tr>
+</table>
+
+## Oplijsting vervallen componenten
+> Deze componenten uit de [`@domg-wc/components`-package](/docs/afnemen-artifacts--documentatie#domg-wccomponents) worden vervangen door `next`-varianten
+
+### Vervangen door Lit component
+
+<table>
+    <tr>
+        <th>Component</th>
+        <th>Vroeger</th>
+        <th>Next documentatie</th>
+        <th>Nu</th>
+    </tr>
+    <tr>
+        <td>VlDatepickerComponent</td>
+        <td><code>{`<vl-datepicker></vl-datepicker>`}</code></td>
+        <td>[vl-datepicker-next](/docs/form-next-datepicker--documentatie)</td>
+        <td><code>{`<vl-datepicker-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlRadioGroup</td>
+        <td><code>{`<vl-radio-group></vl-radio-group>`}</code></td>
+        <td>[vl-radio-group-next](/docs/form-next-radio-group--documentatie)</td>
+        <td><code>{`<vl-radio-group-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlUpload</td>
+        <td><code>{`<vl-upload></vl-upload>`}</code></td>
+        <td>[vl-upload-next](/docs/form-next-upload--documentatie)</td>
+        <td><code>{`<vl-upload-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlCheckbox</td>
+        <td><code>{`<vl-checkbox></vl-checkbox>`}</code></td>
+        <td>[vl-checkbox-next](/docs/form-next-checkbox--documentatie)</td>
+        <td><code>{`<vl-checkbox-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlProperties</td>
+        <td><code>{`<vl-properties></vl-properties>`}</code></td>
+        <td>[vl-properties-next](/docs/components-next-properties--documentatie)</td>
+        <td><code>{`<vl-properties-next>`}</code></td>
+    </tr>
+    <tr>
+        <td>VlSteps</td>
+        <td><code>{`<vl-steps></vl-steps>`}</code></td>
+        <td>[vl-steps-next](/docs/components-next-steps--documentatie)</td>
+        <td><code>{`<vl-steps-next>`}</code></td>
+    </tr>
+</table>
