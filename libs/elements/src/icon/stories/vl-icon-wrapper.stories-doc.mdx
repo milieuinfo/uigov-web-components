@@ -1,0 +1,27 @@
+import { ArgTypes, Canvas } from '@storybook/addon-docs';
+import * as VlIconWrapperStories from './vl-icon-wrapper.stories';
+
+
+# Icon Wrapper
+
+<Alert title="Deprecated">
+    {`Gebruik de [vl-icon-next](/docs/components-next-icon--documentatie), in v2.0.0 verdwijnt deze component.`}
+</Alert>
+
+Gebruik de vl-icon-wrapper als parent element om al de iconen verticaal te aligneren.
+
+## Voorbeeld
+
+```js
+import { VlIconWrapperElement } from '@domg-wc/elements';
+```
+
+```html
+<p is="vl-icon-wrapper">
+    <span is="vl-icon" data-vl-icon="calendar"></span>
+    <span is="vl-icon" data-vl-icon="calendar"></span>
+    <span is="vl-icon" data-vl-icon="calendar"></span>
+</p>
+```
+
+<Canvas of={VlIconWrapperStories.iconWrapperDefault} />

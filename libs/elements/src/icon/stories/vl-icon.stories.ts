@@ -2,13 +2,21 @@ import { html } from 'lit-html';
 import '../vl-icon.element';
 import '../vl-icon-wrapper.element';
 import { iconArgs, iconArgTypes } from './vl-icon.stories-arg';
+import iconDocs from './vl-icon.stories-doc.mdx';
+import { Meta } from '@storybook/web-components';
 
 export default {
-    title: 'Elements/icon/icon',
+    id: 'Elements/icon/icon',
+    title: 'Elements/icon [deprecated]/icon [deprecated]',
     tags: ['autodocs'],
     args: iconArgs,
     argTypes: iconArgTypes,
-};
+    parameters: {
+        docs: {
+            page: iconDocs,
+        },
+    },
+} as Meta<typeof iconArgs>;
 
 export const iconDefault = ({ icon, size, light, rotate, fullRotate }: typeof iconArgs) => html`<span
     is="vl-icon"

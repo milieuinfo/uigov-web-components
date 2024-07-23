@@ -3,10 +3,17 @@ import '../vl-form-label.element';
 import { formLabelArgs, formLabelArgTypes } from './vl-form-label.stories-arg';
 
 export default {
-    title: 'Elements/form-message/form-label',
+    id: 'Elements/form-message/form-label',
+    title: 'Elements/form-message [deprecated]/form-label',
     tags: ['autodocs'],
     args: formLabelArgs,
     argTypes: formLabelArgTypes,
+    parameters: {
+        templateData: {
+            alertText:
+                'Gebruik de [vl-form-label-next](/docs/form-next-form-label--documentatie), in v2.0.0 verdwijnt deze component.',
+        },
+    },
 };
 
 export const formLabelDefault = ({ light, block }: typeof formLabelArgs) => html`

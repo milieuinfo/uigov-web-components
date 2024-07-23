@@ -6,7 +6,8 @@ import { checkboxArgs, checkboxArgTypes } from './vl-checkbox.stories-arg';
 import checkboxDoc from './vl-checkbox.stories-doc.mdx';
 
 export default {
-    title: 'Components/checkbox',
+    id: 'Components/checkbox',
+    title: 'Components/checkbox [deprecated]',
     tags: ['autodocs'],
     args: checkboxArgs,
     argTypes: checkboxArgTypes,

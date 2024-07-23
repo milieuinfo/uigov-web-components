@@ -30,7 +30,8 @@ registerWebComponents([
 ]);
 
 export default {
-    title: 'Components/steps',
+    id: 'Components/steps',
+    title: 'Components/steps [deprecated]',
     tags: ['autodocs'],
     args: stepsArgs,
     argTypes: stepsArgTypes,

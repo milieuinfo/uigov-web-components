@@ -1,16 +1,17 @@
 import { html } from 'lit-html';
 import '../vl-form-validation-message.element';
 import { formValidationMessageArgs, formValidationMessageArgTypes } from './vl-form-validation-message.stories-arg';
-import formValidationMessageDoc from './vl-form-validation-message.stories-doc.mdx';
 
 export default {
-    title: 'Elements/form-message/form-validation-message',
+    id: 'Elements/form-message/form-validation-message',
+    title: 'Elements/form-message [deprecated]/form-validation-message',
     tags: ['autodocs'],
     args: formValidationMessageArgs,
     argTypes: formValidationMessageArgTypes,
     parameters: {
-        docs: {
-            page: formValidationMessageDoc,
+        templateData: {
+            alertText:
+                'Gebruik de [vl-error-message-next](/docs/form-next-error-message--documentatie), in v2.0.0 verdwijnt deze component.',
         },
     },
 };
