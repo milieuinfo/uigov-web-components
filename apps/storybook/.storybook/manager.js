@@ -27,7 +27,7 @@ addons.setConfig({
                                 color: '#d83a52',
                                 border: '1px solid #d83a52',
                                 borderRadius: '0.3rem',
-                                padding: '0.2rem 0.4rem',
+                                padding: '0.1rem 0.4rem',
                                 marginRight: '1.6rem',
                             }}
                         >
