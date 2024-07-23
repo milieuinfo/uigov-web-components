@@ -6,6 +6,7 @@ import { story } from '@domg-wc/common-storybook';
 import datepickerDocs from './vl-datepicker.stories-doc.mdx';
 
 export default {
+    id: 'Components/datepicker',
     title: 'Components/datepicker [deprecated]',
     tags: ['autodocs'],
     args: datepickerArgs,

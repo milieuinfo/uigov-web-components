@@ -15,9 +15,7 @@ export default {
         docs: {
             page: accordionListDoc,
         },
-        status: 'Deprecated',
     },
-    status: 'Deprecated',
 } as Meta<typeof accordionListArgs>;
 
 export const AccordionListDefault = story(

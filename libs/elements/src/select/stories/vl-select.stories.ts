@@ -6,6 +6,7 @@ import selectDoc from './vl-select.stories-doc.mdx';
 import { story } from '@domg-wc/common-storybook';
 
 export default {
+    id: 'Elements/select',
     title: 'Elements/select [deprecated]',
     tags: ['autodocs'],
     args: selectArgs,

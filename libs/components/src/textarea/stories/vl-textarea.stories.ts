@@ -6,6 +6,7 @@ import { textareaArgs, textareaArgTypes } from './vl-textarea.stories-arg';
 import textAreaDoc from './vl-textarea.stories-doc.mdx';
 
 export default {
+    id: 'Components/textarea',
     title: 'Components/textarea [deprecated]',
     tags: ['autodocs'],
     args: textareaArgs,

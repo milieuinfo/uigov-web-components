@@ -3,7 +3,8 @@ import '../vl-h1.element';
 import { titleArgs, titleArgTypes } from './vl-title.stories-arg';
 
 export default {
-    title: 'Elements/title/h1',
+    id: 'Elements/title/h1',
+    title: 'Elements/title/h1 [deprecated]',
     tags: ['autodocs'],
     args: titleArgs,
     argTypes: titleArgTypes,

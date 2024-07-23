@@ -4,6 +4,7 @@ import { formValidationMessageArgs, formValidationMessageArgTypes } from './vl-f
 import formValidationMessageDoc from './vl-form-validation-message.stories-doc.mdx';
 
 export default {
+    id: 'Elements/form-message/form-validation-message',
     title: 'Elements/form-message/form-validation-message [deprecated]',
     tags: ['autodocs'],
     args: formValidationMessageArgs,

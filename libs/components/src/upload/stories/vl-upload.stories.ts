@@ -7,6 +7,7 @@ import uploadDoc from './vl-upload.stories-doc.mdx';
 import addDuplicateWarning from './vl-upload.stories-util';
 
 export default {
+    id: 'Components/upload',
     title: 'Components/upload [deprecated]',
     tags: ['autodocs'],
     args: uploadArgs,

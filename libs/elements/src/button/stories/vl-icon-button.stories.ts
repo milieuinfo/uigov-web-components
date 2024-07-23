@@ -5,7 +5,8 @@ import { iconButtonArgs, iconButtonArgTypes } from './vl-icon-button.stories-arg
 // TODO vl-icon en vl-text
 
 export default {
-    title: 'Elements/button/icon-button',
+    id: 'Elements/button/icon-button',
+    title: 'Elements/button/icon-button [deprecated]',
     tags: ['autodocs'],
     args: { ...buttonArgs, ...iconButtonArgs },
     argTypes: { ...buttonArgTypes, ...iconButtonArgTypes },

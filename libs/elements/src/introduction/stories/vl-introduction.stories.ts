@@ -2,7 +2,8 @@ import { html } from 'lit-html';
 import '../vl-introduction.element';
 
 export default {
-    title: 'Elements/introduction',
+    id: 'Elements/introduction',
+    title: 'Elements/introduction [deprecated]',
     tags: ['autodocs'],
     parameters: {
         controls: { hideNoControlsWarning: true },

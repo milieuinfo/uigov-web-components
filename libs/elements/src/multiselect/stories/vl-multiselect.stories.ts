@@ -6,6 +6,7 @@ import { multiselectArgs, multiselectArgTypes } from './vl-multiselect.stories-a
 import multiSelectDoc from './vl-multiselect.stories-doc.mdx';
 
 export default {
+    id: 'Elements/multiselect',
     title: 'Elements/multiselect [deprecated]',
     tags: ['autodocs'],
     args: multiselectArgs,
