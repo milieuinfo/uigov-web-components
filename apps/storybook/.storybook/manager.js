@@ -24,7 +24,7 @@ addons.setConfig({
                         <div>{name.replace(statusMatch, '').trim()}</div>
                         <div
                             style={{
-                                color: '#d83a52',
+                                color: 'rgb(210, 55, 60)',
                                 border: '1px solid #d83a52',
                                 borderRadius: '0.3rem',
                                 padding: '0.1rem 0.4rem',
