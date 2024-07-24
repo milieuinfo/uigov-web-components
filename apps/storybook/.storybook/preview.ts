@@ -10,7 +10,7 @@ import { VlIconElement } from '@domg-wc/elements';
 import './styles.css';
 import 'reflect-metadata';
 import { VlAlert } from '@domg-wc/components';
-import Deprecated from './Deprecated';
+import Alert from './Alert';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -23,7 +23,7 @@ export const parameters = {
         sort: 'alpha',
     },
     docs: {
-        components: { Deprecated },
+        components: { Alert },
         transformSource: (input: string, { id }: { id: string }) => {
             console.log('transformSource storyContext id', id);
             // if id starts with `styles-` then return the input without any transformation

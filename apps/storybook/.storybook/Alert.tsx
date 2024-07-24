@@ -1,9 +1,25 @@
 import React from 'react';
 
-const Deprecated = ({ children, title = 'Deprecated', icon = 'warning', type = 'error', size = 'small' }) => {
+const Alert = ({
+    children,
+    title = 'Opgelet',
+    icon = 'warning',
+    type = 'error',
+    size = 'small',
+    naked = false,
+    message = '',
+}) => {
     //*
     return (
-        <vl-alert data-cy="alert" data-vl-icon={icon} data-vl-title={title} data-vl-type={type} data-vl-size={size}>
+        <vl-alert
+            data-cy="alert"
+            data-vl-icon={icon}
+            data-vl-title={title}
+            data-vl-type={type}
+            data-vl-size={size}
+            data-vl-naked={naked ? '' : undefined}
+            data-vl-message={message}
+        >
             {children}
         </vl-alert>
     );
@@ -18,7 +34,7 @@ const Deprecated = ({ children, title = 'Deprecated', icon = 'warning', type = '
      */
 };
 
-export default Deprecated;
+export default Alert;
 
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
