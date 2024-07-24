@@ -185,6 +185,6 @@ export const findDeepestElementThroughShadowRoot = (
     return null;
 };
 
-export const findNodesForSlot = (element: HTMLElement, slotName: string) => {
-    return element?.querySelectorAll<Element>(`:scope > [slot=${slotName}]`);
+export const findNodesForSlot = (element: HTMLElement, slotName?: string) => {
+    return element?.querySelectorAll<Element>(slotName ? `:scope > [slot=${slotName}]` : ':scope > :not([slot])');
 };

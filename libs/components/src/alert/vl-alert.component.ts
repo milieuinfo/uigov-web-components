@@ -1,6 +1,6 @@
-import { html, PropertyDeclarations, TemplateResult, CSSResult } from 'lit';
+import { html, PropertyDeclarations, TemplateResult, CSSResult, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement, findNodesForSlot } from '@domg-wc/common-utilities';
 import { alertStyle, iconStyle } from '@domg/govflanders-style/component';
 import { accessibilityStyle, resetStyle, markStyle } from '@domg/govflanders-style/common';
 import { VlAlertClosedEvent } from './vl-alert.model';
@@ -57,13 +57,7 @@ export class VlAlert extends BaseLitElement {
                     <p id="title" class="vl-alert__title">
                         <slot class=${markClass} name="title">${this.title}</slot>
                     </p>
-                    <div id="message" class="vl-alert__message">
-                        <p class=${markClass}>${this.message}</p>
-                        <slot id="message-slot"></slot>
-                    </div>
-                    <div id="actions" class="vl-alert__actions">
-                        <slot id="actions-slot" name="actions"></slot>
-                    </div>
+                    ${this.renderMessage(markClass)} ${this.renderActions()}
                 </div>
                 ${this.closable
                     ? html`
@@ -75,6 +69,27 @@ export class VlAlert extends BaseLitElement {
                     : ''}
             </div>
         `;
+    }
+
+    private renderMessage(markClass: string): TemplateResult<1> | typeof nothing {
+        return findNodesForSlot(this)?.length
+            ? html`
+                  <div id="message" class="vl-alert__message">
+                      <p class=${markClass}>${this.message}</p>
+                      <slot id="message-slot"></slot>
+                  </div>
+              `
+            : nothing;
+    }
+
+    private renderActions(): TemplateResult<1> | typeof nothing {
+        return findNodesForSlot(this, 'actions')?.length
+            ? html`
+                  <div id="actions" class="vl-alert__actions">
+                      <slot id="actions-slot" name="actions"></slot>
+                  </div>
+              `
+            : nothing;
     }
 
     private removeAlert() {
