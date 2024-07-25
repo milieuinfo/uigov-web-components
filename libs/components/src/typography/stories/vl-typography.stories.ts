@@ -4,13 +4,18 @@ import '../vl-typography.component';
 import { typographyArgs, typographyArgTypes } from './vl-typography.stories-arg';
 
 export default {
-    title: 'Components/typography',
+    id: 'Components/typography',
+    title: 'Components/typography [deprecated]',
     tags: ['autodocs'],
     args: typographyArgs,
     argTypes: typographyArgTypes,
     parameters: {
         controls: {
             hideNoControlsWarning: true,
+        },
+        templateData: {
+            alertText:
+                'Gebruik [vl-typography-next](/docs/styles-typography--documentatie), in v2.0.0 verdwijnt deze component.',
         },
     },
 } as Meta<typeof typographyArgs>;

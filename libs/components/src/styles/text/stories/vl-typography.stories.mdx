@@ -1,0 +1,239 @@
+import { Preview, Story, Meta, Canvas, Source } from '@storybook/addon-docs';
+import { html, unsafeCSS } from "lit";
+import typographyStyle from '../vl-typography.css';
+
+<Meta title="Styles/typography"/>
+
+# Typography - next
+
+Gebruik de `vl-typography-next` styles om tekst op een andere manier af te beelden op een pagina.
+
+Deze CSS klasses vervangen het [vl-typography](/docs/components-typography--documentatie) component.
+
+## Voorbeeld
+
+```js
+import { typographyStyle } from '@domg-wc/components/styles';
+```
+
+<Canvas>
+    <Story name="vl-typography - default">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <p class="vl-typography-next">
+                nulla vitae elit libero, a pharetra augue Sed posuere consectetur est at lobortis. Fusce dapibus, tellus ac
+                cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Sed posuere
+                consectetur est at lobortis. Etiam porta sem malesuada magna mollis euismod. Vivamus sagittis lacus vel
+                augue laoreet rutrum faucibus.
+            </p>
+    `}
+    </Story>
+</Canvas>
+
+## Varianten
+
+### Success
+
+<Canvas>
+    <Story name="vl-typography - success">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--success">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Warning
+
+<Canvas>
+    <Story name="vl-typography - warning">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--warning">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Error
+
+<Canvas>
+    <Story name="vl-typography - error">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--error">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Uppercase
+
+<Canvas>
+    <Story name="vl-typography - uppercase">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--uppercase">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Lowercase
+
+<Canvas>
+    <Story name="vl-typography - lowercase">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--lowercase">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Capitalize
+
+<Canvas>
+    <Story name="vl-typography - capitalize">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--capitalize">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Bold
+
+Gebruik `vl-u-text--bold`-modifier om de tekst vetgedrukt weer te geven.
+
+<Canvas>
+    <Story name="vl-typography - bold">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--bold">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Italic
+
+<Canvas>
+    <Story name="vl-typography - italic">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--italic">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Small
+
+<Canvas>
+    <Story name="vl-typography - small">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--small">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+
+### Extra Extra Small
+
+<Canvas>
+    <Story name="vl-typography - extra extra small">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--xxsmall">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Extra Small
+
+<Canvas>
+    <Story name="vl-typography - extra small">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--xsmall">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Medium
+
+<Canvas>
+    <Story name="vl-typography - medium">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--medium">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Mark
+
+<Canvas>
+    <Story name="vl-typography - mark">
+        {html`
+            <style>
+                ${unsafeCSS(typographyStyle.cssText)}
+            </style>
+            <span class="vl-u-text--marked">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+[Documentatie Digitaal Vlaanderen - Typography](https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-typography)

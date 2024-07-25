@@ -5,10 +5,17 @@ import { story } from '@domg-wc/common-storybook';
 import '../vl-text.element';
 
 export default {
-    title: 'Elements/text',
+    id: 'Elements/text',
+    title: 'Elements/text [deprecated]',
     tags: ['autodocs'],
     args: textArgs,
     argTypes: textArgTypes,
+    parameters: {
+        templateData: {
+            alertText:
+                'Gebruik de [vl-text-next](/docs/styles-text--documentatie), in v2.0.0 verdwijnt deze component.',
+        },
+    },
 } as Meta<typeof textArgs>;
 
 export const TextDefault = story(
