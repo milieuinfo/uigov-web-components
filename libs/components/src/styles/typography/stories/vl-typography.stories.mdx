@@ -1,0 +1,403 @@
+import { Preview, Story, Meta, Canvas, Source } from '@storybook/addon-docs';
+import { html, unsafeCSS } from "lit";
+import typographyStyles from '../vl-typography.css';
+import typographyElementStyle from '../vl-typography-element.css';
+
+<Meta title="Styles/typography"/>
+
+# Typography - next
+
+Gebruik de `vl-typography-next` styles om tekst en standaard HTML af te beelden op een pagina in de stijl van Digitaal Vlaanderen.
+
+Deze CSS klasses vervangen het [vl-typography](/docs/components-typography--documentatie) component.
+
+## Voorbeeld
+
+```js
+import { typographyStyles } from '@domg-wc/components/styles';
+```
+
+<Canvas>
+    <Story name="vl-typography - default">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <div class="vl-typography-next">
+                <h1>heading 1</h2>
+                <p><strong>strong-tag</strong></p>
+                <p><b>b-tag</b></p>
+                <p><em>em-tag</em></p>
+                <p><i>i-tag</i></p>
+                <p><s>s-tag</s></p>
+                <p><ins>ins-tag</ins></p>
+                <p><del>del-tag</del></p>
+                <p>
+                    <mark>mark-tag</mark>
+                </p>
+                <p><code>code-tag</code></p>
+                <pre>pre-tag</pre>
+                <blockquote>Lorem ipsum dolor sit amet.</blockquote>
+                <ol>
+                    <li>item 1</li>
+                    <li>item 2</li>
+                    <li>item 3</li>
+                </ol>
+                <a href="#">link<a>
+            </div>
+    `}
+    </Story>
+</Canvas>
+
+##  Element styling
+
+### Title
+
+<Canvas withToolbars={false}>
+    <Story name="vl-typography - title"  withToolbars={false}>
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <div class="vl-typography-next">
+                <h1>Heading 1</h1>
+                <h2>Heading 2</h2>
+                <h3>Heading 3</h3>
+                <h4>Heading 4</h4>
+                <h5>Heading 5</h5>
+                <h6>Heading 6</h6>
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### List
+
+<Canvas withToolbars={false}>
+    <Story name="vl-typography - list"  withToolbars={false}>
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <div class="vl-typography-next">
+                <ul>
+                    <li>Lorem ipsum dolor sit amet.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>
+                        Sublist
+                        <ul>
+                            <li>Lorem ipsum dolor sit.</li>
+                            <li>Lorem ipsum.</li>
+                        </ul>
+                    </li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, neque.</li>
+                </ul>
+                <ol>
+                    <li>Lorem ipsum dolor sit.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur.</li>
+                    <li>
+                        Sublist
+                        <ol>
+                            <li>Lorem dolor sit.</li>
+                            <li>Lorem ipsum.</li>
+                        </ol>
+                    </li>
+                    <li>Lorem ipsum.</li>
+                </ol>
+
+                <ul>
+                    <li>
+                        Ordered list inside unordered list
+                        <ol>
+                            <li>Lorem dolor sit.</li>
+                            <li>
+                                Ordered list inside ordered list
+                                <ol>
+                                    <li>Lorem ipsum dolor sit amet.</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+    `}
+    </Story>
+</Canvas>
+
+### Table
+
+<Canvas withToolbars={false}>
+    <Story name="vl-typography - table"  withToolbars={false}>
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <div class="vl-typography-next">
+                 <table>
+                        <caption>
+                            table title
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th>head 1</th>
+                                <th>head 2</th>
+                                <th>head 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>item 1</td>
+                                <td>item 2</td>
+                                <td>item 3</td>
+                            </tr>
+                            <tr>
+                                <td>item 1</td>
+                                <td>item 2</td>
+                                <td>item 3</td>
+                            </tr>
+                            <tr>
+                                <td>item 1</td>
+                                <td>item 2</td>
+                                <td>item 3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+    `}
+    </Story>
+</Canvas>
+
+## Text styling
+
+### Success
+
+<Canvas>
+    <Story name="vl-typography - success">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--success">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Warning
+
+<Canvas>
+    <Story name="vl-typography - warning">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--warning">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Error
+
+<Canvas>
+    <Story name="vl-typography - error">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--error">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Uppercase
+
+<Canvas>
+    <Story name="vl-typography - uppercase">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--uppercase">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Lowercase
+
+<Canvas>
+    <Story name="vl-typography - lowercase">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--lowercase">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Capitalize
+
+<Canvas>
+    <Story name="vl-typography - capitalize">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--capitalize">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Bold
+
+Gebruik `vl-u-text--bold`-modifier om de tekst vetgedrukt weer te geven.
+
+<Canvas>
+    <Story name="vl-typography - bold">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--bold">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Italic
+
+<Canvas>
+    <Story name="vl-typography - italic">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--italic">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Underline
+
+<Canvas>
+    <Story name="vl-typography - underline">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--underline">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Strike through
+
+<Canvas>
+    <Story name="vl-typography - strike-through">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--strike">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Extra Extra Small
+
+<Canvas>
+    <Story name="vl-typography - extra extra small">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--xxsmall">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Extra Small
+
+<Canvas>
+    <Story name="vl-typography - extra small">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--xsmall">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Small
+
+<Canvas>
+    <Story name="vl-typography - small">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--small">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Medium
+
+<Canvas>
+    <Story name="vl-typography - medium">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--medium">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Mark
+
+<Canvas>
+    <Story name="vl-typography - mark">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--marked">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+## Referenties
+
+### Digitaal Vlaanderen
+
+[Documentatie Digitaal Vlaanderen - Typography](https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-typography)
