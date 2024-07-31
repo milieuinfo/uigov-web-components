@@ -10,7 +10,7 @@ import { VlIconElement } from '@domg-wc/elements';
 import './styles.css';
 import 'reflect-metadata';
 import { VlAlert } from '@domg-wc/components';
-import { Alert } from './blocks';
+import { Alert, StoryList } from './blocks';
 import DocumentationTemplate from './documentation-template.mdx';
 import { Preview } from '@storybook/web-components';
 
