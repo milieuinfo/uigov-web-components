@@ -14,6 +14,7 @@ export const mapSideSheetArgs = {
     enableSwipe: false,
     hideToggleButton: false,
     href: '#',
+    open: false,
     iconPlacement: 'before',
     right: false,
     title: 'Terug',
@@ -69,6 +70,15 @@ export const mapSideSheetArgTypes: ArgTypes<typeof mapSideSheetArgs> = {
             type: { summary: getSelectControlOptions(['before', 'after']) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: mapSideSheetArgs.iconPlacement },
+        },
+    },
+    open: {
+        name: 'data-vl-open',
+        description: 'Duidt aan dat het zijpaneel open is.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: mapSideSheetArgs.open },
         },
     },
     right: {

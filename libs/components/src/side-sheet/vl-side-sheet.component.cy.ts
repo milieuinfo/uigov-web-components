@@ -4,7 +4,7 @@ import { VlSideSheet } from './vl-side-sheet.component';
 
 registerWebComponents([VlSideSheet]);
 
-describe('vl-spotlight', () => {
+describe('vl-side-sheet', () => {
     it('should be accessible', () => {
         mountDefault({});
         cy.injectAxe();
@@ -168,6 +168,32 @@ describe('vl-spotlight', () => {
             .children()
             .last()
             .should('have.class', 'vl-icon');
+    });
+
+    it('should have arrow in correct position when starting in open position', () => {
+        mountDefault({ open: true });
+
+        cy.get('vl-side-sheet')
+            .shadow()
+            .find('vl-toggle-button')
+            .shadow()
+            .find('button.vl-button')
+            .find('span[is="vl-icon"]')
+            .should('have.class', 'vl-icon')
+            .and('have.class', 'vl-vi-nav-right');
+    });
+
+    it('should have arrow in correct position when starting in open position from left', () => {
+        mountDefault({ open: true, left: true });
+
+        cy.get('vl-side-sheet')
+            .shadow()
+            .find('vl-toggle-button')
+            .shadow()
+            .find('button.vl-button')
+            .find('span[is="vl-icon"]')
+            .should('have.class', 'vl-icon')
+            .and('have.class', 'vl-vi-nav-left');
     });
 });
 

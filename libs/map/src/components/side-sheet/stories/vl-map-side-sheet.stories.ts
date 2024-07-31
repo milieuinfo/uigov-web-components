@@ -24,11 +24,22 @@ export default {
 
 export const MapSideSheetDefault = story(
     mapSideSheetArgs,
-    ({ right, enableSwipe, defaultSlot, toggleText, tooltipText, customIcon, iconPlacement, hideToggleButton }) => html`
+    ({
+        right,
+        open,
+        enableSwipe,
+        defaultSlot,
+        toggleText,
+        tooltipText,
+        customIcon,
+        iconPlacement,
+        hideToggleButton,
+    }) => html`
         <vl-map>
             <vl-map-baselayer-grb-gray/>
             </vl-map-baselayer-grb-gray>
             <vl-map-side-sheet
+                ?data-vl-open=${open}
                 ?data-vl-right=${right}
                 ?data-vl-enable-swipe=${enableSwipe}
                 data-vl-toggle-text=${toggleText}
@@ -51,6 +62,7 @@ export const MapSideSheetMenuItem = story(
     mapSideSheetArgs,
     ({
         right,
+        open,
         enableSwipe,
         title,
         href,
@@ -65,6 +77,7 @@ export const MapSideSheetMenuItem = story(
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
             <vl-map-side-sheet
                 ?data-vl-right=${right}
+                ?data-vl-open=${open}
                 ?data-vl-enable-swipe=${enableSwipe}
                 data-vl-toggle-text=${toggleText}
                 data-vl-tooltip-text=${tooltipText}
@@ -88,11 +101,11 @@ MapSideSheetMenuItem.args = {
 
 export const MapSideSheetDual = story(
     mapSideSheetArgs,
-    ({ enableSwipe, defaultSlot }) => html`
+    ({ enableSwipe, defaultSlot, open }) => html`
         <vl-map>
             <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
             <vl-map-side-sheet>${unsafeHTML(defaultSlot)}</vl-map-side-sheet>
-            <vl-map-side-sheet data-vl-right ?data-vl-enable-swipe=${enableSwipe}
+            <vl-map-side-sheet data-vl-right ?data-vl-open=${open} ?data-vl-enable-swipe=${enableSwipe}
                 >${unsafeHTML(defaultSlot)}
             </vl-map-side-sheet>
         </vl-map>

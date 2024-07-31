@@ -246,11 +246,7 @@ export class VlSideSheet extends BaseElementOfType(HTMLElement) {
 
     _leftChangedCallback(oldValue: any, newValue: any) {
         if (!this.customIcon) {
-            if (newValue != undefined) {
-                this._toggleButton.setAttribute('data-vl-icon', 'nav-right');
-            } else {
-                this._toggleButton.setAttribute('data-vl-icon', 'nav-left');
-            }
+            this._openChangedCallback();
         }
     }
 
