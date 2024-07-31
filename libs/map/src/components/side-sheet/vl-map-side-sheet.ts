@@ -47,6 +47,7 @@ export class VlMapSideSheet extends VlSideSheet {
         if (!this.hasAttribute('data-vl-right')) {
             this.setAttribute('data-vl-left', '');
         }
+        this._openChangedCallback();
     }
 
     _rightChangedCallback(_oldValue: string, newValue: string) {
