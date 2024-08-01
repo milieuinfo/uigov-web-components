@@ -1,13 +1,11 @@
 import { css, CSSResult } from 'lit';
 import typographyTitleStyles from './vl-typography-title.css';
 import typographyListStyle from './vl-typography-list.css';
+import typographyTableStyle from './vl-typography-table.css';
+import typographyElementStyle from './vl-typography-element.css';
 
 const styles: CSSResult[] = [
     css`
-        .vl-text-next--bold {
-            font-weight: 500;
-        }
-
         .vl-u-text--ellipse {
             white-space: nowrap;
             overflow: hidden;
@@ -60,26 +58,6 @@ const styles: CSSResult[] = [
             text-decoration: line-through;
         }
 
-        .vl-typography-next code,
-        .vl-typography-next kdb,
-        .vl-typography-next samp {
-            font-family: monospace;
-            background: #e8ebee;
-            padding: 0.2rem;
-        }
-
-        .vl-typography-next pre:not([class*='language']) {
-            padding: 1.5rem;
-            background-color: #333332;
-            color: #fff;
-            display: block;
-            white-space: pre;
-            overflow-x: scroll;
-            tab-size: 2;
-            word-break: normal;
-            hyphens: none;
-        }
-
         .vl-u-text--small {
             font-size: 1.4rem !important;
         }
@@ -104,5 +82,7 @@ const styles: CSSResult[] = [
     `,
     ...typographyTitleStyles,
     typographyListStyle,
+    typographyTableStyle,
+    typographyElementStyle,
 ];
 export default styles;

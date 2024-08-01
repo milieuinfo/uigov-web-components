@@ -22,22 +22,37 @@ import { typographyStyles } from '@domg-wc/components/styles';
             <style>
                 ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
-            <p class="vl-typography-next">
-                nulla vitae elit libero, a pharetra augue Sed posuere consectetur est at lobortis. Fusce dapibus, tellus ac
-                cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Sed posuere
-                consectetur est at lobortis. Etiam porta sem malesuada magna mollis euismod. Vivamus sagittis lacus vel
-                augue laoreet rutrum faucibus.
-            </p>
+            <div class="vl-typography-next">
+                <h1>heading 1</h2>
+                <p><strong>strong-tag</strong></p>
+                <p><b>b-tag</b></p>
+                <p><em>em-tag</em></p>
+                <p><i>i-tag</i></p>
+                <p><s>s-tag</s></p>
+                <p>
+                    <mark>mark-tag</mark>
+                </p>
+                <p><code>code-tag</code></p>
+                <pre>pre-tag</pre>
+                <hr />
+                <blockquote>Lorem ipsum dolor sit amet.</blockquote>
+                <ol>
+                    <li>item 1</li>
+                    <li>item 2</li>
+                    <li>item 3</li>
+                </ol>
+                <a href="#">link<a>
+            </div>
     `}
     </Story>
 </Canvas>
 
 ##  Element varianten
 
-### Titles
+### Title
 
 <Canvas withToolbars={false}>
-    <Story name="vl-typography - titles"  withToolbars={false}>
+    <Story name="vl-typography - title"  withToolbars={false}>
         {html`
             <style>
                 ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
@@ -49,16 +64,15 @@ import { typographyStyles } from '@domg-wc/components/styles';
                 <h4>Heading 4</h4>
                 <h5>Heading 5</h5>
                 <h6>Heading 6</h6>
-                <mark>test</mark>
             </span>
     `}
     </Story>
 </Canvas>
 
-### Lists
+### List
 
 <Canvas withToolbars={false}>
-    <Story name="vl-typography - lists"  withToolbars={false}>
+    <Story name="vl-typography - list"  withToolbars={false}>
         {html`
             <style>
                 ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
@@ -103,6 +117,49 @@ import { typographyStyles } from '@domg-wc/components/styles';
                         </ol>
                     </li>
                 </ul>
+            </div>
+    `}
+    </Story>
+</Canvas>
+
+### Table
+
+<Canvas withToolbars={false}>
+    <Story name="vl-typography - table"  withToolbars={false}>
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <div class="vl-typography-next">
+                 <table>
+                        <caption>
+                            table title
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th>head 1</th>
+                                <th>head 2</th>
+                                <th>head 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>item 1</td>
+                                <td>item 2</td>
+                                <td>item 3</td>
+                            </tr>
+                            <tr>
+                                <td>item 1</td>
+                                <td>item 2</td>
+                                <td>item 3</td>
+                            </tr>
+                            <tr>
+                                <td>item 1</td>
+                                <td>item 2</td>
+                                <td>item 3</td>
+                            </tr>
+                        </tbody>
+                    </table>
             </div>
     `}
     </Story>
