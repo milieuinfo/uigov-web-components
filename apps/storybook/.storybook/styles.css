@@ -14,9 +14,17 @@ strong {
     ol, ul {
         list-style: none !important;
     }
-
+    .vl-typography-next ol, ul {
+        list-style: revert !important;
+    }
+    .vl-typography-next ol {
+        list-style-type: revert !important;
+    }
     strong {
         font-weight: 500 !important;
+    }
+    .vl-typography-next strong {
+        font-weight: revert !important;
     }
 }
 

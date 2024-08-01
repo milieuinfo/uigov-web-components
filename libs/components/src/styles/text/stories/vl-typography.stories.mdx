@@ -1,6 +1,6 @@
 import { Preview, Story, Meta, Canvas, Source } from '@storybook/addon-docs';
 import { html, unsafeCSS } from "lit";
-import typographyStyle from '../vl-typography.css';
+import typographyStyles from '../vl-typography.css';
 
 <Meta title="Styles/typography"/>
 
@@ -13,14 +13,14 @@ Deze CSS klasses vervangen het [vl-typography](/docs/components-typography--docu
 ## Voorbeeld
 
 ```js
-import { typographyStyle } from '@domg-wc/components/styles';
+import { typographyStyles } from '@domg-wc/components/styles';
 ```
 
 <Canvas>
     <Story name="vl-typography - default">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <p class="vl-typography-next">
                 nulla vitae elit libero, a pharetra augue Sed posuere consectetur est at lobortis. Fusce dapibus, tellus ac
@@ -32,7 +32,83 @@ import { typographyStyle } from '@domg-wc/components/styles';
     </Story>
 </Canvas>
 
-## Varianten
+##  Element varianten
+
+### Titles
+
+<Canvas withToolbars={false}>
+    <Story name="vl-typography - titles"  withToolbars={false}>
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <div class="vl-typography-next">
+                <h1>Heading 1</h1>
+                <h2>Heading 2</h2>
+                <h3>Heading 3</h3>
+                <h4>Heading 4</h4>
+                <h5>Heading 5</h5>
+                <h6>Heading 6</h6>
+                <mark>test</mark>
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Lists
+
+<Canvas withToolbars={false}>
+    <Story name="vl-typography - lists"  withToolbars={false}>
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <div class="vl-typography-next">
+                <ul>
+                    <li>Lorem ipsum dolor sit amet.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>
+                        Sublist
+                        <ul>
+                            <li>Lorem ipsum dolor sit.</li>
+                            <li>Lorem ipsum.</li>
+                        </ul>
+                    </li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, neque.</li>
+                </ul>
+                <ol>
+                    <li>Lorem ipsum dolor sit.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur.</li>
+                    <li>
+                        Sublist
+                        <ol>
+                            <li>Lorem dolor sit.</li>
+                            <li>Lorem ipsum.</li>
+                        </ol>
+                    </li>
+                    <li>Lorem ipsum.</li>
+                </ol>
+
+                <ul>
+                    <li>
+                        Ordered list inside unordered list
+                        <ol>
+                            <li>Lorem dolor sit.</li>
+                            <li>
+                                Ordered list inside ordered list
+                                <ol>
+                                    <li>Lorem ipsum dolor sit amet.</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+    `}
+    </Story>
+</Canvas>
+
+## Text modifier varianten
 
 ### Success
 
@@ -40,7 +116,7 @@ import { typographyStyle } from '@domg-wc/components/styles';
     <Story name="vl-typography - success">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--success">
                 nulla vitae elit libero, a pharetra augue
@@ -55,7 +131,7 @@ import { typographyStyle } from '@domg-wc/components/styles';
     <Story name="vl-typography - warning">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--warning">
                 nulla vitae elit libero, a pharetra augue
@@ -70,7 +146,7 @@ import { typographyStyle } from '@domg-wc/components/styles';
     <Story name="vl-typography - error">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--error">
                 nulla vitae elit libero, a pharetra augue
@@ -85,7 +161,7 @@ import { typographyStyle } from '@domg-wc/components/styles';
     <Story name="vl-typography - uppercase">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--uppercase">
                 nulla vitae elit libero, a pharetra augue
@@ -100,7 +176,7 @@ import { typographyStyle } from '@domg-wc/components/styles';
     <Story name="vl-typography - lowercase">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--lowercase">
                 nulla vitae elit libero, a pharetra augue
@@ -115,7 +191,7 @@ import { typographyStyle } from '@domg-wc/components/styles';
     <Story name="vl-typography - capitalize">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--capitalize">
                 nulla vitae elit libero, a pharetra augue
@@ -132,7 +208,7 @@ Gebruik `vl-u-text--bold`-modifier om de tekst vetgedrukt weer te geven.
     <Story name="vl-typography - bold">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--bold">
                 nulla vitae elit libero, a pharetra augue
@@ -147,7 +223,7 @@ Gebruik `vl-u-text--bold`-modifier om de tekst vetgedrukt weer te geven.
     <Story name="vl-typography - italic">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--italic">
                 nulla vitae elit libero, a pharetra augue
@@ -156,21 +232,20 @@ Gebruik `vl-u-text--bold`-modifier om de tekst vetgedrukt weer te geven.
     </Story>
 </Canvas>
 
-### Small
+### Strike through
 
 <Canvas>
-    <Story name="vl-typography - small">
+    <Story name="vl-typography - strike-through">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
-            <span class="vl-u-text--small">
+            <span class="vl-u-text--strike">
                 nulla vitae elit libero, a pharetra augue
             </span>
     `}
     </Story>
 </Canvas>
-
 
 ### Extra Extra Small
 
@@ -178,7 +253,7 @@ Gebruik `vl-u-text--bold`-modifier om de tekst vetgedrukt weer te geven.
     <Story name="vl-typography - extra extra small">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--xxsmall">
                 nulla vitae elit libero, a pharetra augue
@@ -193,9 +268,24 @@ Gebruik `vl-u-text--bold`-modifier om de tekst vetgedrukt weer te geven.
     <Story name="vl-typography - extra small">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--xsmall">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Small
+
+<Canvas>
+    <Story name="vl-typography - small">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--small">
                 nulla vitae elit libero, a pharetra augue
             </span>
     `}
@@ -208,7 +298,7 @@ Gebruik `vl-u-text--bold`-modifier om de tekst vetgedrukt weer te geven.
     <Story name="vl-typography - medium">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--medium">
                 nulla vitae elit libero, a pharetra augue
@@ -223,7 +313,7 @@ Gebruik `vl-u-text--bold`-modifier om de tekst vetgedrukt weer te geven.
     <Story name="vl-typography - mark">
         {html`
             <style>
-                ${unsafeCSS(typographyStyle.cssText)}
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--marked">
                 nulla vitae elit libero, a pharetra augue
