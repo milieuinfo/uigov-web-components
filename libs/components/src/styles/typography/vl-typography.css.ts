@@ -54,8 +54,14 @@ const styles: CSSResult[] = [
 
         .vl-typography-next strike,
         .vl-typography-next s,
+        .vl-typography-next del,
         .vl-u-text--strike {
             text-decoration: line-through;
+        }
+
+        .vl-typography-next ins,
+        .vl-u-text--underline {
+            text-decoration: underline;
         }
 
         .vl-typography-next small,

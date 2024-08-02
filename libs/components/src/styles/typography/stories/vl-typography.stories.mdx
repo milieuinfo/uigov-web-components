@@ -7,7 +7,7 @@ import typographyElementStyle from '../vl-typography-element.css';
 
 # Typography - next
 
-Gebruik de `vl-typography-next` styles om tekst op een andere manier af te beelden op een pagina.
+Gebruik de `vl-typography-next` styles om tekst en standaard HTML af te beelden op een pagina in de stijl van Digitaal Vlaanderen.
 
 Deze CSS klasses vervangen het [vl-typography](/docs/components-typography--documentatie) component.
 
@@ -30,6 +30,8 @@ import { typographyStyles } from '@domg-wc/components/styles';
                 <p><em>em-tag</em></p>
                 <p><i>i-tag</i></p>
                 <p><s>s-tag</s></p>
+                <p><ins>ins-tag</ins></p>
+                <p><del>del-tag</del></p>
                 <p>
                     <mark>mark-tag</mark>
                 </p>
@@ -283,6 +285,21 @@ Gebruik `vl-u-text--bold`-modifier om de tekst vetgedrukt weer te geven.
                 ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
             </style>
             <span class="vl-u-text--italic">
+                nulla vitae elit libero, a pharetra augue
+            </span>
+    `}
+    </Story>
+</Canvas>
+
+### Underline
+
+<Canvas>
+    <Story name="vl-typography - underline">
+        {html`
+            <style>
+                ${typographyStyles.map((style) => unsafeCSS(style.cssText))}
+            </style>
+            <span class="vl-u-text--underline">
                 nulla vitae elit libero, a pharetra augue
             </span>
     `}

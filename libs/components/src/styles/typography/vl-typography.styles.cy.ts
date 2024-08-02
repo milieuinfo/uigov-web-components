@@ -248,7 +248,8 @@ describe('style - vl-typography-next', () => {
             <div>
                 <p class="vl-u-text--bold">Bold text</p>
                 <p class="vl-u-text--italic">Italic text</p>
-                <p class="vl-u-text--strike">Underlined text</p>
+                <p class="vl-u-text--underline">Underline text</p>
+                <p class="vl-u-text--strike">Strike through text</p>
                 <p class="vl-u-text--uppercase">Uppercase text</p>
                 <p class="vl-u-text--lowercase">Lowercase text</p>
                 <p class="vl-u-text--capitalize">Capitalized text</p>
@@ -266,6 +267,11 @@ describe('style - vl-typography-next', () => {
         cy.get('.vl-u-text--italic').shouldHaveComputedStyle({
             style: 'font-style',
             value: 'italic',
+        });
+
+        cy.get('.vl-u-text--underline').shouldHaveComputedStyle({
+            style: 'text-decoration-line',
+            value: 'underline',
         });
 
         cy.get('.vl-u-text--strike').shouldHaveComputedStyle({
@@ -307,6 +313,52 @@ describe('style - vl-typography-next', () => {
         cy.get('.vl-u-text--error').shouldHaveComputedStyle({
             style: 'color',
             value: cssVars['--vl-error-text-color'].computedValue,
+        });
+    });
+
+    it('should have correct styling on text elements', () => {
+        cy.viewport(1920, 1080);
+
+        cy.mount(html`
+            <div class="vl-typography-next">
+                <strong>strong-tag</strong>
+                <i>i-tag</i>
+                <em>em-tag</em>
+                <ins>ins-tag</ins>
+                <del>del-tag</del>
+                <s>s-tag</s>
+                <b>b-tag</b>
+            </div>
+        `);
+
+        cy.get('strong').shouldHaveComputedStyle({
+            style: 'font-weight',
+            value: '500',
+        });
+
+        cy.get('i').shouldHaveComputedStyle({
+            style: 'font-style',
+            value: 'italic',
+        });
+
+        cy.get('em').shouldHaveComputedStyle({
+            style: 'font-style',
+            value: 'italic',
+        });
+
+        cy.get('ins').shouldHaveComputedStyle({
+            style: 'text-decoration-line',
+            value: 'underline',
+        });
+
+        cy.get('s').shouldHaveComputedStyle({
+            style: 'text-decoration-line',
+            value: 'line-through',
+        });
+
+        cy.get('del').shouldHaveComputedStyle({
+            style: 'text-decoration-line',
+            value: 'line-through',
         });
     });
 });
