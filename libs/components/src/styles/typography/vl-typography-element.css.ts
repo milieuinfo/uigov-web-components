@@ -12,11 +12,13 @@ const styles: CSSResult = css`
         margin-bottom: 2rem;
         line-height: 1.5;
     }
+
     @media screen and (max-width: 767px) {
         .vl-typography-next blockquote {
             padding-left: 5rem;
         }
     }
+
     .vl-typography-next blockquote::before {
         position: absolute;
         content: '“';
@@ -31,6 +33,7 @@ const styles: CSSResult = css`
         color: var(--vl-theme-fg-color);
         background: linear-gradient(-110deg, transparent 20px, var(--vl-theme-primary-color) 20px);
     }
+
     @media screen and (max-width: 767px) {
         .vl-typography-next blockquote::before {
             width: 4.6rem;
@@ -42,6 +45,7 @@ const styles: CSSResult = css`
             margin-right: 0rem;
         }
     }
+
     .vl-typography-next pre:not([class*='language']) {
         padding: 1.5rem;
         background-color: #333332;
@@ -53,18 +57,27 @@ const styles: CSSResult = css`
         word-break: normal;
         hyphens: none;
     }
+
     .vl-typography-next pre:not([class*='language']) code,
     .vl-typography-next pre:not([class*='language']) kdb,
     .vl-typography-next pre:not([class*='language']) samp {
         background-color: transparent;
         padding: 0;
     }
+
     .vl-typography-next code,
     .vl-typography-next kdb,
     .vl-typography-next samp {
         font-family: monospace;
         background: #e8ebee;
         padding: 0.2rem;
+    }
+
+    .vl-typography-next hr {
+        display: block;
+        margin: 0.5rem auto;
+        border: 0;
+        border-top: 1px solid #cbd2da;
     }
 `;
 export default styles;
