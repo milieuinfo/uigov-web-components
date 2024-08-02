@@ -75,3 +75,15 @@ export const extractCSSVariables = () => {
 
     return cssVariables;
 };
+
+/**
+ * Bereken de hoogte van een regel tekst op basis van de font-size in px (bv. 40px) en de line-height. (bv. 1.5)
+ * @param fontSize
+ * @param lineHeight
+ */
+export const calculateComputedLineHeight = (fontSize: string, lineHeight: string) => {
+    const fontSizeValue = fontSize.replace('px', '');
+    const fontSizeNumber = parseFloat(fontSizeValue);
+    const lineHeightNumber = parseFloat(lineHeight);
+    return `${Math.ceil(fontSizeNumber * lineHeightNumber * 100) / 100}px`;
+};

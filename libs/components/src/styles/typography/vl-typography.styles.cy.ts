@@ -2,7 +2,7 @@ import { html } from 'lit';
 import typographyStyles from './vl-typography.css';
 import { globalStyles } from '@domg-wc/common-utilities/css/global-styles-decorator';
 import { resetStyle } from '@domg/govflanders-style/common';
-import { extractCSSVariables } from '@domg-wc/common-utilities';
+import { calculateComputedLineHeight, extractCSSVariables } from '@domg-wc/common-utilities';
 
 describe('style - vl-typography-next', () => {
     let cssVars: { [key: string]: { value: string; computedValue: string; referencedValue?: string } };
@@ -310,10 +310,3 @@ describe('style - vl-typography-next', () => {
         });
     });
 });
-
-const calculateComputedLineHeight = (fontSize: string, lineHeight: string) => {
-    const fontSizeValue = fontSize.replace('px', '');
-    const fontSizeNumber = parseFloat(fontSizeValue);
-    const lineHeightNumber = parseFloat(lineHeight);
-    return `${Math.ceil(fontSizeNumber * lineHeightNumber * 100) / 100}px`;
-};
