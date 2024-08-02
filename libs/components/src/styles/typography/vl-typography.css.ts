@@ -58,6 +58,7 @@ const styles: CSSResult[] = [
             text-decoration: line-through;
         }
 
+        .vl-typography-next small,
         .vl-u-text--small {
             font-size: 1.4rem !important;
         }

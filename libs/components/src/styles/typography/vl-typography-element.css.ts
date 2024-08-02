@@ -68,7 +68,7 @@ const styles: CSSResult = css`
     .vl-typography-next code,
     .vl-typography-next kdb,
     .vl-typography-next samp {
-        font-family: monospace;
+        font-family: monospace; /* TODO check for var */
         background: #e8ebee;
         padding: 0.2rem;
     }
