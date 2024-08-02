@@ -29,15 +29,15 @@ const styles: CSSResult[] = [
         }
 
         .vl-u-text--success {
-            color: #007a37;
+            color: var(--vl-success-text-color);
         }
 
         .vl-u-text--warning {
-            color: #9f5804;
+            color: var(--vl-warning-text-color);
         }
 
         .vl-u-text--error {
-            color: #d2373c;
+            color: var(--vl-error-text-color);
         }
 
         .vl-typography-next strong,

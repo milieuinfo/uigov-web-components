@@ -32,8 +32,21 @@ const styles: CSSResult = css`
         --vl-action-tertiary-border-color: #c6cdd3;
         --vl-action-tertiary-border-color--hover: #5990de;
 
-        --vl-error-color: #d2373c;
-        --vl-error-color--hover: #aa2729;
+        --vl-error-color: #d2373c; /* DV: $vl-error-color: $vl-faded-red */
+        --vl-error-text-color: #d2373c; /* DV: $vl-error-color: $vl-faded-red */
+        --vl-error-color--hover: #aa2729; /* DV: $vl-error-hover-color: $vl-valencia-red */
+
+        --vl-success-color: #009e47; /* DV: $vl-success-color: $vl-chateau-green */
+        --vl-success-text-color: #007a37; /* DV: $vl-success-color: $vl-ocean-green */
+        --vl-success-color--hover: #009e47; /* DV: $vl-success-hover-color: $vl-chateau-green */
+
+        --vl-warning-color: #ffa10a; /* DV: $vl-warning-color: $vl-orange-peel */
+        --vl-warning-text-color: #9f5804; /* DV: $vl-warning-text-color: $vl-mango-tango */
+        --vl-warning-color--hover: color-mix(
+            in srgb,
+            black 20%,
+            #ffa10a
+        ); /* DV: $vl-warning-hover-color: darken($vl-warning-color, 5%) */
 
         --vl-focus-color: #0055cca6; /* --vl-action-color 65% opacity */
 

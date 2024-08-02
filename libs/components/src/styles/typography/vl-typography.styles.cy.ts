@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import typographyStyles from './vl-typography.css';
 import { globalStyles } from '@domg-wc/common-utilities/css/global-styles-decorator';
-import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
+import { resetStyle } from '@domg/govflanders-style/common';
 import { extractCSSVariables } from '@domg-wc/common-utilities';
 
 describe('style - vl-typography-next', () => {
@@ -241,71 +241,72 @@ describe('style - vl-typography-next', () => {
             .shouldHaveComputedStyle({ style: 'line-height', value: '21px' });
     });
 
-    it.skip('should have correct text modifiers', () => {
+    it('should have correct text modifiers', () => {
         cy.viewport(1920, 1080);
 
         cy.mount(html`
-            <div class="vl-typography-next">
-                <p class="vl-text-next--bold">Bold text</p>
-                <p class="vl-text-next--italic">Italic text</p>
-                <p class="vl-text-next--underline">Underlined text</p>
-                <p class="vl-text-next--uppercase">Uppercase text</p>
-                <p class="vl-text-next--lowercase">Lowercase text</p>
-                <p class="vl-text-next--capitalize">Capitalized text</p>
-                <p class="vl-text-next--error">Error text</p>
-                <p class="vl-text-next--success">Success text</p>
-                <p class="vl-text-next--warning">Warning text</p>
+            <div>
+                <p class="vl-u-text--bold">Bold text</p>
+                <p class="vl-u-text--italic">Italic text</p>
+                <p class="vl-u-text--strike">Underlined text</p>
+                <p class="vl-u-text--uppercase">Uppercase text</p>
+                <p class="vl-u-text--lowercase">Lowercase text</p>
+                <p class="vl-u-text--capitalize">Capitalized text</p>
+                <p class="vl-u-text--error">Error text</p>
+                <p class="vl-u-text--success">Success text</p>
+                <p class="vl-u-text--warning">Warning text</p>
             </div>
         `);
 
-        cy.get('.vl-typography-next .vl-text-next--bold').shouldHaveComputedStyle({
+        cy.get('.vl-u-text--bold').shouldHaveComputedStyle({
             style: 'font-weight',
-            value: '700',
+            value: '500',
         });
 
-        cy.get('.vl-typography-next .vl-text-next--italic').shouldHaveComputedStyle({
+        cy.get('.vl-u-text--italic').shouldHaveComputedStyle({
             style: 'font-style',
             value: 'italic',
         });
 
-        cy.get('.vl-typography-next .vl-text-next--underline').shouldHaveComputedStyle({
-            style: 'text-decoration',
-            value: 'underline solid rgb(51, 51, 51)',
+        cy.get('.vl-u-text--strike').shouldHaveComputedStyle({
+            style: 'text-decoration-line',
+            value: 'line-through',
         });
 
-        cy.get('.vl-typography-next .vl-text-next--uppercase').shouldHaveComputedStyle({
+        cy.get('.vl-u-text--uppercase').shouldHaveComputedStyle({
             style: 'text-transform',
             value: 'uppercase',
         });
 
-        cy.get('.vl-typography-next .vl-text-next--lowercase').shouldHaveComputedStyle({
+        cy.get('.vl-u-text--lowercase').shouldHaveComputedStyle({
             style: 'text-transform',
             value: 'lowercase',
         });
 
-        cy.get('.vl-typography-next .vl-text-next--capitalize').shouldHaveComputedStyle({
+        cy.get('.vl-u-text--capitalize').shouldHaveComputedStyle({
+            pseudo: '::first-letter',
             style: 'text-transform',
-            value: 'capitalize',
+            value: 'uppercase',
         });
 
-        cy.get('.vl-typography-next .vl-text-next--muted').shouldHaveComputedStyle({
-            style: 'color',
-            value: cssVars['--vl-text-muted-color'].computedValue,
+        cy.get('.vl-u-text--capitalize').shouldHaveComputedStyle({
+            style: 'text-transform',
+            value: 'lowercase',
         });
 
-        cy.get('.vl-typography-next .vl-text-next--error').shouldHaveComputedStyle({
+        cy.get('.vl-u-text--success').shouldHaveComputedStyle({
             style: 'color',
-            value: cssVars['--vl-text-error-color'].computedValue,
+            value: cssVars['--vl-success-text-color'].computedValue,
         });
 
-        cy.get('.vl-typography-next .vl-text-next--success').shouldHaveComputedStyle({
+        cy.get('.vl-u-text--warning').shouldHaveComputedStyle({
             style: 'color',
-            value: cssVars['--vl-text-success-color'].computedValue,
+            value: cssVars['--vl-warning-text-color'].computedValue,
         });
 
-        cy.get('.vl-typography-next .vl-text-next--warning').shouldHaveComputedStyle({
+        cy.get('.vl-u-text--error').shouldHaveComputedStyle({
             style: 'color',
-            value: cssVars['--vl-text-warning-color'].computedValue,
+            value: cssVars['--vl-error-text-color'].computedValue,
         });
     });
 });
