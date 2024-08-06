@@ -11,6 +11,7 @@ export class VlPopoverActionComponent extends BaseLitElement {
 
     // placeholder to store any data related to this action
     action?: unknown;
+    selected = false;
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, vlElementsStyle, popoverActionUigStyle];
@@ -18,8 +19,9 @@ export class VlPopoverActionComponent extends BaseLitElement {
 
     static get properties(): PropertyDeclarations {
         return {
-            icon: { type: String, attribute: 'icon', reflect: true },
-            action: { type: String, attribute: 'action' },
+            icon: { type: String, reflect: true },
+            action: { type: String },
+            selected: { type: Boolean },
         };
     }
 
@@ -28,6 +30,16 @@ export class VlPopoverActionComponent extends BaseLitElement {
             ${this.icon && this.icon !== '' ? html`<span is="vl-icon" data-vl-icon=${this.icon}></span>` : nothing}
             <slot></slot>
         `;
+    }
+
+    updated(changedProperties: Map<string | number | symbol, unknown>) {
+        if (changedProperties.has('selected')) {
+            if (this.selected) {
+                this.setAttribute('aria-selected', 'true');
+            } else {
+                this.removeAttribute('aria-selected');
+            }
+        }
     }
 }
 
