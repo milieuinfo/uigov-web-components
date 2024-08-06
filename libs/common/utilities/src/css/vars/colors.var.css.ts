@@ -42,11 +42,7 @@ const styles: CSSResult = css`
 
         --vl-warning-color: #ffa10a; /* DV: $vl-warning-color: $vl-orange-peel */
         --vl-warning-text-color: #9f5804; /* DV: $vl-warning-text-color: $vl-mango-tango */
-        --vl-warning-color--hover: color-mix(
-            in srgb,
-            black 20%,
-            #ffa10a
-        ); /* DV: $vl-warning-hover-color: darken($vl-warning-color, 5%) */
+        --vl-warning-color--hover: color-mix(in srgb, black 20%, #ffa10a); /* donkerde variant van --vl-warning-color */
 
         --vl-focus-color: #0055cca6; /* --vl-action-color 65% opacity */
 
