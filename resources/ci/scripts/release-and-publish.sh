@@ -91,7 +91,7 @@ if [ $? -eq 0 ]
     cat buffer-stderr.txt >&2
     cat buffer-stdout.txt >&2
     set -e
-    exit $?
+    exit 1
 fi
 set -e
 
@@ -181,7 +181,7 @@ if [ $? -eq 0 ]
     cat buffer-stderr.txt >&2
     cat buffer-stdout.txt >&2
     set -e
-    exit $?
+    exit 1
 fi
 set -e
 
@@ -226,7 +226,7 @@ if [ $? -eq 0 ]
     cat buffer-stderr.txt >&2
     cat buffer-stdout.txt >&2
     set -e
-    exit $?
+    exit 1
 fi
 set -e
 
@@ -265,7 +265,7 @@ then
 else
   echo "fout bij het bouwen van Storybook" >&2
   set -e
-  exit $?
+  exit 1
 fi
 set -e
 
@@ -280,6 +280,6 @@ if [ $? -eq 0 ]
   else
     echo "fout bij het tgz''en van Storybook" >&2
     set -e
-    exit $?
+    exit 1
 fi
 set -e
