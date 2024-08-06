@@ -8,6 +8,7 @@ import { VlPopoverActionComponent } from '../vl-popover-action.component';
 import { VlPopoverComponent } from '../vl-popover.component';
 import { popoverArgTypes, popoverDefaultArgs } from './vl-popover.stories-arg';
 import popoverDoc from './vl-popover.stories-doc.mdx';
+import { popoverActionArgs, popoverActionArgTypes } from './vl-popover-action.stories-arg';
 
 registerWebComponents([VlPopoverComponent, VlPopoverActionComponent, VlPopoverActionListComponent]);
 
@@ -26,6 +27,17 @@ export default {
 export const PopoverDefault = story(
     popoverDefaultArgs,
     ({ trigger, contentPadding, open, placement, hideArrow, hideOnClick, distance }) => {
+        const actionListClickHandler = (event: CustomEvent) => {
+            const actionElement = event.target as VlPopoverActionComponent;
+            action('click')('vl-popover-action clicked > ' + actionElement.action);
+            const allActions = Array.from(actionElement.parentElement?.querySelectorAll('vl-popover-action') || []);
+            allActions.forEach((action) => {
+                if (action !== actionElement) {
+                    action.removeAttribute('selected');
+                }
+            });
+            actionElement.setAttribute('selected', '');
+        };
         return html`
             <a is="vl-link" id="btn-acties">Acties</a>
             <vl-popover
@@ -38,12 +50,7 @@ export const PopoverDefault = story(
                 distance=${distance}
                 content-padding=${contentPadding}
             >
-                <vl-popover-action-list
-                    @click=${(event: CustomEvent) => {
-                        const actionElement = event.target as VlPopoverActionComponent;
-                        action('click')('vl-popover-action clicked > ' + actionElement.action);
-                    }}
-                >
+                <vl-popover-action-list @click=${actionListClickHandler}>
                     <vl-popover-action icon="search" .action=${'search'}>Zoeken</vl-popover-action>
                     <vl-popover-action icon="bell" .action=${'report'}>Rapportenoverzicht</vl-popover-action>
                     <vl-popover-action icon="pin" .action=${'locate'}>Vind locatie</vl-popover-action>
@@ -84,4 +91,33 @@ PopoverHover.args = {
 PopoverHover.parameters = {
     layout: 'centered',
     contentPadding: 'medium',
+};
+
+export const PopoverActions = story(popoverActionArgs, ({ selected }) => {
+    const actionListClickHandler = (event: CustomEvent) => {
+        const actionElement = event.target as VlPopoverActionComponent;
+        action('click')('vl-popover-action clicked > ' + actionElement.action);
+        const allActions = Array.from(actionElement.parentElement?.querySelectorAll('vl-popover-action') || []);
+        allActions.forEach((action) => {
+            if (action !== actionElement) {
+                action.removeAttribute('selected');
+            }
+        });
+        actionElement.setAttribute('selected', '');
+    };
+    return html`
+        <vl-popover-action-list @click=${actionListClickHandler}>
+            <vl-popover-action selected=${selected} icon="search">Zoeken</vl-popover-action>
+            <vl-popover-action icon="bell">Rapportenoverzicht</vl-popover-action>
+            <vl-popover-action icon="pin">Vind locatie</vl-popover-action>
+        </vl-popover-action-list>
+    `;
+});
+PopoverActions.storyName = 'vl-popover - actions';
+PopoverActions.args = popoverActionArgs;
+PopoverActions.argTypes = popoverActionArgTypes;
+PopoverActions.parameters = {
+    controls: {
+        include: ['selected'],
+    },
 };

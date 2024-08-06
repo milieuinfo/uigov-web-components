@@ -9,6 +9,8 @@ const styles: CSSResult = css`
         color: #0055cc;
         font-weight: 500;
         font-size: 16px;
+        padding-left: 0.7rem;
+        padding-right: 0.7rem;
     }
 
     :host(:hover) {
@@ -19,6 +21,11 @@ const styles: CSSResult = css`
         box-shadow: none;
         outline: 3px solid rgba(0, 85, 204, 0.65);
         outline-offset: 2px;
+    }
+
+    :host([selected]) {
+        border-left: 0.3rem solid #0055cc;
+        padding-left: 0.4rem;
     }
 `;
 export default styles;

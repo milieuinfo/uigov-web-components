@@ -1,5 +1,6 @@
-import { ArgTypes, Canvas } from '@storybook/blocks';
+import { ArgTypes, Canvas, Source } from '@storybook/blocks';
 import * as VlPopoverStories from './vl-popover.stories';
+import { Meta } from '@storybook/addon-docs';
 
 # Popover
 
@@ -17,7 +18,6 @@ import { VlPopoverComponent } from '@domg-wc/components';
 ```
 
 <Canvas of={VlPopoverStories.PopoverDefault} />
-
 
 ## Configuratie
 
@@ -55,6 +55,40 @@ De afstand tot het referentie-element kan je volledig zelf bepalen.
 Je kan de standaard `click` waarde voor `trigger` ook instellen op bv. de combinatie van `hover` & `focus` interacties.
 
 <Canvas of={VlPopoverStories.PopoverHover} />
+
+### Popover Actions
+
+Je kan een lijst van acties toevoegen aan de popover en die acties markeren als `active`.
+
+<Canvas of={VlPopoverStories.PopoverActions} />
+
+Hieronder vind je een voorbeeld implementatie met LitElement
+
+<details>
+    <summary>Toon HTML template voorbeeld</summary>
+    <Source code={`
+    <vl-popover-action-list @click=\${actionListClickHandler}>
+        <vl-popover-action selected=\${selected} icon="search">Zoeken</vl-popover-action>
+        <vl-popover-action icon="bell">Rapportenoverzicht</vl-popover-action>
+        <vl-popover-action icon="pin">Vind locatie</vl-popover-action>
+    </vl-popover-action-list>
+    `} language="html" dark={true} />
+</details>
+<details>
+    <summary>Toon TypeScript code voorbeeld</summary>
+    <Source code={`
+    const actionListClickHandler = (event: CustomEvent) => {
+            const actionElement = event.target as VlPopoverActionComponent;
+            const allActions = Array.from(actionElement.parentElement?.querySelectorAll('vl-popover-action') || []);
+            allActions.forEach((action) => {
+                if (action !== actionElement) {
+                    action.removeAttribute('selected');
+                }
+            });
+            actionElement.setAttribute('selected', '');
+        };
+    `} language="ts" dark={true} />
+</details>
 
 
 ## Referenties
