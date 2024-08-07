@@ -4,6 +4,7 @@ import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
 import { VlColumnElement, VlGridElement } from '@domg-wc/elements';
+import { classMap } from 'lit/directives/class-map.js';
 
 @customElement('vl-description-data')
 export class VlDescriptionData extends BaseLitElement {
@@ -15,6 +16,7 @@ export class VlDescriptionData extends BaseLitElement {
     private smallMaxSize = 0;
     private extraSmallSize = 0;
     private extraSmallMaxSize = 0;
+    private bordered = false;
 
     static {
         registerWebComponents([VlColumnElement, VlGridElement]);
@@ -26,14 +28,15 @@ export class VlDescriptionData extends BaseLitElement {
 
     static get properties() {
         return {
-            size: { type: Number, attribute: 'data-vl-items-size', reflect: true },
-            maxSize: { type: Number, attribute: 'data-vl-items-max-size', reflect: true },
-            mediumSize: { type: Number, attribute: 'data-vl-items-medium-size', reflect: true },
-            mediumMaxSize: { type: Number, attribute: 'data-vl-items-medium-max-size', reflect: true },
-            smallSize: { type: Number, attribute: 'data-vl-items-small-size', reflect: true },
-            smallMaxSize: { type: Number, attribute: 'data-vl-items-small-max-size', reflect: true },
-            extraSmallSize: { type: Number, attribute: 'data-vl-items-extra-small-size', reflect: true },
-            extraSmallMaxSize: { type: Number, attribute: 'data-vl-items-extra-small-max-size', reflect: true },
+            size: { type: Number, attribute: 'data-vl-items-size' },
+            maxSize: { type: Number, attribute: 'data-vl-items-max-size' },
+            mediumSize: { type: Number, attribute: 'data-vl-items-medium-size' },
+            mediumMaxSize: { type: Number, attribute: 'data-vl-items-medium-max-size' },
+            smallSize: { type: Number, attribute: 'data-vl-items-small-size' },
+            smallMaxSize: { type: Number, attribute: 'data-vl-items-small-max-size' },
+            extraSmallSize: { type: Number, attribute: 'data-vl-items-extra-small-size' },
+            extraSmallMaxSize: { type: Number, attribute: 'data-vl-items-extra-small-max-size' },
+            bordered: { type: Boolean, attribute: 'data-vl-bordered' },
         };
     }
 
@@ -47,8 +50,11 @@ export class VlDescriptionData extends BaseLitElement {
 
     render() {
         this.size = this.size || 12 / this.children.length;
-
-        return html` <div class="vl-description-data">
+        const classes = {
+            'vl-description-data': true,
+            'vl-description-data--bordered': this.bordered,
+        };
+        return html` <div class=${classMap(classes)}>
             <div is="vl-grid">
                 ${[...Array.from(this.children)].map((child, index) => {
                     const name = `item-${index}`;

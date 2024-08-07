@@ -12,6 +12,7 @@ export default {
 } as Meta<typeof descriptionDataArgs>;
 
 export const descriptionDataDefault = ({
+    bordered,
     size,
     maxSize,
     mediumSize,
@@ -23,6 +24,7 @@ export const descriptionDataDefault = ({
 }: typeof descriptionDataArgs) =>
     html`
         <vl-description-data
+            ?data-vl-bordered=${bordered}
             data-vl-items-size=${size}
             data-vl-items-max-size=${maxSize}
             data-vl-items-medium-size=${mediumSize}
