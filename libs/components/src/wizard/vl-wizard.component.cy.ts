@@ -9,19 +9,27 @@ type MountDefaultProps = {
     activeStep?: number;
     panes?: string[];
     hideLabels?: boolean;
+    numeric?: boolean;
 };
 
-const mountDefault = ({ activeStep, panes, hideLabels = false }: MountDefaultProps) => {
-    const paneElements = panes?.map((paneName) => {
-        const pane = document.createElement('vl-wizard-pane');
-        pane.setAttribute('data-vl-name', paneName);
-        pane.innerHTML = `<p>Wizard Pane Content (${paneName})</p>`;
-        return pane;
-    });
+const mountDefault = ({ activeStep, panes, hideLabels = false, numeric = false }: MountDefaultProps) => {
+    const paneElements = panes
+        ? panes.map((paneName) => {
+              return html`
+                  <vl-wizard-pane data-vl-name=${paneName}>
+                      <p>Wizard Pane Content (${paneName})</p>
+                  </vl-wizard-pane>
+              `;
+          })
+        : nothing;
 
     cy.mount(
         html`
-            <vl-wizard data-vl-active-step=${activeStep || nothing} ?data-vl-hide-labels=${hideLabels}>
+            <vl-wizard
+                data-vl-active-step=${activeStep || nothing}
+                ?data-vl-hide-labels=${hideLabels}
+                ?data-vl-numeric=${numeric}
+            >
                 ${paneElements}
             </vl-wizard>
         `
@@ -74,6 +82,15 @@ describe('component vl-wizard-pane - properties', () => {
             activeStep: 2,
         });
         cy.get('vl-wizard').find('vl-wizard-pane[data-vl-name="Step 2"]').contains('Wizard Pane Content (Step 2)');
+    });
+
+    it('should add numeric steps', () => {
+        mountDefault({ numeric: true, panes: ['Step 1', 'Step 2', 'Step 3'] });
+        cy.get('vl-wizard')
+            .shadow()
+            .find('vl-progress-bar')
+            .shadow()
+            .find('div.vl-progress-bar.vl-progress-bar--numeric');
     });
 
     it('should display the step labels by default', () => {

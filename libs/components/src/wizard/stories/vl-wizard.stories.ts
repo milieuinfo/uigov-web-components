@@ -29,10 +29,13 @@ export default {
 
 export const WizardDefault = story(
     wizardArgs,
-    ({ activeStep, hideLabels, title, header, onClickStep }: typeof wizardArgs) => html` <div style="max-width: 780px;">
+    ({ activeStep, hideLabels, title, header, onClickStep, numeric }: typeof wizardArgs) => html` <div
+        style="max-width: 780px;"
+    >
         <vl-wizard
             data-vl-active-step=${activeStep}
             ?data-vl-hide-labels=${hideLabels}
+            ?data-vl-numeric=${numeric}
             @vl-click-step=${(event: VlClickStepEvent) => {
                 onClickStep(event.detail);
                 getWizard().activeStep = event.detail.number;

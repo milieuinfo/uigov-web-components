@@ -12,6 +12,7 @@ export class VlWizard extends BaseLitElement {
     private activeStep: number;
     private panes: VlWizardPane[];
     private hideLabels: boolean;
+    private numeric = false;
 
     static {
         registerWebComponents([VlProgressBarComponent, VlWizardPane]);
@@ -30,6 +31,7 @@ export class VlWizard extends BaseLitElement {
                 reflect: true,
             },
             hideLabels: { type: Boolean, attribute: 'data-vl-hide-labels' },
+            numeric: { type: Boolean, attribute: 'data-vl-numeric' },
         };
     }
 
@@ -60,6 +62,7 @@ export class VlWizard extends BaseLitElement {
                 <vl-progress-bar
                     data-vl-active-step=${this.activeStep}
                     ?data-vl-show-labels=${!this.hideLabels}
+                    ?data-vl-numeric=${this.numeric}
                     .steps=${this.panes.map((pane) => pane.name)}
                 ></vl-progress-bar>
                 <div class="vl-wizard__panes">
