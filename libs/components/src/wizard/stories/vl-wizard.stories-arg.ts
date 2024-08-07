@@ -1,10 +1,11 @@
-import { CONTROLS, defaultArgs, defaultArgTypes } from '@domg-wc/common-storybook';
+import { CATEGORIES, CONTROLS, defaultArgs, defaultArgTypes, TYPES } from '@domg-wc/common-storybook';
 import { action } from '@storybook/addon-actions';
 
 export const wizardArgs = {
     ...defaultArgs,
     activeStep: 0,
     hideLabels: false,
+    numeric: false,
     title: '',
     header: '',
     onClickStep: action('vl-click-step'),
@@ -17,11 +18,9 @@ export const wizardArgTypes = {
         description: 'Zet de actieve stap.',
         control: { type: CONTROLS.RANGE, min: 1, max: 2, step: 1 },
         table: {
-            type: {
-                summary: 'Number',
-            },
-            category: 'Attributes',
-            defaultValue: { summary: 1 },
+            type: { summary: TYPES.NUMBER },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: wizardArgs.activeStep },
         },
     },
     hideLabels: {
@@ -29,29 +28,41 @@ export const wizardArgTypes = {
         description: 'Bepaalt of de labels van de stappen verborgen moeten worden.',
         control: { type: CONTROLS.BOOLEAN },
         table: {
-            type: {
-                summary: 'Boolean',
-            },
-            category: 'Attributes',
-            defaultValue: { summary: false },
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: wizardArgs.hideLabels },
+        },
+    },
+    numeric: {
+        name: 'data-vl-numeric',
+        description: 'Voorziet numerieke indicatoren bij de stappen.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: wizardArgs.numeric },
         },
     },
     title: {
         description: 'Slot voor de titel.',
         table: {
-            category: 'Slots',
+            category: CATEGORIES.SLOTS,
+            defaultValue: { summary: wizardArgs.title },
         },
     },
     header: {
         description: 'Slot voor de header.',
         table: {
-            category: 'Slots',
+            category: CATEGORIES.SLOTS,
+            defaultValue: { summary: wizardArgs.header },
         },
     },
     onClickStep: {
         name: 'vl-click-step',
         description:
             'Afgevuurd wanneer er op een stap geklikt wordt. In het event wordt het nummer en de naam vermeld.',
-        table: { category: 'Events' },
+        table: {
+            category: CATEGORIES.EVENTS,
+            defaultValue: { summary: wizardArgs.onClickStep() },
+        },
     },
 };
