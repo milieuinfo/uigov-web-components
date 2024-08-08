@@ -1,3 +1,22 @@
+# [1.36.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.35.0...v1.36.0) (2024-08-08)
+
+
+### Bug Fixes
+
+* build scripts gaven bij een fout op sommige plaatsen een 'exit 0' ([d99391f](https://github.com/milieuinfo/uigov-web-components/commit/d99391fc391a465f2f870dcc0071684e0f276d21))
+* UIG-3024 - vl-map-side-sheet - werking toggle-button icoon verbeterd ([efcdb30](https://github.com/milieuinfo/uigov-web-components/commit/efcdb303c186ddb6ff7f25b3a96ab1df15d48be3))
+* UIG-3062 - vl-alert - content breedte aangepast bij medium grote parent ([ec8a61a](https://github.com/milieuinfo/uigov-web-components/commit/ec8a61ac6cabc038f8d8edc22907d8632a9bc01d))
+* UIG-3063 - vl-autocomplete - API-story bijgewerkt met huidige url ([9d669c9](https://github.com/milieuinfo/uigov-web-components/commit/9d669c92bece07f493482649403cc09d34c19c4b))
+* UIG-3073 - vl-alert - actions slot rendering verbeterd ([4dc5b01](https://github.com/milieuinfo/uigov-web-components/commit/4dc5b013b299e3c92c18479b5f49e93cc5eb4344))
+
+
+### Features
+
+* UIG-3026 - vl-popover-action - selected attribuut toegevoegd ([9dfa0e7](https://github.com/milieuinfo/uigov-web-components/commit/9dfa0e729fe0264966a43caffc4987479482aa56))
+* UIG-3055 - defaults ontdubbeld ([7368015](https://github.com/milieuinfo/uigov-web-components/commit/7368015b3698e27bb7bc20f148f449f767ca1129))
+* UIG-3057 - vl-wizard - numeric attribuut toegevoegd ([a4a6225](https://github.com/milieuinfo/uigov-web-components/commit/a4a6225ec9cfc4c374595355f7edb6391b8564b5))
+* UIG-3079 - vl-description-data - bordered attribuut toegevoegd ([26b0c1a](https://github.com/milieuinfo/uigov-web-components/commit/26b0c1ad4b3e61f474c3edffa37c76ecb1061eca))
+
 # [1.35.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.34.0...v1.35.0) (2024-07-08)
 
 
