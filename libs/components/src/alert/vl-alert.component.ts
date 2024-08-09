@@ -1,6 +1,6 @@
 import { html, PropertyDeclarations, TemplateResult, CSSResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { assignedNodesForSlot, BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement, findNodesForSlot } from '@domg-wc/common-utilities';
 import { alertStyle, iconStyle } from '@domg/govflanders-style/component';
 import { accessibilityStyle, resetStyle, markStyle } from '@domg/govflanders-style/common';
 import { VlAlertClosedEvent } from './vl-alert.model';
@@ -47,7 +47,7 @@ export class VlAlert extends BaseLitElement {
         };
 
         const markClass = this.naked ? `vl-u-mark--${this.type}` : '';
-        const hideEmptyActionsSlot = assignedNodesForSlot(this, 'actions')?.length ? '' : 'vl-u-visually-hidden';
+        const hideEmptyActionsSlot = findNodesForSlot(this, 'actions')?.length ? '' : 'vl-u-visually-hidden';
 
         return html`
             <div id="alert" class=${classMap(classes)} role="alert">
