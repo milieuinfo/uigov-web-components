@@ -17,8 +17,7 @@ export const descriptionDataArgTypes = {
     ...defaultArgTypes(),
     bordered: {
         name: 'data-vl-bordered',
-        description:
-            'The number (numerator) of the maximum (denominator) that will be taken for each data item on large screens, typically desktop.',
+        description: 'Adds a border.',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
