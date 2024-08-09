@@ -1,3 +1,11 @@
+## [1.36.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.36.0...v1.36.1) (2024-08-09)
+
+
+### Bug Fixes
+
+* UIG-3073 - vl-alert - de actions worden terug correct gerenderd; indien er geen actions zijn neemt het slot geen plaats in ([fce4340](https://github.com/milieuinfo/uigov-web-components/commit/fce4340df38c94bf175c4498da6a2ea7c5dd3a08))
+* UIG-3079 - vl-description-data - correctie van de bordered omschrijving ([62f5a7e](https://github.com/milieuinfo/uigov-web-components/commit/62f5a7e5a0687922b373e68644fb47262b470e80))
+
 # [1.36.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.35.0...v1.36.0) (2024-08-08)
 
 
