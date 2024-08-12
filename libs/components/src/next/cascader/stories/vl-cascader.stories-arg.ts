@@ -6,8 +6,6 @@ import { CASCADER_SLOTS } from '../vl-cascader.model';
 
 export type CascaderArgs = typeof cascaderDefaults &
     typeof defaultArgs & {
-        contentSlot: string;
-        labelSlot: string;
         homeSlot: string;
         headerSlot: string;
         onVlClickBreadcrumb: () => void;
@@ -16,8 +14,6 @@ export type CascaderArgs = typeof cascaderDefaults &
 export const cascaderArgs: CascaderArgs = {
     ...defaultArgs,
     ...cascaderDefaults,
-    contentSlot: '',
-    labelSlot: '',
     homeSlot: '',
     headerSlot: '',
     onVlClickBreadcrumb: action('vl-click-breadcrumb'),
@@ -25,17 +21,6 @@ export const cascaderArgs: CascaderArgs = {
 
 export const cascaderArgTypes: ArgTypes<CascaderArgs> = {
     ...defaultArgTypes(true),
-    annotation: {
-        name: 'annotation',
-        description:
-            'Annotation attribuut op de `vl-cascader-item` component. Dit bepaalt de ondertitel in de breadcrumb navigatie.',
-        table: {
-            type: { summary: TYPES.STRING },
-            category: CATEGORIES.CHILD_ATTRIBUTES,
-            defaultValue: { summary: cascaderArgs.annotation },
-        },
-        type: { name: TYPES.STRING },
-    },
     headerText: {
         name: 'header-text',
         description: 'Hiermee kan je de tekst instellen voor de header.',
@@ -62,15 +47,6 @@ export const cascaderArgTypes: ArgTypes<CascaderArgs> = {
             type: { summary: TYPES.HTML },
             category: CATEGORIES.SLOTS,
             defaultValue: { summary: cascaderArgs.breadcrumbPlaceholder },
-        },
-    },
-    contentSlot: {
-        name: CASCADER_SLOTS.CONTENT,
-        description: 'Element op de `vl-cascader-item` component. Komt onder het label.',
-        table: {
-            type: { summary: TYPES.HTML },
-            category: CATEGORIES.CHILD_SLOTS,
-            defaultValue: { summary: cascaderArgs.contentSlot },
         },
     },
     level: {
@@ -133,27 +109,6 @@ export const cascaderArgTypes: ArgTypes<CascaderArgs> = {
             defaultValue: { summary: cascaderArgs.items },
         },
     },
-    label: {
-        name: 'label',
-        description:
-            'Label attribuut op de `vl-cascader-item` component. Dit bepaalt ook het label in de breadcrumb navigatie.',
-        table: {
-            type: { summary: TYPES.STRING },
-            category: CATEGORIES.CHILD_ATTRIBUTES,
-            defaultValue: { summary: cascaderArgs.label },
-        },
-        type: { name: TYPES.STRING, required: true },
-    },
-    labelSlot: {
-        name: CASCADER_SLOTS.LABEL,
-        description:
-            'Label slot op de `vl-cascader-item` component. Klik op deze inhoud zal de kind elementen weergeven.',
-        table: {
-            type: { summary: TYPES.HTML },
-            category: CATEGORIES.CHILD_SLOTS,
-            defaultValue: { summary: cascaderArgs.labelSlot },
-        },
-    },
     loadingMessage: {
         name: 'loading-message',
         description: 'De boodschap die getoond wordt wanneer items aan het laden zijn.',
@@ -166,7 +121,7 @@ export const cascaderArgTypes: ArgTypes<CascaderArgs> = {
     templates: {
         name: 'templates',
         description:
-            'Laat toe om alternatieve templates for de cascader-items in te stellen.\n\nKan niet aangepast worden in Storybook.\n\n Raadpleeg [documentatie](?path=/docs/components-next-cascader--cascader-dynamic-templating#dynamische-templates) voor meer info.',
+            'Laat toe om alternatieve templates voor de cascader-items in te stellen.\n\nKan niet aangepast worden in Storybook.\n\n Raadpleeg [documentatie](?path=/docs/components-next-cascader--cascader-dynamic-templating#dynamische-templates) voor meer info.',
         control: false,
         table: {
             disable: true,

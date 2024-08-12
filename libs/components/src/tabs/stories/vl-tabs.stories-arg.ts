@@ -16,10 +16,7 @@ export const tabsArgs = {
     alt: false,
     disableLinks: false,
     responsiveLabel: '',
-    id: '',
-    title: '',
     displayStyle: 'default',
-    observeTitle: false,
     onChangeActiveTab: action('change'),
 };
 
@@ -64,24 +61,6 @@ export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {
             defaultValue: { summary: tabsArgs.responsiveLabel },
         },
     },
-    id: {
-        name: 'data-vl-id',
-        description: 'Het id van de tabs-pane.',
-        control: false,
-        table: {
-            type: { summary: TYPES.STRING },
-            category: CATEGORIES.CHILD_ATTRIBUTES,
-        },
-    },
-    title: {
-        name: 'data-vl-title',
-        description: 'De titel van de tabs-pane.',
-        control: false,
-        table: {
-            type: { summary: TYPES.STRING },
-            category: CATEGORIES.CHILD_ATTRIBUTES,
-        },
-    },
     displayStyle: {
         name: 'data-vl-display-style',
         description:
@@ -92,15 +71,6 @@ export const tabsArgTypes: ArgTypes<typeof tabsArgs> = {
             type: { summary: getSelectControlOptions(Object.values(DISPLAY_STYLE)) },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: tabsArgs.displayStyle },
-        },
-    },
-    observeTitle: {
-        name: 'data-vl-observe-title',
-        description: 'Duidt aan of de titel van de tabs-pane geobserveerd wordt.',
-        table: {
-            type: { summary: TYPES.BOOLEAN },
-            category: CATEGORIES.CHILD_ATTRIBUTES,
-            defaultValue: { summary: tabsArgs.observeTitle },
         },
     },
     onChangeActiveTab: {

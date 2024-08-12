@@ -7,8 +7,6 @@ export const stepsArgs = {
     timeline: false,
     simpleTimeline: false,
     lastStepNoLine: false,
-    toggleable: false,
-    type: null,
 };
 
 export const stepsArgTypes: ArgTypes = {
@@ -48,26 +46,6 @@ export const stepsArgTypes: ArgTypes = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: stepsArgs.lastStepNoLine },
-        },
-    },
-    toggleable: {
-        name: 'data-vl-toggleable',
-        description: 'Beeldt een stap af als een accordion.<br>Dit attribuut wordt geplaatst op een stap.',
-        control: false,
-        table: {
-            type: { summary: TYPES.BOOLEAN },
-            category: CATEGORIES.CHILD_ATTRIBUTES,
-            defaultValue: { summary: stepsArgs.toggleable },
-        },
-    },
-    type: {
-        name: 'data-vl-type',
-        description: 'Beeldt een stap af in een bepaalde staat.<br>Dit attribuut wordt geplaatst op een stap.',
-        control: false,
-        table: {
-            type: { summary: ['highlighted', 'disabled', 'success', 'warning', 'error'] },
-            category: CATEGORIES.CHILD_ATTRIBUTES,
-            defaultValue: { summary: stepsArgs.type },
         },
     },
 };

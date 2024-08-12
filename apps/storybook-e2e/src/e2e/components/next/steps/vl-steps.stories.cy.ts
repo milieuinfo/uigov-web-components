@@ -1,15 +1,17 @@
-const stepsNextUrl = 'http://localhost:8080/iframe.html?id=components-next-steps--steps-default&viewMode=story';
-const stepsNextIconsUrl = 'http://localhost:8080/iframe.html?id=components-next-steps--steps-icons&viewMode=story';
-const stepsNextStatesUrl = 'http://localhost:8080/iframe.html?id=components-next-steps--steps-states&viewMode=story';
-const stepsNextAccordionsUrl =
-    'http://localhost:8080/iframe.html?id=components-next-steps--steps-accordions&viewMode=story';
-const stepsNextLineUrl = 'http://localhost:8080/iframe.html?id=components-next-steps--steps-line&viewMode=story';
+const stepsNextUrl = 'http://localhost:8080/iframe.html?id=components-next-steps-steps--steps-default&viewMode=story';
+const stepsNextIconsUrl =
+    'http://localhost:8080/iframe.html?id=components-next-steps-steps--steps-icons&viewMode=story';
+const stepsNextLineUrl = 'http://localhost:8080/iframe.html?id=components-next-steps-steps--steps-line&viewMode=story';
 const stepsNextTimelineUrl =
-    'http://localhost:8080/iframe.html?id=components-next-steps--steps-timeline&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-steps-steps--steps-timeline&viewMode=story';
 const stepsNextSimpleTimelineUrl =
-    'http://localhost:8080/iframe.html?id=components-next-steps--steps-simple-timeline&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-steps-steps--steps-simple-timeline&viewMode=story';
 const stepsSideNavigationUrl =
-    'http://localhost:8080/iframe.html?id=components-next-steps--steps-side-navigation&viewMode=story';
+    'http://localhost:8080/iframe.html?id=components-next-steps-steps--steps-side-navigation&viewMode=story';
+const stepsNextStatesUrl =
+    'http://localhost:8080/iframe.html?id=components-next-steps-step--steps-states&viewMode=story';
+const stepsNextToggleableUrl =
+    'http://localhost:8080/iframe.html?id=components-next-steps-step--steps-toggleable&viewMode=story';
 
 describe('story vl-steps-next default', () => {
     it('should be accessible', () => {
@@ -184,15 +186,15 @@ describe('story vl-steps-next states', () => {
     });
 });
 
-describe('story vl-steps-next accordions', () => {
+describe('story vl-steps-next toggleable', () => {
     it('should be accessible', () => {
-        cy.visitWithA11y(stepsNextAccordionsUrl);
+        cy.visitWithA11y(stepsNextToggleableUrl);
         cy.get('vl-steps-next');
         cy.checkA11y('vl-steps-next');
     });
 
     it('should contain steps', () => {
-        cy.visit(stepsNextAccordionsUrl);
+        cy.visit(stepsNextToggleableUrl);
 
         cy.get('vl-steps-next').find('vl-step-next').find('span[slot="icon"]').contains('1');
         cy.get('vl-steps-next').find('vl-step-next').find('span[slot="title"]').contains('Stap 1: eerste actie');
@@ -226,7 +228,7 @@ describe('story vl-steps-next accordions', () => {
     });
 
     it('should contain steps with accordions', () => {
-        cy.visit(stepsNextAccordionsUrl);
+        cy.visit(stepsNextToggleableUrl);
 
         cy.get('vl-steps-next')
             .find('vl-step-next')

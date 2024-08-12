@@ -1,5 +1,5 @@
 const mapSideSheetDefaultUrl =
-    'http://localhost:8080/iframe.html?id=map-side-sheet--map-side-sheet-default&viewMode=story';
+    'http://localhost:8080/iframe.html?id=map-side-sheet-side-sheet--map-side-sheet-default&viewMode=story';
 
 describe('story - vl-map-side-sheet - default', () => {
     it('should render', () => {

@@ -37,11 +37,11 @@ describe('story vl-breadcrumb', () => {
     });
 
     it('should set correct links for breadcrumb items', () => {
-        cy.visit(`${breadcrumbUrl}&args=href1:1;href2:2;href3:3`);
+        cy.visit(`${breadcrumbUrl}&args=href:1`);
 
         cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(0).shadow().find('a').should('have.attr', 'href', '1');
-        cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(1).shadow().find('a').should('have.attr', 'href', '2');
-        cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(2).shadow().find('a').should('have.attr', 'href', '3');
-        cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(3).shadow().find('span');
+        cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(1).shadow().find('a').should('have.attr', 'href', '1');
+        cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(2).shadow().find('a').should('have.attr', 'href', '1');
+        cy.get('vl-breadcrumb').find('vl-breadcrumb-item').eq(3).shadow().find('a').should('have.attr', 'href', '1');
     });
 });

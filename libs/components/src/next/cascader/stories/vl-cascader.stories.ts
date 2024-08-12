@@ -11,7 +11,7 @@ import { getItemList } from './vl-cascader.stories-util.item-list-function';
 import { cascaderItemTemplates } from './vl-cascader.stories-util.templates';
 
 export default {
-    title: 'Components-next/cascader',
+    title: 'Components-next/cascader/cascader',
     tags: ['autodocs'],
     args: cascaderArgs,
     argTypes: cascaderArgTypes,
@@ -202,32 +202,4 @@ CascaderPropertyBinding.parameters = {
     controls: {
         exclude: ['content', 'label', 'labelSlot'],
     },
-};
-export const CascaderItemSlots = story(
-    cascaderArgs,
-    ({ annotation, breadcrumbPlaceholder, contentSlot, homeSlot, label, labelSlot, onVlClickBreadcrumb }) => {
-        return html`
-            <vl-cascader>
-                ${homeSlot ? unsafeHTML(homeSlot) : nothing}
-                ${breadcrumbPlaceholder ? unsafeHTML(breadcrumbPlaceholder) : nothing}
-                @vl-click-breadcrumb="${onVlClickBreadcrumb}"
-                <vl-cascader-item label=${label} annotation=${annotation}>
-                    ${unsafeHTML(labelSlot)} ${unsafeHTML(contentSlot)}
-                    <vl-cascader-item label="Gemeente">
-                        <vl-cascader-item label="Stad"></vl-cascader-item>
-                    </vl-cascader-item>
-                </vl-cascader-item>
-            </vl-cascader>
-        `;
-    }
-);
-CascaderItemSlots.storyName = 'vl-cascader-item - slots';
-CascaderItemSlots.args = {
-    breadcrumbPlaceholder:
-        '<vl-breadcrumb slot="breadcrumb-placeholder"><vl-breadcrumb-item>Vlaanderen</vl-breadcrumb-item></vl-breadcrumb>',
-    contentSlot:
-        '<p slot="content"> Het is de meest westelijk gelegen provincie van Vlaanderen en België en is de enige Belgische provincie die aan de Noordzee ligt. De provincie heeft een oppervlakte van 3.197 km² en telt ruim 1,2 miljoen inwoners. De hoofdstad van West-Vlaanderen is Brugge. </p>',
-    homeSlot: '<p slot="home">Vlaanderen</p>',
-    label: 'West-Vlaanderen',
-    labelSlot: `<h5 is="vl-h5" data-vl-has-border="" data-vl-alt="" data-vl-no-space-bottom="" slot="label">Provincie: West-Vlaanderen</h5>`,
 };
