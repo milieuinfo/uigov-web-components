@@ -1,7 +1,7 @@
-const tabsUrl = 'http://localhost:8080/iframe.html?id=components-tabs--tabs-default&viewMode=story';
+const tabsUrl = 'http://localhost:8080/iframe.html?args=&id=components-tabs-tabs--tabs-default&viewMode=story';
 const tabsWithoutActiveUrl =
-    'http://localhost:8080/iframe.html?id=components-tabs--tabs-without-active-tab&viewMode=story';
-const tabsDynamicUrl = 'http://localhost:8080/iframe.html?id=components-tabs--tabs-dynamic&viewMode=story';
+    'http://localhost:8080/iframe.html?args=&id=components-tabs-tabs--tabs-without-active-tab&viewMode=story';
+const tabsDynamicUrl = 'http://localhost:8080/iframe.html?args=&id=components-tabs-tabs--tabs-dynamic&viewMode=story';
 
 const shouldHaveTabWithTitle = (selector: string, title: string) => {
     cy.get('vl-tabs').shadow().find('ul.vl-tabs').find(selector).find('a').find('slot').contains(title);

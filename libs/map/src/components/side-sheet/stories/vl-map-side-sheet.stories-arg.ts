@@ -13,11 +13,9 @@ export const mapSideSheetArgs = {
     customIcon: '',
     enableSwipe: false,
     hideToggleButton: false,
-    href: '#',
     open: false,
     iconPlacement: 'before',
     right: false,
-    title: 'Terug',
     toggleText: '',
     tooltipText: '',
     defaultSlot: '',
@@ -52,15 +50,6 @@ export const mapSideSheetArgTypes: ArgTypes<typeof mapSideSheetArgs> = {
             defaultValue: { summary: mapSideSheetArgs.hideToggleButton },
         },
     },
-    href: {
-        name: 'data-vl-href',
-        description: 'De link van het menu item.',
-        table: {
-            type: { summary: TYPES.URL },
-            category: CATEGORIES.CHILD_ATTRIBUTES,
-            defaultValue: { summary: mapSideSheetArgs.href },
-        },
-    },
     iconPlacement: {
         name: 'data-vl-icon-placement',
         description: 'De positie van het icoon van de toggle button.<br>Dit attribuut is niet reactief.',
@@ -88,15 +77,6 @@ export const mapSideSheetArgTypes: ArgTypes<typeof mapSideSheetArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: mapSideSheetArgs.right },
-        },
-    },
-    title: {
-        name: 'data-vl-title',
-        description: 'De titel van het menu item.',
-        table: {
-            type: { summary: TYPES.STRING },
-            category: CATEGORIES.CHILD_ATTRIBUTES,
-            defaultValue: { summary: mapSideSheetArgs.title },
         },
     },
     toggleText: {

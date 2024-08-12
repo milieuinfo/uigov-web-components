@@ -6,7 +6,7 @@ import { stepsArgs, stepsArgTypes } from './vl-steps.stories-arg';
 import stepsDoc from './vl-steps.stories-doc.mdx';
 
 export default {
-    title: 'Components-next/steps',
+    title: 'Components-next/steps/steps',
     tags: ['autodocs'],
     args: stepsArgs,
     argTypes: stepsArgTypes,
@@ -70,78 +70,6 @@ export const StepsIcons = story(
     `
 );
 StepsIcons.storyName = 'vl-steps-next - icons';
-
-export const StepsStates = story(
-    stepsArgs,
-    ({ line, timeline, lastStepNoLine }) => html`
-        <vl-steps-next ?data-vl-line=${line} ?data-vl-timeline=${timeline} ?data-vl-last-step-no-line=${lastStepNoLine}>
-            <vl-step-next>
-                <span slot="icon">1</span>
-                <span slot="title">Stap 1: eerste actie</span>
-                <span slot="subtitle">Dit is de eerste subtitel.</span>
-                <span slot="content">Dit is de eerste stap content.</span>
-            </vl-step-next>
-            <vl-step-next data-vl-type="highlighted">
-                <span slot="icon">2</span>
-                <span slot="title">Stap 2: tweede actie</span>
-                <span slot="subtitle">Dit is de tweede subtitel.</span>
-                <span slot="content">Dit is de tweede stap content.</span>
-            </vl-step-next>
-            <vl-step-next data-vl-type="disabled">
-                <span slot="icon">3</span>
-                <span slot="title">Stap 3: derde actie</span>
-                <span slot="subtitle">Dit is de derde subtitel.</span>
-                <span slot="content">Deze stap is geannuleerd.</span>
-            </vl-step-next>
-            <vl-step-next data-vl-type="success">
-                <span slot="icon">4</span>
-                <span slot="title">Stap 4: vierde actie</span>
-                <span slot="subtitle">Dit is de vierde subtitel.</span>
-                <span slot="content">Dit is de vierde stap content.</span>
-            </vl-step-next>
-            <vl-step-next data-vl-type="warning">
-                <span slot="icon">5</span>
-                <span slot="title">Stap 5: vijfde actie</span>
-                <span slot="subtitle">Dit is de vijfde subtitel.</span>
-                <span slot="content">Dit is de vijfde stap content.</span>
-            </vl-step-next>
-            <vl-step-next data-vl-type="error">
-                <span slot="icon">6</span>
-                <span slot="title">Stap 6: zesde actie</span>
-                <span slot="subtitle">Dit is de zesde subtitel.</span>
-                <span slot="content">Dit is de zesde stap content.</span>
-            </vl-step-next>
-        </vl-steps-next>
-    `
-);
-StepsStates.storyName = 'vl-steps-next - states';
-
-export const StepsAccordions = story(
-    stepsArgs,
-    ({ line, timeline, lastStepNoLine }) => html`
-        <vl-steps-next ?data-vl-line=${line} ?data-vl-timeline=${timeline} ?data-vl-last-step-no-line=${lastStepNoLine}>
-            <vl-step-next data-vl-toggleable>
-                <span slot="icon">1</span>
-                <span slot="title">Stap 1: eerste actie</span>
-                <span slot="subtitle">Dit is de eerste subtitel.</span>
-                <span slot="content">Dit is de eerste stap content.</span>
-            </vl-step-next>
-            <vl-step-next data-vl-toggleable>
-                <span slot="icon">2</span>
-                <span slot="title">Stap 2: tweede actie</span>
-                <span slot="subtitle">Dit is de tweede subtitel.</span>
-                <span slot="content">Dit is de tweede stap content.</span>
-            </vl-step-next>
-            <vl-step-next data-vl-toggleable>
-                <span slot="icon">3</span>
-                <span slot="title">Stap 3: derde actie</span>
-                <span slot="subtitle">Dit is de derde subtitel.</span>
-                <span slot="content">Dit is de derde stap content.</span>
-            </vl-step-next>
-        </vl-steps-next>
-    `
-);
-StepsAccordions.storyName = 'vl-steps-next - accordions';
 
 export const StepsLine = story(
     stepsArgs,

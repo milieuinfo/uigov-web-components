@@ -9,8 +9,6 @@ export const CATEGORIES = {
     PROPERTIES: 'Properties',
     EVENTS: 'Events',
     SLOTS: 'Slots',
-    CHILD_SLOTS: 'Child slots',
-    CHILD_ATTRIBUTES: 'Child attributes',
 } as const;
 
 export const TYPES = {
