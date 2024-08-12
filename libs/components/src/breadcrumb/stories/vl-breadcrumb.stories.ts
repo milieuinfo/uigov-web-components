@@ -3,7 +3,7 @@ import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import '../vl-breadcrumb-item.component';
 import '../vl-breadcrumb.component';
-import { breadcrumbItemArgs, breadcrumbItemArgTypes } from './vl-breadcrumb.stories-arg';
+import { breadcrumbItemArgs, breadcrumbItemArgTypes } from './vl-breadcrumb-item.stories-arg';
 import breadcrumbDoc from './vl-breadcrumb.stories-doc.mdx';
 
 export default {
@@ -20,18 +20,16 @@ export default {
 
 export const BreadcrumbDefault = story(
     breadcrumbItemArgs,
-    ({ href1, href2, href3, href4 }) => html`
+    ({ href }) => html`
         <vl-breadcrumb>
-            <vl-breadcrumb-item data-vl-href=${href1}>Vlaanderen Intern</vl-breadcrumb-item>
-            <vl-breadcrumb-item data-vl-href=${href2}>Regelgeving</vl-breadcrumb-item>
-            <vl-breadcrumb-item data-vl-href=${href3}>Webuniversum</vl-breadcrumb-item>
-            <vl-breadcrumb-item data-vl-href=${href4}>Componenten</vl-breadcrumb-item>
+            <vl-breadcrumb-item data-vl-href=${href}>Vlaanderen Intern</vl-breadcrumb-item>
+            <vl-breadcrumb-item data-vl-href=${href}>Regelgeving</vl-breadcrumb-item>
+            <vl-breadcrumb-item data-vl-href=${href}>Webuniversum</vl-breadcrumb-item>
+            <vl-breadcrumb-item data-vl-href=${href}>Componenten</vl-breadcrumb-item>
         </vl-breadcrumb>
     `
 );
 BreadcrumbDefault.storyName = 'vl-breadcrumb - default';
 BreadcrumbDefault.args = {
-    href1: '#',
-    href2: '#',
-    href3: '#',
+    href: '#',
 };
