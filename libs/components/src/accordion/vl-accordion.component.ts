@@ -9,25 +9,6 @@ import 'reflect-metadata';
 
 declare const vl: any;
 
-/**
- * VlAccordion
- * @class
- * @classdesc Acccordion component kan gebruikt worden om informatie te tonen of te verbergen aan de hand van een toggle.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {string} data-vl-toggle-text - Tekst waarop de gebruiker kan klikken om de accordion te openen of te sluiten.
- * @property {string} data-vl-open-toggle-text - Tekst waarop de gebruiker kan klikken om de accordion te openen.
- * @property {string} data-vl-close-toggle-text - Tekst waarop de gebruiker kan klikken om de accordion te sluiten.
- * @property {PADDINGS} data-vl-content-padding - De grootte van de padding van de content. Deze padding wordt toegepast op zowel desktop als mobile.
- * @property {boolean} data-vl-bold - Beeldt de toggle-text van de accordion af in bold.
- * @property {boolean} data-vl-disabled - Schakelt het openen en het sluiten van de accordion uit.
- * @property {boolean} data-vl-default-open - Indien gezet is de accordion standaard geopend.
- * @property {string} data-vl-icon - Icoon dat getoond wordt voor de tekst van de toggle.
- * @event vl-on-toggle - Afgevuurd bij het openen en sluiten van de accordion. Het event bevat of de accordion geopend of gesloten is.
- */
-
 @webComponent('vl-accordion')
 export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
@@ -170,42 +151,22 @@ export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
         return this._accordionElement.classList.contains('js-vl-accordion--open');
     }
 
-    /**
-     * Activeer de accordion functionaliteit.
-     *
-     * @return {void}
-     */
     dress() {
         if (!this._isDressed) {
             vl.accordion.dress(this._buttonElement);
         }
     }
 
-    /**
-     * Opent de accordion.
-     *
-     * @return {void}
-     */
     open() {
         vl.accordion.open(this._accordionElement);
     }
 
-    /**
-     * Sluit de accordion.
-     *
-     * @return {void}
-     */
     close() {
         if (this._isOpen) {
             this.toggle();
         }
     }
 
-    /**
-     * Opent of sluit de accordion afhankelijk van de huidige status (open of gesloten) van de accordion.
-     *
-     * @return {void}
-     */
     toggle() {
         vl.accordion.toggle(this._accordionElement);
     }

@@ -2,18 +2,6 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { loaderStyle } from '@domg/govflanders-style/component';
 import { accessibilityStyle, alignStyle, resetStyle } from '@domg/govflanders-style/common';
 
-/**
- * VlLoader
- * @class
- * @classdesc De loader component is een animatie dat aangeeft dat een pagina of website aan het laden is.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-light - Attribuut wordt gebruikt om een alternatieve rendering te bekomen in combinatie met een donkere achtergrond.
- * @property {boolean} data-vl-text - Attribuut wordt gebruikt om een informatieve tekst te tonen tijdens het laden.
- * @property {boolean} data-vl-single - Attribuut wordt gebruikt om aan te geven dat er geen tekst getoond mag worden.
- */
 @webComponent('vl-loader')
 export class VlLoaderComponent extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {

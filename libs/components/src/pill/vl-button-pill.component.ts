@@ -1,16 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
-/**
- * VlPillElement
- * @class
- * @classdesc Gebruik de VlPillElement als base class om keywoorden (filters of tags) te visualiseren.
- *
- * @param {Object} SuperClass
- *
- * @property {boolean} data-vl-disabled - Attribuut om aan te geven dat het pill element disabled is.
- * @property {(success | warning | error)} data-vl-type - Attribuut bepaalt de soort van pill: succes, probleem of fout.
- */
-
 @webComponent('vl-button-pill', { extends: 'button' })
 export class VlButtonPillComponent extends BaseElementOfType(HTMLButtonElement) {
     static get _observedAttributes() {

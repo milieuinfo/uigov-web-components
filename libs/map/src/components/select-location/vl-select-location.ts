@@ -2,19 +2,6 @@ import { webComponent } from '@domg-wc/common-utilities';
 import { VlSelect } from '@domg-wc/elements';
 import LambertCoordinaat from '../../utils/lambert-coordinaat';
 
-/**
- * VlSelectLocation
- * @class
- * @classdesc Component om een locatie te zoeken en selecteren.
- *
- * @extends VlSelect
- *
- * @property {string} [data-vl-placeholder=Lokaliseer adres] - Attribuut bepaalt de placeholder van het zoek adres select element.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-search.html|Demo}
- */
 @webComponent('vl-select-location', { extends: 'select' })
 export class VlSelectLocation extends VlSelect {
     static get _observedAttributes() {

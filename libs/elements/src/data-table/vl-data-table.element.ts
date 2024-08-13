@@ -3,23 +3,6 @@ import { elementStyles } from '../vl-elements.uig-css';
 import { VlButtonElement } from '../button/vl-button.element';
 import { VlIconElement } from '../icon/vl-icon.element';
 
-/**
- * VlDataTable
- * @class
- * @classdesc Gebruik een data table om op een gestructureerde manier (grote hoeveelheden) relationele data te tonen.
- *
- * @extends HTMLTableElement
- * @mixes nativeVlElement
- *
- * @property {boolean} data-vl-hover - Attribuut wordt gebruikt om een rij te highlighten wanneer de gebruiker erover hovert met muiscursor.
- * @property {boolean} data-vl-matrix - Attribuut wordt gebruikt om data in 2 dimensies te tonen. Zowel de rijen als de kolommen krijgen een titel. Deze titels worden gescheiden door een dikke lijn.
- * @property {boolean} data-vl-grid - Variant met een lijn tussen elke rij en kolom.
- * @property {boolean} data-vl-zebra - Variant waarin de rijen afwisselend een andere achtergrondkleur krijgen. Dit maakt de tabel makkelijker leesbaar.
- * @property {boolean} data-vl-uig-zebra - Zebra variant voor tabellen met en zonder detail rijen.
- * @property {boolean} data-vl-collapsed-m - Vanaf een medium schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
- * @property {boolean} data-vl-collapsed-s - Vanaf een small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
- * @property {boolean} data-vl-collapsed-xs - Vanaf een extra small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
- */
 @elementStyles()
 @webComponent('vl-data-table', { extends: 'table' })
 export class VlDataTable extends BaseElementOfType(HTMLTableElement) {

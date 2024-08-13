@@ -3,23 +3,6 @@ import OlTileWMSSource, { Options as OlTileWMSSourceOptions } from 'ol/source/Ti
 import { VlMapLayer } from '../vl-map-layer';
 import './vl-map-wms-style/vl-map-wms-style';
 
-/**
- * VlMapWmsLayer
- * @class
- * @classdesc Abstract klasse voor WMS Layers.
- *
- * @extends VlMapLayer
- *
- * @property {string} data-vl-url - Attribuut bepaalt de WMS url. Verplicht.
- * @property {string} data-vl-layers - Attribuut bepaalt de layers van de WMS. Verplicht.
- * @property {string} [data-vl-styles=] - Attribuut bepaalt de WMS stijlen.
- * @property {string} [data-vl-version=1.3.0] - Attribuut bepaalt de WMS versie.
- * @property {number} [data-vl-opacity=1] - Attribuut bepaalt de WMS transparantie.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wms-layer.html|Demo}
- */
 export class VlMapWmsLayer extends VlMapLayer {
     static get _observedAttributes(): string[] {
         return VlMapLayer._observedAttributes.concat(['url', 'layers', 'styles', 'version']);

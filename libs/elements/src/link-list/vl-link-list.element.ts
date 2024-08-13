@@ -2,14 +2,6 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import './vl-link-list-item.element';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlLinkList
- * @class
- * @classdesc Class die een lijst van links kan weergeven.
- *
- * @extends HTMLUListElement
- * @mixes nativeVlElement
- */
 @elementStyles()
 @webComponent('vl-link-list', { extends: 'ul' })
 export class VlLinkListElement extends BaseElementOfType(HTMLUListElement) {

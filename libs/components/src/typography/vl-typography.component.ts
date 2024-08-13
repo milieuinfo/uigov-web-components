@@ -3,17 +3,6 @@ import { baseStyle, elementStyle, resetStyle } from '@domg/govflanders-style/com
 import { titlesStyle, typographyStyle } from '@domg/govflanders-style/component';
 import typographyUigStyle from './vl-typography.uig-css';
 
-/**
- * VlTypography
- * @class
- * @classdesc Gebruik de typography component om de standaard elementen te visualiseren binnen een container.
- * De typography component wordt voornamelijk gebruikt om de stijl van de inhoud van een wysiwyg-editor correct te renderen.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {string} data-vl-parameters - De key/value parameters die verwerkt en getoond zullen worden in het content element.
- */
 @webComponent('vl-typography')
 export class VlTypography extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {

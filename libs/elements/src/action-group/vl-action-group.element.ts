@@ -1,22 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VLActionGroup
- * @class
- * @classdesc Toon meerdere knoppen of links. De groep zorgt ervoor dat ze correct zijn uitgelijnd.
- *
- * @extends HTMLDivElement
- * @mixes nativeVlElement
- *
- * @property {string} data-vl-align - Attribuut wordt gebruikt om ervoor te zorgen dat de onderliggende elementen worden gealigneerd. Mogelijkheden: align="center" of align="right".
- * @property {boolean} data-vl-space-between - Attribuut wordt gebruikt om aan te duiden dat de ruimte tussen de elementen volledig moet worden opgevuld.
- * @property {boolean} data-vl-bordered - Attribuut wordt gebruikt om aan te duiden dat de tussenliggende elementen een rand krijgen.
- * @property {boolean} data-vl-collapse-l - Attribuut wordt gebruikt om de button bij large schermen als block element te tonen.
- * @property {boolean} data-vl-collapse-m - Attribuut wordt gebruikt om de button bij medium schermen als block element te tonen.
- * @property {boolean} data-vl-collapse-s - Attribuut wordt gebruikt om de button bij small schermen als block element te tonen.
- * @property {boolean} data-vl-collapse-xs - Attribuut wordt gebruikt om de button bij extra small schermen als block element te tonen.
- */
 @elementStyles()
 @webComponent('vl-action-group', { extends: 'div' })
 export class VlActionGroup extends BaseElementOfType(HTMLDivElement) {

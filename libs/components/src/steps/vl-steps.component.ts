@@ -3,19 +3,6 @@ import { stepsStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
 import stepsUigStyle from './vl-steps.uig-css';
 
-/**
- * VlSteps
- *
- * @deprecated gebruik de vl-steps-next component
- *
- * @class
- * @classdesc De steps component bevat een verticale lijst van genummerde stappen. Stappen kunnen gebruikt worden om de gebruiker stap voor stap door een procedure te begeleiden.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-timeline - Attribuut wordt gebruikt om aan te geven dat de stappen een tijdlijn voorstellen.
- */
 @webComponent('vl-steps')
 export class VlStepsComponent extends BaseElementOfType(HTMLElement) {
     static get _observedChildClassAttributes() {

@@ -1,17 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlProperties
- * @class
- * @classdesc Vormt de container van een lijst van kenmerken van een onderwerp. Deze component wordt meestal gebruikt om informatie te tonen dat ingevuld werd in een formulier.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-full-width - Attribuut wordt gebruikt om de maximale breedte van het label te benutten.
- * @property {boolean} data-vl-collapsed - Zorgt ervoor dat labels en waarden op aparte lijnen afgebeeld worden.
- */
 @elementStyles()
 @webComponent('vl-properties')
 export class VlPropertiesComponent extends BaseElementOfType(HTMLElement) {

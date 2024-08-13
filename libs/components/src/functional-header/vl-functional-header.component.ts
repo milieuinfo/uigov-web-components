@@ -3,21 +3,6 @@ import { vlElementsStyle, VlIconElement, VlLinkElement } from '@domg-wc/elements
 import { functionalHeaderStyle } from '@domg/govflanders-style/component';
 import functionalHeaderUigStyle from './vl-functional-header.uig-css';
 
-/**
- * VlFunctionalHeader
- * @class
- * @classdesc Toont bovenaan de pagina generieke informatie zonder af te leiden zoals bijvoorgeeld titel, acties, tab navigatie of zoek input.
- *
- * @property {String} data-vl-back - Tekst van de terug-link.
- * @property {String} data-vl-back-link - URL van de terug-link..
- * @property {String} data-vl-disable-back-link - Zet de terug link uit.
- * @property {String} data-vl-link - URL van de titel-link.
- * @property {String} data-vl-sub-title - Tekst van de subtitel.
- * @property {String} data-vl-title - Tekst van de titel.
- *
- * @extends HTMLElement
- * @mixes vlElement
- */
 @webComponent('vl-functional-header')
 export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) {
     static {

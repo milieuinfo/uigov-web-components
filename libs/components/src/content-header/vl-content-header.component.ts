@@ -2,14 +2,6 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { contentHeaderStyle } from '@domg/govflanders-style/component';
 import { baseStyle, layoutStyle, resetStyle } from '@domg/govflanders-style/common';
 
-/**
- * VlContentHeader
- * @class
- * @classdesc
- *
- * @extends HTMLElement
- * @mixes vlElement
- */
 @webComponent('vl-content-header')
 export class VlContentHeaderComponent extends BaseElementOfType(HTMLElement) {
     constructor() {

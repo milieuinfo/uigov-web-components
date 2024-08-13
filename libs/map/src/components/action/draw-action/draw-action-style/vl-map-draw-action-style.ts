@@ -4,22 +4,6 @@ import OlStyleStroke from 'ol/style/Stroke';
 import OlStyleCircle from 'ol/style/Circle';
 import OlStyle from 'ol/style/Style';
 
-/**
- * VlMapDrawActionStyle
- * @class
- * @classdesc De kaart draw actions style klasse.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {string} [data-vl-color=rgba(2, 85, 204, 0.8)] - Attribuut wordt gebruikt om aan te geven wat de fill kleur van de draw action is.
- * @property {string} [data-vl-stroke-color=rgba(2, 85, 204, 1)] - Attribuut wordt gebruikt om aan te geven wat de stroke kleur is van de draw action.
- * @property {number} [data-vl-stroke-size=1] - Attribuut wordt gebruikt om aan te geven wat de breedte van de stroke van de draw action is.
- * @property {number} [data-vl-circle-radius=1] - Attribuut wordt gebruikt om aan te geven wat de radius van de punten van is bij de draw action.
- * @property {number} [data-vl-circle-color=rgba(2, 85, 204, 0.8)] - Attribuut wordt gebruikt om aan te geven wat de fill kleur van de punten van de draw action is.
- * @property {number} [data-vl-circle-stroke-color=rgba(2, 85, 204, 1)] - Attribuut wordt gebruikt om aan te geven wat de stroke kleur van de punten van de draw action is.
- * @property {number} [data-vl-circle-stroke-size=1] - Attribuut wordt gebruikt om aan te geven wat de lijnbreedte van de punten van de draw action is.
- */
 @webComponent('vl-map-draw-action-style')
 export class VlMapDrawActionStyle extends BaseElementOfType(HTMLElement) {
     connectedCallback() {
