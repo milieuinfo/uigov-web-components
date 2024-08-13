@@ -22,29 +22,6 @@ import datepickerUigStyle from './vl-datepicker.uig-css';
 
 declare const vl: any;
 
-/**
- * VlDatepicker
- * @class
- * @classdesc Gebruik de vl-datepicker om de gebruiker op een gebruiksvriendelijke manier een datum of tijd te laten selecteren.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {(range | time | date-time)} data-vl-type - Attribuut bepaalt het soort datepicker.
- * @property {string} data-vl-format - Attribuut bepaalt het formaat van de datum/tijd waarde, standaard 'd.m.Y' (-> 31.12.2019).
- * @property {string} data-vl-visual-format - Attribuut bepaalt het visueel formaat van de datum/tijd waarde.
- * @property {string} data-vl-selected-date - Attribuut voor een vooraf ingestelde datum conform het ingestelde formaat (bv. '03-10-2019') of 'today' voor vandaag.
- * @property {string} data-vl-min-date - Attribuut voor een minimum datum conform het ingestelde formaat (bv. '01-01-2019') of 'today' voor vandaag.
- * @property {string} data-vl-max-date - Attribuut voor een maximum datum conform het ingestelde format (bv. '31-12-2019') of 'today' voor vandaag.
- * @property {string} data-vl-min-time - Attribuut voor een minimum tijd conform het ingestelde formaat (bv. '09:00').
- * @property {string} data-vl-max-time - Attribuut voor een maximum tijd conform het ingestelde format (bv. '17:00').
- * @property {boolean} data-vl-am-pm - Attribuut om de 12-uurs AM/PM timepicker te activeren.
- * @property {boolean} data-vl-error - Attribuut om aan te geven dat de datepicker een error bevat.
- * @property {boolean} data-vl-success - Attribuut om aan te geven dat de datepicker geen error bevat.
- * @property {boolean} data-vl-value - Attribuut om de waarde te definiëren.
- * @property {string} data-vl-pattern - Attribuut om aan te geven aan welk patroon de input moet voldoen.
- * @property {string} data-vl-name - Attribuut om aan de naam te definiëren.
- */
 @webComponentPromised([vlFormValidation.ready(), vlPattern.ready()], 'vl-datepicker')
 export class VlDatepickerComponent extends vlFormValidationElement(BaseElementOfType(HTMLElement)) {
     static {

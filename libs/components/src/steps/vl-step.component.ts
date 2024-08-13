@@ -3,26 +3,6 @@ import { VlAccordionComponent } from '../accordion/vl-accordion.component';
 
 declare const vl: any;
 
-/**
- * VlStep
- *
- * @deprecated gebruik de vl-steps-next component
- *
- * @class
- * @classdesc De step component stelt een enkele stap voor in de steps component.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-disabled - Attribuut om aan te geven dat de stap niet toegankelijk is.
- * @property {(success | warning | error)} data-vl-type - Attribuut bepaalt het type van de stap.
- * @property {boolean} data-vl-toggleable - Attribuut wordt gebruikt om ervoor te zorgen dat de textarea getoond wordt als een block element en bijgevolg de breedte van de parent zal aannemen.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-steps/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-steps/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-steps.html|Demo}
- *
- */
 @webComponent('vl-step')
 export class VlStepComponent extends BaseElementOfType(HTMLElement) {
     static {
@@ -76,10 +56,6 @@ export class VlStepComponent extends BaseElementOfType(HTMLElement) {
         this._processSlots();
     }
 
-    /**
-     * Geeft de step template.
-     * @return {HTMLElement}
-     */
     get template() {
         this._processSlots();
         const template = this._element.cloneNode(true);

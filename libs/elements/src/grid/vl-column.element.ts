@@ -1,27 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlColumn
- * @class
- * @classdesc De parent van een VlColumn is altijd een VlGrid.
- *
- * @extends HTMLDivElement
- * @mixes nativeVlElement
- *
- * @property {number} [8] data-vl-size - Het aantal (teller) van het maximum (noemer) dat genomen zal worden bij grote schermen, typisch desktop.
- * @property {number} [12] data-vl-max-size - Het maximum (noemer) waartegen zal geevalueerd worden bij grote schermen, typisch desktop.
- * @property {number} [null] data-vl-push - Het aantal (teller) van het maximum (noemer) partities te verschuiven bij grote schermen, typisch desktop.
- * @property {number} [10] data-vl-medium-size - Het aantal (teller) van het maximum (noemer) dat genomen zal worden bij medium schermen, typisch tablet.
- * @property {number} [12] data-vl-medium-max-size - Het maximum (noemer) waartegen zal geevalueerd worden bij medium schermen, typisch tablet.
- * @property {number} [null] data-vl-medium-push - Het aantal (teller) van het maximum (noemer) partities te verschuiven bij medium schermen, typisch tablet.
- * @property {number} [12] data-vl-small-size - Het aantal (teller) van het maximum (noemer) dat genomen zal worden bij kleine schermen, typisch mobiel.
- * @property {number} [12] data-vl-small-max-size - Het maximum (noemer) waartegen zal geevalueerd worden bij kleine schermen, typisch mobiel.
- * @property {number} [null] data-vl-small-push - Het aantal (teller) van het maximum (noemer) partities te verschuiven bij kleine schermen, typisch mobiel.
- * @property {number} [12] data-vl-extra-small-size - Het aantal (teller) van het maximum (noemer) dat genomen zal worden bij zeer kleine schermen.
- * @property {number} [12] data-vl-extra-small-max-size - Het maximum (noemer) waartegen zal geevalueerd worden bij zeer kleine schermen.
- * @property {number} [null] data-vl-extra-small-push - Het aantal (teller) van het maximum (noemer) partities te verschuiven bij zeer kleine schermen.
- */
 @elementStyles()
 @webComponent('vl-column', { extends: 'div' })
 export class VlColumnElement extends BaseElementOfType(HTMLDivElement) {

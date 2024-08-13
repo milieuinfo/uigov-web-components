@@ -4,40 +4,6 @@ import { VlLayoutElement, VlRegionElement, VlText } from '@domg-wc/elements';
 import swipeDetect from 'swipe-detect/dist/';
 import styles from './vl-side-sheet.uig-css';
 
-/**
- * VlSideSheet
- * @class
- * @classdesc SideSheet zijn containers die aan de linker- of rechterrand van het scherm zijn verankerd.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-enable-swipe - Attribute wordt gebruikt om aan te duiden dat swipe functie toegelaten is.
- * @property {boolean} data-vl-left - Attribute wordt gebruikt om aan te duiden dat de side-sheet de linkererand van het scherm moet plaatsen.
- * @property {boolean} data-vl-absolute - Attribute wordt gebruikt om aan te duiden dat de side-sheet absoluut gepositioneerd wordt.
- * @property {boolean} data-vl-right - Attribute wordt gebruikt om aan te duiden dat de side-sheet de rechterkant van het scherm moet plaatsen.
- * @property {boolean} data-vl-toggle-text - Attribute wordt gebruikt om de toggle knop tekst te wijzigen.
- * @property {boolean} data-vl-tooltip-text - Attribute wordt gebruikt om de tooltip van de knop te wijzigen.
- * @property {boolean} data-vl-custom-icon - Attribute wordt gebruikt om een icon naar keuze voor de knop in te stellen.
- * @property {boolean} data-vl-icon-placement - Attribute wordt gebruikt om te bepalen of de icon geplaatst wordt voor of na de tekst.
- * @property {boolean} data-vl-hide-toggle-button - Attribute wordt gebruikt om de toggle knop te verbergen.
- * @property {boolean} data-vl-custom-size - Laat toe zelf dimensies in te stellen met css variabelen.
- *
- * @example Breedte van de side sheet aanpassen(op grote scherm):
- *  static get styles() {
-    return [
-      css`
-        :host {
-         --vl-side-sheet-width: 480px;
-         }
-      `
-    ];
-  }
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-side-sheet/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-side-sheet/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-side-sheet.html|Demo}
- *
- */
 @webComponent('vl-side-sheet')
 export class VlSideSheet extends BaseElementOfType(HTMLElement) {
     static {

@@ -7,14 +7,6 @@ import '@govflanders/vl-ui-util/dist/js/util.js';
 
 declare const vl: any;
 
-/**
- * VlCodePreview
- * @class
- * @classdesc De code preview visualiseert de broncode.
- *
- * @extends HTMLElement
- * @mixes vlElement
- */
 @webComponent('vl-code-preview')
 export class VlCodePreviewComponent extends BaseElementOfType(HTMLElement) {
     constructor() {

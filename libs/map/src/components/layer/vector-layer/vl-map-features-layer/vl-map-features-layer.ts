@@ -5,23 +5,6 @@ import OlClusterSource from 'ol/source/Cluster';
 import OlVectorSource from 'ol/source/Vector';
 import { VlMapVectorLayer } from '../vl-map-vector-layer';
 
-/**
- * VlMapFeaturesLayer
- * @class
- * @classdesc Deze kaartlaag staat je toe om een set van te tonen features in te stellen.
- *
- * @extends VlMapVectorLayer
- *
- * @property {boolean} data-vl-auto-extent - Attribuut geeft aan of er automatisch gezoomt wordt op de kaartlaag zodat al de features zichtbaar zijn.
- * @property {number} data-vl-auto-extent-max-zoom - Attribuut geeft aan tot op welk niveau er maximaal automatisch gezoomd wordt bij een extent.
- * @property {boolean} data-vl-cluster - Attribuut geeft aan of de features geclusterd moeten worden of niet.
- * @property {number} data-vl-cluster-distance - Attribuut geeft aan vanaf welke afstand tussen features er geclusterd mag worden.
- * @property {string[]} data-vl-features - Attribuut die de kaartlaag bevat.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-features-layer.html|Demo}
- */
 @webComponent('vl-map-features-layer')
 export class VlMapFeaturesLayer extends VlMapVectorLayer {
     static get _observedAttributes() {

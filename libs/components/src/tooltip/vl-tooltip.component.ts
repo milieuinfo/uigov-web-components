@@ -6,20 +6,6 @@ import './vl-tooltip.lib.js';
 
 declare const vl: VL;
 
-/**
- * VlTooltip
- *
- * @deprecated gebruik de vl-popover component
- *
- * @class
- * @classdesc Gebruik de vl-tooltip om beschrijvende informatie over een knop, label of eender welk element weer te geven.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {(left | right | bottom | top)} data-vl-placement - Attribuut bepaalt de positie (t.o.v. het element) waar de tooltip moet verschijnen.
- * @property {boolean} data-vl-static - Attribuut zorgt voor een variant waarbij een statische, altijd zichtbare, tooltip wordt getoond voor het betreffende element.
- */
 @webComponent('vl-tooltip')
 export class VlTooltipComponent extends BaseElementOfType(HTMLElement) {
     constructor() {

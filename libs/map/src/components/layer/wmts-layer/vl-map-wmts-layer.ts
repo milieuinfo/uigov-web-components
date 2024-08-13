@@ -5,18 +5,6 @@ import OlWMTSSource from 'ol/source/WMTS';
 import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
 import { VlMapLayer } from '../vl-map-layer';
 
-/**
- * VlMapWmtsLayer
- *
- * @class
- * @classdesc Een WMTS (overlay) layer
- *
- * @extends VlMapLayer
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wmts-layer.html|Demo}
- */
 @webComponent('vl-map-wmts-layer')
 export class VlMapWmtsLayer extends VlMapLayer {
     connectedCallback() {
@@ -96,9 +84,7 @@ export class VlMapWmtsLayer extends VlMapLayer {
         const matrixIds = new Array(16);
         for (let z = 0; z < 16; ++z) {
             resolutions[z] = size / Math.pow(2, z);
-            matrixIds[z] = this.__prefixMatrix
-                ? this.__grbMatrixSet +':'+ z
-                : z;
+            matrixIds[z] = this.__prefixMatrix ? this.__grbMatrixSet + ':' + z : z;
         }
         return { matrixIds, resolutions };
     }

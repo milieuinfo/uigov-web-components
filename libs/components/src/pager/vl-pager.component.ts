@@ -18,21 +18,6 @@ export interface Pagination {
     totalItems: number;
 }
 
-/**
- * VlPager
- * @class
- * @classdesc Gebruik de pager component om het aantal beschikbare pagina's weer te geven, markeer de huidige pagina en voeg navigatie knoppen toe.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {number} data-vl-total-items - Attribuut wordt gebruikt om totaal van elementen te bepalen.
- * @property {number} data-vl-current-page - Attribuut wordt gebruikt om huidige pagina te bepalen.
- * @property {number} data-vl-items-per-page - Attribuut wordt gebruikt om het aantal rijen per pagina te bepalen.
- * @property {number} data-vl-pagination-disabled - Attribuut wordt gebruikt om geen pagina links te tonen.
- * @property {boolean} data-vl-align-center - Attribuut wordt gebruikt om de paginatie te centreren.
- * @property {boolean} data-vl-align-right - Attribuut wordt gebruikt om de paginatie rechts uit te lijnen.
- */
 @webComponent('vl-pager')
 export class VlPagerComponent extends BaseElementOfType(HTMLElement) implements Pagination {
     static get _observedAttributes() {
@@ -81,29 +66,14 @@ export class VlPagerComponent extends BaseElementOfType(HTMLElement) implements 
         return 'vl-pager--';
     }
 
-    /**
-     * Geeft het aantal pagina's terug.
-     *
-     * @return {Number} Aantal pagina's.
-     */
     get totalPages() {
         return Math.ceil(this.totalItems / this.itemsPerPage);
     }
 
-    /**
-     * Geeft het totaal aantal items terug.
-     *
-     * @return {Number} Totaal aantal items.
-     */
     get totalItems() {
         return parseInt(this.getAttribute('total-items'));
     }
 
-    /**
-     * Geeft het huidige pagina nummer terug.
-     *
-     * @return {Number} Huidig pagina nummer.
-     */
     get currentPage() {
         const currentPage = parseInt(this.getAttribute('current-page'));
         if (currentPage < 1) {
@@ -113,11 +83,6 @@ export class VlPagerComponent extends BaseElementOfType(HTMLElement) implements 
         }
     }
 
-    /**
-     * Geeft het aantal items per pagina terug.
-     *
-     * @return {Number} Aantal items per pagina.
-     */
     get itemsPerPage() {
         return parseInt(this.getAttribute('items-per-page'));
     }

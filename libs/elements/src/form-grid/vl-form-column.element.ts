@@ -2,13 +2,6 @@ import { webComponent } from '@domg-wc/common-utilities';
 import { VlColumnElement } from '../grid/vl-column.element';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlFormColumn
- * @class
- * @classdesc Class die een kolom in een formulier grid layout representeert.
- *
- * @extends VlColumn
- */
 @elementStyles()
 @webComponent('vl-form-column', { extends: 'div' })
 export class VlFormColumn extends VlColumnElement {

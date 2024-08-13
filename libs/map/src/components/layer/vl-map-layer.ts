@@ -2,22 +2,6 @@ import { BaseElementOfType } from '@domg-wc/common-utilities';
 import { VlMap } from '../../vl-map';
 import { VlMapLayerStyle } from '../layer-style/vl-map-layer-style';
 
-/**
- * VlMapLayer
- * @class
- * @classdesc De abstracte kaart laag klasse.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {string} data-vl-name - Attribuut bepaalt de kaartlaag naam.
- * @property {string} data-vl-hidden - Attribuut bepaalt of de kaartlaag zichtbaar is.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wms-layer.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wmts-layer.html|Demo}
- */
 export abstract class VlMapLayer extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['hidden', 'opacity'];

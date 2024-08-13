@@ -7,30 +7,6 @@ import { SELECT_POSITION } from './vl-select.model';
 
 declare const vl: VL;
 
-/**
- * VlSelect
- * @class
- * @classdesc Gebruik de select component om gebruikers toe te laten een selectie te maken uit een lijst met voorgedefinieerde opties. Het is aangeraden om enkel deze component te gebruiken als er 5 of meer opties zijn. Bij minder opties, kan er gebruik gemaakt worden van de radio component.
- *
- * @extends HTMLSelectElement
- * @mixes nativeVlElement
- *
- * @property {boolean} data-vl-block - Beeldt de textarea af als een block element en waardoor die de breedte van de parent zal aannemen.
- * @property {boolean} data-vl-error - Duidt aan dat het select element niet correct werd ingevuld.
- * @property {boolean} data-vl-success - Duidt aan dat het select element correct werd ingevuld.
- * @property {boolean} data-vl-disabled - Schakelt het select element uit.
- * @property {string} data-vl-position - De positie naar waar de uitgebreide select geopend wordt: 'auto', 'top', 'bottom'. De default waarde is 'auto'.
- * @property {boolean} data-vl-select - Activeert de uitgebreide select functionaliteit. Maakt achterliggend gebruik van Choices.js.
- * @property {boolean} data-vl-select-search - [DEPRECATED] Gebruik in de plaats het 'data-vl-select-disable-search' attribuut. Activeert of deactiveert de zoek functionaliteit.
- * @property {boolean} data-vl-select-disable-search - Deactiveert de zoek functionaliteit.
- * @property {boolean} data-vl-select-search-empty-text - [DEPRECATED] Gebruik in de plaats het 'data-vl-search-no-results-text' attribuut. De tekst die getoond wordt wanneer er geen resultaten zijn.
- * @property {string} data-vl-search-no-results-text - De tekst die getoond wordt wanneer er geen resultaten zijn.
- * @property {boolean} data-vl-select-search-result-limit - Limiteert het aantal resultaten.
- * @property {boolean} data-vl-select-search-no-result-limit - Deactiveert het limiet voor het aantal resultaten.
- * @property {boolean} data-vl-select-deletable - Zorgt ervoor dat het geselecteerde verwijderd kan worden.
- * @property {string} data-vl-search-placeholder - De placeholder van het zoekveld.
- * @property {string} data-vl-no-more-options - De tekst die getoond wordt wanneer er geen keuzes meer zijn.
- */
 @elementStyles()
 @webComponentPromised([vlFormValidation.ready()], 'vl-select', { extends: 'select' })
 export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSelectElement)) {

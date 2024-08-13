@@ -1,14 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlSideNavigationTitle
- * @class
- * @classdesc Het navigatie titel element.
- *
- * @extends HTMLHeadingElement
- * @mixes nativeVlElement
- */
 class VlSideNavigationTitleElement extends BaseElementOfType(HTMLHeadingElement) {
     constructor() {
         super();

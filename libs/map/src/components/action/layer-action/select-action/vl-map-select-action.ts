@@ -6,19 +6,6 @@ import { StyleLike as OlStyleLike } from 'ol/style/Style';
 import { Feature as OlFeature } from 'ol';
 import { OlVectorLayerType } from '../../../../vl-map.model';
 
-/**
- * VlMapSelectAction
- * @class
- * @classdesc The map select action component.
- *
- * @property {boolean} data-vl-cluster - Attribute indicates if the features are clustered or not.
- *
- * @extends VlMapLayerAction
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html|Demo}
- */
 @webComponent('vl-map-select-action')
 export class VlMapSelectAction extends VlMapLayerAction {
     protected _style: OlStyleLike;

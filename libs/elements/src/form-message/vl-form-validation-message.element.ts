@@ -2,18 +2,6 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
 import 'reflect-metadata';
 
-/**
- * VlFormValidationMessage
- * @class
- * @classdesc Gebruik de vl-form-validation-message om een validatie boodschap toe te voegen aan een formulier.
- *
- * @extends HTMLParagraphElement
- * @mixes BaseElementOfType
- *
- * @property {boolean} data-vl-error - Attribuut wordt gebruikt om foutboodschap te tonen bij validatiefouten.
- * @property {boolean} data-vl-success - Attribuut wordt gebruikt om boodschap te tonen bij een succesvolle validatie.
- * @property {boolean} data-vl-block - Attribuut wordt gebruikt om het label in block vorm te tonen zodat het de breedte van het parent element aanneemt.
- */
 @elementStyles()
 @webComponent('vl-form-validation-message', { extends: 'p' })
 export class VlFormValidationMessage extends BaseElementOfType(HTMLParagraphElement) {

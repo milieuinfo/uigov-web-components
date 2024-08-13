@@ -2,19 +2,6 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import '../title/vl-h2.element';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlSearchFilter
- * @class
- * @classdesc De search filter laat de gebruiker toe om de zoekresulten te verfijnen.
- *
- * @extends HTMLDivElement
- * @mixes nativeVlElement
- *
- * @property {string} data-vl-alt - Alternatieve (transparante) achtergrond.
- * @property {string} data-vl-mobile-modal - Activeert geoptimaliseerde weergave voor op mobiele toestellen.
- * @property {string} [data-vl-mobile-modal-title=Filter] - De titel van deze search filter op mobiele toestellen indien niet gedeclareerd wordt het data-vl-title attribuut of de default genomen.
- * @property {string} data-vl-title - De titel van deze search filter.
- */
 @elementStyles()
 @webComponent('vl-search-filter', { extends: 'div' })
 export class VlSearchFilterElement extends BaseElementOfType(HTMLDivElement) {

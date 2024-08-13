@@ -4,32 +4,6 @@ import { resetStyle } from '@domg/govflanders-style/common';
 import { buttonStyle, inputFieldStyle, selectStyle } from '@domg/govflanders-style/component';
 import searchUigStyle from './vl-search.uig-css';
 
-/**
- * Search change event analoog aan native change event.
- * @event VlSearch#change
- */
-
-/**
- * VlSearch
- * @class
- * @classdesc Gebruik de vl-search component zodat een gebruiker zoekcriteria kan ingeven om specifieke content te vinden.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {string} [data-vl-label='Zoekterm'] - Attribuut wordt gebruikt als label voor zoekcriteria.
- * @property {string} [data-vl-submit-label='Zoeken'] - Attribuut wordt gebruikt als label voor de submit knop.
- * @property {boolean} data-vl-block - Attribuut duidt aan dat een breed zoekveld met knop wordt getoond. Dit is de standaardweergave.
- * @property {boolean} data-vl-inline - Attribuut duidt aan dat een smal zoekveld met kleine knop wordt gebruikt.
- * @property {boolean} data-vl-alt - Attribuut bepaalt of de alternatieve weergave (witte achtergrond) wordt gebruikt. Alleen relevant in combinatie met data-vl-block.
- *
- * @example Breedte aanpassen:
- * <style>
- :root {
-      --vl-search-width: 50%;
-    }
- </style>
- */
 @webComponent('vl-search')
 export class VlSearchComponent extends BaseElementOfType(HTMLElement) {
     static {

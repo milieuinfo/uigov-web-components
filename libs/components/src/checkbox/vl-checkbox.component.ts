@@ -2,23 +2,6 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { checkboxStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 
-/**
- * VlCheckbox
- * @class
- * @classdesc De checkbox laat de gebruiker toe om een of meerdere opties te selecteren uit een lijst. Gebruik de checkbox in formulieren.
- *
- * @extends HTMLElement
- * @mixesvlElement
- *
- * @property {boolean} data-vl-block - Attribuut wordt gebruikt om ervoor te zorgen dat de checkbox getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
- * @property {boolean} data-vl-disabled - Attribuut wordt gebruikt om te voorkomen dat de gebruiker de checkbox kan selecteren.
- * @property {boolean} data-vl-error - Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.
- * @property {boolean} data-vl-label - Attribuut wordt gebruikt om label te definiëren via een attribuut ter vervanging van een slot element.
- * @property {boolean} data-vl-name - Attribuut wordt gebruikt om checkbox te identificeren.
- * @property {boolean} data-vl-single - Attribuut wordt gebruikt om alleen een checkbox te tonen zonder label.
- * @property {boolean} data-vl-switch - Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.
- * @property {boolean} data-vl-value - Attribuut wordt gebruikt om de checkbox waarde te bepalen.
- */
 @webComponent('vl-checkbox')
 export class VlCheckboxComponent extends BaseElementOfType(HTMLElement) {
     static get formAssociated() {
@@ -115,7 +98,9 @@ export class VlCheckboxComponent extends BaseElementOfType(HTMLElement) {
     }
 
     /**
-     * Returns a localized message that describes the validation constraints that the control does not satisfy (if any). This is the empty string if the control is not a candidate for constraint validation (willvalidate is false), or it satisfies its constraints. This value can be set by the setCustomValidity method.
+     * Returns a localized message that describes the validation constraints that the control does not satisfy (if any).
+     * This is the empty string if the control is not a candidate for constraint validation (willvalidate is false), or
+     * it satisfies its constraints. This value can be set by the setCustomValidity method.
      *
      * @return {string}
      */

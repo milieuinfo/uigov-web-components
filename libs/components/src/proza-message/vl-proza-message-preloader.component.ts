@@ -1,22 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { ProzaRestClient } from './vl-proza-rest-client.util';
 
-/**
- * VlProzaMessagePreloader
- * @class
- * @classdesc Proza preloader dient om proza codes op voorhand op te halen zodat deze sneller getoond kunnen worden aan de gebruiker.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {string} data-vl-domain - Het Proza domein waarin de Proza berichten zitten.
- * @property {string} [data-vl-base-url] - Optionele baseUrl waarvan de Proza berichten opgehaald worden.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-proza-message.html|Demo}
- *
- */
 @webComponent('vl-proza-message-preloader')
 export class VlProzaMessagePreloader extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {

@@ -1,14 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlLayout
- * @class
- * @classdesc Het layout element (vl-layout) centreert uw inhoud in de viewport. Het layout element heeft een breedte van 1200px. Je kan het layout element vergelijken met het Container element in Bootstrap.
- *
- * @extends HTMLDivElement
- * @mixes nativeVlElement
- */
 @elementStyles()
 @webComponent('vl-layout', { extends: 'div' })
 export class VlLayoutElement extends BaseElementOfType(HTMLDivElement) {

@@ -11,29 +11,6 @@ export interface RichDataMeta {
 
 export type RichData = { data: unknown[] } & RichDataMeta;
 
-/**
- * VlRichData
- * @class
- * @classdesc
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-filter-closable - Attribuut dat de filter sluitbaar maakt en een knop getoond wordt om de
- * filter te tonen en terug te verbergen. Op een klein scherm wordt een modal geopend bij het klikken op de filter knop
- * ipv een de filter naast de tabel te tonen. Om elementen van de filter te verbergen enkel in de modal, kan het
- * attribuut data-vl-hidden-in-modal gezet worden.
- * @property {boolean} data-vl-filter-closed - Attribuut dat aangeeft of dat de filter gesloten is.
- *
- * @slot open-filter-button-text - slot om de tekst te kunnen wijzigen van de toggle filter knop wanneer de filter
- * verborgen is. Default: Filter tonen.
- * @slot close-filter-button-text - slot om tekst te kunnen wijzigen van de toggle filter knop wanneer de filter getoond
- * wordt. Default: Filter verbergen.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-rich-data/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-rich-data/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-rich-data.html|Demo}
- */
 @webComponent('vl-rich-data')
 export class VlRichData extends BaseElementOfType(HTMLElement) {
     static {

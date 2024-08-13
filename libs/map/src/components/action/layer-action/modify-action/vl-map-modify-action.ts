@@ -4,20 +4,6 @@ import { VlModifyAction } from '../../../../actions/modify/modify-action';
 import { VlMapVectorLayer } from '../../../layer/vector-layer/vl-map-vector-layer';
 import { VlMapLayerAction } from '../vl-map-layer-action';
 
-/**
- * VlMapModifyAction
- * @class
- * @classdesc The map modify action component.
- *
- * @extends VlMapLayerAction
- *
- * @property {boolean} [data-vl-snapping] - Attribute enables snapping on the vl-map-wfs-layers that are added to this action.
- * @property {number} [data-vl-snapping-pixel-tolerance=10] - Attribute configures the maximum distance (in pixels) between a feature and your pointing device before snapping occurs.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
- */
 @webComponent('vl-map-modify-action')
 export class VlMapModifyAction extends VlMapLayerAction {
     private __snappingLayer: VlCompositeVectorLayer;
