@@ -1,17 +1,5 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 
-/**
- * VlMapOverviewMap
- * @class
- * @classdesc De kaart overview component.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-overview-map.html|Demo}
- */
 @webComponent('vl-map-overview-map')
 export class VlMapOverviewMap extends BaseElementOfType(HTMLElement) {
     connectedCallback() {

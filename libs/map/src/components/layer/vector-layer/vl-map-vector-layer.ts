@@ -3,24 +3,6 @@ import { VlMapLayerStyle } from '../../layer-style/vl-map-layer-style';
 import { VlMapLayer } from '../vl-map-layer';
 import OlStyle from 'ol/style/Style';
 
-/**
- * VlMapVectorLayer style changed event
- * @event VlMapVectorLayer#styleChanged
- * @property {VlMapLayerStyle|object} style - De nieuwe stijl.
- */
-
-/**
- * VlMapVectorLayer
- * @class
- * @classdesc De abstracte kaart laag klasse voor vectorlagen.
- *
- * @extends VlMapLayer
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-features-layer.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wfs-layer.html|Demo}
- */
 export class VlMapVectorLayer extends VlMapLayer {
     private pendingLayerStyles: (VlMapLayerStyle | OlStyle)[] = [];
     static get EVENTS() {

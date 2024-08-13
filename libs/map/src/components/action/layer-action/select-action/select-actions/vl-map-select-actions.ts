@@ -5,16 +5,6 @@ import { ActionOptions, OlVectorLayerType } from '../../../../../vl-map.model';
 import { VlMapLayerStyle } from '../../../../layer-style/vl-map-layer-style';
 import { VlMapSelectAction } from '../vl-map-select-action';
 
-/**
- * VlMapSelectActions
- * @class
- * @classdesc Component om een select-actie op meerdere kaartlagen toe te voegen.
- *
- * @property {string[]} layers - Array met de namen van de te koppelen kaartlagen. Dit moet meegegeven worden als property.
- *
- * @extends VlMapSelectAction
- *
- */
 @webComponent('vl-map-select-actions')
 export class VlMapSelectActions extends VlMapSelectAction {
     private layerNames: string[];

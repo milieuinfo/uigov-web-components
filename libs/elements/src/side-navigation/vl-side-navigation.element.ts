@@ -5,15 +5,6 @@ import { elementStyles } from '../vl-elements.uig-css';
 
 declare const vl: VL;
 
-/**
- * VlSideNavigation
- * @class
- * @classdesc Een compact navigatie element dat je aan een pagina kan toevoegen. Het vat de inhoud van lange pagina's
- * samen, leidt de gebruiker door de pagina inhoud en kan ook naar externe pagina's verwijzen.
- *
- * @extends HTMLElement
- * @mixes nativeVlElement
- */
 @elementStyles()
 @webComponent('vl-side-navigation', { extends: 'nav' })
 export class VlSideNavigation extends BaseElementOfType(HTMLElement) {
@@ -38,13 +29,13 @@ export class VlSideNavigation extends BaseElementOfType(HTMLElement) {
     _rerender() {
         const sideNavigationId = this.getAttribute('side-navigation-id');
 
-        /* 
+        /*
             Hack voor UIG-2897
             Proza messages werden niet afgebeeld tot er een resize van de window gebeurde.
             Door de undress() - dress() niet in een timeout te wrappen is dit probleem opgelost.
             Dit zorgt echter voor andere problemen als de side navigation overgaat van desktop naar mobile view.
             Omdat dit component bij elke resize volledig afgebroken en opnieuw opgebouwd wordt, is het onmogelijk om state bij te houden als er geresized wordt.
-            Als oplossing moet de afnemer een uniek side-navigation-id attribuut meegeven, dit id stoppen we in een static variabele. 
+            Als oplossing moet de afnemer een uniek side-navigation-id attribuut meegeven, dit id stoppen we in een static variabele.
             Als de static variabele nog niet is ingevuld of is ingevuld met het id van een andere side-navigation,
             kunnen we er van uitgaan dat dit de eerste keer is dat deze side-navigation rendert en de correcte code uitvoeren.
         */

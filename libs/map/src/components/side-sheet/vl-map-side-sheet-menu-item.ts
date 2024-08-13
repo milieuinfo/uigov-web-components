@@ -1,21 +1,6 @@
 import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
 import { vlElementsStyle, VlIconElement, VlLinkElement } from '@domg-wc/elements';
 
-/**
- * VlMapSideSheetMenuItem
- * @class
- * @classdesc De menu item die verbonden is aan een side sheet.
- *
- * @extends HTMLElement
- * @mixes VlElement
- *
- * @property {string} data-vl-title - Attribuut wordt gebruikt als titel van een menu item.
- * @property {string} data-vl-href - Attribuut wordt gebruikt om via het href attribuut de link te koppelen aan een menu item.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-side-sheet.html|Demo}
- */
 @webComponent('vl-map-side-sheet-menu-item')
 export class VlMapSideSheetMenuItem extends BaseElementOfType(HTMLElement) {
     static {

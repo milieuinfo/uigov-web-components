@@ -4,20 +4,6 @@ import * as OlLoadingstrategy from 'ol/loadingstrategy';
 import OlVectorSource from 'ol/source/Vector';
 import { VlMapVectorLayer } from '../vl-map-vector-layer';
 
-/**
- * VlMapWfsLayer
- * @class
- * @classdesc Deze kaartlaag staat toe om een WFS laag aan te maken.
- *
- * @extends VlMapVectorLayer
- *
- * @property {string} data-vl-url - Attribuut bepaalt de WFS url. Verplicht.
- * @property {string} data-vl-layers - Attribuut bepaalt de layers van de WFS. Verplicht.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wfs-layer.html|Demo}
- */
 @webComponent('vl-map-wfs-layer')
 export class VlMapWfsLayer extends VlMapVectorLayer {
     connectedCallback() {

@@ -4,14 +4,6 @@ import { gridStyle, resetStyle } from '@domg/govflanders-style/common';
 import { contactCardStyle } from '@domg/govflanders-style/component';
 import contactCardUigStyle from './vl-contact-card.uig-css';
 
-/**
- * VlContactCard
- * @class
- * @classdesc Gebruik een contact card om contactgegevens van een overheidsdienst te tonen.
- *
- * @extends HTMLElement
- * @mixes vlElement
- */
 @webComponent('vl-contact-card')
 export class VlContactCardComponent extends BaseElementOfType(HTMLElement) {
     static {

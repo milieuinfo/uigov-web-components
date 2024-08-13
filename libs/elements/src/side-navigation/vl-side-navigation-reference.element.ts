@@ -1,14 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlSideNavigationReference
- * @class
- * @classdesc Het content element waar het navigatie element naar verwijst.
- *
- * @extends HTMLDivElement
- * @mixes nativeVlElement
- */
 @elementStyles()
 @webComponent('vl-side-navigation-reference', { extends: 'div' })
 export class VlSideNavigationReferenceElement extends BaseElementOfType(HTMLDivElement) {

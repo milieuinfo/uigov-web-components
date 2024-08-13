@@ -1,16 +1,6 @@
 import { BaseElementOfType, findDeepestElementThroughShadowRoot, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlSideNavigationToggle
- * @class
- * @classdesc Het navigatie toggle element.
- *
- * @extends HTMLLIElement
- * @mixes nativeVlElement
- *
- * @property {String} data-vl-child - Attribuut wordt gebruikt om aan te geven dat het een menu item is. De koppeling gebeurt via het `data-vl-parent` attribuut van de submenu items.
- */
 @elementStyles()
 @webComponent('vl-side-navigation-toggle', { extends: 'a' })
 export class VlSideNavigationToggleElement extends BaseElementOfType(HTMLAnchorElement) {

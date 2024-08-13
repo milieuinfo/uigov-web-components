@@ -2,17 +2,6 @@ import { BaseHTMLElement, webComponent } from '@domg-wc/common-utilities';
 import { baseStyle, elementStyle, resetStyle } from '@domg/govflanders-style/common';
 import { documentStyle, iconStyle } from '@domg/govflanders-style/component';
 
-/**
- * VlDocument
- * @class
- * @classdesc Gebruik de document component om een link naar een bestand toe te voegen dat de gebruiker kan bekijken in de browser of downloaden.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {string} data-vl-href - Bepaalt de download link.
- * @property {string} data-vl-target - Bepaalt waar de link geopend wordt.
- */
 @webComponent('vl-document')
 export class VlDocumentComponent extends BaseHTMLElement {
     static get _observedAttributes() {

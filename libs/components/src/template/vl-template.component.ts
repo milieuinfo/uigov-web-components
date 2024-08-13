@@ -2,21 +2,6 @@ import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import templateUigStyle from './vl-template.uig-css';
 
-/**
- * VlTemplate
- * @class
- * @classdesc De standaard template voor websites en applicaties van de Vlaamse overheid.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-v-center - Attribuut wordt gebruikt om ervoor te zorgen dat de content verticaal gecentraliseerd wordt.
- * @property {boolean} data-vl-v-stretch - Attribuut wordt gebruikt om ervoor te zorgen dat de content 100% zal innemen.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-template/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-template/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-template.html|Demo}
- */
 @webComponent('vl-template')
 export class VlTemplate extends BaseElementOfType(HTMLElement) {
     constructor() {

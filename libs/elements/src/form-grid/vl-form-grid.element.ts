@@ -3,13 +3,6 @@ import { VlGridElement } from '../grid/vl-grid.element';
 import './vl-form-column.element';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlFormGrid
- * @class
- * @classdesc Class die een grid layout mogelijk maakt in een formulier.
- *
- * @extends VlGridElement
- */
 @elementStyles()
 @webComponent('vl-form-grid', { extends: 'div' })
 export class VlFormGridElement extends VlGridElement {

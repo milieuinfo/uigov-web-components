@@ -3,18 +3,6 @@ import { VlH2Element, VlIconElement } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { infoblockStyle } from '@domg/govflanders-style/component';
 
-/**
- * VlInfoblock
- * @class
- * @classdesc Gebruik de infoblock om een sectie met een nieuwe content te starten.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {string} data-vl-title - Attribuut dat wordt gebruikt om de titel van de infoblock te zetten.
- * @property {string} data-vl-icon - Attribuut dat wordt gebruikt om een icoon vooraan aan de titel toe te voegen. Het icoon kan gekozen worden uit de lijst op https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon.
- * @property {string} data-vl-type - Er kan een vast icoon gekozen worden (contact, publications, faq, news, timeline, question)
- */
 @webComponent('vl-infoblock')
 export class VlInfoblockComponent extends BaseHTMLElement {
     static {

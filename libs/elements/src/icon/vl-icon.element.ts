@@ -1,23 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlIcon
- * @class
- * @classdesc Gebruik een vl-icon om een extra visueel element toe te voegen.
- *
- * @extends HTMLSpanElement
- * @mixes nativeVlElement
- *
- * @property {string} data-vl-icon - Attribuut wordt gebruikt om aan te geven welk icoon getoond moet worden.
- * @property {(small | large)} data-vl-size - Attribuut wordt gebruikt om het icoon te verkleinen (80%) of te vergroten (120%) ten opzichte van de parent.
- * @property {boolean} data-vl-light - Attribuut wordt gebruikt om het icoon een lichte kleur te geven.
- * @property {boolean} data-vl-before - Attribuut wordt gebruikt wanneer het icoon voor een tekst staat en er wat ruimte tussen het icoon en de tekst getoond moet worden.
- * @property {boolean} data-vl-after - Attribuut wordt gebruikt wanneer het icoon achter een tekst staat en er wat ruimte tussen het icoon en de tekst getoond moet worden.
- * @property {boolean} data-vl-90deg - Attribuut wordt gebruikt om het icoon 90 graden te roteren.
- * @property {boolean} data-vl-180deg - Attribuut wordt gebruikt om het icoon 180 graden te roteren.
- * @property {boolean} data-vl-link - Attribuut moet gebruikt worden wanneer het icoon binnen een a tag gebruikt wordt zodat de stijl goed is.
- */
 @elementStyles()
 @webComponent('vl-icon', { extends: 'span' })
 export class VlIconElement extends BaseElementOfType(HTMLSpanElement) {

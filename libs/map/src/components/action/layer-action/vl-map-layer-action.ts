@@ -3,22 +3,6 @@ import { VlMapAction } from '../vl-map-action';
 import { VlMapVectorLayer } from '../../layer/vector-layer/vl-map-vector-layer';
 import { OlVectorLayerType } from '../../../vl-map.model';
 
-/**
- * VlMapLayerAction
- * @class
- * @classdesc De abstracte kaart actie component die verbonden is aan een kaartlaag.
- *
- * @extends VlMapAction
- *
- * @property {boolean} data-vl-layer - Attribuut wordt gebruikt om via het naam attribuut de actie te koppelen aan een kaartlaag.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-delete-action.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html|Demo}
- */
 @webComponent('vl-map-layer-action')
 export class VlMapLayerAction extends VlMapAction {
     static get _observedAttributes(): string[] {

@@ -6,10 +6,6 @@ import { VlMapClickActionPindrop } from './vl-map-click-action-pindrop';
 import { VlMapClickedEvent } from './VlMapClickedEvent';
 import { BaseLitElement } from '@domg-wc/common-utilities';
 
-/**
- * VlMapClickAction
- * @classdesc The map click action component. Adds a marker on the map.
- */
 @customElement('vl-map-click-action')
 export class VlMapClickAction extends BaseLitElement {
     private overlay: Overlay;

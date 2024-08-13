@@ -1,17 +1,6 @@
 import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
 import { elementStyles } from '../vl-elements.uig-css';
 
-/**
- * VlFormLabel
- * @class
- * @classdesc Gebruik de vl-form-label om labels toe te voegen aan een formulier.
- *
- * @extends HTMLLabelElement
- * @mixes BaseElementOfType
- *
- * @property {boolean} data-vl-light - Attribuut wordt gebruikt om het label in een lichte kleur te tonen.
- * @property {boolean} data-vl-block - Attribuut wordt gebruikt om het label in block vorm te tonen zodat het de breedte van het parent element aanneemt.
- */
 @elementStyles()
 @webComponent('vl-form-label', { extends: 'label' })
 export class VlFormLabel extends BaseElementOfType(HTMLLabelElement) {

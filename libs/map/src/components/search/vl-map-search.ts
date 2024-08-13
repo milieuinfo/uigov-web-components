@@ -4,23 +4,6 @@ import { VlSearchComponent } from '@domg-wc/components';
 import OlOverlay from 'ol/Overlay';
 import { VlSelectLocation } from '../select-location/vl-select-location';
 
-/**
- * VlMapSearch
- * @class
- * @classdesc De kaart zoek op adres component.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {string} [data-vl-placeholder=Zoeken op kaart] - Attribuut bepaalt de placeholder van het zoek adres select element.
- * @property {string} [data-vl-search-placeholder=Zoeken op adres of coördinaat] - Attribuut bepaalt de placeholder van het zoek adres input element.
- * @property {string} [data-vl-search-empty-text=Geen adres gevonden] - Attribuut bepaalt de tekst wanneer er geen zoekresultaten zijn.
- * @property {string} [data-vl-search-no-results-text=Geen adres gevonden] - Attribuut bepaalt de tekst wanneer er geen zoekresultaten meer zijn.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-search.html|Demo}
- */
 @webComponent('vl-map-search')
 export class VlMapSearch extends BaseElementOfType(HTMLElement) {
     static {

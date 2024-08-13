@@ -1,17 +1,6 @@
 import { webComponent } from '@domg-wc/common-utilities';
 import { VlSideSheet } from '@domg-wc/components';
 
-/**
- * VlMapSideSheet
- * @class
- * @classdesc Het map zijpaneel. Let op: de default positie van de VlMapSideSheet is links, terwijl de default positie van de VlSideSheet rechts is.
- *
- * @extends VlSideSheet
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-side-sheet.html|Demo}
- */
 @webComponent('vl-map-side-sheet')
 export class VlMapSideSheet extends VlSideSheet {
     constructor() {

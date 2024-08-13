@@ -5,25 +5,6 @@ import { VlProzaMessagePreloader } from './vl-proza-message-preloader.component'
 import elementStyles from './vl-proza-message.uig-css';
 import { ProzaRestClient } from './vl-proza-rest-client.util';
 
-/**
- * VlProzaMessage
- * @class
- * @classdesc De vl-proza-message webcomponent kan gebruikt worden om teksten te laten beheren door de business.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {string} data-vl-domain - Het Proza domein waarin het Proza bericht zit.
- * @property {string} data-vl-code - De code die het Proza bericht identificeert.
- * @property {boolean} data-vl-block - Duidt aan dat de inhoud van het Proza bericht een block element is.
- * @property {string} data-vl-parameters - De key/value parameters die verwerkt en getoond zullen worden in het content element.
- * @property {string} [data-vl-base-url] - Optionele baseUrl waarvan het Proza bericht opgehaald wordt.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-proza-message.html|Demo}
- *
- */
 @webComponent('vl-proza-message')
 export class VlProzaMessage extends BaseElementOfType(HTMLElement) {
     static {
