@@ -42,6 +42,7 @@ export const elementsWebTypes = [
         '../../libs/elements/src/form/stories/vl-form.stories-doc.mdx',
         '/docs/elements-form--documentatie'
     ),
+    addWebTypes('vl-form-group', null, null, '/docs/elements-form--documentatie'),
     addWebTypes('vl-form-grid', null, null, '/docs/elements-form-grid-form-grid--documentatie'),
     addWebTypes('vl-form-column', null, null, '/docs/elements-form-grid-form-column--documentatie'),
     addWebTypes('vl-form-annotation', null, null, '/docs/elements-form-message-form-annotation--documentatie'),
