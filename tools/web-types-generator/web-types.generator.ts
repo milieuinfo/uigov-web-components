@@ -150,9 +150,6 @@ const generateWebTypesFile = (artifact: string, wtComponentList: WTComponentList
     console.log('--------------------------------------------------\n');
 };
 
-// versie zetten met 'export wcVersion=123'
-const wcVersion = process.env.wcVersion ?? 'SPECIFIEER';
-
 generateWebTypesFile('components', componentsWebTypes, '../../libs/components');
 generateWebTypesFile('elements', elementsWebTypes, '../../libs/elements');
 generateWebTypesFile('form', formWebTypes, '../../libs/form');
