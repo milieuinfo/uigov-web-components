@@ -187,7 +187,8 @@
         "regenerator-runtime": "0.14.1",
         "swipe-detect": "1.0.1",
         "tinymce": "5.10.6",
-        "tinymce-next": "npm:tinymce@6.8.3"
+        "tinymce-next": "npm:tinymce@6.8.3",
+        "z-schema": "6.0.2"
     },
     "overrides": {
         "color-parse": {
