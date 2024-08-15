@@ -143,4 +143,19 @@ if [ $? -eq 0 ]
 fi
 set -e
 
+echo "generate web-types"
+set +e
+npm run generate-web-types 2> buffer-stderr.txt 1> buffer-stdout.txt
+if [ $? -eq 0 ]
+  then
+    echo "generate web-types - success"
+  else
+    echo "generate web-types - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
+    exit 1
+fi
+set -e
+
 echo 'BUILDING - END'

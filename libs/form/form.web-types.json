@@ -1,0 +1,1161 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
+    "name": "uigov-web-components",
+    "version": "DOMG-WC-VERSION",
+    "js-types-syntax": "typescript",
+    "description-markup": "markdown",
+    "contributions": {
+        "html": {
+            "elements": [
+                {
+                    "name": "vl-checkbox-next",
+                    "description": "Gebruik de `checkbox-next` component om de gebruiker de mogelijkheid te geven om 1 of meerdere dingen te selecteren in een lijst.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-checkbox](/docs/components-checkbox--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-checkbox--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "id",
+                            "description": "Het id van het veld."
+                        },
+                        {
+                            "name": "name",
+                            "description": "De naam van het veld."
+                        },
+                        {
+                            "name": "label",
+                            "description": "Vult het aria-label attribuut van het veld in.<br/>Kan gebruikt worden als er geen bijhorend label element of vl-form-label component is."
+                        },
+                        {
+                            "name": "required",
+                            "description": "Duidt aan dat het veld verplicht is."
+                        },
+                        {
+                            "name": "disabled",
+                            "description": "Beeldt de component in een disabled state af."
+                        },
+                        {
+                            "name": "error",
+                            "description": "Beeldt de component in een error state af."
+                        },
+                        {
+                            "name": "success",
+                            "description": "Beeldt de component in een success state af."
+                        },
+                        {
+                            "name": "block",
+                            "description": "Duidt aan dat de component de volledige breedte van zijn parent mag innemen."
+                        },
+                        {
+                            "name": "value",
+                            "description": "De value van de checkbox."
+                        },
+                        {
+                            "name": "checked",
+                            "description": "Vinkt de checkbox aan of uit."
+                        },
+                        {
+                            "name": "switch",
+                            "description": "Beeldt de checkbox af als een switch."
+                        }
+                    ],
+                    "slots": [
+                        {
+                            "name": "content",
+                            "description": "De content van de checkbox."
+                        }
+                    ],
+                    "js": {
+                        "events": [
+                            {
+                                "name": "vl-reset",
+                                "type": "",
+                                "description": "Event dat afgevuurd wordt wanneer het veld gereset wordt."
+                            },
+                            {
+                                "name": "vl-checked",
+                                "type": "{ checked: boolean, value?: string }",
+                                "description": "Event dat afgevuurd wordt als de checkbox aangevinkt of uitgevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de checkbox indien deze aangevinkt is."
+                            },
+                            {
+                                "name": "vl-valid",
+                                "type": "{ checked: boolean, value?: string }",
+                                "description": "Event dat afgevuurd wordt als de checkbox valid is.<br>Het detail object van het event bevat de checked state en de waarde van de checkbox indien deze aangevinkt is."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-datepicker-next",
+                    "description": "Gebruik de `datepicker-next` component om de gebruiker op een gebruiksvriendelijke manier een datum of tijd te laten selecteren.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-datepicker](/docs/components-datepicker--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-datepicker--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "id",
+                            "description": "Het id van het veld."
+                        },
+                        {
+                            "name": "name",
+                            "description": "De naam van het veld."
+                        },
+                        {
+                            "name": "label",
+                            "description": "Vult het aria-label attribuut van het veld in.<br/>Kan gebruikt worden als er geen bijhorend label element of vl-form-label component is."
+                        },
+                        {
+                            "name": "required",
+                            "description": "Duidt aan dat het veld verplicht is."
+                        },
+                        {
+                            "name": "disabled",
+                            "description": "Beeldt de component in een disabled state af."
+                        },
+                        {
+                            "name": "error",
+                            "description": "Beeldt de component in een error state af."
+                        },
+                        {
+                            "name": "success",
+                            "description": "Beeldt de component in een success state af."
+                        },
+                        {
+                            "name": "block",
+                            "description": "Duidt aan dat de component de volledige breedte van zijn parent mag innemen."
+                        },
+                        {
+                            "name": "readonly",
+                            "description": "Duidt aan dat het veld enkel `readonly` is."
+                        },
+                        {
+                            "name": "type",
+                            "description": "Type van de datepicker"
+                        },
+                        {
+                            "name": "value",
+                            "description": "De waarde van het veld."
+                        },
+                        {
+                            "name": "placeholder",
+                            "description": "De placeholder van het veld."
+                        },
+                        {
+                            "name": "autocomplete",
+                            "description": "De autocomplete van het veld. Dit moet een waarde zijn die door de browser ondersteund wordt.<br>Een lijst van waarden kan je vinden op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)."
+                        },
+                        {
+                            "name": "format",
+                            "description": "Het formaat van de datum/tijd waarde. Voor een datum is het standaard formaat `d.m.Y` (-> 31.12.2019).<br>Voor tijd, is `H:i` het standaard formaat (-> 23:59)."
+                        },
+                        {
+                            "name": "min-date",
+                            "description": "Minimum datum conform het ingestelde formaat (bv. '01-01-2019') of 'today' voor vandaag."
+                        },
+                        {
+                            "name": "max-date",
+                            "description": "Maximum datum conform het ingestelde format (bv. '31-12-2019') of 'today' voor vandaag."
+                        },
+                        {
+                            "name": "min-time",
+                            "description": "Minimum tijd conform het ingestelde formaat (bv. '09:00').<br/>Enkel van toepassing bij type: `time` of `date-time`."
+                        },
+                        {
+                            "name": "max-time",
+                            "description": "Maximum tijd conform het ingestelde format (bv. '17:00').<br/>Enkel van toepassing bij type: `time` of `date-time`."
+                        },
+                        {
+                            "name": "am-pm",
+                            "description": "Activeert de 12-uurs AM/PM timepicker.<br/>Enkel van toepassing bij type: `time` of `date-time`."
+                        },
+                        {
+                            "name": "disable-mask-validation",
+                            "description": "Schakelt de automatische mask validatie uit."
+                        },
+                        {
+                            "name": "pattern",
+                            "description": "Het patroon dat je moet volgen bij het ingeven van een waarde.<br>Dit kan gebruikt worden voor eenvoudige validatie.<br>Gebruik de `regex` property voor complexe validatie."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "regex",
+                                "type": "regex",
+                                "description": "Het patroon dat je moet volgen bij het ingeven van een waarde.<br>Dit kan gebruikt worden voor complexe validatie."
+                            }
+                        ],
+                        "events": [
+                            {
+                                "name": "vl-reset",
+                                "type": "",
+                                "description": "Event dat afgevuurd wordt wanneer het veld gereset wordt."
+                            },
+                            {
+                                "name": "vl-input",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de waarde van het datepicker-input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde."
+                            },
+                            {
+                                "name": "vl-valid",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de waarde van het datepicker-input veld valid is.<br>Het detail object van het event bevat de ingegeven waarde."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-error-message-next",
+                    "description": "Gebruik de `error-message-next` component om een error af te beelden voor een input veld.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-form-validation-message](/docs/elements-form-message-form-validation-message--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-error-message--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "for",
+                            "description": "Het id van het input element waarvoor de error message getoond moet worden."
+                        },
+                        {
+                            "name": "state",
+                            "description": "De state van het input element waarvoor de error message getoond moet worden."
+                        },
+                        {
+                            "name": "show",
+                            "description": "Duidt aan of de error message getoond moet worden.<br>Dit kan gebruikt worden om de error message manueel te tonen of te verbergen."
+                        }
+                    ],
+                    "slots": [
+                        {
+                            "name": "[default]",
+                            "description": "De inhoud van de error message."
+                        }
+                    ]
+                },
+                {
+                    "name": "vl-form-label-next",
+                    "description": "Gebruik de `form-label-next` component om een form label af te beelden.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-form-label](/docs/elements-form-message-form-label--documentatie) component, we raden aan deze versie te gebruiken.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-form-label--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "for",
+                            "description": "Het id van de form control waarvoor het label bedoeld is."
+                        },
+                        {
+                            "name": "label",
+                            "description": "De tekst van het label."
+                        },
+                        {
+                            "name": "block",
+                            "description": "Duidt aan of het label de volledige breedte van de parent moet innemen."
+                        },
+                        {
+                            "name": "light",
+                            "description": "Duidt aan of het label in light mode moet weergegeven worden."
+                        }
+                    ]
+                },
+                {
+                    "name": "vl-input-field-next",
+                    "description": "Gebruik de `input-field-next` component om een input veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-input-field](/docs/elements-input-field--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-input-field--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "id",
+                            "description": "Het id van het veld."
+                        },
+                        {
+                            "name": "name",
+                            "description": "De naam van het veld."
+                        },
+                        {
+                            "name": "label",
+                            "description": "Vult het aria-label attribuut van het veld in.<br/>Kan gebruikt worden als er geen bijhorend label element of vl-form-label component is."
+                        },
+                        {
+                            "name": "required",
+                            "description": "Duidt aan dat het veld verplicht is."
+                        },
+                        {
+                            "name": "disabled",
+                            "description": "Beeldt de component in een disabled state af."
+                        },
+                        {
+                            "name": "error",
+                            "description": "Beeldt de component in een error state af."
+                        },
+                        {
+                            "name": "success",
+                            "description": "Beeldt de component in een success state af."
+                        },
+                        {
+                            "name": "block",
+                            "description": "Duidt aan dat de component de volledige breedte van zijn parent mag innemen."
+                        },
+                        {
+                            "name": "readonly",
+                            "description": "Duidt aan dat het veld enkel `readonly` is."
+                        },
+                        {
+                            "name": "type",
+                            "description": "Het type van het input veld.<br>Voor meer informatie over de mogelijke types kan je terecht op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)."
+                        },
+                        {
+                            "name": "value",
+                            "description": "De waarde van het input veld."
+                        },
+                        {
+                            "name": "placeholder",
+                            "description": "De placeholder van het input veld."
+                        },
+                        {
+                            "name": "autocomplete",
+                            "description": "De autocomplete van het veld. Dit moet een waarde zijn die door de browser ondersteund wordt.<br>Een lijst van waarden kan je vinden op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)."
+                        },
+                        {
+                            "name": "min-length",
+                            "description": "Het minimum aantal karakters dat je kan ingeven."
+                        },
+                        {
+                            "name": "max-length",
+                            "description": "Het maximum aantal karakters dat je kan ingeven."
+                        },
+                        {
+                            "name": "min",
+                            "description": "De minimum waarde die je kan ingeven."
+                        },
+                        {
+                            "name": "max",
+                            "description": "De maximum waarde die je kan ingeven."
+                        },
+                        {
+                            "name": "min-exclusive",
+                            "description": "Bij het gebruik van het min attribuut moet de waarde hoger zijn dan de min waarde."
+                        },
+                        {
+                            "name": "max-exclusive",
+                            "description": "Bij het gebruik van het max attribuut moet de waarde lager zijn dan de max waarde."
+                        },
+                        {
+                            "name": "pattern",
+                            "description": "Het patroon dat je moet volgen bij het ingeven van een waarde.<br>Dit kan gebruikt worden voor eenvoudige validatie.<br>Gebruik de `regex` property voor complexe validatie."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "regex",
+                                "type": "regex",
+                                "description": "Het patroon dat je moet volgen bij het ingeven van een waarde.<br>Dit kan gebruikt worden voor complexe validatie."
+                            }
+                        ],
+                        "events": [
+                            {
+                                "name": "vl-reset",
+                                "type": "",
+                                "description": "Event dat afgevuurd wordt wanneer het veld gereset wordt."
+                            },
+                            {
+                                "name": "vl-input",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de waarde van het input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde."
+                            },
+                            {
+                                "name": "vl-valid",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de waarde van het input veld valid is.<br>Het detail object van het event bevat de ingegeven waarde."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-input-field-masked-next",
+                    "description": "Gebruik de `input-field-masked-next` component om een input veld met een mask toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-input-field-masked--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "id",
+                            "description": "Het id van het veld."
+                        },
+                        {
+                            "name": "name",
+                            "description": "De naam van het veld."
+                        },
+                        {
+                            "name": "label",
+                            "description": "Vult het aria-label attribuut van het veld in.<br/>Kan gebruikt worden als er geen bijhorend label element of vl-form-label component is."
+                        },
+                        {
+                            "name": "required",
+                            "description": "Duidt aan dat het veld verplicht is."
+                        },
+                        {
+                            "name": "disabled",
+                            "description": "Beeldt de component in een disabled state af."
+                        },
+                        {
+                            "name": "error",
+                            "description": "Beeldt de component in een error state af."
+                        },
+                        {
+                            "name": "success",
+                            "description": "Beeldt de component in een success state af."
+                        },
+                        {
+                            "name": "block",
+                            "description": "Duidt aan dat de component de volledige breedte van zijn parent mag innemen."
+                        },
+                        {
+                            "name": "readonly",
+                            "description": "Duidt aan dat het veld enkel `readonly` is."
+                        },
+                        {
+                            "name": "type",
+                            "description": "Het type van het input veld.<br>Voor meer informatie over de mogelijke types kan je terecht op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)."
+                        },
+                        {
+                            "name": "value",
+                            "description": "De waarde van het input veld."
+                        },
+                        {
+                            "name": "placeholder",
+                            "description": "De placeholder van het input veld."
+                        },
+                        {
+                            "name": "autocomplete",
+                            "description": "De autocomplete van het veld. Dit moet een waarde zijn die door de browser ondersteund wordt.<br>Een lijst van waarden kan je vinden op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)."
+                        },
+                        {
+                            "name": "min-length",
+                            "description": "Het minimum aantal karakters dat je kan ingeven."
+                        },
+                        {
+                            "name": "max-length",
+                            "description": "Het maximum aantal karakters dat je kan ingeven."
+                        },
+                        {
+                            "name": "min",
+                            "description": "De minimum waarde die je kan ingeven."
+                        },
+                        {
+                            "name": "max",
+                            "description": "De maximum waarde die je kan ingeven."
+                        },
+                        {
+                            "name": "min-exclusive",
+                            "description": "Bij het gebruik van het min attribuut moet de waarde hoger zijn dan de min waarde."
+                        },
+                        {
+                            "name": "max-exclusive",
+                            "description": "Bij het gebruik van het max attribuut moet de waarde lager zijn dan de max waarde."
+                        },
+                        {
+                            "name": "pattern",
+                            "description": "Het patroon dat je moet volgen bij het ingeven van een waarde.<br>Dit kan gebruikt worden voor eenvoudige validatie.<br>Gebruik de `regex` property voor complexe validatie."
+                        },
+                        {
+                            "name": "mask",
+                            "description": "Het mask dat gebruikt moet worden.<br/>Dit attribuut is niet reactief."
+                        },
+                        {
+                            "name": "mask-prefix",
+                            "description": "Zet de prefix van het mask.<br/>De prefix wordt automatisch toegevoegd aan de value van het input veld indien de value niet begint met de prefix.<br/>Dit attribuut is niet reactief."
+                        },
+                        {
+                            "name": "raw-value",
+                            "description": "Geeft de raw value terug bij het submitten van een form."
+                        },
+                        {
+                            "name": "disable-mask-validation",
+                            "description": "Schakelt de automatische mask validatie uit."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "regex",
+                                "type": "regex",
+                                "description": "Overschrijft de regex die gebruikt wordt bij de mask validatie.<br/>Bij het testen van de regex wordt altijd de raw value gebruikt."
+                            }
+                        ],
+                        "events": [
+                            {
+                                "name": "vl-reset",
+                                "type": "",
+                                "description": "Event dat afgevuurd wordt wanneer het veld gereset wordt."
+                            },
+                            {
+                                "name": "vl-input",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de waarde van het input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde."
+                            },
+                            {
+                                "name": "vl-valid",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de waarde van het input veld valid is.<br>Het detail object van het event bevat de ingegeven waarde."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-radio-next",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-radio-group--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "id",
+                            "description": "Het id van het veld."
+                        },
+                        {
+                            "name": "value",
+                            "description": "De value van de radio."
+                        },
+                        {
+                            "name": "name",
+                            "description": "De naam van het veld."
+                        },
+                        {
+                            "name": "label",
+                            "description": "Het label van het veld.<br>Standaard wordt de tekst van het bijhorende label element gebruikt, indien dit niet aanwezig is of geen tekst bevat kan je dit attribuut gebruiken om het label te definiëren."
+                        },
+                        {
+                            "name": "block",
+                            "description": "Duidt aan dat de component de volledige breedte van zijn parent mag innemen."
+                        },
+                        {
+                            "name": "readonly",
+                            "description": "Duidt aan dat het veld enkel leesbaar is."
+                        },
+                        {
+                            "name": "disabled",
+                            "description": "Beeldt de component in een disabled state af."
+                        },
+                        {
+                            "name": "error",
+                            "description": "Beeldt de component in een error state af."
+                        },
+                        {
+                            "name": "success",
+                            "description": "Beeldt de component in een success state af."
+                        },
+                        {
+                            "name": "checked",
+                            "description": "Vinkt de radio aan of uit."
+                        }
+                    ],
+                    "slots": [
+                        {
+                            "name": "[default]",
+                            "description": "De content van de radio."
+                        }
+                    ],
+                    "js": {
+                        "events": [
+                            {
+                                "name": "vl-checked",
+                                "type": "{ checked: boolean, value?: string }",
+                                "description": "Event dat afgevuurd wordt als de radio aangevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de radio."
+                            },
+                            {
+                                "name": "vl-valid",
+                                "type": "{ checked: boolean, value?: string }",
+                                "description": "Event dat afgevuurd wordt als de radio aangevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de radio."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-radio-group-next",
+                    "description": "Gebruik de `radio-group-next` component om de gebruiker de mogelijkheid te geven om 1 keuze te selecteren in een lijst.<br/>\nWanneer mogelijk, selecteer geen `radio` van vooraf zodat de gebruiker een bewuste keuze kan maken.<br/>\nDe `radio-next` component is een onderdeel van de `radio-group-next` component.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van het [vl-radio](/docs/components-radio--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-radio-group--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "id",
+                            "description": "Het id van het veld."
+                        },
+                        {
+                            "name": "name",
+                            "description": "De naam van het veld."
+                        },
+                        {
+                            "name": "label",
+                            "description": "Vult het aria-label attribuut van het veld in.<br/>Kan gebruikt worden als er geen bijhorend label element of vl-form-label component is."
+                        },
+                        {
+                            "name": "required",
+                            "description": "Duidt aan dat het veld verplicht is."
+                        },
+                        {
+                            "name": "disabled",
+                            "description": "Beeldt de component in een disabled state af."
+                        },
+                        {
+                            "name": "error",
+                            "description": "Beeldt de component in een error state af."
+                        },
+                        {
+                            "name": "success",
+                            "description": "Beeldt de component in een success state af."
+                        },
+                        {
+                            "name": "readonly",
+                            "description": "Duidt aan dat het veld enkel leesbaar is."
+                        },
+                        {
+                            "name": "value",
+                            "description": "De value van de radio."
+                        }
+                    ],
+                    "js": {
+                        "events": [
+                            {
+                                "name": "vl-reset",
+                                "type": "",
+                                "description": "Event dat afgevuurd wordt wanneer het veld gereset wordt."
+                            },
+                            {
+                                "name": "vl-checked",
+                                "type": "{ checked: boolean, value?: string }",
+                                "description": "Event dat afgevuurd wordt als een radio aangevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de radio."
+                            },
+                            {
+                                "name": "vl-valid",
+                                "type": "{ checked: boolean, value?: string }",
+                                "description": "Event dat afgevuurd wordt als een radio aangevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de radio."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-select-next",
+                    "description": "Gebruik de `select-next` component om een select veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-select](/docs/elements-select--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-select--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "id",
+                            "description": "Het id van het veld."
+                        },
+                        {
+                            "name": "name",
+                            "description": "De naam van het veld."
+                        },
+                        {
+                            "name": "label",
+                            "description": "Vult het aria-label attribuut van het veld in.<br/>Kan gebruikt worden als er geen bijhorend label element of vl-form-label component is."
+                        },
+                        {
+                            "name": "required",
+                            "description": "Duidt aan dat het veld verplicht is."
+                        },
+                        {
+                            "name": "disabled",
+                            "description": "Beeldt de component in een disabled state af."
+                        },
+                        {
+                            "name": "error",
+                            "description": "Beeldt de component in een error state af."
+                        },
+                        {
+                            "name": "success",
+                            "description": "Beeldt de component in een success state af."
+                        },
+                        {
+                            "name": "block",
+                            "description": "Duidt aan dat de component de volledige breedte van zijn parent mag innemen."
+                        },
+                        {
+                            "name": "placeholder",
+                            "description": "De placeholder tekst van het veld."
+                        },
+                        {
+                            "name": "autocomplete",
+                            "description": "De autocomplete van het veld. Dit moet een waarde zijn die door de browser ondersteund wordt.<br>Een lijst van waarden kan je vinden op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)."
+                        },
+                        {
+                            "name": "not-deletable",
+                            "description": "Duidt aan dat de selectie niet verwijderbaar is."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "options",
+                                "type": "SelectOption",
+                                "description": "De opties die geselecteerd kunnen worden.<br>Zie de documentatie pagina voor meer info."
+                            }
+                        ],
+                        "events": [
+                            {
+                                "name": "vl-reset",
+                                "type": "",
+                                "description": "Event dat afgevuurd wordt wanneer het veld gereset wordt."
+                            },
+                            {
+                                "name": "vl-select",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als er een optie selecteerd of verwijderd wordt.<br>Het detail object van het event bevat de waarde van de geselecteerde optie."
+                            },
+                            {
+                                "name": "vl-valid",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de select valid is.<br>Het detail object van het event bevat de waarde van de geselecteerde optie."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-select-rich-next",
+                    "description": "Gebruik de `select-rich-next` component om een uitgebreid select of multiselect veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-select](/docs/elements-select--documentatie) component en de [vl-multiselect](/docs/elements-multiselect--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-select-rich--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "id",
+                            "description": "Het id van het veld."
+                        },
+                        {
+                            "name": "name",
+                            "description": "De naam van het veld."
+                        },
+                        {
+                            "name": "label",
+                            "description": "Vult het aria-label attribuut van het veld in.<br/>Kan gebruikt worden als er geen bijhorend label element of vl-form-label component is."
+                        },
+                        {
+                            "name": "required",
+                            "description": "Duidt aan dat het veld verplicht is."
+                        },
+                        {
+                            "name": "disabled",
+                            "description": "Beeldt de component in een disabled state af."
+                        },
+                        {
+                            "name": "error",
+                            "description": "Beeldt de component in een error state af."
+                        },
+                        {
+                            "name": "success",
+                            "description": "Beeldt de component in een success state af."
+                        },
+                        {
+                            "name": "placeholder",
+                            "description": "De placeholder tekst.<br>Dit attribuut is niet reactief."
+                        },
+                        {
+                            "name": "not-deletable",
+                            "description": "Duidt aan dat de selectie niet-verwijderbaar is."
+                        },
+                        {
+                            "name": "multiple",
+                            "description": "Duidt aan dat je meerdere opties kan selecteren.<br>Dit attribuut is niet reactief."
+                        },
+                        {
+                            "name": "search",
+                            "description": "Duidt aan dat je kan zoeken in de opties.<br>De zoekfunctie staat standaard aan als je de multiple select gebruikt.<br>Dit attribuut is niet reactief."
+                        },
+                        {
+                            "name": "position",
+                            "description": "De positie van de dropdown.<br>Dit attribuut is niet reactief."
+                        },
+                        {
+                            "name": "result-limit",
+                            "description": "Het maximum aantal resultaten dat getoond wordt."
+                        },
+                        {
+                            "name": "no-results-text",
+                            "description": "De tekst die getoond wordt als er geen resultaten zijn.<br>Dit attribuut is niet reactief."
+                        },
+                        {
+                            "name": "no-choices-text",
+                            "description": "De tekst die getoond wordt als er geen resterende opties zijn.<br>Dit attribuut is niet reactief."
+                        },
+                        {
+                            "name": "search-placeholder",
+                            "description": "De placeholder tekst van het zoekveld.<br>Dit attribuut is niet reactief."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "options",
+                                "type": "SelectRichOption",
+                                "description": "De opties die geselecteerd kunnen worden.<br>Zie de documentatie pagina voor meer info."
+                            }
+                        ],
+                        "events": [
+                            {
+                                "name": "vl-reset",
+                                "type": "",
+                                "description": "Event dat afgevuurd wordt wanneer het veld gereset wordt."
+                            },
+                            {
+                                "name": "vl-select",
+                                "type": "{ value: string | string[] }",
+                                "description": "Event dat afgevuurd wordt als er een optie selecteerd of verwijderd wordt.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect bevat het detail object een array van waarden van de geselecteerde opties."
+                            },
+                            {
+                                "name": "vl-select-search",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als er een waarde ingegeven wordt in het zoekveld."
+                            },
+                            {
+                                "name": "vl-valid",
+                                "type": "{ value: string | string[] }",
+                                "description": "Event dat afgevuurd wordt als de select valid is.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect bevat het detail object een array van waarden van de geselecteerde opties."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-textarea-next",
+                    "description": "Gebruik de `textarea-next` component om een textarea veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-textarea](/docs/components-textarea--documentatie) component, we raden aan op termijn deze versie te gebruiken.<br />\nIn tegenstelling tot de vorige [vl-textarea](/docs/components-textarea--documentatie) bevat dit component geen rich-text modus, hier wordt op termijn een ander component voor voorzien.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-textarea--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "id",
+                            "description": "Het id van het veld."
+                        },
+                        {
+                            "name": "name",
+                            "description": "De naam van het veld."
+                        },
+                        {
+                            "name": "label",
+                            "description": "Vult het aria-label attribuut van het veld in.<br/>Kan gebruikt worden als er geen bijhorend label element of vl-form-label component is."
+                        },
+                        {
+                            "name": "required",
+                            "description": "Duidt aan dat het veld verplicht is."
+                        },
+                        {
+                            "name": "disabled",
+                            "description": "Beeldt de component in een disabled state af."
+                        },
+                        {
+                            "name": "error",
+                            "description": "Beeldt de component in een error state af."
+                        },
+                        {
+                            "name": "success",
+                            "description": "Beeldt de component in een success state af."
+                        },
+                        {
+                            "name": "block",
+                            "description": "Duidt aan dat de component de volledige breedte van zijn parent mag innemen."
+                        },
+                        {
+                            "name": "readonly",
+                            "description": "Duidt aan dat het veld `readonly` is."
+                        },
+                        {
+                            "name": "value",
+                            "description": "De waarde van het textarea veld."
+                        },
+                        {
+                            "name": "placeholder",
+                            "description": "De placeholder van het textarea veld."
+                        },
+                        {
+                            "name": "autocomplete",
+                            "description": "De autocomplete van het textarea veld. Dit moet een waarde zijn die door de browser ondersteund wordt.<br>Een lijst van waarden kan je vinden op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)."
+                        },
+                        {
+                            "name": "min-length",
+                            "description": "Het minimum aantal karakters dat je kan ingeven."
+                        },
+                        {
+                            "name": "max-length",
+                            "description": "Het maximum aantal karakters dat je kan ingeven."
+                        },
+                        {
+                            "name": "rows",
+                            "description": "Het aantal rijen van het textarea veld."
+                        },
+                        {
+                            "name": "cols",
+                            "description": "Het aantal kolommen van het textarea veld."
+                        }
+                    ],
+                    "js": {
+                        "events": [
+                            {
+                                "name": "vl-reset",
+                                "type": "",
+                                "description": "Event dat afgevuurd wordt wanneer het veld gereset wordt."
+                            },
+                            {
+                                "name": "vl-input",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de waarde van het textarea veld verandert.<br>Het detail object van het event bevat de ingegeven waarde."
+                            },
+                            {
+                                "name": "vl-valid",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de waarde van het textarea valid is.<br>Het detail object van het event bevat de ingegeven waarde."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-textarea-rich-next",
+                    "description": "Gebruik de `textarea-rich-next` component om een rich textarea veld toe te voegen aan een pagina.<br/>\n\nDit component is de volgende versie van de rich modus van de [vl-textarea](/docs/components-textarea--documentatie) component, we raden aan deze versie te gebruiken.<br />",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-textarea-rich--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "id",
+                            "description": "Het id van het veld."
+                        },
+                        {
+                            "name": "name",
+                            "description": "De naam van het veld."
+                        },
+                        {
+                            "name": "label",
+                            "description": "Vult het aria-label attribuut van het veld in.<br/>Kan gebruikt worden als er geen bijhorend label element of vl-form-label component is."
+                        },
+                        {
+                            "name": "required",
+                            "description": "Duidt aan dat het veld verplicht is."
+                        },
+                        {
+                            "name": "disabled",
+                            "description": "Beeldt de component in een disabled state af."
+                        },
+                        {
+                            "name": "error",
+                            "description": "Beeldt de component in een error state af."
+                        },
+                        {
+                            "name": "success",
+                            "description": "Beeldt de component in een success state af."
+                        },
+                        {
+                            "name": "block",
+                            "description": "Duidt aan dat de component de volledige breedte van zijn parent mag innemen."
+                        },
+                        {
+                            "name": "readonly",
+                            "description": "Duidt aan dat het veld `readonly` is."
+                        },
+                        {
+                            "name": "value",
+                            "description": "De waarde van het textarea veld."
+                        },
+                        {
+                            "name": "placeholder",
+                            "description": "De placeholder van het textarea veld."
+                        },
+                        {
+                            "name": "autocomplete",
+                            "description": "De autocomplete van het textarea veld. Dit moet een waarde zijn die door de browser ondersteund wordt.<br>Een lijst van waarden kan je vinden op [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)."
+                        },
+                        {
+                            "name": "min-length",
+                            "description": "Het minimum aantal karakters dat je kan ingeven."
+                        },
+                        {
+                            "name": "max-length",
+                            "description": "Het maximum aantal karakters dat je kan ingeven."
+                        },
+                        {
+                            "name": "rows",
+                            "description": "Het aantal rijen van het textarea veld."
+                        },
+                        {
+                            "name": "cols",
+                            "description": "Het aantal kolommen van het textarea veld."
+                        },
+                        {
+                            "name": "toolbar",
+                            "description": "TinyMCE toolbar configuratie.<br/>Zie de documentatie pagina voor meer info.<br/>Dit attribuut is niet reactief."
+                        },
+                        {
+                            "name": "plugins",
+                            "description": "TinyMCE plugin configuratie.<br/>Zie de documentatie pagina voor meer info.<br/>Dit attribuut is niet reactief."
+                        },
+                        {
+                            "name": "preview",
+                            "description": "Beeldt de value af in preview mode.<br/>Er wordt geen TinyMCE toolbar getoond en de value is niet aanpasbaar."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "customConfig",
+                                "type": "{ key: value }",
+                                "description": "TinyMCE custom configuratie.<br/>Deze property kan gebruikt worden om custom configuratie mee te geven voor TinyMCE, als ook om configuratie mee te geven voor plugins.<br/>Deze property is niet reactief."
+                            }
+                        ],
+                        "events": [
+                            {
+                                "name": "vl-reset",
+                                "type": "",
+                                "description": "Event dat afgevuurd wordt wanneer het veld gereset wordt."
+                            },
+                            {
+                                "name": "vl-input",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de waarde van het textarea veld verandert.<br>Het detail object van het event bevat de ingegeven waarde."
+                            },
+                            {
+                                "name": "vl-valid",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de waarde van het textarea valid is.<br>Het detail object van het event bevat de ingegeven waarde."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-upload-next",
+                    "description": "Gebruik de `upload-next` component om één of meerdere bestanden te selecteren of te slepen naar het upload-veld.\n\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-upload](/docs/components-upload--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/form-next-upload--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "id",
+                            "description": "Het id van het veld."
+                        },
+                        {
+                            "name": "name",
+                            "description": "De naam van het veld."
+                        },
+                        {
+                            "name": "label",
+                            "description": "Vult het aria-label attribuut van het veld in.<br/>Kan gebruikt worden als er geen bijhorend label element of vl-form-label component is."
+                        },
+                        {
+                            "name": "required",
+                            "description": "Duidt aan dat het veld verplicht is."
+                        },
+                        {
+                            "name": "disabled",
+                            "description": "Beeldt de component in een disabled state af."
+                        },
+                        {
+                            "name": "error",
+                            "description": "Beeldt de component in een error state af."
+                        },
+                        {
+                            "name": "success",
+                            "description": "Beeldt de component in een success state af."
+                        },
+                        {
+                            "name": "readonly",
+                            "description": "Duidt aan dat het veld enkel leesbaar is."
+                        },
+                        {
+                            "name": "accepted-files",
+                            "description": "Attribuut om te bepalen welke bestanden worden geaccepteerd door component (extensie en mimetype)."
+                        },
+                        {
+                            "name": "auto-process",
+                            "description": "Attribuut om te activeren of deactiveren dat het het gedropte bestand direct moet opgeladen worden."
+                        },
+                        {
+                            "name": "disallow-duplicates",
+                            "description": "Bepaalt dat het niet is toegelaten om dezelfde bijlage meerdere keren te uploaden. Niet reactief."
+                        },
+                        {
+                            "name": "error-message-accepted-files",
+                            "description": "Attribuut om de message te definiëren wanneer er bestanden zijn toegevoegd die niet voldoen aan het gevraagde bestandstype."
+                        },
+                        {
+                            "name": "error-message-filesize",
+                            "description": "Attribuut om de message te definiëren wanneer er te grote bestanden zijn toegevoegd. <br> Gebruik {{maxSize}} om de maximum grootte weer te geven in MB."
+                        },
+                        {
+                            "name": "error-message-maxfiles",
+                            "description": "Attribuut om de boodschap te bepalen wanneer er te veel bestanden zijn toegevoegd. <br> Gebruik {{maxFiles}} om het maximum aantal bestanden weer te geven."
+                        },
+                        {
+                            "name": "max-files",
+                            "description": "Bepaalt aantal upload-bestanden"
+                        },
+                        {
+                            "name": "max-size",
+                            "description": "Bepaalt de maximum grootte per upload-bestand in MB."
+                        },
+                        {
+                            "name": "sub-title",
+                            "description": "De annotatietekst voor de upload knop."
+                        },
+                        {
+                            "name": "main-title",
+                            "description": "De tekst die op de upload knop komt te staan."
+                        },
+                        {
+                            "name": "url",
+                            "description": "Bepaalt de upload url"
+                        }
+                    ],
+                    "js": {
+                        "events": [
+                            {
+                                "name": "vl-reset",
+                                "type": "",
+                                "description": "Event dat afgevuurd wordt wanneer het veld gereset wordt."
+                            },
+                            {
+                                "name": "vl-input",
+                                "type": "{ value: string, type: string, file: File}",
+                                "description": "Event dat afgevuurd wordt als bestanden worden toegevoegd of verwijderd.<br>Het detail object van het event bevat de ingegeven waarde.<br>Daarnaast geeft het ook aan welke file werd verwijderd of toegevoegd."
+                            },
+                            {
+                                "name": "vl-valid",
+                                "type": "{ value: string }",
+                                "description": "Event dat afgevuurd wordt als de waarde van het input veld valid is.<br>Het detail object van het event bevat de ingegeven waarde."
+                            },
+                            {
+                                "name": "vl-error",
+                                "type": "{ value: string, type: string, file: File, errorMessage: string}",
+                                "description": "Event dat afgevuurd wordt als een bestand niet voldoet aan de validatie.<br>Het detail object van het event bevat de ingegeven waarde.<br>Daarnaast geeft het ook de file met de fout."
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}
