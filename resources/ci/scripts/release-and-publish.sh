@@ -131,6 +131,7 @@ toReplace=DOMG-WC-VERSION
 # maar die '' geeft natuurlijk een probleem in de build - vandaar
 sed -i "s,$toReplace,$nextRelease_version," ./*/package.json
 sed -i "s,$toReplace,$nextRelease_version," ./*/*/package.json
+sed -i "s,$toReplace,$nextRelease_version," ./*/*.web-types.json
 
 # om tree-shaking correct te laten werken moeten sideEffects in de root-barrel-file uitgeschakeld worden
 #  -> het lijkt niet mogelijk om dit via een exclude te doen - dit werkt niet: ["!(./index.js)"]

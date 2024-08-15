@@ -5,5 +5,5 @@
     "publishConfig": {
         "registry": "https://repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/"
     },
-    "web-types": "./src/next/properties/vl-properties.web-types.json"
+    "web-types": "./components.web-types.json"
 }

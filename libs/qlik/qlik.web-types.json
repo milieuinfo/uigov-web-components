@@ -1,0 +1,133 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
+    "name": "uigov-web-components",
+    "version": "DOMG-WC-VERSION",
+    "js-types-syntax": "typescript",
+    "description-markup": "markdown",
+    "contributions": {
+        "html": {
+            "elements": [
+                {
+                    "name": "vl-qlik-dashboard",
+                    "description": "Gebruik de <code>vl-qlik-dashboard</code> component om een dashboard te maken met Qlik visuals en eventueel filters. Het views object is ofwel een 2D `DashboardVisualization` array of een `Views` object, dat op zijn beurt een 2D `DashboardVisualization` array bevat.\nDe 2D `DashboardVisualization` array is zo gestructureerd om de opdeling te maken tussen rij en kolom.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/qlik-qlik-dashboard--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "visuals",
+                                "type": "DashboardVisualization[][]",
+                                "description": "Het object dat de eigenlijke visualisatie config bevat"
+                            },
+                            {
+                                "name": "filters",
+                                "type": "Filter[]",
+                                "description": "De filters die toegepast moeten worden op het Qlik object"
+                            },
+                            {
+                                "name": "connection",
+                                "type": "Qlik",
+                                "description": "Het connectie object dat wordt aangemaakt door gebruik te maken van `@domg/qlik-lib`"
+                            }
+                        ],
+                        "events": [
+                            {
+                                "name": "connected",
+                                "type": "-",
+                                "description": "Afgevuurd wanneer de achterliggende connectie met Qlik is opgezet."
+                            },
+                            {
+                                "name": "initialized",
+                                "type": "-",
+                                "description": "Afgevuurd wanneer de connectie is opgezet en de filters geladen zijn."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-qlik-dashboard-page",
+                    "description": "Gebruik de <code>vl-qlik-dashboard-page</code> component om een pagina te maken met titel, introductie en een Qlik Dashboard, met eventuele export functionaliteit en de mogelijkheid tot switchen tussen dashboards.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/qlik-qlik-dashboard-page--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "title",
+                            "description": "Titel van de dashboard pagina"
+                        },
+                        {
+                            "name": "url",
+                            "description": "URL om te connecteren met Qlik"
+                        },
+                        {
+                            "name": "app-id",
+                            "description": "De id van de publieke app die aangesproken kan worden op Qlik"
+                        },
+                        {
+                            "name": "export-id",
+                            "description": "De id van het object dat de export data bevat"
+                        },
+                        {
+                            "name": "selected-view",
+                            "description": "De initieel geselecteerde view die getoond moet worden."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "filters",
+                                "type": "Filter[]",
+                                "description": "De filters die toegepast moeten worden op het Qlik object"
+                            },
+                            {
+                                "name": "views",
+                                "type": "Views | DashboardVisualization[][]",
+                                "description": "Het object dat de eigenlijke visualisatie config bevat, al dan niet onderverdeeld in views. Deze visuals worden doorgegeven aan de `vl-qlik-dashboard` component intern."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "vl-qlik-infoblock",
+                    "description": "Gebruik de <code>vl-qlik-infoblock</code> component om een infoblock te maken met icoon, titel, eventuele tekst en verschillende visualisaties.s",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/TODO/storybook/?path=/docs/qlik-qlik-infoblock--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component."
+                        },
+                        {
+                            "name": "title",
+                            "description": "Titel van het infoblock, zie ``vl-infoblock"
+                        },
+                        {
+                            "name": "icon",
+                            "description": "Icoon van het infoblock, zie `vl-icon`"
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "visuals",
+                                "type": "InfoblockVisualization[][]",
+                                "description": "Het object dat de eigenlijke visualisatie config bevat"
+                            },
+                            {
+                                "name": "connection",
+                                "type": "Qlik",
+                                "description": "Het connectie object dat wordt aangemaakt door gebruik te maken van `@domg/qlik-lib`"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}

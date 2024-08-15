@@ -136,14 +136,13 @@ const buildWTElement = (wtComponent: WTComponent): WTElement => {
     return wtElement;
 };
 
-const generateWebTypesFile = (artifact: string, wtComponentList: WTComponentList) => {
+const generateWebTypesFile = (artifact: string, wtComponentList: WTComponentList, targetFolder: string) => {
     console.log('--------------------------------------------------');
     console.log(artifact + ' - building web-types file');
     console.log('--------------------------------------------------');
     const wtElementList: WTElementArray = wtComponentList.map((wtComponent) => buildWTElement(wtComponent));
     let templateFile = readTemplateFile();
-    templateFile = templateFile.replace('$VERSION', '1.35.0');
-    const fileName = '../../dist/generated/' + artifact + '.web-types.json';
+    const fileName = targetFolder + '/' + artifact + '.web-types.json';
     fs.createFileSync(fileName);
     templateFile = templateFile.replace('$ELEMENTS', JSON.stringify(wtElementList, null, 4));
     templateFile = JSON.stringify(JSON.parse(templateFile), null, 4);
@@ -151,9 +150,12 @@ const generateWebTypesFile = (artifact: string, wtComponentList: WTComponentList
     console.log('--------------------------------------------------\n');
 };
 
-generateWebTypesFile('components', componentsWebTypes);
-generateWebTypesFile('elements', elementsWebTypes);
-generateWebTypesFile('form', formWebTypes);
-generateWebTypesFile('map', mapWebTypes);
-generateWebTypesFile('qlik', qlikWebTypes);
-generateWebTypesFile('sections', sectionsWebTypes);
+// versie zetten met 'export wcVersion=123'
+const wcVersion = process.env.wcVersion ?? 'SPECIFIEER';
+
+generateWebTypesFile('components', componentsWebTypes, '../../libs/components');
+generateWebTypesFile('elements', elementsWebTypes, '../../libs/elements');
+generateWebTypesFile('form', formWebTypes, '../../libs/form');
+generateWebTypesFile('map', mapWebTypes, '../../libs/map');
+generateWebTypesFile('qlik', qlikWebTypes, '../../libs/qlik');
+generateWebTypesFile('sections', sectionsWebTypes, '../../libs/sections');

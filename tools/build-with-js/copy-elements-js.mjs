@@ -6,3 +6,4 @@ import { copyFiles } from './file-processors.mjs';
 // zijn peer-dependencies - waardoor die .js bestanden verwijderd worden
 copyFiles('libs/common/utilities/src', 'dist/libs/common/utilities', '.js');
 copyFiles('libs/elements/src', 'dist/libs/elements', '.js');
+copyFiles('libs/elements', 'dist/libs/elements', '.web-types.json');
