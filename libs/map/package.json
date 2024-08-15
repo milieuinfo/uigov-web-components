@@ -7,5 +7,6 @@
     },
     "dependencies": {
         "ol": "8.2.0"
-    }
+    },
+    "web-types": "./map.web-types.json"
 }
