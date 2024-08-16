@@ -1,16 +1,17 @@
-/* eslint-disable */
-export default {
-    displayName: 'sections',
-    preset: '../../jest.preset.js',
-    globals: {},
+import type { JestConfigWithTsJest } from 'ts-jest';
+
+const jestConfig: JestConfigWithTsJest = {
+    displayName: 'sections - Jest tests',
     transform: {
-        '^.+\\.[tj]sx?$': [
+        '^.+\\.[tj]s$': [
             'ts-jest',
             {
                 tsconfig: '<rootDir>/tsconfig.spec.json',
             },
         ],
     },
-    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-    coverageDirectory: '../../coverage/libs/sections',
+    transformIgnorePatterns: [],
+    testEnvironment: 'jsdom',
 };
+
+export default jestConfig;

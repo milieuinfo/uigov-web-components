@@ -1,11 +1,17 @@
-/* eslint-disable */
-export default {
-    displayName: 'qlik',
-    preset: '../../jest.preset.js',
-    testEnvironment: 'node',
+import type { JestConfigWithTsJest } from 'ts-jest';
+
+const jestConfig: JestConfigWithTsJest = {
+    displayName: 'qlik - Jest tests',
     transform: {
-        '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
+        '^.+\\.[tj]s$': [
+            'ts-jest',
+            {
+                tsconfig: '<rootDir>/tsconfig.spec.json',
+            },
+        ],
     },
-    moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/libs/qlik',
+    transformIgnorePatterns: [],
+    testEnvironment: 'jsdom',
 };
+
+export default jestConfig;

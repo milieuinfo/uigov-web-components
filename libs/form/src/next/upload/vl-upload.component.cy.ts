@@ -4,8 +4,8 @@ import { VlUploadComponent } from './vl-upload.component';
 
 registerWebComponents([VlUploadComponent]);
 
-const pdfFileFixturePath = 'cypress/fixtures/upload/file.pdf';
-const txtFileFixturePath = 'cypress/fixtures/upload/file.txt';
+const pdfFileFixturePath = 'fixtures/upload/file.pdf';
+const txtFileFixturePath = 'fixtures/upload/file.txt';
 const mockedResponseFixturePath = 'upload/upload-mock-response-200.json';
 const uploadTargetUrl = 'fake-url';
 const defaultTargetUrl = 'http://httpbin.org/post';

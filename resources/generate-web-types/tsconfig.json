@@ -1,0 +1,18 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "include": ["**/*.ts"],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ],
+    "compilerOptions": {
+        "outDir": "../../build/tsc/generate-web-types",
+        "strict": false,
+        "esModuleInterop": true,
+        "resolveJsonModule": true
+    }
+}

@@ -1,11 +1,8 @@
 {
     "extends": "../../tsconfig.base.json",
+    "include": ["./src/**/*.ts", "../../resources/cypress-commands/*.d.ts"],
     "compilerOptions": {
-        "allowJs": true,
-        "outDir": "../../dist/out-tsc",
-        "module": "ES2022",
-        "types": ["cypress", "cypress-axe", "node"],
-        "sourceMap": false
-    },
-    "include": ["**/*.ts", "**/*.js", "cypress.config.ts", "**/*.cy.ts", "**/*.cy.js", "**/*.d.ts"]
+        "outDir": "../../build/app/integrator-e2e",
+        "strict": false
+    }
 }

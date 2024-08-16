@@ -1,5 +1,4 @@
 import { VlMapTiledWmsLayer } from '@domg-wc/map';
-import { runTestFor } from '../../../../../support/utils';
 
 const mapTiledWmsLayerUrl =
     'http://localhost:8080/iframe.html?id=map-layer-wms-layer-tiled-wms-layer--map-tiled-wms-layer-default&viewMode=story';
@@ -13,7 +12,7 @@ describe('story vl-map-tiled-wms-layer default', () => {
         cy.intercept('GET', `${wmsUrl}*`).as('getWms');
         cy.wait('@getWms');
 
-        runTestFor<VlMapTiledWmsLayer>('vl-map-tiled-wms-layer', (component) => {
+        cy.runTestFor<VlMapTiledWmsLayer>('vl-map-tiled-wms-layer', (component) => {
             const newWmsUrl = 'https://www.dov.vlaanderen.be/geoserver/wms2';
 
             cy.intercept('GET', `${newWmsUrl}*`).as('getWithNewUrl');
@@ -28,7 +27,7 @@ describe('story vl-map-tiled-wms-layer default', () => {
         cy.intercept('GET', `${wmsUrl}*`).as('getWms');
         cy.wait('@getWms');
 
-        runTestFor<VlMapTiledWmsLayer>('vl-map-tiled-wms-layer', (component) => {
+        cy.runTestFor<VlMapTiledWmsLayer>('vl-map-tiled-wms-layer', (component) => {
             const newLayers = 'test-layers';
 
             cy.intercept('GET', `${wmsUrl}*${newLayers}*`).as('getWithNewLayers');
@@ -43,7 +42,7 @@ describe('story vl-map-tiled-wms-layer default', () => {
         cy.intercept('GET', `${wmsUrl}*`).as('getWms');
         cy.wait('@getWms');
 
-        runTestFor<VlMapTiledWmsLayer>('vl-map-tiled-wms-layer', (component) => {
+        cy.runTestFor<VlMapTiledWmsLayer>('vl-map-tiled-wms-layer', (component) => {
             const newVersion = 'test-version';
 
             cy.intercept('GET', `${wmsUrl}*${newVersion}*`).as('getWithNewVersion');
@@ -58,7 +57,7 @@ describe('story vl-map-tiled-wms-layer default', () => {
         cy.intercept('GET', `${wmsUrl}*`).as('getWms');
         cy.wait('@getWms');
 
-        runTestFor<VlMapTiledWmsLayer>('vl-map-tiled-wms-layer', (component) => {
+        cy.runTestFor<VlMapTiledWmsLayer>('vl-map-tiled-wms-layer', (component) => {
             const newStyles = 'test-styles';
 
             cy.intercept('GET', `${wmsUrl}*${newStyles}*`).as('getWithNewStyles');

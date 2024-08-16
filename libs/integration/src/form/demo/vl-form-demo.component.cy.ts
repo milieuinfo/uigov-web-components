@@ -351,14 +351,14 @@ const fillInForm = () => {
         // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
         // Zoek een andere manier moest deze test flaky zijn hierdoor.
         .check({ force: true });
-    getFotosUpload().find('input[type="file"]').selectFile('cypress/fixtures/upload/cat.jpeg', { force: true });
+    getFotosUpload().find('input[type="file"]').selectFile('fixtures/upload/cat.jpeg', { force: true });
     // Force true omdat anders Cypress klaagt dat de radio gecovered is door zijn parent tag, wat een zeer vreemde error is.
     // Zoek een andere manier moest deze test flaky zijn hierdoor.
     getWaarheidsGetrouwCheckbox().find('input').check({ force: true });
 };
 
 const setupMockedUploadFormData = (submittedFormData: unknown & { foto: File[] | null }) => {
-    cy.readFile('cypress/fixtures/upload/cat.jpeg', 'base64').then((fileContent) => {
+    cy.readFile('fixtures/upload/cat.jpeg', 'base64').then((fileContent) => {
         const blob = Cypress.Blob.base64StringToBlob(fileContent);
         const lastModified = new Date().getTime();
         const fileToAdd = new File([blob], 'cat.jpeg', {

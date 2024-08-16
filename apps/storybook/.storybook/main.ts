@@ -1,16 +1,9 @@
 import type { StorybookConfig } from '@storybook/web-components-webpack5';
-// import {} from "@storybook/";
-// import { addons } from '@storybook/manager-api';
-// import { themes } from '@storybook/theming';
-
-// addons.setConfig({
-//     theme: themes.light,
-// });
 
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const tsconfigPathsPlugin = new TsconfigPathsPlugin({
-    configFile: './apps/storybook/tsconfig.storybook.json',
+    configFile: './tsconfig.storybook.json',
     extensions: ['.ts', '.tsx', '.js'],
 });
 
@@ -74,9 +67,3 @@ const config: StorybookConfig = {
 };
 
 export default config;
-
-// To customize your webpack configuration you can use the webpackFinal field.
-// Check https://storybook.js.org/docs/react/builders/webpack#extending-storybooks-webpack-config
-// and https://nx.dev/recipes/storybook/custom-builder-configs
-
-// https://github.com/storybookjs/storybook/issues/21635

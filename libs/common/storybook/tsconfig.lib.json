@@ -1,12 +1,5 @@
 {
     "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "sourceMap": false,
-        "declaration": true,
-        "types": []
-    },
-    "exclude": [
-        "jest.config.ts",
-        "**/*.spec.ts",
-    ]
+    "exclude": ["./src/**/*.spec.ts", "./src/**/*.cy.ts", "./src/**/stories"],
+    "compilerOptions": {}
 }

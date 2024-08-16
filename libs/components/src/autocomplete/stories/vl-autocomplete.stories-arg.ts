@@ -163,6 +163,7 @@ export const autocompleteArgTypes: ArgTypes<typeof autocompleteArgs> = {
         },
     },
     items: {
+        name: 'items',
         description: 'Use this property when you want to use a static list of items.',
         control: { type: CONTROLS.OBJECT },
         table: {

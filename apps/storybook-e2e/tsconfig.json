@@ -1,11 +1,8 @@
 {
     "extends": "../../tsconfig.base.json",
+    "include": ["./src/**/*.ts", "../../resources/cypress-commands/*.d.ts"],
     "compilerOptions": {
-        "allowJs": true,
-        "outDir": "../../dist/out-tsc",
-        "module": "commonjs",
-        "types": ["cypress", "node"],
-        "sourceMap": false
-    },
-    "include": ["**/*.ts", "**/*.js", "cypress.config.ts", "**/*.cy.ts", "**/*.cy.js", "**/*.d.ts"]
+        "outDir": "../../build/app/storybook-e2e",
+        "strict": false
+    }
 }

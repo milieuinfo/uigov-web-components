@@ -1,5 +1,4 @@
 import { VlMapSelectActions, VlSelectActions } from '@domg-wc/map';
-import { runTestFor } from '../../../../../../src/support/utils';
 
 const mapSelectActionsUrl =
     'http://localhost:8080/iframe.html?id=map-action-layer-action-select-action-select-actions--map-select-actions-default&viewMode=story';
@@ -10,7 +9,7 @@ describe('story vl-map-select-actions default', () => {
     it('should contain 2 layers', () => {
         cy.visit(mapSelectActionsUrl);
 
-        runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
+        cy.runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
             expect(selectActions.olLayers).to.have.length(2);
         });
     });
@@ -18,7 +17,7 @@ describe('story vl-map-select-actions default', () => {
     it('should define an action', () => {
         cy.visit(mapSelectActionsUrl);
 
-        runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
+        cy.runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
             assert.isDefined(selectActions._action);
             assert.isNotNull(selectActions._action);
         });
@@ -27,7 +26,7 @@ describe('story vl-map-select-actions default', () => {
     it('should select and unselect features', () => {
         cy.visit(mapSelectActionsUrl);
 
-        runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
+        cy.runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
             const feature1 = selectActions.olLayers[0].getSource().getFeatures()[0];
             const feature2 = selectActions.olLayers[1].getSource().getFeatures()[0];
             const feature3 = selectActions.olLayers[1].getSource().getFeatures()[1];
@@ -53,7 +52,7 @@ describe('story vl-map-select-actions default', () => {
     it('should mark and unmark features', () => {
         cy.visit(mapSelectActionsUrl);
 
-        runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
+        cy.runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
             const layer1 = selectActions.olLayers[0];
             const layer2 = selectActions.olLayers[1];
             const feature1 = layer1.getSource().getFeatures()[0];
@@ -94,7 +93,7 @@ describe('story vl-map-select-actions clustering', () => {
     it('should contain 2 layers', () => {
         cy.visit(mapSelectActionsClusteringUrl);
 
-        runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
+        cy.runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
             expect(selectActions.olLayers).to.have.length(2);
         });
     });
@@ -102,7 +101,7 @@ describe('story vl-map-select-actions clustering', () => {
     it('should define an action', () => {
         cy.visit(mapSelectActionsClusteringUrl);
 
-        runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
+        cy.runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
             assert.isDefined(selectActions._action);
             assert.isNotNull(selectActions._action);
         });
@@ -114,7 +113,7 @@ describe('story vl-map-select-actions clustering', () => {
         // Wachten op het clusteren van de features door OL.
         cy.wait(100);
 
-        runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
+        cy.runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
             const feature1 = selectActions.olLayers[0].getSource().getFeatures()[0];
             const cluster1 = selectActions.olLayers[1].getSource().getFeatures()[0];
             const clusteredFeature1 = cluster1.get('features')[0];
@@ -144,7 +143,7 @@ describe('story vl-map-select-actions clustering', () => {
         // Wachten op het clusteren van de features door OL.
         cy.wait(100);
 
-        runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
+        cy.runTestFor<VlMapSelectActions>('vl-map-select-actions', (selectActions) => {
             const cluster1 = selectActions.olLayers[1].getSource().getFeatures()[0];
             const selectedFeatures = (selectActions._action as VlSelectActions).selectInteraction
                 .getFeatures()

@@ -15,6 +15,6 @@ export class AppElement extends LitElement {
     }
 
     override render() {
-        return html`<vl-form-demo></vl-form-demo>`
+        return html`<vl-form-demo></vl-form-demo>`;
     }
 }

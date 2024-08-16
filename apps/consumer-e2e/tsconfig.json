@@ -1,11 +1,12 @@
 {
     "extends": "../../tsconfig.base.json",
+    "include": ["./src/**/*.ts", "../../resources/cypress-commands/*.d.ts"],
     "compilerOptions": {
-        "allowJs": true,
-        "outDir": "../../dist/out-tsc",
         "module": "commonjs",
         "types": ["cypress", "node"],
+        "outDir": "../../build/app/consumer-e2e",
+        "strict": false,
+        "allowJs": true,
         "sourceMap": false
-    },
-    "include": ["**/*.ts", "**/*.js", "cypress.config.ts", "**/*.cy.ts", "**/*.cy.js", "**/*.d.ts"]
+    }
 }

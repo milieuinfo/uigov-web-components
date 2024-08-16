@@ -1,21 +1,8 @@
 {
     "extends": "../../tsconfig.base.json",
-    "files": [],
-    "include": [
-        "**/*.ts"
-    ],
-    "references": [
-        {
-            "path": "./tsconfig.lib.json"
-        },
-        {
-            "path": "./tsconfig.spec.json"
-        }
-    ],
+    "include": ["./src/**/*.ts", "../../resources/cypress-commands/*.d.ts"],
     "compilerOptions": {
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true
+        "outDir": "../../build/tsc/lib-elements",
+        "strict": true
     }
 }

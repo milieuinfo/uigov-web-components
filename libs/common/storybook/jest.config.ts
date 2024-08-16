@@ -1,10 +1,9 @@
-/* eslint-disable */
-export default {
-    displayName: 'common-storybook',
-    preset: '../../../jest.preset.js',
-    globals: {},
+import type { JestConfigWithTsJest } from 'ts-jest';
+
+const jestConfig: JestConfigWithTsJest = {
+    displayName: 'common-storybook - Jest tests',
     transform: {
-        '^.+\\.[tj]sx?$': [
+        '^.+\\.[tj]s$': [
             'ts-jest',
             {
                 tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -12,6 +11,7 @@ export default {
         ],
     },
     transformIgnorePatterns: [],
-    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-    coverageDirectory: '../../../coverage/libs/common/storybook',
+    testEnvironment: 'jsdom',
 };
+
+export default jestConfig;
