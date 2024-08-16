@@ -1,7 +1,7 @@
 const apps = [
     { name: 'consumer-fat-js', url: 'http://127.0.0.1:4211' },
-    { name: 'consumer-named', url: 'http://127.0.0.1:4212' },
-    { name: 'consumer-side-effect', url: 'http://127.0.0.1:4213' },
+    { name: 'consumer-named', url: 'http://localhost:4212' },
+    { name: 'consumer-side-effect', url: 'http://localhost:4213' },
 ];
 
 describe('consumer application', () => {

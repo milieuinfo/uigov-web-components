@@ -1,5 +1,4 @@
 import { VlAccordionComponent } from '@domg-wc/components';
-import { runTestFor } from '../../../../src/support/utils';
 
 const accordionUrl = 'http://localhost:8080/iframe.html?id=components-accordion--accordion-default&viewMode=story';
 const accordionTitleSlotUrl =
@@ -8,7 +7,7 @@ const accordionDynamicToggleUrl =
     'http://localhost:8080/iframe.html?id=components-accordion--accordion-dynamic-toggle&viewMode=story';
 
 const shouldBeToggleable = async () => {
-    runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
+    cy.runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
         expect(component._isOpen).to.be.false;
         component.open();
         expect(component._isOpen).to.be.true;
@@ -22,13 +21,13 @@ const shouldBeToggleable = async () => {
 };
 
 const shouldBeOpen = async () => {
-    runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
+    cy.runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
         expect(component._isOpen).to.be.true;
     });
 };
 
 const shouldDisableAccordion = () => {
-    runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
+    cy.runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
         expect(component._isOpen).to.be.false;
         component.open();
         expect(component._isOpen).to.be.false;
@@ -42,7 +41,7 @@ const shouldDisableAccordion = () => {
 const shouldEmitEventOnToggle = () => {
     cy.createStubForEvent('vl-accordion', 'vl-on-toggle');
 
-    runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
+    cy.runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
         component.toggle();
         cy.get('@vl-on-toggle').should('have.been.calledOnce');
     });
@@ -51,7 +50,7 @@ const shouldEmitEventOnToggle = () => {
 const shouldEmitEventOnOpen = () => {
     cy.createStubForEvent('vl-accordion', 'vl-on-toggle');
 
-    runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
+    cy.runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
         component.open();
         cy.get('@vl-on-toggle').should('have.been.calledOnce');
     });
@@ -62,7 +61,7 @@ const shouldEmitEventOnClose = () => {
     cy.get('vl-accordion').shadow().find('button.vl-toggle').click();
     cy.createStubForEvent('vl-accordion', 'vl-on-toggle');
 
-    runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
+    cy.runTestFor<VlAccordionComponent>('vl-accordion', (component) => {
         component.close();
         cy.get('@vl-on-toggle').should('have.been.calledOnce');
     });

@@ -1,13 +1,16 @@
-import { nxE2EPreset } from '@nx/cypress/plugins/cypress-preset';
-
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
-    e2e: { 
-        ...nxE2EPreset(__filename, { cypressDir: 'src' }),
-        baseUrl: 'http://localhost:4204'
-    },
-    retries: 3,
+    fileServerFolder: '.',
+    fixturesFolder: './src/fixtures',
+    modifyObstructiveCode: false,
     experimentalCspAllowList: ['default-src'],
-    screenshotsFolder: '../../dist/cypress/apps/integrator-e2e/screenshots',
+    screenshotsFolder: '../../build/cypress/integrator-e2e/screenshots',
+    chromeWebSecurity: false,
+    retries: 3,
+    e2e: {
+        baseUrl: 'http://localhost:4204',
+        specPattern: 'src/e2e/**/*.cy.{js,jsx,ts,tsx}',
+        supportFile: 'src/support/e2e.ts',
+    },
 });

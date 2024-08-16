@@ -1,11 +1,17 @@
-/* eslint-disable */
-export default {
-    displayName: 'form',
-    preset: '../../jest.preset.js',
-    testEnvironment: 'node',
+import type { JestConfigWithTsJest } from 'ts-jest';
+
+const jestConfig: JestConfigWithTsJest = {
+    displayName: 'form - Jest tests',
     transform: {
-        '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
+        '^.+\\.[tj]s$': [
+            'ts-jest',
+            {
+                tsconfig: '<rootDir>/tsconfig.spec.json',
+            },
+        ],
     },
-    moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/libs/form',
+    transformIgnorePatterns: [],
+    testEnvironment: 'jsdom',
 };
+
+export default jestConfig;

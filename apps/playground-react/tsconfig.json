@@ -1,20 +1,12 @@
 {
+    "extends": "../../tsconfig.base.json",
+    "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
+    "exclude": ["./src/**/*.spec.ts", "./src/**/*.cy.ts", "./src/**/stories"],
     "compilerOptions": {
-        "jsx": "react-jsx",
-        "allowJs": false,
-        "esModuleInterop": false,
+        "outDir": "../../build/tsc/app-playground-react",
+        "strict": false,
+        "allowJs": true,
         "allowSyntheticDefaultImports": true,
-        "strict": false
-    },
-    "files": [],
-    "include": [],
-    "references": [
-        {
-            "path": "./tsconfig.app.json"
-        },
-        {
-            "path": "./tsconfig.spec.json"
-        }
-    ],
-    "extends": "../../tsconfig.base.json"
+        "jsx": "react-jsx"
+    }
 }

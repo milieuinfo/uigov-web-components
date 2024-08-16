@@ -1,17 +1,8 @@
 {
     "extends": "../../tsconfig.base.json",
+    "include": [".storybook/*.ts", "../../resources/cypress-commands/*.d.ts"],
     "compilerOptions": {
-        "emitDecoratorMetadata": true
-    },
-    "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
-    "include": [
-        "docs/**/*.stories.ts",
-        "docs/**/*.stories.js",
-        "docs/**/*.stories.jsx",
-        "docs/**/*.stories.tsx",
-        "docs/**/*.stories.mdx",
-        "docs/**/*.component.ts",
-        ".storybook/*.js",
-        ".storybook/*.ts"
-    ]
+        "outDir": "../../build/app/storybook",
+        "strict": false
+    }
 }

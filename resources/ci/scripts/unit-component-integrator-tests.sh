@@ -21,15 +21,18 @@ if [ $? -eq 0 ]
 fi
 set -e
 
-echo "run all unit tests"
-npx nx run-many --all --target=test --parallel --maxParallel=4 --skip-nx-cache
+echo "create dist folder with dummy text file - when everything goes well there is no dist folder which fails the build"
+mkdir dist
+touch dist/dummy.txt
+
+echo "run all jest (unit) tests"
+npm run libs:jest
+
+echo "validate the generated web-types"
+npm run libs:web-types:validate
 
 echo "run all web component tests (cypress)"
-npx cypress run --component
+npm run libs:component-tests:run
 
-echo "run the integrator e2e tests"
-npm run integrator:test
-
-echo "run the consumer e2e tests"
-npm run consumer:install
-npm run consumer:ci-test
+echo "run the integrator e2e tests (cypress)"
+npm run apps:integrator:serve-and-e2e

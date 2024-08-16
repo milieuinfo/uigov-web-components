@@ -1,29 +1,8 @@
 {
-    "files": [],
-    "include": [],
-    "exclude": ["node_modules", "tmp"],
-    "compileOnSave": false,
     "compilerOptions": {
-        "rootDir": ".",
-        "declaration": false,
-        "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "useDefineForClassFields": false,
-        "importHelpers": true,
+        "baseUrl": ".",
+        "outDir": "../../build/tsc/app-consumer",
         "target": "es2021",
-        "module": "esnext",
-        "lib": ["es2021", "dom", "dom.iterable"],
-        "skipLibCheck": true,
-        "skipDefaultLibCheck": true,
-        "baseUrl": "."
-    },
-    "references": [
-        {
-            "path": "./tsconfig.app.json"
-        },
-        {
-            "path": "./tsconfig.spec.json"
-        }
-    ]
+        "moduleResolution": "node"
+    }
 }

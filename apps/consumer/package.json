@@ -1,17 +1,19 @@
 {
     "scripts": {
-        "serve-fat-js": "http-server ./src/app-fat-js/ -p 4211 --cors"
+        "consumer:fat-js:dev": "http-server ./src/app-fat-js/ -p 4211 --cors",
+        "consumer:named:dev": "webpack serve --config webpack-named.config.cjs --progress --profile --mode development",
+        "consumer:side-effect:dev": "webpack serve --config webpack-side-effect.config.cjs --progress --profile --mode development"
     },
     "devDependencies": {
         "http-server": "14.1.1"
     },
     "dependencies": {
-        "@domg-wc/common-utilities": "1.28.0",
-        "@domg-wc/common-storybook": "1.28.0",
-        "@domg-wc/components": "1.28.0",
-        "@domg-wc/elements": "1.28.0",
-        "@domg-wc/form": "1.28.0",
-        "@domg-wc/map": "1.28.0",
-        "@domg-wc/sections": "1.28.0"
+        "@domg-wc/common-utilities": "1.36.1",
+        "@domg-wc/common-storybook": "1.36.1",
+        "@domg-wc/components": "1.36.1",
+        "@domg-wc/elements": "1.36.1",
+        "@domg-wc/form": "1.36.1",
+        "@domg-wc/map": "1.36.1",
+        "@domg-wc/sections": "1.36.1"
     }
 }

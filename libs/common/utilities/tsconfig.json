@@ -1,22 +1,8 @@
 {
     "extends": "../../../tsconfig.base.json",
-    "files": [],
-    "include": ["**/*.ts"],
-    "references": [
-        {
-            "path": "./tsconfig.lib.json"
-        },
-        {
-            "path": "./tsconfig.spec.json"
-        }
-    ],
+    "include": ["./src/**/*.ts", "../../../resources/cypress-commands/*.d.ts"],
     "compilerOptions": {
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "resolveJsonModule": true,
-        "esModuleInterop": true,
-        "useDefineForClassFields": false
+        "outDir": "../../../build/tsc/lib-common-utilities",
+        "strict": true
     }
 }

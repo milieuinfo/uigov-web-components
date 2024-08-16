@@ -1,13 +1,10 @@
 {
     "extends": "../../tsconfig.base.json",
-    "files": [],
-    "include": [],
-    "references": [
-        {
-            "path": "./tsconfig.app.json"
-        },
-        {
-            "path": "./tsconfig.spec.json"
-        }
-    ]
+    "include": ["./src/**/*.ts"],
+    "exclude": ["./src/**/*.spec.ts", "./src/**/*.cy.ts", "./src/**/stories"],
+    "compilerOptions": {
+        "outDir": "../../build/tsc/app-playground-native",
+        "strict": false,
+        "allowJs": true
+    }
 }

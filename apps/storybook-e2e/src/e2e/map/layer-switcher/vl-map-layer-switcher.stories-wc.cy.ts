@@ -1,5 +1,4 @@
 import { VlMap, VlMapFeaturesLayer } from '@domg-wc/map';
-import { runTestFor } from '../../../support/utils';
 
 const mapLayerSwitcherDefaultUrl =
     'http://localhost:8080/iframe.html?id=map-layer-switcher--map-layer-switcher-default&viewMode=story';
@@ -7,13 +6,13 @@ const mapLayerSwitcherDynamic =
     'http://localhost:8080/iframe.html?id=map-layer-switcher--map-layer-switcher-dynamic&viewMode=story';
 
 const shouldHaveVisibleLayerFor = (layerName: string): void => {
-    runTestFor<VlMapFeaturesLayer>(`vl-map-features-layer[data-vl-name="${layerName}"]`, (component) => {
+    cy.runTestFor<VlMapFeaturesLayer>(`vl-map-features-layer[data-vl-name="${layerName}"]`, (component) => {
         expect(component.visible).to.be.true;
     });
 };
 
 const shouldHaveInvisibleLayerFor = (layerName: string): void => {
-    runTestFor<VlMapFeaturesLayer>(`vl-map-features-layer[data-vl-name="${layerName}"]`, (component) => {
+    cy.runTestFor<VlMapFeaturesLayer>(`vl-map-features-layer[data-vl-name="${layerName}"]`, (component) => {
         expect(component.visible).to.be.false;
     });
 };
@@ -29,7 +28,7 @@ const clickLayerSwitcherCheckboxOf = (layerName: string): void => {
 };
 
 const shouldHaveFeatureLayerCount = (count: number) => {
-    runTestFor<VlMap>('vl-map#map-dynamic-layers', (map) => {
+    cy.runTestFor<VlMap>('vl-map#map-dynamic-layers', (map) => {
         expect(map.featuresLayers).to.be.have.length(count);
     });
 };

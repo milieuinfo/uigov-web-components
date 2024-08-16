@@ -1,10 +1,9 @@
-/* eslint-disable */
-export default {
-    displayName: 'map',
-    preset: '../../jest.preset.js',
-    globals: {},
+import type { JestConfigWithTsJest } from 'ts-jest';
+
+const jestConfig: JestConfigWithTsJest = {
+    displayName: 'map - Jest tests',
     transform: {
-        '^.+\\.[tj]sx?$': [
+        '^.+\\.[tj]s$': [
             'ts-jest',
             {
                 tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -12,6 +11,7 @@ export default {
         ],
     },
     transformIgnorePatterns: [],
-    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-    coverageDirectory: '../../coverage/libs/map',
+    testEnvironment: 'jsdom',
 };
+
+export default jestConfig;

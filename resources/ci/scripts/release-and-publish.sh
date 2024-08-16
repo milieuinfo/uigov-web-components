@@ -98,13 +98,13 @@ set -e
 if [[ ${release_branch} == true ]];
   then
     echo "semantic-release - '.releaserc-release' script wordt gebruikt"
-    cp .releaserc-release .releaserc
+    cp ./resources/ci/release/.releaserc-release .releaserc
 fi
 
 if [[ ${develop_branch} == true ]];
   then
     echo "semantic-release - '.releaserc-develop' script wordt gebruikt"
-    cp .releaserc-develop .releaserc
+    cp ./resources/ci/release/.releaserc-develop .releaserc
 fi
 
 echo "semantic-release - uitvoering"
@@ -114,65 +114,14 @@ echo "variabelen bepalen en zetten"
 nextRelease_version=$(npm pkg get version | sed 's/"//g')
 echo using $nextRelease_version as nextRelease_version
 
-# releasen van de packages
-cd dist/libs
-
-# opkuisen van de packages
-rm -rf ./components/**/stories
-rm -rf ./elements/**/stories
-rm -rf ./form/**/stories
-rm -rf ./map/**/stories
-rm -rf ./qlik/**/stories
-rm -rf ./sections/**/stories
-
-# in de package.json bestanden - daar waar nodig - de juiste versie zetten
-toReplace=DOMG-WC-VERSION
-# de OSX versie is als volgt: sed -i '' "s,$toReplace,$nextRelease_version," **/package.json
-# maar die '' geeft natuurlijk een probleem in de build - vandaar
-sed -i "s,$toReplace,$nextRelease_version," ./*/package.json
-sed -i "s,$toReplace,$nextRelease_version," ./*/*/package.json
-sed -i "s,$toReplace,$nextRelease_version," ./*/*.web-types.json
-
-# om tree-shaking correct te laten werken moeten sideEffects in de root-barrel-file uitgeschakeld worden
-#  -> het lijkt niet mogelijk om dit via een exclude te doen - dit werkt niet: ["!(./index.js)"]
-#  -> dus expliciet specifieren van alle files in minimum 1 subfolder + eventueel de 'andere' root-files
-echo "sideEffects zetten in de package.json bestanden"
-cd ./common/utilities
-npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
-cd ../../common/storybook
-npm pkg set sideEffects='["./*/**", "./stories.helper.*"]' --json &> /dev/null
-cd ../../elements
-npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
-cd ../components
-npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
-cd ../form
-npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
-cd ../sections
-npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
-cd ../map
-npm pkg set sideEffects='["./*/**", "./vl-map.*"]' --json &> /dev/null
-cd ../qlik
-npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
-cd ../support/test-support
-npm pkg set sideEffects='["./*/**"]' --json &> /dev/null
-cd ../..
-
 # de feitelijke release actie is afhankelijk van de branch
 
 set +e
 if [[ ${release_branch} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG 'local-npm' repository"
-    cd ./common/utilities && npm publish 2> buffer-stderr.txt 1> buffer-stdout.txt
-    cd ../../common/storybook && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../../elements && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../components && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../form && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../sections && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../map  && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../qlik  && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../support/test-support && npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../..
+    npm run libs:pack:release -- $nextRelease_version
+    npm run libs:publish
 fi
 if [ $? -eq 0 ]
   then
@@ -190,34 +139,8 @@ set +e
 if [[ ${develop_branch} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository"
-    cd ./common/utilities
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish 2> buffer-stderr.txt 1> buffer-stdout.txt
-    cd ../../common/storybook
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../../elements
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../components
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../form
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../sections
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../map
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../qlik
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../support/test-support
-    npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/' &> /dev/null
-    npm publish 2>> buffer-stderr.txt 1>> buffer-stdout.txt
-    cd ../..
+    npm run libs:pack:develop -- $nextRelease_version
+    npm run libs:publish
 fi
 if [ $? -eq 0 ]
   then

@@ -1,0 +1,8 @@
+ci -> ci-bamboo
+script -> bash
+
+dus
+/resources
+  /ci-bamboo
+    /bash
+    /release

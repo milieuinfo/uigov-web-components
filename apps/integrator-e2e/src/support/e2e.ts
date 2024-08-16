@@ -1,2 +1,3 @@
 import 'cypress-axe';
-import './commands';
+
+import '../../../../resources/cypress-commands/commands';

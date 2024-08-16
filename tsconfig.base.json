@@ -1,19 +1,9 @@
 {
-    "compileOnSave": false,
     "compilerOptions": {
-        "rootDir": ".",
-        "declaration": false,
-        "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "useDefineForClassFields": false,
-        "importHelpers": true,
-        "target": "es2021",
-        "module": "esnext",
-        "lib": ["es2021", "dom", "dom.iterable"],
-        "skipLibCheck": true,
-        "skipDefaultLibCheck": true,
         "baseUrl": ".",
+        "outDir": "./build/tmp",
+        "rootDirs": ["./libs", "./apps", "./resources"],
+        "types": ["cypress", "cypress-axe"],
         "paths": {
             "@domg-wc/common-storybook": ["libs/common/storybook/src/index.ts"],
             "@domg-wc/common-utilities": ["libs/common/utilities/src/index.ts"],
@@ -29,7 +19,18 @@
             "@domg-wc/qlik": ["libs/qlik/src/index.ts"],
             "@domg-wc/sections": ["libs/sections/src/index.ts"],
             "@domg-wc/test-support": ["libs/support/test-support/src/index.ts"]
-        }
-    },
-    "exclude": ["node_modules", "tmp"]
+        },
+        "target": "es2021",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "inlineSources": true,
+        "declaration": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true
+    }
 }

@@ -21,9 +21,9 @@ if [ $? -eq 0 ]
 fi
 set -e
 
-echo "create dist folder with emtpy text file"
+echo "create dist folder with dummy text file - when everything goes well there is no dist folder which fails the build"
 mkdir dist
-touch dist/empty.txt
+touch dist/dummy.txt
 
-echo "run the e2e tests"
-npm run storybook:ci-test
+echo "serve storybook and run the e2e tests"
+npm run apps:storybook:serve-and-e2e
