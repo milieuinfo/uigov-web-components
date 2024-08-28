@@ -23,5 +23,13 @@ const styles: CSSResult = css`
     :host(.vl-functional-header--full-width) .vl-layout {
         max-width: 100%;
     }
+
+    .sub-header-hidden slot {
+        display: none;
+    }
+
+    .sub-header-hidden {
+        padding-bottom: 1.3rem;
+    }
 `;
 export default styles;

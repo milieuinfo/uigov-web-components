@@ -33,6 +33,7 @@ const Template = story(
         disableBackLink,
         fullWidth,
         hideBackLink,
+        hideSubHeader,
         link,
         marginBottom,
         subTitle,
@@ -53,6 +54,7 @@ const Template = story(
             ?data-vl-disable-back-link=${disableBackLink}
             ?data-vl-full-width=${fullWidth}
             ?data-vl-hide-back-link=${hideBackLink}
+            ?data-vl-hide-sub-header=${hideSubHeader}
             data-vl-link=${link}
             data-vl-margin-bottom=${marginBottom}
             data-vl-sub-title=${subTitle}
