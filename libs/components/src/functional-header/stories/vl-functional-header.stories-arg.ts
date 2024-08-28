@@ -17,6 +17,7 @@ export const functionalHeaderArgs = {
     disableBackLink: false,
     fullWidth: false,
     hideBackLink: false,
+    hideSubHeader: false,
     link: '',
     marginBottom: 'large',
     subTitle: '',
@@ -77,6 +78,15 @@ export const functionalHeaderArgTypes: ArgTypes<typeof functionalHeaderArgs> = {
             type: { summary: TYPES.BOOLEAN },
             category: CATEGORIES.ATTRIBUTES,
             defaultValue: { summary: functionalHeaderArgs.hideBackLink },
+        },
+    },
+    hideSubHeader: {
+        name: 'data-vl-hide-sub-header',
+        description: 'Verbergt de sub header.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: functionalHeaderArgs.hideSubHeader },
         },
     },
     link: {

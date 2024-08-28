@@ -30,6 +30,7 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
             'back-link',
             'disable-back-link',
             'hide-back-link',
+            'hide-sub-header',
             'link',
             'margin-bottom',
             'sub-title',
@@ -204,6 +205,14 @@ export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) 
     _hideBackLinkChangedCallback(oldValue: string, newValue: string) {
         if (newValue != undefined) {
             this._backLinkContainer?.remove();
+        }
+    }
+
+    _hideSubHeaderChangedCallback(oldValue: string, newValue: string) {
+        if (newValue != undefined) {
+            this._subHeaderElement?.classList.add('sub-header-hidden');
+        } else {
+            this._subHeaderElement?.classList.remove('sub-header-hidden');
         }
     }
 
