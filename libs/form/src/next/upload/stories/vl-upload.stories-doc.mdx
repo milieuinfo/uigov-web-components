@@ -63,6 +63,21 @@ Deze fouten worden getoond in de preview van het toegevoegde bestand en tellen m
 Om deze functionaliteit te bekomen wordt er een `dropzoneValidator` gebruikt die overeenkomt met de `customError` [ValidityState](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState) key.
 Via de `customError` ValidityState key kan je een error message linken aan de `dropzoneValidator`.
 
+### Aanbevelingen
+
+Breid de `sub-title`-attribuut uit met een korte uitleg over maximaal aantal bestanden, maximale bestandsgrootte en de toegestane bestandstypes indien relevant.
+
+De reden hiervoor is dat het belangrijk is om de gebruiker te informeren over de beperkingen van het upload-veld.
+
+<details>
+    <summary>voorbeeld aangepaste sub-titel</summary>
+    ```ts
+    const { maxFiles, subTitle: subtitleDefault, maxSize } = uploadDefaults;
+    const acceptedFilesMessage = acceptedFiles ? `\n De toegestane bestandstypes zijn: ${acceptedFiles}\n` : '';
+    subtitleComposed = `${subtitleDefault} \nUpload ${maxFiles} bestand(en) van maximaal ${maxSize} MB${acceptedFilesMessage}`;
+    ```
+</details>
+
 ## Toevoegen van bestanden
 
 Naast het slepen van bestanden, kan de gebruiker ook één of meerdere bestanden uploaden door op de link in het upload-veld te klikken en de bestanden
