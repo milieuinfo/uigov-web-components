@@ -101,6 +101,7 @@ export class VlFormDemoComponent extends LitElement {
                         <vl-input-field-next
                             id="naam"
                             name="naam"
+                            autocomplete="given-name"
                             block
                             required
                             pattern="^[a-zA-Z ]*$"
