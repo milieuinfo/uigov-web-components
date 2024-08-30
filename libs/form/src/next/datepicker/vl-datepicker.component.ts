@@ -250,6 +250,7 @@ export class VlDatepickerComponent extends FormControl {
                               class=${classMap(inputClasses)}
                               type="text"
                               aria-label=${this.label || nothing}
+                              aria-invalid=${this.isInvalid || nothing}
                               ?required=${this.required}
                               ?disabled=${this.disabled}
                               ?error=${this.error}
@@ -340,6 +341,31 @@ export class VlDatepickerComponent extends FormControl {
         };
     }
 
+    private handleOpenChange = (isOpen: boolean) => {
+        this.isOpen = isOpen;
+        if (isOpen) {
+            //
+            const calendar = this.shadowRoot?.querySelector('.flatpickr-calendar');
+            calendar?.querySelectorAll('.flatpickr-day').forEach((day) => {
+                // extend aria-label with the day of the week
+                const dateString = day.getAttribute('aria-label');
+                if (dateString) {
+                    const dateObj = new Date(dateString);
+                    const dayOfWeek = dateObj.toLocaleDateString('nl-NL', { weekday: 'long' });
+                    day.setAttribute('aria-label', `${dateString}, ${dayOfWeek}`);
+                }
+            });
+            calendar?.querySelectorAll('.flatpickr-prev-month, .flatpickr-next-month')?.forEach((button) => {
+                button?.setAttribute(
+                    'aria-label',
+                    button.classList.contains('flatpickr-prev-month') ? 'Vorige maand' : 'Volgende maand'
+                );
+                button?.querySelector('svg')?.setAttribute('aria-hidden', 'true');
+            });
+            calendar?.querySelector('.flatpickr-weekdays')?.setAttribute('aria-hidden', 'true');
+        }
+    };
+
     private getOptions(): Options {
         const datepickerButton = this.shadowRoot?.querySelector('button');
         const datepicker = this.shadowRoot?.querySelector('#datepicker-wrapper') as HTMLInputElement;
@@ -357,8 +383,8 @@ export class VlDatepickerComponent extends FormControl {
             noCalendar: this.type === 'time',
             time_24hr: !this.amPm,
             mode: this.type !== 'range' ? 'single' : 'range',
-            onOpen: () => (this.isOpen = true),
-            onClose: () => (this.isOpen = false),
+            onOpen: () => this.handleOpenChange(true),
+            onClose: () => this.handleOpenChange(false),
             disableMobile: this.disableMobileNativeInput,
         };
 

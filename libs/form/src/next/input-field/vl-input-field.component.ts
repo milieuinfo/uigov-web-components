@@ -95,6 +95,7 @@ export class VlInputFieldComponent extends FormControl {
                 class=${classMap(classes)}
                 type=${this.type}
                 aria-label=${this.label || nothing}
+                aria-invalid=${this.isInvalid || nothing}
                 ?required=${this.required}
                 ?disabled=${this.disabled}
                 ?error=${this.error}

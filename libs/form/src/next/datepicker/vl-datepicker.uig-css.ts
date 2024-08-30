@@ -37,5 +37,9 @@ const styles: CSSResult = css`
     input[type='date'] {
         border-radius: 0.3rem !important;
     }
+
+    .flatpickr-calendar .today {
+        border: 1px #bbb solid;
+    }
 `;
 export default styles;
