@@ -91,6 +91,7 @@ export class VlSelectComponent extends FormControl {
                     name=${this.name || nothing}
                     class=${classMap(selectClasses)}
                     aria-label=${this.label || nothing}
+                    aria-invalid=${this.isInvalid || nothing}
                     ?required=${this.required}
                     ?disabled=${this.disabled}
                     ?aria-disabled=${this.disabled}
