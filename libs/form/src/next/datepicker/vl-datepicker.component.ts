@@ -360,6 +360,7 @@ export class VlDatepickerComponent extends FormControl {
                     const dateObj = new Date(dateString);
                     const dayOfWeek = dateObj.toLocaleDateString('nl-NL', { weekday: 'long' });
                     day.setAttribute('aria-label', `${dateString}, ${dayOfWeek}`);
+                    day.setAttribute('role', `button`);
                 }
             });
             calendar?.querySelectorAll('.flatpickr-prev-month, .flatpickr-next-month')?.forEach((button) => {
@@ -367,6 +368,7 @@ export class VlDatepickerComponent extends FormControl {
                     'aria-label',
                     button.classList.contains('flatpickr-prev-month') ? 'Vorige maand' : 'Volgende maand'
                 );
+                button?.setAttribute('role', 'button');
                 button?.querySelector('svg')?.setAttribute('aria-hidden', 'true');
             });
             calendar?.querySelector('.flatpickr-weekdays')?.setAttribute('aria-hidden', 'true');
