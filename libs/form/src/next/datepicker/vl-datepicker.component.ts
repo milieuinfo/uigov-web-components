@@ -105,7 +105,14 @@ export class VlDatepickerComponent extends FormControl {
         super.connectedCallback();
 
         if (Dutch?.nl) {
-            Dutch.nl.rangeSeparator = dateRangeSeparator;
+            Dutch.nl = {
+                ...Dutch.nl,
+                rangeSeparator: dateRangeSeparator,
+                yearAriaLabel: 'Jaar',
+                monthAriaLabel: 'Maand',
+                hourAriaLabel: 'Uur',
+                minuteAriaLabel: 'Minuut',
+            };
             flatpickr.l10ns.default.rangeSeparator = dateRangeSeparator;
         }
 
