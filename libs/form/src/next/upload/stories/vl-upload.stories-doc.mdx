@@ -67,7 +67,16 @@ Via de `customError` ValidityState key kan je een error message linken aan de `d
 
 Breid de `sub-title`-attribuut uit met een korte uitleg over maximaal aantal bestanden, maximale bestandsgrootte en de toegestane bestandstypes indien relevant.
 
-Voor een maximale bestandsgrootte van 2MB en maximaal 5 bestanden, kan je bv. volgende tekst gebruiken: "Upload maximaal 5 bestanden van maximaal 2MB per bestand".
+De reden hiervoor is dat het belangrijk is om de gebruiker te informeren over de beperkingen van het upload-veld.
+
+<details>
+    <summary>voorbeeld aangepaste sub-titel</summary>
+    ```ts
+    const { maxFiles, subTitle: subtitleDefault, maxSize } = uploadDefaults;
+    const acceptedFilesMessage = acceptedFiles ? `\n De toegestane bestandstypes zijn: ${acceptedFiles}\n` : '';
+    subtitleComposed = `${subtitleDefault} \nUpload ${maxFiles} bestand(en) van maximaal ${maxSize} MB${acceptedFilesMessage}`;
+    ```
+</details>
 
 ## Toevoegen van bestanden
 
