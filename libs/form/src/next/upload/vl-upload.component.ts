@@ -94,8 +94,8 @@ export class VlUploadComponent extends FormControl {
             const input = this.getInput();
 
             if (this.disabled) {
-                this.dropzoneInstance?.hiddenFileInput?.setAttribute('disabled', 'disabled');
-                this.getUploadButton()?.setAttribute('disabled', 'disabled');
+                this.dropzoneInstance?.hiddenFileInput?.setAttribute('disabled', 'true');
+                this.getUploadButton()?.setAttribute('disabled', 'true');
                 this.dropzoneInstance?.disable();
             } else {
                 this.dropzoneInstance?.hiddenFileInput?.removeAttribute('disabled');
@@ -113,17 +113,20 @@ export class VlUploadComponent extends FormControl {
             const input = this.getInput();
 
             this.updateInputForAttribute('readonly');
-            // add files on click aan of uit zetten
             if (!this.disabled) {
-                this.readonly ? input?.setAttribute('disabled', '') : input?.removeAttribute('disabled');
-            }
-            // drag & drop aan of uit zetten
-            if (this.dropzoneInstance) {
                 const dropzoneInstance = this.dropzoneInstance as DropzoneInstance & {
                     setupEventListeners: () => void;
                     removeEventListeners: () => void;
                 };
-                this.readonly ? dropzoneInstance.removeEventListeners() : dropzoneInstance.setupEventListeners();
+                if (this.readonly) {
+                    dropzoneInstance?.disable();
+                    dropzoneInstance.removeEventListeners();
+                    input?.setAttribute('disabled', '');
+                } else {
+                    dropzoneInstance?.enable();
+                    dropzoneInstance.setupEventListeners();
+                    input?.removeAttribute('disabled');
+                }
             }
         }
 
