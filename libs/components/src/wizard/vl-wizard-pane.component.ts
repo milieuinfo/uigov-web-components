@@ -1,5 +1,5 @@
 import { BaseLitElement } from '@domg-wc/common-utilities';
-import { html, nothing, PropertyDeclarations } from 'lit';
+import { html, LitElement, nothing, PropertyDeclarations } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 @customElement('vl-wizard-pane')
@@ -16,6 +16,12 @@ export class VlWizardPane extends BaseLitElement {
 
     updated(changed: any) {
         [...changed].forEach(([prop]) => prop === 'name' && this.parentElement?.onslotchange?.(prop));
+
+        if (changed.has('name')) {
+            if (this.parentElement && this.parentElement instanceof LitElement) {
+                this.parentElement?.requestUpdate();
+            }
+        }
     }
 
     render() {
