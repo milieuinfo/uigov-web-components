@@ -39,6 +39,26 @@ describe('component vl-wizard-pane - default', () => {
 
         cy.get('vl-wizard-pane').should('have.attr', 'data-vl-name', 'TEST-NAME');
     });
+
+    it('it should dynamically update the name', () => {
+        mountDefault({ name: 'TEST-NAME' });
+
+        cy.get('vl-wizard').find('vl-wizard-pane').should('have.attr', 'data-vl-name', 'TEST-NAME');
+        cy.get('vl-wizard')
+            .shadow()
+            .find('vl-progress-bar')
+            .shadow()
+            .find('.vl-progress-bar__bullet__text')
+            .should('have.text', 'TEST-NAME');
+
+        cy.get('vl-wizard').find('vl-wizard-pane').invoke('attr', 'data-vl-name', 'NEW-NAME');
+        cy.get('vl-wizard')
+            .shadow()
+            .find('vl-progress-bar')
+            .shadow()
+            .find('.vl-progress-bar__bullet__text')
+            .should('have.text', 'NEW-NAME');
+    });
 });
 
 describe('component vl-wizard-pane - isActive state', () => {
@@ -67,5 +87,36 @@ describe('component vl-wizard-pane - isActive state', () => {
         `);
 
         cy.get('vl-wizard-pane[data-vl-name="first-pane"]').find('p').should('not.be.visible');
+    });
+
+    it('it should dynamically update the name', () => {
+        cy.mount(html`
+            <vl-wizard data-vl-active-step="2">
+                <vl-wizard-pane data-vl-name="first-pane">
+                    <p>Wizard Pane Content (1)</p>
+                </vl-wizard-pane>
+                <vl-wizard-pane data-vl-name="second-pane">
+                    <p>Another Wizard Pane Content (2)</p>
+                </vl-wizard-pane>
+            </vl-wizard>
+        `);
+
+        cy.get('vl-wizard').find('vl-wizard-pane').should('have.attr', 'data-vl-name', 'first-pane');
+        cy.get('vl-wizard')
+            .shadow()
+            .find('vl-progress-bar')
+            .shadow()
+            .find('.vl-progress-bar__bullet__text')
+            .first()
+            .should('have.text', 'first-pane');
+
+        cy.get('vl-wizard').find('vl-wizard-pane').invoke('attr', 'data-vl-name', 'NEW-NAME');
+        cy.get('vl-wizard')
+            .shadow()
+            .find('vl-progress-bar')
+            .shadow()
+            .find('.vl-progress-bar__bullet__text')
+            .first()
+            .should('have.text', 'NEW-NAME');
     });
 });
