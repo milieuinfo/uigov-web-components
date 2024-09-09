@@ -292,7 +292,7 @@ export class VlSelectRichComponent extends FormControl {
                                     ${data.disabled ? 'aria-disabled="true"' : 'data-deletable'}
                                 >
                                     <span>${data.label}</span>
-                                    <button class="vl-pill__close ${
+                                    <button type="button" class="vl-pill__close ${
                                         !this.multiple ? 'vl-vi vl-vi-close' : ''
                                     }" data-button aria-label="verwijder">
                                         ${

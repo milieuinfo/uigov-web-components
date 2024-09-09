@@ -118,6 +118,7 @@ export class VlSelectComponent extends FormControl {
     renderClearButton(): TemplateResult {
         return html`
             <button
+                type="button"
                 class="vl-select__button"
                 aria-label=${`Verwijder ${this.label} keuze ${this.getSelectedOption()?.label || this.value || ''}`}
                 @click=${this.clearValue}
