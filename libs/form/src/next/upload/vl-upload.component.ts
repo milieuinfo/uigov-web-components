@@ -230,7 +230,7 @@ export class VlUploadComponent extends FormControl {
                     ? html`<div class="vl-upload__files__container"></div>`
                     : html`<ul class="vl-upload__files__container"></ul>`}
                 <div class="vl-upload__files__input__container"></div>
-                <button class="vl-upload__files__close vl-link vl-link--icon">
+                <button class="vl-upload__files__close vl-link vl-link--icon" type="button">
                     <span class="vl-link__icon vl-vi vl-vi-trash" aria-hidden="true"></span>
                     Verwijder alle bestanden
                 </button>
