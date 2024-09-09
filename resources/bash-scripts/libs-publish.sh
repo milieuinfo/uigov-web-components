@@ -6,8 +6,8 @@ set -e
 # to the folder to publish
 cd ../../dist/dist/libs
 
-if [[ "$1" ]]; then
-    RELEASE_VERSION=$1
+if [[ ${1} ]]; then
+    RELEASE_VERSION=${1}
     echo "RELEASE_VERSION=$RELEASE_VERSION"
 else
     echo "[FOUT] - geen argument meegegeven dat de RELEASE_VERSION specifieert"

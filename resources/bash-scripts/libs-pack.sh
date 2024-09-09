@@ -8,8 +8,8 @@ cd ../../dist/dist/libs
 
 # in de package.json en *.web-types.json bestanden - daar waar nodig - de juiste versie zetten
 TO_REPLACE=DOMG-WC-VERSION
-if [[ "$2" ]]; then
-    RELEASE_VERSION=$2
+if [ ${2} ]; then
+    RELEASE_VERSION=${2}
     echo "RELEASE_VERSION=$RELEASE_VERSION"
 else
     echo "[FOUT] - geen 2e argument meegegeven dat de RELEASE_VERSION specifieert"
