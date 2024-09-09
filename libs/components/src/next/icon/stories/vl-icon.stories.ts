@@ -73,7 +73,7 @@ IconClickable.args = {
 export const IconBeforeText = story(
     iconArgs,
     ({ icon, small, large, light, rightMargin, leftMargin, clickable }) => html`
-        <div class="flex-center">
+        <div class="story--flex-center">
             <vl-icon-next
                 icon=${icon}
                 ?small=${small}
@@ -97,7 +97,7 @@ IconBeforeText.args = {
 export const IconAfterText = story(
     iconArgs,
     ({ icon, small, large, light, rightMargin, leftMargin, clickable }) => html`
-        <div class="flex-center">
+        <div class="story--flex-center">
             <span>Dit is een tekst</span>
             <vl-icon-next
                 icon=${icon}

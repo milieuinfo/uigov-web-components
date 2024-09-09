@@ -5,14 +5,15 @@ import { CSSResult, css } from 'lit';
 const styles: CSSResult = css`
     :root {
         --vl-white: #ffffff;
+        --vl-mine-shaft: #333332;
 
         --vl-background-color: var(--vl-white);
         --vl-map-background-color: #ffffff;
         --vl-background-alt-color: #f7f9fc;
         --vl-accent-color: #ffe615;
 
-        --vl-text-color: #333332;
-        --vl-text-alt-color: #687483;
+        --vl-text-color: #333332; // DV: $vl-text-color: $vl-mine-shaft !default;
+        --vl-text-alt-color: #687483; // DV: $vl-alt-text-color
         --vl-light-text-color: #8695a8;
 
         --vl-border-color: #cbd2da;
