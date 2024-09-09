@@ -119,6 +119,12 @@ export abstract class FormControl extends FormControlMixin(BaseLitElement) {
         // Als er geen error message is voor de huidige error state, zoek dan de algemene error message zonder state attribuut
         if (!errorMessage) {
             errorMessage = this.form?.querySelector(`${ERROR_MESSAGE_CUSTOM_TAG}[for="${this.id}"]:not([state])`);
+        } else {
+            if (errorMessage?.textContent) {
+                this.validationTarget?.setAttribute('aria-description', errorMessage?.textContent || '');
+            } else {
+                this.validationTarget?.removeAttribute('aria-description');
+            }
         }
 
         errorMessage?.setAttribute('show', '');
