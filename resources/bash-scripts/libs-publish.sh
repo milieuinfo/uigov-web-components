@@ -6,7 +6,12 @@ set -e
 # to the folder to publish
 cd ../../dist/dist/libs
 
-RELEASE_VERSION=0.0.1
+if [ "$1" ]; then
+    RELEASE_VERSION=$1
+else
+echo "[FOUT] - geen argument meegegeven dat de RELEASE_VERSION specifieert"
+    exit 1;
+fi
 
 cd ./common-utilities
 npm publish domg-wc-common-utilities-${RELEASE_VERSION}.tgz
