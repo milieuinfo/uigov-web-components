@@ -154,9 +154,6 @@ if [[ $? -eq 0 ]]
 fi
 set -e
 
-echo "current path"
-pwd
-
 echo "update domg-wc met versie nummer en maak er een tgz van"
 # het versie nummer toevoegen aan de 'fat-js'
 cd ./dist/dist/fat-lib
@@ -179,9 +176,6 @@ if [[ ${RELEASE_BRANCH} == true ]];
 fi
 
 cd ..
-
-echo "path"
-pwd
 
 # tgz van Storybook maken
 echo "tgz''en van Storybook"
