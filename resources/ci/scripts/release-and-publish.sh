@@ -180,6 +180,9 @@ fi
 
 cd ..
 
+echo "path"
+pwd
+
 # tgz van Storybook maken
 echo "tgz''en van Storybook"
 set +e
