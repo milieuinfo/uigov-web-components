@@ -27,6 +27,7 @@ const config = {
             },
         ],
     },
+    devtool: false,
     resolve: {
         extensions: ['.ts', '.js'],
         plugins: [

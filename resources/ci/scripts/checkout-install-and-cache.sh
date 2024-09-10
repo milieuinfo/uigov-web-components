@@ -9,7 +9,7 @@ cd uigov-web-components
 echo "npm ci"
 set +e
 npm ci --maxsockets 5 2> buffer-stderr.txt 1> buffer-stdout.txt
-if [ $? -eq 0 ]
+if [[ $? -eq 0 ]]
   then
     echo "npm ci - success"
   else

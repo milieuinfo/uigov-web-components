@@ -6,7 +6,7 @@
 # to the root folder
 cd ../..
 
-# run this script with: . ./jest-run.sh
+# run this script with: bash ./jest-run.sh
 
 cd ./libs/common/storybook
 jest

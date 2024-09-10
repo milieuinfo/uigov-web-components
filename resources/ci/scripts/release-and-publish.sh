@@ -37,7 +37,7 @@ if [[ ${develop_branch} == false ]] && [[ ${release_branch} == false ]];
 fi
 
 # op Bamboo bevat secret_github_token het GitHub PAT met de juiste rechten
-if [ -z ${secret_github_token+x} ];
+if [[ -z ${secret_github_token+x} ]];
   then
     echo "secret_github_token is NIET gezet"
   else
@@ -46,7 +46,7 @@ if [ -z ${secret_github_token+x} ];
 fi
 
 # het GITHUB_TOKEN is nodig, ofwel rechtstreeks gezet ofwel via bamboo.secret_github_token
-if [ -z ${GITHUB_TOKEN+x} ];
+if [[ -z ${GITHUB_TOKEN+x} ]];
   then
     echo "GITHUB_TOKEN is NIET gezet, NOK - stop"
     exit 1
@@ -83,7 +83,7 @@ git config user.email
 echo "npm install - no 'ci' to avoid the clean"
 set +e
 npm install --save-exact 2> buffer-stderr.txt 1> buffer-stdout.txt
-if [ $? -eq 0 ]
+if [[ $? -eq 0 ]]
   then
     echo "npm install - success"
   else
@@ -123,7 +123,7 @@ if [[ ${release_branch} == true ]];
     npm run libs:pack:release -- $nextRelease_version
     npm run libs:publish -- $nextRelease_version
 fi
-if [ $? -eq 0 ]
+if [[ $? -eq 0 ]]
   then
     echo "publiceren van de npm packages naar de DOMG 'local-npm' repository - success"
   else
@@ -142,7 +142,7 @@ if [[ ${develop_branch} == true ]];
     npm run libs:pack:develop -- $nextRelease_version
     npm run libs:publish -- $nextRelease_version
 fi
-if [ $? -eq 0 ]
+if [[ $? -eq 0 ]]
   then
     echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository - success"
   else
@@ -158,7 +158,7 @@ cd ..
 
 echo "update domg-wc met versie nummer en maak er een tgz van"
 # het versie nummer toevoegen aan de 'fat-js'
-cd ./fat-lib
+cd ./dist/fat-lib
 mv domg-wc.js domg-wc-${nextRelease_version}.js
 mv domg-wc.js.map domg-wc-${nextRelease_version}.js.map
 mv domg-wc.min.js domg-wc-${nextRelease_version}.min.js
@@ -183,7 +183,7 @@ cd ..
 echo "build Storybook"
 set +e
 npm run storybook:build &> /dev/null
-if [ $? -eq 0 ]
+if [[ $? -eq 0 ]]
 then
   echo "Storybook succesvol gebouwd"
 else
@@ -198,7 +198,7 @@ echo "tgz''en van Storybook"
 set +e
 cd ./dist/apps/storybook
 tar cfz ../storybook-${nextRelease_version}.tgz .
-if [ $? -eq 0 ]
+if [[ $? -eq 0 ]]
   then
     echo "Storybook succesvol in een tgz gestoken"
   else

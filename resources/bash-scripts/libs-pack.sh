@@ -8,8 +8,8 @@ cd ../../dist/dist/libs
 
 # in de package.json en *.web-types.json bestanden - daar waar nodig - de juiste versie zetten
 TO_REPLACE=DOMG-WC-VERSION
-if [ ${2} ]; then
-    RELEASE_VERSION=${2}
+if [[ $2 ]]; then
+    RELEASE_VERSION=$2
     echo "RELEASE_VERSION=$RELEASE_VERSION"
 else
     echo "[FOUT] - geen 2e argument meegegeven dat de RELEASE_VERSION specifieert"
@@ -33,7 +33,7 @@ echo "RELEASE_VERSION gezet in de package.json en *.web-types.json bestanden"
 cd ./common-utilities
 npm pkg set sideEffects='["./*/**"]' --json >/dev/null
 echo '[done] - set sideEffects - common-utilities'
-if [ "$1" == "develop" ]; then
+if [[ $1 == "develop" ]]; then
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     echo '[done] - set publishConfig to snapshot-npm - common-utilities'
 fi
@@ -43,7 +43,7 @@ echo '[done] - pack - common-utilities'
 cd ../common-storybook
 npm pkg set sideEffects='["./*/**", "./stories.helper.*"]' --json >/dev/null
 echo '[done] - set sideEffects - common-storybook'
-if [ "$1" == "develop" ]; then
+if [[ $1 == "develop" ]]; then
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     echo '[done] - set publishConfig to snapshot-npm - common-storybook'
 fi
@@ -53,7 +53,7 @@ echo '[done] - pack - common-storybook'
 cd ../elements
 npm pkg set sideEffects='["./*/**"]' --json >/dev/null
 echo '[done] - set sideEffects - elements'
-if [ "$1" == "develop" ]; then
+if [[ $1 == "develop" ]]; then
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     echo '[done] - set publishConfig to snapshot-npm - elements'
 fi
@@ -63,7 +63,7 @@ echo '[done] - pack - elements'
 cd ../components
 npm pkg set sideEffects='["./*/**"]' --json >/dev/null
 echo '[done] - set sideEffects - components'
-if [ "$1" == "develop" ]; then
+if [[ $1 == "develop" ]]; then
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     echo '[done] - set publishConfig to snapshot-npm - components'
 fi
@@ -73,7 +73,7 @@ echo '[done] - pack - components'
 cd ../form
 npm pkg set sideEffects='["./*/**"]' --json >/dev/null
 echo '[done] - set sideEffects - form'
-if [ "$1" == "develop" ]; then
+if [[ $1 == "develop" ]]; then
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     echo '[done] - set publishConfig to snapshot-npm - form'
 fi
@@ -83,7 +83,7 @@ echo '[done] - pack - form'
 cd ../sections
 npm pkg set sideEffects='["./*/**"]' --json >/dev/null
 echo '[done] - set sideEffects - sections'
-if [ "$1" == "develop" ]; then
+if [[ $1 == "develop" ]]; then
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     echo '[done] - set publishConfig to snapshot-npm - sections'
 fi
@@ -93,7 +93,7 @@ echo '[done] - pack - sections'
 cd ../map
 npm pkg set sideEffects='["./*/**", "./vl-map.*"]' --json >/dev/null
 echo '[done] - set sideEffects - map'
-if [ "$1" == "develop" ]; then
+if [[ $1 == "develop" ]]; then
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     echo '[done] - set publishConfig to snapshot-npm - map'
 fi
@@ -103,7 +103,7 @@ echo '[done] - pack - map'
 cd ../qlik
 npm pkg set sideEffects='["./*/**"]' --json >/dev/null
 echo '[done] - set sideEffects - qlik'
-if [ "$1" == "develop" ]; then
+if [[ $1 == "develop" ]]; then
     npm pkg set publishConfig.registry='https://repo.omgeving.vlaanderen.be/artifactory/api/npm/snapshot-npm/'
     echo '[done] - set publishConfig to snapshot-npm - qlik'
 fi
