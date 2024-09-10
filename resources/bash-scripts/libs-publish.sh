@@ -45,6 +45,3 @@ echo "[done] - publish - @domg-wc/map-${RELEASE_VERSION}"
 cd ../qlik
 npm publish domg-wc-qlik-${RELEASE_VERSION}.tgz
 echo "[done] - publish - @domg-wc/qlik-${RELEASE_VERSION}"
-
-# back to the initial folder
-cd ../resources/bash-scripts

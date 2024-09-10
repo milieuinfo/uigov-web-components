@@ -110,6 +110,3 @@ fi
 npm pack &> /dev/null
 echo '[done] - pack - qlik'
 cd ..
-
-# back to the initial folder
-cd ../resources/bash-scripts
