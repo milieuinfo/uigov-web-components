@@ -7,30 +7,30 @@ echo 'RUNNING SCRIPT: release-and-publish.sh'
 cd uigov-web-components
 
 # get branch name
-gitRefName=$(git rev-parse --abbrev-ref HEAD)
-echo using $gitRefName as gitRefName
+GIT_REF_NAME=$(git rev-parse --abbrev-ref HEAD)
+echo using $GIT_REF_NAME as GIT_REF_NAME
 
 # determine the branch type
-develop_branch=false
-release_branch=false
+DEVELOP_BRANCH=false
+RELEASE_BRANCH=false
 
-if [[ ${gitRefName} == *"develop"* ]] || [[ ${gitRefName} == *"bugfix"* ]];
+if [[ ${GIT_REF_NAME} == *"develop"* ]] || [[ ${GIT_REF_NAME} == *"bugfix"* ]];
   then
     echo "--------------------------------------"
     echo "develop branch detected - beta release"
     echo "--------------------------------------"
-    develop_branch=true
+    DEVELOP_BRANCH=true
 fi
 
-if [[ ${gitRefName} == *"release"* ]];
+if [[ ${GIT_REF_NAME} == *"release"* ]];
   then
     echo "---------------------------------"
     echo "release branch detected - release"
     echo "---------------------------------"
-    release_branch=true
+    RELEASE_BRANCH=true
 fi
 
-if [[ ${develop_branch} == false ]] && [[ ${release_branch} == false ]];
+if [[ ${DEVELOP_BRANCH} == false ]] && [[ ${RELEASE_BRANCH} == false ]];
   then
     echo "no develop or release branch detected - stopping build"
     exit 0
@@ -61,9 +61,9 @@ echo 'git remote add origin https://${secret_github_token}@github.com/milieuinfo
 git remote add origin https://${secret_github_token}@github.com/milieuinfo/uigov-web-components.git &> /dev/null
 echo 'git fetch --prune origin'
 git fetch --prune origin &> /dev/null
-echo 'git pull origin ${gitRefName}'
+echo 'git pull origin ${GIT_REF_NAME}'
 git config pull.ff only
-git pull origin ${gitRefName}
+git pull origin ${GIT_REF_NAME}
 # the git fetch is necessary -> otherwise semantic-release is unaware of the previous version
 # this gives 'does not point to a valid object!' errors - they can be ignored
 echo 'delete all local git tags'
@@ -95,13 +95,13 @@ if [[ $? -eq 0 ]]
 fi
 set -e
 
-if [[ ${release_branch} == true ]];
+if [[ ${RELEASE_BRANCH} == true ]];
   then
     echo "semantic-release - '.releaserc-release' script wordt gebruikt"
     cp ./resources/ci/release/.releaserc-release .releaserc
 fi
 
-if [[ ${develop_branch} == true ]];
+if [[ ${DEVELOP_BRANCH} == true ]];
   then
     echo "semantic-release - '.releaserc-develop' script wordt gebruikt"
     cp ./resources/ci/release/.releaserc-develop .releaserc
@@ -111,17 +111,17 @@ echo "semantic-release - uitvoering"
 npx semantic-release --no-ci
 
 echo "variabelen bepalen en zetten"
-nextRelease_version=$(npm pkg get version | sed 's/"//g')
-echo using $nextRelease_version as nextRelease_version
+NEXT_RELEASE_VERSION=$(npm pkg get version | sed 's/"//g')
+echo using ${NEXT_RELEASE_VERSION} as NEXT_RELEASE_VERSION
 
 # de feitelijke release actie is afhankelijk van de branch
 
 set +e
-if [[ ${release_branch} == true ]];
+if [[ ${RELEASE_BRANCH} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG 'local-npm' repository"
-    npm run libs:pack:release -- $nextRelease_version
-    npm run libs:publish -- $nextRelease_version
+    npm run libs:pack:release -- ${NEXT_RELEASE_VERSION}
+    npm run libs:publish -- ${NEXT_RELEASE_VERSION}
 fi
 if [[ $? -eq 0 ]]
   then
@@ -136,11 +136,11 @@ fi
 set -e
 
 set +e
-if [[ ${develop_branch} == true ]];
+if [[ ${DEVELOP_BRANCH} == true ]];
   then
     echo "publiceren van de npm packages naar de DOMG 'snapshot-npm' repository"
-    npm run libs:pack:develop -- $nextRelease_version
-    npm run libs:publish -- $nextRelease_version
+    npm run libs:pack:develop -- ${NEXT_RELEASE_VERSION}
+    npm run libs:publish -- ${NEXT_RELEASE_VERSION}
 fi
 if [[ $? -eq 0 ]]
   then
@@ -154,27 +154,28 @@ if [[ $? -eq 0 ]]
 fi
 set -e
 
-cd ..
+echo "current path"
+pwd
 
 echo "update domg-wc met versie nummer en maak er een tgz van"
 # het versie nummer toevoegen aan de 'fat-js'
-cd ./dist/fat-lib
-mv domg-wc.js domg-wc-${nextRelease_version}.js
-mv domg-wc.js.map domg-wc-${nextRelease_version}.js.map
-mv domg-wc.min.js domg-wc-${nextRelease_version}.min.js
+cd ./dist/dist/fat-lib
+mv domg-wc.js domg-wc-${NEXT_RELEASE_VERSION}.js
+mv domg-wc.js.map domg-wc-${NEXT_RELEASE_VERSION}.js.map
+mv domg-wc.min.js domg-wc-${NEXT_RELEASE_VERSION}.min.js
 # een tar maken
-tar cfz ../domg-wc-${nextRelease_version}.tgz .
+tar cfz ../domg-wc-${NEXT_RELEASE_VERSION}.tgz .
 cd ..
 
-if [[ ${release_branch} == true ]];
+if [[ ${RELEASE_BRANCH} == true ]];
   then
     # curl is niet meer geïnstalleerd in de cypress docker-image
     apt-get -y update; apt-get -y install curl
     # de tar uploaden naar artifactory (om het op de cdn te krijgen) - via curl omdat er geen package.json is
-    echo "upload-file 'domg-wc-${nextRelease_version}.tgz' naar artifactory"
+    echo "upload-file 'domg-wc-${NEXT_RELEASE_VERSION}.tgz' naar artifactory"
     curl --user "${acd_repository_debian_login}:${acd_repository_bamboo_password}" \
-     --upload-file domg-wc-${nextRelease_version}.tgz \
-     -v -X PUT "${acd_repository_url}/local-generic/domg/domg-wc-${nextRelease_version}.tgz"
+     --upload-file domg-wc-${NEXT_RELEASE_VERSION}.tgz \
+     -v -X PUT "${acd_repository_url}/local-generic/domg/domg-wc-${NEXT_RELEASE_VERSION}.tgz"
 fi
 
 cd ..
@@ -197,7 +198,7 @@ set -e
 echo "tgz''en van Storybook"
 set +e
 cd ./dist/apps/storybook
-tar cfz ../storybook-${nextRelease_version}.tgz .
+tar cfz ../storybook-${NEXT_RELEASE_VERSION}.tgz .
 if [[ $? -eq 0 ]]
   then
     echo "Storybook succesvol in een tgz gestoken"
