@@ -186,7 +186,7 @@ pwd
 # tgz van Storybook maken
 echo "tgz''en van Storybook"
 set +e
-cd ./apps/storybook
+cd ./dist/apps/storybook
 tar cfz ../storybook-${NEXT_RELEASE_VERSION}.tgz .
 if [[ $? -eq 0 ]]
   then
