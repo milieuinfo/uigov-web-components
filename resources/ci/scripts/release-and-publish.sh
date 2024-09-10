@@ -180,24 +180,10 @@ fi
 
 cd ..
 
-# builden van Storybook
-echo "build Storybook"
-set +e
-npm run storybook:build &> /dev/null
-if [[ $? -eq 0 ]]
-then
-  echo "Storybook succesvol gebouwd"
-else
-  echo "fout bij het bouwen van Storybook" >&2
-  set -e
-  exit 1
-fi
-set -e
-
 # tgz van Storybook maken
 echo "tgz''en van Storybook"
 set +e
-cd ./dist/apps/storybook
+cd ./apps/storybook
 tar cfz ../storybook-${NEXT_RELEASE_VERSION}.tgz .
 if [[ $? -eq 0 ]]
   then
