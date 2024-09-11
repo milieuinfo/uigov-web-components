@@ -55,6 +55,7 @@ import { wizardPaneArgTypes } from '../../../libs/components/src/wizard/stories/
 import { wizardArgTypes } from '../../../libs/components/src/wizard/stories/vl-wizard.stories-arg';
 import { WTConfigArray } from '../web-types.model';
 import { buildWTConfig } from './utils.wt-config';
+import { videoPlayerArgTypes } from '@domg-wc/components/next/video-player/stories/vl-video-player.stories-arg';
 
 export const buildWTConfigComponents: WTConfigArray = [
     buildWTConfig(
@@ -210,6 +211,12 @@ export const buildWTConfigComponents: WTConfigArray = [
     ),
     buildWTConfig('vl-step-next', stepArgTypes, null, '/docs/components-next-steps-step--documentatie'),
     buildWTConfig('vl-duration-step-next', null, null, '/docs/components-next-steps-steps--documentatie'),
+    buildWTConfig(
+        'vl-video-player-next',
+        videoPlayerArgTypes,
+        '../../libs/components/src/next/video-player/stories/vl-video-player.stories-doc.mdx',
+        '/docs/components-next-video-player--documentatie'
+    ),
     buildWTConfig(
         'vl-title-next',
         titleArgTypes,
