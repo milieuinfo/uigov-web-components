@@ -1,3 +1,10 @@
+## [1.37.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.37.0...v1.37.1) (2024-09-11)
+
+
+### Bug Fixes
+
+* Storybook toonde de oude changelog ([433bf33](https://github.com/milieuinfo/uigov-web-components/commit/433bf3394a49678f93b492efd95a607f2fbfb0c2))
+
 # [1.37.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.36.1...v1.37.0) (2024-09-11)
 
 
