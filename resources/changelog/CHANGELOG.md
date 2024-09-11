@@ -1,3 +1,17 @@
+# [1.37.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.36.1...v1.37.0) (2024-09-11)
+
+
+### Features
+
+* UIG-2938 - JSDoc klasse beschrijvingen verwijderd ([347fc5d](https://github.com/milieuinfo/uigov-web-components/commit/347fc5d02b428b2bbb67fd3ca207e17193ef8b03))
+* UIG-2944 - web-types generator ([6337e64](https://github.com/milieuinfo/uigov-web-components/commit/6337e6441b2d4bc4cae606715696375b4bd23f0e))
+* UIG-2945 - web-types build aanpassingen ([d9b5b27](https://github.com/milieuinfo/uigov-web-components/commit/d9b5b27c9174b8f20af2cd39630576e09f797917))
+* UIG-3053 - vl-functional-header - attribuut toegevoegd om sub-header te verbergen ([35526d2](https://github.com/milieuinfo/uigov-web-components/commit/35526d22c47eadae7eb899f2a9a65f72967c2da3))
+* UIG-3088 - wegwerken CHILD_SLOTS en CHILD_ATTRIBUTES ([7d54fc2](https://github.com/milieuinfo/uigov-web-components/commit/7d54fc2646e8822644cf94b72914ab11dc40fd6b))
+* UIG-3089 - verifiëren van de gegenereerde x.web-types.json bestanden ([85f8595](https://github.com/milieuinfo/uigov-web-components/commit/85f8595db094012fb553e185c2c1ea2739f565c5))
+* UIG-3090 - monorepo bis ([92307d3](https://github.com/milieuinfo/uigov-web-components/commit/92307d3b5564c75d70dc9fd920d4db478770c881))
+* UIG-3091 - vl-wizard - name attribuut reactief gemaakt ([d2af500](https://github.com/milieuinfo/uigov-web-components/commit/d2af5001f2805d13c5cca3dc4e9b7a2d33af22c4))
+
 ## [1.36.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.36.0...v1.36.1) (2024-08-09)
 
 
