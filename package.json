@@ -152,6 +152,7 @@
         "swipe-detect": "1.0.1",
         "tinymce": "5.10.6",
         "tinymce-next": "npm:tinymce@6.8.3",
+        "vidstack": "1.12.9",
         "z-schema": "6.0.2"
     },
     "web-types": [
