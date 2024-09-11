@@ -1,4 +1,4 @@
-![omgeving](resources/images/omgeving.png)
+![omgeving](resources/miscellaneous/omgeving.png)
 
 # UIG
 

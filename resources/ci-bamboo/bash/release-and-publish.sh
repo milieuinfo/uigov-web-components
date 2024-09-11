@@ -177,6 +177,21 @@ fi
 
 cd ..
 
+echo "rebuild storybook - because only now CHANGELOG.md is up-to-date"
+set +e
+npm run apps:storybook:build 2> buffer-stderr.txt 1> buffer-stdout.txt
+if [[ $? -eq 0 ]]
+  then
+    echo "build storybook - success"
+  else
+    echo "build storybook - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
+    exit 1
+fi
+set -e
+
 # tgz van Storybook maken
 echo "tgz''en van Storybook"
 set +e
