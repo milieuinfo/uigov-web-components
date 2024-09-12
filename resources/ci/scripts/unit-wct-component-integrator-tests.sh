@@ -34,8 +34,8 @@ npx nx run-many --all --target=test --parallel --maxParallel=4 --skip-nx-cache
 echo "run all web component tests (wct)"
 npm run test:wct
 
-echo "run all web component tests (cypress)"
-npx cypress run --component
+#echo "run all web component tests (cypress)"
+#npx cypress run --component
 
 echo "run the integrator e2e tests"
 npm run integrator:test

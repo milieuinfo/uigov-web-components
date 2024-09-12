@@ -224,9 +224,6 @@ export class VlHeader extends BaseLitElement {
                 });
 
                 widget.on('citizen_profile.session.logout.request', async (logoutRequest: any) => {
-                    // Acknowledge het logout request om te voorkomen dat de sessie extensie de default actie uitvoert door response timeout (5 seconden).
-                    logoutRequest.acknowledge();
-
                     const logoutReason = logoutRequest.getRequest().getReason();
 
                     if (logoutReason === 'user') {
