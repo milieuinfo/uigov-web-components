@@ -1,3 +1,10 @@
+## [1.33.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.33.0...v1.33.1) (2024-09-12)
+
+
+### Bug Fixes
+
+* UIG-3102 - logout vermijden na 20 minuten ([b2ad51c](https://github.com/milieuinfo/uigov-web-components/commit/b2ad51ce7b36838cf952844f4e161cb305563ae1))
+
 # [1.33.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.32.0...v1.33.0) (2024-05-30)
 
 
