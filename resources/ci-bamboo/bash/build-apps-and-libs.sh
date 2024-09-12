@@ -6,6 +6,9 @@ set -e
 echo 'RUNNING SCRIPT: build-apps-and-libs.sh'
 cd uigov-web-components
 
+# jq moet beschikbaar zijn om libs-add-dependencies.sh correct uit te kunnen voeren
+apt-get -y update; apt-get -y install jq
+
 echo "npm install - no 'ci' to avoid the clean"
 set +e
 npm install --save-exact 2> buffer-stderr.txt 1> buffer-stdout.txt
@@ -46,6 +49,21 @@ if [[ $? -eq 0 ]]
     echo "build libraries - success"
   else
     echo "build libraries - error - buffer-stderr.txt" >&2
+    cat buffer-stderr.txt >&2
+    cat buffer-stdout.txt >&2
+    set -e
+    exit 1
+fi
+set -e
+
+echo "add library dependencies"
+set +e
+npm run libs:add-dependencies 2> buffer-stderr.txt 1> buffer-stdout.txt
+if [[ $? -eq 0 ]]
+  then
+    echo "add library dependencies - success"
+  else
+    echo "add library dependencies - error - buffer-stderr.txt" >&2
     cat buffer-stderr.txt >&2
     cat buffer-stdout.txt >&2
     set -e
