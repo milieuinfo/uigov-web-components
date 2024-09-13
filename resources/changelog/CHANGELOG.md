@@ -1,3 +1,10 @@
+## [1.37.2](https://github.com/milieuinfo/uigov-web-components/compare/v1.37.1...v1.37.2) (2024-09-13)
+
+
+### Bug Fixes
+
+* UIG-3090 - dependencies toegevoegd aan de package.json van de libraries ([0a5a486](https://github.com/milieuinfo/uigov-web-components/commit/0a5a4868c07b42029e10d5adf9aa8fbe8cb466fe))
+
 ## [1.37.1](https://github.com/milieuinfo/uigov-web-components/compare/v1.37.0...v1.37.1) (2024-09-11)
 
 
