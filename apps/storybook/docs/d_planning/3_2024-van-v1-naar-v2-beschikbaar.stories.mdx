@@ -1,0 +1,853 @@
+import {Meta} from '@storybook/blocks';
+
+<Meta title="Planning/[2024] van v1 naar v2 - beschikbaar" />
+
+# [2024] van v1 naar v2 - beschikbaar
+
+## Inhoudstafel
+
+- [Aanpak](#aanpak)
+- [Geïmpacteerde Web Componenten](#geïmpacteerde-web-componenten)
+
+
+## Aanpak
+
+Op deze pagina vind je een overzicht van de web componenten die geïmpacteerd zijn door de migratie van v1 naar v2
+en die reeds beschikbaar zijn. Voor de resterende componenten (de geïmpacterede die we nog gaan implementeren) is er
+de pagina [[2024] van v1 naar v2 - planning](/docs/planning-2024-van-v1-naar-v2-planning--documentatie).
+
+Hieronder vind je alfabetisch, per component, een tabel met daarin een overzicht van wat er in v1 en v2
+beschikbaar is (zal zijn), je kan doorklikken op de naam om naar de documentatie van die component te gaan.
+
+- elke component is ontdubbeld, de legacy variant staat in een donkere rij, de next variant in de erop volgende
+  witte rij
+- voor de next variant staat gespecifieerd sinds welke release hij beschikbaar is
+- typisch hebben de legacy en de next variant dezelfde naam, maar niet altijd
+- momenteel zijn er enkel v1 releases, wat is er zal gebeuren in v2 is informatief; er is nog geen v2 beschikbaar
+
+
+[//]: # (## Releases)
+[//]: # (### tem v1.37.x)
+[//]: # ()
+[//]: # (Sinds een jaar zijn we stelselmatig next componenten aan het introduceren. )
+[//]: # ()
+[//]: # (Van de volgende web componenten bestaat er een next variant: [Button]&#40;#button&#41;, [Checkbox]&#40;#checkbox&#41;,)
+[//]: # ([Datepicker]&#40;#datepicker&#41;, [Doormat]&#40;#doormat&#41;, [Form Label]&#40;#form-label&#41;,)
+[//]: # ([Form Validation Message / Error Message]&#40;#form-validation-message--error-message&#41;, [Icon]&#40;#icon&#41;,)
+[//]: # ([Infotext]&#40;#infotext&#41;, [Input Field]&#40;#input-field&#41;, [Link]&#40;#link&#41;, [Pattern]&#40;#pattern&#41;, [Properties]&#40;#properties&#41;,)
+[//]: # ([Radio Group / Radio]&#40;#radio-group--radio&#41;, [Select / MultiSelect / Select Rich]&#40;#select--multiselect--select-rich&#41;,)
+[//]: # ([Steps / Step]&#40;#steps--step&#41;, [Textarea / Textarea Rich]&#40;#textarea--textarea-rich&#41;, [Title]&#40;#title&#41;,)
+[//]: # ([Upload]&#40;#upload&#41;)
+[//]: # ()
+[//]: # (Volgende componenten werden geschrapt, zie hieronder voor de nieuwe aanpak: [Form]&#40;#form&#41;,)
+[//]: # ([Form Annotation]&#40;#form-annotation&#41;, [Form Validation]&#40;#form-validation&#41;)
+
+
+## Geïmpacteerde Web Componenten
+
+### Button
+
+De next-button vervangt de button en de icon-button, de link-button verdwijnt, gebruik een link of een button.
+
+<table style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Button [legacy]](/docs/elements-button-button--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<button is="vl-button">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>[Icon Button [legacy]](/docs/elements-button-icon-button--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<button is="vl-icon-button">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>[Link Button [legacy]](/docs/elements-button-link-button--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<button is="vl-link-button">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Button [next]](/docs/components-next-button--documentatie)</td>
+        <td>release v1.33.0</td>
+        <td>components/next</td>
+        <td><code>{`<vl-button-next>`}</code></td>
+        <td>components</td>
+        <td><code>{`<vl-button>`}</code></td>
+    </tr>
+</table>
+
+
+### Checkbox
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Checkbox [legacy]](/docs/components-checkbox--documentatie)</td>
+        <td>deprecated</td>
+        <td>components</td>
+        <td><code>{`<vl-checkbox>`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Checkbox [next]](/docs/form-next-checkbox--documentatie)</td>
+        <td>release v1.25.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-checkbox-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-checkbox>`}</code></td>
+    </tr>
+</table>
+
+
+### Datepicker
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Datepicker [legacy]](/docs/components-datepicker--documentatie)</td>
+        <td>deprecated</td>
+        <td>components</td>
+        <td><code>{`<vl-datepicker>`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Datepicker [next]](/docs/form-next-datepicker--documentatie)</td>
+        <td>release v1.25.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-datepicker-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-datepicker>`}</code></td>
+    </tr>
+</table>
+
+
+### Doormat
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Doormat [legacy]](/docs/elements-doormat-doormat--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<a is="vl-doormat">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Doormat [next]](/docs/components-next-doormat--documentatie)</td>
+        <td>release v1.34.0</td>
+        <td>components/next</td>
+        <td><code>{`<vl-doormat-next>`}</code></td>
+        <td>components</td>
+        <td><code>{`<vl-doormat>`}</code></td>
+    </tr>
+</table>
+
+
+### Form
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Form [legacy]](/docs/elements-form--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<label is="vl-form">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Form [next]](/docs/ontwerp-form-demo--documentatie)</td>
+        <td>native</td>
+        <td>-</td>
+        <td><code>{`<form>`}</code></td>
+        <td>-</td>
+        <td><code>{`<form>`}</code></td>
+    </tr>
+</table>
+
+
+### Form Annotation
+
+Wordt niet meer voorzien in v2, indien het om een foutboodschap gaat dient `<vl-error-message>` gebruikt te worden.
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Form Annotation [legacy]](/docs/elements-form-message-form-annotation--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<label is="vl-form-annotation">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+</table>
+
+
+### Form Label
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Form Label [legacy]](/docs/elements-form-message-form-label--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<label is="vl-form-label">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Form Label [next]](/docs/form-next-form-label--documentatie)</td>
+        <td>release v1.28.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-form-label-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-form-label>`}</code></td>
+    </tr>
+</table>
+
+
+### Form Validation
+
+Dit was een utility mixin die gebruikt werd in de oude formulier componenten. De nieuwe formulier componenten
+gebruiken dit niet meer.
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>Form Validation [legacy]</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td>utility mixin</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+</table>
+
+
+### Form Validation Message / Error Message
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Form Validation Message [legacy]](/docs/elements-form-message-form-validation-message--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<p is="vl-form-validation-message">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Error Message [next]](/docs/form-next-error-message--documentatie)</td>
+        <td>release v1.25.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-error-message-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-error-message>`}</code></td>
+    </tr>
+</table>
+
+
+### Icon
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Icon [legacy]](/docs/elements-icon-icon--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<span is="vl-icon">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Icon [next]](/docs/components-next-icon--documentatie)</td>
+        <td>release v1.34.0</td>
+        <td>components/next</td>
+        <td><code>{`<vl-icon-next>`}</code></td>
+        <td>components</td>
+        <td><code>{`<vl-icon>`}</code></td>
+    </tr>
+</table>
+
+
+### Infotext
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Infotext [legacy]](/docs/elements-infotext--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<div is="vl-infotext">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Infotext [next]](/docs/components-next-infotext--documentatie)</td>
+        <td>release v1.33.0</td>
+        <td>components/next</td>
+        <td><code>{`<vl-infotext-next>`}</code></td>
+        <td>components</td>
+        <td><code>{`<vl-infotext>`}</code></td>
+    </tr>
+</table>
+
+
+### Input Field
+
+<table style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Input Field [legacy]](/docs/elements-input-field--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<input is="vl-input-field">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Input Field [next]](/docs/form-next-input-field--documentatie)</td>
+        <td>release v1.25.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-input-field-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-input-field>`}</code></td>
+    </tr>
+</table>
+
+
+[//]: # (### Introduction)
+
+[//]: # ()
+[//]: # (<table  style={{width: 100 + '%'}}>)
+[//]: # (    <tr>)
+[//]: # (        <th>Naam</th>)
+[//]: # (        <th>Toestand</th>)
+[//]: # (        <th>v1 - Artifact</th>)
+[//]: # (        <th>v1 - Gebruik</th>)
+[//]: # (        <th>v2 - Artifact</th>)
+[//]: # (        <th>v2 - Gebruik</th>)
+[//]: # (    </tr>)
+[//]: # (    <tr>)
+[//]: # (        <td>[Introduction [legacy]]&#40;/docs/elements-introduction--documentatie&#41;</td>)
+[//]: # (        <td>wordt deprecated</td>)
+[//]: # (        <td>elements</td>)
+[//]: # (        <td><code>{`<p is="vl-introduction">`}</code></td>)
+[//]: # (        <td>-</td>)
+[//]: # (        <td>-</td>)
+[//]: # (    </tr>)
+[//]: # (    <tr>)
+[//]: # (        <td>[Introduction [next]]&#40;TODO&#41;</td>)
+[//]: # (        <td>release 1.40.0 [te bevestigen]]</td>)
+[//]: # (        <td>tokens/next</td>)
+[//]: # (        <td><code>{`<p class="vl-introduction-next">`}</code></td>)
+[//]: # (        <td>tokens</td>)
+[//]: # (        <td><code>{`<p class="vl-introduction">`}</code></td>)
+[//]: # (    </tr>)
+[//]: # (</table>)
+
+
+### Link
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Link [legacy]](/docs/elements-link-link--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<a is="vl-link">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Link [next]](/docs/components-next-link--documentatie)</td>
+        <td>release v1.32.0</td>
+        <td>components/next</td>
+        <td><code>{`<vl-link-next>`}</code></td>
+        <td>components</td>
+        <td><code>{`<vl-link>`}</code></td>
+    </tr>
+</table>
+
+
+### Pattern
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>Pattern [legacy]</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td>utility mixin</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Input Field Masked [next]](/docs/form-next-input-field-masked--documentatie)</td>
+        <td>release v1.25.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-input-field-masked-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`vl-input-field-masked>`}</code></td>
+    </tr>
+</table>
+
+
+### Properties
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Properties [legacy]](/docs/elements-properties--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<vl-properties>`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Properties [next]](/docs/components-next-properties--documentatie)</td>
+        <td>release v1.33.0</td>
+        <td>components/next</td>
+        <td><code>{`<vl-properties-next>`}</code></td>
+        <td>components</td>
+        <td><code>{`<vl-properties>`}</code></td>
+    </tr>
+</table>
+
+
+### Radio Group / Radio
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Radio Group [legacy]](/docs/components-radio--documentatie)</td>
+        <td>deprecated</td>
+        <td>components</td>
+        <td><code>{`<vl-radio-group>`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Radio Group [next]](/docs/form-next-radio-group--documentatie)</td>
+        <td>release v1.25.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-radio-group-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-radio-group>`}</code></td>
+    </tr>
+    <tr>
+        <td>[Radio [legacy]](/docs/components-radio--documentatie)</td>
+        <td>deprecated</td>
+        <td>components</td>
+        <td><code>{`<vl-radio>`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Radio [next]](/docs/form-next-radio-group--documentatie)</td>
+        <td>release v1.25.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-radio-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-radio>`}</code></td>
+    </tr>
+</table>
+
+
+### Select / MultiSelect / Select Rich
+
+<table style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Select [legacy]](/docs/elements-select--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<select is="vl-select">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Select [next]](/docs/form-next-select--documentatie)</td>
+        <td>release v1.25.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-select-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-select>`}</code></td>
+    </tr>
+    <tr>
+        <td>[MultiSelect [legacy]](/docs/elements-multiselect--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<select is="vl-multiselect">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Select Rich [next]](/docs/form-next-select-rich--documentatie)</td>
+        <td>release v1.32.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-select-rich-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-select-rich>`}</code></td>
+    </tr>
+</table>
+
+
+### Steps / Step
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Steps [legacy]](/docs/components-steps--documentatie)</td>
+        <td>deprecated</td>
+        <td>components</td>
+        <td><code>{`<vl-steps>`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Steps [next]](/docs/components-next-steps-steps--documentatie)</td>
+        <td>release v1.16.0</td>
+        <td>components/next</td>
+        <td><code>{`<vl-steps-next>`}</code></td>
+        <td>components</td>
+        <td><code>{`<vl-steps>`}</code></td>
+    </tr>
+    <tr>
+        <td>[Step [legacy]](/docs/components-steps--documentatie)</td>
+        <td>deprecated</td>
+        <td>components</td>
+        <td><code>{`<vl-step>`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Step [next]](/docs/components-next-steps-step--documentatie)</td>
+        <td>release v1.16.0</td>
+        <td>components/next</td>
+        <td><code>{`<vl-step-next>`}</code></td>
+        <td>components</td>
+        <td><code>{`<vl-step>`}</code></td>
+    </tr>
+</table>
+
+
+### Textarea / Textarea Rich
+
+Textarea [legacy] had een attribuut om hem in 'rich'-mode te zetten, de [next] variant is ontdubbeld in een
+Textarea [next] en een Textarea Rich [next].
+
+<table style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Textarea [legacy]](/docs/components-textarea--documentatie)</td>
+        <td>deprecated</td>
+        <td>components</td>
+        <td><code>{`<textarea is="vl-textarea">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Textarea [next]](/docs/form-next-textarea--documentatie)</td>
+        <td>release v1.25.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-textarea-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-textarea>`}</code></td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>[Textarea Rich [next]](/docs/form-next-textarea-rich--documentatie)</td>
+        <td>release v1.28.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-textarea-rich-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-textarea-rich>`}</code></td>
+    </tr>
+</table>
+
+
+### Title
+
+Title [legacy] had een variant per grootte, bij de [next] variant zijn deze samengevoegd en is er het 'type'
+attribuut.
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Title - h1 [legacy]](/docs/elements-title-h1--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<h1 is="vl-h1">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>[Title - h2 [legacy]](/docs/elements-title-h2--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<h2 is="vl-h2">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>[Title - h3 [legacy]](/docs/elements-title-h3--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<h3 is="vl-h3">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>[Title - h4 [legacy]](/docs/elements-title-h4--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<h4 is="vl-h4">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>[Title - h5 [legacy]](/docs/elements-title-h5--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<h5 is="vl-h5">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>[Title - h6 [legacy]](/docs/elements-title-h6--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<h6 is="vl-h6">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Title [next]](/docs/components-next-title--documentatie)</td>
+        <td>release v1.33.0</td>
+        <td>components/next</td>
+        <td><code>{`<vl-title-next type="hx">`}</code></td>
+        <td>components</td>
+        <td><code>{`<vl-title type="hx">`}</code></td>
+    </tr>
+</table>
+
+
+### Upload
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Upload [legacy]](/docs/components-upload--documentatie)</td>
+        <td>deprecated</td>
+        <td>components</td>
+        <td><code>{`<vl-upload>`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Upload [next]](/docs/form-next-upload--documentatie)</td>
+        <td>release v1.26.0</td>
+        <td>form/next</td>
+        <td><code>{`<vl-upload-next>`}</code></td>
+        <td>form</td>
+        <td><code>{`<vl-upload>`}</code></td>
+    </tr>
+</table>
+
+
+### Video Player
+
+<table  style={{width: 100 + '%'}}>
+    <tr>
+        <th>Naam</th>
+        <th>Toestand</th>
+        <th>v1 - Artifact</th>
+        <th>v1 - Gebruik</th>
+        <th>v2 - Artifact</th>
+        <th>v2 - Gebruik</th>
+    </tr>
+    <tr>
+        <td>[Video Player [legacy]](/docs/elements-video-player--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<vl-video-player>`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>[Video Player [next]](/docs/components-next-video-player--documentatie)</td>
+        <td>release v1.38.0</td>
+        <td>components/next</td>
+        <td><code>{`<vl-video-player-next>`}</code></td>
+        <td>components</td>
+        <td><code>{`<vl-video-player>`}</code></td>
+    </tr>
+</table>
