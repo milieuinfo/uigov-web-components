@@ -31,6 +31,7 @@ export class VlInputFieldComponent extends FormControl {
 
     // Variables
     protected initialValue = '';
+    protected dispatchInput = false;
 
     static formControlValidators = [
         ...FormControl.formControlValidators,
@@ -122,6 +123,7 @@ export class VlInputFieldComponent extends FormControl {
     }
 
     protected onInput(event: Event & { target: HTMLInputElement }) {
+        this.dispatchInput = true;
         this.value = event?.target?.value;
     }
 
@@ -130,7 +132,11 @@ export class VlInputFieldComponent extends FormControl {
             const detail = { value: this.value };
 
             this.setValue(this.value);
-            this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+            this.dispatchEvent(new CustomEvent('vl-change', { composed: true, bubbles: true, detail }));
+            if (this.dispatchInput) {
+                this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+                this.dispatchInput = false;
+            }
             this.dispatchEventIfValid(detail);
         }
     }

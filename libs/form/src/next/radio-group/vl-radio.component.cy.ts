@@ -56,15 +56,42 @@ describe('component - vl-radio-next', () => {
             .shouldHaveComputedStyle({ pseudo: ':after', style: 'border-color', value: 'rgb(0, 158, 71)' });
     });
 
-    it('should dispatch vl-checked event on check', () => {
+    it('should dispatch vl-change & vl-input event on check', () => {
         const value = 'test';
 
         cy.mount(html`<vl-radio-next label="plaats" value=${value}></vl-radio-next>`);
         cy.injectAxe();
-        cy.createStubForEvent('vl-radio-next', 'vl-checked');
+        cy.createStubForEvent('vl-radio-next', 'vl-input');
+        cy.createStubForEvent('vl-radio-next', 'vl-change');
 
         cy.get('vl-radio-next').shadow().find('.vl-radio__toggle').click({ force: true });
-        cy.get('@vl-checked')
+        cy.get('@vl-input')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { checked: true, value });
+        cy.checkA11y('vl-radio-next');
+
+        cy.get('vl-radio-next').shadow().find('.vl-radio__toggle').click({ force: true });
+        cy.get('@vl-change')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { checked: true, value });
+        cy.checkA11y('vl-radio-next');
+    });
+
+    it('should dispatch vl-change but not vl-input when changing value programmatically', () => {
+        const value = 'test';
+
+        cy.mount(html`<vl-radio-next label="plaats" value=${value}></vl-radio-next>`);
+        cy.injectAxe();
+        cy.createStubForEvent('vl-radio-next', 'vl-input');
+        cy.createStubForEvent('vl-radio-next', 'vl-change');
+
+        cy.get('vl-radio-next').invoke('attr', 'checked', 'true');
+        cy.get('@vl-input').its('callCount').should('eq', 0);
+        cy.checkA11y('vl-radio-next');
+
+        cy.get('@vl-change')
             .should('have.been.calledOnce')
             .its('firstCall.args.0.detail')
             .should('deep.equal', { checked: true, value });

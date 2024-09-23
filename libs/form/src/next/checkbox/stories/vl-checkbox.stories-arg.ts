@@ -5,13 +5,19 @@ import { formControlArgs, formControlArgTypes } from '../../form-control/stories
 import { checkboxDefaults } from '../vl-checkbox.defaults';
 
 type CheckboxArgs = typeof formControlArgs &
-    typeof checkboxDefaults & { contentSlot: string; onVlChecked: () => void; onVlValid: () => void };
+    typeof checkboxDefaults & {
+        contentSlot: string;
+        onVlChange: () => void;
+        onVlInput: () => void;
+        onVlValid: () => void;
+    };
 
 export const checkboxArgs: CheckboxArgs = {
     ...formControlArgs,
     ...checkboxDefaults,
     contentSlot: '',
-    onVlChecked: action('vl-checked'),
+    onVlChange: action('vl-change'),
+    onVlInput: action('vl-input'),
     onVlValid: action('vl-valid'),
 };
 
@@ -62,10 +68,19 @@ export const checkboxArgTypes: ArgTypes<CheckboxArgs> = {
             defaultValue: { summary: checkboxArgs.contentSlot },
         },
     },
-    onVlChecked: {
-        name: 'vl-checked',
+    onVlChange: {
+        name: 'vl-change',
         description:
-            'Event dat afgevuurd wordt als de checkbox aangevinkt of uitgevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de checkbox indien deze aangevinkt is.',
+            'Event dat afgevuurd wordt als de checkbox aangevinkt of uitgevinkt wordt (zowel programmatorisch als door een gebruiker).<br>Het detail object van het event bevat de checked state en de waarde van de checkbox indien deze aangevinkt is.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlInput: {
+        name: 'vl-input',
+        description:
+            'Event dat alleen afgevuurd wordt als de gebruiker de checkbox aanvinkt of uitvinkt.<br>Het detail object van het event bevat de checked state en de waarde van de checkbox indien deze aangevinkt is.',
         table: {
             type: { summary: '{ checked: boolean, value?: string }' },
             category: CATEGORIES.EVENTS,

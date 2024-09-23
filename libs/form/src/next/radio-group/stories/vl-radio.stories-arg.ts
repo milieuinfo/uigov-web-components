@@ -4,13 +4,19 @@ import { ArgTypes } from '@storybook/web-components';
 import { radioDefaults } from '../vl-radio.defaults';
 
 type RadioArgs = typeof defaultArgs &
-    typeof radioDefaults & { defaultSlot: string; onVlChecked: () => void; onVlValid: () => void };
+    typeof radioDefaults & {
+        defaultSlot: string;
+        onVlChange: () => void;
+        onVlInput: () => void;
+        onVlValid: () => void;
+    };
 
 export const radioArgs: RadioArgs = {
     ...defaultArgs,
     ...radioDefaults,
     defaultSlot: '',
-    onVlChecked: action('vl-checked'),
+    onVlChange: action('vl-change'),
+    onVlInput: action('vl-input'),
     onVlValid: action('vl-valid'),
 };
 
@@ -116,8 +122,17 @@ export const radioArgTypes: ArgTypes<RadioArgs> = {
             defaultValue: { summary: radioArgs.defaultSlot },
         },
     },
-    onVlChecked: {
-        name: 'vl-checked',
+    onVlChange: {
+        name: 'vl-change',
+        description:
+            'Event dat afgevuurd wordt als de radio aangevinkt of uitgevinkt wordt (zowel programmatorisch als door een gebruiker).<br>Het detail object van het event bevat de checked state en de waarde van de radio.',
+        table: {
+            type: { summary: '{ checked: boolean, value?: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlInput: {
+        name: 'vl-input',
         description:
             'Event dat afgevuurd wordt als de radio aangevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de radio.',
         table: {

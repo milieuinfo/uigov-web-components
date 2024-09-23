@@ -36,6 +36,7 @@ export class VlSelectRichComponent extends FormControl {
 
     // State
     private value: FormValue = null;
+    private dispatchInput = false;
 
     // Variables
     private choices: Choices | null = null;
@@ -118,7 +119,11 @@ export class VlSelectRichComponent extends FormControl {
             const detail = { value: this.getSelected() };
 
             this.setValue(this.value);
-            this.dispatchEvent(new CustomEvent('vl-select', { bubbles: true, composed: true, detail }));
+            this.dispatchEvent(new CustomEvent('vl-change', { bubbles: true, composed: true, detail }));
+            if (this.dispatchInput) {
+                this.dispatchEvent(new CustomEvent('vl-input', { bubbles: true, composed: true, detail }));
+                this.dispatchInput = false;
+            }
             this.dispatchEventIfValid(detail);
         }
 
@@ -167,6 +172,8 @@ export class VlSelectRichComponent extends FormControl {
                 ?error=${this.error}
                 ?multiple=${this.multiple}
                 @change=${this.onChange}
+                @choice=${this.onSelect}
+                @removeItem=${this.onSelect}
             ></select>
         `;
     }
@@ -350,6 +357,10 @@ export class VlSelectRichComponent extends FormControl {
 
     private onChange() {
         this.value = this.collectFormData();
+    }
+
+    private onSelect() {
+        this.dispatchInput = true;
     }
 
     private onClickChoices = (event: Event) => {

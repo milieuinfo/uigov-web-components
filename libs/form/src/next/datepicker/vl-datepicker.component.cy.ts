@@ -326,16 +326,39 @@ describe('component - vl-datepicker-next', () => {
     });
 
     // deze test slaagt in Electron/Firefox, maar niet in Chromium browsers gezien verschil in event werking
-    it('should dispatch vl-input event on input', () => {
+    it('should dispatch vl-input event on user input', () => {
         cy.mount(html`<vl-datepicker-next></vl-datepicker-next>`);
         cy.createStubForEvent('vl-datepicker-next', 'vl-input');
 
         cy.get('vl-datepicker-next').shadow().find('button#toggle-calendar').click();
         cy.get('vl-datepicker-next').shadow().find('.flatpickr-calendar').find('.flatpickr-day').contains('15').click();
         cy.get('@vl-input')
+            .should('have.been.called')
+            .its('lastCall.args.0.detail')
+            .should('deep.equal', { value: createIsoDateString({ day: 15 }) });
+    });
+
+    // deze test slaagt in Electron/Firefox, maar niet in Chromium browsers gezien verschil in event werking
+    it('should dispatch vl-change event and not vl-input event on when changing value programmatically', () => {
+        const value = createIsoDateString({ day: 21, month: 12, year: 2023 });
+
+        cy.mount(html`<vl-datepicker-next></vl-datepicker-next>`);
+        cy.createStubForEvent('vl-datepicker-next', 'vl-change');
+        cy.createStubForEvent('vl-datepicker-next', 'vl-input');
+
+        cy.get('vl-datepicker-next').shadow().find('div.flatpickr-calendar');
+        cy.get('vl-datepicker-next').then((datepicker$) => {
+            const datepicker = datepicker$[0];
+            datepicker.setAttribute('value', value);
+        });
+        cy.get('vl-datepicker-next').should('have.value', value);
+        cy.get('vl-datepicker-next').shadow().find('input.vl-input-field').should('have.value', '21.12.2023');
+
+        cy.get('@vl-change')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
-            .should('deep.equal', { value: createIsoDateString({ day: 15 }) });
+            .should('deep.equal', { value });
+        cy.get('@vl-input').should('to.not.have.been.called.at.all');
     });
 
     // deze test slaagt in Electron/Firefox, maar niet in Chromium browsers gezien verschil in event werking

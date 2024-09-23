@@ -19,6 +19,7 @@ export class VlCheckboxComponent extends FormControl {
     // Variables
     private initialValue: string | null = null;
     private initialCheckedValue = false;
+    private dispatchInput = false;
 
     static get styles(): (CSSResult | CSSResult[])[] {
         return [resetStyle, baseStyle, vlElementsStyle, checkboxStyle, checkboxUigStyle];
@@ -54,13 +55,11 @@ export class VlCheckboxComponent extends FormControl {
             }
 
             this.setValue(value);
-            this.dispatchEvent(
-                new CustomEvent('vl-checked', {
-                    bubbles: true,
-                    composed: true,
-                    detail,
-                })
-            );
+            this.dispatchEvent(new CustomEvent('vl-change', { composed: true, bubbles: true, detail }));
+            if (this.dispatchInput) {
+                this.dispatchEvent(new CustomEvent('vl-input', { bubbles: true, composed: true, detail }));
+                this.dispatchInput = false;
+            }
             this.dispatchEventIfValid(detail);
         }
     }
@@ -149,6 +148,7 @@ export class VlCheckboxComponent extends FormControl {
 
     private toggle() {
         this.checked = !this.checked;
+        this.dispatchInput = true;
     }
 }
 

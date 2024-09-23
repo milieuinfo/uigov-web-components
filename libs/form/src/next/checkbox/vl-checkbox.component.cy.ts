@@ -140,18 +140,43 @@ describe('component - vl-checkbox-next', () => {
             .shouldHaveComputedStyle({ pseudo: ':before', style: 'color', value: 'rgb(210, 55, 60)' });
     });
 
-    it('should dispatch vl-checked event on check and uncheck', () => {
+    it('should dispatch vl-change & vl-input event on check and uncheck', () => {
         cy.mount(html` <vl-checkbox-next value=${value}>Bevestig.</vl-checkbox-next> `);
-        cy.createStubForEvent('vl-checkbox-next', 'vl-checked');
+        cy.createStubForEvent('vl-checkbox-next', 'vl-change');
+        cy.createStubForEvent('vl-checkbox-next', 'vl-input');
 
         cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
-        cy.get('@vl-checked')
+        cy.get('@vl-input')
+            .should('have.been.calledOnce')
+            .its('lastCall.args.0.detail')
+            .should('deep.equal', { checked: true, value });
+        cy.get('@vl-change')
             .should('have.been.calledTwice')
-            .its('secondCall.args.0.detail')
+            .its('lastCall.args.0.detail')
             .should('deep.equal', { checked: true, value });
         cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__toggle').click({ force: true });
-        cy.get('@vl-checked').its('callCount').should('eq', 3);
-        cy.get('@vl-checked').its('lastCall.args.0.detail').should('deep.equal', { checked: false });
+        cy.get('@vl-change').its('callCount').should('eq', 3);
+        cy.get('@vl-change').its('lastCall.args.0.detail').should('deep.equal', { checked: false });
+        cy.get('@vl-input').its('callCount').should('eq', 2);
+        cy.get('@vl-input').its('lastCall.args.0.detail').should('deep.equal', { checked: false });
+    });
+
+    it('should dispatch vl-change but not vl-input event on programmatic check and uncheck', () => {
+        cy.mount(html` <vl-checkbox-next value=${value}>Bevestig.</vl-checkbox-next> `);
+        cy.createStubForEvent('vl-checkbox-next', 'vl-change');
+        cy.createStubForEvent('vl-checkbox-next', 'vl-input');
+
+        cy.get('vl-checkbox-next').invoke('attr', 'checked', true);
+        cy.get('@vl-change')
+            .should('have.been.calledOnce')
+            .its('lastCall.args.0.detail')
+            .should('deep.equal', { checked: true, value });
+        cy.get('@vl-input').its('callCount').should('eq', 0);
+
+        cy.get('vl-checkbox-next').invoke('removeAttr', 'checked');
+        cy.get('@vl-change').its('callCount').should('eq', 1);
+        cy.get('@vl-change').its('lastCall.args.0.detail').should('deep.equal', { checked: false });
+        cy.get('@vl-input').its('callCount').should('eq', 0);
     });
 
     it('should dispatch vl-valid event on valid input', () => {
@@ -275,18 +300,44 @@ describe('component - vl-checkbox-next - switch', () => {
         shouldHaveErrorStyleSwitch();
     });
 
-    it('should dispatch vl-checked event on check and uncheck', () => {
+    it('should dispatch vl-change & vl-input event on check and uncheck', () => {
         cy.mount(html` <vl-checkbox-next value=${value} switch>Bevestig.</vl-checkbox-next> `);
-        cy.createStubForEvent('vl-checkbox-next', 'vl-checked');
+        cy.createStubForEvent('vl-checkbox-next', 'vl-change');
+        cy.createStubForEvent('vl-checkbox-next', 'vl-input');
 
         cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
-        cy.get('@vl-checked')
+        cy.get('@vl-change')
             .should('have.been.calledTwice')
-            .its('secondCall.args.0.detail')
+            .its('lastCall.args.0.detail')
             .should('deep.equal', { checked: true, value });
+        cy.get('@vl-input')
+            .should('have.been.calledOnce')
+            .its('lastCall.args.0.detail')
+            .should('deep.equal', { checked: true, value });
+
         cy.get('vl-checkbox-next').shadow().find('.vl-checkbox__label').click({ force: true });
-        cy.get('@vl-checked').its('callCount').should('eq', 3);
-        cy.get('@vl-checked').its('lastCall.args.0.detail').should('deep.equal', { checked: false });
+        cy.get('@vl-change').its('callCount').should('eq', 3);
+        cy.get('@vl-change').its('lastCall.args.0.detail').should('deep.equal', { checked: false });
+        cy.get('@vl-input').its('callCount').should('eq', 2);
+        cy.get('@vl-input').its('lastCall.args.0.detail').should('deep.equal', { checked: false });
+    });
+
+    it('should dispatch vl-change but not vl-input event on programmatic check and uncheck', () => {
+        cy.mount(html` <vl-checkbox-next value=${value} switch>Bevestig.</vl-checkbox-next> `);
+        cy.createStubForEvent('vl-checkbox-next', 'vl-change');
+        cy.createStubForEvent('vl-checkbox-next', 'vl-input');
+
+        cy.get('vl-checkbox-next').invoke('attr', 'checked', true);
+        cy.get('@vl-change')
+            .should('have.been.calledOnce')
+            .its('lastCall.args.0.detail')
+            .should('deep.equal', { checked: true, value });
+        cy.get('@vl-input').its('callCount').should('eq', 0);
+
+        cy.get('vl-checkbox-next').invoke('removeAttr', 'checked');
+        cy.get('@vl-change').its('callCount').should('eq', 1);
+        cy.get('@vl-change').its('lastCall.args.0.detail').should('deep.equal', { checked: false });
+        cy.get('@vl-input').its('callCount').should('eq', 0);
     });
 
     it('should dispatch vl-valid event on valid input', () => {

@@ -38,7 +38,8 @@ const CheckboxTemplate = story(
         checked,
         isSwitch,
         contentSlot,
-        onVlChecked,
+        onVlChange,
+        onVlInput,
         onVlReset,
         onVlValid,
     }) => html`
@@ -54,7 +55,8 @@ const CheckboxTemplate = story(
             value=${value}
             ?checked=${checked}
             ?switch=${isSwitch}
-            @vl-checked=${onVlChecked}
+            @vl-input=${onVlInput}
+            @vl-change=${onVlChange}
             @vl-reset=${onVlReset}
             @vl-valid=${onVlValid}
         >
@@ -104,7 +106,7 @@ export const CheckboxReadonly = story(
         checked,
         isSwitch,
         contentSlot,
-        onVlChecked,
+        onVlInput,
     }) => html`
         <vl-checkbox-next
             id=${id}
@@ -118,7 +120,7 @@ export const CheckboxReadonly = story(
             value=${value}
             ?checked=${checked}
             ?switch=${isSwitch}
-            @vl-checked=${onVlChecked}
+            @vl-input=${onVlInput}
         >
             ${unsafeHTML(contentSlot)}
         </vl-checkbox-next>

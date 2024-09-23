@@ -32,7 +32,7 @@ export class VlRadioGroupComponent extends FormControl {
     connectedCallback() {
         super.connectedCallback();
 
-        this.addEventListener('vl-checked', this.updateGroupAfterCheck);
+        this.addEventListener('vl-change', this.updateGroupAfterCheck);
         this.addEventListener('keydown', this.handleKeyDown);
     }
 
@@ -87,7 +87,7 @@ export class VlRadioGroupComponent extends FormControl {
     disconnectedCallback() {
         super.disconnectedCallback();
 
-        this.removeEventListener('vl-checked', this.updateGroupAfterCheck);
+        this.removeEventListener('vl-change', this.updateGroupAfterCheck);
     }
 
     render(): TemplateResult {

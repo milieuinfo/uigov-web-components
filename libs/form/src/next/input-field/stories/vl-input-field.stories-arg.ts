@@ -5,11 +5,12 @@ import { formControlArgs, formControlArgTypes } from '../../form-control/stories
 import { inputFieldDefaults } from '../vl-input-field.defaults';
 
 type InputFieldArgs = typeof formControlArgs &
-    typeof inputFieldDefaults & { onVlInput: () => void; onVlValid: () => void };
+    typeof inputFieldDefaults & { onVlChange: () => void; onVlInput: () => void; onVlValid: () => void };
 
 export const inputFieldArgs: InputFieldArgs = {
     ...formControlArgs,
     ...inputFieldDefaults,
+    onVlChange: action('vl-change'),
     onVlInput: action('vl-input'),
     onVlValid: action('vl-valid'),
 };
@@ -151,10 +152,19 @@ export const inputFieldArgTypes: ArgTypes<InputFieldArgs> = {
             defaultValue: { summary: inputFieldArgs.regex },
         },
     },
+    onVlChange: {
+        name: 'vl-change',
+        description:
+            'Event dat afgevuurd wordt als de waarde van het input veld verandert (zowel programmatorisch als door een gebruiker).<br>Het detail object van het event bevat de ingegeven waarde.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
     onVlInput: {
         name: 'vl-input',
         description:
-            'Event dat afgevuurd wordt als de waarde van het input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde.',
+            'Event dat alleen afgevuurd wordt als de gebruiker de waarde van het input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde.',
         table: {
             type: { summary: '{ value: string }' },
             category: CATEGORIES.EVENTS,

@@ -6,6 +6,7 @@ import { uploadDefaults } from '../vl-upload.defaults';
 
 type UploadArgs = typeof uploadDefaults &
     typeof formControlArgs & {
+        onVlChange: () => void;
         onVlInput: () => void;
         onVlError: () => void;
         onVlValid: () => void;
@@ -14,6 +15,7 @@ type UploadArgs = typeof uploadDefaults &
 export const uploadArgs: UploadArgs = {
     ...formControlArgs,
     ...uploadDefaults,
+    onVlChange: action('vl-change'),
     onVlInput: action('vl-input'),
     onVlValid: action('vl-valid'),
     onVlError: action('vl-error'),
@@ -158,10 +160,21 @@ export const uploadArgTypes: ArgTypes<UploadArgs> = {
             defaultValue: { summary: uploadArgs.url },
         },
     },
+    onVlChange: {
+        name: 'vl-change',
+        description:
+            'Event dat afgevuurd wordt als bestanden worden toegevoegd of verwijderd (zowel programmatorisch als door een gebruiker).<br>Het detail object van het event bevat de ingegeven waarde.<br>Daarnaast geeft het ook aan welke file werd verwijderd of toegevoegd.',
+        table: {
+            type: {
+                summary: '{ value: string, type: string, file: File}',
+            },
+            category: CATEGORIES.EVENTS,
+        },
+    },
     onVlInput: {
         name: 'vl-input',
         description:
-            'Event dat afgevuurd wordt als bestanden worden toegevoegd of verwijderd.<br>Het detail object van het event bevat de ingegeven waarde.<br>Daarnaast geeft het ook aan welke file werd verwijderd of toegevoegd.',
+            'Event dat alleen afgevuurd wordt als bestanden worden toegevoegd of verwijderd door een gebruiker.<br>Het detail object van het event bevat de ingegeven waarde.<br>Daarnaast geeft het ook aan welke file werd verwijderd of toegevoegd.',
         table: {
             type: {
                 summary: '{ value: string, type: string, file: File}',

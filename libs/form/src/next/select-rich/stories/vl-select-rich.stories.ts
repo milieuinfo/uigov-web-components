@@ -44,7 +44,8 @@ const SelectRichTemplate = story(
         noResultsText,
         noChoicesText,
         searchPlaceholder,
-        onVlSelect,
+        onVlChange,
+        onVlInput,
         onVlSelectSearch,
         onVlReset,
         onVlValid,
@@ -67,7 +68,8 @@ const SelectRichTemplate = story(
             no-results-text=${noResultsText}
             no-choices-text=${noChoicesText}
             search-placeholder=${searchPlaceholder}
-            @vl-select=${onVlSelect}
+            @vl-change=${onVlChange}
+            @vl-input=${onVlInput}
             @vl-select-search=${onVlSelectSearch}
             @vl-reset=${onVlReset}
             @vl-valid=${onVlValid}

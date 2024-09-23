@@ -5,12 +5,13 @@ import { formControlArgs, formControlArgTypes } from '../../form-control/stories
 import { radioGroupDefaults } from '../vl-radio-group.defaults';
 
 type RadioGroupArgs = typeof formControlArgs &
-    typeof radioGroupDefaults & { onVlChecked: () => void; onVlValid: () => void };
+    typeof radioGroupDefaults & { onVlChange: () => void; onVlInput: () => void; onVlValid: () => void };
 
 export const radioGroupArgs: RadioGroupArgs = {
     ...formControlArgs,
     ...radioGroupDefaults,
-    onVlChecked: action('vl-checked'),
+    onVlChange: action('vl-change'),
+    onVlInput: action('vl-input'),
     onVlValid: action('vl-valid'),
 };
 
@@ -34,10 +35,19 @@ export const radioGroupArgTypes: ArgTypes<RadioGroupArgs> = {
             defaultValue: { summary: radioGroupArgs.value },
         },
     },
-    onVlChecked: {
-        name: 'vl-checked',
+    onVlChange: {
+        name: 'vl-change',
         description:
-            'Event dat afgevuurd wordt als een radio aangevinkt wordt.<br>Het detail object van het event bevat de checked state en de waarde van de radio.',
+            'Event dat afgevuurd wordt als een radio aangevinkt of uitgevinkt wordt (zowel programmatorisch als door een gebruiker).<br>Het detail object van het event bevat de checked state en de waarde van de radio.',
+        table: {
+            type: { summary: '{ checked: boolean, value?: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlInput: {
+        name: 'vl-input',
+        description:
+            'Event dat alleen afgevuurd wordt als een gebruiker een radio aanvinkt.<br>Het detail object van het event bevat de checked state en de waarde van de radio.',
         table: {
             type: { summary: '{ checked: boolean, value?: string }' },
             category: CATEGORIES.EVENTS,

@@ -140,22 +140,73 @@ describe('component - vl-select-next', () => {
         cy.get('vl-select-next').shadow().find('select').should('have.class', 'vl-select--block');
     });
 
-    it('should dispatch vl-select event on select and delete option', () => {
+    it('should dispatch vl-change event on select and delete option', () => {
         cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
         cy.injectAxe();
 
-        cy.createStubForEvent('vl-select-next', 'vl-select');
+        cy.createStubForEvent('vl-select-next', 'vl-change');
         cy.checkA11y('vl-select-next');
-        cy.get('vl-select-next').shadow().find('select').select('hasselt').trigger('change');
-        cy.get('@vl-select')
+        cy.get('vl-select-next').shadow().find('select').select('turnhout').trigger('change');
+        cy.get('@vl-change')
             .should('have.been.calledOnce')
             .its('firstCall.args.0.detail')
-            .should('deep.equal', { value: 'hasselt' });
+            .should('deep.equal', { value: 'turnhout' });
         cy.get('vl-select-next').shadow().find('button.vl-select__button').click();
-        cy.get('@vl-select')
+        cy.get('@vl-change')
             .should('have.been.calledTwice')
             .its('secondCall.args.0.detail')
             .should('deep.equal', { value: null });
+        cy.checkA11y('vl-select-next');
+    });
+
+    it('should dispatch vl-select event when the user selects and deletes an option', () => {
+        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
+        cy.injectAxe();
+
+        cy.createStubForEvent('vl-select-next', 'vl-input');
+        cy.checkA11y('vl-select-next');
+        cy.get('vl-select-next').shadow().find('select').select('turnhout');
+
+        cy.get('@vl-input')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { value: 'turnhout' });
+        cy.get('vl-select-next').shadow().find('button.vl-select__button').click();
+        cy.get('@vl-input')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { value: null });
+        cy.checkA11y('vl-select-next');
+    });
+
+    it('should dispatch vl-change, but not vl-select when programmatically selecting and deleting option', () => {
+        cy.mount(html`<vl-select-next label="geboorteplaats" .options=${options}></vl-select-next>`);
+        cy.injectAxe();
+
+        cy.createStubForEvent('vl-select-next', 'vl-change');
+        cy.createStubForEvent('vl-select-next', 'vl-input');
+        cy.checkA11y('vl-select-next');
+        cy.get('vl-select-next').then((el) => {
+            const select = el[0] as VlSelectComponent;
+            const filteredOptions = select.options.filter((option) => option.value !== 'turnhout');
+            select.options = [...filteredOptions, { label: 'Turnhout', value: 'turnhout', selected: true }];
+        });
+        cy.get('@vl-change')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { value: 'turnhout' });
+        cy.get('@vl-input').should('to.not.have.been.called.at.all');
+
+        cy.get('vl-select-next').then((el) => {
+            const select = el[0] as VlSelectComponent;
+            const filteredOptions = select.options.filter((option) => option.value !== 'turnhout');
+            select.options = [...filteredOptions, { label: 'Turnhout', value: 'turnhout' }];
+        });
+        cy.get('@vl-change')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { value: null });
+        cy.get('@vl-input').should('to.not.have.been.called.at.all');
         cy.checkA11y('vl-select-next');
     });
 

@@ -860,7 +860,7 @@ export class FormComponent extends LitElement {
                                 ?disabled=${this.preferredContactMethodDisabled}
                                 ?readonly=${this.preferredContactMethodReadonly}
                                 value=${this.preferredContactMethod}
-                                @vl-checked=${(e: CustomEvent) => (this.preferredContactMethod = e.detail.value)}
+                                @vl-input=${(e: CustomEvent) => (this.preferredContactMethod = e.detail.value)}
                             >
                                 <vl-radio-next value="e-mail">e-mail</vl-radio-next>
                                 <vl-radio-next value="telefoon">telefoon</vl-radio-next>
@@ -989,7 +989,7 @@ export class FormComponent extends LitElement {
                                 ?required=${this.filledInTruthfullyRequired}
                                 ?disabled=${this.filledInTruthfullyDisabled || this.filledInTruthfullyReadonly}
                                 ?checked=${this.filledInTruthfully}
-                                @vl-checked=${(e: CustomEvent) => (this.filledInTruthfully = e.detail.checked)}
+                                @vl-input=${(e: CustomEvent) => (this.filledInTruthfully = e.detail.checked)}
                             >
                                 Naar waarheid ingevuld
                             </vl-checkbox-next>

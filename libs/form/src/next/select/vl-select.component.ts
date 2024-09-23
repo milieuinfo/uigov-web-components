@@ -27,6 +27,7 @@ export class VlSelectComponent extends FormControl {
     // Variables
     private initialOptions = [] as SelectOption[];
     private DEFAULT_GROUP_LABEL = 'Overig';
+    private dispatchInput = false;
 
     static get styles(): CSSResult[] {
         return [resetStyle, baseStyle, selectStyle, iconStyle, selectUigStyle];
@@ -64,7 +65,11 @@ export class VlSelectComponent extends FormControl {
             const detail = { value: this.value };
 
             this.setValue(this.value);
-            this.dispatchEvent(new CustomEvent('vl-select', { composed: true, bubbles: true, detail }));
+            this.dispatchEvent(new CustomEvent('vl-change', { composed: true, bubbles: true, detail }));
+            if (this.dispatchInput) {
+                this.dispatchEvent(new CustomEvent('vl-input', { bubbles: true, composed: true, detail }));
+                this.dispatchInput = false;
+            }
             this.dispatchEventIfValid(detail);
         }
     }
@@ -97,6 +102,7 @@ export class VlSelectComponent extends FormControl {
                     .value=${live(this.value)}
                     autocomplete=${this.autocomplete || nothing}
                     @change=${this.onChange}
+                    @input=${this.onSelect}
                 >
                     ${this.placeholder ? this.renderPlaceholder(hasValue) : nothing}
                     ${hasGroups ? this.renderGroupedOptions() : this.renderSelectOptions(this.options)}
@@ -160,7 +166,12 @@ export class VlSelectComponent extends FormControl {
         this.value = event?.target?.value;
     }
 
+    private onSelect() {
+        this.dispatchInput = true;
+    }
+
     private clearValue() {
+        this.dispatchInput = true;
         this.value = null;
     }
 
