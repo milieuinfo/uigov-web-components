@@ -345,11 +345,41 @@ describe('component - vl-select-rich-next - single', () => {
         cy.checkA11y('vl-select-rich-next');
     });
 
-    it('should dispatch vl-select event on select and delete option', () => {
+    it('should dispatch vl-change event on select and delete option', () => {
         cy.mount(html`<vl-select-rich-next label="geboorteplaats" .options=${options}></vl-select-rich-next>`);
         cy.injectAxe();
 
+        cy.createStubForEvent('vl-select-rich-next', 'vl-change');
+        cy.checkA11y('vl-select-rich-next');
+        cy.get('vl-select-rich-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-rich-next')
+            .shadow()
+            .find('.vl-select__list')
+            .find('.vl-select__item')
+            .contains('Hasselt')
+            .click();
+        cy.get('@vl-change')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { value: 'hasselt' });
+        cy.get('vl-select-rich-next')
+            .shadow()
+            .find('.vl-input-field')
+            .find('.vl-select__item')
+            .find('.vl-pill__close')
+            .click();
+        cy.get('@vl-change')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { value: null });
+        cy.checkA11y('vl-select-rich-next');
+    });
+
+    it('should dispatch vl-select on select and delete option', () => {
+        cy.mount(html`<vl-select-rich-next label="geboorteplaats" .options=${options}></vl-select-rich-next>`);
+        cy.injectAxe();
         cy.createStubForEvent('vl-select-rich-next', 'vl-select');
+
         cy.checkA11y('vl-select-rich-next');
         cy.get('vl-select-rich-next').shadow().find('.vl-select__inner').click();
         cy.get('vl-select-rich-next')
@@ -373,6 +403,41 @@ describe('component - vl-select-rich-next - single', () => {
             .its('secondCall.args.0.detail')
             .should('deep.equal', { value: null });
         cy.checkA11y('vl-select-rich-next');
+    });
+
+    it('should dispatch vl-change, but not vl-select when programmatically selecting and deleting option', () => {
+        cy.mount(html`<vl-select-rich-next label="geboorteplaats" .options=${options}></vl-select-rich-next>`);
+        cy.injectAxe();
+        cy.createStubForEvent('vl-select-rich-next', 'vl-change');
+        cy.createStubForEvent('vl-select-rich-next', 'vl-select');
+
+        cy.checkA11y('vl-select-rich-next');
+        cy.get('vl-select-rich-next').then((el) => {
+            const select = el[0] as VlSelectRichComponent;
+            const filteredOptions = select.options.filter((option) => option.value !== 'hasselt');
+            select.options = [...filteredOptions, { label: 'Hasselt', value: 'hasselt', selected: true }];
+        });
+
+        cy.get('@vl-change')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { value: 'hasselt' });
+
+        cy.get('@vl-select').should('to.not.have.been.called.at.all');
+
+        cy.get('vl-select-rich-next').then((el) => {
+            const select = el[0] as VlSelectRichComponent;
+            const filteredOptions = select.options.filter((option) => option.value !== 'hasselt');
+            select.options = [...filteredOptions, { label: 'Hasselt', value: 'hasselt' }];
+        });
+
+        cy.get('@vl-change')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { value: null });
+        cy.checkA11y('vl-select-rich-next');
+
+        cy.get('@vl-select').should('to.not.have.been.called.at.all');
     });
 
     it('should dispatch vl-select-search event on input search value', () => {
@@ -585,6 +650,46 @@ describe('component - vl-select-rich-next - multiple', () => {
         cy.checkA11y('vl-select-rich-next');
     });
 
+    it('should dispatch vl-change event on select and delete option', () => {
+        cy.mount(html`<vl-select-rich-next label="hobby's" multiple .options=${options}></vl-select-rich-next>`);
+        cy.injectAxe();
+
+        cy.createStubForEvent('vl-select-rich-next', 'vl-change');
+        cy.checkA11y('vl-select-rich-next');
+        cy.get('vl-select-rich-next').shadow().find('.vl-select__inner').click();
+        cy.get('vl-select-rich-next')
+            .shadow()
+            .find('.vl-select__list')
+            .find('.vl-select__item')
+            .contains('Padel')
+            .click();
+        cy.get('@vl-change')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { value: ['padel'] });
+        cy.get('vl-select-rich-next')
+            .shadow()
+            .find('.vl-select__list')
+            .find('.vl-select__item')
+            .contains('Dans')
+            .click();
+        cy.get('@vl-change')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { value: ['padel', 'dans'] });
+        cy.get('vl-select-rich-next')
+            .shadow()
+            .find('.vl-input-field')
+            .find('.vl-select__item[data-value="padel"]')
+            .find('.vl-pill__close')
+            .click();
+        cy.get('@vl-change').its('callCount').should('eq', 3);
+        cy.get('@vl-change')
+            .its('lastCall.args.0.detail')
+            .should('deep.equal', { value: ['dans'] });
+        cy.checkA11y('vl-select-rich-next');
+    });
+
     it('should dispatch vl-select event on select and delete option', () => {
         cy.mount(html`<vl-select-rich-next label="hobby's" multiple .options=${options}></vl-select-rich-next>`);
         cy.injectAxe();
@@ -622,6 +727,54 @@ describe('component - vl-select-rich-next - multiple', () => {
         cy.get('@vl-select')
             .its('lastCall.args.0.detail')
             .should('deep.equal', { value: ['dans'] });
+        cy.checkA11y('vl-select-rich-next');
+    });
+
+    it('should dispatch vl-change, but not vl-select when programmatically selecting and deleting option', () => {
+        cy.mount(html`<vl-select-rich-next label="hobby's" multiple .options=${options}></vl-select-rich-next>`);
+        cy.injectAxe();
+        cy.createStubForEvent('vl-select-rich-next', 'vl-change');
+        cy.createStubForEvent('vl-select-rich-next', 'vl-select');
+
+        cy.checkA11y('vl-select-rich-next');
+        cy.get('vl-select-rich-next').then((el) => {
+            const select = el[0] as VlSelectRichComponent;
+            const filteredOptions = select.options.filter((option) => option.value !== 'padel');
+            select.options = [...filteredOptions, { label: 'Padel', value: 'padel', selected: true }];
+        });
+
+        cy.get('@vl-change')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { value: ['padel'] });
+
+        cy.get('@vl-select').should('to.not.have.been.called.at.all');
+
+        cy.get('vl-select-rich-next').then((el) => {
+            const select = el[0] as VlSelectRichComponent;
+            const filteredOptions = select.options.filter((option) => option.value !== 'dans');
+            select.options = [...filteredOptions, { label: 'Dans', value: 'dans', selected: true }];
+        });
+
+        cy.get('@vl-change')
+            .should('have.been.calledTwice')
+            .its('secondCall.args.0.detail')
+            .should('deep.equal', { value: ['padel', 'dans'] });
+
+        cy.get('@vl-select').should('to.not.have.been.called.at.all');
+
+        cy.checkA11y('vl-select-rich-next');
+
+        cy.get('vl-select-rich-next').then((el) => {
+            const select = el[0] as VlSelectRichComponent;
+            const filteredOptions = select.options.filter((option) => option.value !== 'padel');
+            select.options = [...filteredOptions, { label: 'Padel', value: 'padel' }];
+        });
+
+        cy.get('@vl-change')
+            .its('lastCall.args.0.detail')
+            .should('deep.equal', { value: ['dans'] });
+        cy.get('@vl-select').should('to.not.have.been.called.at.all');
         cy.checkA11y('vl-select-rich-next');
     });
 

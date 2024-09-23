@@ -35,6 +35,7 @@ const SelectTemplate = story(
         notDeletable,
         autocomplete,
         block,
+        onVlChange,
         onVlSelect,
         onVlValid,
         onVlReset,
@@ -52,6 +53,7 @@ const SelectTemplate = story(
             ?not-deletable=${notDeletable}
             ?block=${block}
             autocomplete=${autocomplete}
+            @vl-change=${onVlChange}
             @vl-select=${onVlSelect}
             @vl-valid=${onVlValid}
             @vl-reset=${onVlReset}

@@ -4,11 +4,13 @@ import { formControlArgs, formControlArgTypes } from '../../form-control/stories
 import { selectDefaults } from '../vl-select.defaults';
 import { action } from '@storybook/addon-actions';
 
-type SelectArgs = typeof formControlArgs & typeof selectDefaults & { onVlSelect: () => void; onVlValid: () => void };
+type SelectArgs = typeof formControlArgs &
+    typeof selectDefaults & { onVlChange: () => void; onVlSelect: () => void; onVlValid: () => void };
 
 export const selectArgs: SelectArgs = {
     ...formControlArgs,
     ...selectDefaults,
+    onVlChange: action('vl-change'),
     onVlSelect: action('vl-select'),
     onVlValid: action('vl-valid'),
 };
@@ -61,10 +63,19 @@ export const selectArgTypes: ArgTypes<SelectArgs> = {
             defaultValue: { summary: selectArgs.options },
         },
     },
+    onVlChange: {
+        name: 'vl-change',
+        description:
+            'Event dat afgevuurd wordt als er een optie selecteerd of verwijderd wordt.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
     onVlSelect: {
         name: 'vl-select',
         description:
-            'Event dat afgevuurd wordt als er een optie selecteerd of verwijderd wordt.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.',
+            'Event dat enkel afgevuurd wordt als de gebruiker een optie selecteert of verwijdert.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.',
         table: {
             type: { summary: '{ value: string }' },
             category: CATEGORIES.EVENTS,

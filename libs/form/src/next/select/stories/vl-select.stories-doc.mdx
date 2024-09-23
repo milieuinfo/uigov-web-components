@@ -48,9 +48,13 @@ De styles van DV zijn lokaal gezet en aangepast omdat deze niet CSP compliant wa
 Er werd gebruik gemaakt van een `data:` attribuut om een SVG op te halen van w3.org.
 Hierdoor breekt de CSP compliance tenzij je alle `data:` attributen whitelist, wat niet de bedoeling is.
 
+## Change event
+
+Bij het selecteren of verwijderen van een optie (zowel programmatorisch als door een gebruiker), wordt het `vl-change` event afgevuurd. Het detail object van dit event bevat de value van de geselecteerde opties.<br/>
+
 ## Select event
 
-Bij het selecteren of verwijderen van een optie wordt het `vl-select` event afgevuurd, het detail object van dit event bevat de value van de geselecteerde opties.<br/>
+Als de gebruiker een optie selecteert of verwijdert, wordt het `vl-select` event afgevuurd. Het detail object van dit event bevat de value van de geselecteerde opties.<br/>
 
 ## Select opties
 

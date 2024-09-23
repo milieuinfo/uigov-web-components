@@ -36,6 +36,7 @@ export class VlSelectRichComponent extends FormControl {
 
     // State
     private value: FormValue = null;
+    private isUserChangeQueued = false;
 
     // Variables
     private choices: Choices | null = null;
@@ -98,6 +99,8 @@ export class VlSelectRichComponent extends FormControl {
 
             // Fix voor Choices.js search event dat niet afgevuurd wordt als de search value verwijderd wordt.
             this.choices?.input?.element?.addEventListener('input', this.onSearchInput);
+
+            // this.choices?.
         }, 0);
     }
 
@@ -109,6 +112,8 @@ export class VlSelectRichComponent extends FormControl {
         }
 
         if (changedProperties.has('options')) {
+            console.log("        if (changedProperties.has('options')) {\n", this.getOptions());
+            console.log('      this.options', this.options);
             this.choices.clearStore();
             this.choices.setChoices(this.getOptions(), 'value', 'label', true);
             this.onChange();
@@ -118,7 +123,11 @@ export class VlSelectRichComponent extends FormControl {
             const detail = { value: this.getSelected() };
 
             this.setValue(this.value);
-            this.dispatchEvent(new CustomEvent('vl-select', { bubbles: true, composed: true, detail }));
+            this.dispatchEvent(new CustomEvent('vl-change', { bubbles: true, composed: true, detail }));
+            if (this.isUserChangeQueued) {
+                this.dispatchEvent(new CustomEvent('vl-select', { bubbles: true, composed: true, detail }));
+                this.isUserChangeQueued = false;
+            }
             this.dispatchEventIfValid(detail);
         }
 
@@ -167,6 +176,8 @@ export class VlSelectRichComponent extends FormControl {
                 ?error=${this.error}
                 ?multiple=${this.multiple}
                 @change=${this.onChange}
+                @choice=${this.onSelect}
+                @removeItem=${this.onSelect}
             ></select>
         `;
     }
@@ -350,6 +361,10 @@ export class VlSelectRichComponent extends FormControl {
 
     private onChange() {
         this.value = this.collectFormData();
+    }
+
+    private onSelect() {
+        this.isUserChangeQueued = true;
     }
 
     private onClickChoices = (event: Event) => {

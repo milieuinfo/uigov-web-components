@@ -6,11 +6,17 @@ import { selectRichDefaults } from '../vl-select-rich.defaults';
 import { SelectRichPosition } from '../vl-select-rich.model';
 
 type SelectRichArgs = typeof formControlArgs &
-    typeof selectRichDefaults & { onVlSelect: () => void; onVlSelectSearch: () => void; onVlValid: () => void };
+    typeof selectRichDefaults & {
+        onVlChange: () => void;
+        onVlSelect: () => void;
+        onVlSelectSearch: () => void;
+        onVlValid: () => void;
+    };
 
 export const selectRichArgs: SelectRichArgs = {
     ...formControlArgs,
     ...selectRichDefaults,
+    onVlChange: action('vl-change'),
     onVlSelect: action('vl-select'),
     onVlSelectSearch: action('vl-select-search'),
     onVlValid: action('vl-valid'),
@@ -112,10 +118,19 @@ export const selectRichArgTypes: ArgTypes<SelectRichArgs> = {
             defaultValue: { summary: selectRichArgs.options },
         },
     },
+    onVlChange: {
+        name: 'vl-change',
+        description:
+            'Event dat afgevuurd wordt als er een optie selecteerd of verwijderd wordt.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect bevat het detail object een array van waarden van de geselecteerde opties.',
+        table: {
+            type: { summary: '{ value: string | string[] }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
     onVlSelect: {
         name: 'vl-select',
         description:
-            'Event dat afgevuurd wordt als er een optie selecteerd of verwijderd wordt.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect bevat het detail object een array van waarden van de geselecteerde opties.',
+            'Event dat enkel afgevuurd wordt als de gebruiker een optie selecteert of verwijdert.<br>Het detail object van het event bevat de waarde van de geselecteerde optie.<br>Bij de multiselect bevat het detail object een array van waarden van de geselecteerde opties.',
         table: {
             type: { summary: '{ value: string | string[] }' },
             category: CATEGORIES.EVENTS,
