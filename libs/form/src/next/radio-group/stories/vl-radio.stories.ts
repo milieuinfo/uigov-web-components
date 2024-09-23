@@ -30,7 +30,8 @@ export const RadioDefault = story(
         success,
         value,
         defaultSlot,
-        onVlChecked,
+        onVlChange,
+        onVlInput,
         onVlValid,
     }) => html`
         <vl-radio-next
@@ -44,7 +45,8 @@ export const RadioDefault = story(
             ?disabled=${disabled}
             ?error=${error}
             ?success=${success}
-            @vl-checked=${onVlChecked}
+            @vl-change=${onVlChange}
+            @vl-input=${onVlInput}
             @vl-valid=${onVlValid}
         >
             ${unsafeHTML(defaultSlot)}

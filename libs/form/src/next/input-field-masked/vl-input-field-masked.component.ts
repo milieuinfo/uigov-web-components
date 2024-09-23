@@ -85,6 +85,7 @@ export class VlInputFieldMaskedComponent extends VlInputFieldComponent {
     protected onInput() {
         // we definiëren hier een lege functie om de standaard onInput() van VlInputFieldComponent te overschrijven
         // we updaten de transformeerde value alreeds in een cleave.js callback (handleValueChanged()) daarom moet deze functie leeg zijn
+        this.dispatchInput = true;
     }
 
     protected onUpdated(changedProperties: Map<string, unknown>) {
@@ -100,7 +101,11 @@ export class VlInputFieldMaskedComponent extends VlInputFieldComponent {
             const detail = { value };
 
             this.setValue(value);
-            this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+            this.dispatchEvent(new CustomEvent('vl-change', { composed: true, bubbles: true, detail }));
+            if (this.dispatchInput) {
+                this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+                this.dispatchInput = false;
+            }
             this.dispatchEventIfValid(detail);
         }
     }

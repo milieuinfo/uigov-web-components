@@ -22,6 +22,9 @@ export class VlRadioComponent extends BaseLitElement {
     private success = radioDefaults.success;
     private checked = radioDefaults.checked;
 
+    // Variables
+    private dispatchInput = false;
+
     static shadowRootOptions = { ...LitElement.shadowRootOptions, delegatesFocus: true };
 
     static get styles(): (CSSResult | CSSResult[])[] {
@@ -50,13 +53,11 @@ export class VlRadioComponent extends BaseLitElement {
             if (this.checked) {
                 const detail = { checked: true, value: this.value };
 
-                this.dispatchEvent(
-                    new CustomEvent('vl-checked', {
-                        bubbles: true,
-                        composed: true,
-                        detail,
-                    })
-                );
+                this.dispatchEvent(new CustomEvent('vl-change', { composed: true, bubbles: true, detail }));
+                if (this.dispatchInput) {
+                    this.dispatchEvent(new CustomEvent('vl-input', { bubbles: true, composed: true, detail }));
+                    this.dispatchInput = false;
+                }
                 this.dispatchEvent(new CustomEvent('vl-valid', { composed: true, bubbles: true, detail }));
             }
         }
@@ -83,6 +84,7 @@ export class VlRadioComponent extends BaseLitElement {
                     ?disabled=${this.disabled}
                     ?readonly=${this.readonly}
                     @change=${this.onChange}
+                    @input=${this.onInput}
                 />
                 <div class="vl-radio__label">
                     <span id="label-text">
@@ -99,6 +101,10 @@ export class VlRadioComponent extends BaseLitElement {
 
     private onChange() {
         this.checked = !this.checked;
+    }
+
+    private onInput() {
+        this.dispatchInput = true;
     }
 }
 

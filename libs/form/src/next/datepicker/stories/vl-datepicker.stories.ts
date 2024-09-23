@@ -47,6 +47,7 @@ export const DatepickerDefault = story(
         pattern,
         regex,
         name,
+        onVlChange,
         onVlInput,
         onVlReset,
         onVlValid,
@@ -75,6 +76,7 @@ export const DatepickerDefault = story(
                     am-pm=${amPm}
                     pattern=${pattern}
                     .regex=${regex}
+                    @vl-change=${onVlChange}
                     @vl-input=${onVlInput}
                     @vl-reset=${onVlReset}
                     @vl-valid=${onVlValid}

@@ -207,6 +207,31 @@ describe('component - vl-input-field-masked-next', () => {
         cy.checkA11y('vl-input-field-masked-next');
     });
 
+    it('should dispatch vl-change & vl-input event on input', () => {
+        cy.mount(html`<vl-input-field-masked-next label="test-label" mask="phone"></vl-input-field-masked-next>`);
+        cy.createStubForEvent('vl-input-field-masked-next', 'vl-change');
+        cy.createStubForEvent('vl-input-field-masked-next', 'vl-input');
+
+        cy.get('vl-input-field-masked-next').shadow().find('input').type('12345678');
+        cy.get('@vl-change').its('callCount').should('eq', 10);
+        cy.get('@vl-change').its('lastCall.args.0.detail').should('deep.equal', { value: '+32 12 34 56 78' });
+        // change event wordt ook gedispatched bij focus verandering, daarom 1 extra
+        cy.get('@vl-input').its('callCount').should('eq', 8);
+        cy.get('@vl-input').its('lastCall.args.0.detail').should('deep.equal', { value: '+32 12 34 56 78' });
+    });
+
+    it('should dispatch vl-change but not vl-input event on programmatic value change', () => {
+        cy.mount(html`<vl-input-field-masked-next label="test-label" mask="rrn"></vl-input-field-masked-next>`);
+        cy.createStubForEvent('vl-input-field-masked-next', 'vl-change');
+        cy.createStubForEvent('vl-input-field-masked-next', 'vl-input');
+        const value = '85.01.05-123.45';
+
+        cy.get('vl-input-field-masked-next').invoke('attr', 'value', value);
+        cy.get('@vl-change').its('callCount').should('eq', 1);
+        cy.get('@vl-change').its('firstCall.args.0.detail').should('deep.equal', { value: value });
+        cy.get('@vl-input').its('callCount').should('eq', 0);
+    });
+
     it('should dispatch vl-valid event on valid input', () => {
         cy.mount(html`<vl-input-field-masked-next label="test-label" mask="phone"></vl-input-field-masked-next>`);
         cy.injectAxe();

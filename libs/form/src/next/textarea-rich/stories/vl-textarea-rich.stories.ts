@@ -44,6 +44,7 @@ const Template = story(
         plugins,
         preview,
         customConfig,
+        onVlChange,
         onVlInput,
         onVlReset,
         onVlValid,
@@ -66,6 +67,7 @@ const Template = story(
             plugins=${plugins}
             ?preview=${preview}
             .customConfig=${customConfig}
+            @vl-change=${onVlChange}
             @vl-input=${onVlInput}
             @vl-reset=${onVlReset}
             @vl-valid=${onVlValid}

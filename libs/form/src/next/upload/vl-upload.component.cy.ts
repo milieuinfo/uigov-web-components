@@ -10,6 +10,40 @@ const mockedResponseFixturePath = 'upload/upload-mock-response-200.json';
 const uploadTargetUrl = 'fake-url';
 const defaultTargetUrl = 'http://httpbin.org/post';
 
+const shouldAddJpgFilesProgrammatically = (number = 1): File[] => {
+    const filesAdded: File[] = [];
+    for (let i = 0; i < number; i++) {
+        cy.readFile('fixtures/upload/cat.jpeg', 'base64').then((fileContent) => {
+            const blob = Cypress.Blob.base64StringToBlob(fileContent);
+            const lastModified = new Date().getTime();
+            const fileToAdd = new File([blob], 'cat.jpeg', {
+                type: 'image/jpeg',
+                lastModified,
+            });
+            cy.get('vl-upload-next').then((uploadNext) => {
+                // gebruiken hier addFile omdat we File object niet kunnen toevoegen met cy.selectFile() (enkel referenties)
+                (<HTMLElement & { addFile(file: File): void }>uploadNext[0]).addFile(fileToAdd);
+                // we maken de file hier opnieuw aan omdat de file gemuteerd wordt door de upload component
+                // meer specifiek worden er Dropzone specifieke properties toegevoegd aan de file, die dan niet gaan matchen met de file die we in de formData terechtkomt
+                filesAdded.push(
+                    new File([blob], 'cat.jpeg', {
+                        type: 'image/jpeg',
+                        lastModified,
+                    })
+                );
+            });
+        });
+    }
+    return filesAdded;
+};
+
+const shouldRemoveAllFilesProgrammatically = (): void => {
+    cy.get('vl-upload-next').then((element) => {
+        const uploadComponent = element[0];
+        uploadComponent.removeAllFiles();
+    });
+};
+
 const shouldAddPdfFiles = (number = 1) => {
     for (let i = 0; i < number; i++) {
         cy.get('vl-upload-next').shadow().find('input[type=file]').selectFile(pdfFileFixturePath, { force: true });
@@ -188,6 +222,28 @@ describe('component - vl-upload-next', () => {
             .shouldHaveComputedStyle({ style: 'background-color', value: 'rgb(230, 245, 237)' });
     });
 
+    it('should dispatch vl-change events when adding file', () => {
+        cy.mount(html` <vl-upload-next url=${defaultTargetUrl} max-files="4"></vl-upload-next>`);
+
+        cy.createStubForEvent('vl-upload-next', 'vl-change');
+        cy.createStubForEvent('vl-upload-next', 'vl-input');
+        shouldAddJpgFilesProgrammatically(1);
+        // voor elk bestand wordt er een vl-input event getriggerd van type `addedfile`
+        cy.get('@vl-change').its('callCount').should('eq', 1);
+        cy.get('@vl-input').its('callCount').should('eq', 0);
+    });
+
+    it('should dispatch vl-change events when removing a file', () => {
+        cy.mount(html` <vl-upload-next url=${defaultTargetUrl} max-files="4"></vl-upload-next>`);
+
+        cy.createStubForEvent('vl-upload-next', 'vl-change');
+        cy.createStubForEvent('vl-upload-next', 'vl-input');
+        shouldAddJpgFilesProgrammatically(1);
+        shouldRemoveAllFilesProgrammatically();
+        cy.get('@vl-change').its('callCount').should('eq', 2);
+        cy.get('@vl-input').its('callCount').should('eq', 0);
+    });
+
     it('should dispatch vl-input events when adding file', () => {
         cy.mount(html` <vl-upload-next url=${defaultTargetUrl} max-files="4"></vl-upload-next>`);
 
@@ -209,6 +265,7 @@ describe('component - vl-upload-next', () => {
     it('should dispatch vl-input events when adding files in batch', () => {
         cy.mount(html` <vl-upload-next url=${defaultTargetUrl} max-files="4"></vl-upload-next>`);
 
+        cy.createStubForEvent('vl-upload-next', 'vl-change');
         cy.createStubForEvent('vl-upload-next', 'vl-input');
         cy.get('vl-upload-next')
             .shadow()
@@ -217,7 +274,8 @@ describe('component - vl-upload-next', () => {
                 force: true,
             });
         // voor elk individueel bestand wordt er een vl-input event getriggerd van type `addedfile`
-        cy.get('@vl-input').its('callCount').should('eq', 4); // 4 addedFile events
+        cy.get('@vl-change').its('callCount').should('eq', 4); // 4 addedFile events
+        cy.get('@vl-input').its('callCount').should('eq', 1);
     });
 
     it('should not upload by default when selecting a file to upload', () => {

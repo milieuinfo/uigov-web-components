@@ -34,7 +34,8 @@ export const RadioGroupDefault = story(
         label,
         name,
         value,
-        onVlChecked,
+        onVlChange,
+        onVlInput,
         onVlReset,
         onVlValid,
     }) => html`
@@ -48,7 +49,8 @@ export const RadioGroupDefault = story(
             ?disabled=${disabled}
             ?error=${error}
             ?success=${success}
-            @vl-checked=${onVlChecked}
+            @vl-change=${onVlChange}
+            @vl-input=${onVlInput}
             @vl-reset=${onVlReset}
             @vl-valid=${onVlValid}
         >

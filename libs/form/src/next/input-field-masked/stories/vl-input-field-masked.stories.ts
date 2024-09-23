@@ -49,6 +49,7 @@ const InputFieldMaskedTemplate = story(
         rawValue,
         disableMaskValidation,
         regex,
+        onVlChange,
         onVlInput,
         onVlReset,
         onVlValid,
@@ -78,6 +79,7 @@ const InputFieldMaskedTemplate = story(
                 ?raw-value=${rawValue}
                 ?disable-mask-validation=${disableMaskValidation}
                 .regex=${regex}
+                @vl-change=${onVlChange}
                 @vl-input=${onVlInput}
                 @vl-reset=${onVlReset}
                 @vl-valid=${onVlValid}

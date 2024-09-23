@@ -60,9 +60,14 @@ Er werd gebruik gemaakt van een `data:` attribuut om een SVG op te halen van w3.
 Hierdoor breekt de CSP compliance tenzij je alle `data:` attributen whitelist, wat niet de bedoeling is.
 
 
-## Select event
+## Change event
 
-Bij het selecteren of verwijderen van een optie wordt het `vl-select` event afgevuurd, het detail object van dit event bevat de value van de geselecteerde opties.<br/>
+Bij het selecteren of verwijderen van een optie (zowel programmatorisch als door de gebruiker) wordt het `vl-change` event afgevuurd, het detail object van dit event bevat de value van de geselecteerde opties.<br/>
+Gelijkaardig aan de `getSelected()` methode, bevat de value bij de single select 1 string en bij de multi select een array van strings.
+
+## Input event
+
+Wanneer de gebruiker een optie verwijdert of selecteert, wordt het `vl-input` event afgevuurd, het detail object van dit event bevat de value van de geselecteerde opties.<br/>
 Gelijkaardig aan de `getSelected()` methode, bevat de value bij de single select 1 string en bij de multi select een array van strings.
 
 

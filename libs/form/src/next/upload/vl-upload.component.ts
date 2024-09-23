@@ -50,6 +50,7 @@ export class VlUploadComponent extends FormControl {
 
     // Variables
     private dropzoneInstance: DropzoneInstance | undefined | null;
+    private dispatchInput = false;
 
     static formControlValidators = [...FormControl.formControlValidators, dropzoneValidator];
 
@@ -267,6 +268,14 @@ export class VlUploadComponent extends FormControl {
         }
     }
 
+    removeFile(file: File) {
+        this.dropzoneInstance?.removeFile(<DropzoneFile>file);
+    }
+
+    removeAllFiles() {
+        this.dropzoneInstance?.removeAllFiles();
+    }
+
     /**
      * Handmatig de upload aanroepen. Indien een url gegeven is, laad op naar die url.
      */
@@ -444,6 +453,10 @@ export class VlUploadComponent extends FormControl {
         this.dropzoneInstance.on('dragover', this.handleDragOver);
         this.dropzoneInstance.on('dragleave', this.handleDragLeave);
         this.dropzoneInstance.on('drop', this.handleDragLeave);
+
+        this.getInput()?.addEventListener('input', () => {
+            this.dispatchInput = true;
+        });
     }
 
     private removeDropzoneEvents() {
@@ -464,13 +477,11 @@ export class VlUploadComponent extends FormControl {
 
     private updateValue(detail: { type: string; file?: DropzoneFile; value: FormValue }) {
         this.value = this.collectFormData();
-        this.dispatchEvent(
-            new CustomEvent('vl-input', {
-                composed: true,
-                bubbles: true,
-                detail: detail,
-            })
-        );
+        this.dispatchEvent(new CustomEvent('vl-change', { composed: true, bubbles: true, detail }));
+        if (this.dispatchInput) {
+            this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+            this.dispatchInput = false;
+        }
         this.dispatchEventIfValid(detail);
     }
 
@@ -511,6 +522,7 @@ export class VlUploadComponent extends FormControl {
     private handleFilesCloseButtonClick = (event: Event) => {
         this.dropzoneInstance?.removeAllFiles();
         if (this.dropzoneInstance) this.updateFileList(this.dropzoneInstance);
+        this.dispatchInput = true;
         event.preventDefault();
     };
 
@@ -521,6 +533,7 @@ export class VlUploadComponent extends FormControl {
     private handleDragOver = () => {
         this.getUploadElement()?.classList.add('vl-upload--dragging');
     };
+
     private handleDragLeave = () => {
         this.getUploadElement()?.classList.remove('vl-upload--dragging');
     };

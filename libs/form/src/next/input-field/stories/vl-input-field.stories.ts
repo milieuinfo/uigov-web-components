@@ -47,6 +47,7 @@ const InputFieldTemplate = story(
         regex,
         onVlInput,
         onVlReset,
+        onVlChange,
         onVlValid,
     }) => {
         return html` <vl-input-field-next
@@ -71,6 +72,7 @@ const InputFieldTemplate = story(
             max-exclusive=${maxExclusive}
             pattern=${pattern}
             .regex=${regex}
+            @vl-change=${onVlChange}
             @vl-input=${onVlInput}
             @vl-reset=${onVlReset}
             @vl-valid=${onVlValid}

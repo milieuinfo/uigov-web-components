@@ -42,6 +42,7 @@ export const UploadDefault = story(
         errorMessageMaxFiles,
         errorMessageFilesize,
         errorMessageAcceptedFiles,
+        onVlChange,
         onVlInput,
         onVlValid,
         onVlError,
@@ -66,6 +67,7 @@ export const UploadDefault = story(
                 error-message-max-files=${errorMessageMaxFiles}
                 error-message-filesize=${errorMessageFilesize}
                 error-message-accepted-files=${errorMessageAcceptedFiles}
+                @vl-change=${onVlChange}
                 @vl-input=${onVlInput}
                 @vl-valid=${onVlValid}
                 @vl-error=${onVlError}

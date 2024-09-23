@@ -53,6 +53,7 @@ export class VlDatepickerComponent extends FormControl {
     private maskOptions: MaskOptions | null = null; // Wordt enkel gebruikt in de mask validator
     private cleaveInstance: CleaveInstance | null = null;
     private inputValue: string | undefined = ''; // Houdt de waarde van het getoonde inputveld bij
+    private dispatchInput = false;
 
     static {
         registerWebComponents([VlButtonInputAddon, VlIconElement]);
@@ -275,6 +276,7 @@ export class VlDatepickerComponent extends FormControl {
         if (initialDate instanceof Date && !isNaN(initialDate as unknown as number) && this.type !== 'range') {
             this.flatpickrInstance?.setDate(initialDate, true);
             this.inputValue = flatpickr.formatDate(initialDate, this.format);
+            this.dispatchInput = false;
         } else if (this.type === 'time' && this.initialValue) {
             this.inputValue = this.initialValue;
         } else {
@@ -318,6 +320,8 @@ export class VlDatepickerComponent extends FormControl {
             locale: Dutch.nl,
             clickOpens: false,
             onChange: this.handleDatePickerChange,
+            onOpen: this.handleOpenCalendar,
+            onClose: this.handleCloseCalendar,
             positionElement: datepickerButton,
             static: true,
             appendTo: datepicker,
@@ -366,6 +370,10 @@ export class VlDatepickerComponent extends FormControl {
         this.flatpickrInstance?.toggle();
     };
 
+    private handleCalendarClicked() {
+        this.dispatchInput = true;
+    }
+
     private onInput = (event: Event & { target: HTMLInputElement }) => {
         this.handleInputValueChanged(event.target?.value ?? '');
     };
@@ -396,6 +404,7 @@ export class VlDatepickerComponent extends FormControl {
     }
 
     private handleInputValueChanged(dateString: string, isValidDateString = true) {
+        this.dispatchInput = true;
         let parsedDate, isValidFormat;
         // we verwachten een fout die opgeworpen wordt wanneer de waarde niet conform het formaat is
         // daarom gebruiken we een try-catch
@@ -441,6 +450,14 @@ export class VlDatepickerComponent extends FormControl {
         }
     };
 
+    private handleOpenCalendar = () => {
+        this.addEventListener('click', this.handleCalendarClicked);
+    };
+
+    private handleCloseCalendar = () => {
+        this.removeEventListener('click', this.handleCalendarClicked);
+    };
+
     private updateFormControlValue = (inputValue: string) => {
         const detail = { value: this.value };
         const date = this.flatpickrInstance?.parseDate(inputValue, this.format);
@@ -449,7 +466,11 @@ export class VlDatepickerComponent extends FormControl {
             this.flatpickrInstance?.setDate(date, false, this.format);
         }
         this.setValue(this.value ?? '');
-        this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+        this.dispatchEvent(new CustomEvent('vl-change', { composed: true, bubbles: true, detail }));
+        if (this.dispatchInput) {
+            this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+            this.dispatchInput = false;
+        }
         this.dispatchEventIfValid(detail);
     };
 

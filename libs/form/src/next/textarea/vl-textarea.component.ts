@@ -23,6 +23,7 @@ export class VlTextareaComponent extends FormControl {
 
     // Variables
     protected initialValue = '';
+    protected dispatchInput = false;
 
     static formControlValidators = [...FormControl.formControlValidators, minLengthValidator, maxLengthValidator];
 
@@ -59,7 +60,11 @@ export class VlTextareaComponent extends FormControl {
             const detail = { value: this.value };
 
             this.setValue(this.value);
-            this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+            this.dispatchEvent(new CustomEvent('vl-change', { composed: true, bubbles: true, detail }));
+            if (this.dispatchInput) {
+                this.dispatchEvent(new CustomEvent('vl-input', { composed: true, bubbles: true, detail }));
+                this.dispatchInput = false;
+            }
             this.dispatchEventIfValid(detail);
         }
     }
@@ -106,6 +111,7 @@ export class VlTextareaComponent extends FormControl {
     }
 
     private onInput(event: Event & { target: HTMLTextAreaElement }) {
+        this.dispatchInput = true;
         this.value = event?.target?.value;
     }
 }

@@ -40,6 +40,7 @@ export const TextareaDefault = story(
         maxLength,
         rows,
         cols,
+        onVlChange,
         onVlInput,
         onVlReset,
         onVlValid,
@@ -61,6 +62,7 @@ export const TextareaDefault = story(
             max-length=${maxLength}
             rows=${rows}
             cols=${cols}
+            @vl-change=${onVlChange}
             @vl-input=${onVlInput}
             @vl-reset=${onVlReset}
             @vl-valid=${onVlValid}

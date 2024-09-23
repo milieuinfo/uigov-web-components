@@ -332,7 +332,7 @@ describe('component - vl-radio-group-next - in form', () => {
             .shouldHaveComputedStyle({ pseudo: ':after', style: 'border-color', value: 'rgb(210, 55, 60)' });
     });
 
-    it('should dispatch vl-checked event on check', () => {
+    it('should dispatch vl-input & vl-change event on check', () => {
         cy.mount(html`
             <vl-radio-group-next id="land-zee" name="land-zee">
                 <vl-radio-next value="land">Land</vl-radio-next>
@@ -342,16 +342,42 @@ describe('component - vl-radio-group-next - in form', () => {
         `);
         const value = 'land';
 
-        cy.createStubForEvent('vl-radio-group-next', 'vl-checked');
+        cy.createStubForEvent('vl-radio-group-next', 'vl-change');
+        cy.createStubForEvent('vl-radio-group-next', 'vl-input');
         cy.get('vl-radio-group-next')
             .find(`vl-radio-next[value=${value}]`)
             .shadow()
             .find('.vl-radio__toggle')
             .click({ force: true });
-        cy.get('@vl-checked')
+        cy.get('@vl-change')
             .should('have.been.calledOnce')
             .its('firstCall.args.0.detail')
             .should('deep.equal', { checked: true, value });
+        cy.get('@vl-input')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { checked: true, value });
+    });
+
+    it('should only dispatch vl-change but not vl-input event on checking programmatically', () => {
+        cy.mount(html`
+            <vl-radio-group-next id="land-zee" name="land-zee">
+                <vl-radio-next value="land">Land</vl-radio-next>
+                <vl-radio-next value="zee">Zee</vl-radio-next>
+                <vl-radio-next value="lucht">Lucht</vl-radio-next>
+            </vl-radio-group-next>
+        `);
+        const value = 'lucht';
+
+        cy.createStubForEvent('vl-radio-group-next', 'vl-change');
+        cy.createStubForEvent('vl-radio-group-next', 'vl-input');
+        cy.get('vl-radio-group-next').invoke('attr', 'value', value);
+
+        cy.get('@vl-change')
+            .should('have.been.calledOnce')
+            .its('firstCall.args.0.detail')
+            .should('deep.equal', { checked: true, value });
+        cy.get('@vl-input').its('callCount').should('eq', 0);
     });
 
     it('should set success', () => {

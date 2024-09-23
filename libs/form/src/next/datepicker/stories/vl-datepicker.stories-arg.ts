@@ -6,11 +6,12 @@ import { datepickerDefaults } from '../vl-datepicker.defaults';
 import { DATEPICKER_TYPES } from '../vl-datepicker.model';
 
 type DatepickerArgs = typeof formControlArgs &
-    typeof datepickerDefaults & { onVlInput: () => void; onVlValid: () => void };
+    typeof datepickerDefaults & { onVlChange: () => void; onVlInput: () => void; onVlValid: () => void };
 
 export const datepickerArgs: DatepickerArgs = {
     ...formControlArgs,
     ...datepickerDefaults,
+    onVlChange: action('vl-change'),
     onVlInput: action('vl-input'),
     onVlValid: action('vl-valid'),
 };
@@ -166,7 +167,16 @@ export const datepickerArgTypes: ArgTypes<DatepickerArgs> = {
     onVlInput: {
         name: 'vl-input',
         description:
-            'Event dat afgevuurd wordt als de waarde van het datepicker-input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde.',
+            'Event dat alleen afgevuurd wordt als de gebruiker de waarde van het datepicker-input veld verandert.<br>Het detail object van het event bevat de ingegeven waarde.',
+        table: {
+            type: { summary: '{ value: string }' },
+            category: CATEGORIES.EVENTS,
+        },
+    },
+    onVlChange: {
+        name: 'vl-change',
+        description:
+            'Event dat afgevuurd wordt als de waarde van het datepicker-input veld verandert (zowel programmatorisch als door een gebruiker).<br>Het detail object van het event bevat de ingegeven waarde.',
         table: {
             type: { summary: '{ value: string }' },
             category: CATEGORIES.EVENTS,
