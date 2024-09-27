@@ -9,6 +9,7 @@ import { propertiesArgTypes } from '@domg-wc/components/next/properties/stories/
 import { stepArgTypes } from '@domg-wc/components/next/steps/stories/vl-step.stories-arg';
 import { stepsArgTypes } from '@domg-wc/components/next/steps/stories/vl-steps.stories-arg';
 import { titleArgTypes } from '@domg-wc/components/next/title/stories/vl-title.stories-arg';
+import { videoPlayerArgTypes } from '@domg-wc/components/next/video-player/stories/vl-video-player.stories-arg';
 import { accordionListArgTypes } from '../../../libs/components/src/accordion-list/stories/vl-accordion-list.stories-arg';
 import { accordionArgTypes } from '../../../libs/components/src/accordion/stories/vl-accordion.stories-arg';
 import { alertArgTypes } from '../../../libs/components/src/alert/stories/vl-alert.stories-arg';
@@ -55,7 +56,6 @@ import { wizardPaneArgTypes } from '../../../libs/components/src/wizard/stories/
 import { wizardArgTypes } from '../../../libs/components/src/wizard/stories/vl-wizard.stories-arg';
 import { WTConfigArray } from '../web-types.model';
 import { buildWTConfig } from './utils.wt-config';
-import { videoPlayerArgTypes } from '@domg-wc/components/next/video-player/stories/vl-video-player.stories-arg';
 
 export const buildWTConfigComponents: WTConfigArray = [
     buildWTConfig(
@@ -212,12 +212,6 @@ export const buildWTConfigComponents: WTConfigArray = [
     buildWTConfig('vl-step-next', stepArgTypes, null, '/docs/components-next-steps-step--documentatie'),
     buildWTConfig('vl-duration-step-next', null, null, '/docs/components-next-steps-steps--documentatie'),
     buildWTConfig(
-        'vl-video-player-next',
-        videoPlayerArgTypes,
-        '../../libs/components/src/next/video-player/stories/vl-video-player.stories-doc.mdx',
-        '/docs/components-next-video-player--documentatie'
-    ),
-    buildWTConfig(
         'vl-title-next',
         titleArgTypes,
         '../../libs/components/src/next/title/stories/vl-title.stories-doc.mdx',
@@ -322,6 +316,12 @@ export const buildWTConfigComponents: WTConfigArray = [
         uploadArgTypes,
         '../../libs/components/src/upload/stories/vl-upload.stories-doc.mdx',
         '/docs/components-upload--documentatie'
+    ),
+    buildWTConfig(
+        'vl-video-player-next',
+        videoPlayerArgTypes,
+        '../../libs/components/src/next/video-player/stories/vl-video-player.stories-doc.mdx',
+        '/docs/components-next-video-player--documentatie'
     ),
     buildWTConfig(
         'vl-wizard',

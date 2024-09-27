@@ -3,7 +3,7 @@ import type { StorybookConfig } from '@storybook/web-components-webpack5';
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const tsconfigPathsPlugin = new TsconfigPathsPlugin({
-    configFile: './tsconfig.storybook.json',
+    configFile: './tsconfig.json',
     extensions: ['.ts', '.tsx', '.js'],
 });
 
