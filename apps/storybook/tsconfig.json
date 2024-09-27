@@ -1,8 +1,10 @@
 {
     "extends": "../../tsconfig.base.json",
-    "include": [".storybook/*.ts", "../../resources/cypress-commands/*.d.ts"],
+    "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "../../resources/cypress-commands/*.d.ts"],
     "compilerOptions": {
         "outDir": "../../build/app/storybook",
-        "strict": false
+        "strict": false,
+        "useDefineForClassFields": false,
+        "jsx": "react"
     }
 }

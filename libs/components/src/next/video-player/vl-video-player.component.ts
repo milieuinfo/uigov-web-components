@@ -1,11 +1,11 @@
-import { CSSResult, html, PropertyDeclarations, PropertyValues } from 'lit';
-import videoPlayerStyles from './vl-video-player.css';
 import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
 import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-decorator';
-import { PlyrLayout, VidstackPlayer } from 'vidstack/global/player';
-import { MediaPlayerElement } from 'vidstack/elements';
+import { CSSResult, html, PropertyDeclarations, PropertyValues } from 'lit';
 import { TextTrackInit } from 'vidstack';
-import { plyrTranslations } from '@domg-wc/components/next/video-player/vl-video-player.translations';
+import { MediaPlayerElement } from 'vidstack/elements';
+import { PlyrLayout, VidstackPlayer } from 'vidstack/global/player';
+import videoPlayerStyles from './vl-video-player.css';
+import { plyrTranslations } from './vl-video-player.translations';
 
 @globalStylesNext()
 @webComponent('vl-video-player-next')

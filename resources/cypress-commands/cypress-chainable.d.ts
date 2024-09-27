@@ -1,6 +1,4 @@
-import { TemplateResult } from 'lit';
-
-declare global {
+// declare global {
     namespace Cypress {
         interface Chainable<Subject> {
             getDataCy(selector: string, options?: any): Chainable<any>;
@@ -8,6 +6,8 @@ declare global {
             createStubForEvent(selector: string, event: string): Chainable<Subject>;
 
             visitWithA11y(url: string): void;
+
+            mount(template: TemplateResult): Chainable;
 
             shouldHaveComputedStyle({
                 style,
@@ -54,4 +54,4 @@ declare global {
             ): Chainable<ReturnType>;
         }
     }
-}
+// }

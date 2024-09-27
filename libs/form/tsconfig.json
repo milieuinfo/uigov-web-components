@@ -1,6 +1,14 @@
 {
     "extends": "../../tsconfig.base.json",
     "include": ["./src/**/*.ts", "../../resources/cypress-commands/*.d.ts"],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ],
     "compilerOptions": {
         "outDir": "../../build/tsc/lib-form",
         "strict": true
