@@ -4,6 +4,7 @@ import '../vl-button-pill.component';
 import { buttonPillArgs, buttonPillArgTypes } from './vl-button-pill.stories-arg';
 
 export default {
+    id: 'components-pill-button-pill',
     title: 'Components/pill/button-pill',
     tags: ['autodocs'],
     args: buttonPillArgs,

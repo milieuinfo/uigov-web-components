@@ -11,6 +11,7 @@ import '../vl-link.element';
 import '../../icon/vl-icon.element';
 
 export default {
+    id: 'elements-link-link',
     title: 'Elements/link/link',
     tags: ['autodocs'],
     args: { ...linkBaseArgs, ...linkDefaultArgs },

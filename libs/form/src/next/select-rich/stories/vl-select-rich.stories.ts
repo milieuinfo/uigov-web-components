@@ -9,6 +9,7 @@ import { VlSelectRichComponent } from '../vl-select-rich.component';
 registerWebComponents([VlSelectRichComponent]);
 
 export default {
+    id: 'form-next-select-rich',
     title: 'Form-next/select-rich',
     tags: ['autodocs'],
     args: selectRichArgs,

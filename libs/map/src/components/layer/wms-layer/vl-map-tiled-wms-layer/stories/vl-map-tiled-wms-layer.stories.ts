@@ -8,6 +8,7 @@ import '../vl-map-tiled-wms-layer';
 import mapTiledWmsLayerDoc from './vl-map-tiled-wms-layer.stories-doc.mdx';
 
 export default {
+    id: 'map-layer-wms-layer-tiled-wms-layer',
     title: 'map/layer/wms-layer/tiled-wms-layer',
     tags: ['autodocs'],
     args: mapWmsLayerArgs,

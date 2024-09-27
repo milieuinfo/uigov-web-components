@@ -10,6 +10,7 @@ import { VlErrorMessageComponent } from '../vl-error-message.component';
 registerWebComponents([VlErrorMessageComponent]);
 
 export default {
+    id: 'form-next-error-message',
     title: 'Form-next/error-message',
     tags: ['autodocs'],
     args: errorMessageArgs,

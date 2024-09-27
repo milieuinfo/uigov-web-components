@@ -4,6 +4,7 @@ import '../vl-pager.component';
 import { pagerArgs, pagerArgTypes } from './vl-pager.stories-arg';
 
 export default {
+    id: 'components-pager',
     title: 'Components/pager',
     tags: ['autodocs'],
     args: pagerArgs,

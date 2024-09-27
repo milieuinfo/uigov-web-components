@@ -4,9 +4,12 @@ import FormControlPublicMethods from '../../form-control/stories/form-control.pu
 
 # Textarea Rich - next
 
+<VluxMetaData id="form-next-textarea-rich" />
+
 Gebruik de `textarea-rich-next` component om een rich textarea veld toe te voegen aan een pagina.<br/>
 
 Dit component is de volgende versie van de rich modus van de [vl-textarea](/docs/components-textarea--documentatie) component, we raden aan deze versie te gebruiken.<br />
+
 
 ## Voorbeeld
 
@@ -20,13 +23,16 @@ import { VlTextareaRichComponent } from '@domg-wc/form/next/textarea-rich';
 
 <Canvas of={VlTextAreaRichStories.TextareaRichDefault} />
 
+
 ## Configuratie
 
 <ArgTypes of={VlTextAreaRichStories.TextareaRichDefault} />
 
+
 ## Publieke methodes
 
 <FormControlPublicMethods />
+
 
 ## Content Security Policy (CSP)
 
@@ -36,6 +42,7 @@ We raden af om `unsafe-inline` toe te laten in de Content Security Policy aangez
 
 [TinyMCE - CSP](https://www.tiny.cloud/docs/tinymce/6/tinymce-and-csp/)
 
+
 ## Varianten
 
 ### Toolbar
@@ -44,7 +51,11 @@ De TinyMCE toolbar kan geconfigureerd worden door het `toolbar` attribuut te geb
 
 Bepaalde tools maken gebruik van inline styles, hierdoor werken deze niet in een toepassing met een strikte Content Security Policy (zie sectie [Content Security Policy](#content-security-policy-csp) op deze pagina).
 
-❗Sommige tools kan je enkel gebruiken als je de bijhorende plugin hebt geactiveerd.
+<VluxAlert type="warning">
+{`
+    Sommige tools kan je enkel gebruiken als je de bijhorende plugin hebt geactiveerd.
+`}
+</VluxAlert>
 
 [TinyMCE - Toolbar buttons](https://www.tiny.cloud/docs/tinymce/6/available-toolbar-buttons/): een overzicht van de tools en de eventueel bijhorende plugins <br/>
 [TinyMCE - Toolbar configuration](https://www.tiny.cloud/docs/tinymce/6/basic-setup/#toolbar-configuration): meer informatie over toolbar configuratie
@@ -67,7 +78,6 @@ Bepaalde plugins maken gebruik van inline styles, hierdoor werken deze niet in e
 
 <Canvas of={VlTextAreaRichStories.TextareaRichPlugins} />
 
-
 #### lists plugin
 
 Om de `numlist` en `bullist` tools te gebruiken in de toolbar, moet je de `lists` plugin instellen (referentie: [TinyMCE - Lists toolbar buttons](https://www.tiny.cloud/docs/tinymce/6/available-toolbar-buttons/#lists-plugin)).
@@ -89,9 +99,11 @@ Om de `link` tool in de toolbar te gebruiken, moet je de `link` plugin instellen
 ></vl-textarea-rich-next>
 ```
 
+
 ## Validatie
 
 Meer info over validatie binnen onze form componenten vind je hier: [Form - Validatie](/docs/ontwerp-form-validation--documentatie)
+
 
 ## Referenties
 

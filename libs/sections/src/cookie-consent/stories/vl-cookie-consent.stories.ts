@@ -6,6 +6,7 @@ import { cookieConsentArgs, cookieConsentArgTypes } from './vl-cookie-consent.st
 import cookieConsentDoc from './vl-cookie-consent.stories-doc.mdx';
 
 export default {
+    id: 'sections-cookie-consent',
     title: 'sections/cookie-consent',
     tags: ['autodocs'],
     args: cookieConsentArgs,

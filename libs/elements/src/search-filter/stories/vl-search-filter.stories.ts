@@ -8,6 +8,7 @@ import '../../link/vl-link.element';
 import { searchFilterArgs, searchFilterArgTypes } from './vl-search-filter.stories-arg';
 
 export default {
+    id: 'elements-search-filter',
     title: 'Elements/search-filter',
     tags: ['autodocs'],
     args: searchFilterArgs,

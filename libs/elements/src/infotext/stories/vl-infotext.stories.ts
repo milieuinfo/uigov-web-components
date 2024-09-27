@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import '../vl-infotext.element';
 
 export default {
+    id: 'elements-infotext',
     title: 'Elements/infotext',
     tags: ['autodocs'],
     args: {

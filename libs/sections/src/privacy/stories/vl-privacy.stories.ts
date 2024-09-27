@@ -7,6 +7,7 @@ import { privacyArgs, privacyArgTypes } from './vl-privacy.stories-arg';
 import { story } from '@domg-wc/common-storybook';
 
 export default {
+    id: 'sections-privacy',
     title: 'sections/privacy',
     tags: ['autodocs'],
     args: privacyArgs,

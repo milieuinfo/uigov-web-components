@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import '../vl-body.element';
 
 export default {
+    id: 'elements-body',
     title: 'Elements/body',
     tags: ['autodocs'],
     parameters: {

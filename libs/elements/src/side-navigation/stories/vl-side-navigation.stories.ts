@@ -4,6 +4,7 @@ import { sideNavigationHTML } from './vl-side-navigation.stories-html';
 import sideNavigationDoc from './vl-side-navigation.stories-doc.mdx';
 
 export default {
+    id: 'elements-side-navigation',
     title: 'Elements/side-navigation',
     tags: ['autodocs'],
     parameters: {

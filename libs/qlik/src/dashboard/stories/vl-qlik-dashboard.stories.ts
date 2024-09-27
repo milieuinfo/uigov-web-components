@@ -10,6 +10,7 @@ import filters from '../../utils/stories/demo-filters.json'; // TODO should have
 import viz_without_views from '../../utils/stories/demo-visuals-without-views.json'; // TODO should have an assert
 
 export default {
+    id: 'qlik-qlik-dashboard',
     title: 'qlik/qlik-dashboard',
     args: qlikDashboardArgs,
     argTypes: qlikDashboardArgTypes,

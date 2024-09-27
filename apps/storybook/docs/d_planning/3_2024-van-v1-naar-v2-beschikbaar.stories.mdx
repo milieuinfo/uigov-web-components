@@ -47,7 +47,8 @@ beschikbaar is (zal zijn), je kan doorklikken op de naam om naar de documentatie
 
 ### Button
 
-De next-button vervangt de button en de icon-button, de link-button verdwijnt, gebruik een link of een button.
+De `Button [next]` vervangt de `Button [legacy]` en de `Icon Button [legacy]`.
+`Link Button [legacy]` verdwijnt in v2, gebruik een `<vl-link>` of een `<vl-button>`.
 
 <table style={{width: 100 + '%'}}>
     <tr>
@@ -167,7 +168,7 @@ De next-button vervangt de button en de icon-button, de link-button verdwijnt, g
         <th>v2 - Gebruik</th>
     </tr>
     <tr>
-        <td>[Doormat [legacy]](/docs/elements-doormat-doormat--documentatie)</td>
+        <td>[Doormat [legacy]](/docs/elements-doormat--documentatie)</td>
         <td>deprecated</td>
         <td>elements</td>
         <td><code>{`<a is="vl-doormat">`}</code></td>
@@ -326,6 +327,8 @@ gebruiken dit niet meer.
 
 ### Icon
 
+`Icon Wrapper [legacy]` verdwijnt in v2 en wordt vervangen door `<vl-group>`.
+
 <table  style={{width: 100 + '%'}}>
     <tr>
         <th>Naam</th>
@@ -340,6 +343,15 @@ gebruiken dit niet meer.
         <td>deprecated</td>
         <td>elements</td>
         <td><code>{`<span is="vl-icon">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>[Icon Wrapper [legacy]](/docs/elements-icon-icon-wrapper--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<p is="vl-icon-wrapper">`}</code></td>
         <td>-</td>
         <td>-</td>
     </tr>
@@ -447,6 +459,8 @@ gebruiken dit niet meer.
 
 ### Link
 
+`Button Link [legacy]` verdwijnt in v2, gebruik een `<vl-link>` of een `<vl-button>`.
+
 <table  style={{width: 100 + '%'}}>
     <tr>
         <th>Naam</th>
@@ -461,6 +475,15 @@ gebruiken dit niet meer.
         <td>deprecated</td>
         <td>elements</td>
         <td><code>{`<a is="vl-link">`}</code></td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>[Button Link [legacy]](/docs/elements-link-button-link--documentatie)</td>
+        <td>deprecated</td>
+        <td>elements</td>
+        <td><code>{`<a is="vl-button-link">`}</code></td>
         <td>-</td>
         <td>-</td>
     </tr>
@@ -675,8 +698,8 @@ gebruiken dit niet meer.
 
 ### Textarea / Textarea Rich
 
-Textarea [legacy] had een attribuut om hem in 'rich'-mode te zetten, de [next] variant is ontdubbeld in een
-Textarea [next] en een Textarea Rich [next].
+`Textarea [legacy]` had een attribuut om hem in 'rich'-mode te zetten, de `[next]` component is ontdubbeld in
+`Textarea [next]` en `Textarea Rich [next]`.
 
 <table style={{width: 100 + '%'}}>
     <tr>
@@ -717,7 +740,7 @@ Textarea [next] en een Textarea Rich [next].
 
 ### Title
 
-Title [legacy] had een variant per grootte, bij de [next] variant zijn deze samengevoegd en is er het 'type'
+`Title [legacy]` had een variant per grootte, bij de `[next]` component zijn deze samengevoegd en is er het 'type'
 attribuut.
 
 <table  style={{width: 100 + '%'}}>

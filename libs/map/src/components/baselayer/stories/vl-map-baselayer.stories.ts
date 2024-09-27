@@ -7,6 +7,7 @@ import { mapBaselayerArgs, mapBaselayerArgTypes } from './vl-map-baselayer.stori
 import mapBaselayerDoc from './vl-map-baselayer.stories-doc.mdx';
 
 export default {
+    id: 'map-baselayer',
     title: 'map/baselayer',
     tags: ['autodocs'],
     args: mapBaselayerArgs,

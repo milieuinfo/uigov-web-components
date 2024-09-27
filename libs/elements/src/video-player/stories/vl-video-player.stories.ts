@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import '../vl-video-player.element';
 
 export default {
+    id: 'elements-video-player',
     title: 'Elements/video-player',
     tags: ['autodocs'],
     parameters: {

@@ -10,6 +10,7 @@ import buttonDoc from './vl-button.stories-doc.mdx';
 registerWebComponents([VlButtonComponent]);
 
 export default {
+    id: 'components-next-button',
     title: 'Components-next/button',
     tags: ['autodocs'],
     args: buttonArgs,

@@ -6,6 +6,7 @@ import '../vl-rich-data.component';
 import { richDataArgs, richDataArgTypes } from './vl-rich-data.stories-arg';
 
 export default {
+    id: 'components-rich-data',
     title: 'components/rich-data',
     tags: ['autodocs'],
     args: richDataArgs,

@@ -10,6 +10,7 @@ import footerDoc from './vl-footer.stories-doc.mdx';
 registerWebComponents([VlBodyElement, VlFooter]);
 
 export default {
+    id: 'sections-footer',
     title: 'sections/footer',
     tags: ['autodocs'],
     args: footerArgs,

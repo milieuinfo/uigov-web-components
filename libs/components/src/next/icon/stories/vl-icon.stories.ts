@@ -9,6 +9,7 @@ import iconDoc from './vl-icon.stories-doc.mdx';
 registerWebComponents([VlIconComponent]);
 
 export default {
+    id: 'components-next-icon',
     title: 'Components-next/icon',
     tags: ['autodocs'],
     args: iconArgs,

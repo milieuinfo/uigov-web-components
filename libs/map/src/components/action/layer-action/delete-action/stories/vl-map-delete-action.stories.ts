@@ -11,6 +11,7 @@ import '../vl-map-delete-action';
 import mapDeleteActionDoc from './vl-map-delete-action.stories-doc.mdx';
 
 export default {
+    id: 'map-action-layer-action-delete-action',
     title: 'map/action/layer-action/delete-action',
     tags: ['autodocs'],
     args: mapActionArgs,

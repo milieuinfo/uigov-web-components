@@ -8,6 +8,7 @@ import { mapCurrentLocationArgs, mapCurrentLocationArgTypes } from './vl-map-cur
 import mapCurrentLocationDoc from './vl-map-current-location.stories-doc.mdx';
 
 export default {
+    id: 'map-current-location',
     title: 'map/current-location',
     tags: ['autodocs'],
     args: mapCurrentLocationArgs,

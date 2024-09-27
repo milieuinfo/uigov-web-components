@@ -4,6 +4,7 @@ import '../vl-typography.component';
 import { typographyArgs, typographyArgTypes } from './vl-typography.stories-arg';
 
 export default {
+    id: 'components-typography',
     title: 'Components/typography',
     tags: ['autodocs'],
     args: typographyArgs,

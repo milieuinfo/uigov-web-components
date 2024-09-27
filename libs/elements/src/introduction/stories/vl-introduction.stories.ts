@@ -1,11 +1,14 @@
 import { html } from 'lit-html';
 import '../vl-introduction.element';
+import introductionDoc from './vl-introduction.stories-doc.mdx';
 
 export default {
+    id: 'elements-introduction',
     title: 'Elements/introduction',
     tags: ['autodocs'],
     parameters: {
         controls: { hideNoControlsWarning: true },
+        docs: { page: introductionDoc },
     },
     args: {
         content:
@@ -18,10 +21,10 @@ interface IntroductionArgs {
     content: any;
 }
 
-export const introductionDefault = ({ content }: IntroductionArgs) => html`<p
+export const IntroductionDefault = ({ content }: IntroductionArgs) => html`<p
     is="vl-introduction"
     data-cy="introduction"
 >
     ${content}
 </p>`;
-introductionDefault.storyName = 'vl-introduction - default';
+IntroductionDefault.storyName = 'vl-introduction - default';

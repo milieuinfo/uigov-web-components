@@ -9,6 +9,7 @@ import '../vl-map-overview-map';
 import mapOverviewMapDoc from './vl-map-overview-map.stories-doc.mdx';
 
 export default {
+    id: 'map-overview-map',
     title: 'map/overview-map',
     tags: ['autodocs'],
     args: defaultArgs,

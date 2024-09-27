@@ -10,6 +10,7 @@ import doormatDoc from './vl-doormat.stories-doc.mdx';
 registerWebComponents([VlDoormatComponent]);
 
 export default {
+    id: 'components-next-doormat',
     title: 'Components-next/doormat',
     tags: ['autodocs'],
     args: doormatArgs,

@@ -9,6 +9,7 @@ import { VlRadioComponent } from '../vl-radio.component';
 registerWebComponents([VlRadioComponent]);
 
 export default {
+    id: 'form-next-radio-group',
     title: 'Form-next/radio-group',
     tags: ['autodocs'],
     args: radioArgs,

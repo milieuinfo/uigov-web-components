@@ -13,6 +13,7 @@ import { mapLayersToAddOrRemove, storyControlTemplates } from './vl-map-layer-sw
 import { dynamicLayerSwitcherImplementation } from './vl-map-layer-switcher.stories-utils';
 
 export default {
+    id: 'map-layer-switcher',
     title: 'map/layer-switcher',
     tags: ['autodocs'],
     args: mapLayerSwitcherArgs,

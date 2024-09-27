@@ -9,6 +9,7 @@ import { mapLayerStyleArg, mapLayerStyleArgTypes } from './vl-map-layer-style.st
 import mapLayerStyleDoc from './vl-map-layer-style.stories-doc.mdx';
 
 export default {
+    id: 'map-layer-style',
     title: 'map/layer-style',
     tags: ['autodocs'],
     args: mapLayerStyleArg,

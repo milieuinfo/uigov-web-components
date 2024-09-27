@@ -10,6 +10,7 @@ const getLastElement = (element: any) => {
 };
 
 export default {
+    id: 'components-toggle-button',
     title: 'Components/toggle-button',
     tags: ['autodocs'],
     args: toggleButtonArgs,

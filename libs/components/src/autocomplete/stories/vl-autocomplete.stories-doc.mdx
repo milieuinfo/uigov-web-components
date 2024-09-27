@@ -5,6 +5,8 @@ import autocompleteMockedApiImplementation from './vl-autocomplete-mocked-api.st
 
 # Autocomplete
 
+<VluxMetaData id="components-autocomplete" />
+
 Gebruik de `autocomplete` component om een lijst met suggesties weer te geven, gefilterd op de ingevoerde tekst. De
 lijst kan een statische lijst zijn (`data-vl-static-list`) of kan worden opgehaald uit een api (dataFetcher).
 
@@ -73,9 +75,9 @@ In dat geval zal echter bij de input de loading indicator blijven staan aangezie
 suggesties komt.
 
 Je kan hiervoor ofwel:
-- altijd de loading indicator afzetten door het `disable-loading` attribuut in te stellen
-- de `.matches` property van de component gelijkstellen aan een lege array (`[]`), op dezelfde manier als waarop de
-  resultaten van een API call worden ingeladen - zodoende wordt de loading indicator niet langer getoond
+-   altijd de loading indicator afzetten door het `disable-loading` attribuut in te stellen
+-   de `.matches` property van de component gelijkstellen aan een lege array (`[]`), op dezelfde manier als waarop de
+    resultaten van een API call worden ingeladen - zodoende wordt de loading indicator niet langer getoond
 
 <Canvas of={VlAutocompleteStories.AutocompleteWithoutSuggestions} />
 

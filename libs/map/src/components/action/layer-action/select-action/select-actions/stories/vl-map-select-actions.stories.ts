@@ -12,6 +12,7 @@ import { component as defaultComponent } from './vl-map-select-actions.stories-d
 import mapSelectActionsDoc from './vl-map-select-actions.stories-doc.mdx';
 
 export default {
+    id: 'map-action-layer-action-select-action-select-actions',
     title: 'map/action/layer-action/select-action/select-actions',
     tags: ['autodocs'],
     args: mapSelectActionsArgs,

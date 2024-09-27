@@ -8,6 +8,7 @@ import '../vl-qlik-visual.component';
 import qlikVisualDoc from './vl-qlik-visual.stories-doc.mdx';
 
 export default {
+    id: 'qlik-qlik-visual',
     title: 'qlik/qlik-visual',
     args: qlikVisualArgs,
     argTypes: qlikVisualArgTypes,

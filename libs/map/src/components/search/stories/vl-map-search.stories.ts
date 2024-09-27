@@ -8,6 +8,7 @@ import { mapSearchArgs, mapSearchArgTypes } from './vl-map-search.stories-arg';
 import mapSearchDoc from './vl-map-search.stories-doc.mdx';
 
 export default {
+    id: 'map-search',
     title: 'map/search',
     tags: ['autodocs'],
     args: mapSearchArgs,
