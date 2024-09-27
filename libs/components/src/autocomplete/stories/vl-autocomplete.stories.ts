@@ -13,6 +13,7 @@ import autocompleteDoc from './vl-autocomplete.stories-doc.mdx';
 registerWebComponents([VlSideSheet]);
 
 export default {
+    id: 'components-autocomplete',
     title: 'Components/autocomplete',
     tags: ['autodocs'],
     args: autocompleteArgs,

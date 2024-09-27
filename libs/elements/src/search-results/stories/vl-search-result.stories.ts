@@ -3,6 +3,7 @@ import '../vl-search-results.element';
 import '../vl-search-result.element';
 
 export default {
+    id: 'elements-search-results-search-result',
     title: 'Elements/search-results/search-result',
     tags: ['autodocs'],
     parameters: {

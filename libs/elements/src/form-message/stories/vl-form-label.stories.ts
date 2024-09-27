@@ -3,6 +3,7 @@ import '../vl-form-label.element';
 import { formLabelArgs, formLabelArgTypes } from './vl-form-label.stories-arg';
 
 export default {
+    id: 'elements-form-message-form-label',
     title: 'Elements/form-message/form-label',
     tags: ['autodocs'],
     args: formLabelArgs,

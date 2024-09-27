@@ -11,6 +11,7 @@ import accordionDoc from './vl-accordion.stories-doc.mdx';
 registerWebComponents([VlPopoverComponent]);
 
 export default {
+    id: 'components-accordion',
     title: 'Components/accordion',
     tags: ['autodocs'],
     args: accordionArgs,

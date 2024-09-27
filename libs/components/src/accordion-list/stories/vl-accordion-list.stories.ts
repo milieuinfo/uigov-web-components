@@ -7,6 +7,7 @@ import { accordionListArgs, accordionListArgTypes } from './vl-accordion-list.st
 import accordionListDoc from './vl-accordion-list.stories-doc.mdx';
 
 export default {
+    id: 'components-accordion-list',
     title: 'Components/accordion-list',
     tags: ['autodocs'],
     args: accordionListArgs,

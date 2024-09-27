@@ -4,6 +4,7 @@ import { html } from 'lit-html';
 import '../vl-code-preview.component';
 
 export default {
+    id: 'components-code-preview',
     title: 'Components/code-preview',
     tags: ['autodocs'],
     args: defaultArgs,

@@ -7,6 +7,7 @@ import '../../icon/vl-icon.element';
 import '../../text/vl-text.element';
 
 export default {
+    id: 'elements-input-group',
     title: 'Elements/input-group',
     tags: ['autodocs'],
     parameters: {

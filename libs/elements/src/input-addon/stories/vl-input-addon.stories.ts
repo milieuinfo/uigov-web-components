@@ -4,6 +4,7 @@ import '../vl-input-addon.element';
 // import tooltipStyles from "../tooltip/styles.scss";
 
 export default {
+    id: 'elements-input-addon-input-addon',
     title: 'Elements/input-addon/input-addon',
     tags: ['autodocs'],
     parameters: {

@@ -11,6 +11,7 @@ import '../vl-map-draw-point-action';
 import mapDrawPointActionDoc from './vl-map-draw-point-action.stories-doc.mdx';
 
 export default {
+    id: 'map-action-draw-action-draw-point-action',
     title: 'map/action/draw-action/draw-point-action',
     tags: ['autodocs'],
     args: mapDrawActionArgs,

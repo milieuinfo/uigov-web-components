@@ -10,6 +10,7 @@ import linkDoc from './vl-link.stories-doc.mdx';
 registerWebComponents([VlLinkComponent]);
 
 export default {
+    id: 'components-next-link',
     title: 'Components-next/link',
     tags: ['autodocs'],
     args: linkArgs,

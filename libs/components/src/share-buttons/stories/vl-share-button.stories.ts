@@ -5,6 +5,7 @@ import '../vl-share-buttons.component';
 import { shareButtonArgs, shareButtonArgTypes } from './vl-share-button.stories-arg';
 
 export default {
+    id: 'components-share-buttons-button',
     title: 'Components/share-buttons/button',
     tags: ['autodocs'],
     args: shareButtonArgs,

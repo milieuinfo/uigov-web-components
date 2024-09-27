@@ -10,6 +10,7 @@ import { VlDocumentComponent } from '../../document/index';
 registerWebComponents([VlDocumentComponent]);
 
 export default {
+    id: 'components-spotlight',
     title: 'components/spotlight',
     tags: ['autodocs'],
     args: spotlightArgs,

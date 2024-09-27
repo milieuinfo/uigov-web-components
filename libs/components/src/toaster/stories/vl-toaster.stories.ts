@@ -9,6 +9,7 @@ import { toasterArgs, toasterArgTypes } from './vl-toaster.stories-arg';
 registerWebComponents([VlAlert, VlButtonElement, VlToasterElement]);
 
 export default {
+    id: 'components-toaster',
     title: 'Components/toaster',
     tags: ['autodocs'],
     args: toasterArgs,

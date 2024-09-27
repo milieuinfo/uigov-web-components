@@ -6,6 +6,7 @@ import { inputSliderArgs, inputSliderArgTypes } from './vl-input-slider.stories-
 import inputSliderDoc from './vl-input-slider.stories-doc.mdx';
 
 export default {
+    id: 'components-input-slider',
     title: 'Components/input-slider',
     tags: ['autodocs'],
     args: inputSliderArgs,

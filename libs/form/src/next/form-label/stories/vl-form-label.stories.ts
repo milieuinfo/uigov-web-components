@@ -9,6 +9,7 @@ import { VlFormLabelComponent } from '../vl-form-label.component';
 registerWebComponents([VlFormLabelComponent]);
 
 export default {
+    id: 'form-next-form-label',
     title: 'Form-next/form-label',
     tags: ['autodocs'],
     args: formLabelArgs,

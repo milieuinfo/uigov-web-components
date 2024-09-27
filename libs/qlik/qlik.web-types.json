@@ -9,7 +9,7 @@
             "elements": [
                 {
                     "name": "vl-qlik-dashboard",
-                    "description": "Gebruik de <code>vl-qlik-dashboard</code> component om een dashboard te maken met Qlik visuals en eventueel filters. Het views object is ofwel een 2D `DashboardVisualization` array of een `Views` object, dat op zijn beurt een 2D `DashboardVisualization` array bevat.\nDe 2D `DashboardVisualization` array is zo gestructureerd om de opdeling te maken tussen rij en kolom.",
+                    "description": "Gebruik de <code>vl-qlik-dashboard</code> component om een dashboard te maken met Qlik visuals en eventueel filters.\nHet views object is ofwel een 2D `DashboardVisualization` array of een `Views` object, dat op zijn beurt een 2D\n`DashboardVisualization` array bevat. De 2D `DashboardVisualization` array is zo gestructureerd om de opdeling te\nmaken tussen rij en kolom.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/qlik-qlik-dashboard--documentatie",
                     "attributes": [
                         {
@@ -55,7 +55,7 @@
                 },
                 {
                     "name": "vl-qlik-dashboard-page",
-                    "description": "Gebruik de <code>vl-qlik-dashboard-page</code> component om een pagina te maken met titel, introductie en een Qlik Dashboard, met eventuele export functionaliteit en de mogelijkheid tot switchen tussen dashboards.",
+                    "description": "Gebruik de <code>vl-qlik-dashboard-page</code> component om een pagina te maken met titel, introductie en een Qlik\nDashboard, met eventuele export functionaliteit en de mogelijkheid tot switchen tussen dashboards.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/qlik-qlik-dashboard-page--documentatie",
                     "attributes": [
                         {
@@ -108,7 +108,7 @@
                 },
                 {
                     "name": "vl-qlik-infoblock",
-                    "description": "Gebruik de <code>vl-qlik-infoblock</code> component om een infoblock te maken met icoon, titel, eventuele tekst en verschillende visualisaties.s",
+                    "description": "Gebruik de <code>vl-qlik-infoblock</code> component om een infoblock te maken met icoon, titel, eventuele tekst en\nverschillende visualisaties.s",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/qlik-qlik-infoblock--documentatie",
                     "attributes": [
                         {

@@ -16,6 +16,7 @@ interface VlClickStepEvent extends CustomEvent {
 }
 
 export default {
+    id: 'components-wizard-wizard',
     title: 'Components/wizard/wizard',
     tags: ['autodocs'],
     args: wizardArgs,

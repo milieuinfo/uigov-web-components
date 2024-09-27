@@ -9,6 +9,7 @@ import radioDoc from './vl-radio.stories-doc.mdx';
 registerWebComponents([VlRadio, VlRadioGroup]);
 
 export default {
+    id: 'components-radio',
     title: 'Components/radio',
     tags: ['autodocs'],
     args: defaultArgs,

@@ -34,8 +34,22 @@ export const CONTROLS = {
     NUMBER: 'number',
 };
 
+export const filterOutDataCy = (input: string) => {
+    return input?.replace(/ data-cy=".*?"/, '');
+};
+
 export const filterOutClasses = (input: string) => {
     return input?.replace(/ class=".*?"/, '');
+};
+
+export const filterOutStoryClasses = (input: string) => {
+    // verwijdert alle class attributes van de storybook componenten die beginnen met 'story--'
+    return input?.replace(/ class="story--.*?"/g, '');
+};
+
+export const filterOutStoryStyleTags = (input: string) => {
+    // alle style tags verwijderen
+    return input?.replace(/<style>[\s\S]*?<\/style>/, '');
 };
 
 // een upgrade naar Prettier v3 kan niet, v3 geeft een Promise<string> terug bij de format methode en dat wordt niet

@@ -13,6 +13,7 @@ import { richDataTableArgs, richDataTableArgTypes } from './vl-rich-data-table.s
 import richDataTableDoc from './vl-rich-data-table.stories-doc.mdx';
 
 export default {
+    id: 'components-rich-data-table',
     title: 'Components/rich-data-table',
     tags: ['autodocs'],
     args: richDataTableArgs,

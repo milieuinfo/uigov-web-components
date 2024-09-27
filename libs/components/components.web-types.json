@@ -314,7 +314,7 @@
                 },
                 {
                     "name": "vl-checkbox",
-                    "description": "❗DEPRECATED: Gebruik de [vl-checkbox-next](/docs/form-next-checkbox--documentatie), in v2.0.0 verdwijnt deze component.\n\nGebruik een `checkbox` om de gebruiker de mogelijkheid te geven 1 of meerdere items te selecteren uit een lijst.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>Gebruik een `checkbox` om de gebruiker de mogelijkheid te geven 1 of meerdere items te selecteren uit een lijst.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-checkbox--documentatie",
                     "attributes": [
                         {
@@ -407,7 +407,7 @@
                 },
                 {
                     "name": "vl-datepicker",
-                    "description": "❗DEPRECATED: Gebruik de [vl-datepicker-next](/docs/form-next-datepicker--documentatie), in v2.0.0 verdwijnt deze component.\n\nGebruik de `datepicker` component om de gebruiker op een gebruiksvriendelijke manier een datum of tijd te laten selecteren.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>Gebruik de `datepicker` component om de gebruiker op een gebruiksvriendelijke manier een datum of tijd te laten selecteren.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-datepicker--documentatie",
                     "attributes": [
                         {
@@ -916,7 +916,7 @@
                 },
                 {
                     "name": "vl-button-next",
-                    "description": "Gebruik de `button-next` component om een button af te beelden op een pagina.\n\nDit component is de volgende versie van de [vl-button](/docs/elements-button-button--documentatie) component.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `button-next` component om een button af te beelden op een pagina.\n\nDit component is de volgende versie van de [vl-button](/docs/elements-button-button--documentatie) component.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-next-button--documentatie",
                     "attributes": [
                         {
@@ -1142,7 +1142,7 @@
                 },
                 {
                     "name": "vl-doormat-next",
-                    "description": "Gebruik de `doormat-next` component om een snel en duidelijk overzicht weer te geven van de informatie op je website.<br/>\nElke doormat krijgt zijn eigen titel, tekst, optionele afbeelding en linkt naar een pagina binnen je website.\n\nDit component is de volgende versie van de [vl-doormat](/docs/elements-doormat-doormat--documentatie) component.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `doormat-next` component om een snel en duidelijk overzicht weer te geven van de informatie op je website.<br/>\nElke doormat krijgt zijn eigen titel, tekst, optionele afbeelding en linkt naar een pagina binnen je website.\n\nDeze component is de volgende versie van de [vl-doormat](/docs/elements-doormat--documentatie) component.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-next-doormat--documentatie",
                     "attributes": [
                         {
@@ -1206,7 +1206,7 @@
                 },
                 {
                     "name": "vl-icon-next",
-                    "description": "Gebruik de `icon-next` component om een icoon af te beelden op een pagina.<br/>\nZie de [Alle Iconen](/docs/ontwerp-iconen-alle-iconen--documentatie) documentatie voor een overzicht van alle iconen die gebruikt kunnen worden.\n\nDit component is de volgende versie van het [vl-icon](/docs/elements-icon-icon--documentatie) element.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `icon-next` component om een icoon af te beelden op een pagina.<br/>\nZie de [Alle Iconen](/docs/ontwerp-iconen-alle-iconen--documentatie) documentatie voor een overzicht van alle iconen die gebruikt kunnen worden.\n\nDit component is de volgende versie van het [vl-icon](/docs/elements-icon-icon--documentatie) element.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-next-icon--documentatie",
                     "attributes": [
                         {
@@ -1253,7 +1253,7 @@
                 },
                 {
                     "name": "vl-infotext-next",
-                    "description": "Gebruik de `infotext-next` component om belangrijke nummers duidelijk weer te gevem.<br/>\n\nDit component is de volgende versie van de [vl-infotext](/docs/elements-infotext--documentatie) component.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `infotext-next` component om belangrijke nummers duidelijk weer te gevem.<br/>\n\nDit component is de volgende versie van de [vl-infotext](/docs/elements-infotext--documentatie) component.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-next-infotext--documentatie",
                     "attributes": [
                         {
@@ -1292,7 +1292,7 @@
                 },
                 {
                     "name": "vl-link-next",
-                    "description": "Gebruik de `link-next` component om een link af te beelden op een pagina.<br/>\n\nDit component is de volgende versie van de [vl-link](/docs/elements-link-link--documentatie) component.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `link-next` component om een link af te beelden op een pagina.<br/>\n\nDit component is de volgende versie van de [vl-link](/docs/elements-link-link--documentatie) component.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-next-link--documentatie",
                     "attributes": [
                         {
@@ -1351,7 +1351,7 @@
                 },
                 {
                     "name": "vl-properties-next",
-                    "description": "Gebruik de `properties-next` component om properties te tonen op een pagina. Je kan de properties specifiëren als\ninner-html of als json-structuur meegeven aan het `props` attribuut.\n\nDeze component is de nieuwste variant die de (nog als element geschreven)\n[vl-properties](/docs/elements-properties--documentatie) vervangt.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `properties-next` component om properties te tonen op een pagina. Je kan de properties specifiëren als\ninner-html of als json-structuur meegeven aan het `props` attribuut.\n\nDeze component is de nieuwste variant die de (nog als element geschreven)\n[vl-properties](/docs/elements-properties--documentatie) vervangt.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-next-properties--documentatie",
                     "attributes": [
                         {
@@ -1378,7 +1378,7 @@
                 },
                 {
                     "name": "vl-steps-next",
-                    "description": "Gebruik de `steps-next` component om een verticale lijst van stappen af te beelden om de gebruiker door een procedure te begeleiden.<br/>\n\nDeze component is de nieuwe versie van de [vl-steps](/docs/components-steps--documentatie) component, we raden aan deze versie te gebruiken.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `steps-next` component om een verticale lijst van stappen af te beelden om de gebruiker door een procedure te begeleiden.<br/>\n\nDeze component is de nieuwe versie van de [vl-steps](/docs/components-steps--documentatie) component, we raden aan deze versie te gebruiken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-next-steps-steps--documentatie",
                     "attributes": [
                         {
@@ -1434,40 +1434,8 @@
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-next-steps-steps--documentatie"
                 },
                 {
-                    "name": "vl-video-player-next",
-                    "description": "Gebruik de `video-player-next` component om een video-player af te beelden.<br/>\n\nDeze component is de nieuwe versie van het [vl-video-player](/docs/elements-video-player--documentatie) element, we raden aan om op termijn deze versie te gebruiken.",
-                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-next-video-player--documentatie",
-                    "attributes": [
-                        {
-                            "name": "custom-css",
-                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component.",
-                            "default": "null"
-                        },
-                        {
-                            "name": "title",
-                            "description": "Stelt de titel van de video in.",
-                            "default": ""
-                        },
-                        {
-                            "name": "source",
-                            "description": "Stelt de bron van de video in.",
-                            "default": ""
-                        },
-                        {
-                            "name": "subtitles",
-                            "description": "Stelt de bron van de ondertitels in.",
-                            "default": ""
-                        },
-                        {
-                            "name": "poster",
-                            "description": "Stelt een afbeelding in die wordt weergegeven totdat de video wordt afgespeeld.",
-                            "default": ""
-                        }
-                    ]
-                },
-                {
                     "name": "vl-title-next",
-                    "description": "Gebruik de `title-next` component om een title af te beelden.<br/>\n\nDeze component is de nieuwe versie van het [vl-title](/docs/elements-title-h1--documentatie) element, we raden aan om op termijn deze versie te gebruiken.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `title-next` component om een title af te beelden.<br/>\n\nDeze component is de nieuwe versie van het [vl-title](/docs/elements-title-h1--documentatie) element, we raden aan om op termijn deze versie te gebruiken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-next-title--documentatie",
                     "attributes": [
                         {
@@ -1683,7 +1651,7 @@
                 },
                 {
                     "name": "vl-progress-bar",
-                    "description": "Gebruik een progress-bar om de vooruitgang te tonen van een proces dat uit verschillende stappen bestaat.",
+                    "description": "Gebruik een `progress-bar` om de vooruitgang te tonen van een proces dat uit verschillende stappen bestaat.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-progress-bar--documentatie",
                     "attributes": [
                         {
@@ -1790,7 +1758,7 @@
                 },
                 {
                     "name": "vl-radio",
-                    "description": "❗DEPRECATED: Gebruik de [vl-radio-group-next](/docs/form-next-radio-group--documentatie), in v2.0.0 verdwijnt deze component.\n\nDe `radio` laat de gebruiker toe om een enkele optie te selecteren uit een lijst. Gebruik de `radio` in formulieren.<br/>\nVermijd een voorgedefinieerde keuze vast te leggen zodat de gebruiker een bewuste keuze dient te maken.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>De `radio` laat de gebruiker toe om een enkele optie te selecteren uit een lijst. Gebruik de `radio` in formulieren.<br/>\nVermijd een voorgedefinieerde keuze vast te leggen zodat de gebruiker een bewuste keuze dient te maken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-radio--documentatie",
                     "attributes": [
                         {
@@ -2013,7 +1981,7 @@
                 },
                 {
                     "name": "vl-steps",
-                    "description": "❗DEPRECATED: gebruik de [vl-steps-next](/docs/components-next-steps-next--documentatie) component, in v2.0.0 verdwijnt deze component.\n\nGebruik de `steps` component om een verticale lijst van stappen af te beelden om de gebruiker door een procedure te begeleiden.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>Gebruik de `steps` component om een verticale lijst van stappen af te beelden om de gebruiker door een procedure te begeleiden.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-steps--documentatie",
                     "attributes": [
                         {
@@ -2142,7 +2110,7 @@
                 },
                 {
                     "name": "vl-textarea",
-                    "description": "❗DEPRECATED: Gebruik de [vl-textarea-next](/docs/form-next-textarea--documentatie), in v2.0.0 verdwijnt deze component.\n\nGebruik een `textarea` als invoervak in een formulier, waarin de gebruiker over meerdere regels tekst kan invoeren.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>Gebruik een `textarea` als invoervak in een formulier, waarin de gebruiker over meerdere regels tekst kan invoeren.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-textarea--documentatie",
                     "attributes": [
                         {
@@ -2307,7 +2275,7 @@
                 },
                 {
                     "name": "vl-tooltip",
-                    "description": "❗DEPRECATED: gebruik de [vl-popover](/docs/components-popover--documentatie) component.\n\nGebruik de `tooltip` component om beschrijvende informatie over de functie van een knop, label of ander element weer te\ngeven. Wanneer een gebruiker met de muis over een element beweegt of het selecteert, verschijnt de tooltip om extra\ninformatie te geven.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>Gebruik de `tooltip` component om beschrijvende informatie over de functie van een knop, label of ander element weer te\ngeven. Wanneer een gebruiker met de muis over een element beweegt of het selecteert, verschijnt de tooltip om extra\ninformatie te geven.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-tooltip--documentatie",
                     "attributes": [
                         {
@@ -2338,7 +2306,7 @@
                 },
                 {
                     "name": "vl-upload",
-                    "description": "❗DEPRECATED: Gebruik de [vl-upload-next](/docs/form-next-upload--documentatie), in v2.0.0 verdwijnt deze component.\n\nGebruik de `upload`-component om één of meerdere bestanden te selecteren of te slepen naar het upload-veld. De gebruiker\nkan alternatief ook één of meerdere bestanden uploaden door op de link in het upload-veld te klikken en de bestanden\nselecteren in het bestand-menu.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>Gebruik de `upload`-component om één of meerdere bestanden te selecteren of te slepen naar het upload-veld. De gebruiker\nkan alternatief ook één of meerdere bestanden uploaden door op de link in het upload-veld te klikken en de bestanden\nselecteren in het bestand-menu.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-upload--documentatie",
                     "attributes": [
                         {
@@ -2448,8 +2416,40 @@
                     }
                 },
                 {
+                    "name": "vl-video-player-next",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `video-player-next` component om een video-player af te beelden.<br/>\n\nDeze component is de nieuwe versie van het [vl-video-player](/docs/elements-video-player--documentatie) element, we raden aan om op termijn deze versie te gebruiken.",
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-next-video-player--documentatie",
+                    "attributes": [
+                        {
+                            "name": "custom-css",
+                            "description": "Custom CSS string.<br>Wordt toegevoegd aan de adoptedStyleSheets in de shadow DOM van de component.",
+                            "default": "null"
+                        },
+                        {
+                            "name": "title",
+                            "description": "Stelt de titel van de video in.",
+                            "default": ""
+                        },
+                        {
+                            "name": "source",
+                            "description": "Stelt de bron van de video in.",
+                            "default": ""
+                        },
+                        {
+                            "name": "subtitles",
+                            "description": "Stelt de bron van de ondertitels in.",
+                            "default": ""
+                        },
+                        {
+                            "name": "poster",
+                            "description": "Stelt een afbeelding in die wordt weergegeven totdat de video wordt afgespeeld.",
+                            "default": ""
+                        }
+                    ]
+                },
+                {
                     "name": "vl-wizard",
-                    "description": "Gebruik een wizard om een gebruiker door een meerstapsproces te begeleiden. Een wizard maakt het mogelijk om een\ningewikkeld proces op te delen in overzichtelijke, kleine stappen. Een wizard biedt ook de mogelijkheid opties in een\nbepaalde stap aan te passen op basis van keuzes die de gebruiker in een voorgaande stap heeft gemaakt.",
+                    "description": "Gebruik een `wizard` om een gebruiker door een meerstapsproces te begeleiden. Een wizard maakt het mogelijk om een\ningewikkeld proces op te delen in overzichtelijke, kleine stappen. Een wizard biedt ook de mogelijkheid opties in een\nbepaalde stap aan te passen op basis van keuzes die de gebruiker in een voorgaande stap heeft gemaakt.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-wizard-wizard--documentatie",
                     "attributes": [
                         {
@@ -2494,7 +2494,7 @@
                 },
                 {
                     "name": "vl-wizard-pane",
-                    "description": "Gebruik de wizard-pane component om een stap in de wizard af te beelden.\nTe gebruiken in combinatie met de [wizard](/docs/components-wizard-wizard--documentatie) component",
+                    "description": "Gebruik de `wizard-pane` component om een stap in de wizard af te beelden.\nTe gebruiken in combinatie met de [wizard](/docs/components-wizard-wizard--documentatie) component",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/components-wizard-wizard-pane--documentatie",
                     "attributes": [
                         {

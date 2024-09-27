@@ -9,6 +9,7 @@ import { textareaRichArgTypes, textareaRichArgs } from './vl-textarea-rich.stori
 registerWebComponents([VlTextareaRichComponent]);
 
 export default {
+    id: 'form-next-textarea-rich',
     title: 'Form-next/textarea-rich',
     tags: ['autodocs'],
     args: textareaRichArgs,

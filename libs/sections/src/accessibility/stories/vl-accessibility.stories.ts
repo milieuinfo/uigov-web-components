@@ -21,6 +21,7 @@ import { story } from '@domg-wc/common-storybook';
 // <p>De <code>outsideApplicableLaw</code> limitaties vallen onder 'De inhoud valt buiten de werkingssfeer van de toepasselijke wetgeving'. Dit zijn limitaties die buiten de werkingssfeer van de toepasselijke wetgeving vallen.</p>`;
 
 export default {
+    id: 'sections-accessibility',
     title: 'sections/accessibility',
     tags: ['autodocs'],
     args: accessibilityArgs,

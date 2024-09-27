@@ -7,6 +7,7 @@ import { prozaMessageMockDomainData, prozaMessageMockDomainEditableData } from '
 import prozaMessageDoc from './vl-proza-message.stories-doc.mdx';
 
 export default {
+    id: 'components-proza-message',
     title: 'components/proza-message',
     tags: ['autodocs'],
     args: prozaMessageArgs,

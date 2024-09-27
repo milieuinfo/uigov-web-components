@@ -7,6 +7,7 @@ import { infoTileArgs, infoTileArgTypes } from './vl-info-tile.stories-arg';
 import infoTileDoc from './vl-info-tile.stories-doc.mdx';
 
 export default {
+    id: 'components-info-tile',
     title: 'Components/info-tile',
     tags: ['autodocs'],
     args: infoTileArgs,

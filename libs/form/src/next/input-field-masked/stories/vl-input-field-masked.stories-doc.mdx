@@ -4,8 +4,11 @@ import FormControlPublicMethods from '../../form-control/stories/form-control.pu
 
 # Input Field Masked - next
 
+<VluxMetaData id="form-next-input-field-masked" />
+
 Gebruik de `input-field-masked-next` component om een input veld met een mask toe te voegen aan een pagina.<br/>
 Zie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.
+
 
 ## Voorbeeld
 
@@ -19,9 +22,11 @@ import { VlInputFieldMaskedComponent } from '@domg-wc/form/next/input-field-mask
 
 <Canvas of={VlInputFieldMaskedStories.InputFieldMaskedIban} />
 
+
 ## Configuratie
 
 <ArgTypes of={VlInputFieldMaskedStories.InputFieldMaskedIban} />
+
 
 ## Publieke methodes
 
@@ -32,6 +37,7 @@ import { VlInputFieldMaskedComponent } from '@domg-wc/form/next/input-field-mask
 Geeft de raw value van de input terug (zonder mask).<br/>
 Bij het `price` mask wordt de prefix weggelaten.
 
+
 ## Validatie
 > Meer info over validatie binnen onze form componenten vind je hier: [Form - Validatie](/docs/ontwerp-form-validation--documentatie)
 
@@ -41,6 +47,7 @@ Bij het `price` mask wordt de prefix weggelaten.
 - De `patternMismatch` ValidityState key wordt gebruikt voor de mask validatie error.
 - Het is mogelijk om de mask validatie te combineren met andere validaties, bv. `required`, `min`, `max`.
 - We voorzien momenteel enkel validatie voor de `text` input type.
+
 
 ## Masks
 
@@ -123,6 +130,7 @@ Bij het `price` mask wordt de prefix weggelaten.
 - Regex: `/^\+[0-9]{11}$/`
 
 <Canvas of={VlInputFieldMaskedStories.InputFieldMaskedMobile} />
+
 
 ## Referenties
 

@@ -11,6 +11,7 @@ import '../vl-map-action-controls';
 import mapActionControls from './vl-map-action-controls.stories-doc.mdx';
 
 export default {
+    id: 'map-controls-action-controls',
     title: 'map/controls/action-controls',
     tags: ['autodocs'],
     args: defaultArgs,

@@ -7,6 +7,7 @@ import { story } from '@domg-wc/common-storybook';
 import { VlDataTable } from '../vl-data-table.element';
 
 export default {
+    id: 'elements-data-table',
     title: 'Elements/data-table',
     tags: ['autodocs'],
     args: dataTableArgs,

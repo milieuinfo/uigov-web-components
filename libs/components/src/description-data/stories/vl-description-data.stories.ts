@@ -5,6 +5,7 @@ import '../vl-description-data.component';
 import { descriptionDataArgs, descriptionDataArgTypes } from './vl-description-data.stories-arg';
 
 export default {
+    id: 'components-description-data-description-data',
     title: 'Components/description-data/description-data',
     tags: ['autodocs'],
     args: descriptionDataArgs,

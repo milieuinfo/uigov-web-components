@@ -10,6 +10,8 @@ import '../vl-map-measure-control';
 import measureControlDoc from './vl-map-measure-control.stories-doc.mdx';
 
 export default {
+    id: 'map-controls-measure-control',
+
     title: 'map/controls/measure-control',
     tags: ['autodocs'],
     args: defaultArgs,

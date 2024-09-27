@@ -14,6 +14,7 @@ import functionalHeaderDoc from './vl-functional-header.stories-doc.mdx';
 registerWebComponents([VlBreadcrumbComponent, VlBreadcrumbItemComponent, VlFunctionalHeaderComponent, VlTabsComponent]);
 
 export default {
+    id: 'components-functional-header',
     title: 'Components/functional-header',
     tags: ['autodocs'],
     args: functionalHeaderArgs,

@@ -5,6 +5,7 @@ import { html } from 'lit-html';
 import { tabsPaneArgs, tabsPaneArgTypes } from './vl-tabs-pane.stories-arg';
 
 export default {
+    id: 'components-tabs-tabs-pane',
     title: 'Components/tabs/tabs-pane',
     tags: ['autodocs'],
     args: tabsPaneArgs,

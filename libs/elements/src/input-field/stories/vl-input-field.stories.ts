@@ -18,6 +18,7 @@ import { inputFieldArgs, inputFieldArgTypes } from './vl-input-field.stories-arg
 import inputFieldDoc from './vl-input-field.stories-doc.mdx';
 
 export default {
+    id: 'elements-input-field',
     title: 'Elements/input-field',
     tags: ['autodocs'],
     args: inputFieldArgs,

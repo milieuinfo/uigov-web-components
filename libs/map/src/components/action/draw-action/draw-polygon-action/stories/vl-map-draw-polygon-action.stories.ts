@@ -11,6 +11,7 @@ import '../vl-map-draw-polygon-action';
 import mapDrawPolygonDoc from './vl-map-draw-polygon-action.stories-doc.mdx';
 
 export default {
+    id: 'map-action-draw-action-draw-polygon-action',
     title: 'map/action/draw-action/draw-polygon-action',
     tags: ['autodocs'],
     args: mapDrawActionArgs,

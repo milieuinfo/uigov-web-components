@@ -7,6 +7,7 @@ import tabsDoc from './vl-tabs.stories-doc.mdx';
 import { addPane } from './vl-tabs.stories-util';
 
 export default {
+    id: 'components-tabs-tabs',
     title: 'Components/tabs/tabs',
     tags: ['autodocs'],
     args: tabsArgs,

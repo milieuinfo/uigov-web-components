@@ -6,6 +6,7 @@ import { CascaderItemArgs, cascaderItemArgs, cascaderItemArgTypes } from './vl-c
 import '../vl-cascader.component';
 
 export default {
+    id: 'components-next-cascader-cascader-item',
     title: 'Components-next/cascader/cascader-item',
     tags: ['autodocs'],
     args: cascaderItemArgs,

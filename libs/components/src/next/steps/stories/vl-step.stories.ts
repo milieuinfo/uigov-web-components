@@ -5,6 +5,7 @@ import '../vl-steps.component';
 import { stepArgs, stepArgTypes } from './vl-step.stories-arg';
 
 export default {
+    id: 'components-next-steps-step',
     title: 'Components-next/steps/step',
     tags: ['autodocs'],
     args: stepArgs,

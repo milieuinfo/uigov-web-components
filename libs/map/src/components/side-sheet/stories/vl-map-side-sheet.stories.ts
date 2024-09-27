@@ -11,6 +11,7 @@ import { mapSideSheetArgs, mapSideSheetArgTypes } from './vl-map-side-sheet.stor
 import mapSideSheetDoc from './vl-map-side-sheet.stories-doc.mdx';
 
 export default {
+    id: 'map-side-sheet-side-sheet',
     title: 'map/side-sheet/side-sheet',
     tags: ['autodocs'],
     args: mapSideSheetArgs,

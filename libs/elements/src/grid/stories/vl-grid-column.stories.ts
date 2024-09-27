@@ -5,6 +5,7 @@ import { Meta } from '@storybook/web-components';
 import { story } from '@domg-wc/common-storybook';
 
 export default {
+    id: 'elements-grid-grid-column',
     title: 'Elements/grid/grid-column',
     tags: ['autodocs'],
     args: gridColumnArgs,

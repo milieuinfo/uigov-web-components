@@ -1,6 +1,7 @@
 import { actionGroupArgTypes } from '../../../libs/elements/src/action-group/stories/vl-action-group.stories-arg';
 import { buttonArgTypes } from '../../../libs/elements/src/button/stories/vl-button.stories-arg';
 import { dataTableArgTypes } from '../../../libs/elements/src/data-table/stories/vl-data-table.stories-arg';
+import { doormatArgTypes } from '../../../libs/elements/src/doormat/stories/vl-doormat.stories-arg';
 import { formLabelArgTypes } from '../../../libs/elements/src/form-message/stories/vl-form-label.stories-arg';
 import { formValidationMessageArgTypes } from '../../../libs/elements/src/form-message/stories/vl-form-validation-message.stories-arg';
 import { formArgTypes } from '../../../libs/elements/src/form/stories/vl-form.stories-arg';
@@ -31,7 +32,7 @@ export const buildWTConfigElements: WTConfigArray = [
         '../../libs/elements/src/data-table/stories/vl-data-table.stories-doc.mdx',
         '/docs/elements-data-table--documentatie'
     ),
-    buildWTConfig('vl-doormat', null, null, '/docs/elements-doormat-doormat--documentatie'),
+    buildWTConfig('vl-doormat', doormatArgTypes, null, '/docs/elements-doormat-doormat--documentatie'),
     buildWTConfig('vl-doormat-content', null, null, '/docs/elements-doormat-doormat--documentatie'),
     buildWTConfig('vl-doormat-graphic-wrapper', null, null, '/docs/elements-doormat-doormat--documentatie'),
     buildWTConfig('vl-doormat-image', null, null, '/docs/elements-doormat-doormat-image--documentatie'),

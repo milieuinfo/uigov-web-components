@@ -154,7 +154,7 @@
                 },
                 {
                     "name": "vl-data-table",
-                    "description": "Gebruik de `data-table` component om op een gestructureerde manier (grote hoeveelheden) relationele data te tonen.",
+                    "description": "<span style=\"color: rgb(200,140,0)\">[legacy-component]</span><br/>Gebruik de `data-table` component om op een gestructureerde manier (grote hoeveelheden) relationele data te tonen.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/elements-data-table--documentatie",
                     "attributes": [
                         {
@@ -201,7 +201,19 @@
                 },
                 {
                     "name": "vl-doormat",
-                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/elements-doormat-doormat--documentatie"
+                    "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/elements-doormat-doormat--documentatie",
+                    "attributes": [
+                        {
+                            "name": "data-vl-alt",
+                            "description": "Changes the gray background of the doormat to white.",
+                            "default": "false"
+                        },
+                        {
+                            "name": "data-vl-graphic",
+                            "description": "Default doormat with a large image above.",
+                            "default": ""
+                        }
+                    ]
                 },
                 {
                     "name": "vl-doormat-content",
@@ -225,7 +237,7 @@
                 },
                 {
                     "name": "vl-form",
-                    "description": "❗DEPRECATED: In v2.0.0 verdwijnt deze component. Meer info over validatie binnen onze form componenten vind je hier: [Form - Validatie](/docs/ontwerp-form-validation--documentatie)\n\nEen `<form is=\"vl-form\">` met formuliervalidatie zorgt ervoor dat gebruikersinvoer in formulieren gevalideerd wordt.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>Een `<form is=\"vl-form\">` met formuliervalidatie zorgt ervoor dat gebruikersinvoer in formulieren gevalideerd wordt.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/elements-form--documentatie",
                     "attributes": [
                         {
@@ -522,7 +534,7 @@
                 },
                 {
                     "name": "vl-input-field",
-                    "description": "❗DEPRECATED: Gebruik de [vl-input-field-next](/docs/form-next-input-field--documentatie), in v2.0.0 verdwijnt deze component.\n\nGebruik het `input-field`-component om tekst van de gebruiker op te vangen.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>Gebruik het `input-field`-component om tekst van de gebruiker op te vangen.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/elements-input-field--documentatie",
                     "attributes": [
                         {
@@ -707,7 +719,7 @@
                 },
                 {
                     "name": "vl-multiselect",
-                    "description": "❗DEPRECATED: Gebruik de [vl-select-next](/docs/form-next-select--documentatie), in v2.0.0 verdwijnt deze component.\n\nGebruik de `multiselect` component om een gebruiker 1 of meerdere keuzes te laten maken uit een voorgedefinieerde lijst.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>Gebruik de `multiselect` component om een gebruiker 1 of meerdere keuzes te laten maken uit een voorgedefinieerde lijst.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/elements-multiselect--documentatie",
                     "attributes": [
                         {
@@ -734,7 +746,7 @@
                 },
                 {
                     "name": "vl-properties",
-                    "description": "Vormt de container van een lijst van kenmerken van een onderwerp.\nDeze component wordt meestal gebruikt om informatie te tonen dat ingevuld werd in een formulier.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>Vormt de container van een lijst van kenmerken van een onderwerp.\nDeze component wordt meestal gebruikt om informatie te tonen dat ingevuld werd in een formulier.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/elements-properties--documentatie",
                     "attributes": [
                         {
@@ -806,7 +818,7 @@
                 },
                 {
                     "name": "vl-select",
-                    "description": "❗DEPRECATED: Gebruik de [vl-select-next](/docs/form-next-select--documentatie) of [vl-select-rich-next](/docs/form-next-select-rich--documentatie), in v2.0.0 verdwijnt deze component.\n\nGebruik de `select` component om een gebruiker 1 keuze te laten maken uit een voorgedefinieerde lijst.<br/>\nHet is aangeraden deze component enkel te gebruiken bij 5 of meer opties. Bij minder opties heeft de radio component\nde voorkeur.",
+                    "description": "<span style=\"color: rgb(240,0,0)\">[legacy-component]</span><br/>Gebruik de `select` component om een gebruiker 1 keuze te laten maken uit een voorgedefinieerde lijst.<br/>\nHet is aangeraden deze component enkel te gebruiken bij 5 of meer opties. Bij minder opties heeft de radio component\nde voorkeur.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/elements-select--documentatie",
                     "attributes": [
                         {
@@ -897,7 +909,7 @@
                 },
                 {
                     "name": "vl-side-navigation",
-                    "description": "Gebruik het `vl-side-navigation` component om een compact navigatie-element aan een pagina toe te voegen.<br/>\nHet vat de inhoud van lange pagina's samen, leidt de gebruiker door de pagina inhoud en kan ook naar externe pagina's\nverwijzen.\n\nDe `vl-side-navigation` wordt opgebouwd uit volgende elementen:\n\n- VlSideNavigation\n- VlSideNavigationTitle\n- VlSideNavigationContent\n- VlSideNavigationGroup\n- VlSideNavigationItem\n- VlSideNavigationToggle\n- VlSideNavigationReference\n\n```js\nimport { VlSideNavigation } from '@domg-wc/elements';\n```\n\n```html\n<nav is=\"vl-side-navigation\"></nav>\n```\n\n<Canvas of={VlSideNavigationStories.SideNavigationDefault} />",
+                    "description": "<span style=\"color: rgb(200,140,0)\">[legacy-component]</span><br/>Gebruik het `vl-side-navigation` component om een compact navigatie-element aan een pagina toe te voegen.<br/>\nHet vat de inhoud van lange pagina's samen, leidt de gebruiker door de pagina inhoud en kan ook naar externe pagina's\nverwijzen.\n\nDe `vl-side-navigation` wordt opgebouwd uit volgende elementen:\n\n- VlSideNavigation\n- VlSideNavigationTitle\n- VlSideNavigationContent\n- VlSideNavigationGroup\n- VlSideNavigationItem\n- VlSideNavigationToggle\n- VlSideNavigationReference\n\n```js\nimport { VlSideNavigation } from '@domg-wc/elements';\n```\n\n```html\n<nav is=\"vl-side-navigation\"></nav>\n```\n\n<Canvas of={VlSideNavigationStories.SideNavigationDefault} />",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/elements-side-navigation--documentatie"
                 },
                 {

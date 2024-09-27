@@ -7,6 +7,7 @@ import '../vl-map-base-layer-grb-gray';
 import mapBaselayerGrbGrayDoc from './vl-map-baselayer-grb-gray.stories-doc.mdx';
 
 export default {
+    id: 'map-baselayer-baselayer-grb-gray',
     title: 'map/baselayer/baselayer-grb-gray',
     tags: ['autodocs'],
     args: mapBaselayerArgs,

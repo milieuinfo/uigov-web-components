@@ -5,6 +5,7 @@ import { story } from '@domg-wc/common-storybook';
 import '../vl-text.element';
 
 export default {
+    id: 'elements-text',
     title: 'Elements/text',
     tags: ['autodocs'],
     args: textArgs,

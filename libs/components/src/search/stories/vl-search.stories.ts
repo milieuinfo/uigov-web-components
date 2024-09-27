@@ -4,6 +4,7 @@ import { html } from 'lit-html';
 import '../vl-search.component';
 
 export default {
+    id: 'components-search',
     title: 'Components/search',
     tags: ['autodocs'],
     args: defaultArgs,

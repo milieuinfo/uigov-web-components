@@ -7,6 +7,7 @@ import sideSheetDoc from './vl-side-sheet.stories-doc.mdx';
 import sideSheetToggleImplementation from './vl-side-sheet.stories-utils';
 
 export default {
+    id: 'components-side-sheet',
     title: 'Components/side-sheet',
     tags: ['autodocs'],
     args: sideSheetArgs,

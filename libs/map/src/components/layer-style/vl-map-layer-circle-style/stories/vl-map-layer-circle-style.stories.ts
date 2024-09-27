@@ -9,6 +9,7 @@ import { mapLayerCircleStyleArg, mapLayerCircleStyleArgTypes } from './vl-map-la
 import mapLayerCircleStyleDox from './vl-map-layer-circle-style.stories-doc.mdx';
 
 export default {
+    id: 'map-layer-style-layer-circle-style',
     title: 'map/layer-style/layer-circle-style',
     tags: ['autodocs'],
     args: mapLayerCircleStyleArg,

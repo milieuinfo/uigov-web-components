@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import '../vl-image.element';
 
 export default {
+    id: 'elements-image',
     title: 'Elements/image',
     tags: ['autodocs'],
     parameters: {

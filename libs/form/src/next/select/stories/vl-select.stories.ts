@@ -9,6 +9,7 @@ import { VlSelectComponent } from '../vl-select.component';
 registerWebComponents([VlSelectComponent]);
 
 export default {
+    id: 'form-next-select',
     title: 'Form-next/select',
     tags: ['autodocs'],
     args: selectArgs,

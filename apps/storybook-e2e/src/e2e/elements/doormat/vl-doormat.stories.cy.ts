@@ -1,7 +1,5 @@
-const doormatDefaultUrl =
-    'http://localhost:8080/iframe.html?id=elements-doormat-doormat--doormat-default&viewMode=story';
-const doormatWithImageUrl =
-    'http://localhost:8080/iframe.html?id=elements-doormat-doormat-image--doormat-with-image&viewMode=story';
+const doormatDefaultUrl = 'http://localhost:8080/iframe.html?id=elements-doormat--doormat-default&viewMode=story';
+const doormatWithImageUrl = 'http://localhost:8080/iframe.html?id=elements-doormat--doormat-with-image&viewMode=story';
 
 describe('story elements / button / vl-doormat - default', () => {
     it('should contain a doormat', () => {

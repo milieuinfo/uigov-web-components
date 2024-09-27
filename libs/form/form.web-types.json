@@ -9,7 +9,7 @@
             "elements": [
                 {
                     "name": "vl-checkbox-next",
-                    "description": "Gebruik de `checkbox-next` component om de gebruiker de mogelijkheid te geven om 1 of meerdere dingen te selecteren in een lijst.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-checkbox](/docs/components-checkbox--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `checkbox-next` component om de gebruiker de mogelijkheid te geven om 1 of meerdere dingen te selecteren in een lijst.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-checkbox](/docs/components-checkbox--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-checkbox--documentatie",
                     "attributes": [
                         {
@@ -101,7 +101,7 @@
                 },
                 {
                     "name": "vl-datepicker-next",
-                    "description": "Gebruik de `datepicker-next` component om de gebruiker op een gebruiksvriendelijke manier een datum of tijd te laten selecteren.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-datepicker](/docs/components-datepicker--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `datepicker-next` component om de gebruiker op een gebruiksvriendelijke manier een datum of tijd te laten selecteren.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-datepicker](/docs/components-datepicker--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-datepicker--documentatie",
                     "attributes": [
                         {
@@ -244,7 +244,7 @@
                 },
                 {
                     "name": "vl-error-message-next",
-                    "description": "Gebruik de `error-message-next` component om een error af te beelden voor een input veld.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-form-validation-message](/docs/elements-form-message-form-validation-message--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `error-message-next` component om een error af te beelden voor een input veld.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-form-validation-message](/docs/elements-form-message-form-validation-message--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-error-message--documentatie",
                     "attributes": [
                         {
@@ -278,7 +278,7 @@
                 },
                 {
                     "name": "vl-form-label-next",
-                    "description": "Gebruik de `form-label-next` component om een form label af te beelden.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-form-label](/docs/elements-form-message-form-label--documentatie) component, we raden aan deze versie te gebruiken.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `form-label-next` component om een form label af te beelden.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-form-label](/docs/elements-form-message-form-label--documentatie) component, we raden aan deze versie te gebruiken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-form-label--documentatie",
                     "attributes": [
                         {
@@ -310,7 +310,7 @@
                 },
                 {
                     "name": "vl-input-field-next",
-                    "description": "Gebruik de `input-field-next` component om een input veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-input-field](/docs/elements-input-field--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `input-field-next` component om een input veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-input-field](/docs/elements-input-field--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-input-field--documentatie",
                     "attributes": [
                         {
@@ -448,7 +448,7 @@
                 },
                 {
                     "name": "vl-input-field-masked-next",
-                    "description": "Gebruik de `input-field-masked-next` component om een input veld met een mask toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `input-field-masked-next` component om een input veld met een mask toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-input-field-masked--documentatie",
                     "attributes": [
                         {
@@ -688,7 +688,7 @@
                 },
                 {
                     "name": "vl-radio-group-next",
-                    "description": "Gebruik de `radio-group-next` component om de gebruiker de mogelijkheid te geven om 1 keuze te selecteren in een lijst.<br/>\nWanneer mogelijk, selecteer geen `radio` van vooraf zodat de gebruiker een bewuste keuze kan maken.<br/>\nDe `radio-next` component is een onderdeel van de `radio-group-next` component.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van het [vl-radio](/docs/components-radio--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `radio-group-next` component om de gebruiker de mogelijkheid te geven om 1 keuze te selecteren in een lijst.<br/>\nWanneer mogelijk, selecteer geen `radio` van vooraf zodat de gebruiker een bewuste keuze kan maken.<br/>\nDe `radio-next` component is een onderdeel van de `radio-group-next` component.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van het [vl-radio](/docs/components-radio--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-radio-group--documentatie",
                     "attributes": [
                         {
@@ -763,7 +763,7 @@
                 },
                 {
                     "name": "vl-select-next",
-                    "description": "Gebruik de `select-next` component om een select veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-select](/docs/elements-select--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `select-next` component om een select veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-select](/docs/elements-select--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-select--documentatie",
                     "attributes": [
                         {
@@ -856,7 +856,7 @@
                 },
                 {
                     "name": "vl-select-rich-next",
-                    "description": "Gebruik de `select-rich-next` component om een uitgebreid select of multiselect veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-select](/docs/elements-select--documentatie) component en de [vl-multiselect](/docs/elements-multiselect--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `select-rich-next` component om een uitgebreid select of multiselect veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-select](/docs/elements-select--documentatie) component en de [vl-multiselect](/docs/elements-multiselect--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-select-rich--documentatie",
                     "attributes": [
                         {
@@ -979,7 +979,7 @@
                 },
                 {
                     "name": "vl-textarea-next",
-                    "description": "Gebruik de `textarea-next` component om een textarea veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-textarea](/docs/components-textarea--documentatie) component, we raden aan op termijn deze versie te gebruiken.<br />\nIn tegenstelling tot de vorige [vl-textarea](/docs/components-textarea--documentatie) bevat dit component geen rich-text modus, hier wordt op termijn een ander component voor voorzien.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `textarea-next` component om een textarea veld toe te voegen aan een pagina.<br/>\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-textarea](/docs/components-textarea--documentatie) component, we raden aan op termijn deze versie te gebruiken.<br />\nIn tegenstelling tot de vorige [vl-textarea](/docs/components-textarea--documentatie) bevat dit component geen rich-text modus, hier wordt op termijn een ander component voor voorzien.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-textarea--documentatie",
                     "attributes": [
                         {
@@ -1089,7 +1089,7 @@
                 },
                 {
                     "name": "vl-textarea-rich-next",
-                    "description": "Gebruik de `textarea-rich-next` component om een rich textarea veld toe te voegen aan een pagina.<br/>\n\nDit component is de volgende versie van de rich modus van de [vl-textarea](/docs/components-textarea--documentatie) component, we raden aan deze versie te gebruiken.<br />",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `textarea-rich-next` component om een rich textarea veld toe te voegen aan een pagina.<br/>\n\nDit component is de volgende versie van de rich modus van de [vl-textarea](/docs/components-textarea--documentatie) component, we raden aan deze versie te gebruiken.<br />",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-textarea-rich--documentatie",
                     "attributes": [
                         {
@@ -1222,7 +1222,7 @@
                 },
                 {
                     "name": "vl-upload-next",
-                    "description": "Gebruik de `upload-next` component om één of meerdere bestanden te selecteren of te slepen naar het upload-veld.\n\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-upload](/docs/components-upload--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
+                    "description": "<span style=\"color: rgb(25,140,25)\">[next-component]</span><br/>Gebruik de `upload-next` component om één of meerdere bestanden te selecteren of te slepen naar het upload-veld.\n\nZie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.\n\nDit component is de volgende versie van de [vl-upload](/docs/components-upload--documentatie) component, we raden aan op termijn deze versie te gebruiken.",
                     "doc-url": "https://milieuinfo.github.io/uigov-builds/release/DOMG-WC-VERSION/storybook/?path=/docs/form-next-upload--documentatie",
                     "attributes": [
                         {

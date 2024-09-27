@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import '../vl-search-results.element';
 
 export default {
+    id: 'elements-search-results-search-results',
     title: 'Elements/search-results/search-results',
     tags: ['autodocs'],
     parameters: {

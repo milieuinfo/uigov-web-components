@@ -1,6 +1,7 @@
 import { CATEGORIES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 import * as fs from 'fs-extra';
+import { VluxMetaDataModel } from '../../apps/storybook/.storybook/vlux-meta-data/vlux-meta-data.model';
 import {
     WTConfig,
     WTConfigArray,
@@ -17,6 +18,7 @@ import { buildWTConfigForm } from './wt-config-build/form.wt-config';
 import { buildWTConfigMap } from './wt-config-build/map.wt-config';
 import { buildWTConfigQlik } from './wt-config-build/qlik.wt-config';
 import { buildWTConfigSections } from './wt-config-build/sections.wt-config';
+import vluxMetaData from '../../apps/storybook/.storybook/vlux-meta-data/vlux-meta-data.json';
 
 const templateFileLocation: string = './wt-template/web-types.template';
 
@@ -27,23 +29,48 @@ const readTemplateFile = () => fs.readFileSync(templateFileLocation).toString();
 const buildDocUrl = (version: string, storyBookPath: string) =>
     docUrl.replace('$VERSION', version).replace('$STORYBOOK-PATH', storyBookPath);
 
+const buildPrefix = (vluxMetaDataModel: VluxMetaDataModel): string => {
+    switch (vluxMetaDataModel?.vStatus) {
+        case 'replaced':
+        case 'v1-replace':
+        case 'v1-remove':
+            return '<span style="color: rgb(240,0,0)">[legacy-component]</span><br/>';
+        case 'v1-todo':
+            return '<span style="color: rgb(200,140,0)">[legacy-component]</span><br/>';
+        case 'v2-next':
+            return '<span style="color: rgb(25,140,25)">[next-component]</span><br/>';
+        default:
+            return '';
+    }
+};
+
 const extractDocFileDescription = (component: string, docFile: string): string => {
     console.log(component + ' - process docFile');
     const lines: string[] = docFile.split(/\n/);
-    let firstHashLine = false;
+    let firstHashLinePassed = false;
+    let vluxMetaDataPassed = false;
     let description = '';
+    let prefix = '';
     for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        if (!firstHashLine && line.startsWith('#')) {
-            firstHashLine = true;
+        if (!firstHashLinePassed && line.startsWith('#')) {
             // de eerste lijn met een # bevat een titel, deze maakt geen deel uit van de omschrijving
+            firstHashLinePassed = true;
             continue;
         }
-        if (firstHashLine) {
+        if (!vluxMetaDataPassed && line.includes('VluxMetaData')) {
+            // de <VluxMetaData /> maakt geen deel uit van de omschrijving
+            vluxMetaDataPassed = true;
+            // de id bepalen
+            const componentId = line.split('"')[1];
+            prefix = buildPrefix(vluxMetaData[componentId]);
+            continue;
+        }
+        if (firstHashLinePassed && vluxMetaDataPassed) {
             // bij de tweede lijn met een # stopt de omschrijving
             if (line.startsWith('#')) {
                 // de witruimte voor- en achteraan verwijderen
-                description = description.trim();
+                description = prefix + description.trim();
                 // de omschrijving is volledig
                 break;
             }

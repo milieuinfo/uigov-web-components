@@ -4,6 +4,7 @@ import '../../icon/vl-icon.element';
 import '../../text/vl-text.element';
 
 export default {
+    id: 'elements-input-addon-button-input-addon',
     title: 'Elements/input-addon/button-input-addon',
     tags: ['autodocs'],
     parameters: {

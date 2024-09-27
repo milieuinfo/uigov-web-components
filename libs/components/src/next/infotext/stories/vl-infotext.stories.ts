@@ -10,6 +10,7 @@ import infotextDoc from './vl-infotext.stories-doc.mdx';
 registerWebComponents([VlInfotextComponent]);
 
 export default {
+    id: 'components-next-infotext',
     title: 'Components-next/infotext',
     tags: ['autodocs'],
     args: infotextArgs,

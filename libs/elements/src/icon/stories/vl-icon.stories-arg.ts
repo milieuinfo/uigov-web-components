@@ -1,15 +1,15 @@
-import { CONTROLS, getSelectControlOptions, TYPES } from '@domg-wc/common-storybook';
+import { CONTROLS, getSelectControlOptions } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
 export const iconArgs = {
     icon: 'calendar',
     size: '',
+    link: '',
     light: false,
     rotate: false,
     fullRotate: false,
     before: false,
     after: false,
-    link: false,
     content: 'Lorem ipsum dolor sit amet',
 };
 
@@ -39,7 +39,7 @@ export const iconArgTypes: ArgTypes<typeof iconArgs> = {
         name: 'data-vl-light',
         description: 'Attribuut wordt gebruikt om het icoon een lichte kleur te geven.',
         table: {
-            type: { summary: TYPES.BOOLEAN },
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
@@ -47,7 +47,7 @@ export const iconArgTypes: ArgTypes<typeof iconArgs> = {
         name: 'data-vl-90deg',
         description: 'Attribuut wordt gebruikt om het icoon 90 graden te roteren.',
         table: {
-            type: { summary: TYPES.BOOLEAN },
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
@@ -55,7 +55,7 @@ export const iconArgTypes: ArgTypes<typeof iconArgs> = {
         name: 'data-vl-180deg',
         description: 'Attribuut wordt gebruikt om het icoon 180 graden te roteren.',
         table: {
-            type: { summary: TYPES.BOOLEAN },
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
@@ -67,7 +67,7 @@ export const iconArgTypes: ArgTypes<typeof iconArgs> = {
             disable: true,
         },
         table: {
-            type: { summary: TYPES.BOOLEAN },
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
@@ -79,7 +79,7 @@ export const iconArgTypes: ArgTypes<typeof iconArgs> = {
             disable: true,
         },
         table: {
-            type: { summary: TYPES.BOOLEAN },
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
@@ -91,14 +91,12 @@ export const iconArgTypes: ArgTypes<typeof iconArgs> = {
             disable: true,
         },
         table: {
-            type: { summary: TYPES.BOOLEAN },
+            type: { summary: 'boolean' },
             defaultValue: { summary: 'false' },
         },
     },
     content: {
         name: 'content (for demo purposes)',
-        table: {
-            type: { summary: TYPES.STRING },
-        },
+        table: { summary: 'string' },
     },
 };

@@ -6,6 +6,7 @@ import { documentArgs, documentArgTypes } from './vl-document.stories-arg';
 import documentDoc from './vl-document.stories-doc.mdx';
 
 export default {
+    id: 'components-document',
     title: 'Components/document',
     tags: ['autodocs'],
     args: documentArgs,

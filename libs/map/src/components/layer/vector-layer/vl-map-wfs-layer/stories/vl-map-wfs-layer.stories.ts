@@ -8,6 +8,7 @@ import { mapWfsLayerArgs, mapWfsLayerArgTypes } from './vl-map-wfs-layer.stories
 import mapWfsLayerDoc from './vl-map-wfs-layer.stories-doc.mdx';
 
 export default {
+    id: 'map-layer-vector-layer-wfs-layer',
     title: 'map/layer/vector-layer/wfs-layer',
     tags: ['autodocs'],
     args: mapWfsLayerArgs,
