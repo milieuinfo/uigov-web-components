@@ -10,6 +10,7 @@ import { propertiesArgs, propertiesArgTypes } from './vl-properties.stories-arg'
 registerWebComponents([VlPropertiesComponent]);
 
 export default {
+    id: 'components-next-properties',
     title: 'Components-next/properties',
     tags: ['autodocs'],
     args: propertiesArgs,

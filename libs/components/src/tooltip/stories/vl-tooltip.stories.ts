@@ -6,6 +6,7 @@ import { tooltipArgs, tooltipArgTypes } from './vl-tooltip.stories-arg';
 import tooltipDoc from './vl-tooltip.stories-doc.mdx';
 
 export default {
+    id: 'components-tooltip',
     title: 'Components/tooltip',
     tags: ['autodocs'],
     args: tooltipArgs,

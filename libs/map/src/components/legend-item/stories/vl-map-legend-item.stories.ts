@@ -12,6 +12,7 @@ import { mapLegendItemArgs, mapLegendItemArgTypes } from './vl-map-legend-item.s
 import mapLegendItemDoc from './vl-map-legend-item.stories-doc.mdx';
 
 export default {
+    id: 'map-legend-item',
     title: 'Map/legend-item',
     tags: ['autodocs'],
     args: mapLegendItemArgs,

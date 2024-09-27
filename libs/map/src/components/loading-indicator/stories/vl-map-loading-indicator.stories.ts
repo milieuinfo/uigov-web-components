@@ -8,6 +8,7 @@ import '../vl-map-loading-indicator';
 import mapLoadingIndicatorDoc from './vl-map-loading-indicator.stories-doc.mdx';
 
 export default {
+    id: 'map-loading-indicator',
     title: 'map/loading-indicator',
     tags: ['autodocs'],
     args: defaultArgs,

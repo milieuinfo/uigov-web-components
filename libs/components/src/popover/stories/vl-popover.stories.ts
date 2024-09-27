@@ -13,6 +13,7 @@ import { popoverActionArgs, popoverActionArgTypes } from './vl-popover-action.st
 registerWebComponents([VlPopoverComponent, VlPopoverActionComponent, VlPopoverActionListComponent]);
 
 export default {
+    id: 'components-popover',
     title: 'Components/popover',
     tags: ['autodocs'],
     args: popoverDefaultArgs,

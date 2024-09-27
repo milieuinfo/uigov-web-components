@@ -1,8 +1,18 @@
-import { filterOutClasses, formatHTML } from '@domg-wc/common-storybook';
+import {
+    filterOutClasses,
+    filterOutDataCy,
+    filterOutStoryClasses,
+    filterOutStoryStyleTags,
+    formatHTML,
+} from '@domg-wc/common-storybook';
 import { registerWebComponents } from '@domg-wc/common-utilities';
+import { VlAlert } from '@domg-wc/components';
 import { VlIconElement } from '@domg-wc/elements';
 import './styles.css';
 import 'reflect-metadata';
+import { CustomDocAlert } from './custom-doc/custom-doc-alert';
+import { CustomDocMetaData } from './custom-doc/custom-doc-meta-data';
+import CustomDocTemplate from './custom-doc/custom-doc-template.mdx';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -15,10 +25,21 @@ export const parameters = {
         sort: 'alpha',
     },
     docs: {
-        transformSource: (input: string) => formatHTML(filterOutClasses(input)),
+        components: { CustomDocAlert, CustomDocMetaData },
+        transformSource: (input: string, { id }: { id: string }) => {
+            // als id begint met `styles-` geef dan de input terug zonder enige transformatie
+            if (id.startsWith('styles-')) {
+                return formatHTML(filterOutStoryStyleTags(filterOutStoryClasses(input)));
+            } else if (id.startsWith('elements-')) {
+                return formatHTML(filterOutDataCy(filterOutClasses(input)));
+            } else {
+                return formatHTML(filterOutStoryClasses(input));
+            }
+        },
+        page: CustomDocTemplate,
     },
 };
 
 // zonder deze import missen initieel de iconen, ze verschijnen dan wel maar pas na 30 seconden - onduidelijk waarom
 // een gevolg is ook dat de vlElementsStyle's op de document.adoptedStyleSheets gezet worden
-registerWebComponents([VlIconElement]);
+registerWebComponents([VlIconElement, VlAlert]);

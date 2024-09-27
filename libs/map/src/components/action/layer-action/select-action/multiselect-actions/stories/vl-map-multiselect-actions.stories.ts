@@ -11,6 +11,7 @@ import { component as defaultComponent } from './vl-map-multiselect-actions.stor
 import mapMultiselectActionsDoc from './vl-map-multiselect-actions.stories-doc.mdx';
 
 export default {
+    id: 'map-action-layer-action-select-action-multiselect-actions',
     title: 'map/action/layer-action/select-action/multiselect-actions',
     tags: ['autodocs'],
     args: mapMultiselectActionsArgs,

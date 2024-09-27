@@ -6,6 +6,7 @@ import '../../icon/vl-icon.element';
 import { actionGroupArgs, actionGroupArgTypes } from './vl-action-group.stories-arg';
 
 export default {
+    id: 'elements-action-group',
     title: 'Elements/action-group',
     tags: ['autodocs'],
     args: actionGroupArgs,

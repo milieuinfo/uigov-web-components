@@ -11,6 +11,7 @@ import '../vl-map-draw-line-action';
 import mapDrawActionDoc from './vl-map-draw-line-action.stories-doc.mdx';
 
 export default {
+    id: 'map-action-draw-action-draw-line-action',
     title: 'map/action/draw-action/draw-line-action',
     tags: ['autodocs'],
     args: mapDrawActionArgs,

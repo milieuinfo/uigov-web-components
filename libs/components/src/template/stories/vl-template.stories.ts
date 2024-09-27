@@ -9,6 +9,7 @@ import { templateArgs, templateArgTypes } from './vl-template.stories-arg';
 registerWebComponents([VlContentHeaderComponent, VlGridElement, VlH1Element, VlLayoutElement]);
 
 export default {
+    id: 'components-template',
     title: 'components/template',
     tags: ['autodocs'],
     args: templateArgs,

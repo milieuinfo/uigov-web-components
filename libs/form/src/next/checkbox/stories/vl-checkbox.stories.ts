@@ -11,6 +11,7 @@ import { nothing } from 'lit';
 registerWebComponents([VlCheckboxComponent]);
 
 export default {
+    id: 'form-next-checkbox',
     title: 'Form-next/checkbox',
     tags: ['autodocs'],
     args: checkboxArgs,

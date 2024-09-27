@@ -6,6 +6,7 @@ import { selectLocationArg, selectLocationArgTypes } from './vl-select-location.
 import mapSelectLocationDoc from './vl-select-location.stories-doc.mdx';
 
 export default {
+    id: 'map-select-location',
     title: 'map/select-location',
     tags: ['autodocs'],
     args: selectLocationArg,

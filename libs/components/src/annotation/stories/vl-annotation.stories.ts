@@ -4,6 +4,7 @@ import '../vl-annotation.component';
 import { annotationArgs, annotationArgTypes } from './vl-annotation.stories-arg';
 
 export default {
+    id: 'components-annotation',
     title: 'Components/annotation',
     tags: ['autodocs'],
     args: annotationArgs,

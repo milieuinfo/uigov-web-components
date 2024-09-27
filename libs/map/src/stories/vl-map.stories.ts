@@ -37,6 +37,7 @@ import {
 } from './vl-map.stories-util';
 
 export default {
+    id: 'map-map',
     title: 'map/map',
     tags: ['autodocs'],
     args: mapArgs,

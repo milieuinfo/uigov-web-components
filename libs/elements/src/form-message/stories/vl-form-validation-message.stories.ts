@@ -1,18 +1,13 @@
 import { html } from 'lit-html';
 import '../vl-form-validation-message.element';
 import { formValidationMessageArgs, formValidationMessageArgTypes } from './vl-form-validation-message.stories-arg';
-import formValidationMessageDoc from './vl-form-validation-message.stories-doc.mdx';
 
 export default {
+    id: 'elements-form-message-form-validation-message',
     title: 'Elements/form-message/form-validation-message',
     tags: ['autodocs'],
     args: formValidationMessageArgs,
     argTypes: formValidationMessageArgTypes,
-    parameters: {
-        docs: {
-            page: formValidationMessageDoc,
-        },
-    },
 };
 
 export const formValidationMessageDefault = ({ error, success }: typeof formValidationMessageArgs) => html`

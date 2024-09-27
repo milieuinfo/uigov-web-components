@@ -1,4 +1,4 @@
-import { Canvas, Source } from '@storybook/blocks';
+import {Canvas, Source} from '@storybook/blocks';
 import * as formDemoStories from './form-demo.stories';
 import formDemoSource from '!!raw-loader!@domg-wc/integration/form/demo/vl-form-demo.component';
 
@@ -25,9 +25,9 @@ De submitted waarden worden in deze demo in de console gelogd.
 ## Native elementen
 
 Gebruik voor de volgende elementen native HtmlElements met css classes:
-- Form: native HTMLFormElement met class `vl-form`
-- Button: native HtmlButtonElement met class `vl-button`
-- Action Group: native HtmlDivElement met class `vl-action-group`
+- Form: native HTMLFormElement met class `vl-form` - `<form class="vl-form">`
+- Action Group: native HtmlDivElement met class `vl-action-group` - `<div class="vl-action-group">`
+- Button: `vl-button-next` component - [documentatie](/docs/components-next-button--documentatie)
 
 ## Grid
 
@@ -39,15 +39,18 @@ Plaats deze op native HtmlDivElements.
 Gebruik de [parseFormData](/docs/ontwerp-form-form-data--documentatie) helper functie om de form data te verzamelen.<br/>
 Indien je meer controle nodig hebt kan je zelf de [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) API gebruiken.
 
-## ❗Let op
+<CustomDocAlert type="warning">
+{`
+    Indien je een form control wrapped in een custom component, zorg er voor dat dit custom component geen Shadow DOM
+    heeft.<br/>
+    Als dit custom component een Shadow DOM heeft, zal het native HtmlFormElement de form control niet meer vinden.
+`}
+</CustomDocAlert>
 
-Indien je een form control wrapped in een custom component, zorg er voor dat dit custom component geen Shadow DOM heeft.<br/>
-Als dit custom component een Shadow DOM heeft, zal het native HtmlFormElement de form control niet meer vinden.
-
-<Canvas of={formDemoStories.Demo} sourceState='none' />
+<Canvas of={formDemoStories.Demo} sourceState='none'/>
 
 <details open>
     <summary>Code</summary>
-    <Source code={formDemoSource} language="ts" dark={true} />
+    <Source code={formDemoSource} language="ts" dark={true}/>
 </details>
 

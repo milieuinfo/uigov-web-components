@@ -9,6 +9,7 @@ import { VlInputFieldComponent } from '../vl-input-field.component';
 registerWebComponents([VlInputFieldComponent]);
 
 export default {
+    id: 'form-next-input-field',
     title: 'Form-next/input-field',
     tags: ['autodocs'],
     args: inputFieldArgs,

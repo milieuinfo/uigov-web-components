@@ -10,6 +10,7 @@ import { VlFormLabelComponent } from '../../form-label';
 registerWebComponents([VlInputFieldMaskedComponent, VlFormLabelComponent]);
 
 export default {
+    id: 'form-next-input-field-masked',
     title: 'Form-next/input-field-masked',
     tags: ['autodocs'],
     args: inputFieldMaskedArgs,

@@ -9,6 +9,7 @@ import qlikDashboardDoc from './vl-qlik-infoblock.stories-doc.mdx';
 import viz_without_views from './visuals.json'; // TODO should have an assert
 
 export default {
+    id: 'qlik-qlik-infoblock',
     title: 'qlik/qlik-infoblock',
     args: qlikInfoblockArgs,
     argTypes: qlikInfoblockArgTypes,

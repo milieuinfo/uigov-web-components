@@ -9,6 +9,7 @@ import viz_without_views from '../../utils/stories/demo-visuals-without-views.js
 import viz_with_views from '../../utils/stories/demo-visuals-with-views.json'; // TODO should have an assert
 
 export default {
+    id: 'qlik-qlik-dashboard-page',
     title: 'qlik/qlik-dashboard-page',
     args: qlikDashboardPageArgs,
     argTypes: qlikDashboardPageArgTypes,

@@ -8,6 +8,7 @@ import { alertArgs, alertArgTypes } from './vl-alert.stories-arg';
 import alertDoc from './vl-alert.stories-doc.mdx';
 
 export default {
+    id: 'components-alert',
     title: 'Components/alert',
     tags: ['autodocs'],
     args: alertArgs,

@@ -6,6 +6,7 @@ import { progressBarArgs, progressBarArgTypes } from './vl-progress-bar.stories-
 import progressBarDoc from './vl-progress-bar.stories-doc.mdx';
 
 export default {
+    id: 'components-progress-bar',
     title: 'Components/progress-bar',
     tags: ['autodocs'],
     args: progressBarArgs,

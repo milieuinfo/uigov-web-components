@@ -3,8 +3,13 @@ import * as VlQlikDashboardStories from "./vl-qlik-dashboard.stories";
 
 # Visual
 
-Gebruik de <code>vl-qlik-dashboard</code> component om een dashboard te maken met Qlik visuals en eventueel filters. Het views object is ofwel een 2D `DashboardVisualization` array of een `Views` object, dat op zijn beurt een 2D `DashboardVisualization` array bevat.
-De 2D `DashboardVisualization` array is zo gestructureerd om de opdeling te maken tussen rij en kolom.
+<CustomDocMetaData id="qlik-qlik-dashboard" />
+
+Gebruik de <code>vl-qlik-dashboard</code> component om een dashboard te maken met Qlik visuals en eventueel filters.
+Het views object is ofwel een 2D `DashboardVisualization` array of een `Views` object, dat op zijn beurt een 2D
+`DashboardVisualization` array bevat. De 2D `DashboardVisualization` array is zo gestructureerd om de opdeling te
+maken tussen rij en kolom.
+
 
 ## Voorbeeld
 
@@ -26,9 +31,11 @@ this.connection = connection;
 
 <Canvas of={VlQlikDashboardStories.QlikDashboardWithFilters} />
 
+
 ## Configuratie
 
 <ArgTypes of={VlQlikDashboardStories.QlikDashboardWithFilters} />
+
 
 ## Types
 
@@ -79,6 +86,7 @@ export type Views = {
     },
 }
 ```
+
 
 ## Varianten
 

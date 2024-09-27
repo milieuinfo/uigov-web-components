@@ -5,6 +5,7 @@ import '../../infoblock/vl-infoblock.component';
 import '../vl-contact-card.component';
 
 export default {
+    id: 'components-contact-card',
     title: 'Components/contact-card',
     tags: ['autodocs'],
     args: defaultArgs,

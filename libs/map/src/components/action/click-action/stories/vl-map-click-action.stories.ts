@@ -9,6 +9,7 @@ import { mapClickActionArg, mapClickActionArgTypes } from './vl-map-click-action
 import mapClickActionDoc from './vl-map-click-action.stories-doc.mdx';
 
 export default {
+    id: 'map-action-click-action',
     title: 'map/action/click-action',
     tags: ['autodocs'],
     args: mapClickActionArg,

@@ -6,6 +6,7 @@ import { VideoPlayerArgs, videoPlayerArgs, videoPlayerArgTypes } from './vl-vide
 import videoPlayerDoc from './vl-video-player.stories-doc.mdx';
 
 export default {
+    id: 'components-next-video-player',
     title: 'Components-next/video-player',
     tags: ['autodocs'],
     args: videoPlayerArgs,

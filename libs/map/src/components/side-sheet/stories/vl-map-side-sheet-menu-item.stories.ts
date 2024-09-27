@@ -10,6 +10,7 @@ import '../vl-map-side-sheet-menu-item';
 import { mapSideSheetMenuItemArgs, mapSideSheetMenuItemArgTypes } from './vl-map-side-sheet-menu-item.stories-arg';
 
 export default {
+    id: 'map-side-sheet-side-sheet-menu-item',
     title: 'map/side-sheet/side-sheet-menu-item',
     tags: ['autodocs'],
     args: mapSideSheetMenuItemArgs,

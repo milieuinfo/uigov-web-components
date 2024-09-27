@@ -7,6 +7,7 @@ import { breadcrumbItemArgs, breadcrumbItemArgTypes } from './vl-breadcrumb-item
 import breadcrumbDoc from './vl-breadcrumb.stories-doc.mdx';
 
 export default {
+    id: 'components-breadcrumb',
     title: 'Components/breadcrumb',
     tags: ['autodocs'],
     args: breadcrumbItemArgs,

@@ -4,11 +4,14 @@ import FormControlPublicMethods from '../../form-control/stories/form-control.pu
 
 # Upload - next
 
+<CustomDocMetaData id="form-next-upload" />
+
 Gebruik de `upload-next` component om één of meerdere bestanden te selecteren of te slepen naar het upload-veld.
 
 Zie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.
 
 Dit component is de volgende versie van de [vl-upload](/docs/components-upload--documentatie) component, we raden aan op termijn deze versie te gebruiken.
+
 
 ## Voorbeeld
 
@@ -22,9 +25,11 @@ import { VlUploadComponent } from '@domg-wc/form/next/upload';
 
 <Canvas of={VlUploadStories.UploadDefault}/>
 
+
 ## Configuratie
 
 <ArgTypes of={VlUploadStories.UploadDefault}/>
+
 
 ## Publieke methodes
 
@@ -63,6 +68,7 @@ Deze fouten worden getoond in de preview van het toegevoegde bestand en tellen m
 Om deze functionaliteit te bekomen wordt er een `dropzoneValidator` gebruikt die overeenkomt met de `customError` [ValidityState](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState) key.
 Via de `customError` ValidityState key kan je een error message linken aan de `dropzoneValidator`.
 
+
 ## Toevoegen van bestanden
 
 Naast het slepen van bestanden, kan de gebruiker ook één of meerdere bestanden uploaden door op de link in het upload-veld te klikken en de bestanden
@@ -81,6 +87,7 @@ dat bestanden werden verwijderd wegens duplicaat detectie.
 
 De `vl-upload` component maakt gebruik van de [Dropzone](https://www.dropzonejs.com/) library. Deze library maakt gebruik van inline styles. Deze inline styles worden niet toegelaten in een strikte [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) policy.
 Deze inline styles zijn echter niet nodig voor de werking van de `vl-upload` component.
+
 
 ## Referenties
 

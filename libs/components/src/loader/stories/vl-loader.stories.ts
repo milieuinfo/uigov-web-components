@@ -4,6 +4,7 @@ import '../vl-loader.component';
 import { loaderArgs, loaderArgTypes } from './vl-loader.stories-arg';
 
 export default {
+    id: 'components-loader',
     title: 'Components/loader',
     tags: ['autodocs'],
     args: loaderArgs,

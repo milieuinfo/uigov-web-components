@@ -12,6 +12,7 @@ import { mapModifyActionArgs, mapModifyActionArgTypes } from './vl-map-modify-ac
 import mapModifyActionDoc from './vl-map-modify-action.stories-doc.mdx';
 
 export default {
+    id: 'map-action-layer-action-modify-action',
     title: 'map/action/layer-action/modify-action',
     tags: ['autodocs'],
     args: mapModifyActionArgs,

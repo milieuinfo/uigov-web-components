@@ -30,6 +30,7 @@ registerWebComponents([
 ]);
 
 export default {
+    id: 'components-steps',
     title: 'Components/steps',
     tags: ['autodocs'],
     args: stepsArgs,

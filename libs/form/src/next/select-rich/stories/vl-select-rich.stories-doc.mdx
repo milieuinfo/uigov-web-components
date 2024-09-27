@@ -4,10 +4,13 @@ import FormControlPublicMethods from '../../form-control/stories/form-control.pu
 
 # Select Rich - next
 
+<CustomDocMetaData id="form-next-select-rich" />
+
 Gebruik de `select-rich-next` component om een uitgebreid select of multiselect veld toe te voegen aan een pagina.<br/>
 Zie het [form demo](/docs/ontwerp-form-demo--documentatie) voorbeeld voor het gebruik binnen een form.
 
 Dit component is de volgende versie van de [vl-select](/docs/elements-select--documentatie) component en de [vl-multiselect](/docs/elements-multiselect--documentatie) component, we raden aan op termijn deze versie te gebruiken.
+
 
 ## Voorbeeld
 
@@ -34,9 +37,11 @@ import { VlSelectRichComponent } from '@domg-wc/form/next/select-rich';
 ]`} language="ts" dark={true} />
 </details>
 
+
 ## Configuratie
 
 <ArgTypes of={VlSelectRichStories.SelectRichDefault} />
+
 
 ## Publieke methodes
 
@@ -47,16 +52,19 @@ import { VlSelectRichComponent } from '@domg-wc/form/next/select-rich';
 Geeft de geselecteerde values terug.<br/>
 Bij de single select geeft deze methode een string terug, bij de multi select een array van strings.
 
+
 ## Styles
 
 De styles van DV zijn lokaal gezet en aangepast omdat deze niet CSP compliant waren.<br/>
 Er werd gebruik gemaakt van een `data:` attribuut om een SVG op te halen van w3.org.
 Hierdoor breekt de CSP compliance tenzij je alle `data:` attributen whitelist, wat niet de bedoeling is.
 
+
 ## Select event
 
 Bij het selecteren of verwijderen van een optie wordt het `vl-select` event afgevuurd, het detail object van dit event bevat de value van de geselecteerde opties.<br/>
 Gelijkaardig aan de `getSelected()` methode, bevat de value bij de single select 1 string en bij de multi select een array van strings.
+
 
 ## Select opties
 
@@ -69,11 +77,13 @@ Indien je de opties direct in de template zet, zal bij elke render de select opn
 Dit betekent ook dat als je programmatorisch een optie wil veranderen, toevoegen of verwijderen, je de referentie van de array moet aanpassen.<br/>
 Dit kan je doen door de opties de spreaden in een nieuwe array (`[...options]`).
 
+
 ## Accessibility
 
 Door de complexiteit van dit component is het niet mogelijk om het WCAG-compliant aan te bieden.<br/>
 We raden aan waar mogelijk gebruik te maken van de [vl-select](/docs/form-next-select--documentatie).<br/>
 Indien er minder dan 7 opties zijn raden we aan checkboxes of radio buttons te gebruiken.
+
 
 ## Varianten
 
@@ -220,6 +230,7 @@ Indien de 'required' boolean op true staat, moet je een value programmatorisch s
 ## Validatie
 
 Meer info over validatie binnen onze form componenten vind je hier: [Form - Validatie](/docs/ontwerp-form-validation--documentatie)
+
 
 ## Referenties
 

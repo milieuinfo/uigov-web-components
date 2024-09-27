@@ -13,6 +13,7 @@ import '../vl-map-measure-action';
 import mapMeasureActionDoc from './vl-map-measure-action.stories-doc.mdx';
 
 export default {
+    id: 'map-action-draw-action-measure-action',
     title: 'map/action/draw-action/measure-action',
     tags: ['autodocs'],
     args: mapDrawActionArgs,

@@ -7,6 +7,7 @@ import '../vl-map-base-layer-grb-ortho';
 import mapBaselayerGrbOrthoDoc from './vl-map-baselayer-grb-ortho.stories-doc.mdx';
 
 export default {
+    id: 'map-baselayer-baselayer-grb-ortho',
     title: 'map/baselayer/baselayer-grb-ortho',
     tags: ['autodocs'],
     args: mapBaselayerArgs,

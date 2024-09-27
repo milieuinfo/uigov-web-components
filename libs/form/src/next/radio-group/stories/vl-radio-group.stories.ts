@@ -10,6 +10,7 @@ import { VlRadioGroupComponent } from '../vl-radio-group.component';
 registerWebComponents([VlRadioComponent, VlRadioGroupComponent]);
 
 export default {
+    id: 'form-next-radio-group',
     title: 'Form-next/radio-group',
     tags: ['autodocs'],
     args: radioGroupArgs,

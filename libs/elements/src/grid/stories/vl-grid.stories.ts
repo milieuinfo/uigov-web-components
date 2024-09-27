@@ -3,6 +3,7 @@ import '../vl-grid.element';
 import { gridDefaultArgs, gridDefaultArgTypes } from './vl-grid.stories-arg';
 
 export default {
+    id: 'elements-grid-grid',
     title: 'Elements/grid/grid',
     tags: ['autodocs'],
     args: gridDefaultArgs,

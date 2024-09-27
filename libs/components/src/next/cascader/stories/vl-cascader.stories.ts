@@ -11,6 +11,7 @@ import { getItemList } from './vl-cascader.stories-util.item-list-function';
 import { cascaderItemTemplates } from './vl-cascader.stories-util.templates';
 
 export default {
+    id: 'components-next-cascader-cascader',
     title: 'Components-next/cascader/cascader',
     tags: ['autodocs'],
     args: cascaderArgs,

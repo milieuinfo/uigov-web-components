@@ -9,6 +9,7 @@ import textareaDocs from './vl-textarea.stories-doc.mdx';
 registerWebComponents([VlTextareaComponent]);
 
 export default {
+    id: 'form-next-textarea',
     title: 'Form-next/textarea',
     tags: ['autodocs'],
     args: textareaArgs,

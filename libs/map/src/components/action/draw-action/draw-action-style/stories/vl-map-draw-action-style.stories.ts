@@ -10,6 +10,7 @@ import '../../draw-polygon-action/vl-map-draw-polygon-action';
 import '../vl-map-draw-action-style';
 
 export default {
+    id: 'map-action-draw-action-draw-action-style',
     title: 'map/action/draw-action/draw-action-style',
     tags: ['autodocs'],
     args: mapDrawActionStyleArgs,

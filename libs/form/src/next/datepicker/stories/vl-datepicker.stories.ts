@@ -10,6 +10,7 @@ import { VlDatepickerComponent } from '../vl-datepicker.component';
 registerWebComponents([VlDatepickerComponent]);
 
 export default {
+    id: 'form-next-datepicker',
     title: 'Form-next/datepicker',
     tags: ['autodocs'],
     args: datepickerArgs,

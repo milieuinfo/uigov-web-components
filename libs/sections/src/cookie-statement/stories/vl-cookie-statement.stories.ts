@@ -7,6 +7,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { story } from '@domg-wc/common-storybook';
 
 export default {
+    id: 'sections-cookie-statement',
     title: 'sections/cookie-statement',
     tags: ['autodocs'],
     args: cookieStatementArgs,

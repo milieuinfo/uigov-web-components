@@ -8,6 +8,7 @@ import { modalArgs, modalArgTypes } from './vl-modal.stories-arg';
 registerWebComponents([VlDatepickerComponent]);
 
 export default {
+    id: 'components-modal',
     title: 'Components/modal',
     tags: ['autodocs'],
     args: modalArgs,

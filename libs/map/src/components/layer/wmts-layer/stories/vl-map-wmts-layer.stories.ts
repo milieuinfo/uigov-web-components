@@ -8,6 +8,7 @@ import { mapWmtsLayerArgs, mapWmtsLayerArgTypes } from './vl-map-wmts-layer.stor
 import mapWmtsLayerDoc from './vl-map-wmts-layer.stories-doc.mdx';
 
 export default {
+    id: 'map-layer-wmts-layer',
     title: 'map/layer/wmts-layer',
     tags: ['autodocs'],
     args: mapWmtsLayerArgs,

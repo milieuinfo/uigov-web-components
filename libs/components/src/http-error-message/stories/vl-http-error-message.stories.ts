@@ -7,6 +7,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import httpErrorMessageDoc from './vl-http-error-message.stories-doc.mdx';
 
 export default {
+    id: 'components-http-error-message',
     title: 'components/http-error-message',
     tags: ['autodocs'],
     args: httpErrorMessageArgs,

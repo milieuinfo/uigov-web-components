@@ -7,6 +7,7 @@ import { wizardPaneArgs, wizardPaneArgTypes } from './vl-wizard-pane.stories-arg
 import wizardPaneDoc from './vl-wizard-pane.stories-doc.mdx';
 
 export default {
+    id: 'components-wizard-wizard-pane',
     title: 'Components/wizard/wizard-pane',
     tags: ['autodocs'],
     args: wizardPaneArgs,

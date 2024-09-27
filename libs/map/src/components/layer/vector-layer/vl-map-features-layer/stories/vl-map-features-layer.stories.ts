@@ -8,6 +8,7 @@ import { mapFeaturesLayerArgs, mapFeaturesLayerArgTypes } from './vl-map-feature
 import mapFeaturesLayerDoc from './vl-map-features-layer.stories-doc.mdx';
 
 export default {
+    id: 'map-layer-vector-layer-features-layer',
     title: 'map/layer/vector-layer/features-layer',
     tags: ['autodocs'],
     args: mapFeaturesLayerArgs,

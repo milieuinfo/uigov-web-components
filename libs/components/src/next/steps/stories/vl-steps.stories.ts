@@ -6,6 +6,7 @@ import { stepsArgs, stepsArgTypes } from './vl-steps.stories-arg';
 import stepsDoc from './vl-steps.stories-doc.mdx';
 
 export default {
+    id: 'components-next-steps-steps',
     title: 'Components-next/steps/steps',
     tags: ['autodocs'],
     args: stepsArgs,

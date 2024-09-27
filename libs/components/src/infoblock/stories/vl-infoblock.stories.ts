@@ -5,6 +5,7 @@ import '../vl-infoblock.component';
 import { infoblockArgs, infoblockArgTypes } from './vl-infoblock.stories-arg';
 
 export default {
+    id: 'components-infoblock',
     title: 'Components/infoblock',
     tags: ['autodocs'],
     args: infoblockArgs,

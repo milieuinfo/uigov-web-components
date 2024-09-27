@@ -8,6 +8,7 @@ import '../vl-map-image-wms-layer';
 import mapImageWmsLayerDoc from './vl-map-image-wms-layer.stories-doc.mdx';
 
 export default {
+    id: 'map-layer-wms-layer-image-wms-layer',
     title: 'map/layer/wms-layer/image-wms-layer',
     tags: ['autodocs'],
     args: mapWmsLayerArgs,

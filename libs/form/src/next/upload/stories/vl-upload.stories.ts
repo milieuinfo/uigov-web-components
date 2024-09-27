@@ -9,6 +9,7 @@ import { VlUploadComponent } from '../vl-upload.component';
 registerWebComponents([VlUploadComponent]);
 
 export default {
+    id: 'form-next-upload',
     title: 'Form-next/upload',
     tags: ['autodocs'],
     args: uploadArgs,

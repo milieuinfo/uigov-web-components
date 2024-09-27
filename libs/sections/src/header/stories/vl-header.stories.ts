@@ -6,6 +6,7 @@ import headerDoc from './vl-header.stories-doc.mdx';
 import { story } from '@domg-wc/common-storybook';
 
 export default {
+    id: 'sections-header',
     title: 'sections/header',
     tags: ['autodocs'],
     args: headerArgs,

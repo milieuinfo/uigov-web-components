@@ -9,6 +9,7 @@ import { mapWmsStyleArgs, mapWmsStyleArgTypes } from './vl-map-wms-style.stories
 import mapWmsStyleDoc from './vl-map-wms-style.stories-doc.mdx';
 
 export default {
+    id: 'map-layer-wms-layer-wms-style',
     title: 'map/layer/wms-layer/wms-style',
     tags: ['autodocs'],
     args: mapWmsStyleArgs,

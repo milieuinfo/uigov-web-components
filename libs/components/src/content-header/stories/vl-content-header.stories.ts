@@ -6,6 +6,7 @@ import { contentHeaderArgs, contentHeaderArgTypes } from './vl-content-header.st
 import contentHeaderDoc from './vl-content-header.stories-doc.mdx';
 
 export default {
+    id: 'components-content-header',
     title: 'Components/content-header',
     tags: ['autodocs'],
     args: contentHeaderArgs,

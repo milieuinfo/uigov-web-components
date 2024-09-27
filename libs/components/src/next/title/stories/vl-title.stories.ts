@@ -7,6 +7,7 @@ import titleDoc from './vl-title.stories-doc.mdx';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 export default {
+    id: 'components-next-title',
     title: 'Components-next/title',
     tags: ['autodocs'],
     args: titleArgs,

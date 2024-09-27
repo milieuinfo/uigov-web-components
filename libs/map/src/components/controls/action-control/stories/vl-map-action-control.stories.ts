@@ -13,6 +13,7 @@ import { mapActionControlArgs, mapActionControlArgTypes } from './vl-map-action-
 import actionControlDoc from './vl-map-action-control.stories-doc.mdx';
 
 export default {
+    id: 'map-controls-action-control',
     title: 'map/controls/action-control',
     tags: ['autodocs'],
     args: mapActionControlArgs,

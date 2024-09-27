@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import '../vl-grid.element';
 
 export default {
+    id: 'elements-grid-grid-layout',
     title: 'Elements/grid/grid-layout',
     tags: ['autodocs'],
     args: {
