@@ -215,6 +215,12 @@ export class VlHeader extends BaseLitElement {
 
                     const logoutReason = logoutRequest.getRequest().getReason();
 
+                    if (this.logoutCallback && !(await this.logoutCallback(logoutReason))) {
+                        // Wijs het logout request af als de logoutCallback een Promise<boolean> teruggeeft die false is.
+                        logoutRequest.reject();
+                        return;
+                    }
+
                     if (logoutReason === 'user') {
                         //  Logout request door de gebruiker. Dit request mag nooit afgewezen worden in normale omstandigheden.
                         logoutRequest.accept();
@@ -223,12 +229,6 @@ export class VlHeader extends BaseLitElement {
 
                     if (this.rejectLogout) {
                         // Wijs het logout request af.
-                        logoutRequest.reject();
-                        return;
-                    }
-
-                    if (this.logoutCallback && !(await this.logoutCallback(logoutReason))) {
-                        // Wijs het logout request af als de logoutCallback een Promise<boolean> teruggeeft die false is.
                         logoutRequest.reject();
                         return;
                     }
