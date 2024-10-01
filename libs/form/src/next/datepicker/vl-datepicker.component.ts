@@ -348,30 +348,33 @@ export class VlDatepickerComponent extends FormControl {
         };
     }
 
+    private addAccessibilityAttributes() {
+        const calendar = this.shadowRoot?.querySelector('.flatpickr-calendar');
+        calendar?.querySelectorAll('.flatpickr-day').forEach((day) => {
+            // extend aria-label with the day of the week
+            const dateString = day.getAttribute('aria-label');
+            if (dateString) {
+                const dateObj = new Date(dateString);
+                const dayOfWeek = dateObj.toLocaleDateString('nl-NL', { weekday: 'long' });
+                day.setAttribute('aria-label', `${dateString}, ${dayOfWeek}`);
+                day.setAttribute('role', `button`);
+            }
+        });
+        calendar?.querySelectorAll('.flatpickr-prev-month, .flatpickr-next-month')?.forEach((button) => {
+            button?.setAttribute(
+                'aria-label',
+                button.classList.contains('flatpickr-prev-month') ? 'Vorige maand' : 'Volgende maand'
+            );
+            button?.setAttribute('role', 'button');
+            button?.querySelector('svg')?.setAttribute('aria-hidden', 'true');
+        });
+        calendar?.querySelector('.flatpickr-weekdays')?.setAttribute('aria-hidden', 'true');
+    }
+
     private handleOpenChange = (isOpen: boolean) => {
         this.isOpen = isOpen;
         if (isOpen) {
-            //
-            const calendar = this.shadowRoot?.querySelector('.flatpickr-calendar');
-            calendar?.querySelectorAll('.flatpickr-day').forEach((day) => {
-                // extend aria-label with the day of the week
-                const dateString = day.getAttribute('aria-label');
-                if (dateString) {
-                    const dateObj = new Date(dateString);
-                    const dayOfWeek = dateObj.toLocaleDateString('nl-NL', { weekday: 'long' });
-                    day.setAttribute('aria-label', `${dateString}, ${dayOfWeek}`);
-                    day.setAttribute('role', `button`);
-                }
-            });
-            calendar?.querySelectorAll('.flatpickr-prev-month, .flatpickr-next-month')?.forEach((button) => {
-                button?.setAttribute(
-                    'aria-label',
-                    button.classList.contains('flatpickr-prev-month') ? 'Vorige maand' : 'Volgende maand'
-                );
-                button?.setAttribute('role', 'button');
-                button?.querySelector('svg')?.setAttribute('aria-hidden', 'true');
-            });
-            calendar?.querySelector('.flatpickr-weekdays')?.setAttribute('aria-hidden', 'true');
+            this.addAccessibilityAttributes();
         }
     };
 
@@ -451,6 +454,7 @@ export class VlDatepickerComponent extends FormControl {
 
     private updateInputForAttribute(attribute: string) {
         const attributeKey = attribute as unknown as keyof VlDatepickerComponent;
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         this[attributeKey]
             ? this.getNativeDateInput()?.setAttribute(
                   attribute,
@@ -518,6 +522,7 @@ export class VlDatepickerComponent extends FormControl {
             const regex = this.regex || patternRegExp;
             isValidFormat = regex ? regex.test(dateString) : true;
             if (isValidFormat) parsedDate = flatpickr.parseDate(dateString, this.format);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
             // we vangen de error op, maar behandelen we die niet en gaan verder met de default waarde
         } finally {

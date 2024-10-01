@@ -77,10 +77,10 @@ export class VlRadioGroupComponent extends FormControl {
             this.getRadios()?.forEach((radio) => {
                 if (this.isInvalid) {
                     radio.setAttribute('error', '');
-                    radio.setAttribute('aria-invalid', 'true');
+                    radio?.validationTarget?.setAttribute('aria-invalid', 'true');
                 } else {
                     radio.removeAttribute('error');
-                    radio.removeAttribute('aria-invalid');
+                    radio?.validationTarget?.removeAttribute('aria-invalid');
                 }
             });
         }
