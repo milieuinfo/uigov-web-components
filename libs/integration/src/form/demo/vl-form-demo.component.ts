@@ -95,7 +95,7 @@ export class VlFormDemoComponent extends LitElement {
             <form id="form" class="vl-form" @submit=${this.onSubmit}>
                 <div class="vl-form-grid vl-form-grid--is-stacked">
                     <div class="vl-form-col--4-12">
-                        <vl-form-label-next for="naam" label="Naam *" block></vl-form-label-next>
+                        <vl-form-label-next for="naam" label="Voornaam *" block></vl-form-label-next>
                     </div>
                     <div class="vl-form-col--8-12">
                         <vl-input-field-next
