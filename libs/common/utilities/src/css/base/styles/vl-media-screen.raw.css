@@ -1,0 +1,6 @@
+:root {
+    --vl-media-screen-extra-small: 500px;
+    --vl-media-screen-small: 767px;
+    --vl-media-screen-medium: 1023px;
+    --vl-media-screen-large: 1600px;
+}

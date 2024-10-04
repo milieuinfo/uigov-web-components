@@ -7,6 +7,7 @@ import {
 } from '@domg-wc/common-storybook';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlAlert } from '@domg-wc/components';
+import { RegisterGlobalStyles } from '@domg-wc/common-utilities/css';
 import { VlIconElement } from '@domg-wc/elements';
 import './styles.css';
 import 'reflect-metadata';
@@ -43,3 +44,5 @@ export const parameters = {
 // zonder deze import missen initieel de iconen, ze verschijnen dan wel maar pas na 30 seconden - onduidelijk waarom
 // een gevolg is ook dat de vlElementsStyle's op de document.adoptedStyleSheets gezet worden
 registerWebComponents([VlIconElement, VlAlert]);
+
+RegisterGlobalStyles.register();

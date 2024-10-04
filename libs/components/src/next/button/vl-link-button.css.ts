@@ -1,6 +1,4 @@
-import { mediaQuerySmall } from '@domg-wc/common-utilities/css/mixin/media-queries.mixin.css';
-import { focusOutline } from '@domg-wc/common-utilities/css/mixin/outline.mixin.css';
-import { waveAnimation } from '@domg-wc/common-utilities/css/mixin/animation.mixin.css';
+import { focusOutline, waveAnimation } from '@domg-wc/common-utilities/css';
 import { CSSResult, css, unsafeCSS } from 'lit';
 
 const borderWidth = '0.2rem';
@@ -10,8 +8,8 @@ const loadingAnimationName = 'waving-light';
 
 export const linkButtonStyles: CSSResult = css`
     /* Importeer loading animation, moet op dit niveau geïmporteerd worden. */
-    ${waveAnimation(loadingAnimationName, 'var(--vl-action-color--disabled)')}
 
+    ${waveAnimation(loadingAnimationName, 'var(--vl-action-color--disabled)')}
     a {
         /* Reset styles - gebaseerd op DV mixin > _buttons.scss */
         border-radius: 0;
@@ -39,11 +37,9 @@ export const linkButtonStyles: CSSResult = css`
         /* link-button styles */
         text-decoration: none;
 
-        ${mediaQuerySmall(
-            css`
-                padding: var(--vl-spacing--xsmall);
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            padding: var(--vl-spacing--xsmall);
+        }
 
         &:focus {
             ${focusOutline()}
@@ -96,18 +92,14 @@ export const linkButtonStyles: CSSResult = css`
                 padding: 0 var(--vl-spacing--normal);
             }
 
-            ${mediaQuerySmall(
-                css`
-                    padding: calc(
-                        var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)}
-                    );
+            @media screen and (max-width: var(--vl-media-screen-small)) {
+                padding: calc(var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)});
 
-                    &:hover,
-                    &:active {
-                        padding: var(--vl-spacing--xsmall);
-                    }
-                `
-            )}
+                &:hover,
+                &:active {
+                    padding: var(--vl-spacing--xsmall);
+                }
+            }
         }
 
         &.error {
@@ -197,18 +189,16 @@ export const linkButtonStyles: CSSResult = css`
                     padding: 0 var(--vl-spacing--xsmall);
                 }
 
-                ${mediaQuerySmall(
-                    css`
-                        padding: calc(
-                            var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)}
-                        );
+                @media screen and (max-width: var(--vl-media-screen-small)) {
+                    padding: calc(
+                        var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)}
+                    );
 
-                        &:hover,
-                        &:active {
-                            padding: var(--vl-spacing--xsmall);
-                        }
-                    `
-                )}
+                    &:hover,
+                    &:active {
+                        padding: var(--vl-spacing--xsmall);
+                    }
+                }
             }
         }
 
@@ -263,6 +253,7 @@ export const linkButtonStyles: CSSResult = css`
         }
 
         /* In map styles */
+
         &.button-in-map {
             &.tertiary {
                 background-color: var(--vl-map-background-color);
@@ -270,6 +261,7 @@ export const linkButtonStyles: CSSResult = css`
         }
 
         /* Icon styles */
+
         &.icon-only {
             width: 3.5rem;
             padding: 0;

@@ -1,4 +1,3 @@
-import { mediaQuerySmall } from '@domg-wc/common-utilities/css/mixin/media-queries.mixin.css';
 import { css, CSSResult } from 'lit';
 
 const styles: CSSResult = css`
@@ -12,13 +11,11 @@ const styles: CSSResult = css`
         color: var(--vl-text-alt-color);
         max-width: 14rem;
 
-        ${mediaQuerySmall(
-            css`
-                .vl-infotext__text {
-                    font-size: 1.4rem;
-                }
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            .vl-infotext__text {
+                font-size: 1.4rem;
+            }
+        }
 
         &.vl-infotext--badge {
             background-color: var(--vl-background-alt-color);

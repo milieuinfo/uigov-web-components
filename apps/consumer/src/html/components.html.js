@@ -1,6 +1,7 @@
 export const stepsNextHtml = (importType, packageName) => `
     <div id="consumer-components">
         <h2 is="vl-h2">Steps Next - ${importType} - ${packageName}</h2>
+        <vl-icon-next icon="calendar"></vl-icon-next>
         <vl-steps-next>
             <vl-step-next data-vl-type="success">
                 <span slot="icon">1</span>

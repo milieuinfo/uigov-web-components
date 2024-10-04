@@ -1,13 +1,24 @@
-import colors from './vars/colors.var.css';
-import general from './vars/general.var.css';
-import spacing from './vars/spacing.var.css';
-import typography from './vars/typography.var.css';
-import fonts from './font/fonts.css';
-import base from './base.css';
+import { baseStyles } from './base/styles/vl-base.css';
+import { colorStyles } from './base/styles/vl-color.css';
+import { generalStyles } from './base/styles/vl-general.css';
+import { mediaScreenStyles } from './base/styles/vl-media-screen.css';
+import { typographyStyles } from './base/styles/vl-typography.css';
+import { fontStyles } from './base/fonts/vl-fonts.css';
+import { vlGroupStyles } from './group/vl-group.css';
+import { spacingStyles } from './space/vl-spacing.css';
 
-const globalStyles = [colors, general, spacing, typography, fonts, base];
+const globalStyles = [
+    mediaScreenStyles,
+    colorStyles,
+    generalStyles,
+    spacingStyles,
+    typographyStyles,
+    fontStyles,
+    baseStyles,
+    vlGroupStyles,
+];
 
-class RegisterGlobalStyles {
+export class RegisterGlobalStyles {
     static registered = false;
 
     static register() {

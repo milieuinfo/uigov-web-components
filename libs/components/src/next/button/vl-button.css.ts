@@ -1,7 +1,5 @@
-import { mediaQuerySmall } from '@domg-wc/common-utilities/css/mixin/media-queries.mixin.css';
-import { focusOutline } from '@domg-wc/common-utilities/css/mixin/outline.mixin.css';
-import { waveAnimation } from '@domg-wc/common-utilities/css/mixin/animation.mixin.css';
-import { CSSResult, css, unsafeCSS } from 'lit';
+import { focusOutline, waveAnimation } from '@domg-wc/common-utilities/css';
+import { css, CSSResult, unsafeCSS } from 'lit';
 
 const borderWidth = '0.2rem';
 const borderWidthSmall = '0.1rem';
@@ -10,8 +8,8 @@ const loadingAnimationName = 'waving-light';
 
 export const buttonStyles: CSSResult = css`
     /* Importeer loading animation, moet op dit niveau geïmporteerd worden. */
-    ${waveAnimation(loadingAnimationName, 'var(--vl-action-color--disabled)')}
 
+    ${waveAnimation(loadingAnimationName, 'var(--vl-action-color--disabled)')}
     button {
         /* Reset styles - gebaseerd op DV mixin > _buttons.scss */
         border-radius: 0;
@@ -36,11 +34,9 @@ export const buttonStyles: CSSResult = css`
         color: var(--vl-white);
         max-width: 100%;
 
-        ${mediaQuerySmall(
-            css`
-                padding: var(--vl-spacing--xsmall);
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            padding: var(--vl-spacing--xsmall);
+        }
 
         &:focus {
             ${focusOutline()}
@@ -92,18 +88,14 @@ export const buttonStyles: CSSResult = css`
                 padding: 0 var(--vl-spacing--normal);
             }
 
-            ${mediaQuerySmall(
-                css`
-                    padding: calc(
-                        var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)}
-                    );
+            @media screen and (max-width: var(--vl-media-screen-small)) {
+                padding: calc(var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)});
 
-                    &:hover,
-                    &:active {
-                        padding: var(--vl-spacing--xsmall);
-                    }
-                `
-            )}
+                &:hover,
+                &:active {
+                    padding: var(--vl-spacing--xsmall);
+                }
+            }
         }
 
         &.error {
@@ -193,18 +185,16 @@ export const buttonStyles: CSSResult = css`
                     padding: 0 var(--vl-spacing--xsmall);
                 }
 
-                ${mediaQuerySmall(
-                    css`
-                        padding: calc(
-                            var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)}
-                        );
+                @media screen and (max-width: var(--vl-media-screen-small)) {
+                    padding: calc(
+                        var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)}
+                    );
 
-                        &:hover,
-                        &:active {
-                            padding: var(--vl-spacing--xsmall);
-                        }
-                    `
-                )}
+                    &:hover,
+                    &:active {
+                        padding: var(--vl-spacing--xsmall);
+                    }
+                }
             }
         }
 
@@ -259,6 +249,7 @@ export const buttonStyles: CSSResult = css`
         }
 
         /* In map styles */
+
         &.button-in-map {
             &.tertiary {
                 background-color: var(--vl-map-background-color);
@@ -266,6 +257,7 @@ export const buttonStyles: CSSResult = css`
         }
 
         /* Icon styles */
+
         &.icon-only {
             width: 3.5rem;
             padding: 0;

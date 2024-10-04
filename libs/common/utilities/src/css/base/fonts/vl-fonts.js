@@ -1,3 +1,4 @@
+// TODO dit moet anders mbt generate-icon-files.mjs
 // ! Deze variabelen zitten in een .js bestand omdat de 'iconFontLocation' gebruikt wordt in het generate-icon-files.mjs script.
 // ! De variabelen voor de Flanders fonts staan ook in dit bestand zodat alle font variabelen in één bestand staan.
 

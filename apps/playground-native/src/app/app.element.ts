@@ -1,40 +1,35 @@
-import { VlAccordionComponent, VlCascaderComponent, VlInfoTile } from '@domg-wc/components';
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import './app.element.scss';
-import { getItemList } from './vl-cascader.utils';
-import { cascaderItemTemplates } from './vl-cascader.templates';
-import { nodeData } from './vl-cascader.data';
+import { vlGridStyles } from '@domg-wc/common-utilities/css/grid/vl-grid.css';
+import { vlMarginStyles } from '@domg-wc/common-utilities/css/space/vl-margin.css';
+import { vlPaddingStyles } from '@domg-wc/common-utilities/css/space/vl-padding.css';
 
 export class AppElement extends HTMLElement {
     static {
-        registerWebComponents([VlCascaderComponent, VlInfoTile, VlAccordionComponent]);
-    }
-
-    constructor() {
-        super();
-        this.innerHTML = `
-                        <main>
-                            <vl-side-sheet
-                            data-vl-left data-vl-custom-css=""
-                            data-vl-open data-vl-custom-css=".vl-layout {padding:0} .vl-region{padding:0} .vl-region:first-child{padding:0} :host #vl-side-sheet {padding:0} :host {--vl-side-sheet-width: 600px;}"
-                            >
-                                <h4 is="vl-h4" class="vl-title--has-border">Kies uit kantoren</h4>
-                                <vl-cascader id="cascader" ></vl-cascader>
-                            </vl-side-sheet>
-                        </main>
-        `;
+        registerWebComponents([]);
+        document.adoptedStyleSheets = [
+            ...document.adoptedStyleSheets,
+            vlGridStyles.styleSheet,
+            vlPaddingStyles.styleSheet,
+            vlMarginStyles.styleSheet,
+        ];
     }
 
     connectedCallback(): void {
-        const cascader: VlCascaderComponent = this.querySelector('#cascader');
-        if (cascader) {
-            //                     <vl-cascader .items=${nodeData} .itemListFn=${getItemList} .templates=${cascaderItemTemplates}>
-            cascader.items = nodeData;
-            cascader.itemListFn = getItemList;
-            cascader.templates = cascaderItemTemplates;
-        } else {
-            console.error('cascader not found');
-        }
+        this.innerHTML = `
+            <main>
+                <div class="vl-grid-next vl-grid-next--justify-items-center">
+                    <div class="vl-col-next--4 vl-padding-next--small">Col 1 / 1</div>
+                    <div class="vl-col-next--4 vl-margin-next--medium vl-margin-next--no-top">Col 1 / 2</div>
+                    <div class="vl-col-next--4">Col 1 / 3</div>
+                    <div class="vl-col-next--4 vl-col-next--justify-self-end">Col 2 / 1</div>
+                    <div class="vl-col-next--4 vl-col-next--justify-self-start">Col 2 / 2</div>
+                    <div class="vl-col-next--4">Col 2 / 3</div>
+                    <div class="vl-col-next--6">Col 3 / 1</div>
+                    <div class="vl-col-next--6">Col 3 / 2</div>
+                </div>
+            </main>
+        `;
     }
 }
 customElements.define('app-element', AppElement);

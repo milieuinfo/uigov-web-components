@@ -1,7 +1,6 @@
 import { css, CSSResult } from 'lit';
-import { mediaQuerySmall } from './mixin/media-queries.mixin.css';
 
-const styles: CSSResult = css`
+export const baseStyles: CSSResult = css`
     html {
         font-family: var(--vl-font);
         /* 62.5% Font Size Trick  */
@@ -17,13 +16,9 @@ const styles: CSSResult = css`
         -moz-osx-font-smoothing: grayscale;
         -webkit-text-size-adjust: none;
 
-        ${mediaQuerySmall(
-            css`
-                font-size: var(--vl-font-size--mobile);
-                line-height: var(--vl-line-height--mobile);
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            font-size: var(--vl-font-size--mobile);
+            line-height: var(--vl-line-height--mobile);
+        }
     }
 `;
-
-export default styles;

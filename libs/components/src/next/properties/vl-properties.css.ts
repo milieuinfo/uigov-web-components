@@ -1,4 +1,3 @@
-import { mediaQuerySmall } from '@domg-wc/common-utilities/css/mixin/media-queries.mixin.css';
 import { css, CSSResult } from 'lit';
 
 const columnWidth = (widthPercentage: number): CSSResult => {
@@ -80,20 +79,18 @@ const styles: CSSResult = css`
         ${collapsedDd()}
     }
 
-    ${mediaQuerySmall(
-        css`
-            .column {
-                ${columnWidth(100)};
-            }
+    @media screen and (max-width: var(--vl-media-screen-small)) {
+        .column {
+            ${columnWidth(100)};
+        }
 
-            dd {
-                ${collapsedDd()}
-            }
+        dd {
+            ${collapsedDd()}
+        }
 
-            dt {
-                ${collapsedDt()}
-            }
-        `
-    )};
+        dt {
+            ${collapsedDt()}
+        }
+    }
 `;
 export default styles;
