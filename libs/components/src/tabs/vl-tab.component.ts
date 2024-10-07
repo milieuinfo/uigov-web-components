@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common';
 
 @webComponent('vl-tab', { extends: 'li' })
 export class VlTabComponent extends BaseElementOfType(HTMLLIElement) {

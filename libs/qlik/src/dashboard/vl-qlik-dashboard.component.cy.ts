@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlQlikDashboardComponent } from './vl-qlik-dashboard.component';
 import { VlLayoutElement, VlRegionElement } from '@domg-wc/elements';
 import { Qlik } from '@domg/qlik-lib';

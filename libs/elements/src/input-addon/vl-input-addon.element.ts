@@ -1,4 +1,4 @@
-import { webComponent } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common';
 import { elementStyles } from '../vl-elements.uig-css';
 import { InputAddonBaseElementOfType } from './base/input-addon-base.element';
 import './vl-button-input-addon.element';

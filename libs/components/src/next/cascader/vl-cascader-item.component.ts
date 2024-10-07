@@ -1,5 +1,5 @@
 import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';
-import { BaseLitElement, findNodesForSlot } from '@domg-wc/common-utilities';
+import { BaseLitElement, findNodesForSlot } from '@domg-wc/common';
 import { customElement } from 'lit/decorators.js';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';

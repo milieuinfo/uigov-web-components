@@ -1,4 +1,4 @@
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { wcagLink, wcagLinkElements } from './wcag-link.section';
 
 registerWebComponents(wcagLinkElements());

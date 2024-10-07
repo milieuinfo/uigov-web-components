@@ -1,6 +1,6 @@
 import { Validator } from '@open-wc/form-control';
 import { CSSResult, LitElement, PropertyDeclarations, html, css } from 'lit';
-import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
 import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
 import { VlFormLabelComponent } from '@domg-wc/form/next/form-label';

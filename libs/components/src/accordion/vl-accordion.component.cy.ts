@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import { VlAccordionComponent } from './vl-accordion.component';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 
 registerWebComponents([VlAccordionComponent]);
 

@@ -1,5 +1,5 @@
 import { CSSResult, html, PropertyDeclarations } from 'lit';
-import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { InfoblockVisualization } from '../utils/vl-qlik.model';
 import { Qlik, STARDUST } from '@domg/qlik-lib';

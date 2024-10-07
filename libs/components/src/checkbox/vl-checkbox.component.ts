@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common';
 import { checkboxStyle } from '@domg/govflanders-style/component';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 

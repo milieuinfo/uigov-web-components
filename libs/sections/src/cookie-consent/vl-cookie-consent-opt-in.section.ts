@@ -1,6 +1,6 @@
 import { VlCheckboxComponent } from '@domg-wc/components';
 
-import { BaseElementOfType, webComponent, registerWebComponents } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent, registerWebComponents } from '@domg-wc/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 
 @webComponent('vl-cookie-consent-opt-in')

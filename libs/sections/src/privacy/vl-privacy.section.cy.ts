@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { type PrivacyProps, VlPrivacy } from './vl-privacy.section';
 
 registerWebComponents([VlPrivacy]);

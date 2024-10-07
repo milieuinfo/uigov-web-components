@@ -11,14 +11,9 @@ rm -rf ./build/tsc
 rm -rf ./build/dist
 
 # common-utilities
-tsc -p ./libs/common/utilities/tsconfig.lib.json
-node ./resources/utils-build/copy-common-utilities-js.mjs
-echo '[done] - build-libs - common-utilities'
-
-# common-storybook
-tsc -p ./libs/common/storybook/tsconfig.lib.json >/dev/null
-node ./resources/utils-build/copy-common-storybook-js.mjs
-echo '[done] - build-libs - common-storybook'
+tsc -p ./libs/common/tsconfig.lib.json
+node ./resources/utils-build/copy-common-js.mjs
+echo '[done] - build-libs - common'
 
 # elements
 tsc -p ./libs/elements/tsconfig.lib.json

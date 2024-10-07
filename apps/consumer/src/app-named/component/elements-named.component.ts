@@ -1,4 +1,4 @@
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlActionGroup, VlButtonElement, VlH2Element } from '@domg-wc/elements';
 import { buttonsInActionGroupHtml } from '../../html/elements.html.js';
 

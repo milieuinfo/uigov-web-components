@@ -1,4 +1,4 @@
-import { type VL, awaitUntil, registerWebComponents, webComponent, BaseHTMLElement } from '@domg-wc/common-utilities';
+import { type VL, awaitUntil, registerWebComponents, webComponent, BaseHTMLElement } from '@domg-wc/common';
 import '@govflanders/vl-ui-util/dist/js/util.js'; // Moet expliciet geïmporteerd worden om de cy test te laten slagen - de vl object is nodig
 import './vl-tabs.lib.js';
 import { VlTabComponent } from './vl-tab.component';

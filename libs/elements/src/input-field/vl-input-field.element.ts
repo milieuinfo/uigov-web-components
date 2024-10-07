@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponentPromised } from '@domg-wc/common';
 import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
 import { vlPattern } from '../pattern/vl-pattern.element';

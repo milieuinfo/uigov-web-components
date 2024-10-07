@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponentConditional } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponentConditional } from '@domg-wc/common';
 import { VlModalComponent } from '@domg-wc/components';
 import { VlButtonElement, vlElementsStyle, VlFormColumn, VlFormGridElement } from '@domg-wc/elements';
 import { analytics } from './util/analytics.util';

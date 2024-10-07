@@ -1,4 +1,4 @@
-import { webComponent } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common';
 import { elementStyles } from '../vl-elements.uig-css';
 import { BaseTitleOfType } from './base/base-title.element';
 

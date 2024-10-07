@@ -1,4 +1,4 @@
-import { registerWebComponents, webComponentPromised } from '@domg-wc/common-utilities';
+import { registerWebComponents, webComponentPromised } from '@domg-wc/common';
 import { VlDataTable } from '@domg-wc/elements';
 import { RichData, VlRichData } from '../rich-data/vl-rich-data.component';
 import { VlRichDataField } from './vl-rich-data-field.component';

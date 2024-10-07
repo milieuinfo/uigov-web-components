@@ -2,7 +2,7 @@ import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import { VlDoormatComponent } from '../vl-doormat.component';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { doormatArgTypes, doormatArgs } from './vl-doormat.stories-arg';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import doormatDoc from './vl-doormat.stories-doc.mdx';

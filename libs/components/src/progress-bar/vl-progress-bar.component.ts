@@ -1,4 +1,4 @@
-import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common';
 import { accessibilityStyle, resetStyle } from '@domg/govflanders-style/common';
 import { progressBarStyle } from '@domg/govflanders-style/component';
 import ProgressBar from '@govflanders/vl-ui-progress-bar/src/js/progress-bar.js';

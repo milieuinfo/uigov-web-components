@@ -1,4 +1,4 @@
-import { webComponent } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common';
 import { SelectRichOption } from '@domg-wc/form/next/select-rich/vl-select-rich.model';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { iconStyle, inputFieldStyle } from '@domg/govflanders-style/component';

@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlTitleComponent } from './vl-title.component';
 
 registerWebComponents([VlTitleComponent]);

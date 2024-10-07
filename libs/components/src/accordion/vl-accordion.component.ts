@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { BaseElementOfType, PADDINGS, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, PADDINGS, webComponent } from '@domg-wc/common';
 import { accordionStyle, buttonStyle, iconStyle, linkStyle, toggleStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
 import accordionUigStyle from './vl-accordion.uig-css';

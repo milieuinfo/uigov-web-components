@@ -2,7 +2,7 @@ import { story } from '@domg-wc/common-storybook';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import textareaRichDocs from './vl-textarea-rich.stories-doc.mdx';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlTextareaRichComponent } from '../vl-textarea-rich.component';
 import { textareaRichArgTypes, textareaRichArgs } from './vl-textarea-rich.stories-arg';
 

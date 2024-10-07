@@ -1,4 +1,4 @@
-import { awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
+import { awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/common';
 import { vlFormValidation, vlFormValidationElement } from '@domg-wc/elements';
 import 'tinymce/tinymce';
 import { VlLinkToolbarFactory } from './vl-link-toolbar-factory';

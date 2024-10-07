@@ -1,5 +1,5 @@
 import { CSSResult, html, PropertyDeclarations } from 'lit';
-import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common';
 import { stardust } from '@nebula.js/stardust/types';
 import { Qlik, STARDUST } from '@domg/qlik-lib';
 import { bindVlSelect, debounce, queryById, queryBySelectorAll, renderStack } from '../utils/qlik-render-utils';
@@ -162,11 +162,7 @@ export class VlQlikDashboardComponent extends BaseLitElement {
                 <vl-loader data-vl-text="Filter is aan het laden"></vl-loader>
             </div>
             <div class="${this.filtersLoading ? 'vl-u-visually-hidden' : ''}">
-                <select
-                    is="vl-multiselect"
-                    id="${filter.id}"
-                    @change="${this.changeFilter}"
-                ></select>
+                <select is="vl-multiselect" id="${filter.id}" @change="${this.changeFilter}"></select>
             </div>`;
     }
 

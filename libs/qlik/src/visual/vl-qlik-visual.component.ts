@@ -1,5 +1,5 @@
 import { css, CSSResult, html, PropertyDeclarations, unsafeCSS } from 'lit';
-import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
+import { BaseLitElement, webComponent } from '@domg-wc/common';
 import { stardust } from '@nebula.js/stardust/types';
 import { vlElementsStyle } from '@domg-wc/elements';
 

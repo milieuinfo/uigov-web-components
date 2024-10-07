@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common';
 import '@govflanders/vl-ui-core/dist/js/core.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import './vl-toaster.lib.js';

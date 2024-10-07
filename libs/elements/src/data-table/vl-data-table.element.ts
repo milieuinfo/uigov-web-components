@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common';
 import { elementStyles } from '../vl-elements.uig-css';
 import { VlButtonElement } from '../button/vl-button.element';
 import { VlIconElement } from '../icon/vl-icon.element';

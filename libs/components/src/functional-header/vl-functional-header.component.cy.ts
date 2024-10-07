@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlFunctionalHeaderComponent } from './vl-functional-header.component';
 import { VlBreadcrumbComponent } from './../breadcrumb';
 import { VlTabsComponent } from './../tabs';

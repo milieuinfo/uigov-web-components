@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlColumnElement, VlGridElement } from '@domg-wc/elements';
 import { gridStyle, resetStyle } from '@domg/govflanders-style/common';
 import { contactCardStyle } from '@domg/govflanders-style/component';

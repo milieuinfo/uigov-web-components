@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlPopoverComponent } from '@domg-wc/components';
 
 @webComponent('vl-popover-menu')

@@ -1,6 +1,6 @@
-import { BaseLitElement, ICON_PLACEMENT, webComponent } from '@domg-wc/common-utilities';
-import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-decorator';
-import iconStyle from '@domg-wc/common-utilities/css/icon/icon.css';
+import { BaseLitElement, ICON_PLACEMENT, webComponent } from '@domg-wc/common';
+import { globalStylesNext } from '@domg-wc/common/css/global-styles-decorator';
+import iconStyle from '@domg-wc/common/css/icon/icon.css';
 import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import buttonStyle from './vl-button.css';

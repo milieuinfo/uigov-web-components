@@ -1,4 +1,4 @@
-import { awaitUntil, BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { awaitUntil, BaseLitElement, registerWebComponents } from '@domg-wc/common';
 import { VlCheckboxComponent } from '@domg-wc/components';
 import { vlElementsStyle, VlFormLabel } from '@domg-wc/elements';
 import { CSSResult, html, PropertyDeclarations, TemplateResult } from 'lit';

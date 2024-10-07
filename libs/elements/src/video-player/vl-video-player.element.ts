@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common';
 import './vl-video-player.lib.js';
 import { elementStyles } from '../vl-elements.uig-css';
 

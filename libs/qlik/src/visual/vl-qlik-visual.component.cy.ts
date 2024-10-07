@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlQlikVisualComponent } from './vl-qlik-visual.component';
 import { VlLayoutElement, VlRegionElement } from '@domg-wc/elements';
 import { Qlik, STARDUST } from '@domg/qlik-lib';

@@ -1,5 +1,5 @@
 import { CSSResult, LitElement, css, html } from 'lit';
-import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { registerWebComponents, webComponent } from '@domg-wc/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { VlAccordionComponent, VlAnnotation, VlPopoverComponent } from '@domg-wc/components';
 

@@ -1,4 +1,4 @@
-import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common';
 import { VlIconElement } from '@domg-wc/elements';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { autocompleteStyle, inputFieldStyle } from '@domg/govflanders-style/component';

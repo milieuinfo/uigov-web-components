@@ -1,4 +1,4 @@
-import { BaseElementOfType, Class, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, Class, webComponent } from '@domg-wc/common';
 import { elementStyles } from '../vl-elements.uig-css';
 
 const baseFormAnnotationElement = (SuperClass: Class): Class => {

@@ -1,4 +1,4 @@
-import { BaseElementOfType, unwrap, VL, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, unwrap, VL, webComponent } from '@domg-wc/common';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import './vl-side-navigation.lib.js';
 import { elementStyles } from '../vl-elements.uig-css';

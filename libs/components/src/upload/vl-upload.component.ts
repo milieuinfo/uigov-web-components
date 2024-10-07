@@ -1,4 +1,4 @@
-import { BaseHTMLElement, VL, webComponentPromised } from '@domg-wc/common-utilities';
+import { BaseHTMLElement, VL, webComponentPromised } from '@domg-wc/common';
 import { vlFormValidation, vlFormValidationElement } from '@domg-wc/elements';
 import { iconStyle, linkStyle, uploadStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';

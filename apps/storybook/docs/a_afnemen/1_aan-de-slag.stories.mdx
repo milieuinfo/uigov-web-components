@@ -46,7 +46,7 @@ tot de artifactory van Departement Omgeving! Om node versie problemen te vermijd
     },
     "dependencies": {
         "@domg-wc/common-storybook": "1.29.1",
-        "@domg-wc/common-utilities": "1.29.1",
+        "@domg-wc/common": "1.29.1",
         "@domg-wc/elements": "1.29.1",
         "@domg-wc/components": "1.29.1",
         "@domg-wc/form": "1.29.1",
@@ -61,7 +61,7 @@ tot de artifactory van Departement Omgeving! Om node versie problemen te vermijd
 }
 ```
 
-> De minimaal op te nemen packages om componenten af te nemen zijn: __'@domg-wc/common-utilities'__,
+> De minimaal op te nemen packages om componenten af te nemen zijn: __'@domg-wc/common'__,
 __'@domg-wc/elements'__ en __'@domg-wc/components'__. De __'@domg-wc/sections'__ zal typisch ook opgenomen worden
 omdat de header en footer component verplicht zijn in een Departement Omgeving toepassing. De __'@domg-wc/map'__
 bevat de kaart functionaliteit en zal dus niet in alle gevallen nodig zijn.
@@ -79,7 +79,7 @@ import '@domg-wc/components/accordion';
 of
 
 ```
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlAccordionComponent } from '@domg-wc/components';
 
 registerWebComponents([VlAccordionComponent]);

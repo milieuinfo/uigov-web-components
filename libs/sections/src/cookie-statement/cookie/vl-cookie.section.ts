@@ -1,6 +1,6 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common';
 import styles from '../vl-cookie-statement.uig-css';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import {
     VlPropertiesComponent,
     VlPropertiesListElement,

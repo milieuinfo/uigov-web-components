@@ -2,7 +2,7 @@ import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';
 import { datepickerArgs, datepickerArgTypes } from './vl-datepicker.stories-arg';
 import { story } from '@domg-wc/common-storybook';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { formatEpoch } from './vl-datepicker.stories-util';
 import datepickerDocs from './vl-datepicker.stories-doc.mdx';
 import { VlDatepickerComponent } from '../vl-datepicker.component';

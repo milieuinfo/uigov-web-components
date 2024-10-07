@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common';
 import { elementStyles } from '../vl-elements.uig-css';
 
 class VlSideNavigationTitleElement extends BaseElementOfType(HTMLHeadingElement) {

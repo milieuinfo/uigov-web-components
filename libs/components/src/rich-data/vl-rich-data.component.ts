@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlButtonElement, VlColumnElement, VlFormLabel, VlGridElement, VlIconElement } from '@domg-wc/elements';
 import { Pagination, VlPagerComponent } from '../pager/vl-pager.component';
 import styles from './vl-rich-data.uig-css';

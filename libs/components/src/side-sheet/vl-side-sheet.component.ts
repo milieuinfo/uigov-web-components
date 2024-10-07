@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlToggleButtonComponent } from '../toggle-button';
 import { VlLayoutElement, VlRegionElement, VlText } from '@domg-wc/elements';
 import swipeDetect from 'swipe-detect/dist/';

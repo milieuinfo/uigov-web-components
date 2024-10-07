@@ -1,4 +1,4 @@
-import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common';
 import { VlFunctionalHeaderComponent } from '@domg-wc/components';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { CSSResult, html, type PropertyDeclarations } from 'lit';

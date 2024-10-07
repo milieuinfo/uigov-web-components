@@ -1,5 +1,5 @@
 import { render } from 'lit-html';
-import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlContactCardComponent, VlInfoblockComponent, VlTypography } from '@domg-wc/components';
 import {
     VlColumnElement,

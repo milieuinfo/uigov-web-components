@@ -1,4 +1,4 @@
-import { BaseElementOfType, MARGINS, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, MARGINS, registerWebComponents, webComponent } from '@domg-wc/common';
 import { vlElementsStyle, VlIconElement, VlLinkElement } from '@domg-wc/elements';
 import { functionalHeaderStyle } from '@domg/govflanders-style/component';
 import functionalHeaderUigStyle from './vl-functional-header.uig-css';

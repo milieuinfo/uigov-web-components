@@ -1,4 +1,4 @@
-import { awaitUntil, BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { awaitUntil, BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlActionGroup, VlButtonLinkElement, VlColumnElement, VlGridElement, VlIconElement } from '@domg-wc/elements';
 import { accessibilityStyle, gridStyle, resetStyle } from '@domg/govflanders-style/common';
 import { actionGroupStyle, iconStyle, linkStyle, modalStyle } from '@domg/govflanders-style/component';

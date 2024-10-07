@@ -1,4 +1,4 @@
-import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlButtonInputAddon, VlIconElement } from '@domg-wc/elements';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import {

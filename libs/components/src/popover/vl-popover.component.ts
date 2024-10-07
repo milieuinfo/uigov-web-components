@@ -1,4 +1,4 @@
-import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
 import type { Placement } from '@floating-ui/dom';

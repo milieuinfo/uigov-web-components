@@ -2,7 +2,7 @@ import { descriptionDataStyle } from '@domg/govflanders-style/component';
 import { gridStyle, resetStyle } from '@domg/govflanders-style/common';
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common';
 import { VlColumnElement, VlGridElement } from '@domg-wc/elements';
 import { classMap } from 'lit/directives/class-map.js';
 

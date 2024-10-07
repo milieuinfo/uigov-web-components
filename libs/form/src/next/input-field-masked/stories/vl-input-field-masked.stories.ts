@@ -4,7 +4,7 @@ import { html } from 'lit';
 import { inputFieldMaskedArgs, inputFieldMaskedArgTypes } from './vl-input-field-masked.stories-arg';
 import inputFieldMaskedDocs from './vl-input-field-masked.stories-doc.mdx';
 import { VlInputFieldMaskedComponent } from '../vl-input-field-masked.component';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlFormLabelComponent } from '../../form-label';
 
 registerWebComponents([VlInputFieldMaskedComponent, VlFormLabelComponent]);

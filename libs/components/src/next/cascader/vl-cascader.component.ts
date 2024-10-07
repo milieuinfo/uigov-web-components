@@ -1,4 +1,4 @@
-import { BaseLitElement, findNodesForSlot, registerWebComponents } from '@domg-wc/common-utilities';
+import { BaseLitElement, findNodesForSlot, registerWebComponents } from '@domg-wc/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { breadcrumbStyle } from '@domg/govflanders-style/component';

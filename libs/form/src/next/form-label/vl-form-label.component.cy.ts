@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlFormLabelComponent } from './vl-form-label.component';
 import { VlInputFieldComponent } from '../input-field';
 

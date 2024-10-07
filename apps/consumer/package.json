@@ -8,7 +8,7 @@
         "http-server": "14.1.1"
     },
     "dependencies": {
-        "@domg-wc/common-utilities": "1.36.1",
+        "@domg-wc/common": "1.36.1",
         "@domg-wc/common-storybook": "1.36.1",
         "@domg-wc/components": "1.36.1",
         "@domg-wc/elements": "1.36.1",

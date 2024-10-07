@@ -3,7 +3,7 @@ import { iconArgs, iconArgTypes } from './vl-icon.stories-arg';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import { VlIconComponent } from '../vl-icon.component';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import iconDoc from './vl-icon.stories-doc.mdx';
 
 registerWebComponents([VlIconComponent]);

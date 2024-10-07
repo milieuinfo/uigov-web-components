@@ -4,7 +4,7 @@ import '../vl-spotlight.component';
 import { SIZE } from '../vl-spotlight.model';
 import { spotlightArgs, spotlightArgTypes } from './vl-spotlight.stories-arg';
 import { story } from '@domg-wc/common-storybook';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlDocumentComponent } from '../../document/index';
 
 registerWebComponents([VlDocumentComponent]);

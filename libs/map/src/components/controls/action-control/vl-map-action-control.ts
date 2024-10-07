@@ -1,4 +1,4 @@
-import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlToggleButtonComponent } from '@domg-wc/components';
 import { PropertyDeclarations } from 'lit';
 import { VlMapAction } from '../../action/vl-map-action';

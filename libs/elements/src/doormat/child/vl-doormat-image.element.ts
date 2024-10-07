@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlDoormatGraphicWrapperElement } from './vl-doormat-graphic-wrapper.element';
 
 @webComponent('vl-doormat-image', { extends: 'img' })

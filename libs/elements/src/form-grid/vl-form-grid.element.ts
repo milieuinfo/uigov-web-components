@@ -1,4 +1,4 @@
-import { webComponent } from '@domg-wc/common-utilities';
+import { webComponent } from '@domg-wc/common';
 import { VlGridElement } from '../grid/vl-grid.element';
 import './vl-form-column.element';
 import { elementStyles } from '../vl-elements.uig-css';

@@ -7,7 +7,7 @@ import {
     TYPES,
 } from '@domg-wc/common-storybook';
 // de import is bewust op deze manier om voor de web-types.generator 'binnen' de monorepo geen side-effect te geven
-import { ICON_PLACEMENT } from '@domg-wc/common-utilities/constants';
+import { ICON_PLACEMENT } from '@domg-wc/common/constants';
 import { ArgTypes } from '@storybook/web-components';
 import { linkDefaults } from '../vl-link.defaults';
 

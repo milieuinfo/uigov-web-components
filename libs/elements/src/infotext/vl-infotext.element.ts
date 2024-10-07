@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common';
 import '@govflanders/vl-ui-infotext/dist/js/infotext.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import { elementStyles } from '../vl-elements.uig-css';

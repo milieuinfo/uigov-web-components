@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import { Meta, StoryFn } from '@storybook/web-components';
 import formValidatorsDoc from './form-validation.stories-doc.mdx';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';
 import { VlFormLabelComponent } from '@domg-wc/form/next/form-label';
 import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';

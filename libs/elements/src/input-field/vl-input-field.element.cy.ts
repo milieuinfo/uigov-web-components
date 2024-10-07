@@ -1,4 +1,4 @@
-import { debounce, registerWebComponents } from '@domg-wc/common-utilities';
+import { debounce, registerWebComponents } from '@domg-wc/common';
 import { html } from 'lit';
 import { VlInputFieldElement } from './vl-input-field.element';
 

@@ -1,4 +1,4 @@
-import { BaseElementOfType, VL, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, VL, webComponent } from '@domg-wc/common';
 import './vl-form-group.element';
 import { elementStyles } from '../vl-elements.uig-css';
 

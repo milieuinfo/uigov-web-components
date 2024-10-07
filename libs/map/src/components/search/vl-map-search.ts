@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common';
 import { vlElementsStyle, VlSelect, SELECT_POSITION } from '@domg-wc/elements';
 import { VlSearchComponent } from '@domg-wc/components';
 import OlOverlay from 'ol/Overlay';

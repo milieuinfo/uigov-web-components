@@ -8,7 +8,7 @@ import {
 } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 // de import is bewust op deze manier om voor de web-types.generator 'binnen' de monorepo geen side-effect te geven
-import { PADDINGS } from '@domg-wc/common-utilities/constants';
+import { PADDINGS } from '@domg-wc/common/constants';
 
 export const popoverDefaultArgs = {
     ...defaultArgs,

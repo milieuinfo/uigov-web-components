@@ -1,4 +1,4 @@
-import { BaseElementOfType } from '@domg-wc/common-utilities';
+import { BaseElementOfType } from '@domg-wc/common';
 
 /**
  * Gebruik de input addon mixin in combinatie met een input addon elementen.

@@ -1,4 +1,4 @@
-import { BaseElementOfType, findDeepestElementThroughShadowRoot, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, findDeepestElementThroughShadowRoot, webComponent } from '@domg-wc/common';
 import { elementStyles } from '../vl-elements.uig-css';
 
 @elementStyles()

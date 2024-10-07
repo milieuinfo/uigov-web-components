@@ -1,4 +1,4 @@
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { html } from 'lit';
 import { VlSelect } from './vl-select.element';
 import { SELECT_POSITION, SelectPosition } from './vl-select.model';

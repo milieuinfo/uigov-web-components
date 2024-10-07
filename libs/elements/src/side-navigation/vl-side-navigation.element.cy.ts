@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlSideNavigation } from './vl-side-navigation.element';
 import { VlSideNavigationContentElement } from './vl-side-navigation-content.element';
 import { VlSideNavigationGroupElement } from './vl-side-navigation-group.element';

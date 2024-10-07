@@ -1,5 +1,5 @@
 import 'construct-style-sheets-polyfill';
-import { UigConfig } from '@domg-wc/common-utilities';
+import { UigConfig } from '@domg-wc/common';
 import { CSSResult } from 'lit';
 
 // @govflanders common styles

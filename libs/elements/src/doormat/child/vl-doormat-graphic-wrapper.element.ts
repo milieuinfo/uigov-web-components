@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common';
 
 @webComponent('vl-doormat-graphic-wrapper', { extends: 'div' })
 export class VlDoormatGraphicWrapperElement extends BaseElementOfType(HTMLDivElement) {

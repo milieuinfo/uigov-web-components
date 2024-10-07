@@ -1,4 +1,4 @@
-import { BaseHTMLElement, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseHTMLElement, registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlH2Element, VlIconElement } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { infoblockStyle } from '@domg/govflanders-style/component';

@@ -1,4 +1,4 @@
-import { type VL, awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/common-utilities';
+import { type VL, awaitUntil, BaseElementOfType, webComponentPromised } from '@domg-wc/common';
 import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
 import './vl-select.lib.js';

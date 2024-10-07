@@ -1,4 +1,4 @@
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { html } from 'lit';
 import { dataTableDefaults } from '../data-table/vl-data-table.defaults';
 import { VlDataTable } from '../data-table/vl-data-table.element';

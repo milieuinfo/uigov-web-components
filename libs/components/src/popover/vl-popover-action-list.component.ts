@@ -1,5 +1,5 @@
 import { CSSResult, TemplateResult, html } from 'lit';
-import { BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement } from '@domg-wc/common';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { customElement } from 'lit/decorators.js';

@@ -1,4 +1,4 @@
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { type TitleProps, title, titleElements } from './title.section';
 
 registerWebComponents(titleElements());

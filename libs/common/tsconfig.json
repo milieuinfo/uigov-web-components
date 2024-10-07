@@ -1,6 +1,6 @@
 {
-    "extends": "../../../tsconfig.base.json",
-    "include": ["./src/**/*.ts", "../../../resources/cypress-commands/*.d.ts"],
+    "extends": "../../tsconfig.base.json",
+    "include": ["./src/**/*.ts", "../../resources/cypress-commands/*.d.ts"],
     "references": [
         {
             "path": "./tsconfig.lib.json"
@@ -10,7 +10,7 @@
         }
     ],
     "compilerOptions": {
-        "outDir": "../../../build/tsc/lib-common-utilities",
+        "outDir": "../../build/tsc/lib-common",
         "strict": true
     }
 }

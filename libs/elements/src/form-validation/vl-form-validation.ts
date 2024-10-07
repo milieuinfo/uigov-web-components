@@ -1,4 +1,4 @@
-import { VL, awaitUntil } from '@domg-wc/common-utilities';
+import { VL, awaitUntil } from '@domg-wc/common';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import '@govflanders/vl-ui-core/dist/js/core.js';
 import './vl-form-validation.lib.js';

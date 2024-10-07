@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common';
 import './vl-link-list-item.element';
 import { elementStyles } from '../vl-elements.uig-css';
 

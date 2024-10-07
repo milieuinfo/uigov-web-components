@@ -1,4 +1,4 @@
-import { BaseLitElement, registerWebComponents, VL } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents, VL } from '@domg-wc/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { stepsStyle } from '@domg/govflanders-style/component';

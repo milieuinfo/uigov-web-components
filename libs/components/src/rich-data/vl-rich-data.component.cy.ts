@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlPagerComponent } from '../pager/vl-pager.component';
 import { VlRichData } from './vl-rich-data.component';
 

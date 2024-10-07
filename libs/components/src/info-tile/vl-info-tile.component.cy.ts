@@ -1,4 +1,4 @@
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlInfoTile } from './index';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';

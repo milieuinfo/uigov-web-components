@@ -5,7 +5,7 @@ import {
     filterOutStoryStyleTags,
     formatHTML,
 } from '@domg-wc/common-storybook';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlAlert } from '@domg-wc/components';
 import { VlIconElement } from '@domg-wc/elements';
 import './styles.css';

@@ -1,4 +1,4 @@
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { html } from 'lit-html';
 import { Meta } from '@storybook/web-components';
 import { VlAllIconsComponent } from '@domg-wc/integration/icon/index';

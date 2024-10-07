@@ -13,7 +13,7 @@ import { VlDatepickerComponent } from '@domg-wc/form/next/datepicker';
 import { VlUploadComponent } from '@domg-wc/form/next/upload';
 import { VlSelectComponent, SelectOption } from '@domg-wc/form/next/select';
 import { VlButtonComponent } from '@domg-wc/components/next/button';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import formStyle from './form.css';
 import { parseFormData } from '@domg-wc/form/utils';
 

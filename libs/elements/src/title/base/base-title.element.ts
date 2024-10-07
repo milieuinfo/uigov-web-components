@@ -1,4 +1,4 @@
-import { BaseElementOfType } from '@domg-wc/common-utilities';
+import { BaseElementOfType } from '@domg-wc/common';
 
 export class BaseTitleOfType extends BaseElementOfType(HTMLHeadingElement) {
     static get _observedClassAttributes() {

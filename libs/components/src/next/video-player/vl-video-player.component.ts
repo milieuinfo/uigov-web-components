@@ -1,5 +1,5 @@
-import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
-import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-decorator';
+import { BaseLitElement, webComponent } from '@domg-wc/common';
+import { globalStylesNext } from '@domg-wc/common/css/global-styles-decorator';
 import { CSSResult, html, PropertyDeclarations, PropertyValues } from 'lit';
 import { TextTrackInit } from 'vidstack';
 import { MediaPlayerElement } from 'vidstack/elements';

@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common';
 
 @webComponent('vl-doormat-title', { extends: 'h2' })
 export class VlDoormatTitleElement extends BaseElementOfType(HTMLHeadingElement) {

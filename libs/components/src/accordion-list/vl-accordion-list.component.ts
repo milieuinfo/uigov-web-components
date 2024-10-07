@@ -3,7 +3,7 @@ import { html, TemplateResult, CSSResult, PropertyDeclarations } from 'lit';
 import { accordionStyle } from '@domg/govflanders-style/component';
 import { resetStyle } from '@domg/govflanders-style/common';
 import 'reflect-metadata';
-import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
+import { BaseLitElement, webComponent } from '@domg-wc/common';
 import { property } from 'lit/decorators.js';
 
 @webComponent('vl-accordion-list')

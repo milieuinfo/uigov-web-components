@@ -1,4 +1,4 @@
-import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
+import { BaseLitElement, webComponent } from '@domg-wc/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { baseStyle, resetStyle } from '@domg/govflanders-style/common';
 import { radioStyle } from '@domg/govflanders-style/component';

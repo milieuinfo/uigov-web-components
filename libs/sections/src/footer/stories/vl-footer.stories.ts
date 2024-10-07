@@ -1,5 +1,5 @@
 import { story } from '@domg-wc/common-storybook';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlBodyElement } from '@domg-wc/elements';
 import { Meta } from '@storybook/web-components';
 import { html } from 'lit-html';

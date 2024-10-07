@@ -1,7 +1,7 @@
 import './component/components-named.component';
 import './component/elements-named.component';
 import './component/map-named.component';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlH1Element } from '@domg-wc/elements';
 
 registerWebComponents([VlH1Element]);

@@ -1,4 +1,4 @@
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { vlElementsStyle, VlMultiSelect, VlSelect } from '@domg-wc/elements';
 import { LitElement, html, CSSResult } from 'lit';
 import { customElement } from 'lit/decorators.js';

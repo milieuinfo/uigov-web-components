@@ -1,4 +1,4 @@
-import { awaitUntil, BaseElementOfType, registerWebComponents, webComponentPromised } from '@domg-wc/common-utilities';
+import { awaitUntil, BaseElementOfType, registerWebComponents, webComponentPromised } from '@domg-wc/common';
 import {
     VlButtonInputAddon,
     vlFormValidation,

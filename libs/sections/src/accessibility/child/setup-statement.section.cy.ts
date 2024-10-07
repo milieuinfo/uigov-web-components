@@ -1,4 +1,4 @@
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { EVALUATION_STATUS } from '../';
 import { type SetupStatementProps, setupStatement, setupStatementElements } from './setup-statement.section';
 

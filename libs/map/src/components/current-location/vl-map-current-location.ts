@@ -1,4 +1,4 @@
-import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common';
 import { VlIconElement } from '@domg-wc/elements';
 import { css, html, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';

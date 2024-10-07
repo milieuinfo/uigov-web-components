@@ -1,4 +1,4 @@
-import { webComponentConditional } from '@domg-wc/common-utilities';
+import { webComponentConditional } from '@domg-wc/common';
 import { VlSelect } from '../select/vl-select.element';
 import { elementStyles } from '../vl-elements.uig-css';
 

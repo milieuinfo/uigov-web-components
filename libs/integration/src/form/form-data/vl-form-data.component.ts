@@ -1,5 +1,5 @@
 import { css, CSSResult, html, LitElement } from 'lit';
-import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlErrorMessageComponent } from '@domg-wc/form/next/error-message';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { VlInputFieldComponent } from '@domg-wc/form/next/input-field';

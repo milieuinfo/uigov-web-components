@@ -1,7 +1,7 @@
 import { html, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { SIZE } from './vl-spotlight.model';
-import { BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement } from '@domg-wc/common';
 import { classMap } from 'lit/directives/class-map.js';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { documentStyle, iconListStyle, spotlightStyle } from '@domg/govflanders-style/component';

@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common';
 import { VlButtonElement, VlIconElement, VlInputFieldElement, VlSelect } from '@domg-wc/elements';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { buttonStyle, inputFieldStyle, selectStyle } from '@domg/govflanders-style/component';

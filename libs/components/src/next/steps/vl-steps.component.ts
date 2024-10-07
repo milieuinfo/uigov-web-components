@@ -1,4 +1,4 @@
-import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common';
 import { resetStyle } from '@domg/govflanders-style/common';
 import { vlElementsStyle } from '@domg-wc/elements';
 import { CSSResult, PropertyDeclarations, TemplateResult, html } from 'lit';
@@ -119,7 +119,7 @@ export class VlStepsComponent extends BaseLitElement {
                 bottom: calc(-5rem + 0.4rem);
                 left: -5rem;
             }
-                
+
             @media screen and (max-width: 767px) {
                 .vl-step::before {
                     top: 3.9rem;
@@ -134,7 +134,7 @@ export class VlStepsComponent extends BaseLitElement {
             styles += `
                 .vl-step::before {
                     display: none !important;
-                }    
+                }
             `;
         }
 

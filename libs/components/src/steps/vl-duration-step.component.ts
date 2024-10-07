@@ -1,4 +1,4 @@
-import { BaseElementOfType, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, webComponent } from '@domg-wc/common';
 
 @webComponent('vl-duration-step')
 export class VlDurationStepComponent extends BaseElementOfType(HTMLElement) {

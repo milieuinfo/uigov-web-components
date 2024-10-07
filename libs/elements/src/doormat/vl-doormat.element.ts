@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common';
 import { elementStyles } from '../vl-elements.uig-css';
 import { VlDoormatContentElement } from './child/vl-doormat-content.element';
 import { VlDoormatGraphicWrapperElement } from './child/vl-doormat-graphic-wrapper.element';

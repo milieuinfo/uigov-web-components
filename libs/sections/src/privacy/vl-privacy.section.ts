@@ -1,4 +1,4 @@
-import { BaseLitElement, registerWebComponents } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents } from '@domg-wc/common';
 import { VlContactCardComponent, VlDocumentComponent, VlInfoblockComponent, VlTypography } from '@domg-wc/components';
 import {
     VlColumnElement,

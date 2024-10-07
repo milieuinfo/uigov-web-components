@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlQlikDashboardPageComponent } from './vl-qlik-dashboard-page.component';
 import { VlLayoutElement, VlRegionElement } from '@domg-wc/elements';
 import viz_without_views from '../utils/stories/demo-visuals-without-views.json'; // TODO should have an assert

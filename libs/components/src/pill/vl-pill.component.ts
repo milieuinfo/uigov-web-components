@@ -6,7 +6,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { createRef, ref } from 'lit/directives/ref.js';
 import { TYPE } from './vl-pill.model';
 import pillUigStyle from './vl-pill.uig-css';
-import { BaseLitElement } from '@domg-wc/common-utilities';
+import { BaseLitElement } from '@domg-wc/common';
 
 @customElement('vl-pill')
 export class VlPillComponent extends BaseLitElement {

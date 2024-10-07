@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { ICON_PLACEMENT, registerWebComponents } from '@domg-wc/common-utilities';
+import { ICON_PLACEMENT, registerWebComponents } from '@domg-wc/common';
 import { VlButtonComponent } from './vl-button.component';
 
 registerWebComponents([VlButtonComponent]);

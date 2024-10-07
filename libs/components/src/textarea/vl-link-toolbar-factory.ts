@@ -1,4 +1,4 @@
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlTextareaModal } from './vl-textarea-modal.component';
 
 export class VlLinkToolbarFactory {

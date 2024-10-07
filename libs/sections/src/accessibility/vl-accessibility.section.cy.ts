@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import type { AccessibilityProperties } from './vl-accessibility.model';
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { VlAccessibility } from './vl-accessibility.section';
 
 registerWebComponents([VlAccessibility]);

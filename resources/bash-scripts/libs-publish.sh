@@ -16,7 +16,7 @@ fi
 
 cd ./common-utilities
 npm publish domg-wc-common-utilities-${RELEASE_VERSION}.tgz
-echo "[done] - publish - @domg-wc/common-utilities-${RELEASE_VERSION}"
+echo "[done] - publish - @domg-wc/common-${RELEASE_VERSION}"
 
 cd ../common-storybook
 npm publish domg-wc-common-storybook-${RELEASE_VERSION}.tgz

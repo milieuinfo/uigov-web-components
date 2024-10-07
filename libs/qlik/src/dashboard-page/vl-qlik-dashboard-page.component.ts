@@ -1,5 +1,5 @@
 import { CSSResult, html, PropertyDeclarations } from 'lit';
-import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseLitElement, registerWebComponents, webComponent } from '@domg-wc/common';
 import {
     VlActionGroup,
     VlButtonElement,

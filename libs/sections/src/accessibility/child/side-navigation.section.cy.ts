@@ -1,4 +1,4 @@
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 import { COMPLIANCE_STATUS } from '../';
 import { type SideNavigationProps, sideNavigation, sideNavigationElements } from './side-navigation.section';
 

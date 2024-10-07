@@ -1,6 +1,6 @@
 import { html, PropertyDeclarations, TemplateResult, CSSResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { BaseLitElement, findNodesForSlot } from '@domg-wc/common-utilities';
+import { BaseLitElement, findNodesForSlot } from '@domg-wc/common';
 import { alertStyle, iconStyle } from '@domg/govflanders-style/component';
 import { accessibilityStyle, resetStyle, markStyle } from '@domg/govflanders-style/common';
 import { VlAlertClosedEvent } from './vl-alert.model';

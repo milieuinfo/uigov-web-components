@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponentConditional } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponentConditional } from '@domg-wc/common';
 import {
     VlButtonElement,
     VlFormColumn,

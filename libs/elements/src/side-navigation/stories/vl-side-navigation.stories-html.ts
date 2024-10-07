@@ -1,5 +1,5 @@
 // Deze 2 stukken HTML staan in een aparte file zodat ze op de docs-pagina geïmporteerd kunnen worden.
-import { registerWebComponents } from '@domg-wc/common-utilities';
+import { registerWebComponents } from '@domg-wc/common';
 // De source van de story toont niet de correcte code omdat er een aantal classes en attributen toegevoegd worden in de
 // interne keuken van de elementen.
 import '../index';

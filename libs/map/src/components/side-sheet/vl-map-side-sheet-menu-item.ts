@@ -1,4 +1,4 @@
-import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common-utilities';
+import { BaseElementOfType, registerWebComponents, webComponent } from '@domg-wc/common';
 import { vlElementsStyle, VlIconElement, VlLinkElement } from '@domg-wc/elements';
 
 @webComponent('vl-map-side-sheet-menu-item')
