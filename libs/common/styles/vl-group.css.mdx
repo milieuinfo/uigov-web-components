@@ -21,6 +21,8 @@ Te bespreken, conform form-group / input-group / link-list / accordion-list / ?
     vl-collapse-s
     vl-collapse-xs
 
+-> al deze styles moeten mogelijk zijn in vl-group
+
 
 ## form-group [geen expliciet ticket]
 
@@ -30,8 +32,12 @@ Met vl-form-group wordt styling toegevoegd om makkelijker te onderscheiden tusse
     vl-native-validation
     vl-validate
 
+-> wordt geschrapt, wel een manier voorzien om de group een achtergrond kleur te geven
+
 
 ## input-group [UIG-2922]
+
+-> te bekijken hoe dit moet / kan met vl-group
 
 
 ## accordion-list [geen expliciet ticket]
@@ -40,13 +46,21 @@ Een lijst component die kan gebruikt worden als je meerdere accordions wilt afbe
 
     vl-bordered
 
+-> bordered is een horizantale lijn tussen 2 items
+-> direction voorzien, afhankelijk van de gekozen richting zal de lijn omgekeerd staan (horizontaal / verticaal)
+
 
 ## link-list [UIG-2925]
     vl-small
     vl-inline
     vl-bordered
 
+-> inline is mogelijks direction=horizontal (of row)
+-> small verkleint de font-size van de group
+
 
 ## icon-wrapper [geen expliciet ticket]
 
 Gebruik de icon-wrapper als parent element om al de iconen verticaal te aligneren.
+
+-> is direction=vertical (of column)
