@@ -1,3 +1,14 @@
+# [1.38.0](https://github.com/milieuinfo/uigov-web-components/compare/v1.37.2...v1.38.0) (2024-10-07)
+
+
+### Features
+
+* UIG-2935 - vl-video-player-next - introductie component ([317a66c](https://github.com/milieuinfo/uigov-web-components/commit/317a66c46d2ec6ad6a20194ed2f469baf7fa3deb))
+* UIG-3022 - documentatie aanvulling mbt next, v1 en v2 ([a8922f7](https://github.com/milieuinfo/uigov-web-components/commit/a8922f7b4b20ff076ea62f4ab55dcbd2e8200f9d))
+* UIG-3103 - planning toegevoegd aan de documentatie ([c902ffb](https://github.com/milieuinfo/uigov-web-components/commit/c902ffbfbcfc6f423e511a5c975c1e71b899d4b5))
+* UIG-3106 - form-next componenten - backwards incompatibele event wijziging: vl-checked, vl-input en vl-select vervangen door vl-change + vl-input ([e35b841](https://github.com/milieuinfo/uigov-web-components/commit/e35b8417bc4e4fa11fdef8e2c52657796d90f0d8))
+* UIG-3108 - IDE issues ([b59ccb4](https://github.com/milieuinfo/uigov-web-components/commit/b59ccb4d1b8ad86716036c0b6fc7a2af7beeee8d))
+
 ## [1.37.2](https://github.com/milieuinfo/uigov-web-components/compare/v1.37.1...v1.37.2) (2024-09-13)
 
 
