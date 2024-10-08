@@ -10,7 +10,7 @@ cd ../..
 rm -rf ./build/dep-to-add
 
 # creëer een folder voor de json bestanden met de dependencies
-mkdir ./build/dep-to-add
+mkdir -p ./build/dep-to-add
 
 # maak de dependency bestanden voor elke bibliotheek
 npm list $(npx depcheck ./build/dist/libs/common-storybook --oneline | tail -n +2) --json --depth 0 > ./build/dep-to-add/common-storybook-dta.json
