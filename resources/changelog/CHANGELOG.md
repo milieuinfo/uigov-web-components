@@ -1,3 +1,10 @@
+## [1.37.3](https://github.com/milieuinfo/uigov-web-components/compare/v1.37.2...v1.37.3) (2024-10-08)
+
+
+### Bug Fixes
+
+* UIG-3090 - tinymce-next alias dependency gecorrigeerd ([9108a2a](https://github.com/milieuinfo/uigov-web-components/commit/9108a2aaf18e3781e2d32c2d8c9c4dae9095833a))
+
 ## [1.37.2](https://github.com/milieuinfo/uigov-web-components/compare/v1.37.1...v1.37.2) (2024-09-13)
 
 
