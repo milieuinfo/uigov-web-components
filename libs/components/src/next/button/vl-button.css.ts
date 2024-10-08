@@ -1,6 +1,6 @@
-import { mediaQuerySmall } from '@domg-wc/common/css/mixin/media-queries.mixin.css';
-import { focusOutline } from '@domg-wc/common/css/mixin/outline.mixin.css';
-import { waveAnimation } from '@domg-wc/common/css/mixin/animation.mixin.css';
+import { mediaQuerySmall } from '@domg-wc/common/styles/mixin/media-queries.mixin.css';
+import { focusOutline } from '@domg-wc/common/styles/mixin/outline.mixin.css';
+import { waveAnimation } from '@domg-wc/common/styles/mixin/animation.mixin.css';
 import { CSSResult, css, unsafeCSS } from 'lit';
 
 const borderWidth = '0.2rem';

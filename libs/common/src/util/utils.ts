@@ -1,9 +1,4 @@
-import { ifDefined } from 'lit-html/directives/if-defined.js';
 import { UigConfig } from '../config/uig-config';
-import { VL } from '../models';
-import { Class } from '../type/types';
-
-declare const vl: VL;
 
 /**
  * Als web-componenten geïmporteerd worden met named imports (aanbevolen, oa voor tree shaking), dan wordt de component
@@ -41,20 +36,6 @@ export const defineWebComponent = (constructor: Function, tagName: string, optio
         window.customElements.define(tagName, constructor as CustomElementConstructor, options);
     }
 };
-
-/**
- * Definieert een class als custom element enkel wanneer deze nog niet gedefinieerd werd.
- * ! Voor backwards compatibiliteit, niet voor intern gebruik.
- *
- * @deprecated
- *
- * @param {String} name - custom HTML element naam
- * @param {Object} constructor - constructor voor de class
- * @param {Object} options - opties
- * @return {void}
- */
-export const define = (name: string, constructor: Class, options?: ElementDefinitionOptions) =>
-    defineWebComponent(constructor, name, options);
 
 /**
  * Asynchroon een script downloaden maar synchroon in volgorde uitvoeren.
@@ -112,21 +93,6 @@ export const awaitUntil = (condition: any): Promise<void> =>
     });
 
 /**
- * will remove the parent node from the given element
- * does the opposite of vl.util.wrap
- * @param element
- */
-export const unwrap = (element: Element) => {
-    if (vl.util.exists(element)) {
-        const fragment = document.createDocumentFragment();
-        while (element.firstChild) {
-            fragment.appendChild(element.firstChild);
-        }
-        if (element.parentNode) element.parentNode.replaceChild(fragment, element);
-    }
-};
-
-/**
  * De `debounce` methode beperkt het aantal keren dat een functie aangeroepen wordt.
  * Opmerking: deze methode volgt de closure opzet, daarom is deze bewust niet beter ge-typed!
  *  → zie https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
@@ -157,11 +123,6 @@ export const throttle = (func: any, delay: number) => {
         }
     };
 };
-
-export const returnNotEmptyString = (s: string) => (s && s !== '' ? s : undefined);
-export const returnNumber = (n: number) => (!isNaN(n) ? n : undefined);
-export const ifDefinedString = (s: string) => ifDefined(returnNotEmptyString(s));
-export const ifDefinedNumber = (n: number) => ifDefined(returnNumber(n));
 
 /**
  * Zoekt het element onder een meegegeven root element dat overeenkomt met een meegegeven css selector en dit

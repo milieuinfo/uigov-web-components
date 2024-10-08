@@ -60,7 +60,7 @@ const generateAllIconsComponent = (glyphs) => {
 
         import { CSSResult, LitElement, css, html } from 'lit';
         import { registerWebComponents, webComponent } from '@domg-wc/common';
-        import iconStyle from '@domg-wc/common/css/icon/icon.css';
+        import iconStyle from '@domg-wc/common/styles/icon/icon.css';
         import { VlIconComponent } from '@domg-wc/components/next/icon';
 
         @webComponent('vl-all-icons')

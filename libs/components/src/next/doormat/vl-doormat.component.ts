@@ -1,6 +1,6 @@
 import { BaseLitElement, webComponent } from '@domg-wc/common';
-import { globalStylesNext } from '@domg-wc/common/css/global-styles-decorator';
-import linkStyle from '@domg-wc/common/css/link/link.css';
+import { globalStylesNext } from '@domg-wc/common/styles/global-styles-decorator';
+import linkStyle from '@domg-wc/common/styles/link/link.css';
 import { doormatDefaults } from './vl-doormat.defaults';
 import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';

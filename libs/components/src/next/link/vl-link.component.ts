@@ -1,7 +1,7 @@
 import { BaseLitElement, ICON_PLACEMENT, webComponent } from '@domg-wc/common';
-import { globalStylesNext } from '@domg-wc/common/css/global-styles-decorator';
-import iconStyle from '@domg-wc/common/css/icon/icon.css';
-import linkStyle from '@domg-wc/common/css/link/link.css';
+import { globalStylesNext } from '@domg-wc/common/styles/global-styles-decorator';
+import iconStyle from '@domg-wc/common/styles/icon/icon.css';
+import linkStyle from '@domg-wc/common/styles/link/link.css';
 import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { linkDefaults } from './vl-link.defaults';

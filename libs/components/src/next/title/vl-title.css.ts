@@ -1,6 +1,6 @@
 import { css, CSSResult } from 'lit';
-import { mediaQuerySmall } from '@domg-wc/common/css/mixin/media-queries.mixin.css';
-import { title } from '@domg-wc/common/css/mixin/title.mixin.css';
+import { mediaQuerySmall } from '@domg-wc/common/styles/mixin/media-queries.mixin.css';
+import { title } from '@domg-wc/common/styles/mixin/title.mixin.css';
 
 const headingList = [1, 2, 3, 4, 5, 6];
 

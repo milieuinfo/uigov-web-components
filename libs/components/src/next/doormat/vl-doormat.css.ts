@@ -1,5 +1,5 @@
 import { css, CSSResult, unsafeCSS } from 'lit';
-import { title } from '@domg-wc/common/css/mixin/title.mixin.css';
+import { title } from '@domg-wc/common/styles/mixin/title.mixin.css';
 
 const borderWidth = '1px';
 const borderLeftWidth = '0.5rem';
