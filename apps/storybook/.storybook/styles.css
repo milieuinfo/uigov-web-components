@@ -53,3 +53,31 @@ h2#configuratie + div:has(a[href="https://storybook.js.org/docs/react/essentials
 h2#configuratie:has(+ div a[href="https://storybook.js.org/docs/react/essentials/controls"]) {
     display: none;
 }
+
+/*.vl-group {*/
+/*    display: flex;*/
+/*}*/
+
+/*.vl-group--column {*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*.vl-group--row {*/
+/*    flex-direction: row;*/
+/*}*/
+
+/*.vl-group--space-between {*/
+/*    justify-content: space-between;*/
+/*}*/
+
+/*.vl-group--align-start {*/
+/*    align-content: flex-start;*/
+/*}*/
+
+/*.vl-group--align-center {*/
+/*    align-content: center;*/
+/*}*/
+
+/*.vl-group--align-end {*/
+/*    align-content: flex-end;*/
+/*}*/
