@@ -1,8 +1,5 @@
 import { html } from 'lit-html';
-import '../vl-action-group.element';
-import '../../button/vl-button.element';
-import '../../link/vl-link.element';
-import '../../icon/vl-icon.element';
+import { classMap } from 'lit/directives/class-map.js';
 import { vlGroupArgs, vlGroupArgTypes } from './vl-group.stories-arg';
 
 export default {
@@ -14,9 +11,15 @@ export default {
 };
 
 export const actionGroupDefault = ({ column, row, spaceBetween }: typeof vlGroupArgs) => html` <div
-    style="vl-group ?vl-group--column=${column} "
+    class=${classMap({
+        'vl-group': true,
+        'vl-group--column': column,
+        'vl-group--row': row,
+        'vl-group--space-between': spaceBetween,
+    })}
+    style="width: 500px"
 >
     <button is="vl-button">Aanvraag starten</button>
     <button is="vl-button" data-vl-secondary>Annuleren</button>
 </div>`;
-actionGroupDefault.storyName = 'vl-action-group - default';
+actionGroupDefault.storyName = 'vl-group - default';

@@ -9,5 +9,6 @@ export const buttonsInActionGroupHtml = (importType, packageName) => `
                 Annuleren
             </button>
         </div>
+
     </div>
 `;
