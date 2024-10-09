@@ -3,7 +3,8 @@ import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-de
 import iconStyle from '@domg-wc/common-utilities/css/icon/icon.css';
 import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-import buttonStyle from './vl-button.css';
+import { buttonStyles } from './vl-button.css';
+import { linkButtonStyles } from './vl-link-button.css';
 import { buttonDefaults } from './vl-button.defaults';
 
 @globalStylesNext()
@@ -25,9 +26,11 @@ export class VlButtonComponent extends BaseLitElement {
     private toggle = buttonDefaults.toggle;
     private on = buttonDefaults.on;
     private controlled = buttonDefaults.controlled;
+    private ctaLink = buttonDefaults.ctaLink;
+    private external = buttonDefaults.external;
 
     static get styles(): CSSResult[] {
-        return [buttonStyle, iconStyle];
+        return [buttonStyles, linkButtonStyles, iconStyle];
     }
 
     static get properties(): PropertyDeclarations {
@@ -59,6 +62,8 @@ export class VlButtonComponent extends BaseLitElement {
                 },
             },
             controlled: { type: Boolean },
+            ctaLink: { type: String, attribute: 'cta-link' },
+            external: { type: Boolean },
         };
     }
 
@@ -95,16 +100,33 @@ export class VlButtonComponent extends BaseLitElement {
             'button-in-map': isInMap,
         };
 
-        return html` <button
-            class=${classMap(classes)}
-            type=${this.type}
-            ?disabled=${this.disabled}
-            @click=${this.handleClick}
-        >
-            ${this.renderIcon(ICON_PLACEMENT.BEFORE)}
-            <slot></slot>
-            ${this.renderIcon(ICON_PLACEMENT.AFTER)}
-        </button>`;
+        return !this.ctaLink
+            ? html`<button
+                  class=${classMap(classes)}
+                  type=${this.type}
+                  ?disabled=${this.disabled}
+                  @click=${this.handleClick}
+              >
+                  ${this.renderIcon(ICON_PLACEMENT.BEFORE)}
+                  <slot></slot>
+                  ${this.renderIcon(ICON_PLACEMENT.AFTER)}
+              </button>`
+            : html`
+                  <a
+                      href=${this.disabled ? 'javascript:void(0);' : this.ctaLink}
+                      tabindex=${this.disabled ? '-1' : nothing}
+                      class=${classMap(classes)}
+                      role="button"
+                      target=${this.ctaLink && this.external ? '_blank' : nothing}
+                      @click=${this.handleLinkClick}
+                      ?aria-pressed=${this.on}
+                      ?aria-disabled=${this.disabled}
+                  >
+                      ${this.renderIcon(ICON_PLACEMENT.BEFORE)}
+                      <slot></slot>
+                      ${this.renderIcon(ICON_PLACEMENT.AFTER)}
+                  </a>
+              `;
     }
 
     renderIcon(iconPlacement: ICON_PLACEMENT): TemplateResult | typeof nothing {
@@ -140,6 +162,16 @@ export class VlButtonComponent extends BaseLitElement {
 
         if (this.type === 'reset') {
             this.closest('form')?.reset();
+        }
+
+        this.dispatchEvent(new CustomEvent('vl-click', { bubbles: true, composed: true }));
+    }
+
+    protected handleLinkClick(event: Event) {
+        event.stopPropagation();
+
+        if (this.toggle && !this.controlled) {
+            this.on = !this.on;
         }
 
         this.dispatchEvent(new CustomEvent('vl-click', { bubbles: true, composed: true }));

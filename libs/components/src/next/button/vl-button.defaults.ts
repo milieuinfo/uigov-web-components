@@ -17,4 +17,6 @@ export const buttonDefaults = {
     toggle: false as boolean,
     on: false as boolean,
     controlled: false as boolean,
+    ctaLink: '' as string,
+    external: false as boolean,
 } as const;

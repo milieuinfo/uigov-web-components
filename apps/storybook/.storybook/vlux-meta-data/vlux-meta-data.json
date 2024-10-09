@@ -25,8 +25,9 @@
         "planningInfo": "[v1 naar v2 - beschikbaar](/docs/planning-2024-van-v1-naar-v2-beschikbaar--documentatie#button)"
     },
     "elements-button-link-button": {
-        "vStatus": "v1-remove",
+        "vStatus": "v1-replace",
         "legacyText": "vl-link-button",
+        "nextText": "[vl-button-next](/docs/components-next-button--documentatie#cta-link)",
         "planningInfo": "[v1 naar v2 - beschikbaar](/docs/planning-2024-van-v1-naar-v2-beschikbaar--documentatie#button)"
     },
     "components-next-button": {

@@ -36,11 +36,13 @@ const ButtonTemplate = story(
         tertiary,
         loading,
         icon,
+        ctaLink,
         iconPlacement,
         iconOnly,
         toggle,
         on,
         controlled,
+        external,
         defaultSlot,
         onVlClick,
         onVlToggle,
@@ -57,11 +59,13 @@ const ButtonTemplate = story(
             ?tertiary=${tertiary}
             ?loading=${loading}
             icon=${icon}
+            cta-link=${ctaLink}
             icon-placement=${iconPlacement}
             ?icon-only=${iconOnly}
             ?toggle=${toggle}
             ?on=${on}
             ?controlled=${controlled}
+            ?external=${external}
             @vl-click=${onVlClick}
             @vl-toggle=${onVlToggle}
         >
@@ -158,4 +162,12 @@ ButtonToggle.storyName = 'vl-button-next - toggle';
 ButtonToggle.args = {
     defaultSlot: 'Klik op mij',
     toggle: true,
+};
+
+export const ButtonCtaLink = ButtonTemplate.bind({});
+ButtonCtaLink.storyName = 'vl-button-next - cta-link';
+ButtonCtaLink.args = {
+    icon: 'add',
+    defaultSlot: 'Voeg nieuw object toe.',
+    ctaLink: 'https://www.vlaanderen.be',
 };

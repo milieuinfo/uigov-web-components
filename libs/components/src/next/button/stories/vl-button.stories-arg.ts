@@ -175,6 +175,26 @@ export const buttonArgTypes: ArgTypes<ButtonArgs> = {
             defaultValue: { summary: buttonArgs.controlled },
         },
     },
+    ctaLink: {
+        name: 'cta-link',
+        description:
+            'Specifieert de cta-link (call to action link), zorgt ervoor dat de component een link (`<a>`) wordt met button-styling.',
+        table: {
+            type: { summary: TYPES.STRING },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.ctaLink },
+        },
+    },
+    external: {
+        name: 'external',
+        description:
+            'Opent de link in een nieuw tabblad. Dit attribuut wordt enkel gebruikt als de `cta-link` is ingesteld.',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: CATEGORIES.ATTRIBUTES,
+            defaultValue: { summary: buttonArgs.external },
+        },
+    },
     defaultSlot: {
         name: '[default]',
         description: 'De content van de button.',
