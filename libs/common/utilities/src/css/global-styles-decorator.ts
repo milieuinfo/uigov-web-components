@@ -1,13 +1,14 @@
+import { vlFlexStyles } from '@domg-wc/common-utilities/css/flex/vl-flex.css';
+import base from './base.css';
+import fonts from './font/fonts.css';
 import colors from './vars/colors.var.css';
 import general from './vars/general.var.css';
 import spacing from './vars/spacing.var.css';
 import typography from './vars/typography.var.css';
-import fonts from './font/fonts.css';
-import base from './base.css';
 
-const globalStyles = [colors, general, spacing, typography, fonts, base];
+const globalStyles = [colors, general, spacing, typography, fonts, base, vlFlexStyles];
 
-class RegisterGlobalStyles {
+export class RegisterGlobalStyles {
     static registered = false;
 
     static register() {
