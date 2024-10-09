@@ -8,11 +8,11 @@ const borderWidthSmall = '0.1rem';
 const differenceBetweenRegularBorderAndSmallBorder = `calc(${borderWidth} - ${borderWidthSmall})`;
 const loadingAnimationName = 'waving-light';
 
-export const buttonStyles: CSSResult = css`
+export const linkButtonStyles: CSSResult = css`
     /* Importeer loading animation, moet op dit niveau geïmporteerd worden. */
     ${waveAnimation(loadingAnimationName, 'var(--vl-action-color--disabled)')}
 
-    button {
+    a {
         /* Reset styles - gebaseerd op DV mixin > _buttons.scss */
         border-radius: 0;
         appearance: none;
@@ -25,16 +25,19 @@ export const buttonStyles: CSSResult = css`
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 3.5rem;
+        min-height: 2.5rem; /* verschilt van button styling */
         font-family: inherit;
         font-size: var(--vl-font-size--small);
         font-weight: 500;
         padding: var(--vl-spacing--xxsmall) var(--vl-spacing--normal);
         background-color: var(--vl-action-color);
-        border: ${unsafeCSS(borderWidth)} solid var(--vl-action-color);
+        border: 0 solid var(--vl-action-color);
         border-radius: var(--vl-border-radius);
         color: var(--vl-white);
         max-width: 100%;
+
+        /* link-button styles */
+        text-decoration: none;
 
         ${mediaQuerySmall(
             css`
@@ -78,6 +81,7 @@ export const buttonStyles: CSSResult = css`
             border: ${unsafeCSS(borderWidthSmall)} var(--vl-action-tertiary-border-color) solid;
             transition: background-color 0.2s;
             padding: 0 calc(var(--vl-spacing--normal) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)});
+            min-height: 3.5rem;
 
             &:focus {
                 color: var(--vl-action-tertiary-color--hover);

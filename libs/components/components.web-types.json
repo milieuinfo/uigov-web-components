@@ -930,6 +930,11 @@
                             "default": "button"
                         },
                         {
+                            "name": "cta-link",
+                            "description": "Specifieert de cta-link (call to action link), zorgt ervoor dat de component een link (`<a>`) wordt met button-styling.",
+                            "default": ""
+                        },
+                        {
                             "name": "disabled",
                             "description": "Duidt aan dat de button uitgeschakeld is.",
                             "default": "false"
