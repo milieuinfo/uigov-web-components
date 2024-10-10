@@ -5,9 +5,9 @@
         "planningInfo": "[v1 naar v2 - planning](/docs/planning-2024-van-v1-naar-v2-planning--documentatie)"
     },
     "elements-body": {
-        "vStatus": "v1-todo",
+        "vStatus": "v1-remove",
         "legacyText": "vl-body",
-        "planningInfo": "[v1 naar v2 - planning](/docs/planning-2024-van-v1-naar-v2-planning--documentatie)"
+        "planningInfo": "[v1 naar v2 - planning](/docs/planning-2024-van-v1-naar-v2-beschikbaar--documentatie#body)"
     },
     "elements-button": {
         "vStatus": "v1-replace"
