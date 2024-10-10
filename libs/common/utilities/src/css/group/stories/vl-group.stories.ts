@@ -1,7 +1,7 @@
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import { VlAccordionComponent } from '@domg-wc/components';
 import { VlButtonComponent } from '@domg-wc/components/next/button';
-import { CascaderDefault } from '@domg-wc/components/next/cascader/stories/vl-cascader.stories';
+import { VlIconComponent } from '@domg-wc/components/next/icon';
 import { VlLinkComponent } from '@domg-wc/components/next/link';
 import { html } from 'lit-html';
 import { classMap } from 'lit/directives/class-map.js';
@@ -15,7 +15,7 @@ export default {
     argTypes: vlGroupArgTypes,
 };
 
-registerWebComponents([VlAccordionComponent, VlButtonComponent, VlLinkComponent]);
+registerWebComponents([VlAccordionComponent, VlButtonComponent, VlLinkComponent, VlIconComponent]);
 
 export const groupButtons = ({
     column,
@@ -109,4 +109,32 @@ groupAccordions.parameters = {
             'vl-group--space-between',
         ],
     },
+};
+
+export const groupIcons = ({
+    column,
+    justifyCenter,
+    justifyEnd,
+    separatorColumn,
+    separatorRow,
+    spaceBetween,
+}: typeof vlGroupArgs) => html` <div
+    class=${classMap({
+        'vl-group': true,
+        'vl-group--column': column,
+        'vl-group--justify-center': justifyCenter,
+        'vl-group--justify-end': justifyEnd,
+        'vl-group--separator-column': separatorColumn,
+        'vl-group--separator-row': separatorRow,
+        'vl-group--space-between': spaceBetween,
+    })}
+    style="height: 140px"
+>
+    <vl-icon-next href="#" icon="bell"></vl-icon-next>
+    <vl-icon-next href="#" icon="graduate"></vl-icon-next>
+    <vl-icon-next href="#" icon="pin"></vl-icon-next>
+</div>`;
+groupIcons.storyName = 'vl-group - icons';
+groupIcons.args = {
+    column: true,
 };
