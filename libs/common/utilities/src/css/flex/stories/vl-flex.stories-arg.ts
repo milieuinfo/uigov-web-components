@@ -4,6 +4,7 @@ import { ArgTypes } from '@storybook/web-components';
 export const vlFlexArgs = {
     column: false,
     row: false,
+    bordered: false,
     spaceBetween: false,
     justifyStart: false,
     justifyCenter: false,
@@ -28,6 +29,15 @@ export const vlFlexArgTypes: ArgTypes<typeof vlFlexArgs> = {
             defaultValue: { summary: 'false' },
         },
         description: 'Lijnt de items uit in een rij.',
+    },
+    bordered: {
+        name: 'vl-flex--bordered',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: 'style',
+            defaultValue: { summary: 'false' },
+        },
+        description: 'Voegt een scheidingslijn toe tussen items.',
     },
     spaceBetween: {
         name: 'vl-flex--space-between',
