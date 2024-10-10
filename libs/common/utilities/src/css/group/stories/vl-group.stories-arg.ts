@@ -1,7 +1,7 @@
 import { TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
-export const vlFlexArgs = {
+export const vlGroupArgs = {
     column: false,
     row: false,
     bordered: false,
@@ -11,9 +11,9 @@ export const vlFlexArgs = {
     justifyEnd: false,
 };
 
-export const vlFlexArgTypes: ArgTypes<typeof vlFlexArgs> = {
+export const vlGroupArgTypes: ArgTypes<typeof vlGroupArgs> = {
     column: {
-        name: 'vl-flex--column',
+        name: 'vl-group--column',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: 'style',
@@ -22,7 +22,7 @@ export const vlFlexArgTypes: ArgTypes<typeof vlFlexArgs> = {
         description: 'Lijnt de items uit in een kolom.',
     },
     row: {
-        name: 'vl-flex--row',
+        name: 'vl-group--row',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: 'style',
@@ -31,7 +31,7 @@ export const vlFlexArgTypes: ArgTypes<typeof vlFlexArgs> = {
         description: 'Lijnt de items uit in een rij.',
     },
     bordered: {
-        name: 'vl-flex--bordered',
+        name: 'vl-group--bordered',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: 'style',
@@ -40,7 +40,7 @@ export const vlFlexArgTypes: ArgTypes<typeof vlFlexArgs> = {
         description: 'Voegt een scheidingslijn toe tussen items.',
     },
     spaceBetween: {
-        name: 'vl-flex--space-between',
+        name: 'vl-group--space-between',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: 'style',
@@ -51,7 +51,7 @@ export const vlFlexArgTypes: ArgTypes<typeof vlFlexArgs> = {
             'de overige items staan verdeelt met gelijke ruimte ertussen.',
     },
     justifyStart: {
-        name: 'vl-flex--justify-start',
+        name: 'vl-group--justify-start',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: 'style',
@@ -69,7 +69,7 @@ export const vlFlexArgTypes: ArgTypes<typeof vlFlexArgs> = {
         description: 'Lijnt de items centraal uit.',
     },
     justifyEnd: {
-        name: 'vl-flex--justify-end',
+        name: 'vl-group--justify-end',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: 'style',

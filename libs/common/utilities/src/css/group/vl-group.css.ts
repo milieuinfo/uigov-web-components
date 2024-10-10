@@ -1,37 +1,37 @@
 import { css, CSSResult, unsafeCSS } from 'lit';
 
-export const vlFlexStyles: CSSResult = css`
-    .vl-flex {
+export const vlGroupStyles: CSSResult = css`
+    .vl-group {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: 1.4rem;
 
-        &.vl-flex--column {
+        &.vl-group--column {
             flex-direction: column;
         }
 
-        &.vl-flex--row {
+        &.vl-group--row {
             flex-direction: row;
         }
 
-        &.vl-flex--space-between {
+        &.vl-group--space-between {
             justify-content: space-between;
         }
 
-        &.vl-flex--justify-start {
+        &.vl-group--justify-start {
             justify-content: flex-start;
         }
 
-        &.vl-flex--justify-center {
+        &.vl-group--justify-center {
             justify-content: center;
         }
 
-        &.vl-flex--justify-end {
+        &.vl-group--justify-end {
             justify-content: flex-end;
         }
 
-        &.vl-flex--bordered {
+        &.vl-group--bordered {
             * + * {
                 &::before {
                     content: '';
