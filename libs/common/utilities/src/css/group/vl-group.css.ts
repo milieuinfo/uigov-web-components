@@ -3,24 +3,19 @@ import { css, CSSResult, unsafeCSS } from 'lit';
 export const vlGroupStyles: CSSResult = css`
     .vl-group {
         display: flex;
-        flex-wrap: wrap;
         align-items: center;
         gap: 1.4rem;
 
         &.vl-group--column {
             flex-direction: column;
-        }
 
-        &.vl-group--row {
-            flex-direction: row;
+            * {
+                width: 100%;
+            }
         }
 
         &.vl-group--space-between {
             justify-content: space-between;
-        }
-
-        &.vl-group--justify-start {
-            justify-content: flex-start;
         }
 
         &.vl-group--justify-center {
@@ -31,8 +26,8 @@ export const vlGroupStyles: CSSResult = css`
             justify-content: flex-end;
         }
 
-        &.vl-group--bordered {
-            * + * {
+        &.vl-group--separator-row {
+            > * + * {
                 &::before {
                     content: '';
                     border-left: 1px solid #cbd2da;
@@ -40,6 +35,18 @@ export const vlGroupStyles: CSSResult = css`
                     margin-top: 0.6rem;
                     margin-bottom: 0.6rem;
                 }
+            }
+        }
+
+        &.vl-group--separator-column {
+            > * {
+                padding-top: 1.5rem;
+                border-top: 1px solid #cbd2da;
+            }
+
+            > :last-child {
+                padding-bottom: 1.5rem;
+                border-bottom: 1px solid #cbd2da;
             }
         }
     }
