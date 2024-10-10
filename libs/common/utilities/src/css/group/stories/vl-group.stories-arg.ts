@@ -1,53 +1,24 @@
 import { TYPES } from '@domg-wc/common-storybook';
 import { ArgTypes } from '@storybook/web-components';
 
-export const vlFlexArgs = {
+export const vlGroupArgs = {
     column: false,
-    row: false,
-    spaceBetween: false,
-    justifyStart: false,
     justifyCenter: false,
     justifyEnd: false,
+    separatorColumn: false,
+    separatorRow: false,
+    spaceBetween: false,
 };
 
-export const vlFlexArgTypes: ArgTypes<typeof vlFlexArgs> = {
+export const vlGroupArgTypes: ArgTypes<typeof vlGroupArgs> = {
     column: {
-        name: 'vl-flex--column',
+        name: 'vl-group--column',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: 'style',
             defaultValue: { summary: 'false' },
         },
         description: 'Lijnt de items uit in een kolom.',
-    },
-    row: {
-        name: 'vl-flex--row',
-        table: {
-            type: { summary: TYPES.BOOLEAN },
-            category: 'style',
-            defaultValue: { summary: 'false' },
-        },
-        description: 'Lijnt de items uit in een rij.',
-    },
-    spaceBetween: {
-        name: 'vl-flex--space-between',
-        table: {
-            type: { summary: TYPES.BOOLEAN },
-            category: 'style',
-            defaultValue: { summary: 'false' },
-        },
-        description:
-            'Het eerste item staat in het begin, het laatste op het einde,' +
-            'de overige items staan verdeelt met gelijke ruimte ertussen.',
-    },
-    justifyStart: {
-        name: 'vl-flex--justify-start',
-        table: {
-            type: { summary: TYPES.BOOLEAN },
-            category: 'style',
-            defaultValue: { summary: 'false' },
-        },
-        description: 'Lijnt de items uit naar het begin.',
     },
     justifyCenter: {
         name: 'vl-group--justify-center',
@@ -59,12 +30,41 @@ export const vlFlexArgTypes: ArgTypes<typeof vlFlexArgs> = {
         description: 'Lijnt de items centraal uit.',
     },
     justifyEnd: {
-        name: 'vl-flex--justify-end',
+        name: 'vl-group--justify-end',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: 'style',
             defaultValue: { summary: 'false' },
         },
         description: 'Lijnt de items uit naar het einde.',
+    },
+    separatorColumn: {
+        name: 'vl-group--separator-column',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: 'style',
+            defaultValue: { summary: 'false' },
+        },
+        description: 'Voegt horizontale scheidingslijnen toe boven en onder items.',
+    },
+    separatorRow: {
+        name: 'vl-group--separator-row',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: 'style',
+            defaultValue: { summary: 'false' },
+        },
+        description: 'Voegt verticale scheidingslijnen toe links en rechts tussen items.',
+    },
+    spaceBetween: {
+        name: 'vl-group--space-between',
+        table: {
+            type: { summary: TYPES.BOOLEAN },
+            category: 'style',
+            defaultValue: { summary: 'false' },
+        },
+        description:
+            'Het eerste item staat in het begin, het laatste op het einde,' +
+            'de overige items staan verdeelt met gelijke ruimte ertussen.',
     },
 };
