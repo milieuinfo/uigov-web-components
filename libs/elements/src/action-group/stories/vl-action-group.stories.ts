@@ -33,7 +33,14 @@ export const actionGroupDefault = ({
     data-cy="action-group"
 >
     <button is="vl-button">Aanvraag starten</button>
-    <button is="vl-button" data-vl-secondary>Annuleren</button>
+    <button is="vl-button" data-vl-secondary>Annuleren 1</button>
+    <button is="vl-button" data-vl-secondary>Annuleren 2</button>
+    <button is="vl-button" data-vl-secondary>Annuleren 3</button>
+    <button is="vl-button" data-vl-secondary>Annuleren 4</button>
+    <button is="vl-button" data-vl-secondary>Annuleren 5</button>
+    <button is="vl-button" data-vl-secondary>Annuleren 6</button>
+    <button is="vl-button" data-vl-secondary>Annuleren 7</button>
+    <button is="vl-button" data-vl-secondary>Annuleren 8</button>
 </div>`;
 actionGroupDefault.storyName = 'vl-action-group - default';
 
