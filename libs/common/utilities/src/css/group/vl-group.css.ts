@@ -49,5 +49,33 @@ export const vlGroupStyles: CSSResult = css`
                 border-bottom: 1px solid #cbd2da;
             }
         }
+
+        @media screen and (min-width: 1023px) {
+            &.vl-group--collapse-l {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media screen and (max-width: 1023px) {
+            &.vl-group--collapse-m {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            &.vl-group--collapse-s {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            &.vl-group--collapse-xs {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     }
 `;

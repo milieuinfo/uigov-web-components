@@ -18,6 +18,11 @@ export default {
 registerWebComponents([VlAccordionComponent, VlButtonComponent, VlLinkComponent, VlIconComponent]);
 
 export const groupButtons = ({
+    group,
+    collapseL,
+    collapseM,
+    collapseS,
+    collapseXS,
     column,
     justifyCenter,
     justifyEnd,
@@ -26,7 +31,11 @@ export const groupButtons = ({
     spaceBetween,
 }: typeof vlGroupArgs) => html` <div
     class=${classMap({
-        'vl-group': true,
+        'vl-group': group,
+        'vl-group--collapse-l': collapseL,
+        'vl-group--collapse-m': collapseM,
+        'vl-group--collapse-s': collapseS,
+        'vl-group--collapse-xs': collapseXS,
         'vl-group--column': column,
         'vl-group--justify-center': justifyCenter,
         'vl-group--justify-end': justifyEnd,
@@ -42,6 +51,10 @@ export const groupButtons = ({
 groupButtons.storyName = 'vl-group - buttons';
 
 export const groupLinks = ({
+    collapseL,
+    collapseM,
+    collapseS,
+    collapseXS,
     column,
     justifyCenter,
     justifyEnd,
@@ -51,6 +64,10 @@ export const groupLinks = ({
 }: typeof vlGroupArgs) => html` <div
     class=${classMap({
         'vl-group': true,
+        'vl-group--collapse-l': collapseL,
+        'vl-group--collapse-m': collapseM,
+        'vl-group--collapse-s': collapseS,
+        'vl-group--collapse-xs': collapseXS,
         'vl-group--column': column,
         'vl-group--justify-center': justifyCenter,
         'vl-group--justify-end': justifyEnd,
