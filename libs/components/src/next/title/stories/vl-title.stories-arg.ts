@@ -13,6 +13,7 @@ export const titleArgs: TitleArgs = {
 export const titleArgTypes: ArgTypes<TitleArgs> = {
     ...defaultArgTypes(true),
     type: {
+        name: 'type',
         description: 'Het type van de titel.',
         control: { type: CONTROLS.INLINE_RADIO },
         options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -23,6 +24,7 @@ export const titleArgTypes: ArgTypes<TitleArgs> = {
         },
     },
     underline: {
+        name: 'underline',
         description: 'Voegt een subtiele lijn toe onder de titel.',
         table: {
             type: { summary: TYPES.BOOLEAN },
@@ -31,6 +33,7 @@ export const titleArgTypes: ArgTypes<TitleArgs> = {
         },
     },
     alt: {
+        name: 'alt',
         description: 'Zet alle letters om in uppercase en zal altijd een lijn toevoegen onder de titel.',
         table: {
             type: { summary: TYPES.BOOLEAN },
