@@ -1,7 +1,7 @@
 import { css, CSSResult, unsafeCSS } from 'lit';
 
 export const vlGroupStyles: CSSResult = css`
-    .vl-group {
+    .vl-group-next {
         display: flex;
         align-items: center;
         gap: 1.4rem;
