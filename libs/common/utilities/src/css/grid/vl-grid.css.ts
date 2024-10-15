@@ -1,9 +1,9 @@
-import { css, CSSResult, unsafeCSS } from 'lit';
-import { gridColumnsLarge } from './temp/vl-grid-l.css';
-import { gridColumnsMedium } from './temp/vl-grid-m.css';
-import { gridColumnsSmall } from './temp/vl-grid-s.css';
-import { gridColumnsExtraSmall } from './temp/vl-grid-xs.css';
-import { ScreenWidth } from './vl-screen-width.const';
+import { css, CSSResult } from 'lit';
+import { ScreenWidth } from '../const/vl-screen-width.const';
+import { columnLargeStyles } from './col/vl-col-l.css';
+import { columnMediumStyles } from './col/vl-col-m.css';
+import { columnSmallStyles } from './col/vl-col-s.css';
+import { columnExtraSmallStyles } from './col/vl-col-xs.css';
 
 export const vlGridStyles: CSSResult = css`
     .vl-grid-next {
@@ -26,19 +26,19 @@ export const vlGridStyles: CSSResult = css`
         grid-auto-flow: dense;
 
         @media screen and (min-width: ${ScreenWidth.MEDIUM}px) {
-            ${unsafeCSS(gridColumnsLarge())}
+            ${columnLargeStyles()}
         }
 
         @media screen and (max-width: ${ScreenWidth.MEDIUM}px) {
-            ${unsafeCSS(gridColumnsMedium())}
+            ${columnMediumStyles()}
         }
 
         @media screen and (max-width: ${ScreenWidth.SMALL}px) {
-            ${unsafeCSS(gridColumnsSmall())}
+            ${columnSmallStyles()}
         }
 
         @media screen and (max-width: ${ScreenWidth.EXTRA_SMALL}px) {
-            ${unsafeCSS(gridColumnsExtraSmall())}
+            ${columnExtraSmallStyles()}
         }
     }
 `;
