@@ -31,7 +31,7 @@ export const groupButtons = ({
     spaceBetween,
 }: typeof vlGroupArgs) => html` <div
     class=${classMap({
-        'vl-group': group,
+        'vl-group-next': group,
         'vl-group--collapse-l': collapseL,
         'vl-group--collapse-m': collapseM,
         'vl-group--collapse-s': collapseS,
@@ -51,6 +51,7 @@ export const groupButtons = ({
 groupButtons.storyName = 'vl-group - buttons';
 
 export const groupLinks = ({
+    group,
     collapseL,
     collapseM,
     collapseS,
@@ -63,7 +64,7 @@ export const groupLinks = ({
     spaceBetween,
 }: typeof vlGroupArgs) => html` <div
     class=${classMap({
-        'vl-group': true,
+        'vl-group-next': group,
         'vl-group--collapse-l': collapseL,
         'vl-group--collapse-m': collapseM,
         'vl-group--collapse-s': collapseS,
@@ -88,25 +89,24 @@ groupLinks.args = {
 
 export const groupAccordions = ({ separatorColumn }: typeof vlGroupArgs) => html` <div
     class=${classMap({
-        'vl-group': true,
         'vl-group--column': true,
         'vl-group--separator-column': separatorColumn,
     })}
 >
     <vl-accordion data-vl-toggle-text="Accordion 1">
-        <div class="vl-group vl-group--column">
+        <div class="vl-group-next vl-group--column">
             <vl-accordion data-vl-toggle-text="Accordion 1.1"> Inhoud accordion 1.1</vl-accordion>
             <vl-accordion data-vl-toggle-text="Accordion 1.2"> Inhoud accordion 1.2</vl-accordion>
         </div>
     </vl-accordion>
     <vl-accordion data-vl-toggle-text="Accordion 2">
-        <div class="vl-group vl-group--column">
+        <div class="vl-group-next vl-group--column">
             <vl-accordion data-vl-toggle-text="Accordion 2.1"> Inhoud accordion 2.1</vl-accordion>
             <vl-accordion data-vl-toggle-text="Accordion 2.2"> Inhoud accordion 2.2</vl-accordion>
         </div>
     </vl-accordion>
     <vl-accordion data-vl-toggle-text="Accordion 3">
-        <div class="vl-group vl-group--column">
+        <div class="vl-group-next vl-group--column">
             <vl-accordion data-vl-toggle-text="Accordion 3.1"> Inhoud accordion 3.1</vl-accordion>
             <vl-accordion data-vl-toggle-text="Accordion 3.2"> Inhoud accordion 3.2</vl-accordion>
         </div>
@@ -129,6 +129,7 @@ groupAccordions.parameters = {
 };
 
 export const groupIcons = ({
+    group,
     column,
     justifyCenter,
     justifyEnd,
@@ -137,7 +138,7 @@ export const groupIcons = ({
     spaceBetween,
 }: typeof vlGroupArgs) => html` <div
     class=${classMap({
-        'vl-group': true,
+        'vl-group': group,
         'vl-group--column': column,
         'vl-group--justify-center': justifyCenter,
         'vl-group--justify-end': justifyEnd,

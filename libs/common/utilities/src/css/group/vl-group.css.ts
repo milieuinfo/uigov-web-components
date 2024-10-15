@@ -1,12 +1,13 @@
-import { css, CSSResult, unsafeCSS } from 'lit';
+import { css, CSSResult } from 'lit';
+import { ScreenWidth } from '../const/vl-screen-width.const';
 
 export const vlGroupStyles: CSSResult = css`
-    .vl-group {
+    .vl-group-next {
         display: flex;
         align-items: center;
         gap: 1.4rem;
 
-        &.vl-group--column {
+        &.vl-group-next--column {
             flex-direction: column;
 
             * {
@@ -14,19 +15,19 @@ export const vlGroupStyles: CSSResult = css`
             }
         }
 
-        &.vl-group--space-between {
+        &.vl-group-next--space-between {
             justify-content: space-between;
         }
 
-        &.vl-group--justify-center {
+        &.vl-group-next--justify-center {
             justify-content: center;
         }
 
-        &.vl-group--justify-end {
+        &.vl-group-next--justify-end {
             justify-content: flex-end;
         }
 
-        &.vl-group--separator-row {
+        &.vl-group-next--separator-row {
             > * + * {
                 &::before {
                     content: '';
@@ -38,7 +39,7 @@ export const vlGroupStyles: CSSResult = css`
             }
         }
 
-        &.vl-group--separator-column {
+        &.vl-group-next--separator-column {
             > * {
                 padding-top: 1.5rem;
                 border-top: 1px solid #cbd2da;
@@ -50,29 +51,29 @@ export const vlGroupStyles: CSSResult = css`
             }
         }
 
-        @media screen and (min-width: 1023px) {
-            &.vl-group--collapse-l {
+        @media screen and (min-width: ${ScreenWidth.MEDIUM}px) {
+            &.vl-group-next--collapse-l {
                 flex-direction: column;
                 align-items: flex-start;
             }
         }
 
-        @media screen and (max-width: 1023px) {
-            &.vl-group--collapse-m {
+        @media screen and (max-width: ${ScreenWidth.MEDIUM}px) {
+            &.vl-group-next--collapse-m {
                 flex-direction: column;
                 align-items: flex-start;
             }
         }
 
-        @media screen and (max-width: 767px) {
-            &.vl-group--collapse-s {
+        @media screen and (max-width: ${ScreenWidth.SMALL}px) {
+            &.vl-group-next--collapse-s {
                 flex-direction: column;
                 align-items: flex-start;
             }
         }
 
-        @media screen and (max-width: 500px) {
-            &.vl-group--collapse-xs {
+        @media screen and (max-width: ${ScreenWidth.EXTRA_SMALL}px) {
+            &.vl-group-next--collapse-xs {
                 flex-direction: column;
                 align-items: flex-start;
             }

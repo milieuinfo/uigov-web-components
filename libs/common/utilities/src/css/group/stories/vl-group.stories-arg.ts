@@ -17,7 +17,7 @@ export const vlGroupArgs = {
 
 export const vlGroupArgTypes: ArgTypes<typeof vlGroupArgs> = {
     group: {
-        name: 'vl-group',
+        name: 'vl-group-next',
         table: {
             type: { summary: TYPES.BOOLEAN },
             category: 'block style',
