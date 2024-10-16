@@ -11,12 +11,15 @@ export class AppElement extends HTMLElement {
     connectedCallback(): void {
         this.innerHTML = `
             <main>
-                <div class="vl-grid-next vl-col-next--justify-items-center">
-                    <div class="vl-col-next--4 vl-col-next--justify-self-end">Col 1 / 1</div>
+                <div class="vl-grid-next vl-grid-next--justify-items-center">
+                    <div class="vl-col-next--4">Col 1 / 1</div>
                     <div class="vl-col-next--4">Col 1 / 2</div>
                     <div class="vl-col-next--4">Col 1 / 3</div>
-                    <div class="vl-col-next--6">Col 2 / 1</div>
-                    <div class="vl-col-next--6">Col 2 / 2</div>
+                    <div class="vl-col-next--4 vl-col-next--justify-self-end">Col 2 / 1</div>
+                    <div class="vl-col-next--4 vl-col-next--justify-self-start">Col 2 / 2</div>
+                    <div class="vl-col-next--4">Col 2 / 3</div>
+                    <div class="vl-col-next--6">Col 3 / 1</div>
+                    <div class="vl-col-next--6">Col 3 / 2</div>
                 </div>
             </main>
         `;
