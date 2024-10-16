@@ -2,8 +2,8 @@ import { css, CSSResult } from 'lit';
 import { ScreenWidth } from '../const/vl-screen-width.const';
 import { SpacingRem } from '../const/vl-spacing-rem.const';
 
-export const vlSpaceStyles: CSSResult = css`
-    .vl-space-next--small {
+export const vlPaddingStyles: CSSResult = css`
+    .vl-padding-next--small {
         padding: ${SpacingRem.SMALL}rem 0;
 
         @media screen and (max-width: ${ScreenWidth.SMALL}px) {
@@ -11,7 +11,7 @@ export const vlSpaceStyles: CSSResult = css`
         }
     }
 
-    .vl-space-next--medium {
+    .vl-padding-next--medium {
         padding: ${SpacingRem.MEDIUM}rem 0;
 
         @media screen and (max-width: ${ScreenWidth.SMALL}px) {
@@ -19,15 +19,15 @@ export const vlSpaceStyles: CSSResult = css`
         }
     }
 
-    .vl-space-next--no-space {
+    .vl-padding-next--no {
         padding: 0;
     }
 
-    .vl-space-next--no-space-bottom {
+    .vl-padding-next--no-bottom {
         padding-bottom: 0;
     }
 
-    .vl-space-next--no-space-top {
+    .vl-padding-next--no-top {
         padding-top: 0;
     }
 `;

@@ -18,8 +18,10 @@ export const vlGridStyles = css`
 
         div {
             width: 100px;
-            height: 50px;
+            height: 100px;
             background-color: #5990de;
+            box-sizing: content-box;
+            border: #003bb0 1px solid;
         }
 
         ${columnExtraSmallStyles()};
