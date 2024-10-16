@@ -5,7 +5,7 @@ import { columnMediumStyles } from './col/vl-col-m.css';
 import { columnSmallStyles } from './col/vl-col-s.css';
 import { columnExtraSmallStyles } from './col/vl-col-xs.css';
 
-export const vlGridStyles: CSSResult = css`
+export const vlGridStyles = css`
     .vl-grid-next {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
@@ -23,22 +23,26 @@ export const vlGridStyles: CSSResult = css`
             row TELLS THE AUTO-PLACEMENT ALGORITHM TO FILL IN EACH ROW IN TURN, ADDING NEW ROWS AS NECESSARY
             column TELLS THE AUTO-PLACEMENT ALGORITHM TO FILL IN EACH COLUMN IN TURN, ADDING NEW COLUMNS AS NECESSARY
         */
-        grid-auto-flow: dense;
+        //grid-auto-flow: dense;
 
-        @media screen and (min-width: ${ScreenWidth.MEDIUM}px) {
-            ${columnLargeStyles()}
+        div {
+            width: 100px;
+            height: 50px;
+            background-color: #5990de;
+        }
+
+        ${columnExtraSmallStyles()};
+
+        @media screen and (max-width: ${ScreenWidth.SMALL}px) {
+            ${columnSmallStyles()}
         }
 
         @media screen and (max-width: ${ScreenWidth.MEDIUM}px) {
             ${columnMediumStyles()}
         }
 
-        @media screen and (max-width: ${ScreenWidth.SMALL}px) {
-            ${columnSmallStyles()}
-        }
-
-        @media screen and (max-width: ${ScreenWidth.EXTRA_SMALL}px) {
-            ${columnExtraSmallStyles()}
+        @media screen and (min-width: ${ScreenWidth.MEDIUM}px) {
+            ${columnLargeStyles()}
         }
     }
 `;
