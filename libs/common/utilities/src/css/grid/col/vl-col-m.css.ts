@@ -30,16 +30,6 @@ export const columnMediumStyles = (): CSSResult => css`
         align-items: stretch;
     }
 
-    .vl-col-next--m-grid-auto-flow-row {
-        grid-auto-flow: row;
-    }
-    .vl-col-next--m-grid-auto-flow-column {
-        grid-auto-flow: column;
-    }
-    .vl-col-next--m-grid-auto-flow-dense {
-        grid-auto-flow: dense;
-    }
-
     .vl-col-next--m-1 {
         grid-column-end: span 1;
     }

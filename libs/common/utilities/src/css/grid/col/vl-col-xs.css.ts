@@ -30,16 +30,6 @@ export const columnExtraSmallStyles = (): CSSResult => css`
         align-items: stretch;
     }
 
-    .vl-col-next--grid-auto-flow-row {
-        grid-auto-flow: row;
-    }
-    .vl-col-next--grid-auto-flow-column {
-        grid-auto-flow: column;
-    }
-    .vl-col-next--grid-auto-flow-dense {
-        grid-auto-flow: dense;
-    }
-
     .vl-col-next--1 {
         grid-column-end: span 1;
     }
