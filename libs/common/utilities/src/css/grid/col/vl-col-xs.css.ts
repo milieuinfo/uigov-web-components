@@ -30,52 +30,6 @@ export const columnExtraSmallStyles = (): CSSResult => css`
         align-items: stretch;
     }
 
-    /* in order for this to work, all elements must have a defined width and height s*/
-    .vl-col-next--justify-content-start {
-        justify-content: start;
-    }
-    .vl-col-next--justify-content-end {
-        justify-content: end;
-    }
-    .vl-col-next--justify-content-center {
-        justify-content: center;
-    }
-    .vl-col-next--justify-content-stretch {
-        justify-content: stretch;
-    }
-    .vl-col-next--justify-content-space-around {
-        justify-content: space-around;
-    }
-    .vl-col-next--justify-content-space-between {
-        justify-content: space-between;
-    }
-    .vl-col-next--justify-content-space-evenly {
-        justify-content: space-evenly;
-    }
-
-    /* in order for this to work, all elements must have a defined width and height s*/
-    .vl-col-next--align-content-start {
-        align-content: start;
-    }
-    .vl-col-next--align-content-end {
-        align-content: end;
-    }
-    .vl-col-next--align-content-center {
-        align-content: center;
-    }
-    .vl-col-next--align-content-stretch {
-        align-content: stretch;
-    }
-    .vl-col-next--align-content-space-around {
-        align-content: space-around;
-    }
-    .vl-col-next--align-content-space-between {
-        align-content: space-between;
-    }
-    .vl-col-next--align-content-space-evenly {
-        align-content: space-evenly;
-    }
-
     .vl-col-next--grid-auto-flow-row {
         grid-auto-flow: row;
     }

@@ -30,52 +30,6 @@ export const columnMediumStyles = (): CSSResult => css`
         align-items: stretch;
     }
 
-    /* in order for this to work, all elements must have a defined width and height s*/
-    .vl-col-next--m-justify-content-start {
-        justify-content: start;
-    }
-    .vl-col-next--m-justify-content-end {
-        justify-content: end;
-    }
-    .vl-col-next--m-justify-content-center {
-        justify-content: center;
-    }
-    .vl-col-next--m-justify-content-stretch {
-        justify-content: stretch;
-    }
-    .vl-col-next--m-justify-content-space-around {
-        justify-content: space-around;
-    }
-    .vl-col-next--m-justify-content-space-between {
-        justify-content: space-between;
-    }
-    .vl-col-next--m-justify-content-space-evenly {
-        justify-content: space-evenly;
-    }
-
-    /* in order for this to work, all elements must have a defined width and height s*/
-    .vl-col-next--m-align-content-start {
-        align-content: start;
-    }
-    .vl-col-next--m-align-content-end {
-        align-content: end;
-    }
-    .vl-col-next--m-align-content-center {
-        align-content: center;
-    }
-    .vl-col-next--m-align-content-stretch {
-        align-content: stretch;
-    }
-    .vl-col-next--m-align-content-space-around {
-        align-content: space-around;
-    }
-    .vl-col-next--m-align-content-space-between {
-        align-content: space-between;
-    }
-    .vl-col-next--m-align-content-space-evenly {
-        align-content: space-evenly;
-    }
-
     .vl-col-next--m-grid-auto-flow-row {
         grid-auto-flow: row;
     }
