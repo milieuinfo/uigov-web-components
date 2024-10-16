@@ -2,34 +2,6 @@ import { css, CSSResult } from 'lit';
 
 /* @formatter:off */
 export const columnLargeStyles = (): CSSResult => css`
-    /* in order for this to work, all elements must have a defined width and height */
-    .vl-col-next--l-justify-items-start {
-        justify-items: start;
-    }
-    .vl-col-next--l-justify-items-end {
-        justify-items: end;
-    }
-    .vl-col-next--l-justify-items-center {
-        justify-items: center;
-    }
-    .vl-col-next--l-justify-items-stretch {
-        justify-items: stretch;
-    }
-
-    /* in order for this to work, all elements must have a defined width and height */
-    .vl-col-next--l-align-items-start {
-        align-items: start;
-    }
-    .vl-col-next--l-align-items-end {
-        align-items: end;
-    }
-    .vl-col-next--l-align-items-center {
-        align-items: center;
-    }
-    .vl-col-next--l-align-items-stretch {
-        align-items: stretch;
-    }
-
     .vl-col-next--l-1 {
         grid-column-end: span 1;
     }

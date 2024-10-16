@@ -2,34 +2,6 @@ import { css, CSSResult } from 'lit';
 
 /* @formatter:off */
 export const columnMediumStyles = (): CSSResult => css`
-    /* in order for this to work, all elements must have a defined width and height */
-    .vl-col-next--m-justify-items-start {
-        justify-items: start;
-    }
-    .vl-col-next--m-justify-items-end {
-        justify-items: end;
-    }
-    .vl-col-next--m-justify-items-center {
-        justify-items: center;
-    }
-    .vl-col-next--m-justify-items-stretch {
-        justify-items: stretch;
-    }
-
-    /* in order for this to work, all elements must have a defined width and height */
-    .vl-col-next--m-align-items-start {
-        align-items: start;
-    }
-    .vl-col-next--m-align-items-end {
-        align-items: end;
-    }
-    .vl-col-next--m-align-items-center {
-        align-items: center;
-    }
-    .vl-col-next--m-align-items-stretch {
-        align-items: stretch;
-    }
-
     .vl-col-next--m-1 {
         grid-column-end: span 1;
     }

@@ -2,34 +2,6 @@ import { css, CSSResult } from 'lit';
 
 /* @formatter:off */
 export const columnExtraSmallStyles = (): CSSResult => css`
-    /* in order for this to work, all elements must have a defined width and height */
-    .vl-col-next--justify-items-start {
-        justify-items: start;
-    }
-    .vl-col-next--justify-items-end {
-        justify-items: end;
-    }
-    .vl-col-next--justify-items-center {
-        justify-items: center;
-    }
-    .vl-col-next--justify-items-stretch {
-        justify-items: stretch;
-    }
-
-    /* in order for this to work, all elements must have a defined width and height */
-    .vl-col-next--align-items-start {
-        align-items: start;
-    }
-    .vl-col-next--align-items-end {
-        align-items: end;
-    }
-    .vl-col-next--align-items-center {
-        align-items: center;
-    }
-    .vl-col-next--align-items-stretch {
-        align-items: stretch;
-    }
-
     .vl-col-next--1 {
         grid-column-end: span 1;
     }
