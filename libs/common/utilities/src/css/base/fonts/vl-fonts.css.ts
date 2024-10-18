@@ -1,11 +1,16 @@
-import { css, CSSResult } from 'lit';
+import fontsRawCss from '!!raw-loader!./vl-fonts.raw.css';
+import { css, CSSResult, unsafeCSS } from 'lit';
 import { fontFace } from '../mixins/vl-typography.css';
 // @ts-ignore: negeer error 'Could not find a declaration file for module' veroorzaakt door het importeren van een .js bestand
-import { fontFamily, serifFontFamily, baseFontLocation, iconFontFamily, iconFontLocation } from './vl-fonts.js';
+import { baseFontLocation, fontFamily, iconFontFamily, iconFontLocation, serifFontFamily } from './vl-fonts.js';
 
 export const fontStyles: CSSResult = css`
-    /* Flanders font */
-    ${fontFace(fontFamily, `${baseFontLocation}/flanders/sans/${fontFamily}-Light`, 300, 'normal')}
+    ${unsafeCSS(fontsRawCss)} /* Flanders font */ ${fontFace(
+        fontFamily,
+        `${baseFontLocation}/flanders/sans/${fontFamily}-Light`,
+        300,
+        'normal'
+    )}
     ${fontFace(fontFamily, `${baseFontLocation}/flanders/sans/${fontFamily}-Regular`, 400, 'normal')}
     ${fontFace(fontFamily, `${baseFontLocation}/flanders/sans/${fontFamily}-Medium`, 500, 'normal')}
     ${fontFace(fontFamily, `${baseFontLocation}/flanders/sans/${fontFamily}-Bold`, 700, 'normal')}
