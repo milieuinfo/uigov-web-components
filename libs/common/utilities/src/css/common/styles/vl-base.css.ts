@@ -1,7 +1,7 @@
 import { css, CSSResult } from 'lit';
-import { mediaQuerySmall } from './mixin/media-queries.mixin.css';
+import { mediaQuerySmall } from '../mixins/vl-media-queries.css';
 
-const styles: CSSResult = css`
+export const baseStyles: CSSResult = css`
     html {
         font-family: var(--vl-font);
         /* 62.5% Font Size Trick  */
@@ -25,5 +25,3 @@ const styles: CSSResult = css`
         )}
     }
 `;
-
-export default styles;

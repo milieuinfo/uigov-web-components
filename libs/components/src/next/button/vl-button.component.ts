@@ -1,6 +1,5 @@
 import { BaseLitElement, ICON_PLACEMENT, webComponent } from '@domg-wc/common-utilities';
-import { globalStylesNext } from '@domg-wc/common-utilities/css/global-styles-decorator';
-import iconStyle from '@domg-wc/common-utilities/css/icon/icon.css';
+import { globalStylesNext, iconStyles } from '@domg-wc/common-utilities/css';
 import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import buttonStyle from './vl-button.css';
@@ -27,7 +26,7 @@ export class VlButtonComponent extends BaseLitElement {
     private controlled = buttonDefaults.controlled;
 
     static get styles(): CSSResult[] {
-        return [buttonStyle, iconStyle];
+        return [buttonStyle, iconStyles];
     }
 
     static get properties(): PropertyDeclarations {

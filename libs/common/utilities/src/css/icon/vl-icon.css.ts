@@ -1,8 +1,8 @@
 import { css, CSSResult, unsafeCSS } from 'lit';
-import iconMapping from './icon-mapping.css';
-import { focusOutline } from '../mixin/outline.mixin.css';
+import { focusOutline } from '../common/mixins/vl-outlines.css';
+import iconMapping from './vl-icon-mapping.css';
 
-const styles: CSSResult = css`
+export const iconStyles: CSSResult = css`
     ${unsafeCSS(iconMapping)}
 
     :host {
@@ -56,5 +56,3 @@ const styles: CSSResult = css`
         }
     }
 `;
-
-export default styles;

@@ -1,4 +1,4 @@
-import { mediaQuerySmall } from '@domg-wc/common-utilities/css/mixin/media-queries.mixin.css';
+import { mediaQuerySmall } from '@domg-wc/common-utilities/css';
 import { css, CSSResult } from 'lit';
 
 const columnWidth = (widthPercentage: number): CSSResult => {

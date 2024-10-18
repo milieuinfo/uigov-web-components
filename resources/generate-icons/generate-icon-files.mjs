@@ -60,17 +60,17 @@ const generateAllIconsComponent = (glyphs) => {
 
         import { CSSResult, LitElement, css, html } from 'lit';
         import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
-        import iconStyle from '@domg-wc/common-utilities/css/icon/icon.css';
+        import { iconStyles } from '@domg-wc/common-utilities/css';
         import { VlIconComponent } from '@domg-wc/components/next/icon';
-        
+
         @webComponent('vl-all-icons')
         export class VlAllIconsComponent extends LitElement {
             static {
                 registerWebComponents([VlIconComponent]);
             }
-        
+
             static override get styles(): CSSResult[] {
-                return [iconStyle,
+                return [iconStyles,
                     css${'`'}
                         .container {
                             display: flex;
@@ -97,7 +97,7 @@ const generateAllIconsComponent = (glyphs) => {
                     ${'`'}
                 ];
             }
-        
+
             override render() {
                 const allIcons = [${glyphs.map(({ glyph_name }) => `'${glyph_name}'`)}];
 
@@ -120,7 +120,7 @@ const generateAllIconsComponent = (glyphs) => {
                 navigator.clipboard.writeText(icon);
             }
         }
-        
+
         declare global {
             interface HTMLElementTagNameMap {
                 'vl-all-icons': VlAllIconsComponent;

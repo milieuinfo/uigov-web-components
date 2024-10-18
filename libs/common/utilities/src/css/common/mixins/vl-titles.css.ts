@@ -1,7 +1,7 @@
 import { CSSResult, css } from 'lit';
-import { mediaQueryMedium, mediaQuerySmall } from './media-queries.mixin.css';
+import { mediaQueryMedium, mediaQuerySmall } from './vl-media-queries.css';
 
-const titleSizes = {
+export const titleSizes = {
     1: css`
         font-size: 4.4rem;
         margin-bottom: 6rem;

@@ -1,7 +1,5 @@
-import { mediaQuerySmall } from '@domg-wc/common-utilities/css/mixin/media-queries.mixin.css';
-import { focusOutline } from '@domg-wc/common-utilities/css/mixin/outline.mixin.css';
-import { waveAnimation } from '@domg-wc/common-utilities/css/mixin/animation.mixin.css';
-import { CSSResult, css, unsafeCSS } from 'lit';
+import { focusOutline, mediaQuerySmall, waveAnimation } from '@domg-wc/common-utilities/css';
+import { css, CSSResult, unsafeCSS } from 'lit';
 
 const borderWidth = '0.2rem';
 const borderWidthSmall = '0.1rem';
@@ -10,8 +8,8 @@ const loadingAnimationName = 'waving-light';
 
 const styles: CSSResult = css`
     /* Importeer loading animation, moet op dit niveau geïmporteerd worden. */
-    ${waveAnimation(loadingAnimationName, 'var(--vl-action-color--disabled)')}
 
+    ${waveAnimation(loadingAnimationName, 'var(--vl-action-color--disabled)')}
     button {
         /* Reset styles - gebaseerd op DV mixin > _buttons.scss */
         border-radius: 0;
@@ -41,7 +39,6 @@ const styles: CSSResult = css`
                 padding: var(--vl-spacing--xsmall);
             `
         )}
-
         &:focus {
             ${focusOutline()}
         }
@@ -259,6 +256,7 @@ const styles: CSSResult = css`
         }
 
         /* In map styles */
+
         &.button-in-map {
             &.tertiary {
                 background-color: var(--vl-map-background-color);
@@ -266,6 +264,7 @@ const styles: CSSResult = css`
         }
 
         /* Icon styles */
+
         &.icon-only {
             width: 3.5rem;
             padding: 0;

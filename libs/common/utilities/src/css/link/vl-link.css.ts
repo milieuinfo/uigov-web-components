@@ -1,8 +1,8 @@
 import { css, CSSResult } from 'lit';
-import { focusOutline } from '../mixin/outline.mixin.css';
-import { mediaQuerySmall } from '../mixin/media-queries.mixin.css';
+import { mediaQuerySmall } from '../common/mixins/vl-media-queries.css';
+import { focusOutline } from '../common/mixins/vl-outlines.css';
 
-const styles: CSSResult = css`
+export const linkStyles: CSSResult = css`
     a {
         /* Reset styles (gebaseerd op DV _reset.scss) */
         margin: 0;
@@ -76,6 +76,7 @@ const styles: CSSResult = css`
         }
 
         /* Icon styles */
+
         .vl-icon {
             &:before {
                 display: inline-block;
@@ -124,4 +125,3 @@ const styles: CSSResult = css`
         }
     }
 `;
-export default styles;

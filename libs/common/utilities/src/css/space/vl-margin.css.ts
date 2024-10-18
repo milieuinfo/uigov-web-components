@@ -1,6 +1,6 @@
 import { css, CSSResult } from 'lit';
-import { ScreenWidth } from '../const/vl-screen-width.const';
-import { SpacingRem } from '../const/vl-spacing-rem.const';
+import { ScreenWidth } from '../base/vl-screen-width.const';
+import { SpacingRem } from './vl-spacing-rem.const';
 
 export const vlMarginStyles: CSSResult = css`
     .vl-margin-next--small {

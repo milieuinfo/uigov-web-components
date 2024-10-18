@@ -1,8 +1,8 @@
 import { CSSResult, css, unsafeCSS } from 'lit';
 // @ts-ignore: negeer error 'Could not find a declaration file for module' veroorzaakt door het importeren van een .js bestand
-import { fontFamily, serifFontFamily, iconFontFamily } from '../font/fonts.js';
+import { fontFamily, serifFontFamily, iconFontFamily } from '../fonts/vl-fonts.js';
 
-const styles: CSSResult = css`
+export const typographyStyles: CSSResult = css`
     :root {
         /* Flanders font */
         --vl-font: ${unsafeCSS(fontFamily)}, sans-serif;
@@ -24,5 +24,3 @@ const styles: CSSResult = css`
         --vl-icon-font: ${unsafeCSS(iconFontFamily)};
     }
 `;
-
-export default styles;

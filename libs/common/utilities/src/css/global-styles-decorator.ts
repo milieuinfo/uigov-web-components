@@ -1,12 +1,20 @@
-import { vlGroupStyles } from '@domg-wc/common-utilities/css/group/vl-group.css';
-import base from './base.css';
-import fonts from './font/fonts.css';
-import { colorStyles } from './vars/colors.var.css';
-import general from './vars/general.var.css';
-import spacing from './vars/spacing.var.css';
-import typography from './vars/typography.var.css';
+import { baseStyles } from './common/styles/vl-base.css';
+import { colorStyles } from './common/styles/vl-color.css';
+import { generalStyles } from './common/styles/vl-general.css';
+import { typographyStyles } from './common/styles/vl-typography.css';
+import { fontStyles } from './common/fonts/vl-fonts.css';
+import { vlGroupStyles } from './group/vl-group.css';
+import { spacingStyles } from './space/vl-spacing.css';
 
-const globalStyles = [colorStyles, general, spacing, typography, fonts, base, vlGroupStyles];
+const globalStyles = [
+    colorStyles,
+    generalStyles,
+    spacingStyles,
+    typographyStyles,
+    fontStyles,
+    baseStyles,
+    vlGroupStyles,
+];
 
 export class RegisterGlobalStyles {
     static registered = false;

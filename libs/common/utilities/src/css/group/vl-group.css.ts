@@ -1,5 +1,5 @@
 import { css, CSSResult } from 'lit';
-import { ScreenWidth } from '../const/vl-screen-width.const';
+import { ScreenWidth } from '../common/styles/vl-screen-width.const';
 
 export const vlGroupStyles: CSSResult = css`
     .vl-group-next {
