@@ -1,6 +1,6 @@
 import { css, CSSResult } from 'lit';
-import { mediaQuerySmall } from '../common/mixins/vl-media-queries.css';
-import { focusOutline } from '../common/mixins/vl-outlines.css';
+import { mediaQuerySmall } from '../base/mixins/vl-media-queries.css';
+import { focusOutline } from '../base/mixins/vl-outlines.css';
 
 export const linkStyles: CSSResult = css`
     a {

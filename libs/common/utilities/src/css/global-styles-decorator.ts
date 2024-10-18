@@ -1,8 +1,8 @@
-import { baseStyles } from './common/styles/vl-base.css';
-import { colorStyles } from './common/styles/vl-color.css';
-import { generalStyles } from './common/styles/vl-general.css';
-import { typographyStyles } from './common/styles/vl-typography.css';
-import { fontStyles } from './common/fonts/vl-fonts.css';
+import { baseStyles } from './base/styles/vl-base.css';
+import { colorStyles } from './base/styles/vl-color.css';
+import { generalStyles } from './base/styles/vl-general.css';
+import { typographyStyles } from './base/styles/vl-typography.css';
+import { fontStyles } from './base/fonts/vl-fonts.css';
 import { vlGroupStyles } from './group/vl-group.css';
 import { spacingStyles } from './space/vl-spacing.css';
 

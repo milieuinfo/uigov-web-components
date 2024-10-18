@@ -1,5 +1,5 @@
 import { css, CSSResult, unsafeCSS } from 'lit';
-import { focusOutline } from '../common/mixins/vl-outlines.css';
+import { focusOutline } from '../base/mixins/vl-outlines.css';
 import iconMapping from './vl-icon-mapping.css';
 
 export const iconStyles: CSSResult = css`
