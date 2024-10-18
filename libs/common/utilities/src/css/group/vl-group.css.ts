@@ -1,5 +1,4 @@
 import { css, CSSResult } from 'lit';
-import { ScreenWidth } from '../base/styles/vl-screen-width.const';
 
 export const vlGroupStyles: CSSResult = css`
     .vl-group-next {
@@ -51,28 +50,28 @@ export const vlGroupStyles: CSSResult = css`
             }
         }
 
-        @media screen and (min-width: ${ScreenWidth.MEDIUM}px) {
+        @media screen and (min-width: var(--vl-media-screen-medium)) {
             &.vl-group-next--collapse-l {
                 flex-direction: column;
                 align-items: flex-start;
             }
         }
 
-        @media screen and (max-width: ${ScreenWidth.MEDIUM}px) {
+        @media screen and (max-width: var(--vl-media-screen-medium)) {
             &.vl-group-next--collapse-m {
                 flex-direction: column;
                 align-items: flex-start;
             }
         }
 
-        @media screen and (max-width: ${ScreenWidth.SMALL}px) {
+        @media screen and (max-width: var(--vl-media-screen-small)) {
             &.vl-group-next--collapse-s {
                 flex-direction: column;
                 align-items: flex-start;
             }
         }
 
-        @media screen and (max-width: ${ScreenWidth.EXTRA_SMALL}px) {
+        @media screen and (max-width: var(--vl-media-screen-extra-small)) {
             &.vl-group-next--collapse-xs {
                 flex-direction: column;
                 align-items: flex-start;

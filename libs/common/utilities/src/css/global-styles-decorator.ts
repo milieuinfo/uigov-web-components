@@ -1,12 +1,14 @@
 import { baseStyles } from './base/styles/vl-base.css';
 import { colorStyles } from './base/styles/vl-color.css';
 import { generalStyles } from './base/styles/vl-general.css';
+import { mediaScreenStyles } from './base/styles/vl-media-screen.css';
 import { typographyStyles } from './base/styles/vl-typography.css';
 import { fontStyles } from './base/fonts/vl-fonts.css';
 import { vlGroupStyles } from './group/vl-group.css';
 import { spacingStyles } from './space/vl-spacing.css';
 
 const globalStyles = [
+    mediaScreenStyles,
     colorStyles,
     generalStyles,
     spacingStyles,

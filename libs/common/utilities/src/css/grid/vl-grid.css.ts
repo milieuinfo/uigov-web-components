@@ -1,5 +1,4 @@
-import { css, CSSResult } from 'lit';
-import { ScreenWidth } from '../base/styles/vl-screen-width.const';
+import { css } from 'lit';
 import { columnLargeStyles } from './col/vl-col-l.css';
 import { columnMediumStyles } from './col/vl-col-m.css';
 import { columnSmallStyles } from './col/vl-col-s.css';
@@ -27,17 +26,17 @@ export const vlGridStyles = css`
         ${columnExtraSmallStyles()};
         ${gridExtraSmallStyles()};
 
-        @media screen and (max-width: ${ScreenWidth.SMALL}px) {
+        @media screen and (max-width: var(--vl-media-screen-small)) {
             ${gridSmallStyles()}
             ${columnSmallStyles()}
         }
 
-        @media screen and (max-width: ${ScreenWidth.MEDIUM}px) {
+        @media screen and (max-width: var(--vl-media-screen-medium)) {
             ${gridMediumStyles()}
             ${columnMediumStyles()}
         }
 
-        @media screen and (min-width: ${ScreenWidth.MEDIUM}px) {
+        @media screen and (min-width: var(--vl-media-screen-medium)) {
             ${gridLargeStyles()}
             ${columnLargeStyles()}
         }
