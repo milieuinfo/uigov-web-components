@@ -2,7 +2,7 @@
 
 // ! Voer dit bestand uit met volgend commando: node --experimental-default-type=module generate-icon-files.mjs
 
-import fs from 'fs-extra';
+import * as fs from 'fs-extra';
 import { iconFontLocation } from '../../libs/common/utilities/src/css/base/fonts/vl-fonts.js';
 
 const getSvgIconString = async () => {
@@ -141,10 +141,16 @@ const writeFile = (location, content) => {
     });
 };
 
-const svgIconString = await getSvgIconString();
-const glyphs = parseSvgGlyphs(svgIconString);
-const iconMapping = generateIconMapping(glyphs);
-const allIconsComponent = generateAllIconsComponent(glyphs);
+const processIcons = async () => {
+    const svgIconString = await getSvgIconString();
+    const glyphs = parseSvgGlyphs(svgIconString);
+    const iconMapping = generateIconMapping(glyphs);
+    const allIconsComponent = generateAllIconsComponent(glyphs);
 
-writeFile('../../libs/common/utilities/src/css/icon/icon-mapping.css.ts', iconMapping);
-writeFile('../../libs/integration/src/icon/vl-all-icons.component.ts', allIconsComponent);
+    writeFile('../../libs/common/utilities/src/css/icon/icon-mapping.css.ts', iconMapping);
+    writeFile('../../libs/integration/src/icon/vl-all-icons.component.ts', allIconsComponent);
+};
+
+processIcons();
+
+console.log('iconen gegenereerd - TODO verbeteren');
