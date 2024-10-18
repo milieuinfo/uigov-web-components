@@ -1,12 +1,11 @@
 import { css, CSSResult } from 'lit';
-import { ScreenWidth } from '../base/vl-screen-width.const';
 import { SpacingRem } from './vl-spacing-rem.const';
 
 export const vlPaddingStyles: CSSResult = css`
     .vl-padding-next--small {
         padding: ${SpacingRem.SMALL}rem 0;
 
-        @media screen and (max-width: ${ScreenWidth.SMALL}px) {
+        @media screen and (max-width: var(--vl-media-screen-small)) {
             padding: ${SpacingRem.NORMAL}rem 0;
         }
     }
@@ -14,7 +13,7 @@ export const vlPaddingStyles: CSSResult = css`
     .vl-padding-next--medium {
         padding: ${SpacingRem.MEDIUM}rem 0;
 
-        @media screen and (max-width: ${ScreenWidth.SMALL}px) {
+        @media screen and (max-width: var(--vl-media-screen-small)) {
             padding: ${SpacingRem.NORMAL}rem 0;
         }
     }
