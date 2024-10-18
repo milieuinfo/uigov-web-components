@@ -1,5 +1,4 @@
 import { CSSResult, css } from 'lit';
-import { mediaQueryMedium, mediaQuerySmall } from './vl-media-queries.css';
 
 export const titleSizes = {
     1: css`
@@ -7,79 +6,65 @@ export const titleSizes = {
         margin-bottom: 6rem;
         line-height: 1.18;
 
-        ${mediaQueryMedium(
-            css`
-                font-size: 4rem;
-                margin-bottom: 4.5rem;
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-medium)) {
+            font-size: 4rem;
+            margin-bottom: 4.5rem;
+        }
 
-        ${mediaQuerySmall(
-            css`
-                font-size: 3rem;
-                margin-bottom: 3rem;
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+        }
     `,
     2: css`
         font-size: 3.2rem;
         margin-bottom: 2rem;
         line-height: 1.24;
 
-        ${mediaQuerySmall(
-            css`
-                font-size: 2.6rem;
-                margin-bottom: 1.5rem;
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            font-size: 2.6rem;
+            margin-bottom: 1.5rem;
+        }
     `,
     3: css`
         font-size: 2.6rem;
         margin-bottom: 2rem;
         line-height: 1.3;
 
-        ${mediaQuerySmall(
-            css`
-                font-size: 2.2rem;
-                margin-bottom: 1.5rem;
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
     `,
     4: css`
         font-size: 2.2rem;
         margin-bottom: 1.8rem;
         line-height: 1.36;
 
-        ${mediaQuerySmall(
-            css`
-                font-size: 2rem;
-                margin-bottom: 1.4rem;
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            font-size: 2rem;
+            margin-bottom: 1.4rem;
+        }
     `,
     5: css`
         font-size: 2rem;
         margin-bottom: 1.6rem;
         line-height: 1.4;
 
-        ${mediaQuerySmall(
-            css`
-                font-size: 1.8rem;
-                margin-bottom: 1.2rem;
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
     `,
     6: css`
         font-size: 1.8rem;
         margin-bottom: 1.4rem;
         line-height: 1.44;
 
-        ${mediaQuerySmall(
-            css`
-                font-size: 1.8rem;
-                margin-bottom: 1rem;
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
     `,
 };
 

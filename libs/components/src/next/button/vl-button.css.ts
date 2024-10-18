@@ -1,4 +1,4 @@
-import { focusOutline, mediaQuerySmall, waveAnimation } from '@domg-wc/common-utilities/css';
+import { focusOutline, waveAnimation } from '@domg-wc/common-utilities/css';
 import { css, CSSResult, unsafeCSS } from 'lit';
 
 const borderWidth = '0.2rem';
@@ -34,11 +34,10 @@ const styles: CSSResult = css`
         color: var(--vl-white);
         max-width: 100%;
 
-        ${mediaQuerySmall(
-            css`
-                padding: var(--vl-spacing--xsmall);
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            padding: var(--vl-spacing--xsmall);
+        }
+
         &:focus {
             ${focusOutline()}
         }
@@ -89,18 +88,14 @@ const styles: CSSResult = css`
                 padding: 0 var(--vl-spacing--normal);
             }
 
-            ${mediaQuerySmall(
-                css`
-                    padding: calc(
-                        var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)}
-                    );
+            @media screen and (max-width: var(--vl-media-screen-small)) {
+                padding: calc(var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)});
 
-                    &:hover,
-                    &:active {
-                        padding: var(--vl-spacing--xsmall);
-                    }
-                `
-            )}
+                &:hover,
+                &:active {
+                    padding: var(--vl-spacing--xsmall);
+                }
+            }
         }
 
         &.error {
@@ -190,18 +185,16 @@ const styles: CSSResult = css`
                     padding: 0 var(--vl-spacing--xsmall);
                 }
 
-                ${mediaQuerySmall(
-                    css`
-                        padding: calc(
-                            var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)}
-                        );
+                @media screen and (max-width: var(--vl-media-screen-small)) {
+                    padding: calc(
+                        var(--vl-spacing--xsmall) + ${unsafeCSS(differenceBetweenRegularBorderAndSmallBorder)}
+                    );
 
-                        &:hover,
-                        &:active {
-                            padding: var(--vl-spacing--xsmall);
-                        }
-                    `
-                )}
+                    &:hover,
+                    &:active {
+                        padding: var(--vl-spacing--xsmall);
+                    }
+                }
             }
         }
 

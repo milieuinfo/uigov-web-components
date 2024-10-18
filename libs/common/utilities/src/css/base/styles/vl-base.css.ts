@@ -1,5 +1,4 @@
 import { css, CSSResult } from 'lit';
-import { mediaQuerySmall } from '../mixins/vl-media-queries.css';
 
 export const baseStyles: CSSResult = css`
     html {
@@ -17,11 +16,9 @@ export const baseStyles: CSSResult = css`
         -moz-osx-font-smoothing: grayscale;
         -webkit-text-size-adjust: none;
 
-        ${mediaQuerySmall(
-            css`
-                font-size: var(--vl-font-size--mobile);
-                line-height: var(--vl-line-height--mobile);
-            `
-        )}
+        @media screen and (max-width: var(--vl-media-screen-small)) {
+            font-size: var(--vl-font-size--mobile);
+            line-height: var(--vl-line-height--mobile);
+        }
     }
 `;

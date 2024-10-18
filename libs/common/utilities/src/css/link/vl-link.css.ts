@@ -1,5 +1,4 @@
 import { css, CSSResult } from 'lit';
-import { mediaQuerySmall } from '../base/mixins/vl-media-queries.css';
 import { focusOutline } from '../base/mixins/vl-outlines.css';
 
 export const linkStyles: CSSResult = css`
@@ -47,21 +46,17 @@ export const linkStyles: CSSResult = css`
         &.small {
             font-size: var(--vl-font-size--small);
 
-            ${mediaQuerySmall(
-                css`
-                    font-size: calc(var(--vl-font-size--small) - 0.1rem);
-                `
-            )}
+            @media screen and (max-width: var(--vl-media-screen-small)) {
+                font-size: calc(var(--vl-font-size--small) - 0.1rem);
+            }
         }
 
         &.large {
             font-size: var(--vl-font-size--large);
 
-            ${mediaQuerySmall(
-                css`
-                    font-size: calc(var(--vl-font-size--large) - 0.2rem);
-                `
-            )}
+            @media screen and (max-width: var(--vl-media-screen-small)) {
+                font-size: calc(var(--vl-font-size--large) - 0.2rem);
+            }
         }
 
         &.error {

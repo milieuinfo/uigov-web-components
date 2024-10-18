@@ -4,6 +4,5 @@ export { iconStyles } from './icon/vl-icon.css';
 // export { iconFontLocation } from './common/fonts/vl-fonts';
 export { linkStyles } from './link/vl-link.css';
 export { focusOutline } from './base/mixins/vl-outlines.css';
-export { mediaQuerySmall } from './base/mixins/vl-media-queries.css';
 export { waveAnimation } from './base/mixins/vl-animations.css';
 export { title } from './base/mixins/vl-titles.css';

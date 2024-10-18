@@ -1,4 +1,4 @@
-import { mediaQuerySmall, title } from '@domg-wc/common-utilities/css';
+import { title } from '@domg-wc/common-utilities/css';
 import { css, CSSResult } from 'lit';
 
 const headingList = [1, 2, 3, 4, 5, 6];
@@ -54,13 +54,11 @@ const styles: CSSResult[] = [
                     margin-bottom: 0;
                 }
 
-                ${mediaQuerySmall(
-                    css`
-                        h${heading}.underline {
-                            margin-bottom: 1rem;
-                        }
-                    `
-                )}
+                @media screen and (max-width: var(--vl-media-screen-small)) {
+                    h${heading}.underline {
+                        margin-bottom: 1rem;
+                    }
+                }
             `
     ),
 ];
