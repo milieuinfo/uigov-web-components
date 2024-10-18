@@ -3,7 +3,7 @@
 // ! Voer dit bestand uit met volgend commando: node --experimental-default-type=module generate-icon-files.mjs
 
 import fs from 'fs-extra';
-import { iconFontLocation } from '../../libs/common/utilities/src/css/font/fonts.js';
+import { iconFontLocation } from '../../libs/common/utilities/src/css/base/fonts/vl-fonts.js';
 
 const getSvgIconString = async () => {
     const response = await fetch(`${iconFontLocation}.svg`);
