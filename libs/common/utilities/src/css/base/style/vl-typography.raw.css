@@ -1,7 +1,7 @@
 :root {
-    /* Flanders font */
-    --vl-font: var(--vl-font-family), sans-serif;
-    --vl-accent-font: var(--vl-serif-font-family), serif;
+    --vl-font: 'Flanders Art Sans', sans-serif;
+    --vl-accent-font: 'Flanders Art Serif', serif;
+    --vl-icon-font: 'vlaanderen-icon-classic';
 
     --vl-font-size--xxlarge: 2.8rem; /* DV: $vl-base-font-size--xxlarge */
     --vl-font-size--xlarge: 2.2rem; /* DV: $vl-base-font-size--xlarge */
@@ -14,7 +14,4 @@
 
     --vl-line-height: 1.5; /* DV: $vl-base-line-height */
     --vl-line-height--mobile: 1.33; /* DV: $vl-base-mobile-line-height */
-
-    /* Icon font */
-    --vl-icon-font: var(--vl-icon-font-family);
 }

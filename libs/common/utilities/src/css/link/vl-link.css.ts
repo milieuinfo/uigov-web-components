@@ -1,7 +1,7 @@
 import { css, CSSResult } from 'lit';
-import { focusOutline } from '../base/mixins/vl-outlines.css';
+import { vlFocusOutlineMixin } from '../base/mixin/vl-outlines.css';
 
-export const linkStyles: CSSResult = css`
+export const vlLinkStyles: CSSResult = css`
     a {
         /* Reset styles (gebaseerd op DV _reset.scss) */
         margin: 0;
@@ -20,7 +20,7 @@ export const linkStyles: CSSResult = css`
         }
 
         &:focus {
-            ${focusOutline()}
+            ${vlFocusOutlineMixin()}
         }
 
         &:focus,

@@ -1,4 +1,4 @@
-import { title } from '@domg-wc/common-utilities/css';
+import { vlHeadingMixin } from '@domg-wc/common-utilities/css';
 import { css, CSSResult } from 'lit';
 
 const headingList = [1, 2, 3, 4, 5, 6];
@@ -6,27 +6,27 @@ const headingList = [1, 2, 3, 4, 5, 6];
 const styles: CSSResult[] = [
     css`
         h1 {
-            ${title(1)}
+            ${vlHeadingMixin(1)}
         }
 
         h2 {
-            ${title(2)}
+            ${vlHeadingMixin(2)}
         }
 
         h3 {
-            ${title(3)}
+            ${vlHeadingMixin(3)}
         }
 
         h4 {
-            ${title(4)}
+            ${vlHeadingMixin(4)}
         }
 
         h5 {
-            ${title(5)}
+            ${vlHeadingMixin(5)}
         }
 
         h6 {
-            ${title(6)}
+            ${vlHeadingMixin(6)}
         }
     `,
     ...headingList.map(
