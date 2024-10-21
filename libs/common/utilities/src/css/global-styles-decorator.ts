@@ -9,11 +9,11 @@ import { spacingStyles } from './space/vl-spacing.css';
 
 const globalStyles = [
     mediaScreenStyles,
+    fontStyles,
     colorStyles,
     generalStyles,
     spacingStyles,
     typographyStyles,
-    fontStyles,
     baseStyles,
     vlGroupStyles,
 ];
