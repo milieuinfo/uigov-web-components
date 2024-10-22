@@ -1,8 +1,6 @@
 import { registerWebComponents } from '@domg-wc/common-utilities';
 import './app.element.scss';
-import { vlGridStyles } from '@domg-wc/common-utilities/css/grid/vl-grid.css';
-import { vlMarginStyles } from '@domg-wc/common-utilities/css/space/vl-margin.css';
-import { vlPaddingStyles } from '@domg-wc/common-utilities/css/space/vl-padding.css';
+import { vlGridStyles, vlMarginStyles, vlPaddingStyles } from '@domg-wc/common-utilities/css';
 
 export class AppElement extends HTMLElement {
     static {

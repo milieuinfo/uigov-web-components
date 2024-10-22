@@ -1,7 +1,6 @@
 import { css, CSSResult } from 'lit';
 import { SpacingRem } from './vl-spacing-rem.const';
 
-let ScreenWidth;
 export const vlMarginStyles: CSSResult = css`
     .vl-margin-next--small {
         margin: ${SpacingRem.SMALL}rem 0;

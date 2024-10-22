@@ -6,3 +6,7 @@ export { linkStyles } from './link/vl-link.css';
 export { focusOutline } from './base/mixin/vl-outlines.css';
 export { waveAnimation } from './base/mixin/vl-animations.css';
 export { title } from './base/mixin/vl-titles.css';
+export { vlGridStyles } from './grid/vl-grid.css';
+export { vlGroupStyles } from './group/vl-group.css';
+export { vlMarginStyles } from './space/vl-margin.css';
+export { vlPaddingStyles } from './space/vl-padding.css';
