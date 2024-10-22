@@ -1,4 +1,3 @@
-import fontsRawCss from '!!raw-loader!./vl-font.raw.css';
 import { css, CSSResult, unsafeCSS } from 'lit';
 
 const sansFontFamily = 'vl-flanders-art-sans';
@@ -22,8 +21,6 @@ const fontFace = (
 `;
 
 export const fontStyles: CSSResult = css`
-    ${unsafeCSS(fontsRawCss)}
-
     ${fontFace(sansFontFamily, `${fontLocation}/flanders/sans/FlandersArtSans-Light`, 300, 'normal')}
     ${fontFace(sansFontFamily, `${fontLocation}/flanders/sans/FlandersArtSans-Regular`, 400, 'normal')}
     ${fontFace(sansFontFamily, `${fontLocation}/flanders/sans/FlandersArtSans-Medium`, 500, 'normal')}
