@@ -1,5 +1,6 @@
 export { vlColorStyles } from './base/style/vl-color.css';
 export { vlGlobalStylesNext, RegisterGlobalStyles } from './global-styles-decorator';
+export { iconFontLocation } from './base/font/vl-font.css';
 export { vlIconStyles } from './icon/vl-icon.css';
 export { vlLinkStyles } from './link/vl-link.css';
 export { vlFocusOutlineMixin } from './base/mixin/vl-outlines.css';

@@ -3,7 +3,7 @@
 // ! Voer dit bestand uit met volgend commando: node --experimental-default-type=module generate-icon-files.mjs
 
 import * as fs from 'fs-extra';
-import { iconFontLocation } from '../../libs/common/utilities/src/css/base/font/vl-fonts.js';
+import { iconFontLocation } from '../../libs/common/utilities/src/css';
 
 const getSvgIconString = async () => {
     const response = await fetch(`${iconFontLocation}.svg`);
@@ -42,25 +42,23 @@ const generateIconMapping = (glyphs) => {
     }, '');
 
     return `
-        // ! Dit bestand is gegenereerd door het generate-icon-files.mjs script
+// ! dit bestand werd gegenereerd door het script: generate-icon-files.ts
 
-        import { css, CSSResult } from 'lit';
+import { css, CSSResult } from 'lit';
 
-        const styles: CSSResult = css${'`'}
-            ${iconMapping}
-        ${'`'};
-
-        export default styles;
+export vlIconStyles: CSSResult = css${'`'}
+    ${iconMapping}
+${'`'};
     `;
 };
 
 const generateAllIconsComponent = (glyphs) => {
     const allIconsLitComponent = `
-        // ! Dit bestand is gegenereerd door het generate-icon-files.mjs script
+        // ! dit bestand werd gegenereerd door het script: generate-icon-files.ts
 
         import { CSSResult, LitElement, css, html } from 'lit';
         import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
-        import { iconStyles } from '@domg-wc/common-utilities/css';
+        import { vlIconStyles } from '@domg-wc/common-utilities/css';
         import { VlIconComponent } from '@domg-wc/components/next/icon';
 
         @webComponent('vl-all-icons')
@@ -147,7 +145,7 @@ const processIcons = async () => {
     const iconMapping = generateIconMapping(glyphs);
     const allIconsComponent = generateAllIconsComponent(glyphs);
 
-    writeFile('../../libs/common/utilities/src/css/icon/icon-mapping.css.ts', iconMapping);
+    writeFile('../../libs/common/utilities/src/css/icon/vl-icon-mapping.css.ts', iconMapping);
     writeFile('../../libs/integration/src/icon/vl-all-icons.component.ts', allIconsComponent);
 };
 

@@ -4,6 +4,7 @@ const sansFontFamily = 'vl-flanders-art-sans';
 const serifFontFamily = 'vl-flanders-art-serif';
 const iconFontFamily = 'vl-flanders-icon-classic';
 const fontLocation = 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/22.0.2';
+export const iconFontLocation = `${fontLocation}/iconfont/vlaanderen-icon-classic`;
 
 const fontFace = (
     fontFamily: string,
@@ -36,5 +37,5 @@ export const vlFontStyles: CSSResult = css`
     ${fontFace(serifFontFamily, `${fontLocation}/flanders/serif/FlandersArtSerif-Medium`, 500, 'normal')}
     ${fontFace(serifFontFamily, `${fontLocation}/flanders/serif/FlandersArtSerif-Bold`, 700, 'normal')}
 
-    ${fontFace(iconFontFamily, `${fontLocation}/iconfont/vlaanderen-icon-classic`, 'normal', 'normal')}
+    ${fontFace(iconFontFamily, `${iconFontLocation}`, 'normal', 'normal')}
 `;
