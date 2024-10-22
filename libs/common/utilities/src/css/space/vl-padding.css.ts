@@ -1,20 +1,19 @@
 import { css, CSSResult } from 'lit';
-import { SpacingRem } from './vl-spacing-rem.const';
 
 export const vlPaddingStyles: CSSResult = css`
     .vl-padding-next--small {
-        padding: ${SpacingRem.SMALL}rem 0;
+        padding: var(--vl-spacing--small) 0;
 
         @media screen and (max-width: var(--vl-media-screen-small)) {
-            padding: ${SpacingRem.NORMAL}rem 0;
+            padding: var(--vl-spacing--normal) 0;
         }
     }
 
     .vl-padding-next--medium {
-        padding: ${SpacingRem.MEDIUM}rem 0;
+        padding: var(--vl-spacing--medium) 0;
 
         @media screen and (max-width: var(--vl-media-screen-small)) {
-            padding: ${SpacingRem.NORMAL}rem 0;
+            padding: var(--vl-spacing--normal) 0;
         }
     }
 
