@@ -20,7 +20,7 @@ const fontFace = (
     }
 `;
 
-export const fontStyles: CSSResult = css`
+export const vlFontStyles: CSSResult = css`
     ${fontFace(sansFontFamily, `${fontLocation}/flanders/sans/FlandersArtSans-Light`, 300, 'normal')}
     ${fontFace(sansFontFamily, `${fontLocation}/flanders/sans/FlandersArtSans-Regular`, 400, 'normal')}
     ${fontFace(sansFontFamily, `${fontLocation}/flanders/sans/FlandersArtSans-Medium`, 500, 'normal')}

@@ -1,6 +1,6 @@
 import { CSSResult, css } from 'lit';
 
-export const titleSizes = {
+const headingSizes = {
     1: css`
         font-size: 4.4rem;
         margin-bottom: 6rem;
@@ -68,7 +68,7 @@ export const titleSizes = {
     `,
 };
 
-export const title = (size: 1 | 2 | 3 | 4 | 5 | 6): CSSResult => css`
+export const vlHeadingMixin = (size: 1 | 2 | 3 | 4 | 5 | 6): CSSResult => css`
     /* Reset styles (gebaseerd op DV _reset.scss) */
     margin: 0;
     border: 0;
@@ -77,5 +77,5 @@ export const title = (size: 1 | 2 | 3 | 4 | 5 | 6): CSSResult => css`
 
     /* Title styles (gebaseerd op DV vl-ui-titles/src/scss/_titles.scss) */
     font-weight: 500;
-    ${titleSizes[size]}
+    ${headingSizes[size]}
 `;

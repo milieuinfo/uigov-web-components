@@ -1,8 +1,8 @@
 import { css, CSSResult, unsafeCSS } from 'lit';
-import { focusOutline } from '../base/mixin/vl-outlines.css';
+import { vlFocusOutlineMixin } from '../base/mixin/vl-outlines.css';
 import iconMapping from './vl-icon-mapping.css';
 
-export const iconStyles: CSSResult = css`
+export const vlIconStyles: CSSResult = css`
     ${unsafeCSS(iconMapping)}
 
     :host {
@@ -46,7 +46,7 @@ export const iconStyles: CSSResult = css`
             }
 
             &:focus {
-                ${focusOutline()}
+                ${vlFocusOutlineMixin()}
             }
 
             &:focus,

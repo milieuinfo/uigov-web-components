@@ -1,20 +1,20 @@
-import { baseStyles } from './base/style/vl-base.css';
-import { colorStyles } from './base/style/vl-color.css';
-import { generalStyles } from './base/style/vl-general.css';
-import { mediaScreenStyles } from './base/style/vl-media-screen.css';
-import { typographyStyles } from './base/style/vl-typography.css';
-import { fontStyles } from './base/font/vl-font.css';
+import { vlBaseStyles } from './base/style/vl-base.css';
+import { vlColorStyles } from './base/style/vl-color.css';
+import { vlGeneralStyles } from './base/style/vl-general.css';
+import { vlMediaScreenStyles } from './base/style/vl-media-screen.css';
+import { vlTypographyStyles } from './base/style/vl-typography.css';
+import { vlFontStyles } from './base/font/vl-font.css';
 import { vlGroupStyles } from './group/vl-group.css';
-import { spacingStyles } from './space/vl-spacing.css';
+import { vlSpacingStyles } from './space/vl-spacing.css';
 
 const globalStyles = [
-    mediaScreenStyles,
-    fontStyles,
-    colorStyles,
-    generalStyles,
-    spacingStyles,
-    typographyStyles,
-    baseStyles,
+    vlMediaScreenStyles,
+    vlFontStyles,
+    vlColorStyles,
+    vlGeneralStyles,
+    vlSpacingStyles,
+    vlTypographyStyles,
+    vlBaseStyles,
     vlGroupStyles,
 ];
 
@@ -33,7 +33,7 @@ export class RegisterGlobalStyles {
     }
 }
 
-export const globalStylesNext =
+export const vlGlobalStylesNext =
     () =>
     // eslint-disable-next-line @typescript-eslint/ban-types
     (constructor: Function) => {

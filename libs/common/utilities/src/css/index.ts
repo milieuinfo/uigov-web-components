@@ -1,11 +1,10 @@
-export { colorStyles } from './base/style/vl-color.css';
-export { globalStylesNext, RegisterGlobalStyles } from './global-styles-decorator';
-export { iconStyles } from './icon/vl-icon.css';
-// export { iconFontLocation } from './common/fonts/vl-fonts';
-export { linkStyles } from './link/vl-link.css';
-export { focusOutline } from './base/mixin/vl-outlines.css';
-export { waveAnimation } from './base/mixin/vl-animations.css';
-export { title } from './base/mixin/vl-titles.css';
+export { vlColorStyles } from './base/style/vl-color.css';
+export { vlGlobalStylesNext, RegisterGlobalStyles } from './global-styles-decorator';
+export { vlIconStyles } from './icon/vl-icon.css';
+export { vlLinkStyles } from './link/vl-link.css';
+export { vlFocusOutlineMixin } from './base/mixin/vl-outlines.css';
+export { vlWaveAnimationMixin } from './base/mixin/vl-animations.css';
+export { vlHeadingMixin } from './base/mixin/vl-headings.css';
 export { vlGridStyles } from './grid/vl-grid.css';
 export { vlGroupStyles } from './group/vl-group.css';
 export { vlMarginStyles } from './space/vl-margin.css';

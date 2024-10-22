@@ -1,6 +1,6 @@
 import { CSSResult, css, unsafeCSS } from 'lit';
 
-export const waveAnimation = (name: string, color: string): CSSResult => css`
+export const vlWaveAnimationMixin = (name: string, color: string): CSSResult => css`
     @keyframes ${unsafeCSS(name)} {
         0% {
             box-shadow: 10px -0px ${unsafeCSS(color)}, 20px -0px ${unsafeCSS(color)}, 30px 0px ${unsafeCSS(color)};

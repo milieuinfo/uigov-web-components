@@ -1,4 +1,4 @@
-import { focusOutline, waveAnimation } from '@domg-wc/common-utilities/css';
+import { vlFocusOutlineMixin, vlWaveAnimationMixin } from '@domg-wc/common-utilities/css';
 import { css, CSSResult, unsafeCSS } from 'lit';
 
 const borderWidth = '0.2rem';
@@ -9,7 +9,7 @@ const loadingAnimationName = 'waving-light';
 export const buttonStyles: CSSResult = css`
     /* Importeer loading animation, moet op dit niveau geïmporteerd worden. */
 
-    ${waveAnimation(loadingAnimationName, 'var(--vl-action-color--disabled)')}
+    ${vlWaveAnimationMixin(loadingAnimationName, 'var(--vl-action-color--disabled)')}
     button {
         /* Reset styles - gebaseerd op DV mixin > _buttons.scss */
         border-radius: 0;
@@ -39,7 +39,7 @@ export const buttonStyles: CSSResult = css`
         }
 
         &:focus {
-            ${focusOutline()}
+            ${vlFocusOutlineMixin()}
         }
 
         &:hover {

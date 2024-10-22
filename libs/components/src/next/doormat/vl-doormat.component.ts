@@ -1,12 +1,12 @@
 import { BaseLitElement, webComponent } from '@domg-wc/common-utilities';
-import { globalStylesNext } from '@domg-wc/common-utilities/css';
-import { linkStyles } from '@domg-wc/common-utilities/css';
+import { vlGlobalStylesNext } from '@domg-wc/common-utilities/css';
+import { vlLinkStyles } from '@domg-wc/common-utilities/css';
 import { doormatDefaults } from './vl-doormat.defaults';
 import { CSSResult, html, nothing, PropertyDeclarations, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import doormatStyle from './vl-doormat.css';
 
-@globalStylesNext()
+@vlGlobalStylesNext()
 @webComponent('vl-doormat-next')
 export class VlDoormatComponent extends BaseLitElement {
     private href = doormatDefaults.href;
@@ -19,7 +19,7 @@ export class VlDoormatComponent extends BaseLitElement {
     private graphic = doormatDefaults.graphic;
 
     static get styles(): CSSResult[] {
-        return [linkStyles, doormatStyle];
+        return [vlLinkStyles, doormatStyle];
     }
 
     static get properties(): PropertyDeclarations {
