@@ -1,9 +1,9 @@
 import { css, CSSResult, unsafeCSS } from 'lit';
 import { vlFocusOutlineMixin } from '../base/mixin/vl-outlines.css';
-import iconMapping from './vl-icon-mapping.css';
+import { vlIconMapping } from './vl-icon-mapping.css';
 
 export const vlIconStyles: CSSResult = css`
-    ${unsafeCSS(iconMapping)}
+    ${unsafeCSS(vlIconMapping)}
 
     :host {
         display: inline-flex;

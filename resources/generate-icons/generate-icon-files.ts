@@ -3,7 +3,7 @@
 // ! Voer dit bestand uit met volgend commando: node --experimental-default-type=module generate-icon-files.mjs
 
 import * as fs from 'fs-extra';
-import { iconFontLocation } from '../../libs/common/utilities/src/css';
+import { iconFontLocation } from '../../libs/common/utilities/src/css/base/font/vl-font.css';
 
 const getSvgIconString = async () => {
     const response = await fetch(`${iconFontLocation}.svg`);
@@ -42,13 +42,13 @@ const generateIconMapping = (glyphs) => {
     }, '');
 
     return `
-// ! dit bestand werd gegenereerd door het script: generate-icon-files.ts
+        // ! dit bestand werd gegenereerd door het script: generate-icon-files.ts
 
-import { css, CSSResult } from 'lit';
+        import { css, CSSResult } from 'lit';
 
-export vlIconStyles: CSSResult = css${'`'}
-    ${iconMapping}
-${'`'};
+        export const vlIconMapping: CSSResult = css${'`'}
+            ${iconMapping}
+        ${'`'};
     `;
 };
 
@@ -68,7 +68,7 @@ const generateAllIconsComponent = (glyphs) => {
             }
 
             static override get styles(): CSSResult[] {
-                return [iconStyles,
+                return [vlIconStyles,
                     css${'`'}
                         .container {
                             display: flex;

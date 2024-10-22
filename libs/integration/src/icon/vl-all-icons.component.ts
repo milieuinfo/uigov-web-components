@@ -1,4 +1,4 @@
-// ! Dit bestand is gegenereerd door het generate-icon-files.mjs script
+// ! dit bestand werd gegenereerd door het script: generate-icon-files.ts
 
 import { CSSResult, LitElement, css, html } from 'lit';
 import { registerWebComponents, webComponent } from '@domg-wc/common-utilities';
