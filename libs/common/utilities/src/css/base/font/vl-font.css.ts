@@ -1,8 +1,8 @@
 import { css, CSSResult, unsafeCSS } from 'lit';
 
-const sansFontFamily = 'vl-flanders-art-sans';
-const serifFontFamily = 'vl-flanders-art-serif';
-const iconFontFamily = 'vl-flanders-icon-classic';
+const sansFontFamily = 'Flanders Art Sans';
+const serifFontFamily = 'Flanders Art Serif';
+const iconFontFamily = 'vlaanderen-icon-classic';
 const fontLocation = 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/22.0.2';
 export const iconFontLocation = `${fontLocation}/iconfont/vlaanderen-icon-classic`;
 
