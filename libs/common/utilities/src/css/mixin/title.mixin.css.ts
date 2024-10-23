@@ -22,13 +22,13 @@ const titleSizes = {
         )}
     `,
     2: css`
-        font-size: 3.2rem;
+        font-size: var(--vl-title-h2-font-size, 3.2rem);
         margin-bottom: 2rem;
         line-height: 1.24;
 
         ${mediaQuerySmall(
             css`
-                font-size: 2.6rem;
+                font-size: var(--vl-title-h2-font-size-small, 2.6rem);
                 margin-bottom: 1.5rem;
             `
         )}
@@ -92,5 +92,6 @@ export const title = (size: 1 | 2 | 3 | 4 | 5 | 6): CSSResult => css`
 
     /* Title styles (gebaseerd op DV vl-ui-titles/src/scss/_titles.scss) */
     font-weight: 500;
+    letter-spacing: var(--vl-title-letter-spacing, initial);
     ${titleSizes[size]}
 `;

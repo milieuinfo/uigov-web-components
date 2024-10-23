@@ -22,6 +22,9 @@ const styles: CSSResult = css`
 
         /* Icon font */
         --vl-icon-font: ${unsafeCSS(iconFontFamily)};
+
+        /* Font weight */
+        --vl-form-label-font-weight: 500;
     }
 `;
 
