@@ -1,3 +1,4 @@
+import { UigConfig } from '../config/uig-config';
 import colors from './vars/colors.var.css';
 import general from './vars/general.var.css';
 import spacing from './vars/spacing.var.css';
@@ -11,13 +12,13 @@ class RegisterGlobalStyles {
     static registered = false;
 
     static register() {
-        if (!this.registered) {
+        if (UigConfig.getPreferences().autoRegisterStyles && !this.registered) {
             document.adoptedStyleSheets = [
                 ...document.adoptedStyleSheets,
                 ...(globalStyles.map((style) => style.styleSheet) as CSSStyleSheet[]),
             ];
             this.registered = true;
-            console.log('RegisterGlobalStyles: global styling toegevoegd aan het document');
+            console.log('RegisterGlobalStyles: global (next) styling toegevoegd aan het document');
         }
     }
 }
