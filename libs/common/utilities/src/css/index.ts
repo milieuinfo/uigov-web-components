@@ -1,4 +1,4 @@
-export { vlColorStyles } from './base/style/vl-color.css';
+export { vlColorStyles } from './base/var/vl-color.css';
 export { globalStylesNext, RegisterGlobalStyles } from './global-styles-decorator';
 export { iconFontLocation } from './base/font/vl-font.css';
 export { vlIconStyles } from './icon/vl-icon.css';

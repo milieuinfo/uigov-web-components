@@ -1,8 +1,8 @@
-import { vlBaseStyles } from './base/style/vl-base.css';
-import { vlColorStyles } from './base/style/vl-color.css';
-import { vlGeneralStyles } from './base/style/vl-general.css';
-import { vlMediaScreenStyles } from './base/style/vl-media-screen.css';
-import { vlTypographyStyles } from './base/style/vl-typography.css';
+import { vlBaseStyles } from './base/var/vl-base.css';
+import { vlColorStyles } from './base/var/vl-color.css';
+import { vlGeneralStyles } from './base/var/vl-general.css';
+import { vlMediaScreenStyles } from './base/var/vl-media-screen.css';
+import { vlTypographyStyles } from './base/var/vl-typography.css';
 import { vlFontStyles } from './base/font/vl-font.css';
 import { vlGroupStyles } from './group/vl-group.css';
 import { vlSpacingStyles } from './space/vl-spacing.css';
