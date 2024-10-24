@@ -8,8 +8,8 @@ import { classMap } from 'lit/directives/class-map.js';
 import { vlGroupArgs, vlGroupArgTypes } from './vl-group.stories-arg';
 
 export default {
-    id: 'styles-group',
-    title: 'Styles/group',
+    id: 'opmaak-next-group',
+    title: 'Opmaak-next/group',
     tags: ['autodocs'],
     args: vlGroupArgs,
     argTypes: vlGroupArgTypes,

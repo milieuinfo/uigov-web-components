@@ -1,0 +1,30 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Opmaak-next/Concept"/>
+
+# Concept
+
+In de v2 / next opzet worden de [elementen weggewerkt](/docs/planning-aanpak-v2-2024-v3-2025--documentatie#element-complicatie)
+dit heeft impact op de globale styling. De elementen uit v1, bvb. button moesten gebruikt worden als een `<button is="vl-button">`
+hierdoor hadden die geen shadow-dom en moest die css globaal (op het document) voorzien worden. In v2 wordt `button` een
+volwaardige web-component, te gebruiken via `vl-button`, hij krijgt ook een shadow-dom. Hierdoor kan de 'button' style
+nu in de shadow-dom gestoken worden.
+
+Alles wat aanvoelt als een echte component wordt in v2 op die manier aangeboden. Er is echter ook nood aan layout:
+alles wat orde en structuur geeft. Dit zijn containers voor ander componenten. Om deze te implementeren maakten we
+een aantal keuzes:
+
+- geen shadow-dom: dit vermijdt de complexiteit van shadow-dom's in shadow-dom's
+- de 12-kolom opzet behouden, aanbieden als `vl-grid`, maar wel zien als een specifiek geval van de
+[CSS Grid Layout](https://css-tricks.com/snippets/css/complete-guide-grid/) die native ondersteund wordt in een browser
+Op die manier kan de normale documentatie die daarover bestaat geraadpleegd worden en voelt het vertrouwd voor
+ontwikkelaars die er ervaring mee hebben.
+-
+
+## Grid Concept
+
+## Group Concept
+
+## Overige
+
+### Spacing
