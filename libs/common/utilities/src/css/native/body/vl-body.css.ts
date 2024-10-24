@@ -1,6 +1,6 @@
 import { css, CSSResult } from 'lit';
 
-export const vlBaseStyles: CSSResult = css`
+export const vlBodyStyles: CSSResult = css`
     html {
         font-family: var(--vl-font);
         /* 62.5% Font Size Trick  */

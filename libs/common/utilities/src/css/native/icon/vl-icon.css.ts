@@ -1,5 +1,5 @@
 import { css, CSSResult, unsafeCSS } from 'lit';
-import { vlFocusOutlineMixin } from '../base/mixin/vl-outlines.css';
+import { vlFocusOutlineMixin } from '../../base/mixin/vl-outlines.css';
 import { vlIconMapping } from './vl-icon-mapping.css';
 
 export const vlIconStyles: CSSResult = css`

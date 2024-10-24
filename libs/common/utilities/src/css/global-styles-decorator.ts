@@ -1,11 +1,11 @@
-import { vlBaseStyles } from './base/var/vl-base.css';
+import { vlBodyStyles } from './native/body/vl-body.css';
 import { vlColorStyles } from './base/var/vl-color.css';
 import { vlGeneralStyles } from './base/var/vl-general.css';
 import { vlMediaScreenStyles } from './base/var/vl-media-screen.css';
 import { vlTypographyStyles } from './base/var/vl-typography.css';
 import { vlFontStyles } from './base/font/vl-font.css';
-import { vlGroupStyles } from './group/vl-group.css';
-import { vlSpacingStyles } from './space/vl-spacing.css';
+import { vlGroupStyles } from './container/group/vl-group.css';
+import { vlSpacingStyles } from './container/space/vl-spacing.css';
 
 const globalStyles = [
     vlMediaScreenStyles,
@@ -14,7 +14,7 @@ const globalStyles = [
     vlGeneralStyles,
     vlSpacingStyles,
     vlTypographyStyles,
-    vlBaseStyles,
+    vlBodyStyles,
     vlGroupStyles,
 ];
 

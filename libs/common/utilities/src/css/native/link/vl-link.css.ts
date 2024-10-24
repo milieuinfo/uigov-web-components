@@ -1,5 +1,5 @@
 import { css, CSSResult } from 'lit';
-import { vlFocusOutlineMixin } from '../base/mixin/vl-outlines.css';
+import { vlFocusOutlineMixin } from '../../base/mixin/vl-outlines.css';
 
 export const vlLinkStyles: CSSResult = css`
     a {
