@@ -70,3 +70,19 @@ export const BreadcrumbButtons = story(
 );
 BreadcrumbButtons.storyName = 'vl-breadcrumb - buttons';
 BreadcrumbButtons.decorators = [(story) => html` <div style="height: 100px;">${story()}</div> `];
+
+export const BreadcrumbTruncate = story(
+    {},
+    () => html`
+        <vl-breadcrumb truncate>
+            <vl-breadcrumb-item href="#">Vlaanderen Intern</vl-breadcrumb-item>
+            <vl-breadcrumb-item href="#">Regelgeving</vl-breadcrumb-item>
+            <vl-breadcrumb-item>
+                Besluit van de Vlaamse Regering tot vaststelling van een gewestelijke stedenbouwkundige verordening
+                voor publiciteitsinrichtingen
+            </vl-breadcrumb-item>
+        </vl-breadcrumb>
+    `
+);
+BreadcrumbTruncate.storyName = 'vl-breadcrumb - truncate';
+BreadcrumbTruncate.decorators = [(story) => html` <div style="max-width: 400px;">${story()}</div> `];

@@ -34,6 +34,100 @@ describe('cypress-component - block components - vl-breadcrumb', () => {
     });
 });
 
+describe('cypress-component - block components - vl-breadcrumb - long text', () => {
+    it('should wrap a long breadcrumb item by default', () => {
+        mountWithLongText({ truncate: false });
+
+        cy.get('vl-breadcrumb').should('not.have.attr', 'truncate');
+        getLastBreadcrumbItem().should(($item) => {
+            const cta = getCta($item);
+            expect(cta.scrollWidth).to.be.at.most(cta.clientWidth);
+            expect(getComputedStyle(cta).textOverflow).to.equal('clip');
+            expect($item[0].getBoundingClientRect().right).to.be.at.most(getContainerRight());
+        });
+    });
+
+    it('should truncate a long breadcrumb item with an ellipsis when truncate is set', () => {
+        mountWithLongText({ truncate: true });
+
+        getLastBreadcrumbItem().should(($item) => {
+            const cta = getCta($item);
+            expect(cta.scrollWidth).to.be.greaterThan(cta.clientWidth);
+            expect(getComputedStyle(cta).textOverflow).to.equal('ellipsis');
+            expect($item[0].getBoundingClientRect().right).to.be.at.most(getContainerRight());
+        });
+    });
+
+    it('should move a breadcrumb item that does not fit to a new line without truncating it when truncate is set', () => {
+        cy.mount(html`
+            <div id="container" style="width: 300px">
+                <vl-breadcrumb truncate>
+                    <vl-breadcrumb-item href="#">Vlaanderen Intern</vl-breadcrumb-item>
+                    <vl-breadcrumb-item href="#">Regelgeving</vl-breadcrumb-item>
+                    <vl-breadcrumb-item>Verordening toegankelijkheid</vl-breadcrumb-item>
+                </vl-breadcrumb>
+            </div>
+        `);
+
+        cy.get('vl-breadcrumb-item').should(($items) => {
+            const previousTop = $items[1].getBoundingClientRect().top;
+            const lastItem = $items.last();
+            const cta = getCta(lastItem);
+            expect(lastItem[0].getBoundingClientRect().top).to.be.greaterThan(previousTop);
+            expect(cta.scrollWidth).to.equal(cta.clientWidth);
+        });
+    });
+
+    it('should keep short breadcrumb items readable when truncate is set', () => {
+        mountWithLongText({ truncate: true });
+
+        cy.get('vl-breadcrumb-item')
+            .first()
+            .should(($item) => {
+                const cta = getCta($item);
+                expect(cta.scrollWidth).to.equal(cta.clientWidth);
+            });
+    });
+
+    it('should truncate a breadcrumb item that is wrapped in another element when truncate is set', () => {
+        cy.mount(html`
+            <div id="container" style="width: 300px">
+                <vl-breadcrumb truncate>
+                    <vl-breadcrumb-item href="#">Vlaanderen Intern</vl-breadcrumb-item>
+                    <div><vl-breadcrumb-item type="button">${longText}</vl-breadcrumb-item></div>
+                </vl-breadcrumb>
+            </div>
+        `);
+
+        getLastBreadcrumbItem().should(($item) => {
+            const cta = getCta($item);
+            expect(cta.scrollWidth).to.be.greaterThan(cta.clientWidth);
+            expect(cta.getBoundingClientRect().right).to.be.at.most(getContainerRight());
+        });
+    });
+});
+
+const longText =
+    'Besluit van de Vlaamse Regering tot vaststelling van een gewestelijke stedenbouwkundige verordening voor publiciteitsinrichtingen';
+
+const mountWithLongText = ({ truncate }: { truncate: boolean }) => {
+    cy.mount(html`
+        <div id="container" style="width: 300px">
+            <vl-breadcrumb ?truncate=${truncate}>
+                <vl-breadcrumb-item href="#">Vlaanderen Intern</vl-breadcrumb-item>
+                <vl-breadcrumb-item>${longText}</vl-breadcrumb-item>
+            </vl-breadcrumb>
+        </div>
+    `);
+};
+
+const getLastBreadcrumbItem = () => cy.get('vl-breadcrumb-item').last();
+
+const getCta = ($item: JQuery<HTMLElement>) =>
+    $item[0].shadowRoot!.querySelector<HTMLElement>('.vl-breadcrumb__list__item__cta')!;
+
+const getContainerRight = () => cy.$$('#container')[0].getBoundingClientRect().right;
+
 const mount = () => {
     cy.mount(html` <vl-breadcrumb>
         <vl-breadcrumb-item>item 1</vl-breadcrumb-item>
