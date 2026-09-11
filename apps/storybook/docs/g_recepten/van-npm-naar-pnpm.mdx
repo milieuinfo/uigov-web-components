@@ -325,7 +325,7 @@ in. Bij de migratie van onze eigen repo en de consumer-app hadden we er geen enk
   `--frozen-lockfile` dan zelf aan, maar expliciet is duidelijker. Een `--maxsockets 5` (om Artifactory niet te
   overbelasten) wordt `--network-concurrency 5`.
 - **Corepack in de pipeline**: zet `corepack enable` vóór het eerste pnpm-commando in elke job die een verse
-  container krijgt (op Node 25 en hoger installeer je corepack eerst, zie stap 1).
+  container krijgt (op Node 25 en hoger installeer je corepack eerst, zie [stap 1](#1-pnpm-beschikbaar-maken)).
 - **Geen toegang tot npmjs**: corepack haalt pnpm standaard van npmjs. Bereikt je build-omgeving enkel Artifactory,
   wijs corepack dan naar dezelfde registry als npm en pin de hash in `packageManager` (corepack controleert anders
   de npmjs-signatuur, die een proxy-registry niet meelevert; met een hash controleert het de integriteit
