@@ -19,7 +19,9 @@ export { VlContentHeaderComponent } from './content-header';
 export { VlDatepickerComponent } from './datepicker';
 export { VlDescriptionData, VlDescriptionDataItem } from './description-data';
 export { VlDocumentComponent } from './document';
+export { VlFooter } from './next/footer';
 export { VlFunctionalHeaderComponent } from './functional-header';
+export { VlHeader, type ApplicationLink } from './next/header';
 export {
     VlHttp400Message,
     VlHttp401Message,
