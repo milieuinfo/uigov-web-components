@@ -39,8 +39,8 @@ De reden is **supply-chain security**, niet snelheid (al krijg je die er gratis 
   van je eigen code gedraaid hebt.
 - pnpm draait die scripts niet, tenzij je een package expliciet toelaat (`allowBuilds`). Met `strictDepBuilds` faalt
   de install zodra er een script opduikt dat je nog niet beoordeeld hebt.
-- pnpm 11 installeert standaard geen versie jonger dan 24 uur (`minimumReleaseAge`). Gekaapte versies worden meestal
-  binnen dat venster teruggetrokken, dus je krijgt ze niet binnen.
+- pnpm 11 wacht standaard 24 uur (`minimumReleaseAge`) voor het een pas gepubliceerde versie installeert. De meeste
+  gekaapte versies worden binnen die tijd van de registry gehaald, dus je installeert ze nooit.
 - De `node_modules` van pnpm is strikt: je kan enkel importeren wat je zelf in `package.json` declareert. Verborgen
   (phantom) dependencies, die bij npm toevallig werken, komen aan het licht.
 
