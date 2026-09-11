@@ -74,6 +74,13 @@ stelt de `width` in voor het component.
 }
 ```
 
+**Let op:** de toggle knop staat bij een open `side-sheet` naast de `side-sheet`. De standaardbreedte op mobile
+(`calc(100vw - 56px)`) laat daar net plaats voor. Stel je `--vl-side-sheet-width-mobile` in op `100%`, dan valt de
+toggle knop buiten het scherm en kan de gebruiker de `side-sheet` er niet meer mee sluiten. Voorzie in dat geval zelf
+een sluitknop in de `side-sheet` die `close()` aanroept, zoals in het
+[voorbeeld van buitenaf openen & sluiten](#voorbeeld-van-buitenaf-openen--sluiten). Geef die knop een toegankelijke
+naam, bijvoorbeeld `label="Sluit de side-sheet"` bij een knop met enkel een icoon.
+
 ### Openen en sluiten zonder knop
 
 Je kan de `side-sheet` openen zonder de toggle knop;
