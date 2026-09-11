@@ -2,6 +2,8 @@ const breadcrumbUrl =
     'http://localhost:8080/iframe.html?id=components-block-breadcrumb--breadcrumb-default&viewMode=story';
 const breadcrumbButtonsUrl =
     'http://localhost:8080/iframe.html?id=components-block-breadcrumb--breadcrumb-buttons&viewMode=story';
+const breadcrumbTruncateUrl =
+    'http://localhost:8080/iframe.html?id=components-block-breadcrumb--breadcrumb-truncate&viewMode=story';
 const breadcrumbItemUrl =
     'http://localhost:8080/iframe.html?id=components-block-breadcrumb-breadcrumb-item--breadcrumb-default&viewMode=story';
 const breadcrumbItemButtonUrl =
@@ -61,6 +63,22 @@ describe('cypress-e2e - block components - vl-breadcrumb - buttons story', () =>
             .should('have.length', 3)
             .each((item) => {
                 cy.wrap(item).shadow().find('button.vl-breadcrumb__list__item__cta').should('exist');
+            });
+    });
+});
+
+describe('cypress-e2e - block components - vl-breadcrumb - truncate story', () => {
+    it('should truncate the long breadcrumb item with an ellipsis', () => {
+        cy.visit(breadcrumbTruncateUrl);
+
+        cy.get('vl-breadcrumb').should('have.attr', 'truncate');
+        cy.get('vl-breadcrumb-item')
+            .last()
+            .shadow()
+            .find('.vl-breadcrumb__list__item__cta')
+            .should(($cta) => {
+                expect(getComputedStyle($cta[0]).textOverflow).to.equal('ellipsis');
+                expect($cta[0].scrollWidth).to.be.greaterThan($cta[0].clientWidth);
             });
     });
 });

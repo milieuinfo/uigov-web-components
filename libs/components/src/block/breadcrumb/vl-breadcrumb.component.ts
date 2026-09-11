@@ -7,6 +7,18 @@ import { vlBreadcrumbFluxStyles } from './vl-breadcrumb.flux-css';
 
 @customElement('vl-breadcrumb')
 export class VlBreadcrumbComponent extends BaseLitElement {
+    private truncate = false;
+
+    static get properties() {
+        return {
+            truncate: {
+                type: Boolean,
+                attribute: 'truncate',
+                reflect: true,
+            },
+        };
+    }
+
     static get styles() {
         return [resetStyle, breadcrumbStyle, vlBreadcrumbFluxStyles];
     }

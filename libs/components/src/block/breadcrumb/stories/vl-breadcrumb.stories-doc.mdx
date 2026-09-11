@@ -32,3 +32,21 @@ Gebruik een breadcrumb met buttons voor interactieve breadcrumbs die bijvoorbeel
 Vermijd het gebruik van links en buttons binnen dezelfde breadcrumb component.
 
 <Canvas of={VlBreadcrumbStories.BreadcrumbButtons} />
+
+### Lange tekst afkappen
+
+Standaard loopt een lang breadcrumb item door over meerdere regels. Is de ruimte beperkt, bijvoorbeeld in een
+`side-sheet`, dan houdt het `truncate` attribuut elk breadcrumb item op één regel: een breadcrumb item dat niet past,
+begint op een nieuwe regel en wordt indien nodig afgekapt met een ellipsis (…).
+
+De afgekapte tekst blijft volledig beschikbaar voor schermlezers, maar is visueel niet meer leesbaar. Gebruik
+`truncate` dus enkel waar de ruimte echt beperkt is.
+
+```html
+<vl-breadcrumb truncate>
+    <vl-breadcrumb-item href="#">Vlaanderen Intern</vl-breadcrumb-item>
+    <vl-breadcrumb-item>Een breadcrumb item met een heel lange titel</vl-breadcrumb-item>
+</vl-breadcrumb>
+```
+
+<Canvas of={VlBreadcrumbStories.BreadcrumbTruncate} />
