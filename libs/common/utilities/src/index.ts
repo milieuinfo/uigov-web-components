@@ -33,3 +33,10 @@ export {
 } from './util/utils';
 export { onChildListChange } from './util/mutation-utils';
 export { buildSpan, buildDiv, buildLabel, buildData } from './util/html-element.builder';
+export { legacyCore, legacyBreakpoint } from './util/legacy-initialisation';
+export {
+    createSkipToContentLink,
+    SKIP_TO_CONTENT_LINK_TEXT,
+    SKIP_TO_CONTENT_MISSING_ID_WARNING,
+} from './util/skip-link';
+export { vlAccessibilityStyles } from './css/base/accessibility/vl-accessibility.css';

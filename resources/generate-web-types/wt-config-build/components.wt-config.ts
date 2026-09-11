@@ -2,6 +2,8 @@ import { buttonArgTypes } from '@domg-wc/components/next/button/stories/vl-butto
 import { cascaderItemArgTypes } from '@domg-wc/components/next/cascader/stories/vl-cascader-item.stories-arg';
 import { cascaderArgTypes } from '@domg-wc/components/next/cascader/stories/vl-cascader.stories-arg';
 import { doormatArgTypes } from '@domg-wc/components/next/doormat/stories/vl-doormat.stories-arg';
+import { footerArgTypes } from '@domg-wc/components/next/footer/stories/vl-footer.stories-arg';
+import { headerArgTypes } from '@domg-wc/components/next/header/stories/vl-header.stories-arg';
 import { iconArgTypes } from '@domg-wc/components/next/icon/stories/vl-icon.stories-arg';
 import { infotextArgTypes } from '@domg-wc/components/next/infotext/stories/vl-infotext.stories-arg';
 import { linkArgTypes } from '@domg-wc/components/next/link/stories/vl-link.stories-arg';
@@ -168,6 +170,18 @@ export const buildWTConfigComponents: WTConfigArray = [
         buttonArgTypes,
         '../../libs/components/src/next/button/stories/vl-button.stories-doc.mdx',
         '/docs/components-next-button--documentatie'
+    ),
+    buildWTConfig(
+        'vl-header-next',
+        headerArgTypes,
+        '../../libs/components/src/next/header/stories/vl-header.stories-doc.mdx',
+        '/docs/components-next-header--documentatie'
+    ),
+    buildWTConfig(
+        'vl-footer-next',
+        footerArgTypes,
+        '../../libs/components/src/next/footer/stories/vl-footer.stories-doc.mdx',
+        '/docs/components-next-footer--documentatie'
     ),
     buildWTConfig(
         'vl-cascader',
