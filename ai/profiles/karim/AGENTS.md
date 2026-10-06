@@ -265,12 +265,36 @@ Add an entry with the component name, docs reference, and condition fields. See 
 
 4. Test story configurations in the browser before finalizing
 
+This step is not optional. If port 8080 is taken by another session, start Storybook on a free port instead of skipping the check.
+
 **Common Issues:**
 - Missing imports in story files
 - Incorrect arg types causing control issues
 - Template not using `story()` helper (shows default args in source)
 - Slots not using `unsafeHTML` (HTML gets escaped)
 - Properties not prefixed with `.` (passed as attributes instead)
+
+## Review Before Handover (STRICT)
+
+The session that writes the code also writes the tests, so its tests and checks confirm its own design. Green Cypress specs plus a green CI build prove that the code builds and does what the author designed, not that it works for consumers. On FLUX-803 a colleague's review still found six problems after both were green: a control hidden under another control, docs promising behaviour that had been removed, a wrong claim in the docs, and three gaps in code imported from another session. Every one of them was visible in a realistic composition or in a single read of the docs against the code.
+
+Before handing over a push command for a PR branch (the first push and every fix round):
+
+1. **Fresh-context review.** Run a review agent without this session's history on `git diff develop-v2...HEAD`. Its brief:
+   - per feature, list the realistic compositions and check each: other components and controls at their default positions, elements that appear later or asynchronously, open/close and toggles, narrow and mobile viewports, attributes changed at runtime, disconnect and reconnect;
+   - verify every sentence in the mdx and the argType descriptions against the code;
+   - check that the tests assert the user-visible outcome (visible, not covered, usable), not only an implementation detail;
+   - an a11y pass.
+
+   Every finding needs a `file:line` and evidence (measured, or quoted from the code). Unproven points are questions, not findings.
+2. **Fix the blockers**, or get Karim's explicit acceptance, before giving the push command.
+3. **Storybook check** (see Storybook Verification): open every new or changed story, including the story that combines the features, and take a screenshot.
+
+Also:
+
+- **No behavioural claim in docs without proof.** Every statement about behaviour in mdx, argTypes or JSDoc is backed by a test or a measurement from the same session. When a feature is removed, grep for every text that still mentions it.
+- **Imported code gets the full review.** Code from another session or branch is reviewed like a PR from someone else, not only where it meets your own code.
+- **Report verification honestly.** Say "builds and passes its tests" when that is what was checked; "works" needs the steps above.
 
 ## Planning & Scratchpad Files
 
