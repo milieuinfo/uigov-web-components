@@ -3,7 +3,7 @@
         "name": "accordion",
         "docs": "components-block-accordion--documentatie",
         "condition": {
-            "base": "HTMLElement",
+            "base": "LitElement",
             "generation": "legacy",
             "css": "govflanders",
             "tests": ["Component", "Storybook", "DOM"],
