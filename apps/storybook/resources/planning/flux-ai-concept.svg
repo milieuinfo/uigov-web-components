@@ -21,12 +21,12 @@
 <line x1="612" y1="146" x2="492" y2="206" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)"/>
 
 <!-- Uitvoering: de AI-client van het project (bestaande tooling, lichter), met zijn eigen koppelingen en model -->
-<rect x="76" y="318" width="574" height="56" rx="8" fill="#F2FAF7" stroke="#7FB3A2" stroke-width="0.75"/><text x="363" y="342" font-size="13" font-weight="500" fill="#085041" text-anchor="middle">AI-client van het project</text><text x="363" y="360" font-size="11.5" fill="#0F6E56" text-anchor="middle">Claude Code, VS Code, … · de ontwikkelaar start een recept</text>
+<rect x="76" y="318" width="574" height="56" rx="8" fill="#F2FAF7" stroke="#7FB3A2" stroke-width="0.75"/><text x="363" y="342" font-size="13" font-weight="500" fill="#085041" text-anchor="middle">AI-client van het project</text><text x="363" y="360" font-size="11.5" fill="#0F6E56" text-anchor="middle">Claude Code, Codex, VS Code met Copilot, … · de ontwikkelaar start een recept</text>
 <line x1="150" y1="288" x2="150" y2="312" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
 <line x1="452" y1="288" x2="452" y2="312" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
 <line x1="72" y1="340" x2="-8" y2="340" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)" marker-start="url(#arrow)"/><text x="32" y="332" font-size="11.5" fill="#5F5E5A" text-anchor="middle">Jira</text>
 <line x1="72" y1="352" x2="-8" y2="352" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)" marker-start="url(#arrow)"/><text x="32" y="369" font-size="11.5" fill="#5F5E5A" text-anchor="middle">code en Git</text>
-<line x1="654" y1="346" x2="734" y2="346" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)" marker-start="url(#arrow)"/><text x="694" y="338" font-size="11.5" fill="#5F5E5A" text-anchor="middle">AI model</text>
+<line x1="654" y1="346" x2="734" y2="346" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)" marker-start="url(#arrow)"/><text x="694" y="338" font-size="11.5" fill="#5F5E5A" text-anchor="middle">AI-model</text>
 <line x1="312" y1="378" x2="213" y2="414" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)"/>
 <line x1="346" y1="378" x2="313" y2="414" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)"/>
 <line x1="380" y1="378" x2="413" y2="414" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)"/>
