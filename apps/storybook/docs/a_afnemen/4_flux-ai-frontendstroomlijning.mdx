@@ -55,9 +55,9 @@ Het schema leest van boven naar onder, met rechts een lus terug naar boven:
 - **Ontsluiting** (sectie 4): de **Flux-MCP** stelt die kennis per versie beschikbaar: zoeken in de documentatie, een
   component of richtlijn opvragen, de wijzigingen tussen 2 versies bekijken en markup controleren. Daarnaast biedt hij
   de **recepten** aan. De **Figma-MCP** ontsluit het ontwerp, met Code Connect naar de Flux-componenten.
-- **Uitvoering** (sectie 4): de **AI-client van het project** - Claude Code, VS Code met Copilot, ... - maakt
-  rechtstreeks verbinding met de Flux-MCP en met de Figma-MCP. De ontwikkelaar start een recept en de client voert het
-  uit, met het AI-model van het team, in de code van het project en met de eigen koppelingen met Jira en Git.
+- **Uitvoering** (sectie 4): de **AI-client van het project** - Claude Code, Codex, VS Code met Copilot of Cursor -
+  maakt rechtstreeks verbinding met de Flux-MCP en met de Figma-MCP. De ontwikkelaar start een recept en de AI-client
+  voert het uit, met het AI-model van het team, in de code van het project en met de eigen koppelingen met Jira en Git.
 - **Recepten** (sectie 5): de workflows. Een deel brengt een ontwerp stap voor stap naar een nieuwe frontend, de rest
   werkt op een bestaande frontend: uitbreiden, upgraden, reviewen, valideren en verbeteren. Elk recept vraagt
   bevestiging voor er code wijzigt, verifieert het resultaat en eindigt in een rapport, en wat code wijzigt in een
@@ -70,7 +70,7 @@ Het schema leest van boven naar onder, met rechts een lus terug naar boven:
   - alles blijven zoals het is: de afwijkingen staan in het rapport, daar stopt het.
 
 Het principe: **alle recepten putten uit dezelfde kennis, via dezelfde server**, en elk team voert ze uit in zijn eigen
- project, met zijn eigen client. Via de rapporten geven toepassingen Flux-AI mee vorm.
+ project, met zijn eigen AI-client. Via de rapporten geven toepassingen Flux-AI mee vorm.
 
 
 ## 3. Kennislaag
@@ -108,9 +108,10 @@ Figma voedt de Figma-MCP, de catalogus de Flux-MCP (sectie 4). De toepassingen z
  en -variant overeenkomt met welke `vl`-component en welke attributen. Flux-MCP verrijkt de Figma-bibliotheek daarvoor
  met Code Connect, beschrijvingen per component en links naar de documentatie.
 
-**AI-client van het project.** Claude Code, VS Code met Copilot of een andere AI-client met MCP-ondersteuning maakt
- rechtstreeks verbinding met de Flux-MCP en met de Figma-MCP. De ontwikkelaar start een recept en de client voert het
- uit, met het AI-model van het team, in de code van het project en met de eigen koppelingen met Jira en Git.
+**AI-client van het project.** Claude Code, Codex, VS Code met Copilot, Cursor of een andere AI-client met
+ MCP-ondersteuning maakt rechtstreeks verbinding met de Flux-MCP en met de Figma-MCP. De ontwikkelaar start een recept
+ en de AI-client voert het uit, met het AI-model van het team, in de code van het project en met de eigen koppelingen
+ met Jira en Git.
 
 <vl-alert icon="alert-circle" title="Belangrijk" type="warning" size="small">
     De MCP-servers voeren zelf niets uit: ze roepen geen model aan en lezen of wijzigen geen code. Ze leveren kennis en
@@ -128,7 +129,7 @@ Een recept is een workflow als MCP-prompt: vaste stappen, uitgevoerd door de AI-
 3. **Rapport** - wat er gebeurde en wat er nog openstaat.
 
 Wat code wijzigt, eindigt in een voorstel voor een branch en een PR of MR, nooit in een losse AI-output. Voor Jira en
- Git gebruikt de client de eigen koppelingen van het team. Elk recept raadt een model en een effort aan.
+ Git gebruikt de AI-client de eigen koppelingen van het team. Elk recept raadt een model en een effort aan.
 
 ### 5.1 Van ontwerp naar frontend
 
@@ -211,7 +212,7 @@ Flux-AI werkt op elke toepassing. Deze punten maken de AI-werking sterker en eff
 
 **Uitgebreide e2e-testen.** De e2e-suite is het gedragscontract van de toepassing en versterkt de AI-werking het meest:
  ze maakt AI-wijzigingen verifieerbaar. Na een upgrade, een uitbreiding of een aanpassing geldt: testen groen = gedrag
- behouden. Zo kan de client zelf itereren tot het resultaat klopt.
+ behouden. Zo kan de AI-client zelf itereren tot het resultaat klopt.
 
 
 ## 8. Randvoorwaarden en Risico's
